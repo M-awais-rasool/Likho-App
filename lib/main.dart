@@ -1,8 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'design/tokens.dart';
 import 'dev/dev_launch.dart';
+import 'feedback/app_feedback.dart';
+import 'feedback/haptics.dart';
+import 'feedback/sfx.dart';
+import 'feedback/sound_engine.dart';
 import 'screens/app_flow.dart';
 import 'screens/splash_screen.dart';
 
@@ -11,7 +17,17 @@ Future<void> main() async {
   // debug-only QA shortcuts, null in release
   final devLevel = await devLaunchLevel();
   final devScreen = devLevel == null ? await devLaunchScreen() : null;
-  runApp(ProviderScope(child: LikhoApp(devLevel: devLevel, devScreen: devScreen)));
+  // sound effects + haptics (tests keep the silent defaults); the splash
+  // and answer sounds load now so their first play is instant
+  final sound = JustAudioSoundEngine();
+  unawaited(sound.preload(Sfx.warm));
+  runApp(ProviderScope(
+    overrides: [
+      soundEngineProvider.overrideWithValue(sound),
+      hapticsProvider.overrideWithValue(const SystemHaptics()),
+    ],
+    child: LikhoApp(devLevel: devLevel, devScreen: devScreen),
+  ));
 }
 
 class LikhoApp extends StatelessWidget {

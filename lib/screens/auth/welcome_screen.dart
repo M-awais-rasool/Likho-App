@@ -4,6 +4,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import '../../feedback/app_feedback.dart';
 import '../../design/motion.dart';
 import '../../design/tokens.dart';
 import '../../mascot/mascot.dart';
@@ -27,7 +28,7 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   bool _caught = false;
-  Timer? _timer;
+  Timer? _timer, _land;
 
   @override
   void initState() {
@@ -35,11 +36,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     _timer = Timer(WelcomeScreen.catchDelay, () {
       if (mounted) setState(() => _caught = true);
     });
+    _land = Timer(WelcomeScreen.catchDelay + const Duration(milliseconds: 420), () {
+      if (mounted) AppFeedback.of(context).catchLetter();
+    });
   }
 
   @override
   void dispose() {
     _timer?.cancel();
+    _land?.cancel();
     super.dispose();
   }
 

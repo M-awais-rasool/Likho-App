@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/repositories/auth_repository.dart';
+import '../../feedback/app_feedback.dart';
 import '../../design/motion.dart';
 import '../../design/tokens.dart';
 import '../common/kid_widgets.dart';
@@ -51,6 +52,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   }
 
   void _finish(Duration after) {
+    ref.read(feedbackProvider).done();
     setState(() => _ok = true);
     _next = Timer(after, () {
       if (mounted) widget.onDone();
@@ -66,8 +68,15 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   Future<void> _submit() async {
     if (_loading || _ok) return;
     FocusScope.of(context).unfocus();
-    if (!AuthValidator.email(_email.text)) return setState(() => _err = AuthError.email);
-    if (!AuthValidator.password(_pw.text)) return setState(() => _err = AuthError.password);
+    final fb = ref.read(feedbackProvider);
+    if (!AuthValidator.email(_email.text)) {
+      fb.nope();
+      return setState(() => _err = AuthError.email);
+    }
+    if (!AuthValidator.password(_pw.text)) {
+      fb.nope();
+      return setState(() => _err = AuthError.password);
+    }
     setState(() {
       _err = AuthError.none;
       _loading = true;

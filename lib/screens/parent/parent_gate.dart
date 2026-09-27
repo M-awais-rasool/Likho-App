@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../design/motion.dart';
+import '../../feedback/app_feedback.dart';
 import '../../design/tokens.dart';
 import '../common/kid_widgets.dart';
 
@@ -52,10 +53,13 @@ class _ParentGateState extends State<ParentGate> {
   }
 
   void _pick(int v) {
+    final fb = AppFeedback.of(context);
     if (v == _answer) {
+      fb.unlock();
       Navigator.of(context).pop(true);
       return;
     }
+    fb.nope();
     setState(() {
       _err = true;
       _shake++;
@@ -93,6 +97,7 @@ class _ParentGateState extends State<ParentGate> {
                               CircleIconButton(
                                 icon: Symbols.close_rounded,
                                 onTap: () => Navigator.of(context).pop(false),
+                                sound: ButtonSound.back,
                                 size: 36,
                                 iconSize: 20,
                                 color: UiColors.chip,

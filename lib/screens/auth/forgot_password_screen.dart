@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../data/repositories/auth_repository.dart';
+import '../../feedback/app_feedback.dart';
 import '../../design/motion.dart';
 import '../../design/tokens.dart';
 import '../../mascot/mascot.dart';
@@ -39,7 +40,10 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
   Future<void> _submit() async {
     if (_loading) return;
     FocusScope.of(context).unfocus();
-    if (!AuthValidator.email(_email.text)) return setState(() => _err = true);
+    if (!AuthValidator.email(_email.text)) {
+      ref.read(feedbackProvider).nope();
+      return setState(() => _err = true);
+    }
     setState(() {
       _err = false;
       _loading = true;
@@ -49,6 +53,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
       setState(() {
         _loading = false;
         _sent = true;
+        ref.read(feedbackProvider).send();
       });
     }
   }

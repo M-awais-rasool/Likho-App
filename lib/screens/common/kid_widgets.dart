@@ -6,6 +6,7 @@ import 'package:material_symbols_icons/symbols.dart';
 
 import '../../design/motion.dart';
 import '../../design/tokens.dart';
+import '../../feedback/app_feedback.dart';
 import '../gameplay/widgets/game_buttons.dart';
 
 /// Building blocks shared by the account, profile, room and parent screens.
@@ -96,6 +97,27 @@ class IconLine extends StatelessWidget {
   );
 }
 
+/// What a button sounds like when pressed.
+enum ButtonSound { press, tap, back, none }
+
+/// Wraps [onTap] so the press is heard (and felt, for main buttons).
+VoidCallback? withSound(BuildContext context, ButtonSound sound, VoidCallback? onTap) {
+  if (onTap == null || sound == ButtonSound.none) return onTap;
+  return () {
+    final fb = AppFeedback.of(context);
+    switch (sound) {
+      case ButtonSound.press:
+        fb.press();
+      case ButtonSound.tap:
+        fb.tap();
+      case ButtonSound.back:
+        fb.back();
+      case ButtonSound.none:
+    }
+    onTap();
+  };
+}
+
 /// Big kid button: yellow "Shuru karein" style (edge #E0A21A) or white
 /// secondary (soft grey edge). [icon] goes before the label.
 class BigButton extends StatelessWidget {
@@ -115,8 +137,10 @@ class BigButton extends StatelessWidget {
     this.opacity = 1,
     this.color,
     this.edgeColor,
+    this.sound = ButtonSound.press,
   });
 
+  final ButtonSound sound;
   final String label;
   final VoidCallback? onTap;
   final IconData? icon, iconAfter;
@@ -138,7 +162,7 @@ class BigButton extends StatelessWidget {
     return Opacity(
       opacity: opacity,
       child: PushButton(
-        onTap: onTap,
+        onTap: withSound(context, sound, onTap),
         color: color ?? (white ? LikhoColors.surface : LikhoColors.primary),
         edgeColor: edgeColor ?? (white ? GameColors.ink10 : LikhoColors.primaryDeep),
         edge: opacity < 1 ? 2 : 6,
@@ -182,6 +206,7 @@ class CircleIconButton extends StatelessWidget {
     this.shadow = GameColors.ink08,
     this.shadowY = 4,
     this.iconFill = false,
+    this.sound = ButtonSound.tap,
   });
 
   /// The prototype's arrow_back button.
@@ -189,7 +214,10 @@ class CircleIconButton extends StatelessWidget {
     : icon = Symbols.arrow_back_rounded,
       color = LikhoColors.surface,
       iconColor = LikhoColors.ink,
-      iconFill = false;
+      iconFill = false,
+      sound = ButtonSound.back;
+
+  final ButtonSound sound;
 
   final IconData icon;
   final VoidCallback? onTap;
@@ -200,7 +228,7 @@ class CircleIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => PushButton(
-    onTap: onTap,
+    onTap: withSound(context, sound, onTap),
     color: color,
     width: size,
     height: size,
@@ -264,7 +292,7 @@ class _TextLinkState extends State<TextLink> {
       onTapDown: (_) => setState(() => _down = true),
       onTapCancel: () => setState(() => _down = false),
       onTapUp: (_) => setState(() => _down = false),
-      onTap: widget.onTap,
+      onTap: withSound(context, ButtonSound.tap, widget.onTap),
       child: AnimatedOpacity(
         opacity: _down ? .6 : 1,
         duration: const Duration(milliseconds: 100),
@@ -310,7 +338,7 @@ class FlatButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => PushButton(
-    onTap: onTap,
+    onTap: withSound(context, ButtonSound.tap, onTap),
     color: color,
     height: height,
     width: double.infinity,

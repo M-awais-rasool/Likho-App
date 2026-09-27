@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../feedback/game_feedback.dart';
 import '../../design/motion.dart';
 import '../../design/tokens.dart';
 import '../../mascot/mascot.dart';
@@ -59,6 +60,7 @@ class _PlacementDoneScreenState extends State<PlacementDoneScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   BubbleIn(delay: .3, seconds: .4, alignment: Alignment.bottomCenter, child: _Bubble()),
+                  FeedbackCue(at: .3, play: (f) => f.done()),
                   const SizedBox(height: 10 + 10),
                   const PencilFigure(width: 180, height: 254, state: MascotState.happy, holdEnd: true),
                 ],

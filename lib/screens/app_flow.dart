@@ -5,6 +5,8 @@ import '../data/course_providers.dart';
 import '../data/family.dart';
 import '../data/models/course_models.dart';
 import '../data/repositories/auth_repository.dart';
+import '../feedback/app_feedback.dart';
+import '../feedback/game_feedback.dart';
 import '../game/level_session.dart';
 import 'auth/forgot_password_screen.dart';
 import 'auth/login_screen.dart';
@@ -115,9 +117,18 @@ abstract final class AppFlow {
 
   static Widget mapScreen(BuildContext ctx) => WorldMapScreen(
     onOpenLevel: (n) => openLevel(ctx, n),
-    onProfile: () => Navigator.of(ctx).push(_profile()),
-    onRoom: () => Navigator.of(ctx).push(LikhoRoute<void>(builder: (c) => MascotRoomScreen(onBack: () => Navigator.of(c).pop()))),
-    onSettings: () => _gated(ctx, () => Navigator.of(ctx).push(_dashboard())),
+    onProfile: () {
+      AppFeedback.of(ctx).tap();
+      Navigator.of(ctx).push(_profile());
+    },
+    onRoom: () {
+      AppFeedback.of(ctx).press();
+      Navigator.of(ctx).push(LikhoRoute<void>(builder: (c) => MascotRoomScreen(onBack: () => Navigator.of(c).pop())));
+    },
+    onSettings: () {
+      AppFeedback.of(ctx).tap();
+      _gated(ctx, () => Navigator.of(ctx).push(_dashboard()));
+    },
   );
 
   /// Back to the World Map: pops to it when it is open, otherwise opens it
@@ -183,6 +194,7 @@ abstract final class AppFlow {
       onStartTrial: (_) {
         final container = _c(ctx);
         container.read(familyProvider.notifier).subscribe();
+        container.read(feedbackProvider).unlock();
         Toast.show(ctx, '7 din ka free trial shuru!');
         Future.delayed(const Duration(milliseconds: 700), () {
           if (!ctx.mounted) return;
@@ -208,27 +220,37 @@ abstract final class AppFlow {
       nav.push(_paywall(pendingLevel: number));
       return;
     }
+    container.read(feedbackProvider).levelStart();
     if (skipIntro) {
       nav.push(_game(container, level));
       return;
     }
     nav.push(
       LikhoRoute<void>(
-        builder: (ctx) => LevelIntroScreen(level: level, onDone: () => Navigator.of(ctx).pushReplacement(_game(container, level))),
+        builder: (ctx) => IntroFeedback(
+          child: LevelIntroScreen(level: level, onDone: () => Navigator.of(ctx).pushReplacement(_game(container, level))),
+        ),
       ),
     );
   }
 
+  /// Gameplay, with its sounds and haptics layered on by [GameFeedback].
   static Route<void> _game(ProviderContainer container, CourseLevel level) => LikhoRoute<void>(
-    builder: (ctx) => GameplayScreen(
+    builder: (ctx) => GameFeedback(
       level: level,
-      onExit: () => Navigator.of(ctx).pop(),
-      onFinished: (result) {
-        final choices = container.read(levelSessionProvider(level)).choices;
-        final outcome = container.read(familyProvider.notifier).recordResult(level.number, result.stars, choices: choices);
-        container.read(playSessionProvider.notifier).finished(outcome);
-        Navigator.of(ctx).pushReplacement(_complete(container, level, outcome));
-      },
+      child: GameplayScreen(
+        level: level,
+        onExit: () {
+          container.read(feedbackProvider).back();
+          Navigator.of(ctx).pop();
+        },
+        onFinished: (result) {
+          final choices = container.read(levelSessionProvider(level)).choices;
+          final outcome = container.read(familyProvider.notifier).recordResult(level.number, result.stars, choices: choices);
+          container.read(playSessionProvider.notifier).finished(outcome);
+          Navigator.of(ctx).pushReplacement(_complete(container, level, outcome));
+        },
+      ),
     ),
   );
 
@@ -275,10 +297,16 @@ abstract final class AppFlow {
     final level = container.read(courseProvider).value?.placement;
     if (level == null) return toMap(context);
     final route = LikhoRoute<void>(
-      builder: (ctx) => GameplayScreen(
+      builder: (ctx) => GameFeedback(
         level: level,
-        onExit: () => toMap(ctx),
-        onFinished: (_) => Navigator.of(ctx).pushReplacement(LikhoRoute<void>(builder: (c) => PlacementDoneScreen(onDone: () => toMap(c)))),
+        child: GameplayScreen(
+          level: level,
+          onExit: () {
+            container.read(feedbackProvider).back();
+            toMap(ctx);
+          },
+          onFinished: (_) => Navigator.of(ctx).pushReplacement(LikhoRoute<void>(builder: (c) => PlacementDoneScreen(onDone: () => toMap(c)))),
+        ),
       ),
     );
     final nav = Navigator.of(context);

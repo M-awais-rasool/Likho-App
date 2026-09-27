@@ -7,6 +7,7 @@ import 'package:material_symbols_icons/symbols.dart';
 
 import '../../data/family.dart';
 import '../../data/shop_items.dart';
+import '../../feedback/app_feedback.dart';
 import '../../design/icon_registry.dart';
 import '../../design/motion.dart';
 import '../../design/tokens.dart';
@@ -68,7 +69,9 @@ class _MascotRoomScreenState extends ConsumerState<MascotRoomScreen> {
   void _tap(ShopItem item, GlobalKey cardKey) {
     final family = ref.read(familyProvider);
     final buying = !family.record.owned.contains(item.id);
+    final fb = ref.read(feedbackProvider);
     if (!ref.read(familyProvider.notifier).tapItem(item)) {
+      fb.nope();
       setState(() => _shakes[item.id] = (_shakes[item.id] ?? 0) + 1);
       _say([(0, MascotState.think), (1100, MascotState.idle)]);
       return;
@@ -79,6 +82,7 @@ class _MascotRoomScreenState extends ConsumerState<MascotRoomScreen> {
       final to = _centerOf(cardKey, at: card == null ? Offset.zero : card.size.center(Offset.zero) - const Offset(18, 10));
       if (from != null && to != null && !ref.read(reduceMotionProvider)) setState(() => _flights.add((_flightId++, from, to)));
     }
+    buying ? fb.reward() : fb.wear();
     _say([(0, MascotState.wow), (700, MascotState.happy), (2000, MascotState.idle)]);
   }
 

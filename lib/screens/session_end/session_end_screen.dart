@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import '../../feedback/game_feedback.dart';
 import '../../design/motion.dart';
 import '../../design/tokens.dart';
 import '../../mascot/mascot.dart';
@@ -33,6 +34,8 @@ class SessionEndScreen extends StatelessWidget {
         color: LikhoColors.background,
         child: Stack(
           children: [
+            // Pencil nods off: a music-box lullaby as the title fades in
+            FeedbackCue(at: .6, play: (f) => f.lullaby()),
             const Positioned.fill(
               child: FadeIn(
                 seconds: 2.2,

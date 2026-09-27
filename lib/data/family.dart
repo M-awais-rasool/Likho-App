@@ -55,10 +55,13 @@ class ChildRecord {
 /// Parent settings (prototype `settings`).
 @immutable
 class AppSettings {
-  const AppSettings({this.sessionMinutes = 10, this.music = true, this.sfx = true, this.leftHanded = false, this.reduceMotion = false});
+  const AppSettings({this.sessionMinutes = 10, this.music = true, this.sfx = true, this.haptics = true, this.leftHanded = false, this.reduceMotion = false});
 
   final int sessionMinutes; // 5, 10 or 15
   final bool music, sfx, leftHanded, reduceMotion;
+
+  /// Vibration feedback (answers, rewards, celebrations).
+  final bool haptics;
 
   static const sessionOptions = [5, 10, 15];
 
@@ -69,10 +72,11 @@ class AppSettings {
     _ => 3,
   };
 
-  AppSettings copyWith({int? sessionMinutes, bool? music, bool? sfx, bool? leftHanded, bool? reduceMotion}) => AppSettings(
+  AppSettings copyWith({int? sessionMinutes, bool? music, bool? sfx, bool? haptics, bool? leftHanded, bool? reduceMotion}) => AppSettings(
     sessionMinutes: sessionMinutes ?? this.sessionMinutes,
     music: music ?? this.music,
     sfx: sfx ?? this.sfx,
+    haptics: haptics ?? this.haptics,
     leftHanded: leftHanded ?? this.leftHanded,
     reduceMotion: reduceMotion ?? this.reduceMotion,
   );

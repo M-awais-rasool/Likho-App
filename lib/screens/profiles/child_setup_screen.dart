@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../data/family.dart';
+import '../../feedback/app_feedback.dart';
 import '../../design/motion.dart';
 import '../../design/tokens.dart';
 import '../../mascot/mascot.dart';
@@ -63,7 +64,11 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
   );
 
   void _next() {
-    if (_step == 0 && !_nameOk) return;
+    final fb = ref.read(feedbackProvider);
+    if (_step == 0 && !_nameOk) {
+      fb.nope();
+      return;
+    }
     FocusScope.of(context).unfocus();
     if (_step < 2) {
       setState(() => _step++);
@@ -75,6 +80,7 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
     } else {
       n.addChild(name: _name.text, age: _age ?? 6, color: _color);
     }
+    fb.done();
     widget.onDone();
   }
 
@@ -88,11 +94,13 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
   }
 
   void _pickAge(int n) {
+    ref.read(feedbackProvider).candle();
     setState(() => _age = n);
     _later(420, () => setState(() => _step = 2));
   }
 
   void _pickColor(Color c) {
+    ref.read(feedbackProvider).paint();
     setState(() {
       _color = c;
       _happy = true;
@@ -172,7 +180,10 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
         if (_edit)
           GestureDetector(
             behavior: HitTestBehavior.opaque,
-            onTap: () => setState(() => _confirmDelete = true),
+            onTap: () {
+              ref.read(feedbackProvider).tap();
+              setState(() => _confirmDelete = true);
+            },
             child: Container(
               height: 44,
               padding: const EdgeInsets.symmetric(horizontal: 12),

@@ -302,7 +302,7 @@ class _PressState extends State<_Press> {
     onTapDown: (_) => setState(() => _down = true),
     onTapCancel: () => setState(() => _down = false),
     onTapUp: (_) => setState(() => _down = false),
-    onTap: widget.onTap,
+    onTap: withSound(context, ButtonSound.press, widget.onTap),
     child: AnimatedContainer(
       duration: const Duration(milliseconds: 120),
       transform: Matrix4.translationValues(0, _down ? 4 : 0, 0),

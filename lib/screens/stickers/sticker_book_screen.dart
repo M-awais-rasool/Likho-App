@@ -8,9 +8,12 @@ import '../../data/course_providers.dart';
 import '../../data/family.dart';
 import '../../data/models/course_models.dart';
 import '../../data/progress.dart';
+import '../../feedback/app_feedback.dart';
+import '../../feedback/game_feedback.dart';
 import '../../design/icon_registry.dart';
 import '../../design/motion.dart';
 import '../../design/tokens.dart';
+import '../common/effects.dart';
 import '../common/kid_widgets.dart';
 
 /// 17 Sticker book, from the prototype: one page per world with a sticker
@@ -58,6 +61,7 @@ class _StickerBookScreenState extends ConsumerState<StickerBookScreen> with Sing
   Future<void> _turn(int dir) async {
     final np = (_page + dir).clamp(0, 5);
     if (np == _page || _flip.isAnimating) return;
+    ref.read(feedbackProvider).pageFlip();
     _dir = dir;
     setState(() => _flipOut = true);
     _flip.duration = const Duration(milliseconds: 230);
@@ -320,7 +324,7 @@ class _Sticker extends StatelessWidget {
           ),
         ),
       );
-      if (isNew) badge = StickIn(child: badge);
+      if (isNew) badge = _NewSticker(child: badge);
     } else {
       badge = SizedBox.square(
         dimension: 92,
@@ -380,7 +384,7 @@ class _Medal extends StatelessWidget {
           ),
         ),
       );
-      if (isNew) badge = StickIn(child: badge);
+      if (isNew) badge = _NewSticker(child: badge);
     } else {
       badge = const SizedBox.square(
         dimension: 100,
@@ -442,4 +446,22 @@ class _ShinePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_ShinePainter old) => old.x != x;
+}
+
+/// A sticker earned since the last visit: slapped on (stickIn) with a
+/// sparkle burst, a "thwack" and a bump.
+class _NewSticker extends StatelessWidget {
+  const _NewSticker({required this.child});
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) => Stack(
+    alignment: Alignment.center,
+    clipBehavior: Clip.none,
+    children: [
+      StickIn(child: child),
+      const SparkleBurst(size: 180, delay: .45, count: 12),
+      FeedbackCue(at: .4, play: (f) => f.sticker()),
+    ],
+  );
 }

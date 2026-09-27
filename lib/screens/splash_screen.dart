@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -5,7 +7,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../data/course_providers.dart';
 import '../design/tokens.dart';
 import '../dev/reference_overlay.dart';
+import '../feedback/app_feedback.dart';
 import '../mascot/mascot.dart';
+import 'common/effects.dart';
 
 /// 01 Splash, from export/Likho-Prototype.html (screen "splash", 390 x 844).
 ///
@@ -13,6 +17,11 @@ import '../mascot/mascot.dart';
 /// letter by letter 1.0–1.98, the yellow line draws 1.9–2.4, then [onDone]
 /// at 2.5. Tapping anywhere skips. While the reference overlay is on, the
 /// screen holds its last frame instead of leaving.
+///
+/// Sound + haptics follow the same timeline: a soft landing thump (and a
+/// bump) as Pencil lands at .47 s, a pencil scribble per letter, a swish
+/// with the line, and Likho's signature chime (D - A - D') with a sparkle
+/// burst as the line is finished.
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key, required this.onDone});
 
@@ -28,13 +37,26 @@ class SplashScreen extends ConsumerStatefulWidget {
 class _SplashScreenState extends ConsumerState<SplashScreen> with SingleTickerProviderStateMixin {
   late final AnimationController _t = AnimationController(vsync: this, duration: SplashScreen.length);
   final MascotController _mascot = MascotController();
+  final List<Timer> _cues = [];
   bool _left = false;
+
+  /// (seconds, what happens)
+  static final List<(double, void Function(AppFeedback))> timeline = [
+    (.47, (f) => f.splashLand()),
+    for (final (ch, delay, _, _) in _Wordmark._letters) (delay + .04 * (ch == 'L' ? 0 : 1), (f) => f.splashLetter()),
+    (1.9, (f) => f.splashSwish()),
+    (2.15, (f) => f.splashChime()),
+  ];
 
   @override
   void initState() {
     super.initState();
     _mascot.play(MascotState.wave);
     ref.read(courseProvider); // start loading the course while the splash plays
+    final fb = ref.read(feedbackProvider);
+    for (final (at, play) in timeline) {
+      _cues.add(Timer(Duration(milliseconds: (at * 1000).round()), () => play(fb)));
+    }
     _t.forward().whenComplete(() {
       if (!ref.read(referenceOverlayProvider).enabled) _leave();
     });
@@ -48,6 +70,9 @@ class _SplashScreenState extends ConsumerState<SplashScreen> with SingleTickerPr
 
   @override
   void dispose() {
+    for (final c in _cues) {
+      c.cancel();
+    }
     _t.dispose();
     _mascot.dispose();
     super.dispose();
@@ -91,7 +116,18 @@ class _SplashScreenState extends ConsumerState<SplashScreen> with SingleTickerPr
           const SizedBox(height: 10 + 6),
           _Wordmark(sec: sec),
           const SizedBox(height: 10 - 8),
-          SizedBox(width: 190, height: 22, child: CustomPaint(painter: _LinePainter(_seg(sec, 1.9, 2.4, Curves.easeOut)))),
+          SizedBox(
+            width: 190,
+            height: 22,
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                Positioned.fill(child: CustomPaint(painter: _LinePainter(_seg(sec, 1.9, 2.4, Curves.easeOut)))),
+                // sparkles fly off the pen as it finishes the line (182, 9)
+                if (sec >= 2.2) const Positioned(left: 182 - 55, top: 9 - 55, child: SparkleBurst(size: 110, count: 11, seed: 5)),
+              ],
+            ),
+          ),
         ],
       ),
     );

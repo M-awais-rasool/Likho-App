@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import '../../feedback/app_feedback.dart';
 import '../../design/motion.dart';
 import '../../design/tokens.dart';
 import '../../mascot/mascot.dart';
@@ -173,7 +174,10 @@ class _AuthFieldState extends State<AuthField> {
           if (widget.password)
             GestureDetector(
               behavior: HitTestBehavior.opaque,
-              onTap: () => setState(() => _show = !_show),
+              onTap: () {
+                AppFeedback.of(context).tap();
+                setState(() => _show = !_show);
+              },
               child: SizedBox.square(
                 dimension: 44,
                 child: Center(child: SymbolIcon(_show ? Symbols.visibility_off_rounded : Symbols.visibility_rounded, size: 24, color: LikhoColors.inkMuted)),
@@ -266,7 +270,7 @@ class SocialButton extends StatelessWidget {
     };
     final shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius));
     return PushButton(
-      onTap: onTap,
+      onTap: withSound(context, ButtonSound.press, onTap),
       color: switch (_kind) {
         0 => UiColors.apple,
         1 => LikhoColors.surface,

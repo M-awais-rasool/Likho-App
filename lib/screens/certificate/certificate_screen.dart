@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../data/family.dart';
+import '../../feedback/game_feedback.dart';
 import '../../design/motion.dart';
 import '../../design/tokens.dart';
 import '../../mascot/mascot.dart';
@@ -48,6 +49,8 @@ class CertificateScreen extends ConsumerWidget {
             stops: const [0, .7],
             child: Stack(
               children: [
+                // the biggest moment of the course: signature motif as the certificate pops
+                FeedbackCue(at: .3, play: (f) => f.milestone()),
                 Positioned(left: 40, top: top + 90, child: dot(CertificateColors.star, 5, 2)),
                 Positioned(right: 60, top: top + 140, child: dot(LikhoColors.surface, 4, 3)),
                 Positioned(left: 120, top: top + 200, child: dot(LikhoColors.surface, 3, 2.4)),

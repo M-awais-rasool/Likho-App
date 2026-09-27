@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import '../../feedback/app_feedback.dart';
 import '../../design/tokens.dart';
 import '../common/kid_widgets.dart';
 import '../gameplay/widgets/game_buttons.dart';
@@ -23,6 +24,11 @@ class PaywallScreen extends StatefulWidget {
 class _PaywallScreenState extends State<PaywallScreen> {
   Plan _plan = Plan.yearly;
 
+  void _pick(Plan p) {
+    if (p != _plan) AppFeedback.of(context).select();
+    setState(() => _plan = p);
+  }
+
   @override
   Widget build(BuildContext context) {
     return ParentPage(
@@ -36,7 +42,15 @@ class _PaywallScreenState extends State<PaywallScreen> {
       children: [
         Align(
           alignment: Alignment.centerRight,
-          child: CircleIconButton(icon: Symbols.close_rounded, onTap: widget.onClose, size: 44, iconSize: 22, color: UiColors.white80, shadow: null),
+          child: CircleIconButton(
+            icon: Symbols.close_rounded,
+            onTap: widget.onClose,
+            size: 44,
+            iconSize: 22,
+            color: UiColors.white80,
+            shadow: null,
+            sound: ButtonSound.back,
+          ),
         ),
         Column(
           children: [
@@ -89,7 +103,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
               note: 'Rs 416 / mahina',
               price: 'Rs 4,999',
               badge: 'SAB SE BEHTAR · 48% BACHAT',
-              onTap: () => setState(() => _plan = Plan.yearly),
+              onTap: () => _pick(Plan.yearly),
             ),
             const SizedBox(height: 10),
             _PlanCard(
@@ -97,14 +111,14 @@ class _PaywallScreenState extends State<PaywallScreen> {
               title: 'Mahana',
               note: 'Har mahine bill',
               price: 'Rs 799',
-              onTap: () => setState(() => _plan = Plan.monthly),
+              onTap: () => _pick(Plan.monthly),
             ),
           ],
         ),
         Padding(
           padding: const EdgeInsets.only(top: 4),
           child: PushButton(
-            onTap: () => widget.onStartTrial(_plan),
+            onTap: withSound(context, ButtonSound.press, () => widget.onStartTrial(_plan)),
             color: LikhoColors.ink,
             height: 64,
             width: double.infinity,

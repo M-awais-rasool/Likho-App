@@ -102,6 +102,13 @@ class SettingsScreen extends ConsumerWidget {
             ),
           ),
           SettingsRow(
+            label: 'Vibration',
+            trailing: ParentSwitch(
+              value: s.haptics,
+              onChanged: (v) => set((x) => x.copyWith(haptics: v)),
+            ),
+          ),
+          SettingsRow(
             label: 'Left-handed mode',
             trailing: ParentSwitch(
               value: s.leftHanded,

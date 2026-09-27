@@ -11,7 +11,11 @@ import '../../data/models/course_models.dart';
 import '../../design/motion.dart';
 import '../../design/tokens.dart';
 import '../../mascot/mascot.dart';
+import '../../feedback/app_feedback.dart';
+import '../../feedback/game_feedback.dart';
+import '../../feedback/sfx.dart';
 import '../common/clock.dart';
+import '../common/effects.dart';
 import '../common/kid_widgets.dart';
 import '../common/pencil_figure.dart';
 import '../gameplay/widgets/illustration.dart';
@@ -45,6 +49,11 @@ class _LevelCompleteScreenState extends ConsumerState<LevelCompleteScreen> {
   @override
   void initState() {
     super.initState();
+    ref.read(feedbackProvider).prepare([
+      Sfx.completeTada, Sfx.star(1), Sfx.star(2), Sfx.star(3), Sfx.coin, //
+      if (_stars == 3) ...[Sfx.confetti, Sfx.perfect],
+      if (widget.level.isBoss) Sfx.bossWake,
+    ]);
     final st = _stars;
     _at(400 + st * 700, st == 3 ? MascotState.wow : MascotState.happy);
     _at(1400 + st * 700, MascotState.dance);
@@ -96,6 +105,17 @@ class _LevelCompleteScreenState extends ConsumerState<LevelCompleteScreen> {
               Positioned.fill(
                 child: IgnorePointer(child: _Confetti(seed: o.level * 31 + 7)),
               ),
+            // sound + haptics, beat by beat with the animation
+            FeedbackCue(at: 0, play: (f) => f.levelComplete()),
+            for (var i = 0; i < _stars; i++)
+              FeedbackCue(
+                at: .75 + i * .7,
+                play: (f) => f.star(i + 1, perfect: i == 2),
+              ),
+            if (widget.level.isBoss) FeedbackCue(at: 1, play: (f) => f.bossWake()),
+            if (_stars == 3) FeedbackCue(at: 2.2, play: (f) => f.confetti()),
+            FeedbackCue(at: 2.4, play: (f) => f.coin()),
+            if (_stars == 3) FeedbackCue(at: 1.4 + 3 * .7, play: (f) => f.perfect()),
             MaxWidth(
               width: 460,
               child: ScrollFill(
@@ -118,20 +138,28 @@ class _LevelCompleteScreenState extends ConsumerState<LevelCompleteScreen> {
                     const SizedBox(height: 34),
                     SizedBox(
                       height: 130,
-                      // scales down on phones narrower than the three slots
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        alignment: Alignment.bottomCenter,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            for (var i = 0; i < 3; i++) ...[
-                              if (i > 0) const SizedBox(width: 14),
-                              _StarSlot(big: i == 1, filled: i < _stars, delay: .45 + i * .7),
-                            ],
-                          ],
-                        ),
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        alignment: Alignment.center,
+                        children: [
+                          // light rays behind a perfect score, once the third star is in
+                          if (_stars == 3) const OverflowBox(maxWidth: 360, maxHeight: 360, child: Sunburst(size: 360, delay: 2.2)),
+                          // scales down on phones narrower than the three slots
+                          FittedBox(
+                            fit: BoxFit.scaleDown,
+                            alignment: Alignment.bottomCenter,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                for (var i = 0; i < 3; i++) ...[
+                                  if (i > 0) const SizedBox(width: 14),
+                                  _StarSlot(big: i == 1, filled: i < _stars, delay: .45 + i * .7),
+                                ],
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     const SizedBox(height: 14),
@@ -197,54 +225,62 @@ class _StarSlot extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = big ? 112.0 : 92.0;
     final fs = big ? 96.0 : 78.0;
+    final landed = delay + .3; // the star touches down at 55 % of its .55 s drop
     return Transform.translate(
       offset: Offset(0, big ? -26 : 0),
-      child: Container(
-        width: size,
-        height: size,
-        decoration: const BoxDecoration(color: CompleteColors.starSlot, shape: BoxShape.circle),
-        child: CustomPaint(
-          painter: const _InsetBlur(),
-          child: Center(
-            child: OverflowBox(
-              maxWidth: fs,
-              maxHeight: fs,
-              child: filled
-                  ? Entrance(
-                      delay: Duration(milliseconds: (delay * 1000).round()),
-                      duration: const Duration(milliseconds: 550),
-                      builder: (context, t, child) {
-                        if (t <= 0) return const SizedBox.shrink();
-                        final y = keyframes(t, const [(0, -320), (.55, 14), (.75, -8), (1, 0)], dropEase);
-                        final sx = keyframes(t, const [(0, .4), (.55, 1.18), (.75, .95), (1, 1)], dropEase);
-                        final sy = keyframes(t, const [(0, .4), (.55, .86), (.75, 1.05), (1, 1)], dropEase);
-                        final r = keyframes(t, const [(0, -120), (.55, 8), (.75, 0), (1, 0)], dropEase);
-                        return Opacity(
-                          opacity: (t / .55).clamp(0.0, 1.0),
-                          child: Transform.translate(
-                            offset: Offset(0, y),
-                            child: Transform.rotate(
-                              angle: r * math.pi / 180,
-                              child: Transform(alignment: Alignment.center, transform: Matrix4.diagonal3Values(sx, sy, 1), child: child),
-                            ),
+      child: Stack(
+        clipBehavior: Clip.none,
+        alignment: Alignment.center,
+        children: [
+          Container(
+            width: size,
+            height: size,
+            decoration: const BoxDecoration(color: CompleteColors.starSlot, shape: BoxShape.circle),
+            child: CustomPaint(
+              painter: const _InsetBlur(),
+              child: Center(
+                child: OverflowBox(
+                  maxWidth: fs,
+                  maxHeight: fs,
+                  child: filled
+                      ? Entrance(
+                          delay: Duration(milliseconds: (delay * 1000).round()),
+                          duration: const Duration(milliseconds: 550),
+                          builder: (context, t, child) {
+                            if (t <= 0) return const SizedBox.shrink();
+                            final y = keyframes(t, const [(0, -320), (.55, 14), (.75, -8), (1, 0)], dropEase);
+                            final sx = keyframes(t, const [(0, .4), (.55, 1.18), (.75, .95), (1, 1)], dropEase);
+                            final sy = keyframes(t, const [(0, .4), (.55, .86), (.75, 1.05), (1, 1)], dropEase);
+                            final r = keyframes(t, const [(0, -120), (.55, 8), (.75, 0), (1, 0)], dropEase);
+                            return Opacity(
+                              opacity: (t / .55).clamp(0.0, 1.0),
+                              child: Transform.translate(
+                                offset: Offset(0, y),
+                                child: Transform.rotate(
+                                  angle: r * math.pi / 180,
+                                  child: Transform(alignment: Alignment.center, transform: Matrix4.diagonal3Values(sx, sy, 1), child: child),
+                                ),
+                              ),
+                            );
+                          },
+                          child: SymbolIcon(
+                            Symbols.star_rounded,
+                            size: fs,
+                            fill: true,
+                            color: LikhoColors.primary,
+                            shadows: const [
+                              Shadow(color: LikhoColors.primaryDeep, offset: Offset(0, 5)),
+                              Shadow(color: CompleteColors.starGlow, blurRadius: 30),
+                            ],
                           ),
-                        );
-                      },
-                      child: SymbolIcon(
-                        Symbols.star_rounded,
-                        size: fs,
-                        fill: true,
-                        color: LikhoColors.primary,
-                        shadows: const [
-                          Shadow(color: LikhoColors.primaryDeep, offset: Offset(0, 5)),
-                          Shadow(color: CompleteColors.starGlow, blurRadius: 30),
-                        ],
-                      ),
-                    )
-                  : SymbolIcon(Symbols.star_rounded, size: fs, fill: true, color: CompleteColors.starEmpty),
+                        )
+                      : SymbolIcon(Symbols.star_rounded, size: fs, fill: true, color: CompleteColors.starEmpty),
+                ),
+              ),
             ),
           ),
-        ),
+          if (filled) SparkleBurst(size: size * 1.9, delay: landed, count: big ? 12 : 9, seed: size.round()),
+        ],
       ),
     );
   }

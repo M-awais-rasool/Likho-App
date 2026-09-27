@@ -17,6 +17,7 @@ assets/data/course.json ──► CourseRepository ──► courseProvider ─�
 | Game rules | `lib/game/` | `LevelSession` (rounds, mistakes, stars, hints, timing), writing judge, prompt voice. No UI code. |
 | Screens | `lib/screens/` | Every prototype screen (list below), shared screen widgets (`common/`), navigation (`app_flow.dart`). |
 | Mascot | `lib/mascot/` | Pencil rig, animations, lip-sync. |
+| Feedback | `lib/feedback/` | Sound effects + haptics by meaning (`AppFeedback`), engines, gameplay feedback. See `docs/sound_and_haptics.md`. |
 | Design | `lib/design/` | Tokens (every colour, size, font), icon registry, shared widgets, `motion.dart` (the prototype's CSS keyframes as widgets). |
 | Dev | `lib/dev/` | Mascot playground, reference overlay, QA deep link. |
 

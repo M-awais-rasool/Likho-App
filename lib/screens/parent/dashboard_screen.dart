@@ -80,7 +80,7 @@ class DashboardScreen extends ConsumerWidget {
                     ),
                   ),
                   GestureDetector(
-                    onTap: onSwitchChild,
+                    onTap: withSound(context, ButtonSound.tap, onSwitchChild),
                     child: Container(
                       height: 36,
                       padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -121,7 +121,7 @@ class DashboardScreen extends ConsumerWidget {
                     child: Text('Letters', style: LikhoFonts.parent(size: 17, weight: FontWeight.w800)),
                   ),
                   GestureDetector(
-                    onTap: onCourse,
+                    onTap: withSound(context, ButtonSound.tap, onCourse),
                     child: Row(
                       children: [
                         Text(
@@ -339,7 +339,7 @@ class _Journey extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: onShare,
+                  onTap: withSound(context, ButtonSound.tap, onShare),
                   child: Container(
                     width: 48,
                     height: 48,
@@ -505,7 +505,7 @@ class _PlusCard extends StatelessWidget {
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
             GestureDetector(
-              onTap: onPlans,
+              onTap: withSound(context, ButtonSound.tap, onPlans),
               child: Container(
                 height: 48,
                 padding: const EdgeInsets.symmetric(horizontal: 18),
@@ -515,7 +515,7 @@ class _PlusCard extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              onTap: onRestore,
+              onTap: withSound(context, ButtonSound.tap, onRestore),
               child: Padding(
                 padding: const EdgeInsets.all(8),
                 child: Opacity(

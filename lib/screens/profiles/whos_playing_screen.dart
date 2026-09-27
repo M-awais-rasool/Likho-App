@@ -6,6 +6,7 @@ import 'package:material_symbols_icons/symbols.dart';
 
 import '../../data/family.dart';
 import '../../data/shop_items.dart';
+import '../../feedback/app_feedback.dart';
 import '../../design/motion.dart';
 import '../../design/tokens.dart';
 import '../common/kid_widgets.dart';
@@ -41,6 +42,9 @@ class _WhosPlayingScreenState extends ConsumerState<WhosPlayingScreen> {
     if (box == null || me == null) return;
     ref.read(familyProvider.notifier).selectChild(p.id);
     ref.read(playSessionProvider.notifier).reset();
+    ref.read(feedbackProvider)
+      ..select()
+      ..whoosh();
     setState(() => _zoom = (me.globalToLocal(box.localToGlobal(box.size.center(Offset.zero))), p.swatch.tint));
     _go = Timer(const Duration(milliseconds: 560), () {
       if (!mounted) return;

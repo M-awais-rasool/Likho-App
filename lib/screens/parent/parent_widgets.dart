@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../design/motion.dart';
 import '../../design/tokens.dart';
+import '../../feedback/app_feedback.dart';
 import '../common/kid_widgets.dart';
 
 /// Pieces of the parent screens (19–22): calmer, Nunito, white cards on
@@ -49,7 +50,7 @@ class ParentHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Row(
     children: [
-      ParentIconButton(icon: icon, onTap: onTap),
+      ParentIconButton(icon: icon, onTap: onTap, sound: ButtonSound.back),
       const SizedBox(width: 12),
       Expanded(
         child: Text(title, style: LikhoFonts.parent(size: 22, weight: FontWeight.w800)),
@@ -61,13 +62,14 @@ class ParentHeader extends StatelessWidget {
 
 /// 44 px white rounded-square button.
 class ParentIconButton extends StatelessWidget {
-  const ParentIconButton({super.key, required this.icon, required this.onTap});
+  const ParentIconButton({super.key, required this.icon, required this.onTap, this.sound = ButtonSound.tap});
   final IconData icon;
   final VoidCallback onTap;
+  final ButtonSound sound;
 
   @override
   Widget build(BuildContext context) => _Press(
-    onTap: onTap,
+    onTap: withSound(context, sound, onTap)!,
     child: Container(
       width: 44,
       height: 44,
@@ -149,7 +151,7 @@ class SettingsRow extends StatelessWidget {
         ],
       ),
     );
-    return onTap == null ? row : GestureDetector(behavior: HitTestBehavior.opaque, onTap: onTap, child: row);
+    return onTap == null ? row : GestureDetector(behavior: HitTestBehavior.opaque, onTap: withSound(context, ButtonSound.tap, onTap), child: row);
   }
 }
 
@@ -162,7 +164,10 @@ class ParentSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) => GestureDetector(
     behavior: HitTestBehavior.opaque,
-    onTap: () => onChanged(!value),
+    onTap: () {
+      onChanged(!value);
+      AppFeedback.of(context).toggle(!value); // after the change, so turning sound on is heard
+    },
     child: AnimatedContainer(
       duration: const Duration(milliseconds: 200),
       width: 52,
@@ -208,7 +213,10 @@ class SegmentedMinutes extends StatelessWidget {
             Expanded(
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap: () => onChanged(m),
+                onTap: () {
+                  if (m != value) AppFeedback.of(context).select();
+                  onChanged(m);
+                },
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
                   height: compact ? 32 : 40,
