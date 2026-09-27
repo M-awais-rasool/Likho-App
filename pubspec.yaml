@@ -31,6 +31,7 @@ flutter:
     - assets/mascot/accessories/
     - assets/mascot/fx/
     - assets/audio/
+    - assets/sfx/
     - assets/data/
     # dev-only reference images for the overlay check (remove from release builds)
     - assets/reference/
