@@ -1,0 +1,74 @@
+import 'dart:async';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_tts/flutter_tts.dart';
+
+import '../../data/models/course_models.dart';
+import '../../mascot/mascot.dart';
+
+/// Speaks round prompts through the mascot.
+///
+/// * prompt with `audio` (a recording): played by [MascotController.say]
+///   with lip-sync from the recording
+/// * text only: the device's offline text-to-speech voice (like the
+///   prototype's speechSynthesis: slower, higher pitch) while the mascot
+///   talks with random mouth shapes
+class PromptVoice {
+  PromptVoice();
+
+  FlutterTts? _tts;
+  bool _ready = false;
+  int _session = 0;
+
+  Future<void> _init() async {
+    if (_ready) return;
+    _ready = true;
+    try {
+      final tts = FlutterTts();
+      await tts.setLanguage('en-US');
+      await tts.setSpeechRate(defaultTargetPlatform == TargetPlatform.iOS ? .42 : .85);
+      await tts.setPitch(1.35);
+      await tts.awaitSpeakCompletion(true);
+      _tts = tts;
+    } catch (e) {
+      debugPrint('PromptVoice: text-to-speech unavailable: $e');
+    }
+  }
+
+  /// Speaks [prompt]; completes when done (or at once if speech is off).
+  Future<void> speak(Prompt prompt, MascotController mascot, {required MascotState after}) async {
+    final session = ++_session;
+    await stop();
+    final audio = prompt.audio;
+    if (audio != null) {
+      await mascot.say(audio);
+    } else {
+      await _init();
+      final tts = _tts;
+      mascot.play(MascotState.talking);
+      final started = DateTime.now();
+      if (tts != null) {
+        try {
+          await tts.speak(prompt.text.replaceAll(RegExp(r'[/_]'), ' '));
+        } catch (_) {}
+      }
+      // keep the talking pose at least as long as the prototype (1.2 s)
+      final spent = DateTime.now().difference(started);
+      if (spent < const Duration(milliseconds: 1200)) await Future<void>.delayed(const Duration(milliseconds: 1200) - spent);
+    }
+    if (session == _session && mascot.state == MascotState.talking) mascot.play(after);
+  }
+
+  Future<void> stop() async {
+    try {
+      await _tts?.stop();
+    } catch (_) {}
+  }
+}
+
+final promptVoiceProvider = Provider<PromptVoice>((ref) {
+  final v = PromptVoice();
+  ref.onDispose(v.stop);
+  return v;
+});

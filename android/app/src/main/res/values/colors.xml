@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- LikhoColors.background (lib/design/tokens.dart): no white flash before the Flutter splash -->
+    <color name="likho_background">#FFF8EC</color>
+</resources>

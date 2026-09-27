@@ -1,0 +1,9 @@
+<!-- Likho "Pencil" mascot part. Traced from the master art in mascot's/ (Gemini_Generated_Image_*).
+     Artboard 500x680 = master image px (x-454, y-36). Every part is drawn in its rest position.
+     class = colour role (body* roles are recoloured by setBodyColor); paths without class use their fill. -->
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 680" width="500" height="680">
+  <g id="fx_z2">
+    <path class="fx" fill="#A8908A" fill-rule="evenodd" d="M423.72 195.62C425.9 195.07 430.27 194.47 433.82 194.91C437.36 195.34 444.99 198.22 444.99 198.22C444.99 198.22 445.94 200.03 444.22 203.27C442.51 206.51 434.69 217.65 434.69 217.65C434.69 217.65 434.36 219.17 436.11 219.9C437.86 220.63 445.19 222.04 445.19 222.04C445.19 222.04 446.14 224.13 446.01 225C445.87 225.87 447.63 226.78 444.38 227.24C441.12 227.7 430.32 228 426.47 227.75C422.63 227.51 421.32 225.76 421.32 225.76C421.32 225.76 419.23 224.05 421.17 220.56C423.11 217.07 432.95 204.8 432.95 204.8C432.95 204.8 433.39 203.14 431.52 202.56C429.65 201.97 421.73 201.28 421.73 201.28L420.76 198.22C420.76 198.22 421.54 196.17 423.72 195.62Z"/>
+  </g>
+</svg>

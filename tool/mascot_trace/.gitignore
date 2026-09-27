@@ -1,0 +1,7 @@
+.work/
+*.pkl
+parts_*.json
+arms_*.json
+eyes_fit.json
+rig.json
+__pycache__/
