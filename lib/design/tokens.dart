@@ -405,6 +405,189 @@ abstract final class GameColors {
   static const confetti = [Color(0xFFFFC83D), Color(0xFF3BB273), Color(0xFF4D9DE0), Color(0xFFFF8A5B), Color(0xFF9B7FE6)];
 }
 
+/// Shared colours of the account, profile, room and parent screens
+/// (prototype screens 02–09 and 13–23).
+abstract final class UiColors {
+  static const inkBody = Color(0xFF5C5F77); // body copy under titles
+  static const inkLabel = Color(0xFF8C8577); // section labels, "Naya bacha"
+  static const inkAdd = Color(0xFF9A9384); // "add" icon on Who's playing
+  static const inkHint = Color(0xFFA39D90); // "ya" divider, small print
+  static const chevron = Color(0xFFB3AC9E);
+  static const link = Color(0xFF2F7CC0);
+  static const error = Color(0xFFC2562E); // form hints (never red)
+  static const okGreen = Color(0xFF1F7A4A);
+  static const apple = Color(0xFF1F2030);
+  static const danger = Color(0xFF8C5A48); // "delete" text
+  static const dangerTint = Color(0x1FFF8A5B); // rgba(255,138,91,.12)
+  static const ink05 = Color(0x0D2B2D42);
+  static const ink18 = Color(0x2E2B2D42);
+  static const ink20 = Color(0x332B2D42);
+  static const black04 = Color(0x0A000000);
+  static const black05 = Color(0x0D000000);
+  static const black25 = Color(0x40000000);
+  static const black35 = Color(0x59000000);
+  static const white10 = Color(0x1AFFFFFF);
+  static const white45 = Color(0x73FFFFFF);
+  static const white75 = Color(0xBFFFFFFF);
+  static const white80 = Color(0xCCFFFFFF);
+  static const white92 = Color(0xEBFFFFFF);
+  static const scrim = Color(0x8C1D1E2C); // rgba(29,30,44,.55), parent gate
+  static const scrimSoft = Color(0x801D1E2C); // .5, delete confirm
+  static const chip = Color(0xFFF1EEE8); // grey buttons, row dividers
+  static const chipAlt = Color(0xFFF4F1EA);
+  static const chipPressed = Color(0xFFE9E4D8);
+  static const toggleOff = Color(0xFFD9D4CA);
+  static const parentBg = Color(0xFFF7F4EE);
+  static const googleBlue = Color(0xFF4D9DE0);
+  static const googleGreen = Color(0xFF3BB273);
+  static const googleYellow = Color(0xFFFFC83D);
+  static const googleCoral = Color(0xFFFF8A5B);
+}
+
+/// 02 Welcome.
+abstract final class WelcomeColors {
+  static const top = Color(0xFFFFF1D2);
+  static const letterB = Color(0x474D9DE0); // #4D9DE0 at .28
+  static const letterC = Color(0x473BB273); // #3BB273 at .28
+  static const letterE = Color(0x409B7FE6); // #9B7FE6 at .25
+  static const letterA = Color(0xFFFF8A5B);
+}
+
+/// 06 Who's playing, 07 Onboarding, 09 Placement done.
+abstract final class ProfileColors {
+  static const glow = Color(0xFFFFEFC9);
+  static const nameShadow = Color(0x40E0A21A); // rgba(224,162,26,.25)
+  static const flame = Color(0xFFFFB23D);
+  static const candles = [Color(0xFFFF8A5B), Color(0xFF4D9DE0), Color(0xFF3BB273), Color(0xFF9B7FE6)];
+  static const placementGlow = Color(0xFFEAF5DE);
+
+  /// 3D edge under a colour swatch (prototype PAL[c][1]); purple and pink
+  /// have no prototype shade for the brief colours, so theirs are derived.
+  static Color deepFor(Color key) => switch (key.toARGB32()) {
+        0xFFFFC83D => LikhoColors.primaryDeep,
+        0xFF4D9DE0 => GameColors.secondaryDeep,
+        0xFF3BB273 => GameColors.successDeep,
+        0xFFFF8A5B => GameColors.hintDeep,
+        _ => _darker(key),
+      };
+
+  static Color _darker(Color c) {
+    final h = HSLColor.fromColor(c);
+    return h.withLightness((h.lightness - .14).clamp(0.0, 1.0)).toColor();
+  }
+}
+
+/// 13 Level complete.
+abstract final class CompleteColors {
+  static const glow = Color(0xB3FFFFFF); // rgba(255,255,255,.7)
+  static const flash = Color(0xFFFFF6D6);
+  static const starSlot = Color(0x122B2D42); // rgba(43,45,66,.07)
+  static const starSlotShade = Color(0x1A2B2D42);
+  static const starEmpty = Color(0x242B2D42); // .14
+  static const starGlow = Color(0xB3FFC83D); // rgba(255,200,61,.7)
+}
+
+/// 14 Session end: evening sky.
+abstract final class SessionEndColors {
+  static const skyTop = Color(0xFF5B5896);
+  static const skyMid = Color(0xFF9A86C4);
+  static const skyBottom = Color(0xFFF2B9A0);
+  static const moon = Color(0xFFFFE8A3);
+  static const moonShade = Color(0xFFF5D27A);
+  static const moonGlow = Color(0x99FFE8A3);
+  static const star = Color(0xFFFFE08A);
+  static const bed = Color(0xFFF7EEE0);
+  static const buttonEdge = Color(0x262B2D42); // .15
+}
+
+/// 15 Mascot room.
+abstract final class RoomColors {
+  static const wallA = Color(0xFFFBE3D0);
+  static const wallB = Color(0xFFF8DCC6);
+  static const skyTop = Color(0xFFBDE3FA);
+  static const skyBottom = Color(0xFFE6F4FD);
+  static const curtain = Color(0xD9FF8A5B); // #FF8A5B at .85
+  static const floorA = Color(0xFFE7C49A);
+  static const floorB = Color(0xFFDDB88C);
+  static const poster = Color(0xFF4D9DE0);
+  static const lampGlow = Color(0x99FFC83D);
+  static const wood = Color(0xFF8C6B4F);
+  static const leafLight = Color(0xFF5DAE3B);
+  static const leafDark = Color(0xFF3F8A26);
+  static const pot = Color(0xFFE27D5F);
+  static const rugA = Color(0xFF9B7FE6);
+  static const rugB = Color(0xFFB8A4EF);
+  static const shelfTop = Color(0xFFB98A62);
+  static const shelfBottom = Color(0xFFA97B55);
+  static const shelfEdge = Color(0xFF8C6B4F);
+  static const itemWorn = Color(0xFFFFF6DA);
+  static const priceChip = Color(0xFFFFF1C9);
+  static const roomIcon = Color(0xFFB4573A);
+}
+
+/// 16 Child profile.
+abstract final class ChildProfileColors {
+  static const starBg = Color(0xFFFFF1C9);
+  static const starInset = Color(0x33E0A21A);
+  static const flagBg = Color(0xFFDDF3E6);
+  static const flagInset = Color(0x333BB273);
+  static const sunBg = Color(0xFFFFE4D7);
+  static const sunInset = Color(0x33FF8A5B);
+  static const worldOff = Color(0xFFE7E1D5);
+  static const bookTop = Color(0xFF9B7FE6);
+  static const bookBottom = Color(0xFF7659C9);
+  static const bookEdge = Color(0xFF5E45AE);
+  static const bookSpine = Color(0xFFE7D9BF);
+}
+
+/// 17 Sticker book.
+abstract final class StickerColors {
+  static const bg = Color(0xFF8E73D9);
+  static const page = Color(0xFFFFF8EC);
+  static const pageEdge = Color(0xFF6B53B8);
+  static const paperEdge = Color(0xFFE9DDC7);
+  static const shine = Color(0x73FFFFFF); // .45
+  static const shineBoss = Color(0x99FFFFFF); // .6
+  static const goldLight = Color(0xFFFFE08A);
+  static const goldDeep = Color(0xFFE0A21A);
+  static const goldGlow = Color(0x66E0A21A); // .4
+  static const goldFaint = Color(0x40E0A21A); // .25
+  static const bossName = Color(0xFFB07A10);
+  static const missIcon = Color(0x1A2B2D42); // .1
+}
+
+/// 18 Certificate.
+abstract final class CertificateColors {
+  static const top = Color(0xFF3B3F7A);
+  static const bottom = Color(0xFF1E2144);
+  static const star = Color(0xFFFFE8A3);
+}
+
+/// 19–22 Parent screens.
+abstract final class ParentColors {
+  static const strongBg = Color(0xFFDDF3E6);
+  static const strongFg = Color(0xFF1F7A4A);
+  static const practiceBg = Color(0xFFFFE9DE);
+  static const practiceFg = Color(0xFFB4502A);
+  static const notYetFg = Color(0xFFA39D90);
+  static const journeyTop = Color(0xFFFFF1CF);
+  static const journeyBottom = Color(0xFFFFE3D4);
+  static const journeyShadow = Color(0x1FE0673A); // rgba(224,103,58,.12)
+  static const journeyLabel = Color(0xFFB4573A);
+  static const paperLine = Color(0xFFDDEBF7);
+  static const starOff = Color(0xFFE4DED2);
+  static const rowLine = Color(0xFFF7F4EE);
+  static const planSelected = Color(0xFFF2F8FE);
+  static const featureGreenBg = Color(0xFFE3EEDB);
+  static const featureGreen = Color(0xFF3F8F5A);
+  static const featureBlueBg = Color(0xFFE3F0FC);
+  static const featureBlue = Color(0xFF2767A5);
+  static const featureCoralBg = Color(0xFFFFE9DE);
+  static const featureCoral = Color(0xFFB4573A);
+  static const featurePurpleBg = Color(0xFFEFE9FB);
+  static const featurePurple = Color(0xFF7659C9);
+}
+
 /// 8pt grid spacing.
 abstract final class LikhoSpace {
   static const double s1 = 8;
@@ -440,6 +623,10 @@ abstract final class LikhoFonts {
   /// Illustration placeholders (prototype: ui-monospace, Menlo).
   static TextStyle placeholder({double size = 10, Color color = GameColors.ink60}) =>
       TextStyle(fontFamily: 'Menlo', fontFamilyFallback: const ['Courier', 'monospace'], fontSize: size, color: color, height: 1.3);
+
+  /// Body copy on kid and account screens (the prototype's base font, Nunito).
+  static TextStyle body({double size = 16, FontWeight weight = FontWeight.w600, Color color = LikhoColors.ink, double? height}) =>
+      GoogleFonts.nunito(fontSize: size, fontWeight: weight, color: color, height: height);
 
   /// Parent screens.
   static TextStyle parent({double size = 16, FontWeight weight = FontWeight.w500, Color color = LikhoColors.ink}) =>

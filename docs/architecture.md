@@ -13,12 +13,43 @@ assets/data/course.json ──► CourseRepository ──► courseProvider ─�
 | Layer | Folder | What lives there |
 |---|---|---|
 | Content | `assets/data/course.json` | Worlds, levels, rounds, letter guides. Same JSON the course API will return. |
-| Data | `lib/data/` | Typed models (`models/course_models.dart`), repository (`repositories/`), providers, child progress. |
+| Data | `lib/data/` | Typed models (`models/course_models.dart`), repositories (`repositories/`: course, auth), providers, the family (`family.dart`: children, their progress, purchases, settings, subscription, play session), shop items, child progress. |
 | Game rules | `lib/game/` | `LevelSession` (rounds, mistakes, stars, hints, timing), writing judge, prompt voice. No UI code. |
-| Screens | `lib/screens/` | Splash, World Map, Level Intro, Gameplay (+ one view per round type), navigation (`app_flow.dart`). |
+| Screens | `lib/screens/` | Every prototype screen (list below), shared screen widgets (`common/`), navigation (`app_flow.dart`). |
 | Mascot | `lib/mascot/` | Pencil rig, animations, lip-sync. |
-| Design | `lib/design/` | Tokens (every colour, size, font), icon registry, shared widgets. |
+| Design | `lib/design/` | Tokens (every colour, size, font), icon registry, shared widgets, `motion.dart` (the prototype's CSS keyframes as widgets). |
 | Dev | `lib/dev/` | Mascot playground, reference overlay, QA deep link. |
+
+## Screens and navigation
+
+`AppFlow` (lib/screens/app_flow.dart) is the only place that pushes routes:
+
+```
+Splash -> Welcome -> Sign up / Login (-> Forgot password) -> Who's playing
+Welcome "pehle try karein" / new child -> Placement warm-up -> Placement done -> World Map
+Who's playing (root) -> World Map -> Level intro -> Gameplay -> Level complete
+                                                   -> map | Session end | Certificate (level 36)
+World Map: avatar -> Child profile -> Sticker book (edit -> parent gate -> Edit child)
+           room button -> Mascot room;  settings -> parent gate -> Parent dashboard
+Parent dashboard -> Settings, Course progress, Paywall; Plus levels (13+) -> Paywall first
+```
+
+| Folder | Screens (prototype number) |
+|---|---|
+| `auth/` | 02 Welcome, 03 Sign up (+ email form), 04 Login, 05 Forgot password (+ sent) |
+| `profiles/` | 06 Who's playing, 07 Add / Edit child (3 steps, delete) |
+| `placement/` | 09 Placement done (the warm-up itself is Gameplay with `course.placement`) |
+| `level_complete/`, `session_end/`, `certificate/` | 13 Level complete (3/2/1 stars, boss woken), 14 Session end, 18 Certificate |
+| `room/`, `profile/`, `stickers/` | 15 Mascot room, 16 Child profile, 17 Sticker book |
+| `parent/` | 19 Dashboard, 20 Course progress, 21 Settings, 22 Paywall, 23 Parent gate |
+
+Debug builds can open any screen directly (the prototype's side menu):
+`echo room > "$(xcrun simctl get_app_container booted com.likho.likho data)/Documents/likho_dev_screen"`
+(keys in `AppFlowJump.screens`), or from the mascot playground (long-press the REF chip).
+
+Accounts, purchases and saving are not wired yet: `DemoAuthRepository` accepts any valid form after
+1.2 s (swap `authRepositoryProvider` for the real backend), the family is in-memory demo data
+(`FamilyNotifier`), and the paywall starts a trial without a store purchase.
 
 ## Content format (schemaVersion 1)
 

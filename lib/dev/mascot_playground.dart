@@ -190,7 +190,11 @@ class _Stage extends ConsumerWidget {
   static String _referencePath(ReferenceSource src, MascotState state) => switch (src) {
         ReferenceSource.master => 'assets/reference/master_idle.png',
         ReferenceSource.sheet =>
-          (state == MascotState.wave || state == MascotState.think) ? 'assets/reference/master_idle.png' : 'assets/reference/sheet_${state.name}.png',
+          switch (state) {
+            MascotState.wave || MascotState.think || MascotState.cover => 'assets/reference/master_idle.png',
+            MascotState.asleep => 'assets/reference/sheet_sleepy.png',
+            _ => 'assets/reference/sheet_${state.name}.png',
+          },
         ReferenceSource.cap => 'assets/reference/accessory_cap.png',
       };
 }
@@ -248,6 +252,12 @@ class _Panel extends ConsumerWidget {
                   )),
                 ),
               ],
+            ),
+            const _Heading('All screens (prototype menu)'),
+            Wrap(
+              spacing: LikhoSpace.s1,
+              runSpacing: LikhoSpace.s1,
+              children: [for (final k in AppFlowJump.screens) LikhoButton(label: k, fontSize: 14, onTap: () => AppFlowJump.open(context, k))],
             ),
             const _Heading('Play a level (skips the intro)'),
             Wrap(

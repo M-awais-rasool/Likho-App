@@ -45,6 +45,8 @@ abstract final class MascotAnimations {
       MascotState.sleepy => sleepy(t),
       MascotState.wave => wave(t),
       MascotState.think => think(t),
+      MascotState.cover => cover(t),
+      MascotState.asleep => asleep(t),
     };
     if (s.loop) return pose;
     final k = _seg(t, s.duration - _settle, s.duration);
@@ -266,6 +268,46 @@ abstract final class MascotAnimations {
       browY: -4 * inn,
       armLeft: ArmPose(raise: 0.035 * _wave(t, 3.0, 0.9), bend: 1.2 * b),
       armRight: ArmPose(raise: -1.9 * inn, bend: 18 * inn, reach: 1 - .15 * inn, handTurn: -1.2 * inn, hand: HandShape.fist, front: t > .05),
+    );
+  }
+
+  // ------------------------------------------------------------------ cover
+  /// Loop: both open hands come up in front of the eyes, a shy smile, a
+  /// small wiggle.
+  static MascotPose cover(double t) {
+    final b = _breath(t, 2.6);
+    final inn = _ease(Curves.easeOutBack, _seg(t, 0, 0.35));
+    final w = 0.04 * _wave(t, 1.6) * inn;
+    return MascotPose(
+      rotation: 0.02 * _wave(t, 3.2) * inn,
+      scaleY: 1 + 0.012 * b,
+      scaleX: 1 - 0.006 * b,
+      mouth: MouthShape.gentle,
+      blush: 0.9 * inn,
+      browY: -3 * inn,
+      armLeft: ArmPose(raise: -2.8 * inn + w, bend: 18 * inn, reach: 1.0, handTurn: -1.6 * inn, hand: t < 0.05 ? HandShape.rest : HandShape.open, front: t > 0.05),
+      armRight: ArmPose(raise: -2.8 * inn - w, bend: 18 * inn, reach: 1.0, handTurn: -1.6 * inn, hand: t < 0.05 ? HandShape.rest : HandShape.open, front: t > 0.05),
+    );
+  }
+
+  // ------------------------------------------------------------------ asleep
+  /// Loop: eyes shut, head tilted, slow breathing, "zzz" floating up.
+  static MascotPose asleep(double t) {
+    final inn = _ease(Curves.easeInOut, _seg(t, 0, 0.6));
+    final b = _breath(t, 3.2);
+    return MascotPose(
+      rotation: 0.055 * inn,
+      scaleY: 1 + 0.02 * b,
+      scaleX: 1 - 0.008 * b,
+      lid: inn,
+      lidTilt: 0.14 * inn,
+      lookY: 0.6 * inn,
+      browY: 3 * inn,
+      browTilt: 0.14 * inn,
+      mouth: MouthShape.closed,
+      zzz: inn,
+      armLeft: ArmPose(raise: 0.02 * b, bend: 1.5 * b),
+      armRight: ArmPose(raise: 0.02 * b, bend: 1.5 * b),
     );
   }
 

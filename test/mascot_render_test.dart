@@ -56,6 +56,11 @@ void main() {
       final c = MascotController()..debugShow(e.key, e.value, talkMouth: MouthShape.openSmall);
       await _render(tester, c, 'state_${e.key.name}');
     }
+    // extra loops without an expression-sheet cell (screens 03/04 and 14)
+    for (final (st, t) in [(MascotState.cover, 1.0), (MascotState.asleep, 2.0)]) {
+      final c = MascotController()..debugShow(st, t);
+      await _render(tester, c, 'state_${st.name}');
+    }
     for (final (i, col) in [0xFFFFC83D, 0xFF4D9DE0, 0xFF3BB273, 0xFFFF8A5B, 0xFFB79CED, 0xFFFF9EB5].indexed) {
       final c = MascotController()
         ..freezeAtRest()

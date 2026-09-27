@@ -48,5 +48,9 @@ abstract final class IconRegistry {
     'auto_awesome': Symbols.auto_awesome_rounded,
     'auto_stories': Symbols.auto_stories_rounded,
     'dark_mode': Symbols.dark_mode_rounded,
+    // mascot room items
+    'image': Symbols.image_rounded,
+    'potted_plant': Symbols.potted_plant_rounded,
+    'blur_circular': Symbols.blur_circular_rounded,
   };
 }

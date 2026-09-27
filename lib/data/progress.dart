@@ -1,9 +1,9 @@
-import 'dart:math' as math;
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../design/tokens.dart';
+import 'family.dart';
+import 'shop_items.dart';
 
 /// One child's progress. Stars per finished level (1..3).
 @immutable
@@ -34,31 +34,24 @@ class ChildProgress {
   }
 }
 
-/// Demo data until accounts and saving exist: the prototype's first child
-/// ("Ayaan", 38 stars, levels 1–7 done). The prototype also puts a beanie on
-/// him; the Gemini accessory set has no beanie, so none is worn here.
+/// The active child's progress, read from [familyProvider] (the child picked
+/// on "Who's playing"). Demo data lives there until accounts and saving exist.
 class ProgressNotifier extends Notifier<ChildProgress> {
   @override
-  ChildProgress build() => ChildProgress(
-        name: 'Ayaan',
-        color: BodySwatch.yellow,
-        stars: 38,
-        levelStars: const {1: 3, 2: 2, 3: 3, 4: 2, 5: 3, 6: 3, 7: 2},
-      );
-
-  /// A level was finished (prototype finish()): keep the best stars; the
-  /// child earns the extra stars, plus 2 for a first-time finish.
-  void recordResult(int level, int stars) {
-    final old = state.levelStars[level];
-    final gain = math.max(0, stars - (old ?? 0)) + (old == null ? 2 : 0);
-    state = ChildProgress(
-      name: state.name,
-      color: state.color,
-      stars: state.stars + gain,
-      levelStars: {...state.levelStars, level: math.max(stars, old ?? 0)},
-      accessory: state.accessory,
+  ChildProgress build() {
+    final f = ref.watch(familyProvider);
+    final r = f.record;
+    return ChildProgress(
+      name: f.active.name,
+      color: f.active.swatch,
+      stars: r.stars,
+      levelStars: r.levelStars,
+      accessory: ShopItem.byId(r.wearing)?.accessory,
     );
   }
+
+  /// A level was finished (prototype finish()); see [FamilyNotifier.recordResult].
+  void recordResult(int level, int stars) => ref.read(familyProvider.notifier).recordResult(level, stars);
 }
 
 final progressProvider = NotifierProvider<ProgressNotifier, ChildProgress>(ProgressNotifier.new);

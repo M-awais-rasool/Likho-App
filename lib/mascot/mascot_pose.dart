@@ -16,7 +16,15 @@ enum MascotState {
 
   /// Extra loop used by Fix-It (the prototype's "think" pose): fist at the
   /// chin, looking up, head tilted.
-  think(loop: true);
+  think(loop: true),
+
+  /// Extra loop used by Sign up / Login while the password is typed (the
+  /// prototype's "cover" pose): both hands over the eyes, peeking.
+  cover(loop: true),
+
+  /// Extra loop used by Session end: the end of [sleepy] held — eyes shut,
+  /// slow breathing, "zzz".
+  asleep(loop: true);
 
   const MascotState({this.loop = false, this.duration = 0});
   final bool loop;

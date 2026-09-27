@@ -9,15 +9,18 @@ import 'package:flutter/foundation.dart';
 
 @immutable
 class Course {
-  const Course({required this.schemaVersion, required this.id, required this.worlds, required this.levels, required this.glyphs});
+  const Course({required this.schemaVersion, required this.id, required this.worlds, required this.levels, required this.glyphs, this.placement});
 
   final int schemaVersion;
   final String id;
   final List<CourseWorld> worlds;
 
-  /// Map levels (number 1..n), in order. (The placement warm-up, number 0,
-  /// is in the JSON but not used until the placement flow is built.)
+  /// Map levels (number 1..n), in order.
   final List<CourseLevel> levels;
+
+  /// The placement warm-up (number 0) played after adding a child. It has no
+  /// world of its own, so it is played in the first world's colours.
+  final CourseLevel? placement;
 
   /// Letter guide strokes, SVG path data in a 100 x 100 box (baseline y = 70).
   final Map<String, List<String>> glyphs;
@@ -35,11 +38,14 @@ class Course {
       throw FormatException('Course schemaVersion $version is newer than this app supports ($supportedSchema)');
     }
     final allLevels = r.list('levels', (x, p) => CourseLevel.fromJson(x, p));
+    final worlds = r.list('worlds', (x, p) => CourseWorld.fromJson(x, p));
+    final placement = allLevels.where((l) => l.placement).firstOrNull;
     return Course(
       schemaVersion: version,
       id: r.string('courseId'),
-      worlds: r.list('worlds', (x, p) => CourseWorld.fromJson(x, p)),
+      worlds: worlds,
       levels: allLevels.where((l) => !l.placement).toList()..sort((a, b) => a.number.compareTo(b.number)),
+      placement: placement == null || placement.worldId != null || worlds.isEmpty ? placement : placement.inWorld(worlds.first.id),
       glyphs: r.map('glyphs', (v, p) => [for (final (i, s) in (v as List).indexed) _asString(s, '$p[$i]')]),
     );
   }
@@ -102,6 +108,22 @@ class CourseLevel {
 
   /// Rounds this app can play (unknown future types are dropped).
   final List<Round> rounds;
+
+  /// The same level shown in world [id]'s colours.
+  CourseLevel inWorld(String id) => CourseLevel(
+        id: this.id,
+        number: number,
+        worldId: id,
+        placement: placement,
+        name: name,
+        skill: skill,
+        icon: icon,
+        isBoss: isBoss,
+        requiresSubscription: requiresSubscription,
+        intro: intro,
+        presentation: presentation,
+        rounds: rounds,
+      );
 
   factory CourseLevel.fromJson(Map<String, dynamic> json, String path) {
     final r = JsonReader(json, path);
