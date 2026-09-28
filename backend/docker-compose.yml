@@ -1,0 +1,43 @@
+# Postgres + Redis for development:   docker compose up -d postgres redis
+# Everything (API included):          docker compose up --build
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: likho
+      POSTGRES_PASSWORD: likho
+      POSTGRES_DB: likho
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U likho -d likho"]
+      interval: 2s
+      retries: 20
+
+  # Redis is a cache (me, rate limits, idempotency): no disk, oldest keys
+  # dropped when full.
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--save", "", "--appendonly", "no", "--maxmemory", "256mb", "--maxmemory-policy", "allkeys-lru"]
+    ports: ["6379:6379"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      retries: 20
+
+  api:
+    build:
+      context: ..
+      dockerfile: backend/Dockerfile
+    env_file: .env
+    environment:
+      DATABASE_URL: postgres://likho:likho@postgres:5432/likho?sslmode=disable
+      REDIS_URL: redis://redis:6379/0
+      COURSE_FILE: /content/course.json
+    ports: ["8080:8080"]
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis: { condition: service_healthy }
+
+volumes:
+  pgdata:
