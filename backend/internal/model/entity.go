@@ -1,10 +1,11 @@
-package models
+// Package model holds the data shapes: entity.go = database tables (GORM),
+// dto.go = the JSON the API sends and receives.
+package model
 
 import "time"
 
-// Database tables (GORM models). GORM creates and updates the tables from
-// these structs at start-up (database.Migrate); the tags carry the
-// constraints and indexes.
+// Database tables. GORM creates and updates them from these structs at
+// start-up (database.Migrate); the tags carry the constraints and indexes.
 
 // Parent is the account: one Google user. Children never sign in.
 type Parent struct {
@@ -47,20 +48,24 @@ type Child struct {
 	CreatedAt time.Time `gorm:"index:idx_children_parent,priority:2"`
 	UpdatedAt time.Time
 
-	LevelResults []LevelResult `gorm:"constraint:OnDelete:CASCADE"`
-	Items        []ChildItem   `gorm:"constraint:OnDelete:CASCADE"`
-	PlayDays     []PlayDay     `gorm:"constraint:OnDelete:CASCADE"`
+	Progress []LevelProgress `gorm:"constraint:OnDelete:CASCADE"`
+	Items    []ChildItem     `gorm:"constraint:OnDelete:CASCADE"`
+	PlayDays []PlayDay       `gorm:"constraint:OnDelete:CASCADE"`
 }
 
-// LevelResult is the best result of a child on a level (1..36).
-type LevelResult struct {
+// LevelProgress is a child's best result on one level of one course. Each
+// child has their own progress in every course.
+type LevelProgress struct {
 	ChildID   string    `gorm:"type:uuid;primaryKey"`
-	Level     int       `gorm:"type:smallint;primaryKey;autoIncrement:false;check:level BETWEEN 1 AND 36"`
+	CourseID  string    `gorm:"type:varchar(64);primaryKey"`
+	Level     int       `gorm:"type:smallint;primaryKey;autoIncrement:false;check:level >= 1"`
 	BestStars int       `gorm:"type:smallint;not null;check:best_stars BETWEEN 1 AND 3"`
 	Plays     int       `gorm:"not null;default:1"`
 	FirstAt   time.Time `gorm:"not null;default:now()"`
 	LastAt    time.Time `gorm:"not null;default:now()"`
 }
+
+func (LevelProgress) TableName() string { return "level_progress" }
 
 // ChildItem is something bought in the Mascot Room. Furniture can be
 // placed in the room.
@@ -93,14 +98,22 @@ type Session struct {
 	Rotated   bool `gorm:"not null;default:false"` // revoked because it was swapped for a new token
 }
 
-// CourseVersion is the course content (the app's course.json); the newest
-// row is served.
-type CourseVersion struct {
-	ID        uint      `gorm:"primaryKey"`
-	Sha256    string    `gorm:"uniqueIndex;not null"`
-	Body      string    `gorm:"type:jsonb;not null"`
-	CreatedAt time.Time `gorm:"index"`
+// Tables, in the order GORM creates them.
+var Tables = []any{&Parent{}, &Child{}, &LevelProgress{}, &ChildItem{}, &PlayDay{}, &Session{}}
+
+// Account, Settings and Subscription are the parent as the API shows it.
+
+func (p Parent) Account() Account {
+	return Account{ID: p.ID, Email: p.Email, Name: p.Name, PictureURL: p.PictureURL}
 }
 
-// Tables, in the order GORM creates them.
-var Tables = []any{&Parent{}, &Child{}, &LevelResult{}, &ChildItem{}, &PlayDay{}, &Session{}, &CourseVersion{}}
+func (p Parent) Settings() Settings {
+	return Settings{
+		SessionMinutes: p.SessionMinutes, Music: p.Music, Sfx: p.Sfx, Haptics: p.Haptics,
+		LeftHanded: p.LeftHanded, ReduceMotion: p.ReduceMotion,
+	}
+}
+
+func (p Parent) Subscription(now time.Time) Subscription {
+	return Subscription{Active: p.PlusActive(now), PlusUntil: p.PlusUntil, TrialUsed: p.TrialUsed}
+}

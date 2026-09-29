@@ -1,9 +1,9 @@
-package models
+package model
 
 import "time"
 
-// What the API sends and receives. JSON names match the Flutter app
-// (camelCase). Tables are in tables.go.
+// What the API sends and receives (see docs/openapi.yaml). JSON names match
+// the Flutter app (camelCase).
 
 // Account is the signed-in parent.
 type Account struct {
@@ -41,17 +41,24 @@ type Subscription struct {
 // ChildView is a child with everything the app shows for it (map, room,
 // profile, sticker book, parent dashboard).
 type ChildView struct {
-	ID              string         `json:"id"`
-	Name            string         `json:"name"`
-	Age             int            `json:"age"`
-	Color           string         `json:"color"`
-	Stars           int            `json:"stars"`
-	Wearing         *string        `json:"wearing"`
-	Owned           []string       `json:"owned"`
-	Room            []string       `json:"room"`
-	LevelStars      map[string]int `json:"levelStars"` // "1": 3
-	DaysPlayed      int            `json:"daysPlayed"`
-	MinutesThisWeek int            `json:"minutesThisWeek"`
+	ID              string   `json:"id"`
+	Name            string   `json:"name"`
+	Age             int      `json:"age"`
+	Color           string   `json:"color"`
+	Stars           int      `json:"stars"` // shared by all courses, spent in the room
+	Wearing         *string  `json:"wearing"`
+	Owned           []string `json:"owned"`
+	Room            []string `json:"room"`
+	DaysPlayed      int      `json:"daysPlayed"`
+	MinutesThisWeek int      `json:"minutesThisWeek"`
+
+	// Progress per course id: {"english-handwriting": {"levelStars": {"1": 3}}}.
+	Progress map[string]CourseProgress `json:"progress"`
+}
+
+// CourseProgress is a child's progress in one course.
+type CourseProgress struct {
+	LevelStars map[string]int `json:"levelStars"` // level number -> best stars
 }
 
 type ChildInput struct {
@@ -75,6 +82,7 @@ type Me struct {
 	Children     []ChildView  `json:"children"`
 }
 
+// ResultInput is a finished level (the course and child are in the path).
 type ResultInput struct {
 	Level   int `json:"level"`
 	Stars   int `json:"stars"`
@@ -83,12 +91,13 @@ type ResultInput struct {
 
 // Outcome of a finished level (the Level Complete screen).
 type Outcome struct {
-	Level      int  `json:"level"`
-	Stars      int  `json:"stars"`
-	BestStars  int  `json:"bestStars"`
-	Gain       int  `json:"gain"` // stars added to the child's total
-	FirstTime  bool `json:"firstTime"`
-	TotalStars int  `json:"totalStars"`
+	CourseID   string `json:"courseId"`
+	Level      int    `json:"level"`
+	Stars      int    `json:"stars"`
+	BestStars  int    `json:"bestStars"`
+	Gain       int    `json:"gain"` // stars added to the child's total
+	FirstTime  bool   `json:"firstTime"`
+	TotalStars int    `json:"totalStars"`
 }
 
 // RoomState after a Mascot Room tap.
@@ -111,4 +120,27 @@ type SignIn struct {
 	Tokens
 	IsNewAccount bool `json:"isNewAccount"`
 	Me           Me   `json:"me"`
+}
+
+// GoogleUser is what a verified Google ID token says about the user.
+type GoogleUser struct {
+	Sub, Email, Name, Picture string
+}
+
+// CourseSummary describes a course in the catalog (GET /v1/courses).
+type CourseSummary struct {
+	ID          string `json:"id"`
+	Title       string `json:"title"`
+	Description string `json:"description"`
+	Locale      string `json:"locale"`
+	Ages        *Ages  `json:"ages"`
+	Worlds      int    `json:"worlds"`
+	Levels      int    `json:"levels"`
+	Version     string `json:"version"` // changes whenever the content does (= ETag)
+	UpdatedAt   string `json:"updatedAt"`
+}
+
+type Ages struct {
+	Min int `json:"min"`
+	Max int `json:"max"`
 }
