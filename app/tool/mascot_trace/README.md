@@ -1,7 +1,7 @@
 # Pencil mascot tracing
 
 How `assets/mascot/*.svg` and `assets/reference/*.png` were made from the
-master art in `mascot's/` (Gemini_Generated_Image_*.jpeg). Pure Python + Pillow.
+master art in `design/mascot/` (repo root) (Gemini_Generated_Image_*.jpeg). Pure Python + Pillow.
 
 Artboard: 500 x 680 units = master image pixels, origin at master (454, 36).
 

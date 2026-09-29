@@ -33,7 +33,7 @@ abstract final class LikhoColors {
   static const surfaceSunk = Color(0xFFF3EBDD);
 }
 
-/// Mascot colours measured on the master image (mascot's/ic1bzv…jpeg).
+/// Mascot colours measured on the master image (design/mascot/ic1bzv…jpeg).
 /// Body colours live in [BodySwatch] because they change with setBodyColor.
 abstract final class MascotColors {
   static const eraser = Color(0xFFFC999C);
@@ -98,7 +98,7 @@ class BodySwatch {
   );
 
   /// The six colours from the brief. Blue, green, purple and pink use the
-  /// shades measured on the colour sheet (mascot's/etxq16…jpeg); their eyelid
+  /// shades measured on the colour sheet (design/mascot/etxq16…jpeg); their eyelid
   /// shade and all of coral are derived (no reference art for them).
   static final List<BodySwatch> options = [
     yellow,

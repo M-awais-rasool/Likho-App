@@ -2,7 +2,7 @@ import 'dart:math' as math;
 import 'dart:ui';
 
 /// Geometry of the Pencil rig, measured on the master image
-/// (mascot's/Gemini_Generated_Image_ic1bzv…jpeg).
+/// (design/mascot/Gemini_Generated_Image_ic1bzv…jpeg).
 ///
 /// Artboard units: 1 unit = 1 master pixel, origin at master (454, 36).
 /// All SVG parts in assets/mascot/ are drawn in this space at their rest pose.

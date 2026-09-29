@@ -10,7 +10,7 @@ from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, '..', '..'))
-MDIR = os.path.join(ROOT, "mascot's") + "/"
+MDIR = os.path.join(ROOT, '..', 'design', 'mascot') + '/'  # <repo>/design/mascot
 WORK = os.path.join(HERE, '.work')        # intermediate files (git-ignored)
 os.makedirs(WORK, exist_ok=True)
 

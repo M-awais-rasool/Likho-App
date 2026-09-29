@@ -4,7 +4,7 @@ import json, math, pickle, sys
 from collections import Counter
 from tracelib import *
 
-MDIR = os.path.join(ROOT, "mascot's") + "/"
+MDIR = os.path.join(ROOT, '..', 'design', 'mascot') + '/'  # <repo>/design/mascot
 rig = json.load(open('rig.json'))
 parts = json.load(open('parts_master.json'))
 C = pickle.load(open('master_cls.pkl', 'rb'))

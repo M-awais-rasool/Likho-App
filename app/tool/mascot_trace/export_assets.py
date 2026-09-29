@@ -3,7 +3,7 @@ import json, os
 from PIL import Image
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-MDIR = ROOT + "/mascot's/"
+MDIR = os.path.join(ROOT, '..', 'design', 'mascot') + '/'  # <repo>/design/mascot
 OUT = ROOT + '/assets/mascot'
 REF = ROOT + '/assets/reference'
 os.makedirs(OUT + '/accessories', exist_ok=True)

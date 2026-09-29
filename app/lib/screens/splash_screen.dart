@@ -11,7 +11,7 @@ import '../feedback/app_feedback.dart';
 import '../mascot/mascot.dart';
 import 'common/effects.dart';
 
-/// 01 Splash, from export/Likho-Prototype.html (screen "splash", 390 x 844).
+/// 01 Splash, from design/prototype/Likho-Prototype.html (screen "splash", 390 x 844).
 ///
 /// Timeline (seconds): mascot drops in and bounces 0–1.05, "Likho" is written
 /// letter by letter 1.0–1.98, the yellow line draws 1.9–2.4, then [onDone]

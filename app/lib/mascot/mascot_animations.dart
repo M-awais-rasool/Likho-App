@@ -18,7 +18,7 @@ abstract final class MascotAnimations {
   static const double _settle = 0.25;
 
   /// The moment of each state that corresponds to its expression-sheet cell
-  /// (mascot's/y5imh7…jpeg). Used by the overlay check and render tests.
+  /// (design/mascot/y5imh7…jpeg). Used by the overlay check and render tests.
   static const Map<MascotState, double> referenceMoments = {
     MascotState.idle: 0.0,
     MascotState.talking: 0.4,

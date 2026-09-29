@@ -3,7 +3,7 @@ import os
 import json, math, random
 from tracelib import *
 
-MDIR = os.path.join(ROOT, "mascot's") + "/"
+MDIR = os.path.join(ROOT, '..', 'design', 'mascot') + '/'  # <repo>/design/mascot
 rig = json.load(open('rig.json'))
 parts = json.load(open('parts_all.json'))
 OX, OY = rig['origin']

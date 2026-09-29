@@ -81,7 +81,7 @@ class MascotPainter extends CustomPainter {
 
     _torso(canvas, 'body', p.lean, 0, sw);
     _torso(canvas, 'cone', p.lean, 0, sw);
-    // the cap covers the eraser completely (reference: mascot's/4cnmtm…jpeg)
+    // the cap covers the eraser completely (reference: design/mascot/4cnmtm…jpeg)
     if (acc != MascotAccessory.cap) _torso(canvas, 'eraser', p.lean, p.eraserDrop, sw);
 
     _bent(canvas, p.lean, PencilRig.faceCentre, () {
