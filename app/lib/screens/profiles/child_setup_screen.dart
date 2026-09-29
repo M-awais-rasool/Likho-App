@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import '../../data/api/api_client.dart';
 import '../../data/family.dart';
 import '../../feedback/app_feedback.dart';
 import '../../design/motion.dart';
@@ -13,6 +14,7 @@ import '../../design/tokens.dart';
 import '../../mascot/mascot.dart';
 import '../common/kid_widgets.dart';
 import '../common/pencil_figure.dart';
+import '../common/toast.dart';
 
 enum ChildSetupMode { add, edit }
 
@@ -42,6 +44,7 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
   int _step = 0;
   bool _happy = false;
   bool _confirmDelete = false;
+  bool _saving = false; // waiting for the server
   int _splash = 0; // colour splash replays
   final List<Timer> _timers = [];
 
@@ -63,7 +66,8 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
     }),
   );
 
-  void _next() {
+  Future<void> _next() async {
+    if (_saving) return;
     final fb = ref.read(feedbackProvider);
     if (_step == 0 && !_nameOk) {
       fb.nope();
@@ -75,14 +79,32 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
       return;
     }
     final n = ref.read(familyProvider.notifier);
-    if (_edit) {
-      n.editActive(name: _name.text, age: _age, color: _color);
-    } else {
-      n.addChild(name: _name.text, age: _age ?? 6, color: _color);
+    setState(() => _saving = true);
+    try {
+      if (_edit) {
+        await n.editActive(name: _name.text, age: _age, color: _color);
+      } else {
+        await n.addChild(name: _name.text, age: _age ?? 6, color: _color);
+      }
+    } on ApiException catch (e) {
+      if (!mounted) return;
+      setState(() => _saving = false);
+      fb.nope();
+      Toast.show(context, saveError(e));
+      return;
     }
+    if (!mounted) return;
     fb.done();
     widget.onDone();
   }
+
+  /// A short parent-friendly reason a save failed.
+  static String saveError(ApiException e) => switch (e.code) {
+    'offline' => 'Internet nahi hai, dobara koshish karein',
+    'too_many_children' => 'Zyada se zyada 4 bache',
+    'last_child' => 'Aakhri profile delete nahi ho sakti',
+    _ => 'Save nahi hua, dobara koshish karein',
+  };
 
   void _back() {
     FocusScope.of(context).unfocus();
@@ -146,8 +168,21 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
     );
   }
 
-  void _delete() {
-    ref.read(familyProvider.notifier).deleteActive();
+  Future<void> _delete() async {
+    if (_saving) return;
+    setState(() => _saving = true);
+    try {
+      await ref.read(familyProvider.notifier).deleteActive();
+    } on ApiException catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _saving = false;
+        _confirmDelete = false;
+      });
+      Toast.show(context, saveError(e));
+      return;
+    }
+    if (!mounted) return;
     setState(() => _confirmDelete = false);
     widget.onDeleted?.call();
   }
@@ -318,7 +353,13 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
         ),
       ),
       const Spacer(),
-      BigButton(label: 'Ho gaya!', icon: Symbols.check_circle_rounded, iconFill: true, onTap: _next),
+      BigButton(
+        label: 'Ho gaya!',
+        icon: _saving ? null : Symbols.check_circle_rounded,
+        iconFill: true,
+        leading: _saving ? const ButtonSpinner() : null,
+        onTap: _saving ? null : _next,
+      ),
     ],
   );
 }

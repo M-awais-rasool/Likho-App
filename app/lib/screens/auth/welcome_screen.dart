@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
 
 import '../../feedback/app_feedback.dart';
 import '../../design/motion.dart';
@@ -10,15 +9,24 @@ import '../../design/tokens.dart';
 import '../../mascot/mascot.dart';
 import '../common/kid_widgets.dart';
 import '../common/pencil_figure.dart';
+import 'google_button.dart';
 
-/// 02 Welcome, from export/Likho-Prototype.html (screen "welcome").
+/// 02 Welcome, from design/prototype/Likho-Prototype.html (screen "welcome").
 ///
 /// Letters float in the background. After 1.5 s Pencil (waving) "catches"
 /// the orange A: it flies to his hand and he cheers.
+///
+/// One way in: "Continue with Google" signs a parent in, and makes the
+/// account the first time (no sign up, no password). "Pehle try karein"
+/// plays without an account.
 class WelcomeScreen extends StatefulWidget {
-  const WelcomeScreen({super.key, required this.onSignUp, required this.onLogIn, required this.onTryFirst});
+  const WelcomeScreen({super.key, required this.onGoogle, required this.onTryFirst, this.onTerms});
 
-  final VoidCallback onSignUp, onLogIn, onTryFirst;
+  /// Signs in; true when it worked (the flow then moves on), false when the
+  /// parent closed Google or it failed (the flow shows why).
+  final Future<bool> Function() onGoogle;
+  final VoidCallback onTryFirst;
+  final VoidCallback? onTerms;
 
   static const catchDelay = Duration(milliseconds: 1500);
 
@@ -28,7 +36,19 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   bool _caught = false;
+  bool _busy = false;
+  int _oops = 0; // Pencil encourages after a failed sign-in
   Timer? _timer, _land;
+
+  Future<void> _google() async {
+    setState(() => _busy = true);
+    final ok = await widget.onGoogle();
+    if (!mounted) return;
+    setState(() {
+      _busy = false;
+      if (!ok) _oops++;
+    });
+  }
 
   @override
   void initState() {
@@ -87,7 +107,19 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   padding: EdgeInsets.fromLTRB(24, top + 96, 24, 44),
                   child: Column(
                     children: [
-                      PencilFigure(width: 170, height: 240, state: _caught ? MascotState.happy : MascotState.wave, holdEnd: true),
+                      PencilFigure(
+                        width: 170,
+                        height: 240,
+                        state: _busy
+                            ? MascotState.watching
+                            : _oops > 0
+                            ? MascotState.encourage
+                            : _caught
+                            ? MascotState.happy
+                            : MascotState.wave,
+                        replay: _oops,
+                        holdEnd: true,
+                      ),
                       const SizedBox(height: 22),
                       Text(
                         'Likhna seekho,\nkhel khel mein.',
@@ -105,25 +137,28 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         ),
                       ),
                       const Spacer(),
-                      BigButton(label: 'Shuru karein', icon: Symbols.rocket_launch_rounded, iconFill: true, height: 78, onTap: widget.onSignUp),
-                      const SizedBox(height: 14),
-                      BigButton(
-                        label: 'Mera account hai',
-                        icon: Symbols.login_rounded,
-                        white: true,
-                        height: 70,
-                        fontSize: 22,
-                        iconSize: 26,
-                        onTap: widget.onLogIn,
+                      GoogleButton(loading: _busy, onTap: _google),
+                      const SizedBox(height: 10),
+                      Text(
+                        'Pehli baar? Account khud ban jayega.',
+                        textAlign: TextAlign.center,
+                        style: LikhoFonts.body(size: 14, weight: FontWeight.w600, color: LikhoColors.inkMuted),
                       ),
-                      const SizedBox(height: 14),
+                      const SizedBox(height: 8),
                       TextLink(
                         text: 'Abhi nahi, pehle try karein',
                         underline: true,
                         padding: const EdgeInsets.all(10),
                         style: LikhoFonts.body(size: 16, weight: FontWeight.w700, color: LikhoColors.inkMuted),
-                        onTap: widget.onTryFirst,
+                        onTap: _busy ? () {} : widget.onTryFirst,
                       ),
+                      if (widget.onTerms != null)
+                        TextLink(
+                          text: 'Aage barh kar aap Terms aur Privacy Policy maante hain',
+                          padding: const EdgeInsets.fromLTRB(10, 2, 10, 0),
+                          style: LikhoFonts.body(size: 12, weight: FontWeight.w600, color: LikhoColors.inkMuted),
+                          onTap: widget.onTerms!,
+                        ),
                     ],
                   ),
                 ),

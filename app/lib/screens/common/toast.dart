@@ -13,7 +13,11 @@ abstract final class Toast {
 
   static void show(BuildContext context, String message) {
     final overlay = Overlay.maybeOf(context, rootOverlay: true);
-    if (overlay == null) return;
+    if (overlay != null) showOn(overlay, message);
+  }
+
+  /// For callers above the Navigator (the app shell).
+  static void showOn(OverlayState overlay, String message) {
     hide();
     final entry = OverlayEntry(
       builder: (context) => Positioned(

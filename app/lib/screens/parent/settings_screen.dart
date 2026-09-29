@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../data/family.dart';
-import '../../data/repositories/auth_repository.dart';
 import '../../design/tokens.dart';
+import '../auth/google_button.dart';
 import '../common/kid_widgets.dart';
 import 'parent_widgets.dart';
 
@@ -23,13 +23,13 @@ class SettingsScreen extends ConsumerWidget {
 
   final VoidCallback onBack, onLogOut, onManageChildren, onPlan, onHelp, onDeleteAccount;
 
-  /// Shown when nobody is signed in (the prototype's demo parent).
+  /// Shown when nobody is signed in (sample data in tests / dev tools).
   static const demoEmail = 'parent@likho.app';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final family = ref.watch(familyProvider);
-    final email = ref.watch(authProvider).email ?? demoEmail;
+    final email = family.account?.email ?? demoEmail;
     final s = family.settings;
     void set(AppSettings Function(AppSettings) f) => ref.read(familyProvider.notifier).updateSettings(f);
     const chevron = SymbolIcon(Symbols.chevron_right_rounded, size: 24, color: UiColors.chevron);
@@ -59,7 +59,17 @@ class SettingsScreen extends ConsumerWidget {
               ),
             ),
           ),
-          SettingsRow(label: 'Password badlein', trailing: chevron, onTap: onHelp),
+          SettingsRow(
+            label: 'Sign in',
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const GoogleDot(size: 18),
+                const SizedBox(width: 8),
+                Text('Google', style: LikhoFonts.parent(size: 15, weight: FontWeight.w600, color: UiColors.inkLabel)),
+              ],
+            ),
+          ),
           SettingsRow(
             label: 'Logout',
             trailing: const SymbolIcon(Symbols.logout_rounded, size: 24, color: UiColors.chevron),
