@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://likho.app/schema/level.schema.json",
+  "title": "Level",
+  "description": "worlds/<NN-name>/levels/<NN-name>.json (or placement.json): one level and its rounds. The world comes from the folder.",
+  "type": "object",
+  "required": ["id", "number", "name", "skill", "icon", "isBoss", "requiresSubscription", "intro", "presentation", "rounds"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "number": { "type": "integer", "minimum": 0, "description": "Position on the map, 1..n across the course (0 = placement). Never renumber published levels: progress is stored by number." },
+    "name": { "type": "string", "minLength": 1 },
+    "skill": { "type": "string" },
+    "icon": { "type": "string", "description": "Material Symbols name." },
+    "isBoss": { "type": "boolean" },
+    "requiresSubscription": { "type": "boolean", "description": "Likho Plus level." },
+    "intro": {
+      "type": "object",
+      "required": ["text", "word", "picture"],
+      "additionalProperties": false,
+      "properties": { "text": { "type": "string" }, "word": { "type": "string" }, "picture": { "$ref": "#/$defs/picture" } }
+    },
+    "presentation": {
+      "type": "object",
+      "description": "How the level looks (keys the app maps to its design).",
+      "additionalProperties": false,
+      "properties": {
+        "shape": { "type": ["string", "null"] },
+        "slot": { "type": ["string", "null"] },
+        "pad": { "type": ["string", "null"] },
+        "layout": { "type": ["string", "null"] },
+        "stage": { "type": ["string", "null"] }
+      }
+    },
+    "rounds": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/round" } }
+  },
+  "$defs": {
+    "picture": {
+      "type": ["object", "null"],
+      "required": ["key", "label"],
+      "additionalProperties": false,
+      "properties": {
+        "key": { "type": "string", "description": "Bundled image assets/illustrations/<key>.png." },
+        "label": { "type": "string" },
+        "url": { "type": ["string", "null"], "description": "Remote image instead of a bundled one." }
+      }
+    },
+    "round": {
+      "type": "object",
+      "required": ["id", "type", "prompt"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "enum": ["pick", "write", "order", "speak"], "description": "The payload object has the same name." },
+        "prompt": {
+          "type": "object",
+          "required": ["text"],
+          "additionalProperties": false,
+          "properties": { "text": { "type": "string" }, "audio": { "type": ["string", "null"], "description": "Recording (asset path or URL); without it the device voice reads the text." } }
+        },
+        "card": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "properties": { "text": { "type": ["string", "null"] }, "picture": { "$ref": "#/$defs/picture" }, "listen": { "type": "boolean" } }
+        },
+        "pick": { "$ref": "#/$defs/pick" },
+        "write": { "$ref": "#/$defs/write" },
+        "order": { "$ref": "#/$defs/order" },
+        "speak": { "$ref": "#/$defs/speak" }
+      },
+      "allOf": [
+        { "if": { "properties": { "type": { "const": "pick" } } }, "then": { "required": ["pick"] } },
+        { "if": { "properties": { "type": { "const": "write" } } }, "then": { "required": ["write"] } },
+        { "if": { "properties": { "type": { "const": "order" } } }, "then": { "required": ["order"] } },
+        { "if": { "properties": { "type": { "const": "speak" } } }, "then": { "required": ["speak"] } }
+      ]
+    },
+    "pick": {
+      "type": "object",
+      "required": ["options", "answer"],
+      "properties": {
+        "options": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "label"],
+            "properties": {
+              "id": { "type": "string" },
+              "label": { "type": "string" },
+              "picture": { "$ref": "#/$defs/picture" },
+              "color": { "enum": ["red", "blue", "yellow", "green", "purple", null] },
+              "hideLabel": { "type": "boolean" }
+            }
+          }
+        },
+        "answer": {
+          "type": "object",
+          "required": ["kind"],
+          "properties": { "kind": { "enum": ["label", "any"] }, "value": { "type": "string" } }
+        },
+        "shape": { "type": ["string", "null"] },
+        "layout": { "type": ["string", "null"] },
+        "count": { "type": ["integer", "null"] },
+        "choiceKey": { "type": ["string", "null"], "description": "Story choice this pick fills (My Story)." },
+        "fixCapital": { "type": "boolean" }
+      }
+    },
+    "write": {
+      "type": "object",
+      "required": ["mode"],
+      "properties": {
+        "mode": { "enum": ["trace", "dots", "free", "missing", "spell"] },
+        "target": { "type": ["string", "null"] },
+        "guide": { "type": ["string", "null"], "description": "Key in glyphs.json." },
+        "word": { "type": ["string", "null"] },
+        "missingIndex": { "type": ["integer", "null"] },
+        "sentence": { "type": "boolean" },
+        "story": { "type": "boolean" }
+      }
+    },
+    "order": {
+      "type": "object",
+      "required": ["tiles"],
+      "properties": { "tiles": { "type": "array", "minItems": 2, "items": { "type": "string" } } }
+    },
+    "speak": {
+      "type": "object",
+      "properties": { "expected": { "type": ["string", "null"] } }
+    }
+  }
+}

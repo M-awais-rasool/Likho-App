@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://likho.app/schema/glyphs.schema.json",
+  "title": "Letter guides",
+  "description": "courses/<id>/glyphs.json: strokes to trace, SVG path data in a 100 x 100 box (baseline y = 70), in writing order.",
+  "type": "object",
+  "required": ["glyphs"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "glyphs": {
+      "type": "object",
+      "additionalProperties": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+    }
+  }
+}

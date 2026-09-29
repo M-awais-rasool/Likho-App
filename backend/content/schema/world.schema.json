@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://likho.app/schema/world.schema.json",
+  "title": "World",
+  "description": "courses/<id>/worlds/<NN-name>/world.json: one area of the map. Its levels are in levels/ next to it.",
+  "type": "object",
+  "required": ["id", "order", "name", "skill", "icon", "themeId", "boss"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "order": { "type": "integer", "minimum": 1, "description": "1, 2, 3… bottom to top on the map." },
+    "name": { "type": "string", "minLength": 1 },
+    "skill": { "type": "string" },
+    "icon": { "type": "string", "description": "Material Symbols name." },
+    "themeId": { "type": "string", "description": "Map theme in the app (design tokens)." },
+    "boss": {
+      "type": "object",
+      "required": ["id", "name"],
+      "additionalProperties": false,
+      "properties": { "id": { "type": "string" }, "name": { "type": "string" } }
+    }
+  }
+}
