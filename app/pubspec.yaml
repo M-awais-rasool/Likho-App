@@ -10,8 +10,11 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_riverpod: ^3.4.3
+  flutter_secure_storage: ^11.2.0
   flutter_tts: ^4.2.5
   google_fonts: ^8.2.1
+  google_sign_in: ^7.2.0
+  http: ^1.6.0
   just_audio: ^0.10.6
   material_symbols_icons: ^4.2960.0
   path_drawing: ^1.0.1
@@ -32,7 +35,6 @@ flutter:
     - assets/mascot/fx/
     - assets/audio/
     - assets/sfx/
-    - assets/data/
     # dev-only reference images for the overlay check (remove from release builds)
     - assets/reference/
     - assets/reference/screens/
