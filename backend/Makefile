@@ -1,35 +1,54 @@
-.PHONY: run db up down test test-db build vet tidy
+# Likho API. Run `make help` for the list.
+.DEFAULT_GOAL := help
+.PHONY: help run db db-reset up down test test-db lint build content content-bundle content-fixture docker tidy
 
-# Postgres + Redis in Docker (for `make run`)
-db:
+TEST_DB ?= postgres://likho:likho@localhost:5432/likho_test?sslmode=disable
+COURSE  ?= english-handwriting
+
+help: ## show the targets
+	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*## "} {printf "  %-16s %s\n", $$1, $$2}'
+
+run: ## API on http://localhost:8080 (settings from .env)
+	set -a && . ./.env && set +a && go run ./cmd/api
+
+db: ## Postgres + Redis in Docker
 	docker compose up -d postgres redis
 
-# API on your machine with .env
-run:
-	set -a && . ./.env && set +a && go run .
+db-reset: ## wipe the local database and cache (development)
+	docker compose down -v && docker compose up -d postgres redis
 
-# everything in Docker
-up:
+up: ## everything in Docker (API included)
 	docker compose up --build
 
-down:
+down: ## stop Docker
 	docker compose down
 
-# unit tests (no database needed)
-test:
+test: ## unit tests (no database)
 	go test ./...
 
-# all tests, including the API tests on Postgres (needs `make db`)
-test-db:
+test-db: ## all tests, including the API on Postgres (needs `make db`)
 	docker compose exec -T postgres psql -U likho -tc "SELECT 1 FROM pg_database WHERE datname='likho_test'" | grep -q 1 || \
 		docker compose exec -T postgres createdb -U likho likho_test
-	TEST_DATABASE_URL="postgres://likho:likho@localhost:5432/likho_test?sslmode=disable" go test -race -count=1 ./...
+	TEST_DATABASE_URL="$(TEST_DB)" go test -race -count=1 ./...
 
-build:
-	CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o bin/likho-api .
-
-vet:
+lint: ## go vet + formatting
 	go vet ./...
+	@test -z "$$(gofmt -l .)" || (gofmt -l . && echo "run gofmt -w ." && exit 1)
+
+content: ## check every course (run after editing content/)
+	go run ./cmd/content validate
+
+content-bundle: ## print a course as the API serves it (COURSE=…)
+	go run ./cmd/content bundle $(COURSE) -indent
+
+content-fixture: ## refresh the app's test copy of the course
+	go run ./cmd/content bundle $(COURSE) -indent -o ../app/test/fixtures/$(COURSE).json
+
+build: ## static binary in bin/
+	CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o bin/likho-api ./cmd/api
+
+docker: ## production image
+	docker build -t likho-api .
 
 tidy:
 	go mod tidy

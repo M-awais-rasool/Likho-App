@@ -1,0 +1,6 @@
+bin/
+.env
+docs/
+test/
+tools/
+*.md

@@ -26,14 +26,11 @@ services:
       retries: 20
 
   api:
-    build:
-      context: ..
-      dockerfile: backend/Dockerfile
+    build: .
     env_file: .env
     environment:
       DATABASE_URL: postgres://likho:likho@postgres:5432/likho?sslmode=disable
       REDIS_URL: redis://redis:6379/0
-      COURSE_FILE: /content/course.json
     ports: ["8080:8080"]
     depends_on:
       postgres: { condition: service_healthy }
