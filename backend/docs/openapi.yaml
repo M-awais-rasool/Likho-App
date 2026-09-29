@@ -1,0 +1,386 @@
+openapi: 3.1.0
+info:
+  title: Likho API
+  version: "1.0"
+  description: |
+    Backend of the Likho handwriting app for children (5 to 8).
+
+    * **Sign-in is Google only.** `POST /v1/auth/google` creates the account the first time and
+      continues it afterwards; there is no sign-up and no password.
+    * **Content** (courses, worlds, levels, rounds) is public and cached: `ETag` + `If-None-Match`.
+    * **Each child has their own progress** in every course. Stars are shared by all courses and
+      spent in the Mascot Room.
+    * Errors are always `{"error": "<code>", "message": "<text>"}`; the app switches on `error`.
+servers:
+  - url: http://localhost:8080
+    description: development
+  - url: https://api.likho.app
+    description: production (placeholder)
+
+tags:
+  - name: courses
+  - name: auth
+  - name: account
+  - name: children
+  - name: play
+  - name: health
+
+paths:
+  /v1/courses:
+    get:
+      tags: [courses]
+      summary: Every course that is served
+      responses:
+        "200":
+          description: The catalog
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [courses]
+                properties:
+                  courses: { type: array, items: { $ref: "#/components/schemas/CourseSummary" } }
+
+  /v1/courses/{courseId}:
+    get:
+      tags: [courses]
+      summary: A whole course (worlds, levels, rounds, letter guides)
+      description: |
+        Built from `backend/content/courses/{courseId}/`. Served from memory, gzipped when the
+        client accepts it. Send the last `ETag` as `If-None-Match` to get `304` when unchanged.
+      parameters:
+        - $ref: "#/components/parameters/courseId"
+        - in: header
+          name: If-None-Match
+          schema: { type: string }
+      responses:
+        "200":
+          description: The course document
+          headers:
+            ETag: { schema: { type: string }, description: 'Version, e.g. "d5c2aa058f860b9c"' }
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/CourseDocument" }
+        "304": { description: The client already has this version }
+        "404": { $ref: "#/components/responses/Error" }
+
+  /v1/auth/google:
+    post:
+      tags: [auth]
+      summary: Continue with Google (sign in = sign up)
+      description: Rate limited to 30 per minute per IP.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [idToken]
+              properties:
+                idToken: { type: string, description: Google ID token from Google Sign-In }
+                device: { type: string, description: Shown in the list of signed-in devices }
+      responses:
+        "200": { description: Existing account, content: { application/json: { schema: { $ref: "#/components/schemas/SignIn" } } } }
+        "201": { description: New account, content: { application/json: { schema: { $ref: "#/components/schemas/SignIn" } } } }
+        "401": { $ref: "#/components/responses/Error" }
+        "429": { $ref: "#/components/responses/Error" }
+
+  /v1/auth/refresh:
+    post:
+      tags: [auth]
+      summary: Swap a refresh token for a new pair (each refresh token works once)
+      description: A refresh token that was already swapped signs out every device (`session_reused`).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [refreshToken]
+              properties: { refreshToken: { type: string } }
+      responses:
+        "200": { description: New tokens, content: { application/json: { schema: { $ref: "#/components/schemas/Tokens" } } } }
+        "401": { $ref: "#/components/responses/Error" }
+
+  /v1/auth/logout:
+    post:
+      tags: [auth]
+      summary: Sign this device out
+      security: [{ bearer: [] }]
+      responses:
+        "204": { description: Signed out }
+
+  /v1/me:
+    get:
+      tags: [account]
+      summary: Everything the app needs (account, settings, subscription, children with progress)
+      security: [{ bearer: [] }]
+      responses:
+        "200":
+          description: The account
+          headers: { X-Cache: { schema: { enum: [hit, miss] } } }
+          content: { application/json: { schema: { $ref: "#/components/schemas/Me" } } }
+        "401": { $ref: "#/components/responses/Error" }
+    delete:
+      tags: [account]
+      summary: Delete the account and everything in it
+      security: [{ bearer: [] }]
+      responses:
+        "204": { description: Deleted }
+
+  /v1/me/settings:
+    patch:
+      tags: [account]
+      summary: Change settings (only the fields sent)
+      security: [{ bearer: [] }]
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: "#/components/schemas/Settings" } } }
+      responses:
+        "200": { description: All settings, content: { application/json: { schema: { $ref: "#/components/schemas/Settings" } } } }
+        "400": { $ref: "#/components/responses/Error" }
+
+  /v1/me/trial:
+    post:
+      tags: [account]
+      summary: Start the 7-day Likho Plus trial (once per account)
+      security: [{ bearer: [] }]
+      responses:
+        "200": { description: Subscription, content: { application/json: { schema: { $ref: "#/components/schemas/Subscription" } } } }
+        "409": { $ref: "#/components/responses/Error" }
+
+  /v1/children:
+    post:
+      tags: [children]
+      summary: Add a child (up to 4)
+      security: [{ bearer: [] }]
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: "#/components/schemas/ChildInput" } } }
+      responses:
+        "201": { description: The child, content: { application/json: { schema: { $ref: "#/components/schemas/Child" } } } }
+        "400": { $ref: "#/components/responses/Error" }
+        "409": { $ref: "#/components/responses/Error" }
+
+  /v1/children/{childId}:
+    parameters: [{ $ref: "#/components/parameters/childId" }]
+    patch:
+      tags: [children]
+      summary: Change a child (only the fields sent)
+      security: [{ bearer: [] }]
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: "#/components/schemas/ChildInput" } } }
+      responses:
+        "200": { description: The child, content: { application/json: { schema: { $ref: "#/components/schemas/Child" } } } }
+        "404": { $ref: "#/components/responses/Error" }
+    delete:
+      tags: [children]
+      summary: Delete a child and their progress (never the only one)
+      security: [{ bearer: [] }]
+      responses:
+        "204": { description: Deleted }
+        "409": { $ref: "#/components/responses/Error" }
+
+  /v1/children/{childId}/courses/{courseId}/results:
+    post:
+      tags: [play]
+      summary: A finished level
+      description: |
+        The server awards the stars: the best result is kept, the child earns the improvement, +2
+        the first time. The level must be unlocked (the previous one finished) and Likho Plus levels
+        need the subscription. Send an `Idempotency-Key` so a retry is answered with the first
+        result instead of counting twice.
+      security: [{ bearer: [] }]
+      parameters:
+        - $ref: "#/components/parameters/childId"
+        - $ref: "#/components/parameters/courseId"
+        - $ref: "#/components/parameters/idempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [level, stars]
+              properties:
+                level: { type: integer, minimum: 1 }
+                stars: { type: integer, minimum: 1, maximum: 3 }
+                seconds: { type: integer, description: Time spent (default 180, max 1800) }
+      responses:
+        "200": { description: The outcome, content: { application/json: { schema: { $ref: "#/components/schemas/Outcome" } } } }
+        "400": { $ref: "#/components/responses/Error" }
+        "402": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+        "409": { $ref: "#/components/responses/Error" }
+
+  /v1/children/{childId}/room/{itemId}:
+    post:
+      tags: [play]
+      summary: Tap a Mascot Room item (buy, wear / take off, place / remove)
+      security: [{ bearer: [] }]
+      parameters:
+        - $ref: "#/components/parameters/childId"
+        - { in: path, name: itemId, required: true, schema: { type: string }, example: party }
+        - $ref: "#/components/parameters/idempotencyKey"
+      responses:
+        "200": { description: The room after the tap, content: { application/json: { schema: { $ref: "#/components/schemas/RoomState" } } } }
+        "404": { $ref: "#/components/responses/Error" }
+        "409": { $ref: "#/components/responses/Error" }
+
+  /healthz:
+    get:
+      tags: [health]
+      summary: The process is up
+      responses: { "200": { description: ok } }
+  /readyz:
+    get:
+      tags: [health]
+      summary: Postgres (and Redis) answer
+      responses: { "200": { description: ready }, "503": { description: Postgres is down } }
+
+components:
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      description: Access token from sign-in / refresh (JWT, 15 minutes)
+
+  parameters:
+    childId: { in: path, name: childId, required: true, schema: { type: string, format: uuid } }
+    courseId: { in: path, name: courseId, required: true, schema: { type: string }, example: english-handwriting }
+    idempotencyKey:
+      in: header
+      name: Idempotency-Key
+      schema: { type: string, maxLength: 100 }
+      description: Any unique string per action. A retry with the same key gets the first answer (`Idempotent-Replay` header).
+
+  responses:
+    Error:
+      description: |
+        Error codes: `invalid_input`, `unauthorized`, `token_expired`, `invalid_google_token`,
+        `session_invalid`, `session_reused`, `account_deleted`, `plus_required`, `not_found`,
+        `course_not_found`, `unknown_item`, `too_many_children`, `last_child`, `level_locked`,
+        `not_enough_stars`, `trial_used`, `in_progress`, `rate_limited`, `internal`.
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [error, message]
+            properties: { error: { type: string }, message: { type: string } }
+
+  schemas:
+    CourseSummary:
+      type: object
+      properties:
+        id: { type: string, example: english-handwriting }
+        title: { type: string }
+        description: { type: string }
+        locale: { type: string, example: en }
+        ages: { type: [object, "null"], properties: { min: { type: integer }, max: { type: integer } } }
+        worlds: { type: integer }
+        levels: { type: integer }
+        version: { type: string, description: Same as the course ETag }
+        updatedAt: { type: string, format: date-time }
+
+    CourseDocument:
+      type: object
+      description: Worlds, levels and rounds as described in backend/content/README.md (schemaVersion 1).
+      properties:
+        schemaVersion: { type: integer }
+        courseId: { type: string }
+        title: { type: string }
+        updatedAt: { type: string }
+        worlds: { type: array, items: { type: object } }
+        levels: { type: array, items: { type: object }, description: Placement first (number 0, worldId null), then map levels 1..n }
+        glyphs: { type: object, additionalProperties: { type: array, items: { type: string } } }
+
+    Tokens:
+      type: object
+      properties:
+        accessToken: { type: string }
+        expiresIn: { type: integer, description: seconds }
+        refreshToken: { type: string }
+
+    SignIn:
+      allOf:
+        - $ref: "#/components/schemas/Tokens"
+        - type: object
+          properties:
+            isNewAccount: { type: boolean }
+            me: { $ref: "#/components/schemas/Me" }
+
+    Me:
+      type: object
+      properties:
+        account:
+          type: object
+          properties: { id: { type: string }, email: { type: string }, name: { type: string }, pictureUrl: { type: string } }
+        settings: { $ref: "#/components/schemas/Settings" }
+        subscription: { $ref: "#/components/schemas/Subscription" }
+        children: { type: array, items: { $ref: "#/components/schemas/Child" } }
+
+    Settings:
+      type: object
+      properties:
+        sessionMinutes: { enum: [5, 10, 15] }
+        music: { type: boolean }
+        sfx: { type: boolean }
+        haptics: { type: boolean }
+        leftHanded: { type: boolean }
+        reduceMotion: { type: boolean }
+
+    Subscription:
+      type: object
+      properties:
+        active: { type: boolean }
+        plusUntil: { type: [string, "null"], format: date-time }
+        trialUsed: { type: boolean }
+
+    ChildInput:
+      type: object
+      properties:
+        name: { type: string, minLength: 1, maxLength: 14 }
+        age: { type: integer, minimum: 5, maximum: 8 }
+        color: { enum: ["#FFC83D", "#4D9DE0", "#3BB273", "#FF8A5B", "#B79CED", "#FF9EB5"] }
+
+    Child:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        name: { type: string }
+        age: { type: integer }
+        color: { type: string }
+        stars: { type: integer, description: Shared by all courses, spent in the room }
+        wearing: { type: [string, "null"] }
+        owned: { type: array, items: { type: string } }
+        room: { type: array, items: { type: string } }
+        daysPlayed: { type: integer }
+        minutesThisWeek: { type: integer }
+        progress:
+          type: object
+          description: Per course id
+          additionalProperties:
+            type: object
+            properties:
+              levelStars: { type: object, additionalProperties: { type: integer }, example: { "1": 3, "2": 2 } }
+
+    Outcome:
+      type: object
+      properties:
+        courseId: { type: string }
+        level: { type: integer }
+        stars: { type: integer }
+        bestStars: { type: integer }
+        gain: { type: integer, description: Stars added to the child }
+        firstTime: { type: boolean }
+        totalStars: { type: integer }
+
+    RoomState:
+      type: object
+      properties:
+        action: { enum: [bought, worn, taken_off, placed, removed] }
+        stars: { type: integer }
+        wearing: { type: [string, "null"] }
+        owned: { type: array, items: { type: string } }
+        room: { type: array, items: { type: string } }
