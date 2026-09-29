@@ -175,7 +175,7 @@
       },
       "write": {
         "mode": "free",
-        "target": null,
+        "target": "I can read.",
         "guide": null,
         "word": null,
         "missingIndex": null,

@@ -38,6 +38,11 @@ dragon
 duck
 egg
 family
+family_baby
+family_brother
+family_father
+family_mother
+family_sister
 firefly
 fish
 fish_in_bowl
@@ -63,11 +68,6 @@ orange
 owl
 paint
 pencil
-photo:_baby
-photo:_brother
-photo:_father
-photo:_mother
-photo:_sister
 pig
 planet
 play

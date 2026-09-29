@@ -2137,21 +2137,21 @@
             "options": [
               {
                 "id": "level-10-r1-o1",
-                "label": "b d h",
+                "label": "b d l",
                 "picture": null,
                 "color": null,
                 "hideLabel": false
               },
               {
                 "id": "level-10-r1-o2",
-                "label": "a c e",
+                "label": "a c m",
                 "picture": null,
                 "color": null,
                 "hideLabel": false
               },
               {
                 "id": "level-10-r1-o3",
-                "label": "g p y",
+                "label": "g p q",
                 "picture": null,
                 "color": null,
                 "hideLabel": false
@@ -2159,7 +2159,7 @@
             ],
             "answer": {
               "kind": "label",
-              "value": "b d h"
+              "value": "b d l"
             },
             "shape": null,
             "layout": null,
@@ -2184,21 +2184,21 @@
             "options": [
               {
                 "id": "level-10-r2-o1",
-                "label": "b d h",
+                "label": "b d l",
                 "picture": null,
                 "color": null,
                 "hideLabel": false
               },
               {
                 "id": "level-10-r2-o2",
-                "label": "a c e",
+                "label": "a c m",
                 "picture": null,
                 "color": null,
                 "hideLabel": false
               },
               {
                 "id": "level-10-r2-o3",
-                "label": "g p y",
+                "label": "g p q",
                 "picture": null,
                 "color": null,
                 "hideLabel": false
@@ -2206,7 +2206,7 @@
             ],
             "answer": {
               "kind": "label",
-              "value": "a c e"
+              "value": "a c m"
             },
             "shape": null,
             "layout": null,
@@ -2231,21 +2231,21 @@
             "options": [
               {
                 "id": "level-10-r3-o1",
-                "label": "b d h",
+                "label": "b d l",
                 "picture": null,
                 "color": null,
                 "hideLabel": false
               },
               {
                 "id": "level-10-r3-o2",
-                "label": "a c e",
+                "label": "a c m",
                 "picture": null,
                 "color": null,
                 "hideLabel": false
               },
               {
                 "id": "level-10-r3-o3",
-                "label": "g p y",
+                "label": "g p q",
                 "picture": null,
                 "color": null,
                 "hideLabel": false
@@ -2253,7 +2253,7 @@
             ],
             "answer": {
               "kind": "label",
-              "value": "g p y"
+              "value": "g p q"
             },
             "shape": null,
             "layout": null,
@@ -2278,21 +2278,21 @@
             "options": [
               {
                 "id": "level-10-r4-o1",
-                "label": "b d h",
+                "label": "b d l",
                 "picture": null,
                 "color": null,
                 "hideLabel": false
               },
               {
                 "id": "level-10-r4-o2",
-                "label": "a c e",
+                "label": "a c m",
                 "picture": null,
                 "color": null,
                 "hideLabel": false
               },
               {
                 "id": "level-10-r4-o3",
-                "label": "g p y",
+                "label": "g p q",
                 "picture": null,
                 "color": null,
                 "hideLabel": false
@@ -2300,7 +2300,7 @@
             ],
             "answer": {
               "kind": "label",
-              "value": "b d h"
+              "value": "b d l"
             },
             "shape": null,
             "layout": null,
@@ -2325,21 +2325,21 @@
             "options": [
               {
                 "id": "level-10-r5-o1",
-                "label": "b d h",
+                "label": "b d l",
                 "picture": null,
                 "color": null,
                 "hideLabel": false
               },
               {
                 "id": "level-10-r5-o2",
-                "label": "a c e",
+                "label": "a c m",
                 "picture": null,
                 "color": null,
                 "hideLabel": false
               },
               {
                 "id": "level-10-r5-o3",
-                "label": "g p y",
+                "label": "g p q",
                 "picture": null,
                 "color": null,
                 "hideLabel": false
@@ -2347,7 +2347,7 @@
             ],
             "answer": {
               "kind": "label",
-              "value": "a c e"
+              "value": "a c m"
             },
             "shape": null,
             "layout": null,
@@ -2389,7 +2389,7 @@
           "id": "level-11-r1",
           "type": "write",
           "prompt": {
-            "text": "What comes next?",
+            "text": "Which letter is missing?",
             "audio": null
           },
           "card": {
@@ -2415,7 +2415,7 @@
           "id": "level-11-r2",
           "type": "write",
           "prompt": {
-            "text": "What comes next?",
+            "text": "Which letter is missing?",
             "audio": null
           },
           "card": {
@@ -2441,7 +2441,7 @@
           "id": "level-11-r3",
           "type": "write",
           "prompt": {
-            "text": "What comes next?",
+            "text": "Which letter is missing?",
             "audio": null
           },
           "card": {
@@ -2467,7 +2467,7 @@
           "id": "level-11-r4",
           "type": "write",
           "prompt": {
-            "text": "What comes next?",
+            "text": "Which letter is missing?",
             "audio": null
           },
           "card": {
@@ -2493,7 +2493,7 @@
           "id": "level-11-r5",
           "type": "write",
           "prompt": {
-            "text": "What comes next?",
+            "text": "Which letter is missing?",
             "audio": null
           },
           "card": {
@@ -3474,7 +3474,7 @@
       "icon": "visibility",
       "id": "level-16",
       "intro": {
-        "text": "a e i",
+        "text": "a e i o u",
         "word": "owl",
         "picture": {
           "key": "owl",
@@ -5262,7 +5262,7 @@
       "icon": "photo_library",
       "id": "level-23",
       "intro": {
-        "text": "mum",
+        "text": "mother",
         "word": "family",
         "picture": {
           "key": "family",
@@ -5293,8 +5293,8 @@
           "card": {
             "text": null,
             "picture": {
-              "key": "photo:_mother",
-              "label": "photo: mother",
+              "key": "family_mother",
+              "label": "mother",
               "url": null
             },
             "listen": false
@@ -5344,8 +5344,8 @@
           "card": {
             "text": null,
             "picture": {
-              "key": "photo:_father",
-              "label": "photo: father",
+              "key": "family_father",
+              "label": "father",
               "url": null
             },
             "listen": false
@@ -5395,8 +5395,8 @@
           "card": {
             "text": null,
             "picture": {
-              "key": "photo:_baby",
-              "label": "photo: baby",
+              "key": "family_baby",
+              "label": "baby",
               "url": null
             },
             "listen": false
@@ -5446,8 +5446,8 @@
           "card": {
             "text": null,
             "picture": {
-              "key": "photo:_sister",
-              "label": "photo: sister",
+              "key": "family_sister",
+              "label": "sister",
               "url": null
             },
             "listen": false
@@ -5497,8 +5497,8 @@
           "card": {
             "text": null,
             "picture": {
-              "key": "photo:_brother",
-              "label": "photo: brother",
+              "key": "family_brother",
+              "label": "brother",
               "url": null
             },
             "listen": false
@@ -8210,7 +8210,7 @@
           },
           "write": {
             "mode": "free",
-            "target": null,
+            "target": "I can read.",
             "guide": null,
             "word": null,
             "missingIndex": null,

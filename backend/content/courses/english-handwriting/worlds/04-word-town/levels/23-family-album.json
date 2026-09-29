@@ -8,7 +8,7 @@
   "isBoss": false,
   "requiresSubscription": true,
   "intro": {
-    "text": "mum",
+    "text": "mother",
     "word": "family",
     "picture": {
       "key": "family",
@@ -34,8 +34,8 @@
       "card": {
         "text": null,
         "picture": {
-          "key": "photo:_mother",
-          "label": "photo: mother",
+          "key": "family_mother",
+          "label": "mother",
           "url": null
         },
         "listen": false
@@ -85,8 +85,8 @@
       "card": {
         "text": null,
         "picture": {
-          "key": "photo:_father",
-          "label": "photo: father",
+          "key": "family_father",
+          "label": "father",
           "url": null
         },
         "listen": false
@@ -136,8 +136,8 @@
       "card": {
         "text": null,
         "picture": {
-          "key": "photo:_baby",
-          "label": "photo: baby",
+          "key": "family_baby",
+          "label": "baby",
           "url": null
         },
         "listen": false
@@ -187,8 +187,8 @@
       "card": {
         "text": null,
         "picture": {
-          "key": "photo:_sister",
-          "label": "photo: sister",
+          "key": "family_sister",
+          "label": "sister",
           "url": null
         },
         "listen": false
@@ -238,8 +238,8 @@
       "card": {
         "text": null,
         "picture": {
-          "key": "photo:_brother",
-          "label": "photo: brother",
+          "key": "family_brother",
+          "label": "brother",
           "url": null
         },
         "listen": false

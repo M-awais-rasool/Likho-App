@@ -28,7 +28,7 @@
       "id": "level-11-r1",
       "type": "write",
       "prompt": {
-        "text": "What comes next?",
+        "text": "Which letter is missing?",
         "audio": null
       },
       "card": {
@@ -54,7 +54,7 @@
       "id": "level-11-r2",
       "type": "write",
       "prompt": {
-        "text": "What comes next?",
+        "text": "Which letter is missing?",
         "audio": null
       },
       "card": {
@@ -80,7 +80,7 @@
       "id": "level-11-r3",
       "type": "write",
       "prompt": {
-        "text": "What comes next?",
+        "text": "Which letter is missing?",
         "audio": null
       },
       "card": {
@@ -106,7 +106,7 @@
       "id": "level-11-r4",
       "type": "write",
       "prompt": {
-        "text": "What comes next?",
+        "text": "Which letter is missing?",
         "audio": null
       },
       "card": {
@@ -132,7 +132,7 @@
       "id": "level-11-r5",
       "type": "write",
       "prompt": {
-        "text": "What comes next?",
+        "text": "Which letter is missing?",
         "audio": null
       },
       "card": {
