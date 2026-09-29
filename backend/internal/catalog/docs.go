@@ -1,0 +1,306 @@
+package catalog
+
+import (
+	"bytes"
+	"compress/gzip"
+	"crypto/sha256"
+	"encoding/hex"
+	"fmt"
+
+	"likho/backend/internal/model"
+)
+
+// The content files, field by field (content/schema/*.schema.json describe
+// the same for editors). Unknown fields are rejected when reading.
+
+type manifestDoc struct {
+	Schema        string      `json:"$schema"`
+	ID            string      `json:"id"`
+	Title         string      `json:"title"`
+	Description   string      `json:"description"`
+	Locale        string      `json:"locale"`
+	Ages          *model.Ages `json:"ages"`
+	Status        string      `json:"status"`
+	SchemaVersion int         `json:"schemaVersion"`
+	UpdatedAt     string      `json:"updatedAt"`
+}
+
+func (m manifestDoc) check(file, folder string, p *problems) {
+	switch {
+	case m.ID != folder:
+		p.add(file, "id %q must match the folder name %q", m.ID, folder)
+	case !slugRe.MatchString(m.ID):
+		p.add(file, "id %q must be lowercase words joined by dashes", m.ID)
+	}
+	if m.Title == "" {
+		p.add(file, "title is required")
+	}
+	if m.Locale == "" {
+		p.add(file, "locale is required")
+	}
+	if m.Status != "published" && m.Status != "draft" {
+		p.add(file, `status must be "published" or "draft"`)
+	}
+	if m.SchemaVersion != SupportedSchema {
+		p.add(file, "schemaVersion %d is not supported (this server reads %d)", m.SchemaVersion, SupportedSchema)
+	}
+	if !validTime(m.UpdatedAt) {
+		p.add(file, "updatedAt must be a date-time like 2026-09-27T00:00:00Z")
+	}
+	if m.Ages != nil && m.Ages.Min > m.Ages.Max {
+		p.add(file, "ages.min is above ages.max")
+	}
+}
+
+type glyphsDoc struct {
+	Schema string              `json:"$schema"`
+	Glyphs map[string][]string `json:"glyphs"`
+}
+
+func (g glyphsDoc) check(file string, p *problems) {
+	for k, strokes := range g.Glyphs {
+		if k == "" || len(strokes) == 0 {
+			p.add(file, "glyph %q needs at least one stroke", k)
+		}
+		for _, s := range strokes {
+			if s == "" {
+				p.add(file, "glyph %q has an empty stroke", k)
+			}
+		}
+	}
+}
+
+type worldDoc struct {
+	Schema  string `json:"$schema"`
+	ID      string `json:"id"`
+	Order   int    `json:"order"`
+	Name    string `json:"name"`
+	Skill   string `json:"skill"`
+	Icon    string `json:"icon"`
+	ThemeID string `json:"themeId"`
+	Boss    *struct {
+		ID   string `json:"id"`
+		Name string `json:"name"`
+	} `json:"boss"`
+}
+
+func (w worldDoc) check(file, folder string, p *problems) {
+	if !slugRe.MatchString(w.ID) {
+		p.add(file, "id %q must be lowercase words joined by dashes", w.ID)
+	}
+	if w.Order < 1 {
+		p.add(file, "order must be 1 or more")
+	} else if prefix := fmt.Sprintf("%02d-", w.Order); len(folder) < len(prefix) || folder[:len(prefix)] != prefix {
+		p.add(file, "folder name must start with the world order (%s…)", prefix)
+	}
+	if w.Name == "" || w.Icon == "" || w.ThemeID == "" {
+		p.add(file, "name, icon and themeId are required")
+	}
+	if w.Boss == nil || w.Boss.ID == "" || w.Boss.Name == "" {
+		p.add(file, "boss {id, name} is required")
+	}
+}
+
+type levelDoc struct {
+	Schema               string           `json:"$schema"`
+	ID                   string           `json:"id"`
+	Number               *int             `json:"number"`
+	Name                 string           `json:"name"`
+	Skill                string           `json:"skill"`
+	Icon                 string           `json:"icon"`
+	IsBoss               *bool            `json:"isBoss"`
+	RequiresSubscription *bool            `json:"requiresSubscription"`
+	Intro                *introDoc        `json:"intro"`
+	Presentation         *presentationDoc `json:"presentation"`
+	Rounds               []roundDoc       `json:"rounds"`
+}
+
+type pictureDoc struct {
+	Key   string  `json:"key"`
+	Label string  `json:"label"`
+	URL   *string `json:"url"`
+}
+
+type introDoc struct {
+	Text    string      `json:"text"`
+	Word    string      `json:"word"`
+	Picture *pictureDoc `json:"picture"`
+}
+
+type presentationDoc struct {
+	Shape  *string `json:"shape"`
+	Slot   *string `json:"slot"`
+	Pad    *string `json:"pad"`
+	Layout *string `json:"layout"`
+	Stage  *string `json:"stage"`
+}
+
+type roundDoc struct {
+	ID     string `json:"id"`
+	Type   string `json:"type"`
+	Prompt *struct {
+		Text  string  `json:"text"`
+		Audio *string `json:"audio"`
+	} `json:"prompt"`
+	Card *struct {
+		Text    *string     `json:"text"`
+		Picture *pictureDoc `json:"picture"`
+		Listen  bool        `json:"listen"`
+	} `json:"card"`
+	Pick  *pickDoc  `json:"pick"`
+	Write *writeDoc `json:"write"`
+	Order *struct {
+		Tiles []string `json:"tiles"`
+	} `json:"order"`
+	Speak *struct {
+		Expected *string `json:"expected"`
+	} `json:"speak"`
+}
+
+type pickDoc struct {
+	Options []struct {
+		ID        string      `json:"id"`
+		Label     string      `json:"label"`
+		Picture   *pictureDoc `json:"picture"`
+		Color     *string     `json:"color"`
+		HideLabel bool        `json:"hideLabel"`
+	} `json:"options"`
+	Answer *struct {
+		Kind  string  `json:"kind"`
+		Value *string `json:"value"`
+	} `json:"answer"`
+	Shape      *string `json:"shape"`
+	Layout     *string `json:"layout"`
+	Count      *int    `json:"count"`
+	ChoiceKey  *string `json:"choiceKey"`
+	FixCapital bool    `json:"fixCapital"`
+}
+
+type writeDoc struct {
+	Mode         string  `json:"mode"`
+	Target       *string `json:"target"`
+	Guide        *string `json:"guide"`
+	Word         *string `json:"word"`
+	MissingIndex *int    `json:"missingIndex"`
+	Sentence     bool    `json:"sentence"`
+	Story        bool    `json:"story"`
+}
+
+// checker checks levels and rounds, including what one file cannot know
+// alone: ids unique in the course, guides that exist in glyphs.json.
+type checker struct {
+	glyphs   map[string][]string
+	levelIDs map[string]string // id -> file
+	roundIDs map[string]string
+	p        *problems
+}
+
+func (c *checker) level(l *parsed[levelDoc]) {
+	d, file := l.doc, l.file
+	if !slugRe.MatchString(d.ID) {
+		c.p.add(file, "id %q must be lowercase words joined by dashes", d.ID)
+	} else if prev, dup := c.levelIDs[d.ID]; dup {
+		c.p.add(file, "level id %q is also used by %s", d.ID, prev)
+	}
+	c.levelIDs[d.ID] = file
+	switch {
+	case d.Number == nil:
+		c.p.add(file, "number is required")
+	case d.Name == "" || d.Icon == "":
+		c.p.add(file, "name and icon are required")
+	case d.IsBoss == nil || d.RequiresSubscription == nil:
+		c.p.add(file, "isBoss and requiresSubscription are required (true or false)")
+	case d.Intro == nil || d.Presentation == nil:
+		c.p.add(file, "intro and presentation are required")
+	case len(d.Rounds) == 0:
+		c.p.add(file, "a level needs at least one round")
+	}
+	for i := range d.Rounds {
+		c.round(file, i, &d.Rounds[i])
+	}
+}
+
+func (c *checker) round(file string, i int, r *roundDoc) {
+	at := fmt.Sprintf("%s rounds[%d]", file, i)
+	if r.ID == "" {
+		c.p.add(at, "id is required")
+	} else if prev, dup := c.roundIDs[r.ID]; dup {
+		c.p.add(at, "round id %q is also used in %s", r.ID, prev)
+	}
+	c.roundIDs[r.ID] = file
+	if r.Prompt == nil || r.Prompt.Text == "" {
+		c.p.add(at, "prompt.text is required")
+	}
+	if !roundTypes[r.Type] {
+		c.p.add(at, "type %q is not one of pick, write, order, speak", r.Type)
+		return
+	}
+	payloads := map[string]bool{"pick": r.Pick != nil, "write": r.Write != nil, "order": r.Order != nil, "speak": r.Speak != nil}
+	for name, present := range payloads {
+		if name == r.Type && !present {
+			c.p.add(at, "a %q round needs a %q object", r.Type, r.Type)
+		}
+		if name != r.Type && present {
+			c.p.add(at, "a %q round cannot have a %q object", r.Type, name)
+		}
+	}
+	switch {
+	case r.Pick != nil:
+		c.pick(at, r.Pick)
+	case r.Write != nil:
+		if !writeModes[r.Write.Mode] {
+			c.p.add(at, "write.mode %q is not one of trace, dots, free, missing, spell", r.Write.Mode)
+		}
+		if g := r.Write.Guide; g != nil {
+			if _, ok := c.glyphs[*g]; !ok {
+				c.p.add(at, "write.guide %q is not in glyphs.json", *g)
+			}
+		}
+	case r.Order != nil:
+		if len(r.Order.Tiles) < 2 {
+			c.p.add(at, "order.tiles needs at least two tiles")
+		}
+	}
+}
+
+func (c *checker) pick(at string, p *pickDoc) {
+	if len(p.Options) == 0 {
+		c.p.add(at, "pick.options needs at least one option")
+	}
+	labels := map[string]bool{}
+	ids := map[string]bool{}
+	for _, o := range p.Options {
+		if o.ID == "" || ids[o.ID] {
+			c.p.add(at, "every option needs its own id (%q)", o.ID)
+		}
+		ids[o.ID] = true
+		labels[o.Label] = true
+		if o.Color != nil && !colors[*o.Color] {
+			c.p.add(at, "option color %q is not one of red, blue, yellow, green, purple", *o.Color)
+		}
+	}
+	switch {
+	case p.Answer == nil:
+		c.p.add(at, "pick.answer is required")
+	case p.Answer.Kind == "any":
+	case p.Answer.Kind == "label":
+		if p.Answer.Value == nil || !labels[*p.Answer.Value] {
+			c.p.add(at, "pick.answer.value must be the label of one of the options")
+		}
+	default:
+		c.p.add(at, `pick.answer.kind must be "label" or "any"`)
+	}
+}
+
+// setBody stores the delivery document with its gzip copy and ETag.
+func (c *Course) setBody(body []byte) {
+	sum := sha256.Sum256(body)
+	version := hex.EncodeToString(sum[:])[:16]
+	var gz bytes.Buffer
+	w, _ := gzip.NewWriterLevel(&gz, gzip.BestCompression)
+	_, _ = w.Write(body)
+	_ = w.Close()
+	c.JSON, c.Gzip = body, gz.Bytes()
+	c.ETag = `"` + version + `"`
+	c.Summary.Version = version
+}
