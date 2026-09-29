@@ -1,0 +1,263 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-07",
+  "number": 7,
+  "name": "Shell Pairs",
+  "skill": "Capital + small",
+  "icon": "spa",
+  "isBoss": false,
+  "requiresSubscription": false,
+  "intro": {
+    "text": "Aa",
+    "word": "shell",
+    "picture": {
+      "key": "shell",
+      "label": "shell",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": "shell",
+    "slot": null,
+    "pad": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-07-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find a",
+        "audio": null
+      },
+      "card": {
+        "text": "A",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-07-r1-o1",
+            "label": "a",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-07-r1-o2",
+            "label": "e",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-07-r1-o3",
+            "label": "o",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "a"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-07-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "Find b",
+        "audio": null
+      },
+      "card": {
+        "text": "B",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-07-r2-o1",
+            "label": "d",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-07-r2-o2",
+            "label": "b",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-07-r2-o3",
+            "label": "p",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "b"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-07-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find d",
+        "audio": null
+      },
+      "card": {
+        "text": "D",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-07-r3-o1",
+            "label": "b",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-07-r3-o2",
+            "label": "q",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-07-r3-o3",
+            "label": "d",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "d"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-07-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Find g",
+        "audio": null
+      },
+      "card": {
+        "text": "G",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-07-r4-o1",
+            "label": "q",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-07-r4-o2",
+            "label": "g",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-07-r4-o3",
+            "label": "p",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "g"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-07-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "Find e",
+        "audio": null
+      },
+      "card": {
+        "text": "E",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-07-r5-o1",
+            "label": "e",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-07-r5-o2",
+            "label": "a",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-07-r5-o3",
+            "label": "c",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "e"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

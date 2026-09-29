@@ -1,0 +1,158 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-11",
+  "number": 11,
+  "name": "Bottle Message",
+  "skill": "Alphabet gaps",
+  "icon": "mail",
+  "isBoss": false,
+  "requiresSubscription": false,
+  "intro": {
+    "text": "a b c",
+    "word": "bottle",
+    "picture": {
+      "key": "bottle",
+      "label": "bottle",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "pad": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-11-r1",
+      "type": "write",
+      "prompt": {
+        "text": "What comes next?",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bottle_message",
+          "label": "bottle message",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "c",
+        "guide": "c",
+        "word": "abcd",
+        "missingIndex": 2,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-11-r2",
+      "type": "write",
+      "prompt": {
+        "text": "What comes next?",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bottle_message",
+          "label": "bottle message",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "g",
+        "guide": "g",
+        "word": "efgh",
+        "missingIndex": 2,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-11-r3",
+      "type": "write",
+      "prompt": {
+        "text": "What comes next?",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bottle_message",
+          "label": "bottle message",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "m",
+        "guide": null,
+        "word": "lmno",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-11-r4",
+      "type": "write",
+      "prompt": {
+        "text": "What comes next?",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bottle_message",
+          "label": "bottle message",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "r",
+        "guide": null,
+        "word": "pqrs",
+        "missingIndex": 2,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-11-r5",
+      "type": "write",
+      "prompt": {
+        "text": "What comes next?",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bottle_message",
+          "label": "bottle message",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "w",
+        "guide": null,
+        "word": "uvwx",
+        "missingIndex": 2,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

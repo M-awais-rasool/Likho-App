@@ -1,0 +1,14 @@
+{
+  "$schema": "../../schema/course.schema.json",
+  "id": "english-handwriting",
+  "title": "English Handwriting",
+  "description": "Letters, words and sentences for 5 to 8 year olds: from tracing capitals to writing a story.",
+  "locale": "en",
+  "ages": {
+    "min": 5,
+    "max": 8
+  },
+  "status": "published",
+  "schemaVersion": 1,
+  "updatedAt": "2026-09-27T00:00:00Z"
+}

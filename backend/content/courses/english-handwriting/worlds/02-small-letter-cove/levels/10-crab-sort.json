@@ -1,0 +1,263 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-10",
+  "number": 10,
+  "name": "Crab Sort",
+  "skill": "Letter shapes",
+  "icon": "shopping_basket",
+  "isBoss": false,
+  "requiresSubscription": false,
+  "intro": {
+    "text": "h",
+    "word": "crab",
+    "picture": {
+      "key": "crab",
+      "label": "crab",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": "basket",
+    "slot": null,
+    "pad": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-10-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Sort h",
+        "audio": null
+      },
+      "card": {
+        "text": "h",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-10-r1-o1",
+            "label": "b d h",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-10-r1-o2",
+            "label": "a c e",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-10-r1-o3",
+            "label": "g p y",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "b d h"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-10-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "Sort o",
+        "audio": null
+      },
+      "card": {
+        "text": "o",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-10-r2-o1",
+            "label": "b d h",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-10-r2-o2",
+            "label": "a c e",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-10-r2-o3",
+            "label": "g p y",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "a c e"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-10-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Sort y",
+        "audio": null
+      },
+      "card": {
+        "text": "y",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-10-r3-o1",
+            "label": "b d h",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-10-r3-o2",
+            "label": "a c e",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-10-r3-o3",
+            "label": "g p y",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "g p y"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-10-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Sort k",
+        "audio": null
+      },
+      "card": {
+        "text": "k",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-10-r4-o1",
+            "label": "b d h",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-10-r4-o2",
+            "label": "a c e",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-10-r4-o3",
+            "label": "g p y",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "b d h"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-10-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "Sort e",
+        "audio": null
+      },
+      "card": {
+        "text": "e",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-10-r5-o1",
+            "label": "b d h",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-10-r5-o2",
+            "label": "a c e",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-10-r5-o3",
+            "label": "g p y",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "a c e"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

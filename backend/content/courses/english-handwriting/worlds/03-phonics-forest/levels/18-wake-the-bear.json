@@ -1,0 +1,158 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-18",
+  "number": 18,
+  "name": "Wake the Bear",
+  "skill": "Boss · CVC words",
+  "icon": "bedtime",
+  "isBoss": true,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "dog",
+    "word": "bear",
+    "picture": {
+      "key": "bear",
+      "label": "bear",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "pad": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-18-r1",
+      "type": "write",
+      "prompt": {
+        "text": "dog",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": true
+      },
+      "write": {
+        "mode": "spell",
+        "target": "dog",
+        "guide": null,
+        "word": "dog",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-18-r2",
+      "type": "write",
+      "prompt": {
+        "text": "sun",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "sun",
+          "label": "sun",
+          "url": null
+        },
+        "listen": true
+      },
+      "write": {
+        "mode": "spell",
+        "target": "sun",
+        "guide": null,
+        "word": "sun",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-18-r3",
+      "type": "write",
+      "prompt": {
+        "text": "pig",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "pig",
+          "label": "pig",
+          "url": null
+        },
+        "listen": true
+      },
+      "write": {
+        "mode": "spell",
+        "target": "pig",
+        "guide": null,
+        "word": "pig",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-18-r4",
+      "type": "write",
+      "prompt": {
+        "text": "cat",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": true
+      },
+      "write": {
+        "mode": "spell",
+        "target": "cat",
+        "guide": null,
+        "word": "cat",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-18-r5",
+      "type": "write",
+      "prompt": {
+        "text": "hen",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "hen",
+          "label": "hen",
+          "url": null
+        },
+        "listen": true
+      },
+      "write": {
+        "mode": "spell",
+        "target": "hen",
+        "guide": null,
+        "word": "hen",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

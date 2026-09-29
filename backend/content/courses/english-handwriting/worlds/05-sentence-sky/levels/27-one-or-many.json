@@ -1,0 +1,158 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-27",
+  "number": 27,
+  "name": "One or Many",
+  "skill": "Plurals",
+  "icon": "flutter_dash",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "-s",
+    "word": "birds",
+    "picture": {
+      "key": "birds",
+      "label": "birds",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "pad": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-27-r1",
+      "type": "write",
+      "prompt": {
+        "text": "bird → many",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "many_birds",
+          "label": "many birds",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "s",
+        "guide": null,
+        "word": "birds",
+        "missingIndex": 4,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-27-r2",
+      "type": "write",
+      "prompt": {
+        "text": "cat → many",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "many_cats",
+          "label": "many cats",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "s",
+        "guide": null,
+        "word": "cats",
+        "missingIndex": 3,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-27-r3",
+      "type": "write",
+      "prompt": {
+        "text": "dog → many",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "many_dogs",
+          "label": "many dogs",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "s",
+        "guide": null,
+        "word": "dogs",
+        "missingIndex": 3,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-27-r4",
+      "type": "write",
+      "prompt": {
+        "text": "cup → many",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "many_cups",
+          "label": "many cups",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "s",
+        "guide": null,
+        "word": "cups",
+        "missingIndex": 3,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-27-r5",
+      "type": "write",
+      "prompt": {
+        "text": "hat → many",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "many_hats",
+          "label": "many hats",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "s",
+        "guide": null,
+        "word": "hats",
+        "missingIndex": 3,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

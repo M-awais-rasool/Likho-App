@@ -1,0 +1,138 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-06",
+  "number": 6,
+  "name": "Wake the Snail",
+  "skill": "Boss · capitals",
+  "icon": "bedtime",
+  "isBoss": true,
+  "requiresSubscription": false,
+  "intro": {
+    "text": "A B C",
+    "word": "snail",
+    "picture": {
+      "key": "snail",
+      "label": "snail",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "pad": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-06-r1",
+      "type": "write",
+      "prompt": {
+        "text": "Write A",
+        "audio": null
+      },
+      "card": {
+        "text": "A",
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "free",
+        "target": "A",
+        "guide": "A",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-06-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Write B",
+        "audio": null
+      },
+      "card": {
+        "text": "B",
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "free",
+        "target": "B",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-06-r3",
+      "type": "write",
+      "prompt": {
+        "text": "Write C",
+        "audio": null
+      },
+      "card": {
+        "text": "C",
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "free",
+        "target": "C",
+        "guide": "C",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-06-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Write D",
+        "audio": null
+      },
+      "card": {
+        "text": "D",
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "free",
+        "target": "D",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-06-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Write E",
+        "audio": null
+      },
+      "card": {
+        "text": "E",
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "free",
+        "target": "E",
+        "guide": "E",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

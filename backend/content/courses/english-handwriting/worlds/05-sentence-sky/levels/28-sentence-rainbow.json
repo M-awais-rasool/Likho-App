@@ -1,0 +1,150 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-28",
+  "number": 28,
+  "name": "Sentence Rainbow",
+  "skill": "Word order",
+  "icon": "looks",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "I see",
+    "word": "rainbow",
+    "picture": {
+      "key": "rainbow",
+      "label": "rainbow",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": "stripe",
+    "pad": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-28-r1",
+      "type": "order",
+      "prompt": {
+        "text": "I see a cat",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": true
+      },
+      "order": {
+        "tiles": [
+          "I",
+          "see",
+          "a",
+          "cat"
+        ]
+      }
+    },
+    {
+      "id": "level-28-r2",
+      "type": "order",
+      "prompt": {
+        "text": "I can run",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "run",
+          "label": "run",
+          "url": null
+        },
+        "listen": true
+      },
+      "order": {
+        "tiles": [
+          "I",
+          "can",
+          "run"
+        ]
+      }
+    },
+    {
+      "id": "level-28-r3",
+      "type": "order",
+      "prompt": {
+        "text": "The sun is hot",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "hot",
+          "label": "hot",
+          "url": null
+        },
+        "listen": true
+      },
+      "order": {
+        "tiles": [
+          "The",
+          "sun",
+          "is",
+          "hot"
+        ]
+      }
+    },
+    {
+      "id": "level-28-r4",
+      "type": "order",
+      "prompt": {
+        "text": "I like red",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "red",
+          "label": "red",
+          "url": null
+        },
+        "listen": true
+      },
+      "order": {
+        "tiles": [
+          "I",
+          "like",
+          "red"
+        ]
+      }
+    },
+    {
+      "id": "level-28-r5",
+      "type": "order",
+      "prompt": {
+        "text": "We can play",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "play",
+          "label": "play",
+          "url": null
+        },
+        "listen": true
+      },
+      "order": {
+        "tiles": [
+          "We",
+          "can",
+          "play"
+        ]
+      }
+    }
+  ]
+}

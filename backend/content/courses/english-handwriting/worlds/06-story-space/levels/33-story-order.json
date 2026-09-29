@@ -1,0 +1,128 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-33",
+  "number": 33,
+  "name": "Story Order",
+  "skill": "Sequencing",
+  "icon": "view_carousel",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "1 2 3",
+    "word": "story",
+    "picture": {
+      "key": "story",
+      "label": "story",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": "panel",
+    "pad": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-33-r1",
+      "type": "order",
+      "prompt": {
+        "text": "Put in order",
+        "audio": null
+      },
+      "card": {
+        "text": "1 · 2 · 3",
+        "picture": null,
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "seed",
+          "sprout",
+          "flower"
+        ]
+      }
+    },
+    {
+      "id": "level-33-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Put in order",
+        "audio": null
+      },
+      "card": {
+        "text": "1 · 2 · 3",
+        "picture": null,
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "egg",
+          "crack",
+          "chick"
+        ]
+      }
+    },
+    {
+      "id": "level-33-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Put in order",
+        "audio": null
+      },
+      "card": {
+        "text": "1 · 2 · 3",
+        "picture": null,
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "cloud",
+          "rain",
+          "puddle"
+        ]
+      }
+    },
+    {
+      "id": "level-33-r4",
+      "type": "order",
+      "prompt": {
+        "text": "Put in order",
+        "audio": null
+      },
+      "card": {
+        "text": "1 · 2 · 3",
+        "picture": null,
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "dough",
+          "oven",
+          "bread"
+        ]
+      }
+    },
+    {
+      "id": "level-33-r5",
+      "type": "order",
+      "prompt": {
+        "text": "Put in order",
+        "audio": null
+      },
+      "card": {
+        "text": "1 · 2 · 3",
+        "picture": null,
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "wake up",
+          "eat",
+          "school"
+        ]
+      }
+    }
+  ]
+}

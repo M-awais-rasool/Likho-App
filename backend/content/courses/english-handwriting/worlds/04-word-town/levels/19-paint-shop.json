@@ -1,0 +1,263 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-19",
+  "number": 19,
+  "name": "Paint Shop",
+  "skill": "Colors",
+  "icon": "format_paint",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "red",
+    "word": "paint",
+    "picture": {
+      "key": "paint",
+      "label": "paint",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": "bucket",
+    "slot": null,
+    "pad": null,
+    "layout": null,
+    "stage": "house"
+  },
+  "rounds": [
+    {
+      "id": "level-19-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "red",
+        "audio": null
+      },
+      "card": {
+        "text": "red",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-19-r1-o1",
+            "label": "red",
+            "picture": null,
+            "color": "red",
+            "hideLabel": true
+          },
+          {
+            "id": "level-19-r1-o2",
+            "label": "yellow",
+            "picture": null,
+            "color": "yellow",
+            "hideLabel": true
+          },
+          {
+            "id": "level-19-r1-o3",
+            "label": "purple",
+            "picture": null,
+            "color": "purple",
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-19-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "blue",
+        "audio": null
+      },
+      "card": {
+        "text": "blue",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-19-r2-o1",
+            "label": "green",
+            "picture": null,
+            "color": "green",
+            "hideLabel": true
+          },
+          {
+            "id": "level-19-r2-o2",
+            "label": "red",
+            "picture": null,
+            "color": "red",
+            "hideLabel": true
+          },
+          {
+            "id": "level-19-r2-o3",
+            "label": "blue",
+            "picture": null,
+            "color": "blue",
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "blue"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-19-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "yellow",
+        "audio": null
+      },
+      "card": {
+        "text": "yellow",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-19-r3-o1",
+            "label": "blue",
+            "picture": null,
+            "color": "blue",
+            "hideLabel": true
+          },
+          {
+            "id": "level-19-r3-o2",
+            "label": "yellow",
+            "picture": null,
+            "color": "yellow",
+            "hideLabel": true
+          },
+          {
+            "id": "level-19-r3-o3",
+            "label": "purple",
+            "picture": null,
+            "color": "purple",
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "yellow"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-19-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "green",
+        "audio": null
+      },
+      "card": {
+        "text": "green",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-19-r4-o1",
+            "label": "green",
+            "picture": null,
+            "color": "green",
+            "hideLabel": true
+          },
+          {
+            "id": "level-19-r4-o2",
+            "label": "red",
+            "picture": null,
+            "color": "red",
+            "hideLabel": true
+          },
+          {
+            "id": "level-19-r4-o3",
+            "label": "yellow",
+            "picture": null,
+            "color": "yellow",
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "green"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-19-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "purple",
+        "audio": null
+      },
+      "card": {
+        "text": "purple",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-19-r5-o1",
+            "label": "blue",
+            "picture": null,
+            "color": "blue",
+            "hideLabel": true
+          },
+          {
+            "id": "level-19-r5-o2",
+            "label": "green",
+            "picture": null,
+            "color": "green",
+            "hideLabel": true
+          },
+          {
+            "id": "level-19-r5-o3",
+            "label": "purple",
+            "picture": null,
+            "color": "purple",
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "purple"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

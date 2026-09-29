@@ -1,0 +1,123 @@
+{
+  "$schema": "../../schema/level.schema.json",
+  "id": "placement",
+  "number": 0,
+  "name": "Warm-up",
+  "skill": "Placement",
+  "icon": "self_improvement",
+  "isBoss": false,
+  "requiresSubscription": false,
+  "intro": {
+    "text": "A",
+    "word": "warm-up",
+    "picture": {
+      "key": "warm-up",
+      "label": "warm-up",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": "balloon",
+    "slot": null,
+    "pad": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "placement-r1",
+      "type": "write",
+      "prompt": {
+        "text": "Trace A",
+        "audio": null
+      },
+      "card": {
+        "text": "A",
+        "picture": {
+          "key": "apple",
+          "label": "apple",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "A",
+        "guide": "A",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "placement-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "Find M!",
+        "audio": null
+      },
+      "card": {
+        "text": "M",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "placement-r2-o1",
+            "label": "N",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "placement-r2-o2",
+            "label": "M",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "placement-r2-o3",
+            "label": "W",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "M"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "placement-r3",
+      "type": "write",
+      "prompt": {
+        "text": "Write b",
+        "audio": null
+      },
+      "card": {
+        "text": "b",
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "free",
+        "target": "b",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

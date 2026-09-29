@@ -1,0 +1,283 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-23",
+  "number": 23,
+  "name": "Family Album",
+  "skill": "Family words",
+  "icon": "photo_library",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "mum",
+    "word": "family",
+    "picture": {
+      "key": "family",
+      "label": "family",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": "card",
+    "slot": null,
+    "pad": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-23-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Who is this?",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "photo:_mother",
+          "label": "photo: mother",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-23-r1-o1",
+            "label": "mother",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-23-r1-o2",
+            "label": "father",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-23-r1-o3",
+            "label": "baby",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "mother"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-23-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "Who is this?",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "photo:_father",
+          "label": "photo: father",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-23-r2-o1",
+            "label": "sister",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-23-r2-o2",
+            "label": "father",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-23-r2-o3",
+            "label": "brother",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "father"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-23-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Who is this?",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "photo:_baby",
+          "label": "photo: baby",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-23-r3-o1",
+            "label": "baby",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-23-r3-o2",
+            "label": "mother",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-23-r3-o3",
+            "label": "sister",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "baby"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-23-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Who is this?",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "photo:_sister",
+          "label": "photo: sister",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-23-r4-o1",
+            "label": "brother",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-23-r4-o2",
+            "label": "baby",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-23-r4-o3",
+            "label": "sister",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "sister"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-23-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "Who is this?",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "photo:_brother",
+          "label": "photo: brother",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-23-r5-o1",
+            "label": "brother",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-23-r5-o2",
+            "label": "father",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-23-r5-o3",
+            "label": "mother",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "brother"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

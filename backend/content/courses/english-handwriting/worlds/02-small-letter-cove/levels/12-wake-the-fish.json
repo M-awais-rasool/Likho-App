@@ -1,0 +1,138 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-12",
+  "number": 12,
+  "name": "Wake the Fish",
+  "skill": "Boss · small letters",
+  "icon": "bedtime",
+  "isBoss": true,
+  "requiresSubscription": false,
+  "intro": {
+    "text": "a m s",
+    "word": "fish",
+    "picture": {
+      "key": "fish",
+      "label": "fish",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "pad": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-12-r1",
+      "type": "write",
+      "prompt": {
+        "text": "Write a",
+        "audio": null
+      },
+      "card": {
+        "text": "a",
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "free",
+        "target": "a",
+        "guide": "a",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-12-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Write m",
+        "audio": null
+      },
+      "card": {
+        "text": "m",
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "free",
+        "target": "m",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-12-r3",
+      "type": "write",
+      "prompt": {
+        "text": "Write s",
+        "audio": null
+      },
+      "card": {
+        "text": "s",
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "free",
+        "target": "s",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-12-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Write t",
+        "audio": null
+      },
+      "card": {
+        "text": "t",
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "free",
+        "target": "t",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-12-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Write e",
+        "audio": null
+      },
+      "card": {
+        "text": "e",
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "free",
+        "target": "e",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

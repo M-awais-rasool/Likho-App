@@ -1,0 +1,298 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-09",
+  "number": 9,
+  "name": "b or d?",
+  "skill": "Tricky letters",
+  "icon": "bubble_chart",
+  "isBoss": false,
+  "requiresSubscription": false,
+  "intro": {
+    "text": "b d",
+    "word": "bubble",
+    "picture": {
+      "key": "bubble",
+      "label": "bubble",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": "bubble",
+    "slot": null,
+    "pad": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-09-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Tap b!",
+        "audio": null
+      },
+      "card": {
+        "text": "b",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-09-r1-o1",
+            "label": "d",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-09-r1-o2",
+            "label": "b",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-09-r1-o3",
+            "label": "p",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-09-r1-o4",
+            "label": "q",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "b"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-09-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "Tap d!",
+        "audio": null
+      },
+      "card": {
+        "text": "d",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-09-r2-o1",
+            "label": "b",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-09-r2-o2",
+            "label": "q",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-09-r2-o3",
+            "label": "d",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-09-r2-o4",
+            "label": "p",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "d"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-09-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Tap p!",
+        "audio": null
+      },
+      "card": {
+        "text": "p",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-09-r3-o1",
+            "label": "q",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-09-r3-o2",
+            "label": "d",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-09-r3-o3",
+            "label": "b",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-09-r3-o4",
+            "label": "p",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "p"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-09-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Tap q!",
+        "audio": null
+      },
+      "card": {
+        "text": "q",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-09-r4-o1",
+            "label": "p",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-09-r4-o2",
+            "label": "q",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-09-r4-o3",
+            "label": "b",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-09-r4-o4",
+            "label": "d",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "q"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-09-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "Tap d!",
+        "audio": null
+      },
+      "card": {
+        "text": "d",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-09-r5-o1",
+            "label": "d",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-09-r5-o2",
+            "label": "b",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-09-r5-o3",
+            "label": "p",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-09-r5-o4",
+            "label": "q",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "d"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

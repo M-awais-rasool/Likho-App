@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../../schema/world.schema.json",
+  "id": "world-4",
+  "order": 4,
+  "name": "Word Town",
+  "skill": "Vocabulary",
+  "icon": "location_city",
+  "themeId": "wordTown",
+  "boss": {
+    "id": "robotBus",
+    "name": "Robot-Bus"
+  }
+}

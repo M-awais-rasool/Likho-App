@@ -1,0 +1,298 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-01",
+  "number": 1,
+  "name": "Balloon Pop",
+  "skill": "Letter names",
+  "icon": "celebration",
+  "isBoss": false,
+  "requiresSubscription": false,
+  "intro": {
+    "text": "B",
+    "word": "balloon",
+    "picture": {
+      "key": "balloon",
+      "label": "balloon",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": "balloon",
+    "slot": null,
+    "pad": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-01-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find B!",
+        "audio": null
+      },
+      "card": {
+        "text": "B",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-01-r1-o1",
+            "label": "D",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-01-r1-o2",
+            "label": "B",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-01-r1-o3",
+            "label": "P",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-01-r1-o4",
+            "label": "R",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "B"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-01-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "Find M!",
+        "audio": null
+      },
+      "card": {
+        "text": "M",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-01-r2-o1",
+            "label": "M",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-01-r2-o2",
+            "label": "N",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-01-r2-o3",
+            "label": "W",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-01-r2-o4",
+            "label": "H",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "M"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-01-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find S!",
+        "audio": null
+      },
+      "card": {
+        "text": "S",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-01-r3-o1",
+            "label": "Z",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-01-r3-o2",
+            "label": "C",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-01-r3-o3",
+            "label": "S",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-01-r3-o4",
+            "label": "O",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "S"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-01-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Find A!",
+        "audio": null
+      },
+      "card": {
+        "text": "A",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-01-r4-o1",
+            "label": "H",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-01-r4-o2",
+            "label": "A",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-01-r4-o3",
+            "label": "V",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-01-r4-o4",
+            "label": "K",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "A"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-01-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "Find T!",
+        "audio": null
+      },
+      "card": {
+        "text": "T",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-01-r5-o1",
+            "label": "I",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-01-r5-o2",
+            "label": "L",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-01-r5-o3",
+            "label": "F",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-01-r5-o4",
+            "label": "T",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "T"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

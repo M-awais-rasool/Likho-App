@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../../schema/world.schema.json",
+  "id": "world-6",
+  "order": 6,
+  "name": "Story Space",
+  "skill": "Reading & speaking",
+  "icon": "rocket_launch",
+  "themeId": "storySpace",
+  "boss": {
+    "id": "moon",
+    "name": "Neend mein Chaand"
+  }
+}

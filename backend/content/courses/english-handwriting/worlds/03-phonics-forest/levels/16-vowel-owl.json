@@ -1,0 +1,158 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-16",
+  "number": 16,
+  "name": "Vowel Owl",
+  "skill": "Vowels",
+  "icon": "visibility",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "a e i",
+    "word": "owl",
+    "picture": {
+      "key": "owl",
+      "label": "owl",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "pad": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-16-r1",
+      "type": "write",
+      "prompt": {
+        "text": "c _ t",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "a",
+        "guide": "a",
+        "word": "cat",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-16-r2",
+      "type": "write",
+      "prompt": {
+        "text": "d _ g",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "o",
+        "guide": "o",
+        "word": "dog",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-16-r3",
+      "type": "write",
+      "prompt": {
+        "text": "s _ n",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "sun",
+          "label": "sun",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "u",
+        "guide": null,
+        "word": "sun",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-16-r4",
+      "type": "write",
+      "prompt": {
+        "text": "p _ g",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "pig",
+          "label": "pig",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "i",
+        "guide": null,
+        "word": "pig",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-16-r5",
+      "type": "write",
+      "prompt": {
+        "text": "b _ d",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bed",
+          "label": "bed",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "e",
+        "guide": null,
+        "word": "bed",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../../schema/world.schema.json",
+  "id": "world-5",
+  "order": 5,
+  "name": "Sentence Sky",
+  "skill": "Sentences",
+  "icon": "cloud",
+  "themeId": "sentenceSky",
+  "boss": {
+    "id": "cloud",
+    "name": "Sota Baadal"
+  }
+}

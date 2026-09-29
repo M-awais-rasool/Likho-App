@@ -1,0 +1,158 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-03",
+  "number": 3,
+  "name": "Straight Tracks",
+  "skill": "Straight lines",
+  "icon": "directions_railway",
+  "isBoss": false,
+  "requiresSubscription": false,
+  "intro": {
+    "text": "L",
+    "word": "lion",
+    "picture": {
+      "key": "lion",
+      "label": "lion",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "pad": "track",
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-03-r1",
+      "type": "write",
+      "prompt": {
+        "text": "Trace L",
+        "audio": null
+      },
+      "card": {
+        "text": "L",
+        "picture": {
+          "key": "lion",
+          "label": "lion",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "L",
+        "guide": "L",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-03-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace T",
+        "audio": null
+      },
+      "card": {
+        "text": "T",
+        "picture": {
+          "key": "tiger",
+          "label": "tiger",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "T",
+        "guide": "T",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-03-r3",
+      "type": "write",
+      "prompt": {
+        "text": "Join E",
+        "audio": null
+      },
+      "card": {
+        "text": "E",
+        "picture": {
+          "key": "egg",
+          "label": "egg",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "E",
+        "guide": "E",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-03-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join F",
+        "audio": null
+      },
+      "card": {
+        "text": "F",
+        "picture": {
+          "key": "fish",
+          "label": "fish",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "F",
+        "guide": "F",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-03-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Trace H",
+        "audio": null
+      },
+      "card": {
+        "text": "H",
+        "picture": {
+          "key": "hat",
+          "label": "hat",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "H",
+        "guide": "H",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

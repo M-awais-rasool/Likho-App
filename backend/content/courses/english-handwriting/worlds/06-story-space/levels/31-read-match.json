@@ -1,0 +1,323 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-31",
+  "number": 31,
+  "name": "Read & Match",
+  "skill": "Reading",
+  "icon": "public",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "read",
+    "word": "planet",
+    "picture": {
+      "key": "planet",
+      "label": "planet",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": "planet",
+    "slot": null,
+    "pad": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-31-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "The cat is on the box.",
+        "audio": null
+      },
+      "card": {
+        "text": "The cat is on the box.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-31-r1-o1",
+            "label": "cat on box",
+            "picture": {
+              "key": "cat_on_box",
+              "label": "cat on box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-31-r1-o2",
+            "label": "cat in bed",
+            "picture": {
+              "key": "cat_in_bed",
+              "label": "cat in bed",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-31-r1-o3",
+            "label": "dog on box",
+            "picture": {
+              "key": "dog_on_box",
+              "label": "dog on box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "cat on box"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-31-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "The dog can run.",
+        "audio": null
+      },
+      "card": {
+        "text": "The dog can run.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-31-r2-o1",
+            "label": "dog asleep",
+            "picture": {
+              "key": "dog_asleep",
+              "label": "dog asleep",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-31-r2-o2",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-31-r2-o3",
+            "label": "cat running",
+            "picture": {
+              "key": "cat_running",
+              "label": "cat running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "dog running"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-31-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "The sun is hot.",
+        "audio": null
+      },
+      "card": {
+        "text": "The sun is hot.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-31-r3-o1",
+            "label": "rain cloud",
+            "picture": {
+              "key": "rain_cloud",
+              "label": "rain cloud",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-31-r3-o2",
+            "label": "moon",
+            "picture": {
+              "key": "moon",
+              "label": "moon",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-31-r3-o3",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "hot sun"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-31-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "audio": null
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-31-r4-o1",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-31-r4-o2",
+            "label": "blue car",
+            "picture": {
+              "key": "blue_car",
+              "label": "blue car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-31-r4-o3",
+            "label": "red bus",
+            "picture": {
+              "key": "red_bus",
+              "label": "red bus",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-31-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "The fish is in the sea.",
+        "audio": null
+      },
+      "card": {
+        "text": "The fish is in the sea.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-31-r5-o1",
+            "label": "bird in sky",
+            "picture": {
+              "key": "bird_in_sky",
+              "label": "bird in sky",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-31-r5-o2",
+            "label": "fish in sea",
+            "picture": {
+              "key": "fish_in_sea",
+              "label": "fish in sea",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-31-r5-o3",
+            "label": "fish in bowl",
+            "picture": {
+              "key": "fish_in_bowl",
+              "label": "fish in bowl",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "fish in sea"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

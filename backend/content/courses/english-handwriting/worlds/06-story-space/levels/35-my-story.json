@@ -1,0 +1,224 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-35",
+  "number": 35,
+  "name": "My Story",
+  "skill": "Creative writing",
+  "icon": "auto_stories",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "My…",
+    "word": "storybook",
+    "picture": {
+      "key": "storybook",
+      "label": "storybook",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": "card",
+    "slot": null,
+    "pad": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-35-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Choose a friend",
+        "audio": null
+      },
+      "card": {
+        "text": "Friend?",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-35-r1-o1",
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-35-r1-o2",
+            "label": "robot",
+            "picture": {
+              "key": "robot",
+              "label": "robot",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-35-r1-o3",
+            "label": "dragon",
+            "picture": {
+              "key": "dragon",
+              "label": "dragon",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "any"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": "who",
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-35-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "Choose a place",
+        "audio": null
+      },
+      "card": {
+        "text": "Where?",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-35-r2-o1",
+            "label": "moon",
+            "picture": {
+              "key": "moon",
+              "label": "moon",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-35-r2-o2",
+            "label": "sea",
+            "picture": {
+              "key": "sea",
+              "label": "sea",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-35-r2-o3",
+            "label": "forest",
+            "picture": {
+              "key": "forest",
+              "label": "forest",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "any"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": "where",
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-35-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Choose a thing",
+        "audio": null
+      },
+      "card": {
+        "text": "What?",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-35-r3-o1",
+            "label": "kite",
+            "picture": {
+              "key": "kite",
+              "label": "kite",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-35-r3-o2",
+            "label": "cake",
+            "picture": {
+              "key": "cake",
+              "label": "cake",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-35-r3-o3",
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "any"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": "what",
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-35-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Write your story",
+        "audio": null
+      },
+      "card": {
+        "text": "My cat can fly.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": null,
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": true
+      }
+    }
+  ]
+}

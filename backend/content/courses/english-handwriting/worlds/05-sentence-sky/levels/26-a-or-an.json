@@ -1,0 +1,248 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-26",
+  "number": 26,
+  "name": "a or an?",
+  "skill": "Articles",
+  "icon": "cloud",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "an",
+    "word": "apple",
+    "picture": {
+      "key": "apple",
+      "label": "apple",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": "cloud",
+    "slot": null,
+    "pad": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-26-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "__ apple",
+        "audio": null
+      },
+      "card": {
+        "text": "__ apple",
+        "picture": {
+          "key": "apple",
+          "label": "apple",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-26-r1-o1",
+            "label": "a",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-26-r1-o2",
+            "label": "an",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "an"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-26-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "__ ball",
+        "audio": null
+      },
+      "card": {
+        "text": "__ ball",
+        "picture": {
+          "key": "ball",
+          "label": "ball",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-26-r2-o1",
+            "label": "a",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-26-r2-o2",
+            "label": "an",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "a"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-26-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "__ egg",
+        "audio": null
+      },
+      "card": {
+        "text": "__ egg",
+        "picture": {
+          "key": "egg",
+          "label": "egg",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-26-r3-o1",
+            "label": "a",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-26-r3-o2",
+            "label": "an",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "an"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-26-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "__ dog",
+        "audio": null
+      },
+      "card": {
+        "text": "__ dog",
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-26-r4-o1",
+            "label": "a",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-26-r4-o2",
+            "label": "an",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "a"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-26-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "__ owl",
+        "audio": null
+      },
+      "card": {
+        "text": "__ owl",
+        "picture": {
+          "key": "owl",
+          "label": "owl",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-26-r5-o1",
+            "label": "a",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-26-r5-o2",
+            "label": "an",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "an"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

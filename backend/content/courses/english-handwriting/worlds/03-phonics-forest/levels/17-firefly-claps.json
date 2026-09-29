@@ -1,0 +1,283 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-17",
+  "number": 17,
+  "name": "Firefly Claps",
+  "skill": "Syllables",
+  "icon": "emoji_objects",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "ba·na·na",
+    "word": "firefly",
+    "picture": {
+      "key": "firefly",
+      "label": "firefly",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": "jar",
+    "slot": null,
+    "pad": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-17-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "banana",
+        "audio": null
+      },
+      "card": {
+        "text": "banana",
+        "picture": {
+          "key": "banana",
+          "label": "banana",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-17-r1-o1",
+            "label": "1",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-17-r1-o2",
+            "label": "2",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-17-r1-o3",
+            "label": "3",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "3"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-17-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "cat",
+        "audio": null
+      },
+      "card": {
+        "text": "cat",
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-17-r2-o1",
+            "label": "1",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-17-r2-o2",
+            "label": "2",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-17-r2-o3",
+            "label": "3",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "1"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-17-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "apple",
+        "audio": null
+      },
+      "card": {
+        "text": "apple",
+        "picture": {
+          "key": "apple",
+          "label": "apple",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-17-r3-o1",
+            "label": "1",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-17-r3-o2",
+            "label": "2",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-17-r3-o3",
+            "label": "3",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "2"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-17-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "tiger",
+        "audio": null
+      },
+      "card": {
+        "text": "tiger",
+        "picture": {
+          "key": "tiger",
+          "label": "tiger",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-17-r4-o1",
+            "label": "1",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-17-r4-o2",
+            "label": "2",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-17-r4-o3",
+            "label": "3",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "2"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-17-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "butterfly",
+        "audio": null
+      },
+      "card": {
+        "text": "butterfly",
+        "picture": {
+          "key": "butterfly",
+          "label": "butterfly",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-17-r5-o1",
+            "label": "1",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-17-r5-o2",
+            "label": "2",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-17-r5-o3",
+            "label": "3",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "3"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-24",
+  "number": 24,
+  "name": "Wake the Robot-Bus",
+  "skill": "Boss · words",
+  "icon": "bedtime",
+  "isBoss": true,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "bus",
+    "word": "robot-bus",
+    "picture": {
+      "key": "robot-bus",
+      "label": "robot-bus",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "pad": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-24-r1",
+      "type": "write",
+      "prompt": {
+        "text": "bus",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bus",
+          "label": "bus",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "bus",
+        "guide": null,
+        "word": "bus",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-24-r2",
+      "type": "write",
+      "prompt": {
+        "text": "hat",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "hat",
+          "label": "hat",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "hat",
+        "guide": null,
+        "word": "hat",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-24-r3",
+      "type": "write",
+      "prompt": {
+        "text": "cup",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cup",
+          "label": "cup",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "cup",
+        "guide": null,
+        "word": "cup",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-24-r4",
+      "type": "write",
+      "prompt": {
+        "text": "sun",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "sun",
+          "label": "sun",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "sun",
+        "guide": null,
+        "word": "sun",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-24-r5",
+      "type": "write",
+      "prompt": {
+        "text": "cat",
+        "audio": null
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "cat",
+        "guide": null,
+        "word": "cat",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

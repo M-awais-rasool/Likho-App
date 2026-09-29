@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../../schema/world.schema.json",
+  "id": "world-3",
+  "order": 3,
+  "name": "Phonics Forest",
+  "skill": "Sounds & rhymes",
+  "icon": "forest",
+  "themeId": "phonicsForest",
+  "boss": {
+    "id": "bear",
+    "name": "Sota Bhaalu"
+  }
+}

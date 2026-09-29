@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../../schema/world.schema.json",
+  "id": "world-1",
+  "order": 1,
+  "name": "Letter Land",
+  "skill": "Capital letters",
+  "icon": "grass",
+  "themeId": "letterLand",
+  "boss": {
+    "id": "snail",
+    "name": "Sust Ghonga"
+  }
+}

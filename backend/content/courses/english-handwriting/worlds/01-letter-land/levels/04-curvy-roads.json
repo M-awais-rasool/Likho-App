@@ -1,0 +1,158 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-04",
+  "number": 4,
+  "name": "Curvy Roads",
+  "skill": "Round letters",
+  "icon": "route",
+  "isBoss": false,
+  "requiresSubscription": false,
+  "intro": {
+    "text": "C",
+    "word": "car",
+    "picture": {
+      "key": "car",
+      "label": "car",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "pad": "road",
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-04-r1",
+      "type": "write",
+      "prompt": {
+        "text": "Trace C",
+        "audio": null
+      },
+      "card": {
+        "text": "C",
+        "picture": {
+          "key": "car",
+          "label": "car",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "C",
+        "guide": "C",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-04-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace O",
+        "audio": null
+      },
+      "card": {
+        "text": "O",
+        "picture": {
+          "key": "orange",
+          "label": "orange",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "O",
+        "guide": "O",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-04-r3",
+      "type": "write",
+      "prompt": {
+        "text": "Trace S",
+        "audio": null
+      },
+      "card": {
+        "text": "S",
+        "picture": {
+          "key": "sun",
+          "label": "sun",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "S",
+        "guide": "S",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-04-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Trace U",
+        "audio": null
+      },
+      "card": {
+        "text": "U",
+        "picture": {
+          "key": "umbrella",
+          "label": "umbrella",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "U",
+        "guide": "U",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-04-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Trace J",
+        "audio": null
+      },
+      "card": {
+        "text": "J",
+        "picture": {
+          "key": "jam",
+          "label": "jam",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "J",
+        "guide": "J",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

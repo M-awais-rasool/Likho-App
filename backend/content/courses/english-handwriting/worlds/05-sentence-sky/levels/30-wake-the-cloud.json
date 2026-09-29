@@ -1,0 +1,138 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-30",
+  "number": 30,
+  "name": "Wake the Cloud",
+  "skill": "Boss · sentences",
+  "icon": "bedtime",
+  "isBoss": true,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "I see",
+    "word": "cloud",
+    "picture": {
+      "key": "cloud",
+      "label": "cloud",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "pad": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-30-r1",
+      "type": "write",
+      "prompt": {
+        "text": "I see a cat.",
+        "audio": null
+      },
+      "card": {
+        "text": "I see a cat.",
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "free",
+        "target": "I see a cat.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-30-r2",
+      "type": "write",
+      "prompt": {
+        "text": "I can run.",
+        "audio": null
+      },
+      "card": {
+        "text": "I can run.",
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "free",
+        "target": "I can run.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-30-r3",
+      "type": "write",
+      "prompt": {
+        "text": "The sun is up.",
+        "audio": null
+      },
+      "card": {
+        "text": "The sun is up.",
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "free",
+        "target": "The sun is up.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-30-r4",
+      "type": "write",
+      "prompt": {
+        "text": "I like red.",
+        "audio": null
+      },
+      "card": {
+        "text": "I like red.",
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "free",
+        "target": "I like red.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-30-r5",
+      "type": "write",
+      "prompt": {
+        "text": "We can play.",
+        "audio": null
+      },
+      "card": {
+        "text": "We can play.",
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "free",
+        "target": "We can play.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,333 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-21",
+  "number": 21,
+  "name": "Doctor Pencil",
+  "skill": "Body parts",
+  "icon": "medical_services",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "nose",
+    "word": "doctor",
+    "picture": {
+      "key": "doctor",
+      "label": "doctor",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "pad": null,
+    "layout": "patient",
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-21-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Touch the nose!",
+        "audio": null
+      },
+      "card": {
+        "text": "nose",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-21-r1-o1",
+            "label": "nose",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-21-r1-o2",
+            "label": "eye",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-21-r1-o3",
+            "label": "ear",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-21-r1-o4",
+            "label": "mouth",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-21-r1-o5",
+            "label": "hand",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "nose"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-21-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "Touch the eye!",
+        "audio": null
+      },
+      "card": {
+        "text": "eye",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-21-r2-o1",
+            "label": "nose",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-21-r2-o2",
+            "label": "eye",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-21-r2-o3",
+            "label": "ear",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-21-r2-o4",
+            "label": "mouth",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-21-r2-o5",
+            "label": "hand",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "eye"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-21-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Touch the ear!",
+        "audio": null
+      },
+      "card": {
+        "text": "ear",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-21-r3-o1",
+            "label": "nose",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-21-r3-o2",
+            "label": "eye",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-21-r3-o3",
+            "label": "ear",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-21-r3-o4",
+            "label": "mouth",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-21-r3-o5",
+            "label": "hand",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "ear"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-21-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Touch the mouth!",
+        "audio": null
+      },
+      "card": {
+        "text": "mouth",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-21-r4-o1",
+            "label": "nose",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-21-r4-o2",
+            "label": "eye",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-21-r4-o3",
+            "label": "ear",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-21-r4-o4",
+            "label": "mouth",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-21-r4-o5",
+            "label": "hand",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "mouth"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-21-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "Touch the hand!",
+        "audio": null
+      },
+      "card": {
+        "text": "hand",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-21-r5-o1",
+            "label": "nose",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-21-r5-o2",
+            "label": "eye",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-21-r5-o3",
+            "label": "ear",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-21-r5-o4",
+            "label": "mouth",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-21-r5-o5",
+            "label": "hand",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "hand"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

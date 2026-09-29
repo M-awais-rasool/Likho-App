@@ -1,0 +1,284 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-29",
+  "number": 29,
+  "name": "Fix-It Pencil",
+  "skill": "Capitals",
+  "icon": "edit",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "I.",
+    "word": "pencil",
+    "picture": {
+      "key": "pencil",
+      "label": "pencil",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "pad": null,
+    "layout": "flow",
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-29-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Fix it!",
+        "audio": null
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-29-r1-o1",
+            "label": "i",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-29-r1-o2",
+            "label": "see",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-29-r1-o3",
+            "label": "a",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-29-r1-o4",
+            "label": "dog",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "i"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": true
+      }
+    },
+    {
+      "id": "level-29-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "Fix it!",
+        "audio": null
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-29-r2-o1",
+            "label": "we",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-29-r2-o2",
+            "label": "can",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-29-r2-o3",
+            "label": "run",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "we"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": true
+      }
+    },
+    {
+      "id": "level-29-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Fix it!",
+        "audio": null
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-29-r3-o1",
+            "label": "the",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-29-r3-o2",
+            "label": "cat",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-29-r3-o3",
+            "label": "is",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-29-r3-o4",
+            "label": "big",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "the"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": true
+      }
+    },
+    {
+      "id": "level-29-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Fix it!",
+        "audio": null
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-29-r4-o1",
+            "label": "my",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-29-r4-o2",
+            "label": "dog",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-29-r4-o3",
+            "label": "is",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-29-r4-o4",
+            "label": "fun",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "my"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": true
+      }
+    },
+    {
+      "id": "level-29-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "Fix it!",
+        "audio": null
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-29-r5-o1",
+            "label": "i",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-29-r5-o2",
+            "label": "like",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-29-r5-o3",
+            "label": "cake",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "i"
+        },
+        "shape": null,
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": true
+      }
+    }
+  ]
+}

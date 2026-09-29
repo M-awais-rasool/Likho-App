@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../../schema/world.schema.json",
+  "id": "world-2",
+  "order": 2,
+  "name": "Small Letter Cove",
+  "skill": "Small letters",
+  "icon": "waves",
+  "themeId": "smallLetterCove",
+  "boss": {
+    "id": "fish",
+    "name": "Neend wali Machli"
+  }
+}
