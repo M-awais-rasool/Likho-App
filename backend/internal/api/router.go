@@ -1,49 +1,73 @@
-// Package routes lists every endpoint of the API in one place.
-package routes
+// Package api is the HTTP API: every route in one place (router.go), the
+// handlers behind them (handler/) and what runs around them (middleware/).
+package api
 
 import (
+	"net/http"
 	"time"
 
 	"github.com/gin-gonic/gin"
 
-	"likho/backend/handlers"
-	"likho/backend/middleware"
-	"likho/backend/services"
+	"likho/backend/internal/api/handler"
+	"likho/backend/internal/api/middleware"
+	"likho/backend/internal/cache"
+	"likho/backend/internal/service"
 )
 
-func New(h *handlers.Handler, tokens services.Tokens) *gin.Engine {
-	r := gin.New()
-	r.Use(middleware.Recovery(), middleware.RequestLog(), middleware.BodyLimit(64<<10))
-	r.HandleMethodNotAllowed = true
+// Limits per client (sign-in per IP, the rest per parent).
+const (
+	authPerMinute = 30
+	apiPerMinute  = 600
+	playPerMinute = 120
+	maxBodyBytes  = 64 << 10
+)
 
-	r.GET("/healthz", h.Health)
-	r.GET("/readyz", h.Ready)
+// NewRouter returns the API. Routes are versioned under /v1; see
+// docs/openapi.yaml for the contract.
+func NewRouter(h *handler.Handlers, tokens service.Tokens, c *cache.Cache) *gin.Engine {
+	r := gin.New()
+	r.HandleMethodNotAllowed = true
+	r.Use(middleware.Recovery(), middleware.RequestLog(), middleware.SecureHeaders(), middleware.BodyLimit(maxBodyBytes))
+
+	r.GET("/healthz", h.Health.Live)
+	r.GET("/readyz", h.Health.Ready)
 
 	v1 := r.Group("/v1")
 
-	// public
-	v1.GET("/course", h.GetCourse)
-	auth := v1.Group("/auth", middleware.RateLimit(h.Cache, "auth", 30, time.Minute))
-	auth.POST("/google", h.GoogleSignIn) // the only way in: sign in = sign up
-	auth.POST("/refresh", h.Refresh)
+	// public: the learning content and signing in
+	v1.GET("/courses", h.Courses.List)
+	v1.GET("/courses/:courseId", h.Courses.Get)
+
+	auth := v1.Group("/auth", middleware.RateLimit(c, "auth", authPerMinute, time.Minute))
+	auth.POST("/google", h.Auth.GoogleSignIn) // the only way in: sign in = sign up
+	auth.POST("/refresh", h.Auth.Refresh)
 
 	// signed in
-	in := v1.Group("", middleware.Auth(tokens), middleware.RateLimit(h.Cache, "api", 600, time.Minute))
-	in.POST("/auth/logout", h.Logout)
+	in := v1.Group("", middleware.Auth(tokens), middleware.RateLimit(c, "api", apiPerMinute, time.Minute))
+	in.POST("/auth/logout", h.Auth.Logout)
 
-	in.GET("/me", h.Me)
-	in.PATCH("/me/settings", h.UpdateSettings)
-	in.POST("/me/trial", h.StartTrial)
-	in.DELETE("/me", h.DeleteAccount)
+	in.GET("/me", h.Account.Me)
+	in.PATCH("/me/settings", h.Account.UpdateSettings)
+	in.POST("/me/trial", h.Account.StartTrial)
+	in.DELETE("/me", h.Account.Delete)
 
-	in.POST("/children", h.CreateChild)
-	in.PATCH("/children/:id", h.UpdateChild)
-	in.DELETE("/children/:id", h.DeleteChild)
+	in.POST("/children", h.Children.Create)
+	in.PATCH("/children/:childId", h.Children.Update)
+	in.DELETE("/children/:childId", h.Children.Delete)
 
-	play := in.Group("/children/:id", middleware.RateLimit(h.Cache, "play", 120, time.Minute))
-	play.POST("/results", h.RecordResult)
-	play.POST("/room/:item", h.TapItem)
+	// playing: stars change here, so retries are made safe
+	play := in.Group("/children/:childId",
+		middleware.RateLimit(c, "play", playPerMinute, time.Minute),
+		middleware.Idempotency(c),
+	)
+	play.POST("/courses/:courseId/results", h.Progress.Record)
+	play.POST("/room/:itemId", h.Room.Tap)
 
-	r.NoRoute(func(c *gin.Context) { c.JSON(404, gin.H{"error": "not_found", "message": "No such endpoint"}) })
+	r.NoRoute(func(c *gin.Context) {
+		c.JSON(http.StatusNotFound, gin.H{"error": "not_found", "message": "No such endpoint"})
+	})
+	r.NoMethod(func(c *gin.Context) {
+		c.JSON(http.StatusMethodNotAllowed, gin.H{"error": "method_not_allowed", "message": "Method not allowed here"})
+	})
 	return r
 }
