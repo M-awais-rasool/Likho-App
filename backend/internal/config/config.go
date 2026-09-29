@@ -25,9 +25,12 @@ type Config struct {
 	AccessTTL  time.Duration // short-lived JWT
 	RefreshTTL time.Duration // long-lived, rotated on every use
 
-	// Course content: served from Postgres; this file is loaded into it when
-	// it changes (empty = skip).
-	CourseFile string
+	// Learning content: built into the binary (backend/content). ContentDir
+	// loads it from a folder instead (to try new content without a
+	// rebuild). ContentDrafts also serves courses marked "draft"; it is on
+	// by default in development and off in production.
+	ContentDir    string
+	ContentDrafts bool
 
 	// Development only: accept "dev:<email>" instead of a Google ID token.
 	DevLogin bool
@@ -45,9 +48,10 @@ func Load() (Config, error) {
 		JWTSecret:       []byte(os.Getenv("JWT_SECRET")),
 		AccessTTL:       duration("ACCESS_TOKEN_TTL", 15*time.Minute),
 		RefreshTTL:      duration("REFRESH_TOKEN_TTL", 60*24*time.Hour),
-		CourseFile:      get("COURSE_FILE", "../assets/data/course.json"),
+		ContentDir:      os.Getenv("CONTENT_DIR"),
 		DevLogin:        boolean("DEV_LOGIN", false),
 	}
+	c.ContentDrafts = boolean("CONTENT_DRAFTS", !c.Production())
 
 	var errs []error
 	if len(c.JWTSecret) < 32 {

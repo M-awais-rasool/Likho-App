@@ -1,5 +1,6 @@
-// Package database opens Postgres through GORM (the source of truth) and
-// Redis (the accelerator: cache, rate limits, idempotency).
+// Package database opens Postgres through GORM (the source of truth: tables
+// from internal/model) and Redis (the accelerator: cache, rate limits,
+// idempotency).
 package database
 
 import (
@@ -13,7 +14,7 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 
-	"likho/backend/models"
+	"likho/backend/internal/model"
 )
 
 // Connect opens Postgres with settings chosen for speed:
@@ -22,16 +23,16 @@ import (
 //   - a connection pool sized for the CPU, idle connections recycled
 //   - only slow queries (> 200 ms) and errors are logged
 func Connect(ctx context.Context, url string, debug bool) (*gorm.DB, error) {
-	level := logger.Warn
+	level, out := logger.Warn, slogWriter{slog.LevelWarn}
 	if debug {
-		level = logger.Info
+		level, out = logger.Info, slogWriter{slog.LevelInfo} // every query, for development
 	}
 	db, err := gorm.Open(postgres.Open(url), &gorm.Config{
 		PrepareStmt:            true,
 		SkipDefaultTransaction: true,
 		TranslateError:         true, // unique violations become gorm.ErrDuplicatedKey
 		NowFunc:                func() time.Time { return time.Now().UTC() },
-		Logger: logger.New(slogWriter{}, logger.Config{
+		Logger: logger.New(out, logger.Config{
 			SlowThreshold:             200 * time.Millisecond,
 			LogLevel:                  level,
 			IgnoreRecordNotFoundError: true,
@@ -58,7 +59,7 @@ func Connect(ctx context.Context, url string, debug bool) (*gorm.DB, error) {
 	return db, nil
 }
 
-// Migrate creates or updates every table from models.Tables. A Postgres
+// Migrate creates or updates every table from model.Tables. A Postgres
 // advisory lock keeps two servers starting together from racing.
 func Migrate(ctx context.Context, db *gorm.DB) error {
 	return db.WithContext(ctx).Connection(func(conn *gorm.DB) error {
@@ -67,13 +68,33 @@ func Migrate(ctx context.Context, db *gorm.DB) error {
 			return err
 		}
 		defer conn.Exec("SELECT pg_advisory_unlock(?)", lockID)
-		return conn.AutoMigrate(models.Tables...)
+		return conn.AutoMigrate(model.Tables...)
 	})
 }
 
 // slogWriter sends GORM's log lines to the app's structured log.
-type slogWriter struct{}
+type slogWriter struct{ level slog.Level }
 
-func (slogWriter) Printf(format string, args ...any) {
-	slog.Warn(fmt.Sprintf(format, args...), "source", "gorm")
+func (w slogWriter) Printf(format string, args ...any) {
+	slog.Log(context.Background(), w.level, fmt.Sprintf(format, args...), "source", "gorm")
+}
+
+// Pinger reports whether Postgres answers (readiness check).
+func Pinger(db *gorm.DB) interface{ Ping(context.Context) error } { return sqlPinger{db} }
+
+type sqlPinger struct{ db *gorm.DB }
+
+func (p sqlPinger) Ping(ctx context.Context) error {
+	sqlDB, err := p.db.DB()
+	if err != nil {
+		return err
+	}
+	return sqlDB.PingContext(ctx)
+}
+
+// Close closes the connection pool.
+func Close(db *gorm.DB) {
+	if sqlDB, err := db.DB(); err == nil {
+		_ = sqlDB.Close()
+	}
 }
