@@ -6,19 +6,40 @@ import (
 	"time"
 
 	"gorm.io/gorm"
-	"gorm.io/gorm/clause"
 
-	"likho/backend/game"
-	"likho/backend/models"
+	"likho/backend/internal/domain"
+	"likho/backend/internal/model"
 )
 
-// childViews loads the parent's children (or just [childID]) with their
-// progress in 4 queries whatever the number of children: children, their
-// level results, their items, and one aggregate for play days.
-func (s *Store) childViews(ctx context.Context, parentID, childID string) ([]models.ChildView, error) {
-	var kids []models.Child
-	q := s.db.WithContext(ctx).
-		Preload("LevelResults").
+// ChildRepository: child profiles and everything shown for them.
+type ChildRepository struct {
+	db *gorm.DB
+}
+
+// Views loads the parent's children with their progress.
+func (r *ChildRepository) Views(ctx context.Context, parentID string) ([]model.ChildView, error) {
+	return r.views(ctx, parentID, "")
+}
+
+// View loads one child of the parent.
+func (r *ChildRepository) View(ctx context.Context, parentID, childID string) (model.ChildView, error) {
+	views, err := r.views(ctx, parentID, childID)
+	if err != nil {
+		return model.ChildView{}, err
+	}
+	if len(views) == 0 {
+		return model.ChildView{}, domain.ErrNotFound
+	}
+	return views[0], nil
+}
+
+// views loads children (or just [childID]) in 4 queries whatever their
+// number: children, their progress, their items, and one aggregate of play
+// days.
+func (r *ChildRepository) views(ctx context.Context, parentID, childID string) ([]model.ChildView, error) {
+	var kids []model.Child
+	q := r.db.WithContext(ctx).
+		Preload("Progress").
 		Preload("Items", func(db *gorm.DB) *gorm.DB { return db.Order("bought_at") }).
 		Where("parent_id = ?", parentID).
 		Order("created_at")
@@ -29,7 +50,7 @@ func (s *Store) childViews(ctx context.Context, parentID, childID string) ([]mod
 		return nil, err
 	}
 	if len(kids) == 0 {
-		return []models.ChildView{}, nil
+		return []model.ChildView{}, nil
 	}
 
 	ids := make([]string, len(kids))
@@ -42,9 +63,8 @@ func (s *Store) childViews(ctx context.Context, parentID, childID string) ([]mod
 		WeekSeconds int
 	}
 	var stats []stat
-	weekStart := startOfWeek(time.Now())
-	err := s.db.WithContext(ctx).Model(&models.PlayDay{}).
-		Select("child_id, count(*) AS days, COALESCE(SUM(seconds) FILTER (WHERE day >= ?), 0) AS week_seconds", weekStart).
+	err := r.db.WithContext(ctx).Model(&model.PlayDay{}).
+		Select("child_id, count(*) AS days, COALESCE(SUM(seconds) FILTER (WHERE day >= ?), 0) AS week_seconds", startOfWeek(time.Now())).
 		Where("child_id IN ?", ids).
 		Group("child_id").
 		Scan(&stats).Error
@@ -56,21 +76,26 @@ func (s *Store) childViews(ctx context.Context, parentID, childID string) ([]mod
 		byChild[st.ChildID] = st
 	}
 
-	views := make([]models.ChildView, len(kids))
+	views := make([]model.ChildView, len(kids))
 	for i, k := range kids {
 		views[i] = viewOf(k, byChild[k.ID].Days, byChild[k.ID].WeekSeconds)
 	}
 	return views, nil
 }
 
-func viewOf(k models.Child, days, weekSeconds int) models.ChildView {
-	v := models.ChildView{
+func viewOf(k model.Child, days, weekSeconds int) model.ChildView {
+	v := model.ChildView{
 		ID: k.ID, Name: k.Name, Age: k.Age, Color: k.Color, Stars: k.Stars, Wearing: k.Wearing,
-		Owned: []string{}, Room: []string{}, LevelStars: make(map[string]int, len(k.LevelResults)),
+		Owned: []string{}, Room: []string{}, Progress: map[string]model.CourseProgress{},
 		DaysPlayed: days, MinutesThisWeek: (weekSeconds + 59) / 60,
 	}
-	for _, r := range k.LevelResults {
-		v.LevelStars[strconv.Itoa(r.Level)] = r.BestStars
+	for _, p := range k.Progress {
+		cp, ok := v.Progress[p.CourseID]
+		if !ok {
+			cp = model.CourseProgress{LevelStars: map[string]int{}}
+			v.Progress[p.CourseID] = cp
+		}
+		cp.LevelStars[strconv.Itoa(p.Level)] = p.BestStars
 	}
 	for _, it := range k.Items {
 		v.Owned = append(v.Owned, it.ItemID)
@@ -88,49 +113,30 @@ func startOfWeek(t time.Time) time.Time {
 	return time.Date(t.Year(), t.Month(), t.Day()-d, 0, 0, 0, 0, time.UTC)
 }
 
-func (s *Store) Child(ctx context.Context, parentID, childID string) (models.ChildView, error) {
-	views, err := s.childViews(ctx, parentID, childID)
-	if err != nil {
-		return models.ChildView{}, err
-	}
-	if len(views) == 0 {
-		return models.ChildView{}, ErrNotFound
-	}
-	return views[0], nil
-}
-
-// lockParent locks the parent row for the rest of the transaction, so
-// counting and changing children cannot race.
-func lockParent(tx *gorm.DB, parentID string) error {
-	var p models.Parent
-	err := tx.Clauses(clause.Locking{Strength: "UPDATE"}).Select("id").Take(&p, "id = ?", parentID).Error
-	return notFound(err)
-}
-
-// CreateChild adds a child (input already validated); at most 4.
-func (s *Store) CreateChild(ctx context.Context, parentID string, in models.ChildInput) (models.ChildView, error) {
-	c := models.Child{ParentID: parentID, Name: in.Name, Age: in.Age, Color: in.Color}
-	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+// Create adds a child (input already validated); at most domain.MaxChildren.
+func (r *ChildRepository) Create(ctx context.Context, parentID string, in model.ChildInput) (model.ChildView, error) {
+	c := model.Child{ParentID: parentID, Name: in.Name, Age: in.Age, Color: in.Color}
+	err := r.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
 		if err := lockParent(tx, parentID); err != nil {
 			return err
 		}
 		var n int64
-		if err := tx.Model(&models.Child{}).Where("parent_id = ?", parentID).Count(&n).Error; err != nil {
+		if err := tx.Model(&model.Child{}).Where("parent_id = ?", parentID).Count(&n).Error; err != nil {
 			return err
 		}
-		if n >= game.MaxChildren {
-			return ErrTooManyChildren
+		if n >= domain.MaxChildren {
+			return domain.ErrTooManyChildren
 		}
 		return tx.Create(&c).Error
 	})
 	if err != nil {
-		return models.ChildView{}, err
+		return model.ChildView{}, err
 	}
 	return viewOf(c, 0, 0), nil
 }
 
-// UpdateChild changes name / age / colour (already validated).
-func (s *Store) UpdateChild(ctx context.Context, parentID, childID string, p models.ChildPatch) (models.ChildView, error) {
+// Update changes name / age / colour (already validated).
+func (r *ChildRepository) Update(ctx context.Context, parentID, childID string, p model.ChildPatch) (model.ChildView, error) {
 	updates := map[string]any{"updated_at": time.Now()}
 	if p.Name != nil {
 		updates["name"] = *p.Name
@@ -141,35 +147,35 @@ func (s *Store) UpdateChild(ctx context.Context, parentID, childID string, p mod
 	if p.Color != nil {
 		updates["color"] = *p.Color
 	}
-	res := s.db.WithContext(ctx).Model(&models.Child{}).Where("id = ? AND parent_id = ?", childID, parentID).Updates(updates)
+	res := r.db.WithContext(ctx).Model(&model.Child{}).Where("id = ? AND parent_id = ?", childID, parentID).Updates(updates)
 	if res.Error != nil {
-		return models.ChildView{}, res.Error
+		return model.ChildView{}, res.Error
 	}
 	if res.RowsAffected == 0 {
-		return models.ChildView{}, ErrNotFound
+		return model.ChildView{}, domain.ErrNotFound
 	}
-	return s.Child(ctx, parentID, childID)
+	return r.View(ctx, parentID, childID)
 }
 
-// DeleteChild removes a child and all its progress; the last child stays.
-func (s *Store) DeleteChild(ctx context.Context, parentID, childID string) error {
-	return s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+// Delete removes a child and all its progress; the last child stays.
+func (r *ChildRepository) Delete(ctx context.Context, parentID, childID string) error {
+	return r.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
 		if err := lockParent(tx, parentID); err != nil {
 			return err
 		}
 		var n int64
-		if err := tx.Model(&models.Child{}).Where("parent_id = ?", parentID).Count(&n).Error; err != nil {
+		if err := tx.Model(&model.Child{}).Where("parent_id = ?", parentID).Count(&n).Error; err != nil {
 			return err
 		}
-		res := tx.Where("id = ? AND parent_id = ?", childID, parentID).Delete(&models.Child{})
+		res := tx.Where("id = ? AND parent_id = ?", childID, parentID).Delete(&model.Child{})
 		if res.Error != nil {
 			return res.Error
 		}
 		if res.RowsAffected == 0 {
-			return ErrNotFound
+			return domain.ErrNotFound
 		}
 		if n <= 1 {
-			return ErrLastChild // rolls the delete back
+			return domain.ErrLastChild // rolls the delete back
 		}
 		return nil
 	})

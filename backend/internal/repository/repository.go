@@ -1,36 +1,67 @@
-// Package repository is the only place that talks to the database (through
-// GORM). Handlers never build queries; the store never knows about HTTP.
+// Package repository is the data-access layer: every database query lives
+// here (through GORM). Repositories return model types and domain errors;
+// they know nothing about HTTP.
 package repository
 
 import (
 	"errors"
 
 	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
+
+	"likho/backend/internal/domain"
+	"likho/backend/internal/model"
 )
 
-type Store struct {
-	db *gorm.DB
+// Repositories groups one repository per area of the data.
+type Repositories struct {
+	Accounts *AccountRepository
+	Children *ChildRepository
+	Progress *ProgressRepository
+	Room     *RoomRepository
+	Sessions *SessionRepository
 }
 
-func New(db *gorm.DB) *Store { return &Store{db: db} }
-
-// Errors the handlers turn into HTTP answers.
-var (
-	ErrNotFound        = errors.New("not found")
-	ErrTooManyChildren = errors.New("too many children")
-	ErrLastChild       = errors.New("cannot delete the only child")
-	ErrLevelLocked     = errors.New("level is locked")
-	ErrPlusRequired    = errors.New("likho plus required")
-	ErrNotEnoughStars  = errors.New("not enough stars")
-	ErrUnknownItem     = errors.New("unknown shop item")
-	ErrTrialUsed       = errors.New("trial already used")
-	ErrSessionInvalid  = errors.New("session invalid")
-	ErrSessionReused   = errors.New("refresh token reused")
-)
+func New(db *gorm.DB) Repositories {
+	return Repositories{
+		Accounts: &AccountRepository{db: db},
+		Children: &ChildRepository{db: db},
+		Progress: &ProgressRepository{db: db},
+		Room:     &RoomRepository{db: db},
+		Sessions: &SessionRepository{db: db},
+	}
+}
 
 func notFound(err error) error {
 	if errors.Is(err, gorm.ErrRecordNotFound) {
-		return ErrNotFound
+		return domain.ErrNotFound
 	}
 	return err
+}
+
+// lockParent locks the parent row for the rest of the transaction, so
+// counting and changing children cannot race.
+func lockParent(tx *gorm.DB, parentID string) error {
+	var p model.Parent
+	err := tx.Clauses(clause.Locking{Strength: "UPDATE"}).Select("id").Take(&p, "id = ?", parentID).Error
+	return notFound(err)
+}
+
+// lockChild loads the child (checking it belongs to the parent) and locks
+// its row until the transaction ends, so two requests can never spend or
+// award the same stars twice.
+func lockChild(tx *gorm.DB, parentID, childID string) (model.Child, error) {
+	var c model.Child
+	err := tx.Clauses(clause.Locking{Strength: "UPDATE"}).
+		Where("id = ? AND parent_id = ?", childID, parentID).
+		Take(&c).Error
+	return c, notFound(err)
+}
+
+func deref[T any](p *T) T {
+	if p == nil {
+		var z T
+		return z
+	}
+	return *p
 }
