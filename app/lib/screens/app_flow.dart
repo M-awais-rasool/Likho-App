@@ -1,18 +1,21 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../data/api/api_client.dart';
+import '../data/auth.dart';
 import '../data/course_providers.dart';
 import '../data/family.dart';
 import '../data/models/course_models.dart';
-import '../data/repositories/auth_repository.dart';
 import '../feedback/app_feedback.dart';
 import '../feedback/game_feedback.dart';
 import '../game/level_session.dart';
-import 'auth/forgot_password_screen.dart';
-import 'auth/login_screen.dart';
-import 'auth/signup_screen.dart';
+import 'app_shell.dart';
+import 'auth/sign_in_sheet.dart';
 import 'auth/welcome_screen.dart';
 import 'certificate/certificate_screen.dart';
+import 'common/confirm_dialog.dart';
 import 'common/toast.dart';
 import 'gameplay/gameplay_screen.dart';
 import 'level_complete/level_complete_screen.dart';
@@ -35,8 +38,10 @@ import 'world_map/world_map_screen.dart';
 /// Navigation between all screens, in one place (the prototype's go / back).
 ///
 /// Stack shapes:
-/// * Welcome -> Sign up / Login / Forgot password
-/// * Who's playing (root after sign-in) -> World Map -> everything else
+/// * Splash -> Welcome (signed out) or Who's playing (signed in)
+/// * Welcome -> "Continue with Google" -> Who's playing (or adding the
+///   first child) / "Pehle try karein" -> warm-up -> map as a guest
+/// * Who's playing -> World Map -> everything else
 /// * the World Map is always right above Who's playing, or the root
 abstract final class AppFlow {
   static const welcomeRoute = 'welcome';
@@ -46,40 +51,92 @@ abstract final class AppFlow {
   /// Add to MaterialApp.navigatorObservers so the flow knows what is open.
   static final observer = LikhoNavObserver();
 
+  /// MaterialApp.navigatorKey (the app shell navigates with it).
+  static final navigatorKey = GlobalKey<NavigatorState>();
+
   static ProviderContainer _c(BuildContext context) => ProviderScope.containerOf(context);
 
   // ------------------------------------------------------------------ account
 
+  /// Where the Splash goes once the saved sign-in has been checked.
+  static Future<void> afterSplash(BuildContext context) async {
+    final container = _c(context);
+    await container.read(authProvider.notifier).ready;
+    if (!context.mounted) return;
+    container.read(authProvider).signedIn ? _home(context) : toWelcome(context);
+  }
+
+  /// A signed-in family starts at Who's playing, or adds its first child.
+  static void _home(BuildContext context) {
+    if (_c(context).read(familyProvider).profiles.isEmpty) {
+      Navigator.of(context).pushAndRemoveUntil(_firstChild(), (_) => false);
+    } else {
+      toWhos(context);
+    }
+  }
+
   static Route<void> welcomeRoutePage() => LikhoRoute<void>(
     settings: const RouteSettings(name: welcomeRoute),
-    builder: (ctx) =>
-        WelcomeScreen(onSignUp: () => Navigator.of(ctx).push(_signUp()), onLogIn: () => Navigator.of(ctx).push(_logIn()), onTryFirst: () => openPlacement(ctx)),
-  );
-
-  /// After logout: Welcome becomes the only screen.
-  static void toWelcome(BuildContext context) => Navigator.of(context).pushAndRemoveUntil(welcomeRoutePage(), (_) => false);
-
-  static Route<void> _signUp({String email = ''}) => LikhoRoute<void>(
-    builder: (ctx) => SignUpScreen(
-      email: email,
-      onBack: () => Navigator.of(ctx).pop(),
-      onDone: () => toWhos(ctx),
-      onLogIn: (e) => Navigator.of(ctx).pushReplacement(_logIn(email: e)),
+    builder: (ctx) => WelcomeScreen(
+      onGoogle: () async {
+        final ok = await _signIn(ctx);
+        if (ok && ctx.mounted) _home(ctx);
+        return ok;
+      },
+      onTryFirst: () => openPlacement(ctx),
       onTerms: () => Toast.show(ctx, 'Privacy policy khulegi'),
     ),
   );
 
-  static Route<void> _logIn({String email = ''}) => LikhoRoute<void>(
-    builder: (ctx) => LoginScreen(
-      email: email,
-      onBack: () => Navigator.of(ctx).pop(),
-      onDone: () => toWhos(ctx),
-      onSignUp: (e) => Navigator.of(ctx).pushReplacement(_signUp(email: e)),
-      onForgot: (e) => Navigator.of(ctx).push(
-        LikhoRoute<void>(
-          builder: (c) => ForgotPasswordScreen(email: e, onBack: () => Navigator.of(c).pop(), onLogIn: (_) => Navigator.of(c).pop()),
-        ),
-      ),
+  /// After logout: Welcome becomes the only screen.
+  static void toWelcome(BuildContext context) {
+    final nav = Navigator.of(context);
+    if (observer.has(welcomeRoute)) {
+      nav.popUntil(ModalRoute.withName(welcomeRoute));
+      return;
+    }
+    nav.pushAndRemoveUntil(welcomeRoutePage(), (_) => false);
+  }
+
+  /// "Continue with Google" (Welcome or the guest sheet): the account is
+  /// made the first time, continued after that. True once signed in.
+  static Future<bool> _signIn(BuildContext context) async {
+    final container = _c(context);
+    try {
+      final isNew = await container.read(authProvider.notifier).signInWithGoogle();
+      if (isNew == null) return false; // the Google sheet was closed
+      container.read(feedbackProvider).unlock();
+      return true;
+    } on ApiException catch (e) {
+      if (context.mounted) Toast.show(context, signInError(e));
+    } catch (e) {
+      debugPrint('Google sign-in: $e');
+      if (context.mounted) Toast.show(context, 'Google sign in nahi hua, dobara koshish karein');
+    }
+    return false;
+  }
+
+  static String signInError(ApiException e) => switch (e.code) {
+    'offline' => 'Internet nahi hai, dobara koshish karein',
+    'rate_limited' => 'Thori der baad koshish karein',
+    _ => 'Sign in nahi hua, dobara koshish karein',
+  };
+
+  /// Guests ("pehle try karein") play the warm-up and level 1; anything
+  /// more asks a parent to sign in first. Runs [open] when allowed.
+  static Future<void> _member(BuildContext context, VoidCallback open) async {
+    if (!_c(context).read(familyProvider).guest) return open();
+    final ok = await showSignInSheet(context, onGoogle: () => _signIn(context));
+    // the guest's phone-only progress is not kept: start the real family
+    if (ok && context.mounted) _home(context);
+  }
+
+  /// A new account's first child (then the warm-up). Back = sign out again.
+  static Route<void> _firstChild() => LikhoRoute<void>(
+    builder: (ctx) => ChildSetupScreen(
+      mode: ChildSetupMode.add,
+      onBack: () => unawaited(_c(ctx).read(authProvider.notifier).logOut()),
+      onDone: () => openPlacement(ctx, replace: true),
     ),
   );
 
@@ -115,20 +172,22 @@ abstract final class AppFlow {
 
   // ------------------------------------------------------------------ map
 
-  static Widget mapScreen(BuildContext ctx) => WorldMapScreen(
-    onOpenLevel: (n) => openLevel(ctx, n),
-    onProfile: () {
-      AppFeedback.of(ctx).tap();
-      Navigator.of(ctx).push(_profile());
-    },
-    onRoom: () {
-      AppFeedback.of(ctx).press();
-      Navigator.of(ctx).push(LikhoRoute<void>(builder: (c) => MascotRoomScreen(onBack: () => Navigator.of(c).pop())));
-    },
-    onSettings: () {
-      AppFeedback.of(ctx).tap();
-      _gated(ctx, () => Navigator.of(ctx).push(_dashboard()));
-    },
+  static Widget mapScreen(BuildContext ctx) => CourseGate(
+    child: WorldMapScreen(
+      onOpenLevel: (n) => openLevel(ctx, n),
+      onProfile: () {
+        AppFeedback.of(ctx).tap();
+        _member(ctx, () => Navigator.of(ctx).push(_profile()));
+      },
+      onRoom: () {
+        AppFeedback.of(ctx).press();
+        _member(ctx, () => Navigator.of(ctx).push(LikhoRoute<void>(builder: (c) => MascotRoomScreen(onBack: () => Navigator.of(c).pop()))));
+      },
+      onSettings: () {
+        AppFeedback.of(ctx).tap();
+        _member(ctx, () => _gated(ctx, () => Navigator.of(ctx).push(_dashboard())));
+      },
+    ),
   );
 
   /// Back to the World Map: pops to it when it is open, otherwise opens it
@@ -174,16 +233,29 @@ abstract final class AppFlow {
   static Route<void> _settings() => LikhoRoute<void>(
     builder: (ctx) => SettingsScreen(
       onBack: () => Navigator.of(ctx).pop(),
-      onLogOut: () async {
-        await _c(ctx).read(authProvider.notifier).logOut();
-        if (ctx.mounted) toWelcome(ctx);
-      },
+      // signing out moves the app to Welcome (AppShell)
+      onLogOut: () => unawaited(_c(ctx).read(familyProvider.notifier).logOut()),
       onManageChildren: () => toWhos(ctx),
       onPlan: () => Navigator.of(ctx).push(_paywall()),
       onHelp: () => Toast.show(ctx, 'Help center khulega'),
-      onDeleteAccount: () => Toast.show(ctx, 'Confirm email bheji gayi'),
+      onDeleteAccount: () => _deleteAccount(ctx),
     ),
   );
+
+  static Future<void> _deleteAccount(BuildContext context) async {
+    final ok = await showConfirm(
+      context,
+      title: 'Account delete karein?',
+      message: 'Sab bachon ki progress, stars aur stickers hamesha ke liye hat jayenge.',
+      yes: 'Haan, delete',
+    );
+    if (!ok || !context.mounted) return;
+    try {
+      await _c(context).read(authProvider.notifier).deleteAccount();
+    } on ApiException catch (e) {
+      if (context.mounted) Toast.show(context, e.offline ? 'Internet nahi hai, dobara koshish karein' : 'Account delete nahi hua');
+    }
+  }
 
   /// Likho Plus. After the trial starts it closes, then opens [pendingLevel]
   /// (a locked level the child tapped) if there is one.
@@ -191,9 +263,22 @@ abstract final class AppFlow {
     builder: (ctx) => PaywallScreen(
       onClose: () => Navigator.of(ctx).pop(),
       onRestore: () => Toast.show(ctx, 'Koi purani purchase nahi mili'),
-      onStartTrial: (_) {
+      onStartTrial: (_) async {
         final container = _c(ctx);
-        container.read(familyProvider.notifier).subscribe();
+        final family = container.read(familyProvider.notifier);
+        try {
+          await family.subscribe();
+        } on ApiException catch (e) {
+          if (!ctx.mounted) return;
+          Toast.show(ctx, switch (e.code) {
+            'trial_used' => 'Free trial pehle hi use ho chuka hai',
+            'offline' => 'Internet nahi hai, dobara koshish karein',
+            _ => 'Trial shuru nahi hua, dobara koshish karein',
+          });
+          if (e.code == 'trial_used') unawaited(family.refreshMe());
+          return;
+        }
+        if (!ctx.mounted) return;
         container.read(feedbackProvider).unlock();
         Toast.show(ctx, '7 din ka free trial shuru!');
         Future.delayed(const Duration(milliseconds: 700), () {
@@ -216,6 +301,10 @@ abstract final class AppFlow {
     if (course == null) return;
     final level = course.level(number);
     final nav = Navigator.of(context);
+    if (number > 1 && container.read(familyProvider).guest) {
+      _member(context, () {});
+      return;
+    }
     if (level.requiresSubscription && !container.read(familyProvider).subscribed) {
       nav.push(_paywall(pendingLevel: number));
       return;
@@ -235,24 +324,29 @@ abstract final class AppFlow {
   }
 
   /// Gameplay, with its sounds and haptics layered on by [GameFeedback].
-  static Route<void> _game(ProviderContainer container, CourseLevel level) => LikhoRoute<void>(
-    builder: (ctx) => GameFeedback(
-      level: level,
-      child: GameplayScreen(
+  static Route<void> _game(ProviderContainer container, CourseLevel level) {
+    final played = Stopwatch()..start(); // practice time for the parents' report
+    return LikhoRoute<void>(
+      builder: (ctx) => GameFeedback(
         level: level,
-        onExit: () {
-          container.read(feedbackProvider).back();
-          Navigator.of(ctx).pop();
-        },
-        onFinished: (result) {
-          final choices = container.read(levelSessionProvider(level)).choices;
-          final outcome = container.read(familyProvider.notifier).recordResult(level.number, result.stars, choices: choices);
-          container.read(playSessionProvider.notifier).finished(outcome);
-          Navigator.of(ctx).pushReplacement(_complete(container, level, outcome));
-        },
+        child: GameplayScreen(
+          level: level,
+          onExit: () {
+            container.read(feedbackProvider).back();
+            Navigator.of(ctx).pop();
+          },
+          onFinished: (result) {
+            final choices = container.read(levelSessionProvider(level)).choices;
+            final outcome = container
+                .read(familyProvider.notifier)
+                .recordResult(level.number, result.stars, choices: choices, seconds: played.elapsed.inSeconds.clamp(1, 1800));
+            container.read(playSessionProvider.notifier).finished(outcome);
+            Navigator.of(ctx).pushReplacement(_complete(container, level, outcome));
+          },
+        ),
       ),
-    ),
-  );
+    );
+  }
 
   static Route<void> _complete(ProviderContainer container, CourseLevel level, LevelOutcome outcome) => LikhoRoute<void>(
     rise: false,
@@ -319,7 +413,7 @@ abstract final class AppFlow {
 /// under the app's Navigator.
 abstract final class AppFlowJump {
   static const screens = [
-    'welcome', 'signup', 'signupEmail', 'login', 'forgot', 'forgotSent', 'whos', 'onb', 'edit', 'placement', 'placementDone', //
+    'welcome', 'signIn', 'offline', 'whos', 'onb', 'edit', 'placement', 'placementDone', //
     'map', 'complete', 'complete1', 'boss', 'sessionEnd', 'certificate', 'room', 'profile', 'stickers', //
     'gate', 'dashboard', 'course', 'settings', 'paywall',
   ];
@@ -344,22 +438,10 @@ abstract final class AppFlowJump {
     switch (key) {
       case 'welcome':
         nav.push(AppFlow.welcomeRoutePage());
-      case 'signup':
-        nav.push(AppFlow._signUp());
-      case 'signupEmail':
-        push((c) => SignUpScreen(emailOpen: true, onBack: () => Navigator.of(c).pop(), onDone: () => AppFlow.toWhos(c), onLogIn: (_) {}, onTerms: () {}));
-      case 'login':
-        nav.push(AppFlow._logIn());
-      case 'forgot':
-      case 'forgotSent':
-        push(
-          (c) => ForgotPasswordScreen(
-            email: key == 'forgotSent' ? 'ammi@gmail.com' : '',
-            sent: key == 'forgotSent',
-            onBack: () => Navigator.of(c).pop(),
-            onLogIn: (_) => Navigator.of(c).pop(),
-          ),
-        );
+      case 'signIn':
+        showSignInSheet(context, onGoogle: () async => false);
+      case 'offline':
+        push((c) => CourseOffline(onRetry: () => Navigator.of(c).pop()));
       case 'whos':
         AppFlow.toWhos(context);
       case 'onb':
@@ -406,10 +488,12 @@ abstract final class AppFlowJump {
 class LikhoNavObserver extends NavigatorObserver {
   final List<Route<dynamic>> _routes = [];
 
-  bool has(String name) => _routes.any((r) => r.settings.name == name);
+  bool has(String name) => _routes.any((r) => r.settings.name == name && r.isActive);
 
   @override
-  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) => _routes.add(route);
+  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) => _routes
+    ..removeWhere((r) => r.navigator == null) // routes of a Navigator that is gone
+    ..add(route);
 
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) => _routes.remove(route);

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'data/family.dart';
 import 'design/tokens.dart';
 import 'dev/dev_launch.dart';
 import 'feedback/app_feedback.dart';
@@ -10,6 +11,7 @@ import 'feedback/haptics.dart';
 import 'feedback/sfx.dart';
 import 'feedback/sound_engine.dart';
 import 'screens/app_flow.dart';
+import 'screens/app_shell.dart';
 import 'screens/splash_screen.dart';
 
 Future<void> main() async {
@@ -25,6 +27,8 @@ Future<void> main() async {
     overrides: [
       soundEngineProvider.overrideWithValue(sound),
       hapticsProvider.overrideWithValue(const SystemHaptics()),
+      // QA shortcuts show the sample family and never touch the account
+      if (devLevel != null || devScreen != null) familyProvider.overrideWith(DemoFamilyNotifier.new),
     ],
     child: LikhoApp(devLevel: devLevel, devScreen: devScreen),
   ));
@@ -42,14 +46,16 @@ class LikhoApp extends StatelessWidget {
       title: 'Likho',
       debugShowCheckedModeBanner: false,
       theme: likhoTheme(),
+      navigatorKey: AppFlow.navigatorKey,
       navigatorObservers: [AppFlow.observer],
+      builder: (context, child) => AppShell(navigatorKey: AppFlow.navigatorKey, child: child!),
       home: Builder(
         builder: (context) => devLevel != null
             ? DevLevelLauncher(level: devLevel!)
             : devScreen != null
                 ? DevScreenLauncher(screen: devScreen!)
-                // Splash -> Welcome (sign up / login / try first), as in the prototype
-                : SplashScreen(onDone: () => Navigator.of(context).pushReplacement(AppFlow.welcomeRoutePage())),
+                // Splash -> Who's playing when signed in, otherwise Welcome
+                : SplashScreen(onDone: () => AppFlow.afterSplash(context)),
       ),
     );
   }

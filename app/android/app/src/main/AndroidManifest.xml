@@ -1,4 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Likho API: sign-in, saving progress, the course -->
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:label="likho"
         android:name="${applicationName}"
