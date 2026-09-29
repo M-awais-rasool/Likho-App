@@ -1,6 +1,11 @@
-// Converts the prototype's level data (prototype_data.js = window.LIKHO from
-// export/Likho-Prototype.html) into assets/data/course.json, shaped like the
-// future course API response. Run: node tool/course_export/export_course.js
+// Imports the prototype's level data (prototype_data.js = window.LIKHO from
+// design/prototype/Likho-Prototype.html) into the content folder, one file per
+// world and per level (see backend/content/README.md):
+//
+//   node backend/tools/prototype-import/import.js
+//
+// It replaces content/courses/english-handwriting/ completely. Once the course
+// is edited by hand, edit the JSON files instead of re-running this.
 const fs = require('fs');
 const path = require('path');
 global.window = {};
@@ -83,20 +88,45 @@ const levels = LEVELS.map((lv, n) => {
   };
 });
 
-const out = {
-  schemaVersion: 1,
-  courseId: 'likho-english-v1',
-  updatedAt: '2026-09-27T00:00:00Z',
-  worlds,
-  levels,
-  glyphs: GUIDES,
+// ---------------------------------------------------------------- write
+
+const COURSE_ID = 'english-handwriting';
+const root = path.join(__dirname, '../../content');
+const dir = path.join(root, 'courses', COURSE_ID);
+const slug = s => s.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+// "$schema" lets editors check each file; the API strips it
+const schema = (file, name) => path.relative(path.dirname(file), path.join(root, 'schema', `${name}.schema.json`));
+const write = (file, name, data) => {
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, JSON.stringify({ $schema: schema(file, name), ...data }, null, 2) + '\n');
 };
-const dest = path.join(__dirname, '..', '..', 'assets', 'data', 'course.json');
-fs.writeFileSync(dest, JSON.stringify(out, null, 2) + '\n');
+const levelFile = ({ worldId, placement, ...level }) => level; // both come from where the file is
+
+fs.rmSync(dir, { recursive: true, force: true });
+write(path.join(dir, 'course.json'), 'course', {
+  id: COURSE_ID,
+  title: 'English Handwriting',
+  description: 'Letters, words and sentences for 5 to 8 year olds: from tracing capitals to writing a story.',
+  locale: 'en',
+  ages: { min: 5, max: 8 },
+  status: 'published',
+  schemaVersion: 1,
+  updatedAt: '2026-09-27T00:00:00Z',
+});
+write(path.join(dir, 'glyphs.json'), 'glyphs', { glyphs: GUIDES });
+write(path.join(dir, 'placement.json'), 'level', levelFile(levels[0]));
+for (const w of worlds) {
+  const wdir = path.join(dir, 'worlds', `${pad2(w.order)}-${slug(w.name)}`);
+  write(path.join(wdir, 'world.json'), 'world', w);
+  for (const l of levels.filter(l => l.worldId === w.id)) {
+    write(path.join(wdir, 'levels', `${pad2(l.number)}-${slug(l.name)}.json`), 'level', levelFile(l));
+  }
+}
+
 const rounds = levels.reduce((a, l) => a + l.rounds.length, 0);
 const types = {};
 levels.forEach(l => l.rounds.forEach(r => (types[r.type] = (types[r.type] || 0) + 1)));
 const pics = new Set();
 levels.forEach(l => { if (l.intro.picture) pics.add(l.intro.picture.key); l.rounds.forEach(r => { if (r.card && r.card.picture) pics.add(r.card.picture.key); (r.pick ? r.pick.options : []).forEach(o => o.picture && pics.add(o.picture.key)); }); });
-console.log(`wrote ${dest}: ${worlds.length} worlds, ${levels.length} levels, ${rounds} rounds`, types, `${pics.size} picture keys`);
+console.log(`wrote ${path.relative(process.cwd(), dir)}: ${worlds.length} worlds, ${levels.length} levels, ${rounds} rounds`, types, `${pics.size} picture keys`);
 fs.writeFileSync(path.join(__dirname, 'picture_keys.txt'), [...pics].sort().join('\n') + '\n');
