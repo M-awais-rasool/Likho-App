@@ -133,6 +133,10 @@ class AppFeedback {
 
   void catchLetter() => _go(Sfx.catchLetter, HapticCue.tick);
 
+  /// The finger slid out of the tracing lane: a light bump, no sound (it
+  /// happens often and is not a mistake yet).
+  void offPath() => _go(null, HapticCue.tick);
+
   // ---------------------------------------------------------- splash
   void splashLand() => _go(Sfx.splashLand, HapticCue.land);
 

@@ -331,6 +331,12 @@ abstract final class GameColors {
   static const guideRoad = Color(0xFFC9CDD3);
   static const trackRail = Color(0xFF9A7652);
 
+  // tracing lane: the area ink may go in (trace / dots rounds)
+  static const lanePaper = Color(0x2EFFC83D); // primary .18
+  static const laneSand = Color(0x1F9C7446); // sand ink .12
+  static const laneTrack = Color(0x40D9B892); // track guide .25
+  static const laneRoad = Color(0x4DC9CDD3); // road guide .3
+
   // pick shapes
   static const bubbleEdge = Color(0x99BDE8E4);
   static const bubbleShadow = Color(0x2E157C77);

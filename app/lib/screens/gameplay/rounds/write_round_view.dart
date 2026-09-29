@@ -6,13 +6,19 @@ import 'package:path_drawing/path_drawing.dart';
 
 import '../../../data/models/course_models.dart';
 import '../../../design/tokens.dart';
+import '../../../feedback/app_feedback.dart';
 import '../../../game/level_session.dart';
+import '../../../game/writing/trace_lane.dart';
 import '../../../game/writing/writing_judge.dart';
 import '../widgets/game_buttons.dart';
 import 'pick_round_view.dart';
 
 /// Holds the child's strokes for one writing round; shared by the pad and
 /// the eraser / "Ho gaya" bar.
+///
+/// Tracing rounds (trace, dots) have a lane around the letter: ink is only
+/// drawn inside it. Leaving the lane ends the stroke; coming back starts a
+/// new one.
 class WritePadController extends ChangeNotifier {
   WritePadController({required this.round, required this.guides});
 
@@ -26,30 +32,73 @@ class WritePadController extends ChangeNotifier {
   bool penUsed = false; // the follower shows after the first touch
   Offset? pen;
 
+  /// Called when the finger leaves the lane (or touches down outside it).
+  VoidCallback? onLeaveLane;
+
+  /// Pad clock time of the last time the finger left the lane (the lane
+  /// flashes), or null.
+  double? leftLaneAt;
+
+  bool _drawing = false; // the finger is down and inside the lane
+  TraceLane? _lane;
+  Size _laneSize = Size.zero;
+
+  /// Where ink may go on this pad, or null when anywhere is fine.
+  TraceLane? get lane {
+    if (guides.isEmpty || padSize.isEmpty) return null;
+    if (_lane == null || _laneSize != padSize) {
+      _lane = PadGeometry(padSize).lane(guides);
+      _laneSize = padSize;
+    }
+    return _lane;
+  }
+
   void start(Offset p) {
+    final l = lane;
+    if (l != null && !l.contains(p)) {
+      _drawing = false;
+      onLeaveLane?.call();
+      return;
+    }
     strokes.add([p]);
+    _drawing = true;
     pen = p;
     penUsed = true;
     notifyListeners();
   }
 
-  void extend(Offset p) {
-    if (strokes.isEmpty) return;
-    strokes.last.add(p);
+  /// The finger moved to [p]; false when nothing was drawn (outside the
+  /// lane).
+  bool extend(Offset p) {
+    final l = lane;
+    if (l == null) {
+      if (strokes.isEmpty) return false;
+      strokes.last.add(p);
+    } else if (_drawing && l.containsMove(strokes.last.last, p)) {
+      strokes.last.add(p);
+    } else {
+      if (_drawing) onLeaveLane?.call();
+      _drawing = l.contains(p);
+      if (!_drawing) return false;
+      strokes.add([p]); // back in the lane: a new stroke
+    }
     pen = p;
+    penUsed = true;
     notifyListeners();
+    return true;
   }
+
+  /// Finger lifted.
+  void end() => _drawing = false;
 
   void erase() {
     strokes.clear();
+    _drawing = false;
     penUsed = false;
     notifyListeners();
   }
 
-  WritingVerdict judge() {
-    final geo = PadGeometry(padSize);
-    return WritingJudge.judge(round, strokes, [for (final g in guides) geo.padPath(g)]);
-  }
+  WritingVerdict judge() => WritingJudge.judge(round, strokes, lane);
 
   /// Guide paths for [round] from the course's glyph table.
   static List<Path> guidesFor(WriteRound round, Map<String, List<String>> glyphs) {
@@ -94,25 +143,54 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
   final _sparks = <_Spark>[];
   final _rnd = math.Random();
   late final AnimationController _sparkClock = AnimationController(vsync: this, duration: const Duration(days: 1))..forward();
+  int? _pointer; // the finger that writes (a second finger or palm is ignored)
+
+  @override
+  void initState() {
+    super.initState();
+    widget.controller.onLeaveLane = _leftLane;
+  }
+
+  @override
+  void didUpdateWidget(WritePad old) {
+    super.didUpdateWidget(old);
+    if (old.controller != widget.controller) {
+      old.controller.onLeaveLane = null;
+      widget.controller.onLeaveLane = _leftLane;
+    }
+  }
 
   @override
   void dispose() {
+    if (widget.controller.onLeaveLane == _leftLane) widget.controller.onLeaveLane = null;
     _sparkClock.dispose();
     super.dispose();
+  }
+
+  void _leftLane() {
+    widget.controller.leftLaneAt = widget.time.value;
+    AppFeedback.of(context).offPath();
   }
 
   double get _now => _sparkClock.lastElapsedDuration == null ? 0 : _sparkClock.lastElapsedDuration!.inMicroseconds / 1e6;
 
   void _down(PointerDownEvent e) {
-    if (widget.state.correct) return;
+    if (widget.state.correct || _pointer != null) return;
+    _pointer = e.pointer;
     widget.controller.start(e.localPosition);
     widget.onPen(e.position);
   }
 
+  void _up(PointerEvent e) {
+    if (e.pointer != _pointer) return;
+    _pointer = null;
+    widget.controller.end();
+  }
+
   void _move(PointerMoveEvent e) {
-    if (widget.state.correct || widget.controller.strokes.isEmpty) return;
-    widget.controller.extend(e.localPosition);
+    if (widget.state.correct || e.pointer != _pointer) return;
     widget.onPen(e.position);
+    if (!widget.controller.extend(e.localPosition)) return; // outside the lane: no ink, no sparks
     if (_rnd.nextDouble() < .35) {
       _sparks.add(_Spark(e.localPosition, GameColors.sparks[_rnd.nextInt(4)], (_rnd.nextDouble() - .5) * 40, -10 - _rnd.nextDouble() * 30, _now));
       _sparks.removeWhere((s) => _now - s.born > .6);
@@ -145,6 +223,8 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
               behavior: HitTestBehavior.opaque,
               onPointerDown: _down,
               onPointerMove: _move,
+              onPointerUp: _up,
+              onPointerCancel: _up,
               child: Stack(
                 children: [
                   Positioned.fill(
@@ -160,6 +240,7 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
                           raw: raw,
                           hint: widget.state.hint,
                           time: widget.time,
+                          controller: widget.controller,
                         ),
                       ),
                     ),
@@ -229,8 +310,15 @@ class _PadBackground extends CustomPainter {
 
 /// Ruled lines, guide strokes, stroke-start badges, dots and the hint stroke.
 class _GuidePainter extends CustomPainter {
-  _GuidePainter({required this.mode, required this.pad, required this.guides, required this.raw, required this.hint, required this.time})
-    : super(repaint: (hint || (mode == WriteMode.trace && guides.isNotEmpty)) ? time : null);
+  _GuidePainter({
+    required this.mode,
+    required this.pad,
+    required this.guides,
+    required this.raw,
+    required this.hint,
+    required this.time,
+    required this.controller,
+  }) : super(repaint: (hint || guides.isNotEmpty) ? time : null);
 
   final WriteMode mode;
   final String pad;
@@ -238,6 +326,10 @@ class _GuidePainter extends CustomPainter {
   final List<String> raw;
   final bool hint;
   final ValueNotifier<double> time;
+  final WritePadController controller;
+
+  /// How long the lane flashes after the finger slips out (seconds).
+  static const laneFlash = .45;
 
   /// OPEN QUESTION: the prototype's code puts stroke numbers in the start
   /// badges and next to connect-the-dots points, but its template wraps them
@@ -275,6 +367,26 @@ class _GuidePainter extends CustomPainter {
     canvas.save();
     geo.apply(canvas);
     final t = time.value;
+    if (guides.isNotEmpty) {
+      // the lane: where ink may go; it flashes when the finger slips out
+      final left = controller.leftLaneAt;
+      final flash = left == null ? 0.0 : (1 - (t - left) / laneFlash).clamp(0.0, 1.0);
+      final base = switch (pad) {
+        'track' => GameColors.laneTrack,
+        'road' => GameColors.laneRoad,
+        'sand' => GameColors.laneSand,
+        _ => GameColors.lanePaper,
+      };
+      final lane = Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeCap = StrokeCap.round
+        ..strokeJoin = StrokeJoin.round
+        ..strokeWidth = WritingJudge.laneWidth
+        ..color = Color.lerp(base, LikhoColors.hint.withValues(alpha: .35), flash)!;
+      for (final g in guides) {
+        canvas.drawPath(g, lane);
+      }
+    }
     if (mode == WriteMode.trace && guides.isNotEmpty) {
       final color = switch (pad) {
         'track' => GameColors.guideTrack,
