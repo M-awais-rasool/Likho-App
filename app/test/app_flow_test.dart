@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:likho/data/course_providers.dart';
+import 'package:likho/data/family.dart';
 import 'package:likho/dev/dev_launch.dart';
 import 'package:likho/screens/gameplay/gameplay_screen.dart';
 
@@ -13,7 +14,7 @@ void main() {
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.reset);
     await tester.pumpWidget(ProviderScope(
-      overrides: [courseProvider.overrideWith((ref) async => testCourse)],
+      overrides: [courseProvider.overrideWith((ref) async => testCourse), familyProvider.overrideWith(DemoFamilyNotifier.new)],
       child: const MaterialApp(home: DevLevelLauncher(level: 5)),
     ));
     for (var i = 0; i < 20; i++) {

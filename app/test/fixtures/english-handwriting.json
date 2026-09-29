@@ -1,92 +1,86 @@
 {
   "schemaVersion": 1,
-  "courseId": "likho-english-v1",
+  "courseId": "english-handwriting",
+  "title": "English Handwriting",
   "updatedAt": "2026-09-27T00:00:00Z",
   "worlds": [
     {
-      "id": "world-1",
-      "order": 1,
-      "name": "Letter Land",
-      "skill": "Capital letters",
-      "icon": "grass",
-      "themeId": "letterLand",
       "boss": {
         "id": "snail",
         "name": "Sust Ghonga"
-      }
+      },
+      "icon": "grass",
+      "id": "world-1",
+      "name": "Letter Land",
+      "order": 1,
+      "skill": "Capital letters",
+      "themeId": "letterLand"
     },
     {
-      "id": "world-2",
-      "order": 2,
-      "name": "Small Letter Cove",
-      "skill": "Small letters",
-      "icon": "waves",
-      "themeId": "smallLetterCove",
       "boss": {
         "id": "fish",
         "name": "Neend wali Machli"
-      }
+      },
+      "icon": "waves",
+      "id": "world-2",
+      "name": "Small Letter Cove",
+      "order": 2,
+      "skill": "Small letters",
+      "themeId": "smallLetterCove"
     },
     {
-      "id": "world-3",
-      "order": 3,
-      "name": "Phonics Forest",
-      "skill": "Sounds & rhymes",
-      "icon": "forest",
-      "themeId": "phonicsForest",
       "boss": {
         "id": "bear",
         "name": "Sota Bhaalu"
-      }
+      },
+      "icon": "forest",
+      "id": "world-3",
+      "name": "Phonics Forest",
+      "order": 3,
+      "skill": "Sounds \u0026 rhymes",
+      "themeId": "phonicsForest"
     },
     {
-      "id": "world-4",
-      "order": 4,
-      "name": "Word Town",
-      "skill": "Vocabulary",
-      "icon": "location_city",
-      "themeId": "wordTown",
       "boss": {
         "id": "robotBus",
         "name": "Robot-Bus"
-      }
+      },
+      "icon": "location_city",
+      "id": "world-4",
+      "name": "Word Town",
+      "order": 4,
+      "skill": "Vocabulary",
+      "themeId": "wordTown"
     },
     {
-      "id": "world-5",
-      "order": 5,
-      "name": "Sentence Sky",
-      "skill": "Sentences",
-      "icon": "cloud",
-      "themeId": "sentenceSky",
       "boss": {
         "id": "cloud",
         "name": "Sota Baadal"
-      }
+      },
+      "icon": "cloud",
+      "id": "world-5",
+      "name": "Sentence Sky",
+      "order": 5,
+      "skill": "Sentences",
+      "themeId": "sentenceSky"
     },
     {
-      "id": "world-6",
-      "order": 6,
-      "name": "Story Space",
-      "skill": "Reading & speaking",
-      "icon": "rocket_launch",
-      "themeId": "storySpace",
       "boss": {
         "id": "moon",
         "name": "Neend mein Chaand"
-      }
+      },
+      "icon": "rocket_launch",
+      "id": "world-6",
+      "name": "Story Space",
+      "order": 6,
+      "skill": "Reading \u0026 speaking",
+      "themeId": "storySpace"
     }
   ],
   "levels": [
     {
-      "id": "placement",
-      "number": 0,
-      "worldId": null,
-      "placement": true,
-      "name": "Warm-up",
-      "skill": "Placement",
       "icon": "self_improvement",
-      "isBoss": false,
-      "requiresSubscription": false,
+      "id": "placement",
       "intro": {
         "text": "A",
         "word": "warm-up",
@@ -96,6 +90,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Warm-up",
+      "number": 0,
+      "placement": true,
       "presentation": {
         "shape": "balloon",
         "slot": null,
@@ -103,6 +101,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": false,
       "rounds": [
         {
           "id": "placement-r1",
@@ -199,18 +198,13 @@
             "story": false
           }
         }
-      ]
+      ],
+      "skill": "Placement",
+      "worldId": null
     },
     {
-      "id": "level-01",
-      "number": 1,
-      "worldId": "world-1",
-      "placement": false,
-      "name": "Balloon Pop",
-      "skill": "Letter names",
       "icon": "celebration",
-      "isBoss": false,
-      "requiresSubscription": false,
+      "id": "level-01",
       "intro": {
         "text": "B",
         "word": "balloon",
@@ -220,6 +214,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Balloon Pop",
+      "number": 1,
+      "placement": false,
       "presentation": {
         "shape": "balloon",
         "slot": null,
@@ -227,6 +225,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": false,
       "rounds": [
         {
           "id": "level-01-r1",
@@ -498,18 +497,13 @@
             "fixCapital": false
           }
         }
-      ]
+      ],
+      "skill": "Letter names",
+      "worldId": "world-1"
     },
     {
-      "id": "level-02",
-      "number": 2,
-      "worldId": "world-1",
-      "placement": false,
-      "name": "Alphabet Train",
-      "skill": "Alphabet order",
       "icon": "train",
-      "isBoss": false,
-      "requiresSubscription": false,
+      "id": "level-02",
       "intro": {
         "text": "ABC",
         "word": "train",
@@ -519,6 +513,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Alphabet Train",
+      "number": 2,
+      "placement": false,
       "presentation": {
         "shape": null,
         "slot": "wagon",
@@ -526,6 +524,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": false,
       "rounds": [
         {
           "id": "level-02-r1",
@@ -650,18 +649,13 @@
             ]
           }
         }
-      ]
+      ],
+      "skill": "Alphabet order",
+      "worldId": "world-1"
     },
     {
-      "id": "level-03",
-      "number": 3,
-      "worldId": "world-1",
-      "placement": false,
-      "name": "Straight Tracks",
-      "skill": "Straight lines",
       "icon": "directions_railway",
-      "isBoss": false,
-      "requiresSubscription": false,
+      "id": "level-03",
       "intro": {
         "text": "L",
         "word": "lion",
@@ -671,6 +665,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Straight Tracks",
+      "number": 3,
+      "placement": false,
       "presentation": {
         "shape": null,
         "slot": null,
@@ -678,6 +676,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": false,
       "rounds": [
         {
           "id": "level-03-r1",
@@ -809,18 +808,13 @@
             "story": false
           }
         }
-      ]
+      ],
+      "skill": "Straight lines",
+      "worldId": "world-1"
     },
     {
-      "id": "level-04",
-      "number": 4,
-      "worldId": "world-1",
-      "placement": false,
-      "name": "Curvy Roads",
-      "skill": "Round letters",
       "icon": "route",
-      "isBoss": false,
-      "requiresSubscription": false,
+      "id": "level-04",
       "intro": {
         "text": "C",
         "word": "car",
@@ -830,6 +824,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Curvy Roads",
+      "number": 4,
+      "placement": false,
       "presentation": {
         "shape": null,
         "slot": null,
@@ -837,6 +835,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": false,
       "rounds": [
         {
           "id": "level-04-r1",
@@ -968,18 +967,13 @@
             "story": false
           }
         }
-      ]
+      ],
+      "skill": "Round letters",
+      "worldId": "world-1"
     },
     {
-      "id": "level-05",
-      "number": 5,
-      "worldId": "world-1",
-      "placement": false,
-      "name": "Sound Fishing",
-      "skill": "Letter sounds",
       "icon": "phishing",
-      "isBoss": false,
-      "requiresSubscription": false,
+      "id": "level-05",
       "intro": {
         "text": "F",
         "word": "fish",
@@ -989,6 +983,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Sound Fishing",
+      "number": 5,
+      "placement": false,
       "presentation": {
         "shape": "fish",
         "slot": null,
@@ -996,6 +994,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": false,
       "rounds": [
         {
           "id": "level-05-r1",
@@ -1232,18 +1231,13 @@
             "fixCapital": false
           }
         }
-      ]
+      ],
+      "skill": "Letter sounds",
+      "worldId": "world-1"
     },
     {
-      "id": "level-06",
-      "number": 6,
-      "worldId": "world-1",
-      "placement": false,
-      "name": "Wake the Snail",
-      "skill": "Boss · capitals",
       "icon": "bedtime",
-      "isBoss": true,
-      "requiresSubscription": false,
+      "id": "level-06",
       "intro": {
         "text": "A B C",
         "word": "snail",
@@ -1253,6 +1247,10 @@
           "url": null
         }
       },
+      "isBoss": true,
+      "name": "Wake the Snail",
+      "number": 6,
+      "placement": false,
       "presentation": {
         "shape": null,
         "slot": null,
@@ -1260,6 +1258,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": false,
       "rounds": [
         {
           "id": "level-06-r1",
@@ -1371,18 +1370,13 @@
             "story": false
           }
         }
-      ]
+      ],
+      "skill": "Boss · capitals",
+      "worldId": "world-1"
     },
     {
-      "id": "level-07",
-      "number": 7,
-      "worldId": "world-2",
-      "placement": false,
-      "name": "Shell Pairs",
-      "skill": "Capital + small",
       "icon": "spa",
-      "isBoss": false,
-      "requiresSubscription": false,
+      "id": "level-07",
       "intro": {
         "text": "Aa",
         "word": "shell",
@@ -1392,6 +1386,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Shell Pairs",
+      "number": 7,
+      "placement": false,
       "presentation": {
         "shape": "shell",
         "slot": null,
@@ -1399,6 +1397,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": false,
       "rounds": [
         {
           "id": "level-07-r1",
@@ -1635,18 +1634,13 @@
             "fixCapital": false
           }
         }
-      ]
+      ],
+      "skill": "Capital + small",
+      "worldId": "world-2"
     },
     {
-      "id": "level-08",
-      "number": 8,
-      "worldId": "world-2",
-      "placement": false,
-      "name": "Sand Writing",
-      "skill": "Small letters",
       "icon": "beach_access",
-      "isBoss": false,
-      "requiresSubscription": false,
+      "id": "level-08",
       "intro": {
         "text": "a",
         "word": "sand",
@@ -1656,6 +1650,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Sand Writing",
+      "number": 8,
+      "placement": false,
       "presentation": {
         "shape": null,
         "slot": null,
@@ -1663,6 +1661,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": false,
       "rounds": [
         {
           "id": "level-08-r1",
@@ -1794,18 +1793,13 @@
             "story": false
           }
         }
-      ]
+      ],
+      "skill": "Small letters",
+      "worldId": "world-2"
     },
     {
-      "id": "level-09",
-      "number": 9,
-      "worldId": "world-2",
-      "placement": false,
-      "name": "b or d?",
-      "skill": "Tricky letters",
       "icon": "bubble_chart",
-      "isBoss": false,
-      "requiresSubscription": false,
+      "id": "level-09",
       "intro": {
         "text": "b d",
         "word": "bubble",
@@ -1815,6 +1809,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "b or d?",
+      "number": 9,
+      "placement": false,
       "presentation": {
         "shape": "bubble",
         "slot": null,
@@ -1822,6 +1820,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": false,
       "rounds": [
         {
           "id": "level-09-r1",
@@ -2093,18 +2092,13 @@
             "fixCapital": false
           }
         }
-      ]
+      ],
+      "skill": "Tricky letters",
+      "worldId": "world-2"
     },
     {
-      "id": "level-10",
-      "number": 10,
-      "worldId": "world-2",
-      "placement": false,
-      "name": "Crab Sort",
-      "skill": "Letter shapes",
       "icon": "shopping_basket",
-      "isBoss": false,
-      "requiresSubscription": false,
+      "id": "level-10",
       "intro": {
         "text": "h",
         "word": "crab",
@@ -2114,6 +2108,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Crab Sort",
+      "number": 10,
+      "placement": false,
       "presentation": {
         "shape": "basket",
         "slot": null,
@@ -2121,6 +2119,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": false,
       "rounds": [
         {
           "id": "level-10-r1",
@@ -2357,18 +2356,13 @@
             "fixCapital": false
           }
         }
-      ]
+      ],
+      "skill": "Letter shapes",
+      "worldId": "world-2"
     },
     {
-      "id": "level-11",
-      "number": 11,
-      "worldId": "world-2",
-      "placement": false,
-      "name": "Bottle Message",
-      "skill": "Alphabet gaps",
       "icon": "mail",
-      "isBoss": false,
-      "requiresSubscription": false,
+      "id": "level-11",
       "intro": {
         "text": "a b c",
         "word": "bottle",
@@ -2378,6 +2372,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Bottle Message",
+      "number": 11,
+      "placement": false,
       "presentation": {
         "shape": null,
         "slot": null,
@@ -2385,6 +2383,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": false,
       "rounds": [
         {
           "id": "level-11-r1",
@@ -2516,18 +2515,13 @@
             "story": false
           }
         }
-      ]
+      ],
+      "skill": "Alphabet gaps",
+      "worldId": "world-2"
     },
     {
-      "id": "level-12",
-      "number": 12,
-      "worldId": "world-2",
-      "placement": false,
-      "name": "Wake the Fish",
-      "skill": "Boss · small letters",
       "icon": "bedtime",
-      "isBoss": true,
-      "requiresSubscription": false,
+      "id": "level-12",
       "intro": {
         "text": "a m s",
         "word": "fish",
@@ -2537,6 +2531,10 @@
           "url": null
         }
       },
+      "isBoss": true,
+      "name": "Wake the Fish",
+      "number": 12,
+      "placement": false,
       "presentation": {
         "shape": null,
         "slot": null,
@@ -2544,6 +2542,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": false,
       "rounds": [
         {
           "id": "level-12-r1",
@@ -2655,18 +2654,13 @@
             "story": false
           }
         }
-      ]
+      ],
+      "skill": "Boss · small letters",
+      "worldId": "world-2"
     },
     {
-      "id": "level-13",
-      "number": 13,
-      "worldId": "world-3",
-      "placement": false,
-      "name": "Mushroom Sounds",
-      "skill": "First sounds",
       "icon": "forest",
-      "isBoss": false,
-      "requiresSubscription": true,
+      "id": "level-13",
       "intro": {
         "text": "a",
         "word": "apple",
@@ -2676,6 +2670,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Mushroom Sounds",
+      "number": 13,
+      "placement": false,
       "presentation": {
         "shape": "mushroom",
         "slot": null,
@@ -2683,6 +2681,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-13-r1",
@@ -2974,18 +2973,13 @@
             "fixCapital": false
           }
         }
-      ]
+      ],
+      "skill": "First sounds",
+      "worldId": "world-3"
     },
     {
-      "id": "level-14",
-      "number": 14,
-      "worldId": "world-3",
-      "placement": false,
-      "name": "Rhyme Frogs",
-      "skill": "Rhyming",
       "icon": "pets",
-      "isBoss": false,
-      "requiresSubscription": true,
+      "id": "level-14",
       "intro": {
         "text": "-at",
         "word": "frog",
@@ -2995,6 +2989,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Rhyme Frogs",
+      "number": 14,
+      "placement": false,
       "presentation": {
         "shape": "pad",
         "slot": null,
@@ -3002,6 +3000,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-14-r1",
@@ -3318,18 +3317,13 @@
             "fixCapital": false
           }
         }
-      ]
+      ],
+      "skill": "Rhyming",
+      "worldId": "world-3"
     },
     {
-      "id": "level-15",
-      "number": 15,
-      "worldId": "world-3",
-      "placement": false,
-      "name": "Blend Bridge",
-      "skill": "Blending",
       "icon": "linear_scale",
-      "isBoss": false,
-      "requiresSubscription": true,
+      "id": "level-15",
       "intro": {
         "text": "c-a-t",
         "word": "bridge",
@@ -3339,6 +3333,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Blend Bridge",
+      "number": 15,
+      "placement": false,
       "presentation": {
         "shape": null,
         "slot": "plank",
@@ -3346,6 +3344,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-15-r1",
@@ -3467,18 +3466,13 @@
             ]
           }
         }
-      ]
+      ],
+      "skill": "Blending",
+      "worldId": "world-3"
     },
     {
-      "id": "level-16",
-      "number": 16,
-      "worldId": "world-3",
-      "placement": false,
-      "name": "Vowel Owl",
-      "skill": "Vowels",
       "icon": "visibility",
-      "isBoss": false,
-      "requiresSubscription": true,
+      "id": "level-16",
       "intro": {
         "text": "a e i",
         "word": "owl",
@@ -3488,6 +3482,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Vowel Owl",
+      "number": 16,
+      "placement": false,
       "presentation": {
         "shape": null,
         "slot": null,
@@ -3495,6 +3493,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-16-r1",
@@ -3626,18 +3625,13 @@
             "story": false
           }
         }
-      ]
+      ],
+      "skill": "Vowels",
+      "worldId": "world-3"
     },
     {
-      "id": "level-17",
-      "number": 17,
-      "worldId": "world-3",
-      "placement": false,
-      "name": "Firefly Claps",
-      "skill": "Syllables",
       "icon": "emoji_objects",
-      "isBoss": false,
-      "requiresSubscription": true,
+      "id": "level-17",
       "intro": {
         "text": "ba·na·na",
         "word": "firefly",
@@ -3647,6 +3641,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Firefly Claps",
+      "number": 17,
+      "placement": false,
       "presentation": {
         "shape": "jar",
         "slot": null,
@@ -3654,6 +3652,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-17-r1",
@@ -3910,18 +3909,13 @@
             "fixCapital": false
           }
         }
-      ]
+      ],
+      "skill": "Syllables",
+      "worldId": "world-3"
     },
     {
-      "id": "level-18",
-      "number": 18,
-      "worldId": "world-3",
-      "placement": false,
-      "name": "Wake the Bear",
-      "skill": "Boss · CVC words",
       "icon": "bedtime",
-      "isBoss": true,
-      "requiresSubscription": true,
+      "id": "level-18",
       "intro": {
         "text": "dog",
         "word": "bear",
@@ -3931,6 +3925,10 @@
           "url": null
         }
       },
+      "isBoss": true,
+      "name": "Wake the Bear",
+      "number": 18,
+      "placement": false,
       "presentation": {
         "shape": null,
         "slot": null,
@@ -3938,6 +3936,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-18-r1",
@@ -4069,18 +4068,13 @@
             "story": false
           }
         }
-      ]
+      ],
+      "skill": "Boss · CVC words",
+      "worldId": "world-3"
     },
     {
-      "id": "level-19",
-      "number": 19,
-      "worldId": "world-4",
-      "placement": false,
-      "name": "Paint Shop",
-      "skill": "Colors",
       "icon": "format_paint",
-      "isBoss": false,
-      "requiresSubscription": true,
+      "id": "level-19",
       "intro": {
         "text": "red",
         "word": "paint",
@@ -4090,6 +4084,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Paint Shop",
+      "number": 19,
+      "placement": false,
       "presentation": {
         "shape": "bucket",
         "slot": null,
@@ -4097,6 +4095,7 @@
         "layout": null,
         "stage": "house"
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-19-r1",
@@ -4333,18 +4332,13 @@
             "fixCapital": false
           }
         }
-      ]
+      ],
+      "skill": "Colors",
+      "worldId": "world-4"
     },
     {
-      "id": "level-20",
-      "number": 20,
-      "worldId": "world-4",
-      "placement": false,
-      "name": "Zoo Bus",
-      "skill": "Animals",
       "icon": "directions_bus",
-      "isBoss": false,
-      "requiresSubscription": true,
+      "id": "level-20",
       "intro": {
         "text": "cow",
         "word": "zoo bus",
@@ -4354,6 +4348,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Zoo Bus",
+      "number": 20,
+      "placement": false,
       "presentation": {
         "shape": "card",
         "slot": null,
@@ -4361,6 +4359,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-20-r1",
@@ -4657,18 +4656,13 @@
             "fixCapital": false
           }
         }
-      ]
+      ],
+      "skill": "Animals",
+      "worldId": "world-4"
     },
     {
-      "id": "level-21",
-      "number": 21,
-      "worldId": "world-4",
-      "placement": false,
-      "name": "Doctor Pencil",
-      "skill": "Body parts",
       "icon": "medical_services",
-      "isBoss": false,
-      "requiresSubscription": true,
+      "id": "level-21",
       "intro": {
         "text": "nose",
         "word": "doctor",
@@ -4678,6 +4672,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Doctor Pencil",
+      "number": 21,
+      "placement": false,
       "presentation": {
         "shape": null,
         "slot": null,
@@ -4685,6 +4683,7 @@
         "layout": "patient",
         "stage": null
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-21-r1",
@@ -4991,18 +4990,13 @@
             "fixCapital": false
           }
         }
-      ]
+      ],
+      "skill": "Body parts",
+      "worldId": "world-4"
     },
     {
-      "id": "level-22",
-      "number": 22,
-      "worldId": "world-4",
-      "placement": false,
-      "name": "Cupcake Count",
-      "skill": "Numbers",
       "icon": "cake",
-      "isBoss": false,
-      "requiresSubscription": true,
+      "id": "level-22",
       "intro": {
         "text": "1 2 3",
         "word": "cupcake",
@@ -5012,6 +5006,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Cupcake Count",
+      "number": 22,
+      "placement": false,
       "presentation": {
         "shape": "card",
         "slot": null,
@@ -5019,6 +5017,7 @@
         "layout": null,
         "stage": "count"
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-22-r1",
@@ -5255,18 +5254,13 @@
             "fixCapital": false
           }
         }
-      ]
+      ],
+      "skill": "Numbers",
+      "worldId": "world-4"
     },
     {
-      "id": "level-23",
-      "number": 23,
-      "worldId": "world-4",
-      "placement": false,
-      "name": "Family Album",
-      "skill": "Family words",
       "icon": "photo_library",
-      "isBoss": false,
-      "requiresSubscription": true,
+      "id": "level-23",
       "intro": {
         "text": "mum",
         "word": "family",
@@ -5276,6 +5270,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Family Album",
+      "number": 23,
+      "placement": false,
       "presentation": {
         "shape": "card",
         "slot": null,
@@ -5283,6 +5281,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-23-r1",
@@ -5539,18 +5538,13 @@
             "fixCapital": false
           }
         }
-      ]
+      ],
+      "skill": "Family words",
+      "worldId": "world-4"
     },
     {
-      "id": "level-24",
-      "number": 24,
-      "worldId": "world-4",
-      "placement": false,
-      "name": "Wake the Robot-Bus",
-      "skill": "Boss · words",
       "icon": "bedtime",
-      "isBoss": true,
-      "requiresSubscription": true,
+      "id": "level-24",
       "intro": {
         "text": "bus",
         "word": "robot-bus",
@@ -5560,6 +5554,10 @@
           "url": null
         }
       },
+      "isBoss": true,
+      "name": "Wake the Robot-Bus",
+      "number": 24,
+      "placement": false,
       "presentation": {
         "shape": null,
         "slot": null,
@@ -5567,6 +5565,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-24-r1",
@@ -5698,18 +5697,13 @@
             "story": false
           }
         }
-      ]
+      ],
+      "skill": "Boss · words",
+      "worldId": "world-4"
     },
     {
-      "id": "level-25",
-      "number": 25,
-      "worldId": "world-5",
-      "placement": false,
-      "name": "Sight Word Kites",
-      "skill": "Sight words",
       "icon": "air",
-      "isBoss": false,
-      "requiresSubscription": true,
+      "id": "level-25",
       "intro": {
         "text": "the",
         "word": "kite",
@@ -5719,6 +5713,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Sight Word Kites",
+      "number": 25,
+      "placement": false,
       "presentation": {
         "shape": "kite",
         "slot": null,
@@ -5726,6 +5724,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-25-r1",
@@ -5997,18 +5996,13 @@
             "fixCapital": false
           }
         }
-      ]
+      ],
+      "skill": "Sight words",
+      "worldId": "world-5"
     },
     {
-      "id": "level-26",
-      "number": 26,
-      "worldId": "world-5",
-      "placement": false,
-      "name": "a or an?",
-      "skill": "Articles",
       "icon": "cloud",
-      "isBoss": false,
-      "requiresSubscription": true,
+      "id": "level-26",
       "intro": {
         "text": "an",
         "word": "apple",
@@ -6018,6 +6012,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "a or an?",
+      "number": 26,
+      "placement": false,
       "presentation": {
         "shape": "cloud",
         "slot": null,
@@ -6025,6 +6023,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-26-r1",
@@ -6246,18 +6245,13 @@
             "fixCapital": false
           }
         }
-      ]
+      ],
+      "skill": "Articles",
+      "worldId": "world-5"
     },
     {
-      "id": "level-27",
-      "number": 27,
-      "worldId": "world-5",
-      "placement": false,
-      "name": "One or Many",
-      "skill": "Plurals",
       "icon": "flutter_dash",
-      "isBoss": false,
-      "requiresSubscription": true,
+      "id": "level-27",
       "intro": {
         "text": "-s",
         "word": "birds",
@@ -6267,6 +6261,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "One or Many",
+      "number": 27,
+      "placement": false,
       "presentation": {
         "shape": null,
         "slot": null,
@@ -6274,6 +6272,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-27-r1",
@@ -6405,18 +6404,13 @@
             "story": false
           }
         }
-      ]
+      ],
+      "skill": "Plurals",
+      "worldId": "world-5"
     },
     {
-      "id": "level-28",
-      "number": 28,
-      "worldId": "world-5",
-      "placement": false,
-      "name": "Sentence Rainbow",
-      "skill": "Word order",
       "icon": "looks",
-      "isBoss": false,
-      "requiresSubscription": true,
+      "id": "level-28",
       "intro": {
         "text": "I see",
         "word": "rainbow",
@@ -6426,6 +6420,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Sentence Rainbow",
+      "number": 28,
+      "placement": false,
       "presentation": {
         "shape": null,
         "slot": "stripe",
@@ -6433,6 +6431,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-28-r1",
@@ -6556,18 +6555,13 @@
             ]
           }
         }
-      ]
+      ],
+      "skill": "Word order",
+      "worldId": "world-5"
     },
     {
-      "id": "level-29",
-      "number": 29,
-      "worldId": "world-5",
-      "placement": false,
-      "name": "Fix-It Pencil",
-      "skill": "Capitals",
       "icon": "edit",
-      "isBoss": false,
-      "requiresSubscription": true,
+      "id": "level-29",
       "intro": {
         "text": "I.",
         "word": "pencil",
@@ -6577,6 +6571,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Fix-It Pencil",
+      "number": 29,
+      "placement": false,
       "presentation": {
         "shape": null,
         "slot": null,
@@ -6584,6 +6582,7 @@
         "layout": "flow",
         "stage": null
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-29-r1",
@@ -6841,18 +6840,13 @@
             "fixCapital": true
           }
         }
-      ]
+      ],
+      "skill": "Capitals",
+      "worldId": "world-5"
     },
     {
-      "id": "level-30",
-      "number": 30,
-      "worldId": "world-5",
-      "placement": false,
-      "name": "Wake the Cloud",
-      "skill": "Boss · sentences",
       "icon": "bedtime",
-      "isBoss": true,
-      "requiresSubscription": true,
+      "id": "level-30",
       "intro": {
         "text": "I see",
         "word": "cloud",
@@ -6862,6 +6856,10 @@
           "url": null
         }
       },
+      "isBoss": true,
+      "name": "Wake the Cloud",
+      "number": 30,
+      "placement": false,
       "presentation": {
         "shape": null,
         "slot": null,
@@ -6869,6 +6867,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-30-r1",
@@ -6980,18 +6979,13 @@
             "story": false
           }
         }
-      ]
+      ],
+      "skill": "Boss · sentences",
+      "worldId": "world-5"
     },
     {
-      "id": "level-31",
-      "number": 31,
-      "worldId": "world-6",
-      "placement": false,
-      "name": "Read & Match",
-      "skill": "Reading",
       "icon": "public",
-      "isBoss": false,
-      "requiresSubscription": true,
+      "id": "level-31",
       "intro": {
         "text": "read",
         "word": "planet",
@@ -7001,6 +6995,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Read \u0026 Match",
+      "number": 31,
+      "placement": false,
       "presentation": {
         "shape": "planet",
         "slot": null,
@@ -7008,6 +7006,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-31-r1",
@@ -7304,18 +7303,13 @@
             "fixCapital": false
           }
         }
-      ]
+      ],
+      "skill": "Reading",
+      "worldId": "world-6"
     },
     {
-      "id": "level-32",
-      "number": 32,
-      "worldId": "world-6",
-      "placement": false,
-      "name": "Talk to Aliens",
-      "skill": "Speaking",
       "icon": "record_voice_over",
-      "isBoss": false,
-      "requiresSubscription": true,
+      "id": "level-32",
       "intro": {
         "text": "Hi!",
         "word": "alien",
@@ -7325,6 +7319,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Talk to Aliens",
+      "number": 32,
+      "placement": false,
       "presentation": {
         "shape": null,
         "slot": null,
@@ -7332,6 +7330,7 @@
         "layout": "alien",
         "stage": null
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-32-r1",
@@ -7413,18 +7412,13 @@
             "expected": null
           }
         }
-      ]
+      ],
+      "skill": "Speaking",
+      "worldId": "world-6"
     },
     {
-      "id": "level-33",
-      "number": 33,
-      "worldId": "world-6",
-      "placement": false,
-      "name": "Story Order",
-      "skill": "Sequencing",
       "icon": "view_carousel",
-      "isBoss": false,
-      "requiresSubscription": true,
+      "id": "level-33",
       "intro": {
         "text": "1 2 3",
         "word": "story",
@@ -7434,6 +7428,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Story Order",
+      "number": 33,
+      "placement": false,
       "presentation": {
         "shape": null,
         "slot": "panel",
@@ -7441,6 +7439,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-33-r1",
@@ -7542,18 +7541,13 @@
             ]
           }
         }
-      ]
+      ],
+      "skill": "Sequencing",
+      "worldId": "world-6"
     },
     {
-      "id": "level-34",
-      "number": 34,
-      "worldId": "world-6",
-      "placement": false,
-      "name": "Star Questions",
-      "skill": "Comprehension",
       "icon": "auto_awesome",
-      "isBoss": false,
-      "requiresSubscription": true,
+      "id": "level-34",
       "intro": {
         "text": "Who?",
         "word": "story",
@@ -7563,6 +7557,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "Star Questions",
+      "number": 34,
+      "placement": false,
       "presentation": {
         "shape": "card",
         "slot": null,
@@ -7570,6 +7568,7 @@
         "layout": null,
         "stage": "stars"
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-34-r1",
@@ -7806,18 +7805,13 @@
             "fixCapital": false
           }
         }
-      ]
+      ],
+      "skill": "Comprehension",
+      "worldId": "world-6"
     },
     {
-      "id": "level-35",
-      "number": 35,
-      "worldId": "world-6",
-      "placement": false,
-      "name": "My Story",
-      "skill": "Creative writing",
       "icon": "auto_stories",
-      "isBoss": false,
-      "requiresSubscription": true,
+      "id": "level-35",
       "intro": {
         "text": "My…",
         "word": "storybook",
@@ -7827,6 +7821,10 @@
           "url": null
         }
       },
+      "isBoss": false,
+      "name": "My Story",
+      "number": 35,
+      "placement": false,
       "presentation": {
         "shape": "card",
         "slot": null,
@@ -7834,6 +7832,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-35-r1",
@@ -8031,18 +8030,13 @@
             "story": true
           }
         }
-      ]
+      ],
+      "skill": "Creative writing",
+      "worldId": "world-6"
     },
     {
-      "id": "level-36",
-      "number": 36,
-      "worldId": "world-6",
-      "placement": false,
-      "name": "Wake the Moon",
-      "skill": "Boss · final",
       "icon": "dark_mode",
-      "isBoss": true,
-      "requiresSubscription": true,
+      "id": "level-36",
       "intro": {
         "text": "★",
         "word": "moon",
@@ -8052,6 +8046,10 @@
           "url": null
         }
       },
+      "isBoss": true,
+      "name": "Wake the Moon",
+      "number": 36,
+      "placement": false,
       "presentation": {
         "shape": null,
         "slot": null,
@@ -8059,6 +8057,7 @@
         "layout": null,
         "stage": null
       },
+      "requiresSubscription": true,
       "rounds": [
         {
           "id": "level-36-r1",
@@ -8219,17 +8218,19 @@
             "story": false
           }
         }
-      ]
+      ],
+      "skill": "Boss · final",
+      "worldId": "world-6"
     }
   ],
   "glyphs": {
-    "L": [
-      "M40 20 L40 70",
-      "M40 70 L64 70"
+    "A": [
+      "M50 20 L32 70",
+      "M50 20 L68 70",
+      "M39 52 L61 52"
     ],
-    "T": [
-      "M34 20 L66 20",
-      "M50 20 L50 70"
+    "C": [
+      "M66 28 A22 25 0 1 0 66 62"
     ],
     "E": [
       "M38 20 L38 70",
@@ -8247,13 +8248,12 @@
       "M64 20 L64 70",
       "M36 45 L64 45"
     ],
-    "A": [
-      "M50 20 L32 70",
-      "M50 20 L68 70",
-      "M39 52 L61 52"
+    "J": [
+      "M60 20 L60 56 A12 14 0 0 1 36 58"
     ],
-    "C": [
-      "M66 28 A22 25 0 1 0 66 62"
+    "L": [
+      "M40 20 L40 70",
+      "M40 70 L64 70"
     ],
     "O": [
       "M50 20 A20 25 0 1 0 50 70 A20 25 0 1 0 50 20"
@@ -8261,21 +8261,19 @@
     "S": [
       "M64 28 C60 19 38 18 38 31 C38 44 62 42 62 57 C62 72 40 72 36 62"
     ],
+    "T": [
+      "M34 20 L66 20",
+      "M50 20 L50 70"
+    ],
     "U": [
       "M34 20 L34 52 A16 18 0 0 0 66 52 L66 20"
-    ],
-    "J": [
-      "M60 20 L60 56 A12 14 0 0 1 36 58"
-    ],
-    "c": [
-      "M60 50 A12.5 12.5 0 1 0 60 65"
-    ],
-    "o": [
-      "M50 45 A12.5 12.5 0 1 0 50 70 A12.5 12.5 0 1 0 50 45"
     ],
     "a": [
       "M60 50 A12.5 12.5 0 1 0 60 65",
       "M62.5 45 L62.5 70"
+    ],
+    "c": [
+      "M60 50 A12.5 12.5 0 1 0 60 65"
     ],
     "d": [
       "M60 50 A12.5 12.5 0 1 0 60 65",
@@ -8284,6 +8282,9 @@
     "g": [
       "M60 50 A12.5 12.5 0 1 0 60 65",
       "M62.5 45 L62.5 80 A11 10 0 0 1 41 83"
+    ],
+    "o": [
+      "M50 45 A12.5 12.5 0 1 0 50 70 A12.5 12.5 0 1 0 50 45"
     ]
   }
 }

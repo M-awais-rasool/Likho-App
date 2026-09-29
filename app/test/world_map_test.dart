@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:likho/data/course_providers.dart';
+import 'package:likho/data/family.dart';
 import 'package:likho/data/progress.dart';
 import 'package:likho/screens/world_map/map_geometry.dart';
 import 'package:likho/screens/world_map/world_map_screen.dart';
@@ -28,7 +29,7 @@ void main() {
     addTearDown(tester.view.reset);
     final opened = <int>[];
     await tester.pumpWidget(ProviderScope(
-      overrides: [courseProvider.overrideWith((ref) async => testCourse)],
+      overrides: [courseProvider.overrideWith((ref) async => testCourse), familyProvider.overrideWith(DemoFamilyNotifier.new)],
       child: MaterialApp(home: WorldMapScreen(onOpenLevel: opened.add)),
     ));
     for (var i = 0; i < 30; i++) {

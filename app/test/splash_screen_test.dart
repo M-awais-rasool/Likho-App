@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:likho/data/course_providers.dart';
 import 'package:likho/dev/reference_overlay.dart';
 import 'package:likho/screens/splash_screen.dart';
+
+import 'test_course.dart';
 
 void main() {
   testWidgets('splash finishes after 2.5 s, or holds while the overlay is on', (tester) async {
@@ -10,7 +13,7 @@ void main() {
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.reset);
     var done = 0;
-    final container = ProviderContainer();
+    final container = ProviderContainer(overrides: [courseProvider.overrideWith((ref) async => testCourse)]);
     addTearDown(container.dispose);
     await tester.pumpWidget(UncontrolledProviderScope(
       container: container,
