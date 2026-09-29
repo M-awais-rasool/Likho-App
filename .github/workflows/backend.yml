@@ -1,0 +1,57 @@
+name: Backend
+
+on:
+  push:
+    branches: [master]
+    paths: ["backend/**", "app/test/fixtures/**", ".github/workflows/backend.yml"]
+  pull_request:
+    paths: ["backend/**", "app/test/fixtures/**", ".github/workflows/backend.yml"]
+
+concurrency:
+  group: backend-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Lint, content and tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: likho
+          POSTGRES_PASSWORD: likho
+          POSTGRES_DB: likho_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U likho -d likho_test"
+          --health-interval 2s
+          --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: backend/go.mod
+          cache-dependency-path: backend/go.sum
+      - name: Lint
+        run: make lint
+      - name: Content is valid
+        run: go run ./cmd/content validate
+      - name: App's copy of the course is up to date
+        run: |
+          go run ./cmd/content bundle english-handwriting -indent -o ../app/test/fixtures/english-handwriting.json
+          git diff --exit-code ../app/test/fixtures || (echo "run 'make content-fixture' in backend/ and commit" && exit 1)
+      - name: Tests (API on Postgres, race detector)
+        run: go test -race -count=1 ./...
+        env:
+          TEST_DATABASE_URL: postgres://likho:likho@localhost:5432/likho_test?sslmode=disable
+
+  image:
+    name: Docker image builds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t likho-api backend

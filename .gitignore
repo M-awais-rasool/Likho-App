@@ -1,0 +1,17 @@
+# Repository-wide. The app and the backend have their own .gitignore.
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.idea/
+*.iml
+*.swp
+.history/
+
+# Local secrets
+.env
+.env.*
+!.env.example
+
