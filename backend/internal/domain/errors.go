@@ -1,0 +1,58 @@
+// Package domain holds Likho's business rules and errors. It has no
+// dependencies: the same rules as the Flutter app (stars, unlocks, shop),
+// checked on the server so a child cannot give themselves stars.
+package domain
+
+import "errors"
+
+// Kind says what went wrong, independent of HTTP (the API maps it to a
+// status code).
+type Kind int
+
+const (
+	KindInvalid         Kind = iota + 1 // bad input
+	KindUnauthorized                    // sign in (again)
+	KindPaymentRequired                 // needs Likho Plus
+	KindNotFound                        // no such thing (or not yours)
+	KindConflict                        // not allowed in the current state
+	KindUnavailable                     // try again later
+)
+
+// Error is a business error with a stable code for the app ("level_locked")
+// and a message for developers.
+type Error struct {
+	Kind    Kind
+	Code    string
+	Message string
+}
+
+func (e *Error) Error() string { return e.Code + ": " + e.Message }
+
+// Is makes errors.Is match two errors with the same code, so a wrapped or
+// copied error still matches its sentinel.
+func (e *Error) Is(target error) bool {
+	var t *Error
+	return errors.As(target, &t) && t.Code == e.Code
+}
+
+// Invalid is a validation error about the request.
+func Invalid(message string) error {
+	return &Error{Kind: KindInvalid, Code: "invalid_input", Message: message}
+}
+
+var (
+	ErrNotFound        = &Error{KindNotFound, "not_found", "Not found"}
+	ErrCourseNotFound  = &Error{KindNotFound, "course_not_found", "No such course"}
+	ErrUnknownItem     = &Error{KindNotFound, "unknown_item", "No such item in the shop"}
+	ErrTooManyChildren = &Error{KindConflict, "too_many_children", "A family can have up to 4 children"}
+	ErrLastChild       = &Error{KindConflict, "last_child", "The only child profile cannot be deleted"}
+	ErrLevelLocked     = &Error{KindConflict, "level_locked", "Finish the level before this one first"}
+	ErrNotEnoughStars  = &Error{KindConflict, "not_enough_stars", "Not enough stars for this item"}
+	ErrTrialUsed       = &Error{KindConflict, "trial_used", "The free trial was already used"}
+	ErrPlusRequired    = &Error{KindPaymentRequired, "plus_required", "This level needs Likho Plus"}
+	ErrBadGoogleToken  = &Error{KindUnauthorized, "invalid_google_token", "Google sign-in could not be verified"}
+	ErrSessionInvalid  = &Error{KindUnauthorized, "session_invalid", "Sign in with Google again"}
+	ErrSessionReused   = &Error{KindUnauthorized, "session_reused", "Signed out on all devices for safety; sign in again"}
+	ErrAccountDeleted  = &Error{KindUnauthorized, "account_deleted", "This account no longer exists"}
+	ErrCourseNotLoaded = &Error{KindUnavailable, "course_unavailable", "Course content is not loaded"}
+)

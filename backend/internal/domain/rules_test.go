@@ -1,6 +1,10 @@
-package game
+package domain
 
-import "testing"
+import (
+	"errors"
+	"fmt"
+	"testing"
+)
 
 func TestGain(t *testing.T) {
 	two, three := 2, 3
@@ -75,5 +79,25 @@ func TestValidation(t *testing.T) {
 	}
 	if ValidAge(4) || !ValidAge(8) || !ValidSessionMinutes(15) || ValidSessionMinutes(7) {
 		t.Error("age 5..8, session 5/10/15")
+	}
+}
+
+func TestStarsAndSeconds(t *testing.T) {
+	if ValidStars(0) || !ValidStars(1) || !ValidStars(3) || ValidStars(4) {
+		t.Error("stars 1..3")
+	}
+	if LevelSeconds(0) != DefaultLevelSeconds || LevelSeconds(95) != 95 || LevelSeconds(99999) != MaxLevelSeconds {
+		t.Error("seconds: default when missing, capped")
+	}
+}
+
+func TestErrorsMatchByCode(t *testing.T) {
+	wrapped := fmt.Errorf("record: %w", ErrLevelLocked)
+	if !errors.Is(wrapped, ErrLevelLocked) || errors.Is(wrapped, ErrTrialUsed) {
+		t.Error("errors.Is matches the code through wrapping")
+	}
+	var e *Error
+	if !errors.As(Invalid("stars must be 1 to 3"), &e) || e.Kind != KindInvalid || e.Code != "invalid_input" {
+		t.Errorf("Invalid: %+v", e)
 	}
 }

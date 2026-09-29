@@ -1,4 +1,4 @@
-package game
+package domain
 
 // Item in the Mascot Room shop (the app's ShopItem.all).
 type Item struct {

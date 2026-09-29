@@ -1,19 +1,22 @@
-// Package game holds Likho's rules, the same ones the Flutter app uses, so
-// the server decides stars and purchases (a child cannot give themselves
-// stars by editing the app).
-package game
+package domain
 
 import "strings"
 
 const (
 	MaxChildren = 4
-	FirstLevel  = 1
-	LastLevel   = 36
 	TrialDays   = 7
+
+	MinStars = 1
+	MaxStars = 3
+
+	// DefaultLevelSeconds is counted when the app does not send the time a
+	// level took (the prototype counts 3 minutes); MaxLevelSeconds caps it.
+	DefaultLevelSeconds = 180
+	MaxLevelSeconds     = 1800
 )
 
 // Gain = stars added for finishing a level: the improvement over the best
-// result so far, plus 2 the first time (FamilyNotifier.recordResult).
+// result so far, plus 2 the first time (the app's FamilyNotifier.recordResult).
 func Gain(old *int, stars int) int {
 	if old == nil {
 		return stars + 2
@@ -21,10 +24,21 @@ func Gain(old *int, stars int) int {
 	return max(0, stars-*old)
 }
 
-// Unlocked: level 1, any level already finished, or the one after a
-// finished level.
+// Unlocked: the first level, any level already finished, or the one after
+// a finished level.
 func Unlocked(level int, done func(n int) bool) bool {
-	return level <= FirstLevel || done(level) || done(level-1)
+	return level <= 1 || done(level) || done(level-1)
+}
+
+// ValidStars: a finished level earns 1 to 3 stars.
+func ValidStars(s int) bool { return s >= MinStars && s <= MaxStars }
+
+// LevelSeconds normalises the time a level took.
+func LevelSeconds(s int) int {
+	if s <= 0 {
+		return DefaultLevelSeconds
+	}
+	return min(s, MaxLevelSeconds)
 }
 
 // PencilColors are the six body colours the app offers.
