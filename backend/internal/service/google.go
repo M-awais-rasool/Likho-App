@@ -1,6 +1,4 @@
-// Package services holds the app's logic between the HTTP handlers and the
-// database: Google sign-in, tokens, caching, course content.
-package services
+package service
 
 import (
 	"context"
@@ -18,16 +16,15 @@ import (
 
 	"github.com/golang-jwt/jwt/v5"
 
-	"likho/backend/repository"
+	"likho/backend/internal/domain"
+	"likho/backend/internal/model"
 )
 
 // GoogleVerifier checks a Google ID token (from Google Sign-In on the phone)
 // and tells who signed in.
 type GoogleVerifier interface {
-	Verify(ctx context.Context, idToken string) (repository.GoogleUser, error)
+	Verify(ctx context.Context, idToken string) (model.GoogleUser, error)
 }
-
-var ErrBadGoogleToken = errors.New("invalid google id token")
 
 const googleCertsURL = "https://www.googleapis.com/oauth2/v3/certs"
 
@@ -57,7 +54,7 @@ type googleClaims struct {
 	jwt.RegisteredClaims
 }
 
-func (g *GoogleIDTokens) Verify(ctx context.Context, idToken string) (repository.GoogleUser, error) {
+func (g *GoogleIDTokens) Verify(ctx context.Context, idToken string) (model.GoogleUser, error) {
 	var claims googleClaims
 	_, err := jwt.ParseWithClaims(idToken, &claims, func(t *jwt.Token) (any, error) {
 		kid, _ := t.Header["kid"].(string)
@@ -69,18 +66,18 @@ func (g *GoogleIDTokens) Verify(ctx context.Context, idToken string) (repository
 		jwt.WithLeeway(30*time.Second),
 	)
 	if err != nil {
-		return repository.GoogleUser{}, fmt.Errorf("%w: %v", ErrBadGoogleToken, err)
+		return model.GoogleUser{}, fmt.Errorf("%w: %v", domain.ErrBadGoogleToken, err)
 	}
 	if claims.Issuer != "accounts.google.com" && claims.Issuer != "https://accounts.google.com" {
-		return repository.GoogleUser{}, fmt.Errorf("%w: issuer %q", ErrBadGoogleToken, claims.Issuer)
+		return model.GoogleUser{}, fmt.Errorf("%w: issuer %q", domain.ErrBadGoogleToken, claims.Issuer)
 	}
 	if !slices.ContainsFunc(claims.Audience, func(a string) bool { return slices.Contains(g.ClientIDs, a) }) {
-		return repository.GoogleUser{}, fmt.Errorf("%w: audience %v", ErrBadGoogleToken, claims.Audience)
+		return model.GoogleUser{}, fmt.Errorf("%w: audience %v", domain.ErrBadGoogleToken, claims.Audience)
 	}
 	if claims.Subject == "" || claims.Email == "" || !claims.EmailVerified {
-		return repository.GoogleUser{}, fmt.Errorf("%w: no verified email", ErrBadGoogleToken)
+		return model.GoogleUser{}, fmt.Errorf("%w: no verified email", domain.ErrBadGoogleToken)
 	}
-	return repository.GoogleUser{Sub: claims.Subject, Email: strings.ToLower(claims.Email), Name: claims.Name, Picture: claims.Picture}, nil
+	return model.GoogleUser{Sub: claims.Subject, Email: strings.ToLower(claims.Email), Name: claims.Name, Picture: claims.Picture}, nil
 }
 
 // key returns Google's public key [kid], fetching the key set when the
@@ -178,14 +175,14 @@ func maxAge(cc string, def time.Duration) time.Duration {
 // production).
 type DevGoogle struct{ Next GoogleVerifier }
 
-func (d DevGoogle) Verify(ctx context.Context, idToken string) (repository.GoogleUser, error) {
+func (d DevGoogle) Verify(ctx context.Context, idToken string) (model.GoogleUser, error) {
 	if email, ok := strings.CutPrefix(idToken, "dev:"); ok && strings.Contains(email, "@") {
 		email = strings.ToLower(strings.TrimSpace(email))
 		name, _, _ := strings.Cut(email, "@")
-		return repository.GoogleUser{Sub: "dev-" + email, Email: email, Name: name}, nil
+		return model.GoogleUser{Sub: "dev-" + email, Email: email, Name: name}, nil
 	}
 	if d.Next == nil {
-		return repository.GoogleUser{}, ErrBadGoogleToken
+		return model.GoogleUser{}, domain.ErrBadGoogleToken
 	}
 	return d.Next.Verify(ctx, idToken)
 }

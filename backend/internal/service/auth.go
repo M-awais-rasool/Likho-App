@@ -1,79 +1,89 @@
-package services
+// Package service is the business layer between the HTTP handlers and the
+// repositories: it checks input, applies Likho's rules (with the course
+// content), keeps the cache in step and returns model types or domain
+// errors. It knows nothing about HTTP.
+package service
 
 import (
 	"context"
 	"time"
 
-	"likho/backend/models"
-	"likho/backend/repository"
+	"likho/backend/internal/model"
+	"likho/backend/internal/repository"
 )
 
-// Auth: "Continue with Google" is the only way in. There is no sign-up:
-// a Google account seen for the first time gets a new Likho account, a
-// returning one continues where it left off.
-type Auth struct {
-	Store  *repository.Store
-	Google GoogleVerifier
-	Tokens Tokens
+// AuthService: "Continue with Google" is the only way in. There is no
+// sign-up: a Google account seen for the first time gets a new Likho
+// account, a returning one continues where it left off.
+type AuthService struct {
+	accounts *repository.AccountRepository
+	sessions *repository.SessionRepository
+	google   GoogleVerifier
+	tokens   Tokens
+	me       *AccountService
+}
+
+func NewAuthService(accounts *repository.AccountRepository, sessions *repository.SessionRepository, google GoogleVerifier, tokens Tokens, me *AccountService) *AuthService {
+	return &AuthService{accounts: accounts, sessions: sessions, google: google, tokens: tokens, me: me}
 }
 
 // SignInWithGoogle verifies the Google ID token, finds or creates the
 // account, opens a session for this device and returns tokens plus the
 // whole account (so the app needs no second request).
-func (a Auth) SignInWithGoogle(ctx context.Context, idToken, device string) (models.SignIn, error) {
-	user, err := a.Google.Verify(ctx, idToken)
+func (s *AuthService) SignInWithGoogle(ctx context.Context, idToken, device string) (model.SignIn, error) {
+	user, err := s.google.Verify(ctx, idToken)
 	if err != nil {
-		return models.SignIn{}, err
+		return model.SignIn{}, err
 	}
-	parent, created, err := a.Store.SignInWithGoogle(ctx, user)
+	parent, created, err := s.accounts.SignInWithGoogle(ctx, user)
 	if err != nil {
-		return models.SignIn{}, err
+		return model.SignIn{}, err
 	}
-	tokens, err := a.newSession(ctx, parent.ID, device)
+	tokens, err := s.newSession(ctx, parent.ID, device)
 	if err != nil {
-		return models.SignIn{}, err
+		return model.SignIn{}, err
 	}
-	me, err := a.Store.Me(ctx, parent.ID)
+	me, err := s.me.Me(ctx, parent.ID)
 	if err != nil {
-		return models.SignIn{}, err
+		return model.SignIn{}, err
 	}
-	return models.SignIn{Tokens: tokens, IsNewAccount: created, Me: me}, nil
+	return model.SignIn{Tokens: tokens, IsNewAccount: created, Me: me}, nil
 }
 
-func (a Auth) newSession(ctx context.Context, parentID, device string) (models.Tokens, error) {
-	refresh, hash, err := a.Tokens.NewRefresh()
+func (s *AuthService) newSession(ctx context.Context, parentID, device string) (model.Tokens, error) {
+	refresh, hash, err := s.tokens.NewRefresh()
 	if err != nil {
-		return models.Tokens{}, err
+		return model.Tokens{}, err
 	}
-	sid, err := a.Store.CreateSession(ctx, parentID, hash, device, time.Now().Add(a.Tokens.RefreshTTL))
+	sid, err := s.sessions.Create(ctx, parentID, hash, device, time.Now().Add(s.tokens.RefreshTTL))
 	if err != nil {
-		return models.Tokens{}, err
+		return model.Tokens{}, err
 	}
-	return a.pair(parentID, sid, refresh)
+	return s.pair(parentID, sid, refresh)
 }
 
-func (a Auth) pair(parentID, sessionID, refresh string) (models.Tokens, error) {
-	access, err := a.Tokens.Access(parentID, sessionID)
+func (s *AuthService) pair(parentID, sessionID, refresh string) (model.Tokens, error) {
+	access, err := s.tokens.Access(parentID, sessionID)
 	if err != nil {
-		return models.Tokens{}, err
+		return model.Tokens{}, err
 	}
-	return models.Tokens{AccessToken: access, ExpiresIn: int(a.Tokens.AccessTTL.Seconds()), RefreshToken: refresh}, nil
+	return model.Tokens{AccessToken: access, ExpiresIn: int(s.tokens.AccessTTL.Seconds()), RefreshToken: refresh}, nil
 }
 
 // Refresh swaps a refresh token for a new pair (the old one stops working).
-func (a Auth) Refresh(ctx context.Context, refreshToken string) (models.Tokens, error) {
-	next, hash, err := a.Tokens.NewRefresh()
+func (s *AuthService) Refresh(ctx context.Context, refreshToken string) (model.Tokens, error) {
+	next, hash, err := s.tokens.NewRefresh()
 	if err != nil {
-		return models.Tokens{}, err
+		return model.Tokens{}, err
 	}
-	parentID, sid, err := a.Store.RotateSession(ctx, HashRefresh(refreshToken), hash, time.Now().Add(a.Tokens.RefreshTTL))
+	parentID, sid, err := s.sessions.Rotate(ctx, HashRefresh(refreshToken), hash, time.Now().Add(s.tokens.RefreshTTL))
 	if err != nil {
-		return models.Tokens{}, err
+		return model.Tokens{}, err
 	}
-	return a.pair(parentID, sid, next)
+	return s.pair(parentID, sid, next)
 }
 
 // Logout ends this device's session.
-func (a Auth) Logout(ctx context.Context, parentID, sessionID string) error {
-	return a.Store.RevokeSession(ctx, parentID, sessionID)
+func (s *AuthService) Logout(ctx context.Context, parentID, sessionID string) error {
+	return s.sessions.Revoke(ctx, parentID, sessionID)
 }

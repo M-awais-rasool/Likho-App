@@ -1,4 +1,4 @@
-package services
+package service
 
 import (
 	"context"
@@ -15,6 +15,8 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
+
+	"likho/backend/internal/domain"
 )
 
 func TestAccessTokens(t *testing.T) {
@@ -117,14 +119,14 @@ func TestGoogleIDTokens(t *testing.T) {
 		"email unverified": func(c jwt.MapClaims) { c["email_verified"] = false },
 	}
 	for name, edit := range bad {
-		if _, err := v.Verify(ctx, g.token(t, edit)); !errors.Is(err, ErrBadGoogleToken) {
+		if _, err := v.Verify(ctx, g.token(t, edit)); !errors.Is(err, domain.ErrBadGoogleToken) {
 			t.Errorf("%s: want ErrBadGoogleToken, got %v", name, err)
 		}
 	}
 
 	// a token signed by someone else's key
 	other := newFakeGoogle(t)
-	if _, err := v.Verify(ctx, other.token(t, nil)); !errors.Is(err, ErrBadGoogleToken) {
+	if _, err := v.Verify(ctx, other.token(t, nil)); !errors.Is(err, domain.ErrBadGoogleToken) {
 		t.Errorf("foreign signature: %v", err)
 	}
 
