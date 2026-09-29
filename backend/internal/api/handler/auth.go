@@ -1,4 +1,4 @@
-package handlers
+package handler
 
 import (
 	"net/http"
@@ -6,13 +6,19 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"likho/backend/middleware"
+	"likho/backend/internal/api/middleware"
+	"likho/backend/internal/domain"
+	"likho/backend/internal/service"
 )
 
-// GoogleSignIn: POST /v1/auth/google {"idToken": "..."}
-// The only way in. Existing account -> continues; new Google account ->
-// a new Likho account is created. Answers tokens + the whole account.
-func (h *Handler) GoogleSignIn(c *gin.Context) {
+type AuthHandler struct {
+	auth *service.AuthService
+}
+
+// GoogleSignIn: POST /v1/auth/google {"idToken", "device"}
+// The only way in. A new Google account gets a new Likho account (201); an
+// existing one continues (200). Answers tokens + the whole account.
+func (h *AuthHandler) GoogleSignIn(c *gin.Context) {
 	var in struct {
 		IDToken string `json:"idToken"`
 		Device  string `json:"device"`
@@ -21,27 +27,27 @@ func (h *Handler) GoogleSignIn(c *gin.Context) {
 		return
 	}
 	if strings.TrimSpace(in.IDToken) == "" {
-		badInput(c, "idToken is required")
+		writeError(c, domain.Invalid("idToken is required"))
 		return
 	}
 	device := in.Device
 	if device == "" {
 		device = c.GetHeader("User-Agent")
 	}
-	out, err := h.Auth.SignInWithGoogle(c.Request.Context(), in.IDToken, truncate(device, 120))
+	out, err := h.auth.SignInWithGoogle(c.Request.Context(), in.IDToken, truncate(device, 120))
 	if err != nil {
-		failErr(c, err)
+		writeError(c, err)
 		return
 	}
 	status := http.StatusOK
 	if out.IsNewAccount {
 		status = http.StatusCreated
 	}
-	c.JSON(status, out)
+	writeJSON(c, status, out)
 }
 
-// Refresh: POST /v1/auth/refresh {"refreshToken": "..."} -> a new token pair.
-func (h *Handler) Refresh(c *gin.Context) {
+// Refresh: POST /v1/auth/refresh {"refreshToken"} -> a new token pair.
+func (h *AuthHandler) Refresh(c *gin.Context) {
 	var in struct {
 		RefreshToken string `json:"refreshToken"`
 	}
@@ -49,24 +55,24 @@ func (h *Handler) Refresh(c *gin.Context) {
 		return
 	}
 	if in.RefreshToken == "" {
-		badInput(c, "refreshToken is required")
+		writeError(c, domain.Invalid("refreshToken is required"))
 		return
 	}
-	out, err := h.Auth.Refresh(c.Request.Context(), in.RefreshToken)
+	out, err := h.auth.Refresh(c.Request.Context(), in.RefreshToken)
 	if err != nil {
-		failErr(c, err)
+		writeError(c, err)
 		return
 	}
-	c.JSON(http.StatusOK, out)
+	writeJSON(c, http.StatusOK, out)
 }
 
-// Logout: POST /v1/auth/logout (signed in) -> this device is signed out.
-func (h *Handler) Logout(c *gin.Context) {
-	if err := h.Auth.Logout(c.Request.Context(), parentID(c), c.GetString(middleware.SessionIDKey)); err != nil {
-		failErr(c, err)
+// Logout: POST /v1/auth/logout -> this device is signed out.
+func (h *AuthHandler) Logout(c *gin.Context) {
+	if err := h.auth.Logout(c.Request.Context(), parentID(c), middleware.SessionID(c)); err != nil {
+		writeError(c, err)
 		return
 	}
-	c.Status(http.StatusNoContent)
+	noContent(c)
 }
 
 func truncate(s string, n int) string {
