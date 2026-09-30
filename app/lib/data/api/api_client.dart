@@ -14,8 +14,8 @@ abstract final class ApiConfig {
 
   static String get baseUrl {
     if (_override.isNotEmpty) return _override;
-    if (kReleaseMode) return 'https://api.likho.app';
-    return defaultTargetPlatform == TargetPlatform.android ? 'http://10.0.2.2:8080' : 'http://localhost:8080';
+    // if (kReleaseMode) return 'https://api.likho.app';
+    return defaultTargetPlatform == TargetPlatform.android ? 'http://192.168.18.20:8080' : 'http://192.168.18.20:8080';
   }
 }
 
