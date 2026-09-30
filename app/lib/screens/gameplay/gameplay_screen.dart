@@ -13,6 +13,7 @@ import '../../design/tokens.dart';
 import '../../dev/reference_overlay.dart';
 import '../../game/level_session.dart';
 import '../../game/speech/prompt_voice.dart';
+import '../../game/writing/stroke_guide.dart';
 import '../../mascot/mascot.dart';
 import 'rounds/order_round_view.dart';
 import 'rounds/pick_round_view.dart';
@@ -62,6 +63,7 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
   WritePadController? _pad;
   String? _bubble;
   Timer? _bubbleTimer;
+  final _timers = <Timer>[];
   int _burst = 0;
   bool _done = false;
 
@@ -84,6 +86,9 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
     _flip.dispose();
     _shake.dispose();
     _bubbleTimer?.cancel();
+    for (final t in _timers) {
+      t.cancel();
+    }
     _pad?.dispose();
     _voice.stop();
     _mascot.dispose();
@@ -101,12 +106,76 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
   void _startRound() {
     if (!mounted) return;
     final r = _view.current;
-    _pad?.dispose();
-    _pad = r is WriteRound ? WritePadController(round: r, guides: WritePadController.guidesFor(r, _glyphs)) : null;
+    _setPad(r is WriteRound ? r : null);
     final say = r.prompt.text;
     _say(say.length <= 14 ? say : 'Suno!', const Duration(milliseconds: 1600));
     _lookAtArea();
     _voice.speak(r.prompt, _mascot, after: _resting);
+  }
+
+  /// Runs [f] after [d] unless the screen is gone by then.
+  void _later(Duration d, VoidCallback f) {
+    _timers.removeWhere((t) => !t.isActive);
+    _timers.add(Timer(d, () {
+      if (mounted) f();
+    }));
+  }
+
+  /// A new writing pad for [r] (letter [letter] of a spelled word), or none.
+  void _setPad(WriteRound? r, {int letter = 0}) {
+    final old = _pad;
+    old?.removeEventListener(_onPad);
+    // the pad widget lets go of the old one when it rebuilds
+    if (old != null) WidgetsBinding.instance.addPostFrameCallback((_) => old.dispose());
+    _pad = r == null ? null : (WritePadController(round: r, guides: WritePadController.guidesFor(r, _glyphs, letter: letter), letter: letter)..addEventListener(_onPad));
+  }
+
+  /// Step-by-step writing: Pencil says what to do next.
+  void _onPad(PadEvent e) {
+    if (!mounted) return;
+    switch (e) {
+      case PadEvent.strokeDone:
+        _mascot.play(MascotState.happy);
+        _bubbleTimer?.cancel();
+        setState(() => _bubble = null); // the next stroke's instruction shows
+        _later(const Duration(milliseconds: 600), () {
+          if (!ref.read(levelSessionProvider(level)).correct) _mascot.play(MascotState.watching);
+        });
+      case PadEvent.letterDone:
+        final pad = _pad;
+        setState(() {});
+        _later(const Duration(milliseconds: 250), () {
+          if (pad == _pad) ref.read(levelSessionProvider(level).notifier).submitWriting(pad!.judge());
+        });
+      case PadEvent.wrongStart:
+        _say('Neele dot se shuru karo!', const Duration(milliseconds: 1500));
+      case PadEvent.leftPath:
+        // off right after the start: most likely the wrong way
+        final early = (_pad?.guide?.progress ?? 1) < .35;
+        _say(early ? 'Teer ke saath chalo!' : 'Line par raho!', const Duration(milliseconds: 1300));
+    }
+  }
+
+  /// What to do with the stroke being written, as Pencil says it.
+  static String stepText(StrokeShape s) => switch (s) {
+    StrokeShape.dot => 'Bindi lagao',
+    StrokeShape.down => 'Upar se neeche',
+    StrokeShape.up => 'Neeche se upar',
+    StrokeShape.right => 'Daayein taraf',
+    StrokeShape.left => 'Baayein taraf',
+    StrokeShape.slantDown => 'Tircha neeche',
+    StrokeShape.slantUp => 'Tircha upar',
+    StrokeShape.curve => 'Gol ghumao',
+    StrokeShape.zigzag => 'Teer ke saath chalo',
+  };
+
+  /// The bubble: a passing remark, else the instruction for the stroke
+  /// being written.
+  (String, int?)? get _speech {
+    if (_bubble != null) return (_bubble!, null);
+    final g = _pad?.guide;
+    if (g == null || g.done || _view.correct) return null;
+    return (stepText(g.shapeOf(g.stroke)), g.stroke + 1);
   }
 
   void _replay() {
@@ -169,12 +238,13 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
       }
     }
     if (next.spellFilled > prev.spellFilled && !next.correct) {
-      // a spelled letter was accepted: clear the pad for the next one
-      _pad?.erase();
+      // a spelled letter was accepted: a fresh pad for the next one
+      final r = next.current;
+      _setPad(r is WriteRound ? r : null, letter: next.spellFilled);
       _mascot.play(MascotState.happy);
       _say('Wah!', const Duration(milliseconds: 700));
-      Future.delayed(const Duration(milliseconds: 700), () {
-        if (mounted && !ref.read(levelSessionProvider(level)).correct) _mascot.play(MascotState.watching);
+      _later(const Duration(milliseconds: 700), () {
+        if (!ref.read(levelSessionProvider(level)).correct) _mascot.play(MascotState.watching);
       });
     }
     if (next.listening && !prev.listening) {
@@ -228,33 +298,45 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
                       ),
                     ),
                     const SizedBox(height: 8),
+                    // Pencil on the left; what he says next to his face, the
+                    // prompt card under it (the bubble never covers the card)
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
                           key: _mascotKey,
                           width: 78,
-                          height: 110,
-                          child: Stack(
-                            clipBehavior: Clip.none,
+                          height: 120,
+                          child: OverflowBox(maxWidth: 90, child: PencilMascot(controller: _mascot, size: 110)),
+                        ),
+                        const SizedBox(width: 6),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
-                              Positioned.fill(
-                                child: OverflowBox(maxWidth: 90, child: PencilMascot(controller: _mascot, size: 110)),
-                              ),
-                              if (_bubble != null)
-                                Positioned(
-                                  left: 78 * .58,
-                                  top: -14,
-                                  child: SpeechBubble(text: _bubble!),
+                              SizedBox(
+                                height: 36,
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: switch (_speech) {
+                                    (final text, final step) => SpeechBubble(text: text, step: step),
+                                    null => const SizedBox.shrink(),
+                                  },
                                 ),
+                              ),
+                              const SizedBox(height: 6),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: PromptCardView(key: ValueKey(s.current.id), card: s.current.card),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  ReplayButton(onTap: _replay),
+                                ],
+                              ),
                             ],
                           ),
                         ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: PromptCardView(key: ValueKey(s.current.id), card: s.current.card),
-                        ),
-                        const SizedBox(width: 12),
-                        ReplayButton(onTap: _replay),
                       ],
                     ),
                     const SizedBox(height: 14),
@@ -277,7 +359,7 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
                           if (write != null) ...[
                             const SizedBox(height: 12),
                             WriteBar(
-                              onErase: () => _pad?.erase(),
+                              onErase: () => setState(() => _pad?.erase()),
                               onDone: () {
                                 final p = _pad;
                                 if (p != null) ref.read(levelSessionProvider(level).notifier).submitWriting(p.judge());

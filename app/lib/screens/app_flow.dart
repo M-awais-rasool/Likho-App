@@ -85,6 +85,13 @@ abstract final class AppFlow {
       },
       onTryFirst: () => openPlacement(ctx),
       onTerms: () => Toast.show(ctx, 'Privacy policy khulegi'),
+      onTestUser: TestUser.enabled
+          ? () async {
+              final ok = await _signIn(ctx, testUser: true);
+              if (ok && ctx.mounted) _home(ctx);
+              return ok;
+            }
+          : null,
     ),
   );
 
@@ -98,19 +105,21 @@ abstract final class AppFlow {
     nav.pushAndRemoveUntil(welcomeRoutePage(), (_) => false);
   }
 
-  /// "Continue with Google" (Welcome or the guest sheet): the account is
-  /// made the first time, continued after that. True once signed in.
-  static Future<bool> _signIn(BuildContext context) async {
+  /// "Continue with Google" (Welcome or the guest sheet), or the test
+  /// account ([testUser]): the account is made the first time, continued
+  /// after that. True once signed in.
+  static Future<bool> _signIn(BuildContext context, {bool testUser = false}) async {
     final container = _c(context);
+    final auth = container.read(authProvider.notifier);
     try {
-      final isNew = await container.read(authProvider.notifier).signInWithGoogle();
+      final isNew = testUser ? await auth.signInAsTestUser() : await auth.signInWithGoogle();
       if (isNew == null) return false; // the Google sheet was closed
       container.read(feedbackProvider).unlock();
       return true;
     } on ApiException catch (e) {
       if (context.mounted) Toast.show(context, signInError(e));
     } catch (e) {
-      debugPrint('Google sign-in: $e');
+      debugPrint(testUser ? 'Test user sign-in: $e' : 'Google sign-in: $e');
       if (context.mounted) Toast.show(context, 'Google sign in nahi hua, dobara koshish karein');
     }
     return false;
@@ -126,7 +135,11 @@ abstract final class AppFlow {
   /// more asks a parent to sign in first. Runs [open] when allowed.
   static Future<void> _member(BuildContext context, VoidCallback open) async {
     if (!_c(context).read(familyProvider).guest) return open();
-    final ok = await showSignInSheet(context, onGoogle: () => _signIn(context));
+    final ok = await showSignInSheet(
+      context,
+      onGoogle: () => _signIn(context),
+      onTestUser: TestUser.enabled ? () => _signIn(context, testUser: true) : null,
+    );
     // the guest's phone-only progress is not kept: start the real family
     if (ok && context.mounted) _home(context);
   }

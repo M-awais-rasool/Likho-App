@@ -8,58 +8,123 @@ import '../../../data/models/course_models.dart';
 import '../../../design/tokens.dart';
 import '../../../feedback/app_feedback.dart';
 import '../../../game/level_session.dart';
+import '../../../game/writing/stroke_guide.dart';
 import '../../../game/writing/trace_lane.dart';
 import '../../../game/writing/writing_judge.dart';
 import '../widgets/game_buttons.dart';
 import 'pick_round_view.dart';
 
-/// Holds the child's strokes for one writing round; shared by the pad and
-/// the eraser / "Ho gaya" bar.
+/// Something the pad tells the screen (mascot, sounds, lane flash).
+enum PadEvent {
+  /// The finger slid off the stroke being written.
+  leftPath,
+
+  /// The finger went down away from the start of the stroke.
+  wrongStart,
+
+  /// A stroke was finished; the next one is shown.
+  strokeDone,
+
+  /// The last stroke was finished: the letter is written.
+  letterDone,
+}
+
+/// Holds the child's strokes for one writing round (one letter of a spelled
+/// word); shared by the pad and the eraser / "Ho gaya" bar.
 ///
-/// Tracing rounds (trace, dots) have a lane around the letter: ink is only
-/// drawn inside it. Leaving the lane ends the stroke; coming back starts a
-/// new one.
+/// A letter with a guide is written step by step ([StrokeGuide]): the
+/// current stroke shows where to start and which way to go, ink is only
+/// drawn while the finger follows it, and the next stroke comes once it is
+/// finished. Pads without a guide (sentences) take any ink.
 class WritePadController extends ChangeNotifier {
-  WritePadController({required this.round, required this.guides});
+  WritePadController({required this.round, required this.guides, this.letter = 0});
 
   final WriteRound round;
 
-  /// Guide strokes in guide space (100 x 100, baseline 70); empty = no guide.
+  /// The letter's strokes in guide space (100 x 100, baseline 70), in
+  /// writing order; empty = no guide.
   final List<Path> guides;
+
+  /// Which letter of a spelled word this pad is for.
+  final int letter;
 
   final List<List<Offset>> strokes = [];
   Size padSize = Size.zero;
   bool penUsed = false; // the follower shows after the first touch
   Offset? pen;
 
-  /// Called when the finger leaves the lane (or touches down outside it).
-  VoidCallback? onLeaveLane;
+  /// Pad clock times of the last slip off the stroke / touch away from its
+  /// start (the lane or the start marker flashes), or null.
+  double? leftLaneAt, wrongStartAt;
 
-  /// Pad clock time of the last time the finger left the lane (the lane
-  /// flashes), or null.
-  double? leftLaneAt;
+  final _listeners = <ValueChanged<PadEvent>>[];
 
-  bool _drawing = false; // the finger is down and inside the lane
+  void addEventListener(ValueChanged<PadEvent> l) => _listeners.add(l);
+  void removeEventListener(ValueChanged<PadEvent> l) => _listeners.remove(l);
+
+  void _emit(PadEvent e) {
+    for (final l in [..._listeners]) {
+      l(e);
+    }
+  }
+
+  bool _drawing = false; // the finger is down and following the stroke
+  bool _misplaced = false; // went down away from the start: no ink until lifted
   TraceLane? _lane;
+  StrokeGuide? _guide;
   Size _laneSize = Size.zero;
 
-  /// Where ink may go on this pad, or null when anywhere is fine.
+  /// Where ink may go on this pad (every stroke of the letter), or null
+  /// when anywhere is fine.
   TraceLane? get lane {
-    if (guides.isEmpty || padSize.isEmpty) return null;
-    if (_lane == null || _laneSize != padSize) {
-      _lane = PadGeometry(padSize).lane(guides);
-      _laneSize = padSize;
-    }
+    _layout();
     return _lane;
   }
 
-  void start(Offset p) {
-    final l = lane;
-    if (l != null && !l.contains(p)) {
+  /// The step-by-step guide, or null when the pad has none.
+  StrokeGuide? get guide {
+    _layout();
+    return _guide;
+  }
+
+  bool get guided => guides.isNotEmpty;
+
+  void _layout() {
+    if (guides.isEmpty || padSize.isEmpty || (_lane != null && _laneSize == padSize)) return;
+    final before = _laneSize, old = _guide;
+    _lane = PadGeometry(padSize).lane(guides);
+    _guide = StrokeGuide(_lane!)..stroke = old?.stroke ?? 0;
+    if (old != null && !before.isEmpty) {
+      // the pad changed size: the ink moves with the letter
+      final from = PadGeometry(before), to = PadGeometry(padSize);
+      for (final s in strokes) {
+        for (var i = 0; i < s.length; i++) {
+          s[i] = to.toPad(from.toGuide(s[i]));
+        }
+      }
       _drawing = false;
-      onLeaveLane?.call();
+    }
+    _laneSize = padSize;
+  }
+
+  void start(Offset p) {
+    final g = guide;
+    if (g == null) {
+      _begin(p);
       return;
     }
+    _drawing = false;
+    if (g.done) return;
+    if (!g.canStart(p)) {
+      _misplaced = true;
+      _emit(PadEvent.wrongStart);
+      return;
+    }
+    _begin(p);
+    _follow(g, p, p);
+  }
+
+  void _begin(Offset p) {
     strokes.add([p]);
     _drawing = true;
     pen = p;
@@ -67,20 +132,20 @@ class WritePadController extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// The finger moved to [p]; false when nothing was drawn (outside the
-  /// lane).
+  /// The finger moved to [p]; false when nothing was drawn (off the stroke).
   bool extend(Offset p) {
-    final l = lane;
-    if (l == null) {
+    final g = guide;
+    if (g == null) {
       if (strokes.isEmpty) return false;
       strokes.last.add(p);
-    } else if (_drawing && l.containsMove(strokes.last.last, p)) {
-      strokes.last.add(p);
-    } else {
-      if (_drawing) onLeaveLane?.call();
-      _drawing = l.contains(p);
-      if (!_drawing) return false;
-      strokes.add([p]); // back in the lane: a new stroke
+    } else if (!_drawing) {
+      // back on the stroke, or at the start of the next one
+      if (_misplaced || g.done || !g.canStart(p)) return false;
+      _begin(p);
+      _follow(g, p, p);
+      return true;
+    } else if (!_follow(g, strokes.last.last, p)) {
+      return false;
     }
     pen = p;
     penUsed = true;
@@ -88,28 +153,67 @@ class WritePadController extends ChangeNotifier {
     return true;
   }
 
-  /// Finger lifted.
-  void end() => _drawing = false;
+  /// Follows [a] -> [b] on the guide; false when the finger left the stroke.
+  bool _follow(StrokeGuide g, Offset a, Offset b) {
+    switch (g.move(a, b)) {
+      case Follow.on:
+        if (a != b) strokes.last.add(b);
+        return true;
+      case Follow.off:
+        _drawing = false;
+        _emit(PadEvent.leftPath);
+        return false;
+      case Follow.completed:
+        if (a != b) strokes.last.add(b);
+        _drawing = false;
+        notifyListeners();
+        _emit(g.done ? PadEvent.letterDone : PadEvent.strokeDone);
+        return true;
+    }
+  }
 
+  /// Finger lifted.
+  void end() => _drawing = _misplaced = false;
+
+  /// The eraser: the ink goes and the letter starts again from stroke 1.
   void erase() {
     strokes.clear();
     _drawing = false;
     penUsed = false;
+    _guide?.reset();
     notifyListeners();
   }
 
-  WritingVerdict judge() => WritingJudge.judge(round, strokes, lane);
+  WritingVerdict judge() => WritingJudge.judge(round, strokes, guide);
 
-  /// Guide paths for [round] from the course's glyph table.
-  static List<Path> guidesFor(WriteRound round, Map<String, List<String>> glyphs) {
-    final key = round.guide;
-    if (key == null || (round.mode != WriteMode.trace && round.mode != WriteMode.dots)) return const [];
-    return [for (final d in glyphs[key] ?? const <String>[]) parseSvgPathData(d)];
+  /// The glyph written on this pad: the round's guide, else its target
+  /// letter (free writing, the missing letter), or letter [letter] of a
+  /// spelled word. Null for sentences and letters without strokes.
+  static String? guideKey(WriteRound round, Map<String, List<String>> glyphs, {int letter = 0}) {
+    if (round.sentence || round.story) return null;
+    final String? key;
+    if (round.mode == WriteMode.spell) {
+      final w = round.word ?? round.target ?? '';
+      key = letter < w.length ? w[letter] : null;
+    } else {
+      key = round.guide ?? ((round.target?.length ?? 0) == 1 ? round.target : null);
+    }
+    return key != null && glyphs.containsKey(key) ? key : null;
   }
 
-  static List<String> rawGuides(WriteRound round, Map<String, List<String>> glyphs) {
-    final key = round.guide;
-    return key == null ? const [] : glyphs[key] ?? const [];
+  /// The strokes of [guideKey] (guide space), one path per stroke.
+  static List<Path> guidesFor(WriteRound round, Map<String, List<String>> glyphs, {int letter = 0}) {
+    final key = guideKey(round, glyphs, letter: letter);
+    if (key == null) return const [];
+    return [
+      for (final d in glyphs[key]!)
+        for (final m in parseSvgPathData(d).computeMetrics()) m.extractPath(0, m.length),
+    ];
+  }
+
+  static List<String> rawGuides(WriteRound round, Map<String, List<String>> glyphs, {int letter = 0}) {
+    final key = guideKey(round, glyphs, letter: letter);
+    return key == null ? const [] : glyphs[key]!;
   }
 }
 
@@ -148,28 +252,40 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
   @override
   void initState() {
     super.initState();
-    widget.controller.onLeaveLane = _leftLane;
+    widget.controller.addEventListener(_onPad);
   }
 
   @override
   void didUpdateWidget(WritePad old) {
     super.didUpdateWidget(old);
     if (old.controller != widget.controller) {
-      old.controller.onLeaveLane = null;
-      widget.controller.onLeaveLane = _leftLane;
+      old.controller.removeEventListener(_onPad);
+      widget.controller.addEventListener(_onPad);
+      _pointer = null;
     }
   }
 
   @override
   void dispose() {
-    if (widget.controller.onLeaveLane == _leftLane) widget.controller.onLeaveLane = null;
+    widget.controller.removeEventListener(_onPad);
     _sparkClock.dispose();
     super.dispose();
   }
 
-  void _leftLane() {
-    widget.controller.leftLaneAt = widget.time.value;
-    AppFeedback.of(context).offPath();
+  void _onPad(PadEvent e) {
+    final c = widget.controller;
+    switch (e) {
+      case PadEvent.leftPath:
+        c.leftLaneAt = widget.time.value;
+        AppFeedback.of(context).offPath();
+      case PadEvent.wrongStart:
+        c.wrongStartAt = widget.time.value;
+        AppFeedback.of(context).offPath();
+      case PadEvent.strokeDone:
+        AppFeedback.of(context).step(c.guide?.stroke ?? 1);
+      case PadEvent.letterDone:
+        break; // the round's "correct" celebrates it
+    }
   }
 
   double get _now => _sparkClock.lastElapsedDuration == null ? 0 : _sparkClock.lastElapsedDuration!.inMicroseconds / 1e6;
@@ -201,7 +317,7 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
   Widget build(BuildContext context) {
     final pad = widget.state.level.presentation.pad ?? 'paper';
     final sand = pad == 'sand';
-    final raw = WritePadController.rawGuides(widget.round, widget.glyphs);
+    final raw = WritePadController.rawGuides(widget.round, widget.glyphs, letter: widget.controller.letter);
     final noGuide = widget.controller.guides.isEmpty;
     final freeHint = widget.round.mode == WriteMode.free && widget.round.sentence && !widget.state.correct
         ? 'Likho: ${widget.round.target ?? 'apni kahani'}'
@@ -266,6 +382,16 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
                       ),
                     ),
                   ),
+                  if (!noGuide)
+                    Positioned.fill(
+                      child: IgnorePointer(
+                        child: RepaintBoundary(
+                          child: CustomPaint(
+                            painter: _StepPainter(controller: widget.controller, hint: widget.state.hint, time: widget.time),
+                          ),
+                        ),
+                      ),
+                    ),
                   Positioned.fill(
                     child: IgnorePointer(
                       child: AnimatedBuilder(
@@ -308,7 +434,9 @@ class _PadBackground extends CustomPainter {
   bool shouldRepaint(_PadBackground old) => old.sand != sand;
 }
 
-/// Ruled lines, guide strokes, stroke-start badges, dots and the hint stroke.
+/// Ruled lines, the letter's lane and guide, and the step-by-step marks:
+/// finished strokes turn green, the current one shows its start (a pulsing
+/// numbered dot) and its direction (chevrons marching to its end).
 class _GuidePainter extends CustomPainter {
   _GuidePainter({
     required this.mode,
@@ -318,7 +446,7 @@ class _GuidePainter extends CustomPainter {
     required this.hint,
     required this.time,
     required this.controller,
-  }) : super(repaint: (hint || guides.isNotEmpty) ? time : null);
+  }) : super(repaint: guides.isNotEmpty ? Listenable.merge([time, controller]) : (hint ? time : null));
 
   final WriteMode mode;
   final String pad;
@@ -328,17 +456,9 @@ class _GuidePainter extends CustomPainter {
   final ValueNotifier<double> time;
   final WritePadController controller;
 
-  /// How long the lane flashes after the finger slips out (seconds).
+  /// How long the lane / start marker flashes after a slip (seconds).
   static const laneFlash = .45;
 
-  /// OPEN QUESTION: the prototype's code puts stroke numbers in the start
-  /// badges and next to connect-the-dots points, but its template wraps them
-  /// in an HTML `<span>` inside SVG `<text>`, which browsers do not draw, so the
-  /// reference screens show plain dots. We match the reference; set true to
-  /// show the numbers.
-  static const showStrokeNumbers = false;
-
-  static final _move = RegExp(r'M\s*([\d.]+)\s+([\d.]+)');
   static final _points = RegExp(r'[ML]\s*([\d.]+)\s+([\d.]+)');
 
   @override
@@ -363,45 +483,52 @@ class _GuidePainter extends CustomPainter {
     line(45, GameColors.lineTop, 2, [8, 8]);
     line(70, GameColors.lineBase, 2.5);
     line(90, GameColors.lineDesc, 2, [3, 7]);
+    if (guides.isEmpty) return;
+
+    final g = controller.guide;
+    final current = g?.stroke ?? 0;
+    final t = time.value;
+    double flashOf(double? at) => at == null ? 0.0 : (1 - (t - at) / laneFlash).clamp(0.0, 1.0);
 
     canvas.save();
     geo.apply(canvas);
-    final t = time.value;
-    if (guides.isNotEmpty) {
-      // the lane: where ink may go; it flashes when the finger slips out
-      final left = controller.leftLaneAt;
-      final flash = left == null ? 0.0 : (1 - (t - left) / laneFlash).clamp(0.0, 1.0);
-      final base = switch (pad) {
-        'track' => GameColors.laneTrack,
-        'road' => GameColors.laneRoad,
-        'sand' => GameColors.laneSand,
-        _ => GameColors.lanePaper,
-      };
+    // the lane: where ink may go; finished strokes are green, the current
+    // one flashes when the finger slips off it
+    final base = switch (pad) {
+      'track' => GameColors.laneTrack,
+      'road' => GameColors.laneRoad,
+      'sand' => GameColors.laneSand,
+      _ => GameColors.lanePaper,
+    };
+    final flash = flashOf(controller.leftLaneAt);
+    for (final (i, path) in guides.indexed) {
       final lane = Paint()
         ..style = PaintingStyle.stroke
         ..strokeCap = StrokeCap.round
         ..strokeJoin = StrokeJoin.round
         ..strokeWidth = WritingJudge.laneWidth
-        ..color = Color.lerp(base, LikhoColors.hint.withValues(alpha: .35), flash)!;
-      for (final g in guides) {
-        canvas.drawPath(g, lane);
-      }
+        ..color = i < current
+            ? GameColors.laneDone
+            : i == current
+            ? Color.lerp(base, LikhoColors.hint.withValues(alpha: .35), flash)!
+            : base;
+      canvas.drawPath(path, lane);
     }
-    if (mode == WriteMode.trace && guides.isNotEmpty) {
-      final color = switch (pad) {
-        'track' => GameColors.guideTrack,
-        'road' => GameColors.guideRoad,
-        'sand' => GameColors.sandGuide,
-        _ => GameColors.guidePaper,
-      };
+    final guideColor = switch (pad) {
+      'track' => GameColors.guideTrack,
+      'road' => GameColors.guideRoad,
+      'sand' => GameColors.sandGuide,
+      _ => GameColors.guidePaper,
+    };
+    if (mode == WriteMode.trace) {
       final stroke = Paint()
         ..style = PaintingStyle.stroke
         ..strokeCap = StrokeCap.round
         ..strokeJoin = StrokeJoin.round
         ..strokeWidth = pad == 'road' ? 8 : 7
-        ..color = color;
-      for (final g in guides) {
-        canvas.drawPath(pad == 'track' ? _dashed(g, 1.3, 2.4) : g, stroke);
+        ..color = guideColor;
+      for (final path in guides) {
+        canvas.drawPath(pad == 'track' ? _dashed(path, 1.3, 2.4) : path, stroke);
       }
       if (pad == 'road' || pad == 'track') {
         final mid = Paint()
@@ -409,20 +536,20 @@ class _GuidePainter extends CustomPainter {
           ..strokeCap = StrokeCap.round
           ..strokeWidth = pad == 'road' ? .7 : .8
           ..color = pad == 'road' ? LikhoColors.surface : GameColors.trackRail;
-        for (final g in guides) {
-          canvas.drawPath(pad == 'road' ? _dashed(g, 2.5, 2.5) : g, mid);
+        for (final path in guides) {
+          canvas.drawPath(pad == 'road' ? _dashed(path, 2.5, 2.5) : path, mid);
         }
       }
-      // pulsing start of the first stroke
-      final starts = [for (final d in raw) _move.firstMatch(d)].whereType<RegExpMatch>().map((m) => Offset(double.parse(m[1]!), double.parse(m[2]!))).toList();
-      if (starts.isNotEmpty) {
-        final p = Curves.easeOut.transform((t / 1.4) % 1.0);
-        canvas.drawCircle(starts.first, 4.5 * (1 + .75 * p), Paint()..color = LikhoColors.primary.withValues(alpha: .6 * (1 - p)));
-      }
-      for (final (i, s) in starts.indexed) {
-        canvas.drawCircle(s, 3.4, Paint()..color = LikhoColors.secondary);
-        if (showStrokeNumbers) _text(canvas, '${i + 1}', s, 4, LikhoColors.surface);
-      }
+    } else if (current < guides.length) {
+      // writing without a traced letter: a dashed line shows the stroke's path
+      canvas.drawPath(
+        _dashed(guides[current], 2.2, 2.4),
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeCap = StrokeCap.round
+          ..strokeWidth = 2.2
+          ..color = pad == 'sand' ? GameColors.sandGuide : GameColors.guideRoad,
+      );
     }
     if (mode == WriteMode.dots) {
       final pts = <Offset>[];
@@ -432,28 +559,118 @@ class _GuidePainter extends CustomPainter {
           if (!pts.contains(q)) pts.add(q);
         }
       }
-      for (final (i, q) in pts.indexed) {
+      for (final q in pts) {
         canvas.drawCircle(q, 2.6, Paint()..color = LikhoColors.ink);
-        if (showStrokeNumbers) _text(canvas, '${i + 1}', q + const Offset(-4.2, -3.6), 3.6, LikhoColors.secondary);
-      }
-    }
-    if (hint && guides.isNotEmpty) {
-      // hintDraw 1.4 s: draws the first stroke, holds, fades
-      final p = Curves.easeInOut.transform((t / 1.4) % 1.0);
-      final m = guides.first.computeMetrics().firstOrNull;
-      if (m != null) {
-        final part = m.extractPath(0, m.length * math.min(1, p / .7));
-        canvas.drawPath(
-          part,
-          Paint()
-            ..style = PaintingStyle.stroke
-            ..strokeCap = StrokeCap.round
-            ..strokeWidth = 3.2
-            ..color = LikhoColors.hint.withValues(alpha: p < .7 ? 1 : 1 - (p - .7) / .3),
-        );
       }
     }
     canvas.restore();
+  }
+
+  static Path _dashed(Path p, double on, double off) => dashPath(p, dashArray: CircularIntervalList<double>([on, off]));
+
+  @override
+  bool shouldRepaint(_GuidePainter old) => old.mode != mode || old.pad != pad || old.guides != guides || old.hint != hint || old.controller != controller;
+}
+
+/// The step-by-step marks, drawn over the ink: where the current stroke
+/// starts or carries on (a pulsing numbered dot that jumps when the finger
+/// went down elsewhere), which way it goes (arrows marching to its end, a
+/// ring at the end) and, after a mistake, a finger running along it.
+class _StepPainter extends CustomPainter {
+  _StepPainter({required this.controller, required this.hint, required this.time}) : super(repaint: Listenable.merge([time, controller]));
+
+  final WritePadController controller;
+  final bool hint;
+  final ValueNotifier<double> time;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final g = controller.guide;
+    final t = time.value;
+    double flashOf(double? at) => at == null ? 0.0 : (1 - (t - at) / _GuidePainter.laneFlash).clamp(0.0, 1.0);
+
+    if (g == null || g.done) return;
+    final pts = g.points;
+    final h = g.lane.halfWidth;
+
+    // direction: arrows marching from the written part to the end
+    _arrows(canvas, pts, from: g.reached, spacing: h * 1.2, size: h * .42, shift: (t * h * 1.1) % (h * 1.2));
+    // the end of the stroke: a hollow ring
+    canvas.drawCircle(
+      pts.last,
+      h * .32,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 3
+        ..color = GameColors.stepArrow,
+    );
+
+    if (hint) {
+      // hintDraw 1.4 s: a finger dot runs along the stroke, leaving a trail
+      final p = Curves.easeInOut.transform((t / 1.4) % 1.0);
+      final k = (math.min(1.0, p / .7) * (pts.length - 1)).round();
+      final alpha = p < .7 ? 1.0 : 1 - (p - .7) / .3;
+      final trail = Path()..moveTo(pts.first.dx, pts.first.dy);
+      for (var i = 1; i <= k; i++) {
+        trail.lineTo(pts[i].dx, pts[i].dy);
+      }
+      canvas.drawPath(
+        trail,
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeCap = StrokeCap.round
+          ..strokeJoin = StrokeJoin.round
+          ..strokeWidth = h * .42
+          ..color = LikhoColors.hint.withValues(alpha: alpha),
+      );
+      canvas.drawCircle(pts[k], h * .36, Paint()..color = LikhoColors.hint.withValues(alpha: alpha));
+    }
+
+    // where to start (or carry on): a pulsing numbered dot; it jumps when
+    // the finger went down somewhere else
+    final at = g.resumeAt!;
+    final pulse = Curves.easeOut.transform((t / 1.4) % 1.0);
+    final nudge = flashOf(controller.wrongStartAt);
+    final r = h * .5 * (1 + .35 * math.sin(nudge * math.pi));
+    canvas.drawCircle(at, r * (1 + .9 * pulse), Paint()..color = LikhoColors.primary.withValues(alpha: .65 * (1 - pulse)));
+    canvas.drawCircle(at, r, Paint()..color = Color.lerp(LikhoColors.secondary, LikhoColors.hint, nudge)!);
+    if (g.reached == 0) _text(canvas, '${g.stroke + 1}', at, r * 1.15, LikhoColors.surface);
+  }
+
+  /// Arrowheads along [pts] from point [from] on, every [spacing] px.
+  void _arrows(Canvas canvas, List<Offset> pts, {required int from, required double spacing, required double size, required double shift}) {
+    if (pts.length < 2) return;
+    final paint = Paint()
+      ..style = PaintingStyle.fill
+      ..color = GameColors.stepArrow;
+    final edge = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeJoin = StrokeJoin.round
+      ..strokeWidth = size * .3
+      ..color = GameColors.stepArrow;
+    var run = 0.0, next = spacing * .8 + shift;
+    for (var i = from + 1; i < pts.length; i++) {
+      final seg = pts[i] - pts[i - 1];
+      final len = seg.distance;
+      if (len == 0) continue;
+      while (run + len >= next) {
+        final q = pts[i - 1] + seg * ((next - run) / len);
+        // stop before the end ring
+        if ((pts.last - q).distance < size * 1.4) return;
+        final dir = seg / len;
+        final tip = q + dir * size * .5, back = q - dir * size * .5, side = Offset(-dir.dy, dir.dx) * size * .62;
+        final head = Path()
+          ..moveTo(tip.dx, tip.dy)
+          ..lineTo(back.dx + side.dx, back.dy + side.dy)
+          ..lineTo(back.dx - side.dx, back.dy - side.dy)
+          ..close();
+        canvas
+          ..drawPath(head, paint)
+          ..drawPath(head, edge); // rounds the corners
+        next += spacing;
+      }
+      run += len;
+    }
   }
 
   void _text(Canvas canvas, String s, Offset centre, double size, Color c) {
@@ -467,10 +684,8 @@ class _GuidePainter extends CustomPainter {
     tp.paint(canvas, centre - Offset(tp.width / 2, tp.height / 2));
   }
 
-  static Path _dashed(Path p, double on, double off) => dashPath(p, dashArray: CircularIntervalList<double>([on, off]));
-
   @override
-  bool shouldRepaint(_GuidePainter old) => old.mode != mode || old.pad != pad || old.guides != guides || old.hint != hint;
+  bool shouldRepaint(_StepPainter old) => old.controller != controller || old.hint != hint;
 }
 
 class _InkPainter extends CustomPainter {

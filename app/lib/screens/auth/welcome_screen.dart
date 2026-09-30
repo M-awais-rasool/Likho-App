@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 import '../../feedback/app_feedback.dart';
 import '../../design/motion.dart';
@@ -20,11 +21,14 @@ import 'google_button.dart';
 /// account the first time (no sign up, no password). "Pehle try karein"
 /// plays without an account.
 class WelcomeScreen extends StatefulWidget {
-  const WelcomeScreen({super.key, required this.onGoogle, required this.onTryFirst, this.onTerms});
+  const WelcomeScreen({super.key, required this.onGoogle, required this.onTryFirst, this.onTerms, this.onTestUser});
 
   /// Signs in; true when it worked (the flow then moves on), false when the
   /// parent closed Google or it failed (the flow shows why).
   final Future<bool> Function() onGoogle;
+
+  /// Signs in as the shared test account (test builds only; null hides it).
+  final Future<bool> Function()? onTestUser;
   final VoidCallback onTryFirst;
   final VoidCallback? onTerms;
 
@@ -40,9 +44,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   int _oops = 0; // Pencil encourages after a failed sign-in
   Timer? _timer, _land;
 
-  Future<void> _google() async {
+  Future<void> _google() => _signIn(widget.onGoogle);
+
+  Future<void> _signIn(Future<bool> Function() signIn) async {
+    if (_busy) return;
     setState(() => _busy = true);
-    final ok = await widget.onGoogle();
+    final ok = await signIn();
     if (!mounted) return;
     setState(() {
       _busy = false;
@@ -138,6 +145,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       ),
                       const Spacer(),
                       GoogleButton(loading: _busy, onTap: _google),
+                      if (widget.onTestUser case final test?) ...[
+                        const SizedBox(height: 10),
+                        TestUserButton(onTap: _busy ? null : () => _signIn(test)),
+                      ],
                       const SizedBox(height: 10),
                       Text(
                         'Pehli baar? Account khud ban jayega.',
@@ -170,6 +181,34 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       ),
     );
   }
+}
+
+/// "Test User" (test builds): a quiet outlined button under Google, so it
+/// is clearly not the way parents sign in.
+class TestUserButton extends StatelessWidget {
+  const TestUserButton({super.key, required this.onTap});
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) => SizedBox(
+    height: 54,
+    width: double.infinity,
+    child: OutlinedButton.icon(
+      onPressed: onTap == null
+          ? null
+          : () {
+              AppFeedback.of(context).press();
+              onTap!();
+            },
+      icon: const Icon(Symbols.science_rounded, size: 22, fill: 1, opticalSize: 24),
+      label: Text('Test User se login', style: LikhoFonts.title(size: 18, weight: FontWeight.w700, color: LikhoColors.inkMuted).copyWith(height: 1)),
+      style: OutlinedButton.styleFrom(
+        foregroundColor: LikhoColors.inkMuted,
+        side: const BorderSide(color: UiColors.inkHint, width: 2),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      ),
+    ),
+  );
 }
 
 /// The orange "A": starts top-left tilted -12°, then flies into Pencil's

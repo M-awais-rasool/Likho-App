@@ -10,18 +10,20 @@ import '../../mascot/mascot.dart';
 import '../common/kid_widgets.dart';
 import '../common/pencil_figure.dart';
 import 'google_button.dart';
+import 'welcome_screen.dart' show TestUserButton;
 
 /// Asks a guest ("pehle try karein") to sign in before going further: the
 /// next level, the room, the profile, parent settings. Completes with true
 /// once signed in, false when closed.
-Future<bool> showSignInSheet(BuildContext context, {required Future<bool> Function() onGoogle}) async {
+/// [onTestUser] (test builds) adds the "Test User" sign-in.
+Future<bool> showSignInSheet(BuildContext context, {required Future<bool> Function() onGoogle, Future<bool> Function()? onTestUser}) async {
   AppFeedback.of(context).tap();
   final ok = await Navigator.of(context).push<bool>(
     PageRouteBuilder<bool>(
       opaque: false,
       transitionDuration: const Duration(milliseconds: 220),
       reverseTransitionDuration: const Duration(milliseconds: 180),
-      pageBuilder: (context, _, _) => SignInSheet(onGoogle: onGoogle),
+      pageBuilder: (context, _, _) => SignInSheet(onGoogle: onGoogle, onTestUser: onTestUser),
       transitionsBuilder: (context, a, _, child) => FadeTransition(opacity: a, child: child),
     ),
   );
@@ -29,8 +31,9 @@ Future<bool> showSignInSheet(BuildContext context, {required Future<bool> Functi
 }
 
 class SignInSheet extends StatefulWidget {
-  const SignInSheet({super.key, required this.onGoogle});
+  const SignInSheet({super.key, required this.onGoogle, this.onTestUser});
   final Future<bool> Function() onGoogle;
+  final Future<bool> Function()? onTestUser;
 
   @override
   State<SignInSheet> createState() => _SignInSheetState();
@@ -40,9 +43,12 @@ class _SignInSheetState extends State<SignInSheet> {
   bool _busy = false;
   int _oops = 0;
 
-  Future<void> _google() async {
+  Future<void> _google() => _signIn(widget.onGoogle);
+
+  Future<void> _signIn(Future<bool> Function() signIn) async {
+    if (_busy) return;
     setState(() => _busy = true);
-    final ok = await widget.onGoogle();
+    final ok = await signIn();
     if (!mounted) return;
     if (ok) {
       Navigator.of(context).pop(true);
@@ -127,6 +133,10 @@ class _SignInSheetState extends State<SignInSheet> {
                         ),
                         const SizedBox(height: 20),
                         GoogleButton(loading: _busy, onTap: _google, height: 72, fontSize: 21),
+                        if (widget.onTestUser case final test?) ...[
+                          const SizedBox(height: 10),
+                          TestUserButton(onTap: _busy ? null : () => _signIn(test)),
+                        ],
                         const SizedBox(height: 6),
                         Center(
                           child: TextLink(
