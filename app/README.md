@@ -18,6 +18,8 @@ Build settings (`--dart-define`):
 | `GOOGLE_IOS_CLIENT_ID` | iOS OAuth client ID (also put its reversed ID in `ios/Runner/Info.plist`) |
 | `GOOGLE_SERVER_CLIENT_ID` | Web OAuth client ID (Android needs it for an ID token) |
 | `LIKHO_DEV_EMAIL` | debug only: sign in as this email through the API's `DEV_LOGIN`, without Google |
+| `LIKHO_TEST_EMAIL` | the account behind the Welcome screen's "Test User se login" button (default `test.user@likho.app`); signs in through the API's `DEV_LOGIN` like a Google account |
+| `LIKHO_TEST_LOGIN` | `true` shows the "Test User" button in a release build too (debug and profile builds always show it) |
 
 ## Structure
 
