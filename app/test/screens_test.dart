@@ -224,6 +224,24 @@ void main() {
     await _close(t);
   });
 
+  testWidgets('welcome -> Test User: signs in without Google and continues the saved family', (t) async {
+    final backend = FakeBackend()
+      ..newAccount = false
+      ..addChild('Tester', levels: {'1': 3, '2': 2});
+    // Google would be cancelled: the test user must not need it
+    final c = await _app(t, opener(AppFlow.welcomeRoutePage), overrides: fakeBackendOverrides(backend, google: FakeGoogle()..cancel = true));
+    await c.read(authProvider.notifier).ready;
+    await t.tap(find.text('go'));
+    await _pumpFor(t, const Duration(milliseconds: 600));
+    await t.tap(find.text('Test User se login'));
+    await _pumpFor(t, const Duration(milliseconds: 900));
+    expect(c.read(authProvider).signedIn, isTrue);
+    expect(backend.idTokens, ['dev:${TestUser.email}']);
+    expect(find.byType(WhosPlayingScreen), findsOneWidget);
+    expect(c.read(progressProvider).current, 3, reason: 'the test child\'s progress from the server');
+    await _close(t);
+  });
+
   testWidgets('closing the Google sheet keeps Welcome', (t) async {
     final backend = FakeBackend();
     final c = await _app(t, opener(AppFlow.welcomeRoutePage), overrides: fakeBackendOverrides(backend, google: FakeGoogle()..cancel = true));

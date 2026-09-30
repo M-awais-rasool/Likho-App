@@ -190,6 +190,7 @@ class _WorldSection extends StatelessWidget {
       Positioned.fill(child: CustomPaint(painter: MapPathPainter(geometry: geometry, sectionTop: top))),
       Positioned(left: 24, top: labelY, height: 40, child: _WorldLabel(index: world, world: info, theme: theme)),
     ];
+    Widget? mascotOnTop;
     for (var li = 0; li < 6; li++) {
       final n = world * 6 + li + 1;
       final level = course.level(n);
@@ -227,10 +228,16 @@ class _WorldSection extends StatelessWidget {
         onOpen: onOpenLevel,
       ));
       if (n == current) {
-        // stands on the current level: box 60 x 86, bottom on the node's top edge
-        children.add(Positioned(
-          left: c.dx - 30,
-          top: c.dy - 44 - 86,
+        // stands on the current level: box 60 x 86, feet on the node's top
+        // edge. When the next level is just above, he steps to the other
+        // side of the node so it never covers him.
+        final r = level.isBoss ? 50.0 : (isCur ? 44.0 : 36.0); // _LevelNode sizes
+        final ahead = n < 36 ? geometry.node(n + 1) - Offset(0, top) : null;
+        final dx = ahead == null || (ahead.dx - c.dx).abs() > 90 ? 0.0 : (ahead.dx >= c.dx ? -22.0 : 22.0);
+        final rim = math.sqrt(r * r - dx * dx);
+        mascotOnTop = Positioned(
+          left: c.dx + dx - 30,
+          top: c.dy - rim - 86 + 2,
           width: 60,
           height: 86,
           child: IgnorePointer(
@@ -241,9 +248,11 @@ class _WorldSection extends StatelessWidget {
               child: OverflowBox(maxWidth: 80, child: PencilMascot(controller: mascot, size: 86)),
             ),
           ),
-        ));
+        );
       }
     }
+    // Pencil goes over every node of the section
+    if (mascotOnTop != null) children.add(mascotOnTop);
     return SizedBox(height: height, child: Stack(clipBehavior: Clip.none, children: children));
   }
 }

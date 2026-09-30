@@ -49,6 +49,29 @@ void main() {
     expect(await c.read(authProvider.notifier).signInWithGoogle(), isFalse);
   });
 
+  test('the test user signs in like a Google account and keeps its data after logging out', () async {
+    expect(await c.read(authProvider.notifier).signInAsTestUser(), isTrue, reason: 'first time: a new account');
+    expect(backend.idTokens.single, 'dev:${TestUser.email}');
+    expect(c.read(authProvider).signedIn, isTrue);
+    expect(c.read(familyProvider).online, isTrue);
+    await c.read(familyProvider.notifier).addChild(name: 'Tester', age: 6, color: LikhoColors.primary);
+    await settle();
+    final n = c.read(familyProvider.notifier);
+    n.recordResult(1, 3, seconds: 40);
+    await settle();
+
+    await n.logOut();
+    expect(c.read(authProvider).signedIn, isFalse);
+    expect(tokens.token, isNull, reason: 'the session is gone from the phone');
+
+    expect(await c.read(authProvider.notifier).signInAsTestUser(), isFalse, reason: 'the same account again');
+    await settle();
+    expect(backend.idTokens, ['dev:${TestUser.email}', 'dev:${TestUser.email}']);
+    final family = c.read(familyProvider);
+    expect(family.profiles.single.name, 'Tester');
+    expect(c.read(progressProvider).levelStars[1], 3);
+  });
+
   test('a finished level shows at once and the server keeps it (sent once)', () async {
     backend.addChild('Ayaan', levels: {'1': 3, '2': 2}, stars: 9);
     await c.read(authProvider.notifier).signInWithGoogle();

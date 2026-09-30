@@ -19,6 +19,9 @@ class FakeBackend {
   bool offline = false;
   bool newAccount = true;
   final List<String> calls = [];
+
+  /// The ID tokens sign-ins sent (Google's, or `dev:<email>` for the test user).
+  final List<String> idTokens = [];
   final Map<String, Map<String, dynamic>> _results = {}; // idempotency key -> answer
 
   Map<String, dynamic> settings = {'sessionMinutes': 10, 'music': true, 'sfx': true, 'haptics': true, 'leftHanded': false, 'reduceMotion': false};
@@ -78,6 +81,7 @@ class FakeBackend {
     final seg = path.split('/').where((s) => s.isNotEmpty).toList(); // v1, …
     switch ((req.method, seg.skip(1).toList())) {
       case ('POST', ['auth', 'google']):
+        idTokens.add(body['idToken'] as String);
         final isNew = newAccount;
         newAccount = false;
         return json({..._tokenPair(), 'isNewAccount': isNew, 'me': me()}, isNew ? 201 : 200);

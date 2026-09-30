@@ -88,6 +88,12 @@ class _LevelCompleteScreenState extends ConsumerState<LevelCompleteScreen> {
     final fg = theme.dark ? LikhoColors.surface : LikhoColors.ink;
     final o = widget.outcome;
     final last = widget.level.number == 36;
+    // one layout for every phone: shorter phones get a slightly smaller
+    // group, the gaps inside it stay the same
+    final compact = MediaQuery.sizeOf(context).height < 760;
+    final slot = compact ? 88.0 : 104.0, bigSlot = compact ? 108.0 : 128.0;
+    final lift = bigSlot * .22; // the middle star sits higher
+    final pencilH = compact ? 172.0 : 212.0;
     return StatusBar(
       light: theme.dark,
       child: Material(
@@ -135,15 +141,21 @@ class _LevelCompleteScreenState extends ConsumerState<LevelCompleteScreen> {
                         style: LikhoFonts.title(size: 40, weight: FontWeight.w800, color: fg),
                       ),
                     ),
-                    const SizedBox(height: 34),
+                    const SizedBox(height: 16),
+                    const Spacer(),
+                    // stars, the gain and Pencil stay together as one group,
+                    // centred between the title and the buttons
                     SizedBox(
-                      height: 130,
+                      height: bigSlot + lift,
                       child: Stack(
                         clipBehavior: Clip.none,
-                        alignment: Alignment.center,
+                        alignment: Alignment.bottomCenter,
                         children: [
                           // light rays behind a perfect score, once the third star is in
-                          if (_stars == 3) const OverflowBox(maxWidth: 360, maxHeight: 360, child: Sunburst(size: 360, delay: 2.2)),
+                          if (_stars == 3)
+                            Positioned.fill(
+                              child: OverflowBox(maxWidth: 400, maxHeight: 400, child: Sunburst(size: 400, delay: 2.2)),
+                            ),
                           // scales down on phones narrower than the three slots
                           FittedBox(
                             fit: BoxFit.scaleDown,
@@ -153,8 +165,8 @@ class _LevelCompleteScreenState extends ConsumerState<LevelCompleteScreen> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 for (var i = 0; i < 3; i++) ...[
-                                  if (i > 0) const SizedBox(width: 14),
-                                  _StarSlot(big: i == 1, filled: i < _stars, delay: .45 + i * .7),
+                                  if (i > 0) const SizedBox(width: 12),
+                                  _StarSlot(size: i == 1 ? bigSlot : slot, lift: i == 1 ? lift : 0, filled: i < _stars, delay: .45 + i * .7),
                                 ],
                               ],
                             ),
@@ -162,10 +174,10 @@ class _LevelCompleteScreenState extends ConsumerState<LevelCompleteScreen> {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 14),
+                    const SizedBox(height: 18),
                     PopIn(delay: 2.4, child: _GainPill(gain: o.gain)),
                     if (o.level == 35) ...[const SizedBox(height: 16), RiseIn(delay: 2.6, seconds: .4, child: _StoryCard(choices: o.choices))],
-                    const Spacer(),
+                    const SizedBox(height: 24),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -178,9 +190,10 @@ class _LevelCompleteScreenState extends ConsumerState<LevelCompleteScreen> {
                           ),
                           const SizedBox(width: 6),
                         ],
-                        PencilFigure(width: 150, height: 212, state: _expr, replay: _replay),
+                        PencilFigure(width: pencilH * 150 / 212, height: pencilH, state: _expr, replay: _replay),
                       ],
                     ),
+                    const Spacer(),
                     const SizedBox(height: 18),
                     Row(
                       children: [
@@ -216,71 +229,81 @@ class _LevelCompleteScreenState extends ConsumerState<LevelCompleteScreen> {
 }
 
 /// Round slot for one star; an earned star drops into it (starDrop .55 s).
+/// Its sparkles fly out around it without taking room in the row.
 class _StarSlot extends StatelessWidget {
-  const _StarSlot({required this.big, required this.filled, required this.delay});
-  final bool big, filled;
-  final double delay;
+  const _StarSlot({required this.size, required this.lift, required this.filled, required this.delay});
+  final double size, lift, delay;
+  final bool filled;
 
   @override
   Widget build(BuildContext context) {
-    final size = big ? 112.0 : 92.0;
-    final fs = big ? 96.0 : 78.0;
+    final fs = size * .86;
     final landed = delay + .3; // the star touches down at 55 % of its .55 s drop
+    final burst = size * 1.9;
     return Transform.translate(
-      offset: Offset(0, big ? -26 : 0),
-      child: Stack(
-        clipBehavior: Clip.none,
-        alignment: Alignment.center,
-        children: [
-          Container(
-            width: size,
-            height: size,
-            decoration: const BoxDecoration(color: CompleteColors.starSlot, shape: BoxShape.circle),
-            child: CustomPaint(
-              painter: const _InsetBlur(),
-              child: Center(
-                child: OverflowBox(
-                  maxWidth: fs,
-                  maxHeight: fs,
-                  child: filled
-                      ? Entrance(
-                          delay: Duration(milliseconds: (delay * 1000).round()),
-                          duration: const Duration(milliseconds: 550),
-                          builder: (context, t, child) {
-                            if (t <= 0) return const SizedBox.shrink();
-                            final y = keyframes(t, const [(0, -320), (.55, 14), (.75, -8), (1, 0)], dropEase);
-                            final sx = keyframes(t, const [(0, .4), (.55, 1.18), (.75, .95), (1, 1)], dropEase);
-                            final sy = keyframes(t, const [(0, .4), (.55, .86), (.75, 1.05), (1, 1)], dropEase);
-                            final r = keyframes(t, const [(0, -120), (.55, 8), (.75, 0), (1, 0)], dropEase);
-                            return Opacity(
-                              opacity: (t / .55).clamp(0.0, 1.0),
-                              child: Transform.translate(
-                                offset: Offset(0, y),
-                                child: Transform.rotate(
-                                  angle: r * math.pi / 180,
-                                  child: Transform(alignment: Alignment.center, transform: Matrix4.diagonal3Values(sx, sy, 1), child: child),
-                                ),
+      offset: Offset(0, -lift),
+      child: SizedBox.square(
+        dimension: size,
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Positioned.fill(
+              child: DecoratedBox(
+                decoration: const BoxDecoration(color: CompleteColors.starSlot, shape: BoxShape.circle),
+                child: CustomPaint(
+                  painter: const _InsetBlur(),
+                  child: Center(
+                    child: OverflowBox(
+                      maxWidth: fs,
+                      maxHeight: fs,
+                      child: filled
+                          ? Entrance(
+                              delay: Duration(milliseconds: (delay * 1000).round()),
+                              duration: const Duration(milliseconds: 550),
+                              builder: (context, t, child) {
+                                if (t <= 0) return const SizedBox.shrink();
+                                final y = keyframes(t, const [(0, -320), (.55, 14), (.75, -8), (1, 0)], dropEase);
+                                final sx = keyframes(t, const [(0, .4), (.55, 1.18), (.75, .95), (1, 1)], dropEase);
+                                final sy = keyframes(t, const [(0, .4), (.55, .86), (.75, 1.05), (1, 1)], dropEase);
+                                final r = keyframes(t, const [(0, -120), (.55, 8), (.75, 0), (1, 0)], dropEase);
+                                return Opacity(
+                                  opacity: (t / .55).clamp(0.0, 1.0),
+                                  child: Transform.translate(
+                                    offset: Offset(0, y),
+                                    child: Transform.rotate(
+                                      angle: r * math.pi / 180,
+                                      child: Transform(alignment: Alignment.center, transform: Matrix4.diagonal3Values(sx, sy, 1), child: child),
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: SymbolIcon(
+                                Symbols.star_rounded,
+                                size: fs,
+                                fill: true,
+                                color: LikhoColors.primary,
+                                shadows: const [
+                                  Shadow(color: LikhoColors.primaryDeep, offset: Offset(0, 5)),
+                                  Shadow(color: CompleteColors.starGlow, blurRadius: 30),
+                                ],
                               ),
-                            );
-                          },
-                          child: SymbolIcon(
-                            Symbols.star_rounded,
-                            size: fs,
-                            fill: true,
-                            color: LikhoColors.primary,
-                            shadows: const [
-                              Shadow(color: LikhoColors.primaryDeep, offset: Offset(0, 5)),
-                              Shadow(color: CompleteColors.starGlow, blurRadius: 30),
-                            ],
-                          ),
-                        )
-                      : SymbolIcon(Symbols.star_rounded, size: fs, fill: true, color: CompleteColors.starEmpty),
+                            )
+                          : SymbolIcon(Symbols.star_rounded, size: fs, fill: true, color: CompleteColors.starEmpty),
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
-          if (filled) SparkleBurst(size: size * 1.9, delay: landed, count: big ? 12 : 9, seed: size.round()),
-        ],
+            if (filled)
+              Positioned(
+                left: (size - burst) / 2,
+                top: (size - burst) / 2,
+                width: burst,
+                height: burst,
+                child: IgnorePointer(child: SparkleBurst(size: burst, delay: landed, count: size > 100 ? 12 : 9, seed: size.round())),
+              ),
+          ],
+        ),
       ),
     );
   }
