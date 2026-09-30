@@ -64,6 +64,23 @@ class DevIdentity implements GoogleIdentity {
   Future<void> signOut() async {}
 }
 
+/// The shared test account for trying the app before release: "Test User"
+/// on the Welcome screen signs in as [email] through the backend's
+/// DEV_LOGIN, then everything works as for a Google account (the same
+/// sign-in call, session, children, progress and settings on the server).
+///
+/// Shown in debug and profile builds; a release build shows it only with
+/// `--dart-define=LIKHO_TEST_LOGIN=true`. Another address:
+/// `--dart-define=LIKHO_TEST_EMAIL=someone@example.com`. The backend must
+/// run with DEV_LOGIN=true (never in production).
+abstract final class TestUser {
+  static const email = String.fromEnvironment('LIKHO_TEST_EMAIL', defaultValue: 'test.user@likho.app');
+  static const enabled = !kReleaseMode || bool.fromEnvironment('LIKHO_TEST_LOGIN');
+
+  /// What the app sends instead of a Google ID token.
+  static String get idToken => 'dev:$email';
+}
+
 final googleIdentityProvider = Provider<GoogleIdentity>((ref) {
   const dev = String.fromEnvironment('LIKHO_DEV_EMAIL');
   if (kDebugMode && dev.isNotEmpty) return const DevIdentity(dev);
@@ -155,7 +172,15 @@ class AuthNotifier extends Notifier<AuthState> {
   Future<bool?> signInWithGoogle() async {
     final token = await ref.read(googleIdentityProvider).idToken();
     if (token == null) return null;
-    final r = await _api.signInWithGoogle(token, device: defaultTargetPlatform.name);
+    return _signIn(token);
+  }
+
+  /// "Test User": signs in as [TestUser.email], exactly like Google does
+  /// (the backend finds or makes that account). Returns whether it is new.
+  Future<bool> signInAsTestUser() => _signIn(TestUser.idToken);
+
+  Future<bool> _signIn(String idToken) async {
+    final r = await _api.signInWithGoogle(idToken, device: defaultTargetPlatform.name);
     final me = (r['me'] as Map).cast<String, dynamic>();
     await MeSnapshot.save(_files, me);
     _set(AuthState(AuthStatus.signedIn, me: me));

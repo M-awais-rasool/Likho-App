@@ -336,6 +336,8 @@ abstract final class GameColors {
   static const laneSand = Color(0x1F9C7446); // sand ink .12
   static const laneTrack = Color(0x40D9B892); // track guide .25
   static const laneRoad = Color(0x4DC9CDD3); // road guide .3
+  static const laneDone = Color(0x383BB273); // success .22: a finished stroke
+  static const stepArrow = Color(0xE64D9DE0); // secondary .9: direction chevrons
 
   // pick shapes
   static const bubbleEdge = Color(0x99BDE8E4);

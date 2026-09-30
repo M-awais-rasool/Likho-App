@@ -256,15 +256,19 @@ class RenderBalancedText extends RenderBox {
   }
 }
 
-/// Mascot's speech bubble (bubbleIn .3 s).
+/// What Pencil says: a white bubble next to him, its tail pointing left at
+/// his face. [step] (writing) puts the stroke number in a blue dot, the
+/// same dot that marks where the stroke starts on the pad.
 class SpeechBubble extends StatelessWidget {
-  const SpeechBubble({super.key, required this.text});
+  const SpeechBubble({super.key, required this.text, this.step});
   final String text;
+  final int? step;
 
   @override
   Widget build(BuildContext context) {
+    final style = LikhoFonts.title(size: 16, weight: FontWeight.w800).copyWith(height: 1);
     return TweenAnimationBuilder<double>(
-      key: ValueKey(text),
+      key: ValueKey((text, step)),
       tween: Tween(begin: 0, end: 1),
       duration: const Duration(milliseconds: 300),
       builder: (context, t, child) {
@@ -272,22 +276,63 @@ class SpeechBubble extends StatelessWidget {
         return Opacity(
           opacity: t.clamp(0.0, 1.0),
           child: Transform.translate(
-            offset: Offset(0, 10 * (1 - t)),
-            child: Transform.scale(scale: s, alignment: Alignment.bottomLeft, child: child),
+            offset: Offset(-8 * (1 - t), 0),
+            child: Transform.scale(scale: s, alignment: Alignment.centerLeft, child: child),
           ),
         );
       },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-        decoration: BoxDecoration(
-          color: LikhoColors.surface,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: const [BoxShadow(color: GameColors.ink12, offset: Offset(0, 4), blurRadius: 12)],
+      child: CustomPaint(
+        painter: const _BubbleTail(),
+        child: Container(
+          margin: const EdgeInsets.only(left: _BubbleTail.size),
+          padding: EdgeInsets.fromLTRB(step == null ? 12 : 6, 6, 12, 6),
+          decoration: BoxDecoration(
+            color: LikhoColors.surface,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: const [BoxShadow(color: GameColors.ink12, offset: Offset(0, 4), blurRadius: 12)],
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (step != null) ...[
+                Container(
+                  width: 22,
+                  height: 22,
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(color: LikhoColors.secondary, shape: BoxShape.circle),
+                  child: Text('$step', style: LikhoFonts.title(size: 13, weight: FontWeight.w800, color: LikhoColors.surface).copyWith(height: 1)),
+                ),
+                const SizedBox(width: 7),
+              ],
+              Flexible(child: Text(text, softWrap: false, overflow: TextOverflow.fade, style: style)),
+            ],
+          ),
         ),
-        child: Text(text, softWrap: false, style: LikhoFonts.title(size: 16, weight: FontWeight.w800).copyWith(height: 1)),
       ),
     );
   }
+}
+
+/// The bubble's little triangle on its left edge, at mid height.
+class _BubbleTail extends CustomPainter {
+  const _BubbleTail();
+  static const size = 8.0;
+
+  @override
+  void paint(Canvas canvas, Size box) {
+    final y = box.height / 2;
+    canvas.drawPath(
+      Path()
+        ..moveTo(size + 2, y - 7)
+        ..lineTo(0, y + 2)
+        ..lineTo(size + 2, y + 6)
+        ..close(),
+      Paint()..color = LikhoColors.surface,
+    );
+  }
+
+  @override
+  bool shouldRepaint(_BubbleTail old) => false;
 }
 
 /// Boss levels: the sleeping boss plus one bubble per round that pops when
