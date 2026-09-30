@@ -75,7 +75,9 @@ Or everything in Docker: `make up`. `make help` lists every target. Tables are c
 at start-up (GORM AutoMigrate, under a Postgres lock so several servers can start together).
 
 With `DEV_LOGIN=true` (development only; refused in production) the token `dev:<email>` signs in
-without Google, e.g. `flutter run --dart-define=LIKHO_DEV_EMAIL=me@example.com`.
+without Google, e.g. `flutter run --dart-define=LIKHO_DEV_EMAIL=me@example.com`. The app's "Test User"
+button uses it too (`dev:test.user@likho.app`): one shared test account that is found or created like a
+Google account, so its children, progress and settings stay on the server between sign-ins.
 
 ## Content
 
