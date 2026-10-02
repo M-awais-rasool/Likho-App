@@ -438,19 +438,16 @@ abstract final class AppFlow {
   }
 
   /// The certificate for class [grade] ("KG Complete!"), or the whole course
-  /// when null. Its parents' link opens the next class when it is still
+  /// when null. Its parents' link opens the next class while it is still
   /// locked.
   static Route<void> _certificate(ProviderContainer container, Grade? grade) => LikhoRoute<void>(
     rise: false,
-    builder: (c) {
-      final open = container.read(familyProvider).active.unlockedGrade;
-      return CertificateScreen(
-        grade: grade,
-        onPrint: () => Toast.show(c, 'Certificate PDF ready!'),
-        onPlayground: () => Navigator.of(c).pop(),
-        onOpenNext: grade != null && grade == open && open.next != null ? () => openNextGrade(c) : null,
-      );
-    },
+    builder: (c) => CertificateScreen(
+      grade: grade,
+      onPrint: () => Toast.show(c, 'Certificate PDF ready!'),
+      onPlayground: () => Navigator.of(c).pop(),
+      onOpenNext: grade == null ? null : () => openNextGrade(c),
+    ),
   );
 
   /// A parent opens the class after the highest open one (the map's

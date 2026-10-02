@@ -20,7 +20,8 @@ import '../common/pencil_figure.dart';
 /// worlds) or, with [grade], one class ("KG Complete!": that class's
 /// worlds and bosses). Print makes a PDF ([onPrint]); "Letter Playground"
 /// goes back to the map; [onOpenNext] is the parents' link to open the next
-/// class (it goes through the parent gate).
+/// class (it goes through the parent gate), shown while that class is still
+/// locked.
 class CertificateScreen extends ConsumerWidget {
   const CertificateScreen({super.key, required this.onPrint, required this.onPlayground, this.date, this.grade, this.onOpenNext});
 
@@ -39,6 +40,7 @@ class CertificateScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final name = ref.watch(familyProvider.select((f) => f.active.name));
+    final open = ref.watch(familyProvider.select((f) => f.active.unlockedGrade));
     final worlds = ref.watch(courseProvider).value?.worlds ?? const [];
     final g = grade;
     // the class's worlds (by map position, for their bosses), or all six
@@ -122,10 +124,10 @@ class CertificateScreen extends ConsumerWidget {
                             ),
                           ],
                         ),
-                        if (onOpenNext != null && g?.next != null) ...[
+                        if (onOpenNext != null && g != null && g.next != null && open == g) ...[
                           const SizedBox(height: 10),
                           TextLink(
-                            text: 'Walidain: ${g!.next!.short} ke levels kholein',
+                            text: 'Walidain: ${g.next!.short} ke levels kholein',
                             onTap: onOpenNext!,
                             style: LikhoFonts.body(size: 14, weight: FontWeight.w700, color: UiColors.white75),
                           ),

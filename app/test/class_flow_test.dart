@@ -161,6 +161,7 @@ void main() {
     await _pumpFor(t, const Duration(milliseconds: 400));
     await _passGate(t);
     expect(c.read(familyProvider).active.unlockedGrade, Grade.class1);
+    expect(find.textContaining('ke levels kholein'), findsNothing, reason: 'opened: the link goes, it never offers Class 2');
     await _close(t);
   });
 
