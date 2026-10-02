@@ -15,7 +15,7 @@ content/
         ├── placement.json               warm-up after adding a child (level 0, optional)
         └── worlds/
             ├── 01-letter-land/          NN = the world's order on the map
-            │   ├── world.json           name, icon, theme, boss
+            │   ├── world.json           name, class, icon, theme, boss
             │   └── levels/
             │       ├── 01-balloon-pop.json      NN = the level number
             │       ├── 02-alphabet-train.json
@@ -42,6 +42,26 @@ world, or in a new world.
 
 Make a folder `worlds/NN-name/` with a `world.json` (`order` = NN) and at least one level. The map
 needs a theme for it (`themeId`, see the app's `LikhoWorlds`).
+
+## Classes
+
+Every world is for one school class: `"grade"` is `kg`, `class-1`, `class-2` or `class-3`. A class
+can have several worlds; classes go up the map without skipping one. Today:
+
+| worlds | class |
+|---|---|
+| 1 Letter Land, 2 Small Letter Cove | `kg` |
+| 3 Phonics Forest, 4 Word Town | `class-1` |
+| 5 Sentence Sky | `class-2` |
+| 6 Story Space | `class-3` |
+
+On a child's map their own class plays in order, lower classes are open for revision, and higher
+classes stay locked until a parent opens them.
+
+More levels for a class = a new world with that class. Progress is stored by level number, so
+today a world can only be added at the end of the map (the highest class, or a new one). A world in
+the middle (more KG, say) would renumber every level after it: that needs progress stored by level
+id first.
 
 ## Add a course
 
@@ -73,6 +93,7 @@ Each round has a `type` and an object with the same name:
 * unknown or missing fields (a typo is an error, not a silent default)
 * ids unique across the course (levels and rounds), course id = folder name
 * world orders and level numbers 1, 2, 3 … without gaps, going up world by world
+* every world has a class; classes go up world by world without skipping one
 * file and folder names start with their number
 * round payload matches its type, answers are one of the options, guides exist in `glyphs.json`
 

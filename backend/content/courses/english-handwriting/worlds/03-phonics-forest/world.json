@@ -4,6 +4,7 @@
   "order": 3,
   "name": "Phonics Forest",
   "skill": "Sounds & rhymes",
+  "grade": "class-1",
   "icon": "forest",
   "themeId": "phonicsForest",
   "boss": {

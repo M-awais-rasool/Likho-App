@@ -41,9 +41,20 @@ type Subscription struct {
 // ChildView is a child with everything the app shows for it (map, room,
 // profile, sticker book, parent dashboard).
 type ChildView struct {
-	ID              string   `json:"id"`
-	Name            string   `json:"name"`
-	Age             int      `json:"age"`
+	ID   string `json:"id"`
+	Name string `json:"name"`
+	Age  *int   `json:"age"` // only children added before the class was asked have one
+
+	// School class: kg, class-1, class-2 or class-3. Lower classes are
+	// revision on the map; classes above UnlockedGrade are locked.
+	Grade string `json:"grade"`
+	// The highest class whose levels are open: Grade, or a higher class a
+	// parent opened.
+	UnlockedGrade string `json:"unlockedGrade"`
+	// When a parent last picked or confirmed the class; null = never (it
+	// was guessed from the age), so the app asks.
+	GradeConfirmedAt *time.Time `json:"gradeConfirmedAt"`
+
 	Color           string   `json:"color"`
 	Stars           int      `json:"stars"` // shared by all courses, spent in the room
 	Wearing         *string  `json:"wearing"`
@@ -63,15 +74,22 @@ type CourseProgress struct {
 
 type ChildInput struct {
 	Name  string `json:"name"`
-	Age   int    `json:"age"`
+	Grade string `json:"grade"` // required, unless an older app sends age: the class is then guessed
+	Age   *int   `json:"age"`
 	Color string `json:"color"`
 }
 
 // ChildPatch changes only the fields that are sent.
 type ChildPatch struct {
-	Name  *string `json:"name"`
-	Age   *int    `json:"age"`
-	Color *string `json:"color"`
+	Name *string `json:"name"`
+	// Grade sets the class and counts as the parent confirming it (also
+	// when unchanged). A new class locks the classes above it again.
+	Grade *string `json:"grade"`
+	// UnlockedGrade opens the classes up to it (a parent's choice); not
+	// below Grade.
+	UnlockedGrade *string `json:"unlockedGrade"`
+	Age           *int    `json:"age"`
+	Color         *string `json:"color"`
 }
 
 // Me is everything the app needs after sign-in, in one response.

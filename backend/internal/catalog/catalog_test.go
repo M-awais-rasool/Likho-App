@@ -24,8 +24,16 @@ func TestLoadsTheRealContent(t *testing.T) {
 	if c.Stats != (Stats{Worlds: 6, Levels: 36, Rounds: 182, Placement: true}) {
 		t.Errorf("stats: %+v", c.Stats)
 	}
-	if l, ok := c.Level(13); !ok || !l.RequiresSubscription || l.WorldID != "world-3" {
+	if l, ok := c.Level(13); !ok || !l.RequiresSubscription || l.WorldID != "world-3" || l.Grade != "class-1" {
 		t.Errorf("level 13: %+v", l)
+	}
+	// KG 1-12, Class 1 13-24, Class 2 25-30, Class 3 31-36
+	ladder := c.Ladder()
+	if len(ladder) != 36 || ladder[0] != 0 || ladder[11] != 0 || ladder[12] != 1 || ladder[24] != 2 || ladder[35] != 3 {
+		t.Errorf("ladder: %v", ladder)
+	}
+	if cat.Ladders()["english-handwriting"] == nil {
+		t.Error("Ladders has every served course")
 	}
 	if l, _ := c.Level(6); !l.IsBoss {
 		t.Error("level 6 is a boss")
@@ -47,6 +55,9 @@ func TestLoadsTheRealContent(t *testing.T) {
 	}
 	if doc.SchemaVersion != 1 || doc.CourseID != "english-handwriting" || len(doc.Worlds) != 6 || len(doc.Levels) != 37 || len(doc.Glyphs) == 0 {
 		t.Fatalf("document: v%d %s %d worlds %d levels", doc.SchemaVersion, doc.CourseID, len(doc.Worlds), len(doc.Levels))
+	}
+	if doc.Worlds[0]["grade"] != "kg" || doc.Worlds[5]["grade"] != "class-3" {
+		t.Errorf("the app gets each world's class: %v %v", doc.Worlds[0]["grade"], doc.Worlds[5]["grade"])
 	}
 	first, second := doc.Levels[0], doc.Levels[1]
 	if first["placement"] != true || first["worldId"] != nil || second["worldId"] != "world-1" || second["placement"] != false {
@@ -82,10 +93,10 @@ func course() fstest.MapFS {
 	return fstest.MapFS{
 		"courses/demo/course.json":                    {Data: []byte(`{"$schema":"x","id":"demo","title":"Demo","locale":"en","status":"published","schemaVersion":1,"updatedAt":"2026-01-01T00:00:00Z"}`)},
 		"courses/demo/glyphs.json":                    {Data: []byte(`{"glyphs":{"A":["M0 0 L1 1"]}}`)},
-		"courses/demo/worlds/01-one/world.json":       {Data: []byte(`{"id":"w1","order":1,"name":"One","skill":"s","icon":"grass","themeId":"t","boss":{"id":"b","name":"B"}}`)},
+		"courses/demo/worlds/01-one/world.json":       {Data: []byte(`{"id":"w1","order":1,"name":"One","skill":"s","grade":"kg","icon":"grass","themeId":"t","boss":{"id":"b","name":"B"}}`)},
 		"courses/demo/worlds/01-one/levels/01-a.json": {Data: []byte(level(1, "l1"))},
 		"courses/demo/worlds/01-one/levels/02-b.json": {Data: []byte(level(2, "l2"))},
-		"courses/demo/worlds/02-two/world.json":       {Data: []byte(`{"id":"w2","order":2,"name":"Two","skill":"s","icon":"grass","themeId":"t","boss":{"id":"b","name":"B"}}`)},
+		"courses/demo/worlds/02-two/world.json":       {Data: []byte(`{"id":"w2","order":2,"name":"Two","skill":"s","grade":"class-1","icon":"grass","themeId":"t","boss":{"id":"b","name":"B"}}`)},
 		"courses/demo/worlds/02-two/levels/03-c.json": {Data: []byte(level(3, "l3"))},
 	}
 }
@@ -100,6 +111,9 @@ func TestASmallCourseLoads(t *testing.T) {
 	c, _ := cat.Course("demo")
 	if c.Stats != (Stats{Worlds: 2, Levels: 3, Rounds: 6}) {
 		t.Errorf("stats: %+v", c.Stats)
+	}
+	if l := c.Ladder(); len(l) != 3 || l[0] != 0 || l[1] != 0 || l[2] != 1 {
+		t.Errorf("ladder: %v", l)
 	}
 }
 
@@ -137,6 +151,21 @@ func TestContentProblemsAreReportedWithTheirFile(t *testing.T) {
 			fs["courses/demo/worlds/02-two/levels/9-c.json"] = fs["courses/demo/worlds/02-two/levels/03-c.json"]
 			delete(fs, "courses/demo/worlds/02-two/levels/03-c.json")
 		}, []string{"9-c.json", "must start with the level number (03-"}},
+		{"world without a class", func(fs fstest.MapFS) {
+			f := fs["courses/demo/worlds/02-two/world.json"]
+			f.Data = bytes.Replace(f.Data, []byte(`"grade":"class-1",`), nil, 1)
+		}, []string{"02-two/world.json", `grade "" must be kg, class-1, class-2 or class-3`}},
+		{"unknown class", func(fs fstest.MapFS) {
+			f := fs["courses/demo/worlds/01-one/world.json"]
+			f.Data = bytes.Replace(f.Data, []byte(`"kg"`), []byte(`"nursery"`), 1)
+		}, []string{"01-one/world.json", `grade "nursery" must be`}},
+		{"classes go down the map", func(fs fstest.MapFS) {
+			fs["courses/demo/worlds/01-one/world.json"].Data = bytes.Replace(fs["courses/demo/worlds/01-one/world.json"].Data, []byte(`"kg"`), []byte(`"class-2"`), 1)
+		}, []string{"02-two/world.json", `grade "class-1" comes after "class-2" (world 1): classes must go up world by world`}},
+		{"a class is skipped", func(fs fstest.MapFS) {
+			f := fs["courses/demo/worlds/02-two/world.json"]
+			f.Data = bytes.Replace(f.Data, []byte(`"class-1"`), []byte(`"class-3"`), 1)
+		}, []string{"02-two/world.json", `grade "class-3" comes right after "kg" (world 1): every class in between needs a world`}},
 		{"levels go backwards across worlds", func(fs fstest.MapFS) {
 			fs["courses/demo/worlds/01-one/levels/03-c.json"] = fs["courses/demo/worlds/02-two/levels/03-c.json"]
 			fs["courses/demo/worlds/02-two/levels/02-b.json"] = fs["courses/demo/worlds/01-one/levels/02-b.json"]

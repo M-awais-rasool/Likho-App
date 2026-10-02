@@ -27,7 +27,7 @@ func (c *Cache) Ping(ctx context.Context) error { return c.rdb.Ping(ctx).Err() }
 // empty cache instead of serving the old shape.
 const (
 	meTTL    = 10 * time.Minute
-	mePrefix = "me:v2:"
+	mePrefix = "me:v3:" // v3: children have a class
 )
 
 // Me returns the cached /v1/me JSON of a parent.

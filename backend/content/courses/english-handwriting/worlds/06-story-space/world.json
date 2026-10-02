@@ -4,6 +4,7 @@
   "order": 6,
   "name": "Story Space",
   "skill": "Reading & speaking",
+  "grade": "class-3",
   "icon": "rocket_launch",
   "themeId": "storySpace",
   "boss": {

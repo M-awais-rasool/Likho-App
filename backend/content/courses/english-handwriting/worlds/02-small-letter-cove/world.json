@@ -4,6 +4,7 @@
   "order": 2,
   "name": "Small Letter Cove",
   "skill": "Small letters",
+  "grade": "kg",
   "icon": "waves",
   "themeId": "smallLetterCove",
   "boss": {

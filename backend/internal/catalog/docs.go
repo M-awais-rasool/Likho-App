@@ -7,6 +7,7 @@ import (
 	"encoding/hex"
 	"fmt"
 
+	"likho/backend/internal/domain"
 	"likho/backend/internal/model"
 )
 
@@ -76,6 +77,7 @@ type worldDoc struct {
 	Order   int    `json:"order"`
 	Name    string `json:"name"`
 	Skill   string `json:"skill"`
+	Grade   string `json:"grade"`
 	Icon    string `json:"icon"`
 	ThemeID string `json:"themeId"`
 	Boss    *struct {
@@ -95,6 +97,9 @@ func (w worldDoc) check(file, folder string, p *problems) {
 	}
 	if w.Name == "" || w.Icon == "" || w.ThemeID == "" {
 		p.add(file, "name, icon and themeId are required")
+	}
+	if !domain.ValidGrade(w.Grade) {
+		p.add(file, "grade %q must be %s", w.Grade, domain.GradeList())
 	}
 	if w.Boss == nil || w.Boss.ID == "" || w.Boss.Name == "" {
 		p.add(file, "boss {id, name} is required")

@@ -55,6 +55,20 @@ func Build(d Deps) http.Handler {
 	return api.NewRouter(handler.New(services, health), d.Tokens, c)
 }
 
+// Migrate brings the database up to date: the tables (database.Migrate),
+// then data that needs the content, like a class for children added before
+// classes existed.
+func Migrate(ctx context.Context, db *gorm.DB, cat *catalog.Catalog) error {
+	if err := database.Migrate(ctx, db); err != nil {
+		return err
+	}
+	n, err := repository.New(db).Children.FillGrades(ctx, cat.Ladders())
+	if n > 0 {
+		slog.Info("classes filled in for children from before classes", "children", n)
+	}
+	return err
+}
+
 // LoadContent reads the learning content: built in, or from cfg.ContentDir.
 func LoadContent(cfg config.Config) (*catalog.Catalog, error) {
 	var fsys fs.FS = content.FS
@@ -86,7 +100,7 @@ func Run(ctx context.Context, cfg config.Config) error {
 		return err
 	}
 	defer database.Close(db)
-	if err := database.Migrate(ctx, db); err != nil {
+	if err := Migrate(ctx, db, cat); err != nil {
 		return err
 	}
 	rdb, err := database.ConnectRedis(ctx, cfg.RedisURL)

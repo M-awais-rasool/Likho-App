@@ -4,6 +4,7 @@
   "order": 4,
   "name": "Word Town",
   "skill": "Vocabulary",
+  "grade": "class-1",
   "icon": "location_city",
   "themeId": "wordTown",
   "boss": {

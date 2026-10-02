@@ -38,10 +38,21 @@ func (p Parent) PlusActive(now time.Time) bool { return p.PlusUntil != nil && p.
 
 // Child is one of up to 4 profiles under a parent.
 type Child struct {
-	ID        string    `gorm:"type:uuid;primaryKey;default:gen_random_uuid()"`
-	ParentID  string    `gorm:"type:uuid;not null;index:idx_children_parent,priority:1"`
-	Name      string    `gorm:"not null;check:char_length(name) BETWEEN 1 AND 14"`
-	Age       int       `gorm:"type:smallint;not null;check:age BETWEEN 5 AND 8"`
+	ID       string `gorm:"type:uuid;primaryKey;default:gen_random_uuid()"`
+	ParentID string `gorm:"type:uuid;not null;index:idx_children_parent,priority:1"`
+	Name     string `gorm:"not null;check:char_length(name) BETWEEN 1 AND 14"`
+	Age      *int   `gorm:"type:smallint;check:age BETWEEN 5 AND 8"` // asked before the class was; empty since
+
+	// School class (domain.Grades) and the highest class open on the map:
+	// the child's own, or a higher one a parent opened. Not checked by the
+	// database, so a class can be added without a migration. Empty for a
+	// child from before classes until start-up fills it in (FillGrades).
+	Grade         string `gorm:"type:varchar(16);not null;default:''"`
+	UnlockedGrade string `gorm:"type:varchar(16);not null;default:''"`
+	// When a parent last picked or confirmed the class; nil = never (a
+	// class guessed from the age), so the app asks.
+	GradeConfirmedAt *time.Time
+
 	Color     string    `gorm:"not null"` // Pencil colour, e.g. "#FFC83D"
 	Stars     int       `gorm:"not null;default:0;check:stars >= 0"`
 	Wearing   *string   // shop item id Pencil wears

@@ -10,6 +10,10 @@ progress, the Mascot Room, the parent's settings, and the learning content (cour
   folder.
 * **The server owns the rules.** It awards stars, checks unlocks and Likho Plus against the course
   content, and spends stars in the shop, so an edited app cannot cheat.
+* **Classes.** Each child is in a class (KG to Class 3) and each world is for one. The child's own
+  class plays in order, lower classes stay open for revision, higher classes open only when a
+  parent opens them. Children added before classes get one from their age at start-up (with every
+  class they had already reached still open) and the app asks a parent to confirm it.
 
 ## Architecture
 
@@ -106,8 +110,8 @@ The full contract is [`docs/openapi.yaml`](docs/openapi.yaml). Errors are always
 | PATCH | `/v1/me/settings` | only the fields to change |
 | POST | `/v1/me/trial` | 7 days of Likho Plus, once |
 | DELETE | `/v1/me` | delete the account and everything in it |
-| POST | `/v1/children` | `{"name","age","color"}`, up to 4 |
-| PATCH / DELETE | `/v1/children/{childId}` | change / delete (not the only child) |
+| POST | `/v1/children` | `{"name","grade","color"}`, up to 4 |
+| PATCH / DELETE | `/v1/children/{childId}` | change (class, open classes …) / delete (not the only child) |
 | POST | `/v1/children/{childId}/courses/{courseId}/results` | a finished level `{"level","stars","seconds"}` |
 | POST | `/v1/children/{childId}/room/{itemId}` | Mascot Room tap: buy / wear / take off / place / remove |
 | GET | `/healthz`, `/readyz` | process up / Postgres (and Redis) reachable |
@@ -146,7 +150,7 @@ that account is signed out.
 | table | what |
 |---|---|
 | `parents` | the account (Google user), settings, Likho Plus |
-| `children` | up to 4 per parent; `stars` are shared by all courses |
+| `children` | up to 4 per parent; their class and the classes open to them; `stars` are shared by all courses |
 | `level_progress` | best stars per child **per course** per level |
 | `child_items` | Mascot Room purchases |
 | `play_days` | one row per child per day (days played, minutes this week) |

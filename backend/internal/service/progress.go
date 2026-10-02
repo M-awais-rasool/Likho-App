@@ -25,7 +25,7 @@ func NewProgressService(progress *repository.ProgressRepository, cat *catalog.Ca
 
 // Record saves a finished level of a course: the best stars are kept, the
 // child earns the improvement (+2 the first time), the level must be
-// unlocked, and Plus levels need the subscription.
+// unlocked for the child's class, and Plus levels need the subscription.
 func (s *ProgressService) Record(ctx context.Context, parentID, childID, courseID string, in model.ResultInput) (model.Outcome, error) {
 	course, ok := s.catalog.Course(courseID)
 	if !ok {
@@ -40,7 +40,7 @@ func (s *ProgressService) Record(ctx context.Context, parentID, childID, courseI
 	}
 	in.Seconds = domain.LevelSeconds(in.Seconds)
 
-	out, err := s.progress.Record(ctx, parentID, childID, courseID, in, level.RequiresSubscription)
+	out, err := s.progress.Record(ctx, parentID, childID, courseID, in, level.RequiresSubscription, course.Ladder())
 	if err == nil {
 		s.cache.ForgetMe(ctx, parentID)
 	}

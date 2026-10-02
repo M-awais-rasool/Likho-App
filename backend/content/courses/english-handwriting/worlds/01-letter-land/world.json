@@ -4,6 +4,7 @@
   "order": 1,
   "name": "Letter Land",
   "skill": "Capital letters",
+  "grade": "kg",
   "icon": "grass",
   "themeId": "letterLand",
   "boss": {

@@ -11,6 +11,8 @@ import (
 	"sort"
 	"strings"
 	"time"
+
+	"likho/backend/internal/domain"
 )
 
 // Layout of a course folder:
@@ -197,7 +199,7 @@ func loadWorlds(fsys fs.FS, dir string, p *problems) ([]*worldFile, []*levelFile
 
 // checkNumbering: world orders 1..n, map levels 1..n with no gaps, and the
 // map goes up world by world (a world's levels come after the previous
-// world's).
+// world's). Classes go up the map too, without skipping one.
 func checkNumbering(dir string, worlds []*worldFile, levels []*levelFile, p *problems) {
 	sort.Slice(worlds, func(i, j int) bool { return worlds[i].doc.Order < worlds[j].doc.Order })
 	ids := map[string]string{}
@@ -209,6 +211,15 @@ func checkNumbering(dir string, worlds []*worldFile, levels []*levelFile, p *pro
 			p.add(w.file, "world id %q is also used by %s", w.doc.ID, prev)
 		}
 		ids[w.doc.ID] = w.file
+		if i == 0 || !domain.ValidGrade(w.doc.Grade) || !domain.ValidGrade(worlds[i-1].doc.Grade) {
+			continue
+		}
+		switch prev, r := domain.GradeRank(worlds[i-1].doc.Grade), domain.GradeRank(w.doc.Grade); {
+		case r < prev:
+			p.add(w.file, "grade %q comes after %q (world %d): classes must go up world by world", w.doc.Grade, worlds[i-1].doc.Grade, i)
+		case r > prev+1:
+			p.add(w.file, "grade %q comes right after %q (world %d): every class in between needs a world", w.doc.Grade, worlds[i-1].doc.Grade, i)
+		}
 	}
 	if len(worlds) == 0 {
 		p.add(dir, "a course needs at least one world")
@@ -265,6 +276,7 @@ func build(m *parsed[manifestDoc], glyphs map[string][]string, placement *parsed
 	}
 	stats := Stats{Worlds: len(worlds), Levels: len(levels), Placement: placement != nil}
 	index := make(map[int]Level, len(levels))
+	ladder := make(domain.Ladder, len(levels))
 	if placement != nil {
 		doc.Levels = append(doc.Levels, withWorld(placement.raw, nil))
 		stats.Rounds += len(placement.doc.Rounds)
@@ -273,16 +285,17 @@ func build(m *parsed[manifestDoc], glyphs map[string][]string, placement *parsed
 		doc.Levels = append(doc.Levels, withWorld(l.raw, &l.world.doc.ID))
 		stats.Rounds += len(l.doc.Rounds)
 		index[*l.doc.Number] = Level{
-			Number: *l.doc.Number, ID: l.doc.ID, WorldID: l.world.doc.ID,
+			Number: *l.doc.Number, ID: l.doc.ID, WorldID: l.world.doc.ID, Grade: l.world.doc.Grade,
 			IsBoss: *l.doc.IsBoss, RequiresSubscription: *l.doc.RequiresSubscription,
 		}
+		ladder[*l.doc.Number-1] = domain.GradeRank(l.world.doc.Grade)
 	}
 
 	body, err := json.Marshal(doc)
 	if err != nil {
 		return nil, err
 	}
-	c := &Course{Draft: m.doc.Status == "draft", Stats: stats, levels: index}
+	c := &Course{Draft: m.doc.Status == "draft", Stats: stats, levels: index, ladder: ladder}
 	c.setBody(body)
 	c.Summary.ID = m.doc.ID
 	c.Summary.Title = m.doc.Title

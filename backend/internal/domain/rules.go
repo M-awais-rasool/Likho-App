@@ -24,12 +24,6 @@ func Gain(old *int, stars int) int {
 	return max(0, stars-*old)
 }
 
-// Unlocked: the first level, any level already finished, or the one after
-// a finished level.
-func Unlocked(level int, done func(n int) bool) bool {
-	return level <= 1 || done(level) || done(level-1)
-}
-
 // ValidStars: a finished level earns 1 to 3 stars.
 func ValidStars(s int) bool { return s >= MinStars && s <= MaxStars }
 

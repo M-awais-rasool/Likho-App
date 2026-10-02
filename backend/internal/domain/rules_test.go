@@ -26,16 +26,6 @@ func TestGain(t *testing.T) {
 	}
 }
 
-func TestUnlocked(t *testing.T) {
-	done := map[int]bool{1: true, 2: true}
-	f := func(n int) bool { return done[n] }
-	for level, want := range map[int]bool{1: true, 2: true, 3: true, 4: false, 36: false} {
-		if got := Unlocked(level, f); got != want {
-			t.Errorf("Unlocked(%d) = %v, want %v", level, got, want)
-		}
-	}
-}
-
 func TestTap(t *testing.T) {
 	party, lamp := Items["party"], Items["lamp"]
 	id := "party"

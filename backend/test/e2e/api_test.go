@@ -24,6 +24,7 @@ import (
 	"github.com/alicebob/miniredis/v2"
 	"github.com/gin-gonic/gin"
 	"github.com/redis/go-redis/v9"
+	"gorm.io/gorm"
 
 	"likho/backend/content"
 	"likho/backend/internal/app"
@@ -39,6 +40,8 @@ type testApp struct {
 	t     *testing.T
 	r     http.Handler
 	redis *miniredis.Miniredis
+	db    *gorm.DB
+	cat   *catalog.Catalog
 }
 
 // newTestApp builds the API on a fresh database; [cat] replaces the real
@@ -60,7 +63,14 @@ func newTestApp(t *testing.T, cat ...*catalog.Catalog) *testApp {
 			t.Fatal(err)
 		}
 	}
-	if err := database.Migrate(ctx, db); err != nil {
+	if len(cat) == 0 {
+		real, err := catalog.Load(content.FS, catalog.Options{})
+		if err != nil {
+			t.Fatal(err)
+		}
+		cat = append(cat, real)
+	}
+	if err := app.Migrate(ctx, db, cat[0]); err != nil {
 		t.Fatal(err)
 	}
 	mr := miniredis.RunT(t)
@@ -70,16 +80,9 @@ func newTestApp(t *testing.T, cat ...*catalog.Catalog) *testApp {
 		database.Close(db)
 	})
 
-	if len(cat) == 0 {
-		real, err := catalog.Load(content.FS, catalog.Options{})
-		if err != nil {
-			t.Fatal(err)
-		}
-		cat = append(cat, real)
-	}
 	tokens := service.Tokens{Secret: []byte("test-secret-test-secret-test-secret"), AccessTTL: 15 * time.Minute, RefreshTTL: time.Hour}
 	h := app.Build(app.Deps{DB: db, Redis: rdb, Catalog: cat[0], Google: service.DevGoogle{}, Tokens: tokens})
-	return &testApp{t: t, r: h, redis: mr}
+	return &testApp{t: t, r: h, redis: mr, db: db, cat: cat[0]}
 }
 
 type res struct {
@@ -166,20 +169,23 @@ func TestChildrenProgressAndRoom(t *testing.T) {
 	tok, _, _ := a.signIn("ammi@gmail.com")
 
 	// children: validation, add up to 4
-	want(t, a.do("POST", "/v1/children", tok, map[string]any{"name": "", "age": 6, "color": "#FFC83D"}), 400)
+	want(t, a.do("POST", "/v1/children", tok, map[string]any{"name": "", "grade": "kg", "color": "#FFC83D"}), 400)
+	want(t, a.do("POST", "/v1/children", tok, map[string]any{"name": "Ayaan", "grade": "class-9", "color": "#FFC83D"}), 400, "invalid_input")
+	want(t, a.do("POST", "/v1/children", tok, map[string]any{"name": "Ayaan", "color": "#FFC83D"}), 400, "invalid_input")
 	want(t, a.do("POST", "/v1/children", tok, map[string]any{"name": "Ayaan", "age": 9, "color": "#FFC83D"}), 400)
-	want(t, a.do("POST", "/v1/children", tok, map[string]any{"name": "Ayaan", "age": 6, "color": "#000000"}), 400)
-	r := a.do("POST", "/v1/children", tok, map[string]any{"name": " Ayaan ", "age": 6, "color": "#ffc83d"})
+	want(t, a.do("POST", "/v1/children", tok, map[string]any{"name": "Ayaan", "grade": "kg", "color": "#000000"}), 400)
+	r := a.do("POST", "/v1/children", tok, map[string]any{"name": " Ayaan ", "grade": "kg", "color": "#ffc83d"})
 	want(t, r, http.StatusCreated)
 	kid := r.json()
-	if kid["name"] != "Ayaan" || kid["color"] != "#FFC83D" || kid["stars"] != 0.0 {
+	if kid["name"] != "Ayaan" || kid["color"] != "#FFC83D" || kid["stars"] != 0.0 || kid["grade"] != "kg" || kid["unlockedGrade"] != "kg" ||
+		kid["gradeConfirmedAt"] == nil || kid["age"] != nil {
 		t.Fatalf("child: %v", kid)
 	}
 	id := kid["id"].(string)
 	for _, n := range []string{"Zara", "Sara", "Ali"} {
-		want(t, a.do("POST", "/v1/children", tok, map[string]any{"name": n, "age": 5, "color": "#B79CED"}), http.StatusCreated)
+		want(t, a.do("POST", "/v1/children", tok, map[string]any{"name": n, "grade": "kg", "color": "#B79CED"}), http.StatusCreated)
 	}
-	want(t, a.do("POST", "/v1/children", tok, map[string]any{"name": "Five", "age": 5, "color": "#B79CED"}), http.StatusConflict, "too_many_children")
+	want(t, a.do("POST", "/v1/children", tok, map[string]any{"name": "Five", "grade": "kg", "color": "#B79CED"}), http.StatusConflict, "too_many_children")
 
 	// /me is cached, and a change drops the cache
 	if h := a.do("GET", "/v1/me", tok, nil).header.Get("X-Cache"); h != "miss" {
@@ -236,6 +242,8 @@ func TestChildrenProgressAndRoom(t *testing.T) {
 	want(t, a.do("POST", path, tok, map[string]any{"level": 13, "stars": 3}), http.StatusPaymentRequired, "plus_required")
 	want(t, a.do("POST", "/v1/me/trial", tok, nil), 200)
 	want(t, a.do("POST", "/v1/me/trial", tok, nil), http.StatusConflict, "trial_used")
+	want(t, a.do("POST", path, tok, map[string]any{"level": 13, "stars": 3}), http.StatusConflict, "level_locked") // Class 1
+	want(t, a.do("PATCH", "/v1/children/"+id, tok, map[string]any{"unlockedGrade": "class-1"}), 200)               // a parent opens it
 	outcome(13, 2)
 
 	// Mascot Room
@@ -277,7 +285,7 @@ func TestChildrenProgressAndRoom(t *testing.T) {
 func TestConcurrentRequestsNeverDoubleCount(t *testing.T) {
 	a := newTestApp(t)
 	tok, _, _ := a.signIn("ammi@gmail.com")
-	id := a.do("POST", "/v1/children", tok, map[string]any{"name": "Ayaan", "age": 6, "color": "#FFC83D"}).json()["id"].(string)
+	id := a.do("POST", "/v1/children", tok, map[string]any{"name": "Ayaan", "grade": "kg", "color": "#FFC83D"}).json()["id"].(string)
 
 	var wg sync.WaitGroup
 	for range 10 {
@@ -316,7 +324,7 @@ func TestConcurrentRequestsNeverDoubleCount(t *testing.T) {
 func TestRefreshLogoutAndDelete(t *testing.T) {
 	a := newTestApp(t)
 	tok, refresh, _ := a.signIn("ammi@gmail.com")
-	a.do("POST", "/v1/children", tok, map[string]any{"name": "Ayaan", "age": 6, "color": "#FFC83D"})
+	a.do("POST", "/v1/children", tok, map[string]any{"name": "Ayaan", "grade": "kg", "color": "#FFC83D"})
 
 	r := a.do("POST", "/v1/auth/refresh", "", map[string]any{"refreshToken": refresh})
 	want(t, r, 200)
@@ -418,7 +426,7 @@ func withSecondCourse(t *testing.T) *catalog.Catalog {
 	}
 	fsys["courses/urdu-letters/course.json"] = &fstest.MapFile{Data: []byte(`{"id":"urdu-letters","title":"Urdu Letters","locale":"ur","status":"published","schemaVersion":1,"updatedAt":"2026-09-29T00:00:00Z"}`)}
 	fsys["courses/urdu-letters/glyphs.json"] = &fstest.MapFile{Data: []byte(`{"glyphs":{}}`)}
-	fsys["courses/urdu-letters/worlds/01-huroof/world.json"] = &fstest.MapFile{Data: []byte(`{"id":"huroof","order":1,"name":"Huroof","skill":"s","icon":"grass","themeId":"letterLand","boss":{"id":"snail","name":"Ghonga"}}`)}
+	fsys["courses/urdu-letters/worlds/01-huroof/world.json"] = &fstest.MapFile{Data: []byte(`{"id":"huroof","order":1,"name":"Huroof","skill":"s","grade":"kg","icon":"grass","themeId":"letterLand","boss":{"id":"snail","name":"Ghonga"}}`)}
 	fsys["courses/urdu-letters/worlds/01-huroof/levels/01-alif.json"] = &fstest.MapFile{Data: level(1)}
 	fsys["courses/urdu-letters/worlds/01-huroof/levels/02-bay.json"] = &fstest.MapFile{Data: level(2)}
 	cat, err := catalog.Load(fsys, catalog.Options{})
@@ -431,7 +439,7 @@ func withSecondCourse(t *testing.T) *catalog.Catalog {
 func TestEachCourseHasItsOwnProgress(t *testing.T) {
 	a := newTestApp(t, withSecondCourse(t))
 	tok, _, _ := a.signIn("ammi@gmail.com")
-	id := a.do("POST", "/v1/children", tok, map[string]any{"name": "Ayaan", "age": 6, "color": "#FFC83D"}).json()["id"].(string)
+	id := a.do("POST", "/v1/children", tok, map[string]any{"name": "Ayaan", "grade": "kg", "color": "#FFC83D"}).json()["id"].(string)
 	results := func(c string) string { return "/v1/children/" + id + "/courses/" + c + "/results" }
 
 	if n := len(a.do("GET", "/v1/courses", "", nil).json()["courses"].([]any)); n != 2 {
@@ -460,7 +468,7 @@ func TestEachCourseHasItsOwnProgress(t *testing.T) {
 func TestRoomTapsAreIdempotentToo(t *testing.T) {
 	a := newTestApp(t)
 	tok, _, _ := a.signIn("ammi@gmail.com")
-	id := a.do("POST", "/v1/children", tok, map[string]any{"name": "Ayaan", "age": 6, "color": "#FFC83D"}).json()["id"].(string)
+	id := a.do("POST", "/v1/children", tok, map[string]any{"name": "Ayaan", "grade": "kg", "color": "#FFC83D"}).json()["id"].(string)
 	for level := 1; level <= 2; level++ { // 5 + 5 stars
 		a.do("POST", "/v1/children/"+id+"/courses/"+course+"/results", tok, map[string]any{"level": level, "stars": 3})
 	}

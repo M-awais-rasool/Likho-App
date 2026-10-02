@@ -12,6 +12,7 @@ import (
 	"io/fs"
 	"sort"
 
+	"likho/backend/internal/domain"
 	"likho/backend/internal/model"
 )
 
@@ -43,6 +44,7 @@ type Course struct {
 	Gzip []byte // JSON, gzipped
 
 	levels map[int]Level
+	ladder domain.Ladder
 }
 
 // Level is what the API needs to know about a map level.
@@ -50,6 +52,7 @@ type Level struct {
 	Number               int
 	ID                   string
 	WorldID              string
+	Grade                string // the world's class
 	IsBoss               bool
 	RequiresSubscription bool
 }
@@ -65,6 +68,9 @@ func (c *Course) Level(n int) (Level, bool) {
 	l, ok := c.levels[n]
 	return l, ok
 }
+
+// Ladder is the class of every map level, for the unlock rule.
+func (c *Course) Ladder() domain.Ladder { return c.ladder }
 
 // Load reads every course under courses/ in [fsys], checks all of them and
 // returns the ones to serve. The error lists every problem found, each with
@@ -93,4 +99,13 @@ func (c *Catalog) Courses() []*Course { return c.courses }
 func (c *Catalog) Course(id string) (*Course, bool) {
 	co, ok := c.byID[id]
 	return co, ok
+}
+
+// Ladders is every served course's ladder, by course id.
+func (c *Catalog) Ladders() map[string]domain.Ladder {
+	out := make(map[string]domain.Ladder, len(c.courses))
+	for _, co := range c.courses {
+		out[co.Summary.ID] = co.ladder
+	}
+	return out
 }

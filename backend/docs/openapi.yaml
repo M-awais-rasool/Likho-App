@@ -3,13 +3,16 @@ info:
   title: Likho API
   version: "1.0"
   description: |
-    Backend of the Likho handwriting app for children (5 to 8).
+    Backend of the Likho handwriting app for children (KG to Class 3).
 
     * **Sign-in is Google only.** `POST /v1/auth/google` creates the account the first time and
       continues it afterwards; there is no sign-up and no password.
     * **Content** (courses, worlds, levels, rounds) is public and cached: `ETag` + `If-None-Match`.
     * **Each child has their own progress** in every course. Stars are shared by all courses and
       spent in the Mascot Room.
+    * **Classes.** Every child is in a class (`kg`, `class-1`, `class-2`, `class-3`) and every world
+      of a course is for one. The child's own class plays in order, lower classes are open for
+      revision, and higher classes stay locked until a parent opens them (`unlockedGrade`).
     * Errors are always `{"error": "<code>", "message": "<text>"}`; the app switches on `error`.
 servers:
   - url: http://localhost:8080
@@ -167,12 +170,17 @@ paths:
     patch:
       tags: [children]
       summary: Change a child (only the fields sent)
+      description: |
+        Sending `grade` sets the class and counts as a parent confirming it (also when unchanged). A
+        new class locks the classes above it again. `unlockedGrade` opens the classes up to it (a
+        parent's choice, never below `grade`). Stars are never taken away.
       security: [{ bearer: [] }]
       requestBody:
         required: true
-        content: { application/json: { schema: { $ref: "#/components/schemas/ChildInput" } } }
+        content: { application/json: { schema: { $ref: "#/components/schemas/ChildPatch" } } }
       responses:
         "200": { description: The child, content: { application/json: { schema: { $ref: "#/components/schemas/Child" } } } }
+        "400": { $ref: "#/components/responses/Error" }
         "404": { $ref: "#/components/responses/Error" }
     delete:
       tags: [children]
@@ -188,9 +196,11 @@ paths:
       summary: A finished level
       description: |
         The server awards the stars: the best result is kept, the child earns the improvement, +2
-        the first time. The level must be unlocked (the previous one finished) and Likho Plus levels
-        need the subscription. Send an `Idempotency-Key` so a retry is answered with the first
-        result instead of counting twice.
+        the first time. The level must be unlocked for the child's class: any level of a lower
+        class; in the child's own class (and classes a parent opened) its first level, a level
+        already finished, or the one after a finished level; never a level above `unlockedGrade`.
+        Likho Plus levels need the subscription. Send an `Idempotency-Key` so a retry is answered
+        with the first result instead of counting twice.
       security: [{ bearer: [] }]
       parameters:
         - $ref: "#/components/parameters/childId"
@@ -337,10 +347,29 @@ components:
         plusUntil: { type: [string, "null"], format: date-time }
         trialUsed: { type: boolean }
 
+    Grade:
+      enum: [kg, class-1, class-2, class-3]
+      description: School class (KG / Prep, Class 1, 2, 3)
+
     ChildInput:
+      type: object
+      required: [name, color]
+      properties:
+        name: { type: string, minLength: 1, maxLength: 14 }
+        grade: { $ref: "#/components/schemas/Grade" }
+        age:
+          type: integer
+          minimum: 5
+          maximum: 8
+          description: Older apps send this instead of `grade`; the class is then guessed (5 KG … 8 Class 3) and left unconfirmed.
+        color: { enum: ["#FFC83D", "#4D9DE0", "#3BB273", "#FF8A5B", "#B79CED", "#FF9EB5"] }
+
+    ChildPatch:
       type: object
       properties:
         name: { type: string, minLength: 1, maxLength: 14 }
+        grade: { $ref: "#/components/schemas/Grade" }
+        unlockedGrade: { $ref: "#/components/schemas/Grade" }
         age: { type: integer, minimum: 5, maximum: 8 }
         color: { enum: ["#FFC83D", "#4D9DE0", "#3BB273", "#FF8A5B", "#B79CED", "#FF9EB5"] }
 
@@ -349,7 +378,15 @@ components:
       properties:
         id: { type: string, format: uuid }
         name: { type: string }
-        age: { type: integer }
+        age: { type: [integer, "null"], description: Only children added before the class was asked }
+        grade: { $ref: "#/components/schemas/Grade" }
+        unlockedGrade:
+          $ref: "#/components/schemas/Grade"
+          description: The highest class whose levels are open (the child's own, or a higher one a parent opened)
+        gradeConfirmedAt:
+          type: [string, "null"]
+          format: date-time
+          description: When a parent last picked or confirmed the class; null = guessed from the age, ask a parent
         color: { type: string }
         stars: { type: integer, description: Shared by all courses, spent in the room }
         wearing: { type: [string, "null"] }

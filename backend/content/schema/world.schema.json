@@ -4,7 +4,7 @@
   "title": "World",
   "description": "courses/<id>/worlds/<NN-name>/world.json: one area of the map. Its levels are in levels/ next to it.",
   "type": "object",
-  "required": ["id", "order", "name", "skill", "icon", "themeId", "boss"],
+  "required": ["id", "order", "name", "skill", "grade", "icon", "themeId", "boss"],
   "additionalProperties": false,
   "properties": {
     "$schema": { "type": "string" },
@@ -12,6 +12,10 @@
     "order": { "type": "integer", "minimum": 1, "description": "1, 2, 3… bottom to top on the map." },
     "name": { "type": "string", "minLength": 1 },
     "skill": { "type": "string" },
+    "grade": {
+      "enum": ["kg", "class-1", "class-2", "class-3"],
+      "description": "School class the world is for. Classes go up the map (same or the next class each world, none skipped). On a child's map their own class plays in order, lower classes stay open for revision, higher ones wait until a parent opens them."
+    },
     "icon": { "type": "string", "description": "Material Symbols name." },
     "themeId": { "type": "string", "description": "Map theme in the app (design tokens)." },
     "boss": {

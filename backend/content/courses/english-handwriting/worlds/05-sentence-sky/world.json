@@ -4,6 +4,7 @@
   "order": 5,
   "name": "Sentence Sky",
   "skill": "Sentences",
+  "grade": "class-2",
   "icon": "cloud",
   "themeId": "sentenceSky",
   "boss": {

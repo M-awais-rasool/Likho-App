@@ -18,9 +18,10 @@ type ProgressRepository struct {
 
 // Record saves a finished level of [courseID] and awards stars with the
 // game's rules (best stars kept, +2 the first time). [needsPlus] = the
-// level is a Likho Plus level. Input is already validated against the
-// course (level exists, stars 1..3).
-func (r *ProgressRepository) Record(ctx context.Context, parentID, childID, courseID string, in model.ResultInput, needsPlus bool) (model.Outcome, error) {
+// level is a Likho Plus level; [ladder] = the course's levels by class
+// (unlock rule). Input is already validated against the course (level
+// exists, stars 1..3).
+func (r *ProgressRepository) Record(ctx context.Context, parentID, childID, courseID string, in model.ResultInput, needsPlus bool, ladder domain.Ladder) (model.Outcome, error) {
 	var out model.Outcome
 	err := r.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
 		c, err := lockChild(tx, parentID, childID)
@@ -46,7 +47,7 @@ func (r *ProgressRepository) Record(ctx context.Context, parentID, childID, cour
 		for _, r := range rows {
 			best[r.Level] = r.BestStars
 		}
-		if !domain.Unlocked(in.Level, func(n int) bool { _, ok := best[n]; return ok }) {
+		if !ladder.Unlocked(in.Level, c.Grade, c.UnlockedGrade, func(n int) bool { _, ok := best[n]; return ok }) {
 			return domain.ErrLevelLocked
 		}
 		var old *int
