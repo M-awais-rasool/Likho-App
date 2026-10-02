@@ -50,6 +50,23 @@ class ChildProfile {
 
   BodySwatch get swatch => BodySwatch.forColor(color);
 
+  /// Months in which Pakistani school years start (April, or August).
+  static const schoolYearMonths = {DateTime.april, DateTime.august};
+
+  /// Should a parent be asked about the class at [now]? When it was guessed
+  /// from the age (never confirmed), or in a month a school year starts
+  /// when nobody has answered since that month began. [schoolMonth] is the
+  /// family's own month once known (SchoolYearMonth); until then both
+  /// months ask, so a family whose school starts in August is asked then
+  /// too.
+  GradeCheck? gradeCheck(DateTime now, {int? schoolMonth}) {
+    final at = gradeConfirmedAt;
+    if (at == null) return GradeCheck.guessed;
+    final months = schoolMonth == null ? schoolYearMonths : {schoolMonth};
+    if (months.contains(now.month) && at.isBefore(DateTime(now.year, now.month))) return GradeCheck.newSchoolYear;
+    return null;
+  }
+
   ChildProfile copyWith({String? name, Color? color, Grade? grade, Grade? unlockedGrade, DateTime? gradeConfirmedAt}) => ChildProfile(
     id: id,
     name: name ?? this.name,
@@ -62,6 +79,15 @@ class ChildProfile {
 
   /// Stands in while an account has no child yet.
   static const none = ChildProfile(id: '', name: '', color: LikhoColors.primary);
+}
+
+/// Why a parent is asked about a child's class.
+enum GradeCheck {
+  /// It was guessed from the age (a child added before the app asked).
+  guessed,
+
+  /// A school year has started since a parent last picked it.
+  newSchoolYear,
 }
 
 /// What one child has played and bought (prototype `data[id]`).
@@ -189,6 +215,11 @@ class FamilyState {
   ChildRecord get record => records[active.id] ?? const ChildRecord();
   ChildRecord recordOf(String id) => records[id] ?? const ChildRecord();
   bool get canAddChild => profiles.length < maxProfiles;
+
+  /// Children whose class a parent should check at [now] (never for
+  /// guests); see [ChildProfile.gradeCheck].
+  List<ChildProfile> gradeChecks(DateTime now, {int? schoolMonth}) =>
+      guest ? const [] : [for (final p in profiles) if (p.gradeCheck(now, schoolMonth: schoolMonth) != null) p];
 
   FamilyState copyWith({List<ChildProfile>? profiles, String? activeId, Map<String, ChildRecord>? records, AppSettings? settings, bool? subscribed}) =>
       FamilyState(
@@ -616,6 +647,10 @@ class DemoFamilyNotifier extends FamilyNotifier {
 }
 
 final familyProvider = NotifierProvider<FamilyNotifier, FamilyState>(FamilyNotifier.new);
+
+/// The time now (tests set it): when a school year starts, Likho asks
+/// parents about the class ([ChildProfile.gradeCheck]).
+final clockProvider = Provider<DateTime Function()>((ref) => DateTime.now);
 
 /// A short message about something that could not be saved (shown as a
 /// toast by the app shell). [n] makes the same text show again.

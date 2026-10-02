@@ -4,13 +4,17 @@ import 'package:material_symbols_icons/symbols.dart';
 
 import '../../data/course_providers.dart';
 import '../../data/family.dart';
+import '../../data/grades.dart';
 import '../../data/models/course_models.dart';
+import '../../data/progress.dart';
 import '../../design/tokens.dart';
 import '../common/kid_widgets.dart';
 import 'parent_widgets.dart';
 
 /// 20 Course progress, from the prototype: every world and level with its
-/// stars and a progress bar (stars / 3).
+/// stars and a progress bar (stars / 3), grouped by class (each class's
+/// heading says what it is for this child: revision, their class, opened,
+/// locked).
 class CourseProgressScreen extends ConsumerWidget {
   const CourseProgressScreen({super.key, required this.onBack});
   final VoidCallback onBack;
@@ -19,12 +23,53 @@ class CourseProgressScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final course = ref.watch(courseProvider).value;
     final r = ref.watch(familyProvider.select((f) => f.record));
+    final progress = ref.watch(progressProvider);
+    final cards = <Widget>[];
+    for (final (i, w) in (course?.worlds ?? const <CourseWorld>[]).indexed) {
+      // a heading where a class starts
+      if (w.grade case final g? when i == 0 || course!.worlds[i - 1].grade != g) cards.add(_ClassHeading(grade: g, progress: progress));
+      cards.add(_WorldCard(world: w, levels: course!.levelsOf(w), record: r));
+    }
     return ParentPage(
       children: [
         ParentHeader(icon: Symbols.arrow_back_rounded, onTap: onBack, title: 'Course progress'),
-        if (course != null)
-          for (final w in course.worlds) _WorldCard(world: w, levels: course.levelsOf(w), record: r),
+        ...cards,
       ],
+    );
+  }
+}
+
+/// "Class 1 · Meri class" above the class's worlds.
+class _ClassHeading extends StatelessWidget {
+  const _ClassHeading({required this.grade, required this.progress});
+  final Grade grade;
+  final ChildProgress progress;
+
+  @override
+  Widget build(BuildContext context) {
+    final first = progress.map?.levelsOf(grade)?.$1;
+    final (tag, color) = switch (first == null ? null : progress.zoneOf(first)) {
+      Zone.revision => ('Revision', UiColors.inkLabel),
+      Zone.mine => ('Meri class', LikhoColors.ink),
+      Zone.opened => ('Khuli hai', UiColors.okGreen),
+      Zone.locked => ('Band', UiColors.inkHint),
+      null => ('', UiColors.inkLabel),
+    };
+    return Padding(
+      padding: const EdgeInsets.only(top: 6, left: 4),
+      child: Row(
+        children: [
+          Text(grade.label, style: LikhoFonts.parent(size: 18, weight: FontWeight.w800)),
+          if (tag.isNotEmpty) ...[
+            const SizedBox(width: 8),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+              decoration: BoxDecoration(color: tag == 'Meri class' ? LikhoColors.primary : UiColors.chip, borderRadius: BorderRadius.circular(10)),
+              child: Text(tag, style: LikhoFonts.parent(size: 12, weight: FontWeight.w800, color: color)),
+            ),
+          ],
+        ],
+      ),
     );
   }
 }

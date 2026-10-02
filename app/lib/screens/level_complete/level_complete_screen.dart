@@ -27,11 +27,14 @@ import '../gameplay/widgets/illustration.dart';
 /// 2.2. Pencil cheers, says "wow" for 3 stars, dances, then rests. On a boss
 /// level the woken boss pops in at 1 s and dances with him.
 class LevelCompleteScreen extends ConsumerStatefulWidget {
-  const LevelCompleteScreen({super.key, required this.level, required this.outcome, required this.onAgain, required this.onNext});
+  const LevelCompleteScreen({super.key, required this.level, required this.outcome, required this.onAgain, required this.onNext, this.certificate = false});
 
   final CourseLevel level;
   final LevelOutcome outcome;
   final VoidCallback onAgain, onNext;
+
+  /// [onNext] shows a certificate (a class or the whole course finished).
+  final bool certificate;
 
   static String titleFor(int stars) => stars == 3 ? 'Zabardast!' : (stars == 2 ? 'Bohat khoob!' : 'Shabash!');
 
@@ -87,7 +90,7 @@ class _LevelCompleteScreenState extends ConsumerState<LevelCompleteScreen> {
     final reduce = ref.watch(reduceMotionProvider);
     final fg = theme.dark ? LikhoColors.surface : LikhoColors.ink;
     final o = widget.outcome;
-    final last = widget.level.number == 36;
+    final last = widget.certificate;
     // one layout for every phone: shorter phones get a slightly smaller
     // group, the gaps inside it stay the same
     final compact = MediaQuery.sizeOf(context).height < 760;

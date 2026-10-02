@@ -33,6 +33,8 @@ Likho/
 * **Each child has their own progress** in every course, saved on the server. The app shows changes
   at once and keeps finished levels in a queue until the server has them (it works offline).
 * **Try first:** without an account a child can play the warm-up and level 1 (nothing is saved).
+* **Classes:** one map, zoned by the child's school class (KG to Class 3). Lower classes stay open
+  for revision; a higher class opens only when a parent says so.
 
 More in [docs/architecture.md](docs/architecture.md).
 

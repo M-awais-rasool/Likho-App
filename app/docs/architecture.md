@@ -40,10 +40,14 @@ Welcome "pehle try karein" / new child -> Placement warm-up -> Placement done ->
   (a child above KG who finds the warm-up hard starts in Small Letter Cove, as revision)
 Guest (not signed in): warm-up + level 1; level 2+, room, profile, parents -> Sign-in sheet
 Who's playing (root) -> World Map -> Level intro -> Gameplay -> Level complete
-                                                   -> map | Session end | Certificate (level 36)
+                                                   -> map | Session end | Certificate
+                                                      (a class finished: "KG Complete!"; all 36: the course)
+Who's playing: "class check" card -> parent gate -> class dialog (guessed class, new school year)
 World Map: avatar -> Child profile -> Sticker book (edit -> parent gate -> Edit child)
            room button -> Mascot room;  settings -> parent gate -> Parent dashboard
-Parent dashboard -> Settings, Course progress, Paywall; Plus levels (13+) -> Paywall first
+           board before the next class (class finished) -> parent gate -> next class opened
+Parent dashboard -> class card (change the class, open the next one), Settings, Course progress,
+                    Paywall; Plus levels (13+) -> Paywall first
 ```
 
 | Folder | Screens (prototype number) |
@@ -58,6 +62,32 @@ Parent dashboard -> Settings, Course progress, Paywall; Plus levels (13+) -> Pay
 Debug builds can open any screen directly (the prototype's side menu):
 `echo room > "$(xcrun simctl get_app_container booted com.likho.likho data)/Documents/likho_dev_screen"`
 (keys in `AppFlowJump.screens`), or from the mascot playground (long-press the REF chip).
+
+## Classes
+
+Every child is in a school class (KG / Prep, Class 1–3) and every world of the course is for one
+(`grade` in world.json). `ClassMap` (`lib/data/grades.dart`) is the same unlock rule as the server
+(`backend/internal/domain/grades.go`); `grades_test.dart` runs the server's cases.
+
+| zone | levels | on the map |
+|---|---|---|
+| revision | lower classes | open in any order, never needed to go on ("KG · Revision") |
+| the child's class | in order from its first level | where the map opens and Pencil stands ("Meri class · Class 1") |
+| opened | a higher class a parent opened | in order after the child's class ("Agli class · Class 2") |
+| locked | higher classes | a board before the next one ("Class 2 ki tayyari"); later ones a dim tag |
+
+* The class is the second step of adding a child, and changes in the parent dashboard. A new class
+  locks the classes above it again; stars and progress never change (they are kept by level number).
+* Finishing a class for the first time shows its certificate ("KG Complete!"). Its parents' link, and
+  the map's board once the class is done, open the next class through the parent gate ("Ayaan ne KG
+  mukammal kar liya. Kya Class 1 ke levels kholein?"). The child never opens a higher class alone.
+* A class guessed from an age (children added before classes) or the start of a school year (April
+  or August; only the family's month once a parent has moved a child up then, `school_year.json`)
+  shows a "class check" card on Who's playing.
+* Warm-up: a child above KG who makes three or more mistakes starts in Small Letter Cove, as
+  revision ("Small Letter Cove se shuru karte hain!", `start_levels.json` on the phone).
+* Handwriting: the tracing lane is wider for KG and narrower for Class 3
+  (`WritingJudge.laneWidthFor`), so one level suits every class.
 
 ## Accounts and saving
 

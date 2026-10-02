@@ -37,9 +37,13 @@ enum PadEvent {
 /// drawn while the finger follows it, and the next stroke comes once it is
 /// finished. Pads without a guide (sentences) take any ink.
 class WritePadController extends ChangeNotifier {
-  WritePadController({required this.round, required this.guides, this.letter = 0});
+  WritePadController({required this.round, required this.guides, this.letter = 0, this.laneWidth = WritingJudge.laneWidth});
 
   final WriteRound round;
+
+  /// How wide the lane is, in guide units ([WritingJudge.laneWidthFor] the
+  /// child's class).
+  final double laneWidth;
 
   /// The letter's strokes in guide space (100 x 100, baseline 70), in
   /// writing order; empty = no guide.
@@ -92,7 +96,7 @@ class WritePadController extends ChangeNotifier {
   void _layout() {
     if (guides.isEmpty || padSize.isEmpty || (_lane != null && _laneSize == padSize)) return;
     final before = _laneSize, old = _guide;
-    _lane = PadGeometry(padSize).lane(guides);
+    _lane = PadGeometry(padSize).lane(guides, width: laneWidth);
     _guide = StrokeGuide(_lane!)..stroke = old?.stroke ?? 0;
     if (old != null && !before.isEmpty) {
       // the pad changed size: the ink moves with the letter
@@ -506,7 +510,7 @@ class _GuidePainter extends CustomPainter {
         ..style = PaintingStyle.stroke
         ..strokeCap = StrokeCap.round
         ..strokeJoin = StrokeJoin.round
-        ..strokeWidth = WritingJudge.laneWidth
+        ..strokeWidth = controller.laneWidth
         ..color = i < current
             ? GameColors.laneDone
             : i == current

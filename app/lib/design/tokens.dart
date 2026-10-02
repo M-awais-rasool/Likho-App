@@ -200,6 +200,10 @@ abstract final class MapColors {
   static const topFadeClear = Color(0x00FFF8EC);
   static const settingsBg = Color(0xD9FFFFFF); // rgba(255,255,255,.85)
 
+  // class zones (not in the prototype): the board before a locked class
+  static const boardEdge = Color(0xFF16172A); // 3D edge under the ink board
+  static const boardRim = Color(0xE6FFFFFF); // white rim, so the board reads on Story Space too
+
   // decorations, per world (3 kinds each)
   static const bush = Color(0xFFC3E3A5);
   static const flower = Color(0xFFFFD66B);
@@ -592,6 +596,7 @@ abstract final class ParentColors {
   static const featureCoral = Color(0xFFB4573A);
   static const featurePurpleBg = Color(0xFFEFE9FB);
   static const featurePurple = Color(0xFF7659C9);
+  static const gradePicked = Color(0xFFFFF4D6); // the class picked in the class dialog
 }
 
 /// 8pt grid spacing.

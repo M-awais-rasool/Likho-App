@@ -11,15 +11,16 @@ import '../common/kid_widgets.dart';
 
 /// 23 Parent gate: a multiplication a child cannot guess, over a blurred
 /// screen. Completes with true when the parent picks the right answer, false
-/// when closed.
-Future<bool> showParentGate(BuildContext context, {math.Random? random}) async {
+/// when closed. [title] and [message] can ask the parent something first
+/// ("Class 1 kholein?"); the right answer is then their yes.
+Future<bool> showParentGate(BuildContext context, {math.Random? random, String? title, String? message}) async {
   final ok = await Navigator.of(context).push<bool>(
     PageRouteBuilder<bool>(
       opaque: false,
       barrierDismissible: false,
       transitionDuration: const Duration(milliseconds: 200),
       reverseTransitionDuration: const Duration(milliseconds: 200),
-      pageBuilder: (context, _, _) => ParentGate(random: random),
+      pageBuilder: (context, _, _) => ParentGate(random: random, title: title, message: message),
       transitionsBuilder: (context, a, _, child) => FadeTransition(opacity: a, child: child),
     ),
   );
@@ -27,8 +28,9 @@ Future<bool> showParentGate(BuildContext context, {math.Random? random}) async {
 }
 
 class ParentGate extends StatefulWidget {
-  const ParentGate({super.key, this.random});
+  const ParentGate({super.key, this.random, this.title, this.message});
   final math.Random? random;
+  final String? title, message;
 
   /// Questions from the prototype (openGate).
   static const questions = [(7, 3), (6, 4), (8, 2), (5, 5), (9, 3)];
@@ -92,7 +94,7 @@ class _ParentGateState extends State<ParentGate> {
                           Row(
                             children: [
                               Expanded(
-                                child: Text('Sirf walidain ke liye', style: LikhoFonts.parent(size: 17, weight: FontWeight.w800)),
+                                child: Text(widget.title ?? 'Sirf walidain ke liye', style: LikhoFonts.parent(size: 17, weight: FontWeight.w800)),
                               ),
                               CircleIconButton(
                                 icon: Symbols.close_rounded,
@@ -107,8 +109,8 @@ class _ParentGateState extends State<ParentGate> {
                           ),
                           const SizedBox(height: 14),
                           Text(
-                            'Aage barhne ke liye sahi jawab chunein:',
-                            style: LikhoFonts.parent(size: 15, weight: FontWeight.w600, color: UiColors.inkBody),
+                            widget.message ?? 'Aage barhne ke liye sahi jawab chunein:',
+                            style: LikhoFonts.parent(size: 15, weight: FontWeight.w600, color: UiColors.inkBody).copyWith(height: 1.4),
                           ),
                           const SizedBox(height: 14),
                           Padding(

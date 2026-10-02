@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/course_providers.dart';
+import '../../data/family.dart';
 import '../../data/models/course_models.dart';
 import '../../data/progress.dart';
 import '../../design/tokens.dart';
@@ -14,6 +15,7 @@ import '../../dev/reference_overlay.dart';
 import '../../game/level_session.dart';
 import '../../game/speech/prompt_voice.dart';
 import '../../game/writing/stroke_guide.dart';
+import '../../game/writing/writing_judge.dart';
 import '../../mascot/mascot.dart';
 import 'rounds/order_round_view.dart';
 import 'rounds/pick_round_view.dart';
@@ -127,7 +129,10 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
     old?.removeEventListener(_onPad);
     // the pad widget lets go of the old one when it rebuilds
     if (old != null) WidgetsBinding.instance.addPostFrameCallback((_) => old.dispose());
-    _pad = r == null ? null : (WritePadController(round: r, guides: WritePadController.guidesFor(r, _glyphs, letter: letter), letter: letter)..addEventListener(_onPad));
+    final lane = WritingJudge.laneWidthFor(ref.read(familyProvider).active.grade);
+    _pad = r == null
+        ? null
+        : (WritePadController(round: r, guides: WritePadController.guidesFor(r, _glyphs, letter: letter), letter: letter, laneWidth: lane)..addEventListener(_onPad));
   }
 
   /// Step-by-step writing: Pencil says what to do next.

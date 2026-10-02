@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import '../../data/course_providers.dart';
 import '../../data/family.dart';
+import '../../data/grades.dart';
 import '../../feedback/game_feedback.dart';
 import '../../design/motion.dart';
 import '../../design/tokens.dart';
@@ -13,14 +15,23 @@ import '../common/clock.dart';
 import '../common/kid_widgets.dart';
 import '../common/pencil_figure.dart';
 
-/// 18 Certificate (after level 36), from the prototype: the six woken bosses
-/// dance over Pencil in a crown, and the certificate pops in. Print makes a
-/// PDF ([onPrint]); "Letter Playground" goes back to the map.
+/// 18 Certificate, from the prototype: the woken bosses dance over Pencil
+/// in a crown, and the certificate pops in. For the whole course (all six
+/// worlds) or, with [grade], one class ("KG Complete!": that class's
+/// worlds and bosses). Print makes a PDF ([onPrint]); "Letter Playground"
+/// goes back to the map; [onOpenNext] is the parents' link to open the next
+/// class (it goes through the parent gate).
 class CertificateScreen extends ConsumerWidget {
-  const CertificateScreen({super.key, required this.onPrint, required this.onPlayground, this.date});
+  const CertificateScreen({super.key, required this.onPrint, required this.onPlayground, this.date, this.grade, this.onOpenNext});
 
   final VoidCallback onPrint, onPlayground;
   final DateTime? date;
+  final Grade? grade;
+  final VoidCallback? onOpenNext;
+
+  /// "Letter Land aur Small Letter Cove".
+  static String namesOf(List<String> names) =>
+      names.length < 2 ? names.join() : '${names.sublist(0, names.length - 1).join(', ')} aur ${names.last}';
 
   static const _months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   static String formatDate(DateTime d) => '${d.day} ${_months[d.month - 1]} ${d.year}';
@@ -28,6 +39,14 @@ class CertificateScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final name = ref.watch(familyProvider.select((f) => f.active.name));
+    final worlds = ref.watch(courseProvider).value?.worlds ?? const [];
+    final g = grade;
+    // the class's worlds (by map position, for their bosses), or all six
+    final shown = [for (final (i, w) in worlds.indexed) if (g == null || w.grade == g) (i, w.name)];
+    final bosses = g == null || shown.isEmpty ? [for (var w = 0; w < 6; w++) w] : [for (final (i, _) in shown) i];
+    final text = g == null
+        ? 'ne Likho ka poora English course — 6 worlds, 36 levels — mukammal kar liya!'
+        : 'ne ${g.short} — ${namesOf([for (final (_, n) in shown) n])} — mukammal kar liya!';
     final top = frameTop(context, 0);
     Widget dot(Color c, double size, double seconds) => Twinkle(
       seconds: seconds,
@@ -60,16 +79,24 @@ class CertificateScreen extends ConsumerWidget {
                     padding: EdgeInsets.fromLTRB(20, top + 64, 20, 40),
                     child: Column(
                       children: [
+                        if (g != null) ...[
+                          Text(
+                            '${g.short} Complete!',
+                            textAlign: TextAlign.center,
+                            style: LikhoFonts.title(size: 32, weight: FontWeight.w800, color: LikhoColors.surface).copyWith(height: 1.1),
+                          ),
+                          const SizedBox(height: 6),
+                        ],
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [for (var w = 0; w < 6; w++) BossFigure(world: w, dance: true, width: 52, height: 44)],
+                          children: [for (final w in bosses) BossFigure(world: w, dance: true, width: 52, height: 44)],
                         ),
                         const SizedBox(height: 4),
                         const PencilFigure(width: 110, height: 156, state: MascotState.dance, accessory: MascotAccessory.crown, repeat: true),
                         const SizedBox(height: 14),
                         BigPop(
                           delay: .3,
-                          child: _Certificate(name: name, date: formatDate(date ?? DateTime.now())),
+                          child: _Certificate(name: name, text: text, date: formatDate(date ?? DateTime.now())),
                         ),
                         const Spacer(),
                         Row(
@@ -95,6 +122,14 @@ class CertificateScreen extends ConsumerWidget {
                             ),
                           ],
                         ),
+                        if (onOpenNext != null && g?.next != null) ...[
+                          const SizedBox(height: 10),
+                          TextLink(
+                            text: 'Walidain: ${g!.next!.short} ke levels kholein',
+                            onTap: onOpenNext!,
+                            style: LikhoFonts.body(size: 14, weight: FontWeight.w700, color: UiColors.white75),
+                          ),
+                        ],
                       ],
                     ),
                   ),
@@ -109,8 +144,8 @@ class CertificateScreen extends ConsumerWidget {
 }
 
 class _Certificate extends StatelessWidget {
-  const _Certificate({required this.name, required this.date});
-  final String name, date;
+  const _Certificate({required this.name, required this.text, required this.date});
+  final String name, text, date;
 
   @override
   Widget build(BuildContext context) {
@@ -162,7 +197,7 @@ class _Certificate extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: math.max(0, math.min(460, MediaQuery.sizeOf(context).width) - 40 - 20 - 6 - 36 - 260) / 2),
                     child: Text(
-                      'ne Likho ka poora English course — 6 worlds, 36 levels — mukammal kar liya!',
+                      text,
                       textAlign: TextAlign.center,
                       style: LikhoFonts.body(size: 15, color: UiColors.inkBody, height: 1.45),
                     ),

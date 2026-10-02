@@ -2,6 +2,7 @@ import 'dart:math' as math;
 import 'dart:typed_data';
 import 'dart:ui';
 
+import '../../data/grades.dart';
 import '../../data/models/course_models.dart';
 import '../level_session.dart';
 import 'stroke_guide.dart';
@@ -42,8 +43,10 @@ class PadGeometry {
         ..[12] = _offset.dx
         ..[13] = _offset.dy));
 
-  /// The tracing lane around [guides] (guide space) on this pad.
-  TraceLane lane(List<Path> guides) => TraceLane([for (final g in guides) padPath(g)], halfWidth: WritingJudge.laneWidth / 2 * scale);
+  /// The tracing lane around [guides] (guide space) on this pad, [width]
+  /// guide units wide.
+  TraceLane lane(List<Path> guides, {double width = WritingJudge.laneWidth}) =>
+      TraceLane([for (final g in guides) padPath(g)], halfWidth: width / 2 * scale);
 }
 
 /// Decides if a drawing is good enough.
@@ -57,6 +60,16 @@ abstract final class WritingJudge {
   /// Width of the lane children write in, in guide units (the letter box is
   /// 100 high; the drawn guide line is 7 wide).
   static const laneWidth = 15.0;
+
+  /// The lane for a child in class [grade]: wider (gentler) for KG, narrower
+  /// (stricter) for Class 3, so one level suits every class. Everything that
+  /// follows the finger (start, how far ahead) scales with it.
+  static double laneWidthFor(Grade grade) => switch (grade) {
+    Grade.kg => 18,
+    Grade.class1 => laneWidth,
+    Grade.class2 => 13,
+    Grade.class3 => 12,
+  };
 
   static double inkLength(List<List<Offset>> strokes) {
     var l = 0.0;

@@ -45,9 +45,10 @@ each part when it changes (`.github/workflows/`).
 |---|---|---|
 | courses | `backend/content/` (Git) | saved copy of the last download |
 | account, settings, subscription | Postgres `parents` | snapshot for offline start (`me.json`) |
-| children, stars, room | Postgres `children`, `child_items` | shown instantly, confirmed by the API |
+| children (class, classes opened), stars, room | Postgres `children`, `child_items` | shown instantly, confirmed by the API |
 | progress | Postgres `level_progress` (child × course × level) | queue of unsent results (`pending_results.json`) |
 | guest ("try first") | nowhere | memory only |
+| warm-up start, the family's school month | the phone | `start_levels.json`, `school_year.json` |
 
 The server applies the same rules as the app (stars, unlocks, Likho Plus, shop prices), so the app
 can show changes immediately and the server's answer corrects any difference.

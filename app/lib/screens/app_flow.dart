@@ -7,8 +7,10 @@ import '../data/api/api_client.dart';
 import '../data/auth.dart';
 import '../data/course_providers.dart';
 import '../data/family.dart';
+import '../data/grades.dart';
 import '../data/models/course_models.dart';
 import '../data/progress.dart';
+import '../data/school_year.dart';
 import '../data/start_levels.dart';
 import '../feedback/app_feedback.dart';
 import '../feedback/game_feedback.dart';
@@ -25,6 +27,7 @@ import 'level_intro/level_intro_screen.dart';
 import 'likho_route.dart';
 import 'parent/course_progress_screen.dart';
 import 'parent/dashboard_screen.dart';
+import 'parent/grade_dialog.dart';
 import 'parent/parent_gate.dart';
 import 'parent/paywall_screen.dart';
 import 'parent/settings_screen.dart';
@@ -166,6 +169,7 @@ abstract final class AppFlow {
         onPicked: () => toMap(ctx),
         onAddChild: () => _gated(ctx, () => Navigator.of(ctx).push(_childSetup(ChildSetupMode.add))),
         onParent: () => _gated(ctx, () => Navigator.of(ctx).push(_dashboard())),
+        onCheckGrades: () => checkGrades(ctx),
       ),
     ),
     (_) => false,
@@ -185,11 +189,45 @@ abstract final class AppFlow {
     if (await showParentGate(context) && context.mounted) open();
   }
 
+  /// Parents check classes: for every child whose class was guessed from an
+  /// age, or at the start of a school year ("Kya Zara ab Class 2 mein
+  /// hai?"), the class dialog after the parent gate. "Baad mein" leaves
+  /// the rest for next time. A child moved up at the start of a school year
+  /// tells Likho the family's school month.
+  static Future<void> checkGrades(BuildContext context) async {
+    final container = _c(context);
+    if (!await showParentGate(context) || !context.mounted) return;
+    final now = container.read(clockProvider)(), month = container.read(schoolYearProvider);
+    for (final p in container.read(familyProvider).gradeChecks(now, schoolMonth: month)) {
+      final newYear = p.gradeCheck(now, schoolMonth: month) == GradeCheck.newSchoolYear;
+      final next = p.grade.next;
+      final g = await showGradeDialog(
+        context,
+        title: newYear ? 'Naya school saal!' : '${p.name} kis class mein hai?',
+        message: newYear
+            ? (next == null ? '${p.name} ki class check karein:' : 'Kya ${p.name} ab ${next.short} mein hai?')
+            : 'Umar se andaza: ${p.grade.short}. Sahi class chunein:',
+        selected: newYear ? (next ?? p.grade) : p.grade,
+      );
+      if (g == null || !context.mounted) return;
+      try {
+        await container.read(familyProvider.notifier).updateGrade(p.id, to: g);
+      } on ApiException catch (e) {
+        if (context.mounted) Toast.show(context, e.offline ? 'Internet nahi hai, dobara koshish karein' : 'Save nahi hua, dobara koshish karein');
+        return;
+      }
+      if (newYear && g.index > p.grade.index) container.read(schoolYearProvider.notifier).learn(now.month);
+      if (!context.mounted) return;
+    }
+    Toast.show(context, 'Class save ho gayi');
+  }
+
   // ------------------------------------------------------------------ map
 
   static Widget mapScreen(BuildContext ctx) => CourseGate(
     child: WorldMapScreen(
       onOpenLevel: (n) => openLevel(ctx, n),
+      onOpenNextGrade: () => _member(ctx, () => openNextGrade(ctx)),
       onProfile: () {
         AppFeedback.of(ctx).tap();
         _member(ctx, () => Navigator.of(ctx).push(_profile()));
@@ -363,41 +401,84 @@ abstract final class AppFlow {
     );
   }
 
-  static Route<void> _complete(ProviderContainer container, CourseLevel level, LevelOutcome outcome) => LikhoRoute<void>(
-    rise: false,
-    builder: (ctx) => LevelCompleteScreen(
-      level: level,
-      outcome: outcome,
-      onAgain: () => Navigator.of(ctx).pushReplacement(_game(container, level)),
-      onNext: () {
-        final nav = Navigator.of(ctx);
-        final session = container.read(playSessionProvider);
-        if (level.number == 36) {
-          nav.pushReplacement(
-            LikhoRoute<void>(
-              rise: false,
-              builder: (c) => CertificateScreen(onPrint: () => Toast.show(c, 'Certificate PDF ready!'), onPlayground: () => Navigator.of(c).pop()),
-            ),
-          );
-        } else if (session.levels >= container.read(familyProvider).settings.levelsPerSession) {
-          nav.pushReplacement(
-            LikhoRoute<void>(
-              rise: false,
-              builder: (c) => SessionEndScreen(
-                stars: session.stars,
-                onHome: () {
-                  container.read(playSessionProvider.notifier).reset();
-                  Navigator.of(c).pop();
-                },
+  static Route<void> _complete(ProviderContainer container, CourseLevel level, LevelOutcome outcome) {
+    // finishing a class (or everything) for the first time earns a certificate
+    final earned = container.read(progressProvider).certificateFor(level.number, firstTime: outcome.firstTime);
+    return LikhoRoute<void>(
+      rise: false,
+      builder: (ctx) => LevelCompleteScreen(
+        level: level,
+        outcome: outcome,
+        certificate: earned != null,
+        onAgain: () => Navigator.of(ctx).pushReplacement(_game(container, level)),
+        onNext: () {
+          final nav = Navigator.of(ctx);
+          final session = container.read(playSessionProvider);
+          if (earned != null) {
+            nav.pushReplacement(_certificate(container, earned.grade));
+          } else if (session.levels >= container.read(familyProvider).settings.levelsPerSession) {
+            nav.pushReplacement(
+              LikhoRoute<void>(
+                rise: false,
+                builder: (c) => SessionEndScreen(
+                  stars: session.stars,
+                  onHome: () {
+                    container.read(playSessionProvider.notifier).reset();
+                    Navigator.of(c).pop();
+                  },
+                ),
               ),
-            ),
-          );
-        } else {
-          nav.pop();
-        }
-      },
-    ),
+            );
+          } else {
+            nav.pop();
+          }
+        },
+      ),
+    );
+  }
+
+  /// The certificate for class [grade] ("KG Complete!"), or the whole course
+  /// when null. Its parents' link opens the next class when it is still
+  /// locked.
+  static Route<void> _certificate(ProviderContainer container, Grade? grade) => LikhoRoute<void>(
+    rise: false,
+    builder: (c) {
+      final open = container.read(familyProvider).active.unlockedGrade;
+      return CertificateScreen(
+        grade: grade,
+        onPrint: () => Toast.show(c, 'Certificate PDF ready!'),
+        onPlayground: () => Navigator.of(c).pop(),
+        onOpenNext: grade != null && grade == open && open.next != null ? () => openNextGrade(c) : null,
+      );
+    },
   );
+
+  /// A parent opens the class after the highest open one (the map's
+  /// "tayyari" board, the class certificate). The parent gate asks first:
+  /// "Ayaan ne KG mukammal kar liya. Kya Class 1 ke levels kholein?". Stars
+  /// and the child's class stay as they are.
+  static Future<void> openNextGrade(BuildContext context) async {
+    final container = _c(context);
+    final child = container.read(familyProvider).active;
+    final open = child.unlockedGrade, next = open.next;
+    if (next == null) return;
+    final finished = container.read(progressProvider).finishedGrade(open);
+    final ok = await showParentGate(
+      context,
+      title: 'Kya ${next.short} ke levels kholein?',
+      message: finished
+          ? '${child.name} ne ${open.short} mukammal kar liya. Kholne ke liye sahi jawab chunein:'
+          : '${child.name} abhi ${open.short} khel rahe hain. Phir bhi kholne ke liye sahi jawab chunein:',
+    );
+    if (!ok || !context.mounted) return;
+    try {
+      await container.read(familyProvider.notifier).updateGrade(child.id, open: next);
+    } on ApiException catch (e) {
+      if (context.mounted) Toast.show(context, e.offline ? 'Internet nahi hai, dobara koshish karein' : 'Ye kaam nahi hua, dobara koshish karein');
+      return;
+    }
+    if (context.mounted) Toast.show(context, '${next.short} ke levels khul gaye!');
+  }
 
   /// The placement warm-up (after adding a child, or "pehle try karein"),
   /// then "Chalo shuru karein!" and the map. A child above KG who found the
@@ -444,7 +525,7 @@ abstract final class AppFlow {
 abstract final class AppFlowJump {
   static const screens = [
     'welcome', 'signIn', 'offline', 'whos', 'onb', 'edit', 'placement', 'placementDone', //
-    'map', 'complete', 'complete1', 'boss', 'sessionEnd', 'certificate', 'room', 'profile', 'stickers', //
+    'map', 'complete', 'complete1', 'boss', 'sessionEnd', 'certificate', 'certificateKg', 'room', 'profile', 'stickers', //
     'gate', 'dashboard', 'course', 'settings', 'paywall',
   ];
 
@@ -488,6 +569,8 @@ abstract final class AppFlowJump {
         push((c) => SessionEndScreen(stars: container.read(playSessionProvider).stars, onHome: () => Navigator.of(c).pop()), rise: false);
       case 'certificate':
         push((c) => CertificateScreen(onPrint: () => Toast.show(c, 'Certificate PDF ready!'), onPlayground: () => Navigator.of(c).pop()), rise: false);
+      case 'certificateKg':
+        nav.push(AppFlow._certificate(container, Grade.kg));
       case 'room':
         push((c) => MascotRoomScreen(onBack: () => Navigator.of(c).pop()));
       case 'profile':

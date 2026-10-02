@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../data/family.dart';
+import '../../data/school_year.dart';
 import '../../data/shop_items.dart';
 import '../../feedback/app_feedback.dart';
 import '../../design/motion.dart';
@@ -16,10 +17,14 @@ import '../common/pencil_figure.dart';
 /// 4) and "Naya bacha". Picking a child bounces the avatar and floods the
 /// screen with the child's colour from it, then [onPicked] (World Map).
 /// The lock opens the parent area ([onParent], behind the parent gate).
+/// When a class needs a parent's look (guessed from an age, or a new school
+/// year), a card for parents asks for it ([onCheckGrades]; not in the
+/// prototype).
 class WhosPlayingScreen extends ConsumerStatefulWidget {
-  const WhosPlayingScreen({super.key, required this.onPicked, required this.onAddChild, required this.onParent});
+  const WhosPlayingScreen({super.key, required this.onPicked, required this.onAddChild, required this.onParent, this.onCheckGrades});
 
   final VoidCallback onPicked, onAddChild, onParent;
+  final VoidCallback? onCheckGrades;
 
   @override
   ConsumerState<WhosPlayingScreen> createState() => _WhosPlayingScreenState();
@@ -59,6 +64,8 @@ class _WhosPlayingScreenState extends ConsumerState<WhosPlayingScreen> {
   @override
   Widget build(BuildContext context) {
     final family = ref.watch(familyProvider);
+    final now = ref.watch(clockProvider)(), month = ref.watch(schoolYearProvider);
+    final checks = [for (final p in family.gradeChecks(now, schoolMonth: month)) p.gradeCheck(now, schoolMonth: month)];
     final zoom = _zoom;
     return StatusBar(
       child: Material(
@@ -98,6 +105,10 @@ class _WhosPlayingScreenState extends ConsumerState<WhosPlayingScreen> {
                           ],
                         ),
                       ),
+                      if (checks.isNotEmpty && widget.onCheckGrades != null) ...[
+                        const SizedBox(height: 40),
+                        _GradeCheckCard(schoolYear: checks.contains(GradeCheck.newSchoolYear), onTap: widget.onCheckGrades!),
+                      ],
                     ],
                   ),
                 ),
@@ -201,6 +212,47 @@ class _ChildAvatarState extends State<_ChildAvatar> with SingleTickerProviderSta
       ),
     );
   }
+}
+
+/// For parents: "Naya school saal! Class check karein" (or, for classes
+/// guessed from an age, "Walidain: class check karein"), with the parents'
+/// lock. Opens the parent gate, then the class questions.
+class _GradeCheckCard extends StatelessWidget {
+  const _GradeCheckCard({required this.schoolYear, required this.onTap});
+  final bool schoolYear;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) => FadeIn(
+    seconds: .3,
+    child: GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: withSound(context, ButtonSound.tap, onTap),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        decoration: BoxDecoration(
+          color: LikhoColors.surface,
+          borderRadius: BorderRadius.circular(18),
+          boxShadow: const [BoxShadow(color: GameColors.ink08, offset: Offset(0, 4))],
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SymbolIcon(Symbols.school_rounded, size: 24, color: LikhoColors.secondary, fill: true),
+            const SizedBox(width: 10),
+            Flexible(
+              child: Text(
+                schoolYear ? 'Naya school saal! Class check karein' : 'Walidain: class check karein',
+                style: LikhoFonts.parent(size: 15, weight: FontWeight.w700),
+              ),
+            ),
+            const SizedBox(width: 8),
+            const SymbolIcon(Symbols.lock_rounded, size: 18, color: LikhoColors.inkMuted),
+          ],
+        ),
+      ),
+    ),
+  );
 }
 
 class _AddChild extends StatelessWidget {

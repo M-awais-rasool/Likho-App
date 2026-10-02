@@ -8,12 +8,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../data/course_providers.dart';
+import '../../data/grades.dart';
 import '../../data/models/course_models.dart';
 import '../../data/progress.dart';
 import '../../design/icon_registry.dart';
 import '../../design/tokens.dart';
 import '../../dev/reference_overlay.dart';
 import '../../mascot/mascot.dart';
+import '../common/toast.dart';
 import 'boss_painter.dart';
 import 'map_geometry.dart';
 import 'map_painters.dart';
@@ -24,14 +26,23 @@ import 'map_painters.dart';
 /// starts at the bottom and, after 250 ms, glides so the current level sits
 /// at 55 % of the screen. Nodes pop in, staggered by distance from the
 /// current level; the mascot stands on the current level.
+///
+/// Classes (not in the prototype): where each class starts, a banner says
+/// what it is for this child: revision, "Meri class", a class a parent
+/// opened, or a board before the next locked class ("Class 1 ki tayyari").
+/// Revision levels are open, so they show their icon without stars yet.
 class WorldMapScreen extends ConsumerStatefulWidget {
-  const WorldMapScreen({super.key, this.onOpenLevel, this.onProfile, this.onRoom, this.onSettings});
+  const WorldMapScreen({super.key, this.onOpenLevel, this.onProfile, this.onRoom, this.onSettings, this.onOpenNextGrade});
 
   /// Tapped an unlocked level (Gameplay is the next screen to build).
   final ValueChanged<int>? onOpenLevel;
   final VoidCallback? onProfile;
   final VoidCallback? onRoom;
   final VoidCallback? onSettings;
+
+  /// Tapped the board before the next locked class once the child has
+  /// finished every open class: a parent may open it.
+  final VoidCallback? onOpenNextGrade;
 
   static const String reference = 'assets/reference/screens/world_map.png';
 
@@ -130,6 +141,7 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen> with SingleTick
                       time: _time,
                       mascot: _mapMascot,
                       onOpenLevel: widget.onOpenLevel,
+                      onOpenNextGrade: widget.onOpenNextGrade,
                     ),
                   ),
                 ),
@@ -165,6 +177,7 @@ class _WorldSection extends StatelessWidget {
     required this.time,
     required this.mascot,
     required this.onOpenLevel,
+    required this.onOpenNextGrade,
   });
 
   final Course course;
@@ -176,6 +189,17 @@ class _WorldSection extends StatelessWidget {
   final ValueNotifier<double> time;
   final MascotController mascot;
   final ValueChanged<int>? onOpenLevel;
+  final VoidCallback? onOpenNextGrade;
+
+  /// The banner where class [g] starts, [y] from the section's top: in the
+  /// gap below that class's first world (on the road, under its label).
+  Widget _zone(Grade g, double y) => Positioned(
+    left: 0,
+    right: 0,
+    top: y,
+    height: _ZoneBanner.height,
+    child: Center(child: _ZoneBanner(grade: g, progress: progress, onOpenNextGrade: onOpenNextGrade)),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -190,6 +214,13 @@ class _WorldSection extends StatelessWidget {
       Positioned.fill(child: CustomPaint(painter: MapPathPainter(geometry: geometry, sectionTop: top))),
       Positioned(left: 24, top: labelY, height: 40, child: _WorldLabel(index: world, world: info, theme: theme)),
     ];
+    // class banners: under world 1, and at the top of a world whose next
+    // world starts another class (the gap there belongs to this section)
+    if (progress.map != null) {
+      if (world == 0 && info.grade != null) children.add(_zone(info.grade!, geometry.worldBottom(0) - top + 14));
+      final above = world + 1 < course.worlds.length ? course.worlds[world + 1].grade : null;
+      if (above != null && above != info.grade) children.add(_zone(above, 14));
+    }
     Widget? mascotOnTop;
     for (var li = 0; li < 6; li++) {
       final n = world * 6 + li + 1;
@@ -292,6 +323,120 @@ class _WorldLabel extends StatelessWidget {
   }
 }
 
+// ------------------------------------------------------------------ class zones
+
+/// Where class [grade] starts on the map, for this child:
+/// * revision (a lower class): "KG · Revision"
+/// * their class: "Meri class · Class 1", in yellow
+/// * a higher class a parent opened: "Agli class · Class 2"
+/// * the next locked class: an ink board "Class 2 ki tayyari" with a lock.
+///   Tapped once the open classes are all finished, a parent may open it
+///   ([onOpenNextGrade]); before that it wiggles and says to finish first.
+/// * classes after that: a dim "Class 3" with a lock
+class _ZoneBanner extends StatefulWidget {
+  const _ZoneBanner({required this.grade, required this.progress, required this.onOpenNextGrade});
+  final Grade grade;
+  final ChildProgress progress;
+  final VoidCallback? onOpenNextGrade;
+
+  static const height = 48.0;
+
+  @override
+  State<_ZoneBanner> createState() => _ZoneBannerState();
+}
+
+class _ZoneBannerState extends State<_ZoneBanner> with SingleTickerProviderStateMixin {
+  late final AnimationController _wiggle = AnimationController(vsync: this, duration: const Duration(milliseconds: 400));
+
+  @override
+  void dispose() {
+    _wiggle.dispose();
+    super.dispose();
+  }
+
+  void _tapBoard(Grade open) {
+    if (widget.progress.finishedGrade(open)) {
+      widget.onOpenNextGrade?.call();
+      return;
+    }
+    _wiggle.forward(from: 0);
+    Toast.show(context, 'Pehle ${open.short} mukammal karo!');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final g = widget.grade, map = widget.progress.map!;
+    final first = map.levelsOf(g)?.$1;
+    if (first == null) return const SizedBox.shrink();
+    return switch (map.zoneOf(first)) {
+      Zone.revision => _pill(Symbols.replay_rounded, '${g.short} · Revision'),
+      Zone.mine => _pill(Symbols.star_rounded, 'Meri class · ${g.short}', mine: true),
+      Zone.opened => _pill(Symbols.key_rounded, 'Agli class · ${g.short}'),
+      Zone.locked when g == map.unlocked.next => _board(g, map.unlocked),
+      Zone.locked => Opacity(opacity: .7, child: _pill(Symbols.lock_rounded, g.short)),
+    };
+  }
+
+  Widget _pill(IconData icon, String text, {bool mine = false}) => ClipRRect(
+    borderRadius: BorderRadius.circular(20),
+    child: BackdropFilter(
+      filter: ui.ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+      child: Container(
+        height: 40,
+        padding: const EdgeInsets.only(left: 12, right: 16),
+        color: mine ? LikhoColors.primary : MapColors.labelBg,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, size: 20, fill: 1, weight: 700, opticalSize: 20, color: LikhoColors.ink),
+            const SizedBox(width: 6),
+            Text(text, style: LikhoFonts.title(size: 16, weight: FontWeight.w800).copyWith(height: 1)),
+          ],
+        ),
+      ),
+    ),
+  );
+
+  Widget _board(Grade g, Grade open) => Semantics(
+    button: true,
+    label: '${g.short} ki tayyari, band hai',
+    child: GestureDetector(
+      onTap: () => _tapBoard(open),
+      child: AnimatedBuilder(
+        animation: _wiggle,
+        builder: (context, child) {
+          // the locked nodes' wiggle: 0 -> -6 -> 5 -> -2 -> 0 deg
+          const keys = [0.0, -6.0, 5.0, -2.0, 0.0];
+          final v = _wiggle.value, i = (v * 4).floor().clamp(0, 3);
+          final deg = keys[i] + (keys[i + 1] - keys[i]) * (v * 4 - i);
+          return Transform.rotate(angle: deg * math.pi / 180, child: child);
+        },
+        child: Container(
+          height: 44,
+          padding: const EdgeInsets.only(left: 12, right: 18),
+          decoration: BoxDecoration(
+            color: LikhoColors.ink,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: MapColors.boardRim, width: 2),
+            boxShadow: const [BoxShadow(color: MapColors.boardEdge, offset: Offset(0, 4))],
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Symbols.lock_rounded, size: 22, fill: 1, opticalSize: 22, color: LikhoColors.primary),
+              const SizedBox(width: 8),
+              Text(
+                '${g.short} ki tayyari',
+                style: LikhoFonts.title(size: 17, weight: FontWeight.w800, color: LikhoColors.surface).copyWith(height: 1),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
 // ------------------------------------------------------------------ level node
 
 class _LevelNode extends StatefulWidget {
@@ -350,27 +495,35 @@ class _LevelNodeState extends State<_LevelNode> with SingleTickerProviderStateMi
     final boss = widget.level.isBoss;
     final size = boss ? 100.0 : widget.isCurrent ? 88.0 : 72.0;
     final dark = widget.theme.dark;
+    // open but not played yet and not where Pencil stands: a revision level
+    final open = widget.unlocked && !widget.done && !widget.isCurrent;
     final bg = widget.isCurrent
         ? LikhoColors.primary
         : widget.done
             ? widget.theme.accent
-            : dark
-                ? MapColors.nodeLockedDark
-                : MapColors.nodeLocked;
+            : open
+                ? LikhoColors.surface
+                : dark
+                    ? MapColors.nodeLockedDark
+                    : MapColors.nodeLocked;
     final deep = widget.isCurrent
         ? LikhoColors.primaryDeep
         : widget.done
             ? widget.theme.deep
-            : dark
-                ? MapColors.nodeLockedDarkDeep
-                : MapColors.nodeLockedDeep;
+            : open
+                ? widget.theme.soft
+                : dark
+                    ? MapColors.nodeLockedDarkDeep
+                    : MapColors.nodeLockedDeep;
     final fg = widget.isCurrent
         ? LikhoColors.ink
         : widget.done
             ? LikhoColors.surface
-            : dark
-                ? MapColors.iconLockedDark
-                : MapColors.iconLocked;
+            : open
+                ? widget.theme.accent
+                : dark
+                    ? MapColors.iconLockedDark
+                    : MapColors.iconLocked;
     final iconSize = boss ? 44.0 : widget.isCurrent ? 40.0 : 32.0;
     final c = widget.centre;
     const starsW = 22.0 * 3 + 2;

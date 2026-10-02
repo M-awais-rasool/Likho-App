@@ -4,11 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import '../../data/api/api_client.dart';
 import '../../data/family.dart';
+import '../../data/grades.dart';
 import '../../data/progress.dart';
 import '../../design/tokens.dart';
 import '../common/kid_widgets.dart';
 import '../common/pencil_figure.dart';
+import '../common/toast.dart';
+import 'grade_dialog.dart';
 import 'parent_widgets.dart';
 
 /// 19 Parent dashboard, from the prototype: the child's week, letters
@@ -111,6 +115,7 @@ class DashboardScreen extends ConsumerWidget {
             ],
           ),
         ),
+        _ClassCard(child: p),
         ParentCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -204,6 +209,98 @@ class DashboardScreen extends ConsumerWidget {
         ),
         _PlusCard(onPlans: onPlans, onRestore: onRestore),
       ],
+    );
+  }
+}
+
+/// The child's class ("Class badlein" picks another; stars and progress stay)
+/// and whether the next class is open (the parent's switch).
+class _ClassCard extends ConsumerWidget {
+  const _ClassCard({required this.child});
+  final ChildProfile child;
+
+  Future<void> _save(BuildContext context, WidgetRef ref, {Grade? to, Grade? open, required String done}) async {
+    try {
+      await ref.read(familyProvider.notifier).updateGrade(child.id, to: to, open: open);
+    } on ApiException catch (e) {
+      if (context.mounted) Toast.show(context, e.offline ? 'Internet nahi hai, dobara koshish karein' : 'Save nahi hua, dobara koshish karein');
+      return;
+    }
+    if (context.mounted) Toast.show(context, done);
+  }
+
+  Future<void> _change(BuildContext context, WidgetRef ref) async {
+    final g = await showGradeDialog(
+      context,
+      title: '${child.name} kis class mein hai?',
+      message: 'Class badalne se stars aur progress nahi mitte.',
+      selected: child.grade,
+    );
+    if (g == null || !context.mounted) return;
+    await _save(context, ref, to: g, done: g == child.grade ? '${g.short} sahi hai' : 'Class badal gayi: ${g.short}');
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final g = child.grade, next = g.next;
+    final nextOpen = next != null && child.unlockedGrade.index >= next.index;
+    final muted = LikhoFonts.parent(size: 13, weight: FontWeight.w600, color: LikhoColors.inkMuted);
+    return ParentCard(
+      padding: const EdgeInsets.fromLTRB(18, 16, 18, 6),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Class: ${g.label}', style: LikhoFonts.parent(size: 17, weight: FontWeight.w800)),
+                    const SizedBox(height: 2),
+                    Text(g.hint, style: muted),
+                  ],
+                ),
+              ),
+              GestureDetector(
+                onTap: withSound(context, ButtonSound.tap, () => _change(context, ref)),
+                child: Container(
+                  height: 36,
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(color: UiColors.chipAlt, borderRadius: BorderRadius.circular(12)),
+                  child: Text('Class badlein', style: LikhoFonts.parent(size: 13, weight: FontWeight.w700)),
+                ),
+              ),
+            ],
+          ),
+          if (next != null) ...[
+            const SizedBox(height: 8),
+            SettingsRow(
+              label: '${next.short} ke levels kholein',
+              last: true,
+              trailing: ParentSwitch(
+                value: nextOpen,
+                onChanged: (on) => _save(
+                  context,
+                  ref,
+                  open: on ? next : g,
+                  done: on ? '${next.short} ke levels khul gaye' : '${next.short} ke levels band',
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Text(
+                nextOpen
+                    ? '${child.name} ${g.short} ke baad ${next.short} bhi khel sakte hain.'
+                    : '${g.short} mukammal hone par Likho aap se poochega.',
+                style: muted,
+              ),
+            ),
+          ],
+        ],
+      ),
     );
   }
 }

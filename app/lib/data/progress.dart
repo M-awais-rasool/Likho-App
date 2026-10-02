@@ -68,6 +68,19 @@ class ChildProgress {
     }
     return true;
   }
+
+  /// The certificate earned by finishing [level] for the first time
+  /// ([firstTime]): the whole course once every level is done (grade
+  /// null), else the level's class once all of it is done, unless that
+  /// class is revision. Null when there is none.
+  ({Grade? grade})? certificateFor(int level, {required bool firstTime}) {
+    if (!firstTime || !isDone(level)) return null;
+    if (levelStars.length >= levelCount && levelCount > 0) return (grade: null);
+    final m = map;
+    if (m == null || level > m.length || m.zoneOf(level) == Zone.revision) return null;
+    final g = m.gradeOf(level);
+    return finishedGrade(g) ? (grade: g) : null;
+  }
 }
 
 /// The active child's progress, read from [familyProvider] (the child picked
