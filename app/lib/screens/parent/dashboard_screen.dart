@@ -73,7 +73,7 @@ class DashboardScreen extends ConsumerWidget {
                       children: [
                         Text(p.name, style: LikhoFonts.parent(size: 19, weight: FontWeight.w800)),
                         Text(
-                          '${p.age} saal · World ${(current - 1) ~/ 6 + 1}',
+                          '${p.grade.label} · World ${(current - 1) ~/ 6 + 1}',
                           style: LikhoFonts.parent(size: 14, weight: FontWeight.w600, color: LikhoColors.inkMuted),
                         ),
                       ],

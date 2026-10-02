@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 
+import '../grades.dart';
+
 /// Course content, shaped exactly like the course API response
 /// (schemaVersion 1). Today it is read from assets/data/course.json; later a
 /// network repository returns the same JSON. See course_repository.dart.
@@ -29,6 +31,22 @@ class Course {
   CourseWorld worldOf(CourseLevel l) => worlds.firstWhere((w) => w.id == l.worldId);
   List<CourseLevel> levelsOf(CourseWorld w) => levels.where((l) => l.worldId == w.id).toList();
 
+  /// The class of every map level (level n at n - 1), or null when a world
+  /// has none (a copy saved before classes): then levels open in order.
+  List<Grade>? get levelGrades {
+    final byWorld = {for (final w in worlds) w.id: w.grade};
+    final out = <Grade>[];
+    for (final l in levels) {
+      final g = byWorld[l.worldId];
+      if (g == null) return null;
+      out.add(g);
+    }
+    return out;
+  }
+
+  /// The worlds of class [g], bottom to top.
+  List<CourseWorld> worldsOf(Grade g) => worlds.where((w) => w.grade == g).toList();
+
   static const supportedSchema = 1;
 
   factory Course.fromJson(Map<String, dynamic> json) {
@@ -53,11 +71,24 @@ class Course {
 
 @immutable
 class CourseWorld {
-  const CourseWorld({required this.id, required this.order, required this.name, required this.skill, required this.icon, required this.themeId, required this.bossId, required this.bossName});
+  const CourseWorld({
+    required this.id,
+    required this.order,
+    required this.name,
+    required this.skill,
+    required this.icon,
+    required this.themeId,
+    required this.bossId,
+    required this.bossName,
+    this.grade,
+  });
 
   final String id;
   final int order; // 1..n, bottom to top on the map
   final String name, skill;
+
+  /// The school class the world is for (null in a copy saved before classes).
+  final Grade? grade;
   final String icon; // Material Symbols name, see IconRegistry
   final String themeId; // design token key, see LikhoWorlds.byId
   final String bossId; // snail | fish | bear | robotBus | cloud | moon
@@ -75,6 +106,7 @@ class CourseWorld {
       themeId: r.string('themeId'),
       bossId: boss.string('id'),
       bossName: boss.string('name'),
+      grade: Grade.byId(r.optString('grade')),
     );
   }
 }

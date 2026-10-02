@@ -4,6 +4,7 @@ import 'package:likho/data/api/api_client.dart';
 import 'package:likho/data/auth.dart';
 import 'package:likho/data/course_providers.dart';
 import 'package:likho/data/family.dart';
+import 'package:likho/data/grades.dart';
 import 'package:likho/data/progress.dart';
 import 'package:likho/data/shop_items.dart';
 import 'package:likho/design/tokens.dart';
@@ -54,7 +55,7 @@ void main() {
     expect(backend.idTokens.single, 'dev:${TestUser.email}');
     expect(c.read(authProvider).signedIn, isTrue);
     expect(c.read(familyProvider).online, isTrue);
-    await c.read(familyProvider.notifier).addChild(name: 'Tester', age: 6, color: LikhoColors.primary);
+    await c.read(familyProvider.notifier).addChild(name: 'Tester', grade: Grade.kg, color: LikhoColors.primary);
     await settle();
     final n = c.read(familyProvider.notifier);
     n.recordResult(1, 3, seconds: 40);
@@ -152,9 +153,10 @@ void main() {
   test('children and settings are saved on the server', () async {
     await c.read(authProvider.notifier).signInWithGoogle();
     final n = c.read(familyProvider.notifier);
-    await n.addChild(name: ' Sara ', age: 7, color: LikhoColors.primary);
-    expect(backend.children.single['name'], 'Sara');
+    await n.addChild(name: ' Sara ', grade: Grade.class2, color: LikhoColors.primary);
+    expect((backend.children.single['name'], backend.children.single['grade']), ('Sara', 'class-2'));
     expect(c.read(familyProvider).active.id, backend.children.single['id']);
+    expect(c.read(familyProvider).active.grade, Grade.class2);
     n.updateSettings((s) => s.copyWith(sessionMinutes: 5, music: false));
     await settle();
     expect((backend.settings['sessionMinutes'], backend.settings['music']), (5, false));

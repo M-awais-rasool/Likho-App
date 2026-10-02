@@ -465,8 +465,6 @@ abstract final class WelcomeColors {
 abstract final class ProfileColors {
   static const glow = Color(0xFFFFEFC9);
   static const nameShadow = Color(0x40E0A21A); // rgba(224,162,26,.25)
-  static const flame = Color(0xFFFFB23D);
-  static const candles = [Color(0xFFFF8A5B), Color(0xFF4D9DE0), Color(0xFF3BB273), Color(0xFF9B7FE6)];
   static const placementGlow = Color(0xFFEAF5DE);
 
   /// 3D edge under a colour swatch (prototype PAL[c][1]); purple and pink

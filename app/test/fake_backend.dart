@@ -9,13 +9,18 @@ import 'package:likho/data/api/api_client.dart';
 import 'package:likho/data/api/likho_api.dart';
 import 'package:likho/data/auth.dart';
 import 'package:likho/data/course_providers.dart';
+import 'package:likho/data/grades.dart';
 
 import 'test_course.dart';
 
 /// A tiny in-memory Likho API (same JSON as backend/README.md) for tests:
-/// one parent, Google sign-in, children, results with Idempotency-Key and
-/// the room. [offline] makes every call fail like a phone without internet.
+/// one parent, Google sign-in, children with classes, results with
+/// Idempotency-Key (unlocked by class) and the room. [offline] makes every
+/// call fail like a phone without internet.
 class FakeBackend {
+  /// "Now" for class confirmations.
+  static const now = '2026-10-03T00:00:00Z';
+
   bool offline = false;
   bool newAccount = true;
   final List<String> calls = [];
@@ -39,11 +44,25 @@ class FakeBackend {
     'children': children,
   };
 
-  Map<String, dynamic> addChild(String name, {int age = 6, String color = '#FFC83D', int stars = 0, Map<String, int> levels = const {}}) {
+  /// A child in class [grade] with classes up to [unlocked] open; [confirmed]
+  /// = when a parent last picked the class (null: guessed from an age).
+  Map<String, dynamic> addChild(
+    String name, {
+    String grade = 'kg',
+    String? unlocked,
+    String? confirmed = '2026-09-01T00:00:00Z',
+    int? age,
+    String color = '#FFC83D',
+    int stars = 0,
+    Map<String, int> levels = const {},
+  }) {
     final c = {
       'id': 'c${++_ids}',
       'name': name,
       'age': age,
+      'grade': grade,
+      'unlockedGrade': unlocked ?? grade,
+      'gradeConfirmedAt': confirmed,
       'color': color,
       'stars': stars,
       'wearing': null,
@@ -113,11 +132,27 @@ class FakeBackend {
         return http.Response.bytes(File(testCourseFile).readAsBytesSync(), 200, headers: {'etag': etag});
       case ('POST', ['children']):
         if (children.length >= 4) return error(409, 'too_many_children');
-        return json(addChild(body['name'] as String, age: body['age'] as int, color: body['color'] as String), 201);
+        final grade = body['grade'] as String?, age = body['age'] as int?;
+        if (Grade.byId(grade) == null && age == null) return error(400, 'invalid_input');
+        final c = addChild(
+          body['name'] as String,
+          grade: grade ?? Grade.forAge(age!).id,
+          confirmed: grade == null ? null : now,
+          age: age,
+          color: body['color'] as String,
+        );
+        return json(c, 201);
       case ('PATCH', ['children', final id]):
         final c = child(id);
         if (c == null) return error(404, 'not_found');
-        c.addAll(body);
+        final to = Grade.byId(body.remove('grade') as String?), toOpen = Grade.byId(body.remove('unlockedGrade') as String?);
+        final (grade, open) = changeGrade(Grade.byId(c['grade'] as String)!, Grade.byId(c['unlockedGrade'] as String)!, to: to, toOpen: toOpen);
+        if (toOpen != null && toOpen.index < grade.index) return error(400, 'invalid_input');
+        c
+          ..addAll(body)
+          ..['grade'] = grade.id
+          ..['unlockedGrade'] = open.id;
+        if (to != null) c['gradeConfirmedAt'] = now;
         return json(c);
       case ('DELETE', ['children', final id]):
         if (children.length == 1) return error(409, 'last_child');
@@ -132,7 +167,8 @@ class FakeBackend {
         final level = body['level'] as int, stars = body['stars'] as int;
         final best = (((c['progress'] as Map)[appCourseId] as Map)['levelStars'] as Map).cast<String, int>();
         bool done(int n) => best.containsKey('$n');
-        if (level > 1 && !done(level) && !done(level - 1)) return error(409, 'level_locked');
+        final map = ClassMap(testCourse.levelGrades!, grade: Grade.byId(c['grade'] as String)!, unlocked: Grade.byId(c['unlockedGrade'] as String)!);
+        if (!map.isUnlocked(level, done)) return error(409, 'level_locked');
         final old = best['$level'];
         final gain = old == null ? stars + 2 : math.max(0, stars - old);
         best['$level'] = math.max(stars, old ?? 0);

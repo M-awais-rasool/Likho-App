@@ -8,6 +8,7 @@ import 'package:material_symbols_icons/symbols.dart';
 
 import '../../data/api/api_client.dart';
 import '../../data/family.dart';
+import '../../data/grades.dart';
 import '../../feedback/app_feedback.dart';
 import '../../design/motion.dart';
 import '../../design/tokens.dart';
@@ -19,18 +20,17 @@ import '../common/toast.dart';
 enum ChildSetupMode { add, edit }
 
 /// 07 Onboarding "Add child" (3 steps) and "Edit child", from the prototype:
-/// name (parents type it) -> age (tap a birthday cake) -> Pencil's colour.
-/// Adding finishes with [onDone] (placement warm-up next); editing saves and
-/// finishes with [onDone] too. In edit mode "Profile delete" asks first and
-/// then calls [onDeleted].
+/// name (parents type it) -> class (the school class, with a line about
+/// each for parents who are not sure; it replaced the prototype's age
+/// cakes) -> Pencil's colour. Adding finishes with [onDone] (placement
+/// warm-up next); editing saves and finishes with [onDone] too. In edit mode
+/// "Profile delete" asks first and then calls [onDeleted].
 class ChildSetupScreen extends ConsumerStatefulWidget {
   const ChildSetupScreen({super.key, required this.mode, required this.onBack, required this.onDone, this.onDeleted});
 
   final ChildSetupMode mode;
   final VoidCallback onBack, onDone;
   final VoidCallback? onDeleted;
-
-  static const ages = [5, 6, 7, 8];
 
   @override
   ConsumerState<ChildSetupScreen> createState() => _ChildSetupScreenState();
@@ -39,7 +39,7 @@ class ChildSetupScreen extends ConsumerStatefulWidget {
 class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
   late final ChildProfile? _editing = widget.mode == ChildSetupMode.edit ? ref.read(familyProvider).active : null;
   late final _name = TextEditingController(text: _editing?.name ?? '');
-  late int? _age = _editing?.age;
+  late Grade? _grade = _editing?.grade;
   late Color _color = _editing?.color ?? LikhoColors.primary;
   int _step = 0;
   bool _happy = false;
@@ -69,7 +69,7 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
   Future<void> _next() async {
     if (_saving) return;
     final fb = ref.read(feedbackProvider);
-    if (_step == 0 && !_nameOk) {
+    if (_step == 0 && !_nameOk || _step == 1 && _grade == null) {
       fb.nope();
       return;
     }
@@ -82,9 +82,9 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
     setState(() => _saving = true);
     try {
       if (_edit) {
-        await n.editActive(name: _name.text, age: _age, color: _color);
+        await n.editActive(name: _name.text, grade: _grade ?? Grade.kg, color: _color);
       } else {
-        await n.addChild(name: _name.text, age: _age ?? 6, color: _color);
+        await n.addChild(name: _name.text, grade: _grade ?? Grade.kg, color: _color);
       }
     } on ApiException catch (e) {
       if (!mounted) return;
@@ -115,9 +115,9 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
     }
   }
 
-  void _pickAge(int n) {
+  void _pickGrade(Grade g) {
     ref.read(feedbackProvider).candle();
-    setState(() => _age = n);
+    setState(() => _grade = g);
     _later(420, () => setState(() => _step = 2));
   }
 
@@ -151,7 +151,7 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
                         child: RiseIn(
                           child: switch (_step) {
                             0 => _nameStep(),
-                            1 => _ageStep(),
+                            1 => _gradeStep(),
                             _ => _colorStep(),
                           },
                         ),
@@ -297,22 +297,44 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
     ],
   );
 
-  // ---------------------------------------------------------------- step 2: age
-  Widget _ageStep() => Column(
+  // ---------------------------------------------------------------- step 2: class
+  Widget _gradeStep() => Column(
     children: [
-      const SizedBox(height: 18),
-      PencilFigure(width: 96, height: 136, color: _color, state: MascotState.talking),
-      const SizedBox(height: 12),
-      Text('Umar kitni hai?', style: LikhoFonts.title(size: 34, weight: FontWeight.w800)),
-      const SizedBox(height: 30),
-      SizedBox(
-        width: 140 * 2 + 22,
-        child: Wrap(
-          spacing: 22,
-          runSpacing: 22,
-          children: [for (final n in ChildSetupScreen.ages) _AgeCake(age: n, selected: _age == n, onTap: () => _pickAge(n))],
-        ),
+      const SizedBox(height: 6),
+      PencilFigure(width: 76, height: 108, color: _color, state: MascotState.talking),
+      const SizedBox(height: 8),
+      Text(
+        'Kis class mein hai?',
+        textAlign: TextAlign.center,
+        style: LikhoFonts.title(size: 32, weight: FontWeight.w800),
       ),
+      const SizedBox(height: 4),
+      Text(
+        'School wali class chunein',
+        textAlign: TextAlign.center,
+        style: LikhoFonts.body(size: 15, color: UiColors.inkBody),
+      ),
+      const SizedBox(height: 18),
+      for (final g in Grade.values) ...[
+        if (g != Grade.kg) const SizedBox(height: 12),
+        _GradeCard(grade: g, selected: _grade == g, onTap: () => _pickGrade(g)),
+      ],
+      if (_edit) ...[
+        const SizedBox(height: 14),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SymbolIcon(Symbols.verified_rounded, size: 18, color: UiColors.okGreen, fill: true),
+            const SizedBox(width: 6),
+            Flexible(
+              child: Text(
+                'Class badalne se stars aur progress nahi mitte',
+                style: LikhoFonts.body(size: 13, weight: FontWeight.w700, color: UiColors.inkBody),
+              ),
+            ),
+          ],
+        ),
+      ],
     ],
   );
 
@@ -364,82 +386,82 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
   );
 }
 
-/// Round age button with [age] birthday candles.
-class _AgeCake extends StatefulWidget {
-  const _AgeCake({required this.age, required this.selected, required this.onTap});
-  final int age;
+/// One class to pick: a badge ("KG", "1" …), the class and a line about
+/// what children in it can do. Picked = yellow, like the other choices.
+class _GradeCard extends StatefulWidget {
+  const _GradeCard({required this.grade, required this.selected, required this.onTap});
+  final Grade grade;
   final bool selected;
   final VoidCallback onTap;
 
   @override
-  State<_AgeCake> createState() => _AgeCakeState();
+  State<_GradeCard> createState() => _GradeCardState();
 }
 
-class _AgeCakeState extends State<_AgeCake> {
+class _GradeCardState extends State<_GradeCard> {
   bool _down = false;
 
   @override
   Widget build(BuildContext context) {
     final sel = widget.selected;
-    return GestureDetector(
-      onTapDown: (_) => setState(() => _down = true),
-      onTapCancel: () => setState(() => _down = false),
-      onTapUp: (_) => setState(() => _down = false),
-      onTap: widget.onTap,
-      child: AnimatedScale(
-        scale: _down ? .9 : 1,
-        duration: const Duration(milliseconds: 200),
-        curve: springOut,
-        child: AnimatedContainer(
+    final g = widget.grade;
+    return Semantics(
+      button: true,
+      selected: sel,
+      label: '${g.label}. ${g.hint}',
+      child: GestureDetector(
+        onTapDown: (_) => setState(() => _down = true),
+        onTapCancel: () => setState(() => _down = false),
+        onTapUp: (_) => setState(() => _down = false),
+        onTap: widget.onTap,
+        child: AnimatedScale(
+          scale: _down ? .96 : 1,
           duration: const Duration(milliseconds: 200),
-          width: 140,
-          height: 140,
-          decoration: BoxDecoration(
-            color: sel ? LikhoColors.primary : LikhoColors.surface,
-            shape: BoxShape.circle,
-            boxShadow: [BoxShadow(color: sel ? LikhoColors.primaryDeep : GameColors.ink10, offset: const Offset(0, 6))],
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 30,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    for (var k = 0; k < widget.age; k++) ...[
-                      if (k > 0) const SizedBox(width: 4),
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Sway(
-                            seconds: 1,
-                            alignment: Alignment.bottomCenter,
-                            child: Container(
-                              width: 7,
-                              height: 9,
-                              decoration: const BoxDecoration(
-                                color: ProfileColors.flame,
-                                borderRadius: BorderRadius.vertical(top: Radius.elliptical(3.5, 5.4), bottom: Radius.elliptical(3.5, 3.6)),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 2),
-                          Container(
-                            width: 6,
-                            height: 16,
-                            decoration: BoxDecoration(color: ProfileColors.candles[k % 4], borderRadius: BorderRadius.circular(2)),
-                          ),
-                        ],
+          curve: springOut,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            height: 76,
+            padding: const EdgeInsets.symmetric(horizontal: 14),
+            decoration: BoxDecoration(
+              color: sel ? LikhoColors.primary : LikhoColors.surface,
+              borderRadius: BorderRadius.circular(24),
+              boxShadow: [BoxShadow(color: sel ? LikhoColors.primaryDeep : GameColors.ink10, offset: const Offset(0, 5))],
+            ),
+            child: Row(
+              children: [
+                Container(
+                  width: 50,
+                  height: 50,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(color: sel ? LikhoColors.surface : LikhoColors.background, shape: BoxShape.circle),
+                  child: Text(
+                    g == Grade.kg ? 'KG' : '${g.index}',
+                    style: LikhoFonts.title(size: g == Grade.kg ? 20 : 26, weight: FontWeight.w800).copyWith(height: 1),
+                  ),
+                ),
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(g.label, maxLines: 1, style: LikhoFonts.title(size: 22, weight: FontWeight.w800).copyWith(height: 1.15)),
+                      Text(
+                        g.hint,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: LikhoFonts.body(size: 14, color: sel ? LikhoColors.ink : UiColors.inkBody),
                       ),
                     ],
-                  ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 4),
-              Text('${widget.age}', style: LikhoFonts.title(size: 54, weight: FontWeight.w800).copyWith(height: 1)),
-            ],
+                AnimatedOpacity(
+                  opacity: sel ? 1 : 0,
+                  duration: const Duration(milliseconds: 200),
+                  child: const SymbolIcon(Symbols.check_circle_rounded, size: 30, fill: true),
+                ),
+              ],
+            ),
           ),
         ),
       ),

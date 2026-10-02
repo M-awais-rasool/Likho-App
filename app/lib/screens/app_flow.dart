@@ -8,6 +8,8 @@ import '../data/auth.dart';
 import '../data/course_providers.dart';
 import '../data/family.dart';
 import '../data/models/course_models.dart';
+import '../data/progress.dart';
+import '../data/start_levels.dart';
 import '../feedback/app_feedback.dart';
 import '../feedback/game_feedback.dart';
 import '../game/level_session.dart';
@@ -398,11 +400,14 @@ abstract final class AppFlow {
   );
 
   /// The placement warm-up (after adding a child, or "pehle try karein"),
-  /// then "Chalo shuru karein!" and the map.
+  /// then "Chalo shuru karein!" and the map. A child above KG who found the
+  /// letters hard starts lower, in revision ("Small Letter Cove se shuru
+  /// karte hain!", [StartLevels.afterWarmUp]).
   static void openPlacement(BuildContext context, {bool replace = false}) {
     final container = _c(context);
-    final level = container.read(courseProvider).value?.placement;
-    if (level == null) return toMap(context);
+    final course = container.read(courseProvider).value;
+    final level = course?.placement;
+    if (course == null || level == null) return toMap(context);
     final route = LikhoRoute<void>(
       builder: (ctx) => GameFeedback(
         level: level,
@@ -412,7 +417,19 @@ abstract final class AppFlow {
             container.read(feedbackProvider).back();
             toMap(ctx);
           },
-          onFinished: (_) => Navigator.of(ctx).pushReplacement(LikhoRoute<void>(builder: (c) => PlacementDoneScreen(onDone: () => toMap(c)))),
+          onFinished: (result) {
+            final child = container.read(familyProvider).active;
+            final start = StartLevels.afterWarmUp(course, child.grade, result.stars);
+            if (start != null) container.read(startLevelsProvider.notifier).set(child.id, course.levelsOf(start).first.number);
+            Navigator.of(ctx).pushReplacement(
+              LikhoRoute<void>(
+                builder: (c) => PlacementDoneScreen(
+                  message: start == null ? 'Chalo shuru karein!' : '${start.name} se shuru karte hain!',
+                  onDone: () => toMap(c),
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
@@ -436,13 +453,7 @@ abstract final class AppFlowJump {
     final course = container.read(courseProvider).value;
     final nav = Navigator.of(context);
     void push(Widget Function(BuildContext) b, {bool rise = true}) => nav.push(LikhoRoute<void>(rise: rise, builder: b));
-    final cur = (() {
-      final r = container.read(familyProvider).record;
-      for (var n = 1; n <= 36; n++) {
-        if (!r.isDone(n)) return n;
-      }
-      return 36;
-    })();
+    final cur = container.read(progressProvider).current;
     void complete(int n, int stars, int gain) {
       if (course == null) return;
       nav.push(AppFlow._complete(container, course.level(n), LevelOutcome(level: n, stars: stars, gain: gain, firstTime: false)));

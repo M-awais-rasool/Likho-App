@@ -21,7 +21,7 @@ Google Sign-In ──► authProvider ──► familyProvider ──► screens
 |---|---|---|
 | Content | `../backend/content/` | Courses → worlds → levels → rounds, one JSON file per level. Served by `GET /v1/courses/{id}`; the app plays `appCourseId` (`lib/data/course_providers.dart`). |
 | API | `../backend/` | Go API: Google sign-in, accounts, children, progress per course, room, settings, the content. |
-| Data | `lib/data/` | API client (`api/`: tokens, refresh, errors, every endpoint, small files on the phone), sign-in (`auth.dart`), typed course models, the course repository, the family (`family.dart`: children, their progress, purchases, settings, subscription, play session), shop items, child progress. |
+| Data | `lib/data/` | API client (`api/`: tokens, refresh, errors, every endpoint, small files on the phone), sign-in (`auth.dart`), typed course models, the course repository, the family (`family.dart`: children, their class, progress, purchases, settings, subscription, play session), classes (`grades.dart`: the map's zones, the same unlock rule as the server), shop items, child progress, the warm-up's start (`start_levels.dart`). |
 | Game rules | `lib/game/` | `LevelSession` (rounds, mistakes, stars, hints, timing), writing judge, prompt voice. No UI code. |
 | Screens | `lib/screens/` | Every prototype screen (list below), shared screen widgets (`common/`), navigation (`app_flow.dart`). |
 | Mascot | `lib/mascot/` | Pencil rig, animations, lip-sync. |
@@ -37,6 +37,7 @@ Google Sign-In ──► authProvider ──► familyProvider ──► screens
 Splash -> (signed in) Who's playing, or Add child for a new account
        -> (signed out) Welcome -> "Continue with Google" -> Who's playing / Add child
 Welcome "pehle try karein" / new child -> Placement warm-up -> Placement done -> World Map
+  (a child above KG who finds the warm-up hard starts in Small Letter Cove, as revision)
 Guest (not signed in): warm-up + level 1; level 2+, room, profile, parents -> Sign-in sheet
 Who's playing (root) -> World Map -> Level intro -> Gameplay -> Level complete
                                                    -> map | Session end | Certificate (level 36)
@@ -48,7 +49,7 @@ Parent dashboard -> Settings, Course progress, Paywall; Plus levels (13+) -> Pay
 | Folder | Screens (prototype number) |
 |---|---|
 | `auth/` | 02 Welcome (one "Continue with Google" button), sign-in sheet for guests, the Google button |
-| `profiles/` | 06 Who's playing, 07 Add / Edit child (3 steps, delete) |
+| `profiles/` | 06 Who's playing, 07 Add / Edit child (3 steps: name, class, colour; delete) |
 | `placement/` | 09 Placement done (the warm-up itself is Gameplay with `course.placement`) |
 | `level_complete/`, `session_end/`, `certificate/` | 13 Level complete (3/2/1 stars, boss woken), 14 Session end, 18 Certificate |
 | `room/`, `profile/`, `stickers/` | 15 Mascot room, 16 Child profile, 17 Sticker book |
@@ -94,7 +95,7 @@ Build settings (`--dart-define`):
 ```jsonc
 {
   "schemaVersion": 1,
-  "worlds": [{ "id": "world-1", "order": 1, "name": "Letter Land", "icon": "grass", "themeId": "letterLand",
+  "worlds": [{ "id": "world-1", "order": 1, "name": "Letter Land", "grade": "kg", "icon": "grass", "themeId": "letterLand",
                "boss": { "id": "snail", "name": "Sust Ghonga" } }],
   "levels": [{
     "id": "level-01", "number": 1, "worldId": "world-1", "name": "Balloon Pop", "icon": "celebration",

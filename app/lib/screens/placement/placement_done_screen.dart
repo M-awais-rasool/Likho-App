@@ -10,10 +10,13 @@ import '../common/kid_widgets.dart';
 import '../common/pencil_figure.dart';
 
 /// 09 Placement done, from the prototype: "Chalo shuru karein!" and Pencil
-/// cheering; moves on to the World Map after 2.6 s or on tap.
+/// cheering; moves on to the World Map after 2.6 s or on tap. [message]
+/// replaces the line when the warm-up picked another start ("Small Letter
+/// Cove se shuru karte hain!").
 class PlacementDoneScreen extends StatefulWidget {
-  const PlacementDoneScreen({super.key, required this.onDone});
+  const PlacementDoneScreen({super.key, required this.onDone, this.message = 'Chalo shuru karein!'});
   final VoidCallback onDone;
+  final String message;
 
   static const length = Duration(milliseconds: 2600);
 
@@ -59,7 +62,7 @@ class _PlacementDoneScreenState extends State<PlacementDoneScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  BubbleIn(delay: .3, seconds: .4, alignment: Alignment.bottomCenter, child: _Bubble()),
+                  BubbleIn(delay: .3, seconds: .4, alignment: Alignment.bottomCenter, child: _Bubble(widget.message)),
                   FeedbackCue(at: .3, play: (f) => f.done()),
                   const SizedBox(height: 10 + 10),
                   const PencilFigure(width: 180, height: 254, state: MascotState.happy, holdEnd: true),
@@ -74,19 +77,24 @@ class _PlacementDoneScreenState extends State<PlacementDoneScreen> {
 }
 
 class _Bubble extends StatelessWidget {
+  const _Bubble(this.text);
+  final String text;
+
   @override
   Widget build(BuildContext context) => Stack(
     clipBehavior: Clip.none,
     alignment: Alignment.bottomCenter,
     children: [
       Container(
+        constraints: const BoxConstraints(maxWidth: 320),
+        margin: const EdgeInsets.symmetric(horizontal: 24),
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
         decoration: BoxDecoration(
           color: LikhoColors.surface,
           borderRadius: BorderRadius.circular(26),
           boxShadow: const [BoxShadow(color: GameColors.ink10, offset: Offset(0, 8), blurRadius: 20)],
         ),
-        child: Text('Chalo shuru karein!', style: LikhoFonts.title(size: 30, weight: FontWeight.w800).copyWith(height: 1)),
+        child: Text(text, textAlign: TextAlign.center, style: LikhoFonts.title(size: 30, weight: FontWeight.w800).copyWith(height: 1.1)),
       ),
       Positioned(
         bottom: -10,

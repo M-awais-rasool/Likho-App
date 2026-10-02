@@ -46,11 +46,14 @@ class LikhoApi {
   }
 
   // ------------------------------------------------------------ children
-  Future<Map<String, dynamic>> createChild({required String name, required int age, required String color}) async =>
-      _map(await client.request('POST', '/v1/children', body: {'name': name, 'age': age, 'color': color}));
+  /// A new child in class [grade] ("kg", "class-1" …).
+  Future<Map<String, dynamic>> createChild({required String name, required String grade, required String color}) async =>
+      _map(await client.request('POST', '/v1/children', body: {'name': name, 'grade': grade, 'color': color}));
 
-  Future<Map<String, dynamic>> updateChild(String id, {String? name, int? age, String? color}) async => _map(
-    await client.request('PATCH', '/v1/children/$id', body: {'name': ?name, 'age': ?age, 'color': ?color}),
+  /// Changes only the fields given. [grade] sets (or confirms) the class;
+  /// [unlockedGrade] opens the classes up to it.
+  Future<Map<String, dynamic>> updateChild(String id, {String? name, String? grade, String? unlockedGrade, String? color}) async => _map(
+    await client.request('PATCH', '/v1/children/$id', body: {'name': ?name, 'grade': ?grade, 'unlockedGrade': ?unlockedGrade, 'color': ?color}),
   );
 
   Future<void> deleteChild(String id) => client.request('DELETE', '/v1/children/$id');

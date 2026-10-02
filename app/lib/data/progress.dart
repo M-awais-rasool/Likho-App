@@ -1,11 +1,17 @@
+import 'dart:math' as math;
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../design/tokens.dart';
+import 'course_providers.dart';
 import 'family.dart';
+import 'grades.dart';
 import 'shop_items.dart';
+import 'start_levels.dart';
 
-/// One child's progress. Stars per finished level (1..3).
+/// One child's progress. Stars per finished level (1..3), and the course's
+/// levels by class for this child ([map]).
 @immutable
 class ChildProgress {
   const ChildProgress({
@@ -14,6 +20,9 @@ class ChildProgress {
     required this.stars,
     required this.levelStars,
     this.accessory,
+    this.map,
+    this.levelCount = 36,
+    this.focus,
   });
 
   final String name;
@@ -22,31 +31,64 @@ class ChildProgress {
   final Map<int, int> levelStars;
   final String? accessory;
 
-  bool isDone(int n) => levelStars.containsKey(n);
-  bool isUnlocked(int n) => n <= 1 || isDone(n - 1) || isDone(n);
+  /// Revision, own class, opened and locked levels (null while the course
+  /// loads, or for a saved copy from before classes: levels open in order).
+  final ClassMap? map;
 
-  /// First level without stars (the prototype's current()).
+  /// Map levels in the course.
+  final int levelCount;
+
+  /// A level below the child's class the warm-up suggested starting at.
+  final int? focus;
+
+  bool isDone(int n) => levelStars.containsKey(n);
+  bool isUnlocked(int n) => map?.isUnlocked(n, isDone) ?? (n <= 1 || isDone(n - 1) || isDone(n));
+  Zone zoneOf(int n) => map?.zoneOf(n) ?? Zone.mine;
+
+  /// Where Pencil stands and the map opens: the first open level not
+  /// finished yet, from the start of the child's class (or the warm-up's
+  /// [focus] below it); the last open level once all are finished.
   int get current {
-    for (var n = 1; n <= 36; n++) {
-      if (!isDone(n)) return n;
+    final m = map;
+    final last = m?.end ?? levelCount;
+    var from = m == null || m.start > m.length ? 1 : m.start;
+    if (focus case final f? when f >= 1 && f < from) from = f;
+    for (var n = from; n <= last; n++) {
+      if (!isDone(n) && isUnlocked(n)) return n;
     }
-    return 36;
+    return math.max(1, last);
+  }
+
+  /// Every level of class [g] is finished.
+  bool finishedGrade(Grade g) {
+    final r = map?.levelsOf(g);
+    if (r == null) return false;
+    for (var n = r.$1; n <= r.$2; n++) {
+      if (!isDone(n)) return false;
+    }
+    return true;
   }
 }
 
 /// The active child's progress, read from [familyProvider] (the child picked
-/// on "Who's playing"). Demo data lives there until accounts and saving exist.
+/// on "Who's playing") and the course's classes.
 class ProgressNotifier extends Notifier<ChildProgress> {
   @override
   ChildProgress build() {
     final f = ref.watch(familyProvider);
-    final r = f.record;
+    final course = ref.watch(courseProvider).value;
+    final start = StartLevels.lookup(ref.watch(startLevelsProvider), f.active.id);
+    final r = f.record, p = f.active;
+    final grades = course?.levelGrades;
     return ChildProgress(
-      name: f.active.name,
-      color: f.active.swatch,
+      name: p.name,
+      color: p.swatch,
       stars: r.stars,
       levelStars: r.levelStars,
       accessory: ShopItem.byId(r.wearing)?.accessory,
+      map: grades == null ? null : ClassMap(grades, grade: p.grade, unlocked: p.unlockedGrade),
+      levelCount: course?.levels.length ?? 36,
+      focus: start,
     );
   }
 

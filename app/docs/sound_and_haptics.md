@@ -62,7 +62,7 @@ bells + air, the "you earned something" layer).
 | `unlock` | parent gate passed, Plus trial started | medium |
 | `success_soft` | account made, child added, placement done | success |
 | `send` | reset link sent (envelope flies) | light |
-| `paint`, `candle`, `catch` | colour pick, age pick, Welcome's "A" caught | light / selection / light |
+| `paint`, `candle`, `catch` | colour pick, class pick (child setup), Welcome's "A" caught | light / selection / light |
 | `whoosh` | Who's playing zoom | light |
 | `splash_land`, `scribble_1..3`, `splash_swish`, `splash_chime` | splash timeline (.47 s land, a scribble per letter, 1.9 s line, 2.15 s motif) | medium on land, light on the chime |
 

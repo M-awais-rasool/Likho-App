@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:likho/data/auth.dart';
 import 'package:likho/data/course_providers.dart';
 import 'package:likho/data/family.dart';
+import 'package:likho/data/grades.dart';
 import 'package:likho/data/progress.dart';
 import 'package:likho/data/shop_items.dart';
 import 'package:likho/design/tokens.dart';
@@ -64,14 +65,15 @@ Future<void> _passGate(WidgetTester t) async {
 
 void main() {
   ProviderContainer demo() {
-    final c = ProviderContainer(overrides: [familyProvider.overrideWith(DemoFamilyNotifier.new)]);
+    final c = ProviderContainer(overrides: [courseProvider.overrideWith((ref) async => testCourse), familyProvider.overrideWith(DemoFamilyNotifier.new)]);
     addTearDown(c.dispose);
     return c;
   }
 
   group('family data', () {
-    test('finishing a level keeps the best stars and pays the difference (+2 the first time)', () {
+    test('finishing a level keeps the best stars and pays the difference (+2 the first time)', () async {
       final c = demo();
+      await c.read(courseProvider.future);
       final n = c.read(familyProvider.notifier);
       expect(c.read(progressProvider).current, 8);
       final first = n.recordResult(8, 2);
@@ -101,13 +103,15 @@ void main() {
 
     test('children: add (max 4), edit, delete, switch', () async {
       final c = demo();
+      await c.read(courseProvider.future);
       final n = c.read(familyProvider.notifier);
-      await n.addChild(name: ' Sara ', age: 7, color: LikhoColors.success);
-      expect(c.read(familyProvider).active.name, 'Sara');
-      expect(c.read(progressProvider).current, 1, reason: 'a new child starts at level 1');
-      await n.editActive(name: 'Sarah', age: 8, color: LikhoColors.secondary);
-      expect((c.read(familyProvider).active.name, c.read(familyProvider).active.age), ('Sarah', 8));
-      await n.addChild(name: 'D', age: 5, color: LikhoColors.hint);
+      await n.addChild(name: ' Sara ', grade: Grade.class2, color: LikhoColors.success);
+      expect((c.read(familyProvider).active.name, c.read(familyProvider).active.grade), ('Sara', Grade.class2));
+      expect(c.read(progressProvider).current, 25, reason: 'a new child starts at the first level of their class');
+      await n.editActive(name: 'Sarah', grade: Grade.class3, color: LikhoColors.secondary);
+      expect((c.read(familyProvider).active.name, c.read(familyProvider).active.grade), ('Sarah', Grade.class3));
+      expect(c.read(progressProvider).current, 31);
+      await n.addChild(name: 'D', grade: Grade.kg, color: LikhoColors.hint);
       expect(c.read(familyProvider).canAddChild, isFalse);
       await n.deleteActive();
       expect(c.read(familyProvider).profiles.length, 3);
@@ -121,11 +125,12 @@ void main() {
       expect(const AppSettings(sessionMinutes: 15).levelsPerSession, 4);
     });
 
-    test('signed out = a guest child whose progress stays on the phone', () {
-      final c = ProviderContainer();
+    test('signed out = a guest child whose progress stays on the phone', () async {
+      final c = ProviderContainer(overrides: [courseProvider.overrideWith((ref) async => testCourse)]);
       addTearDown(c.dispose);
+      await c.read(courseProvider.future);
       final f = c.read(familyProvider);
-      expect((f.guest, f.active.name, f.profiles.length), (true, 'Dost', 1));
+      expect((f.guest, f.active.name, f.profiles.length, f.active.grade), (true, 'Dost', 1, Grade.kg));
       expect(c.read(progressProvider).current, 1);
     });
 
@@ -138,7 +143,10 @@ void main() {
           {
             'id': 'k1',
             'name': 'Ayaan',
-            'age': 6,
+            'age': null,
+            'grade': 'class-1',
+            'unlockedGrade': 'class-2',
+            'gradeConfirmedAt': '2026-09-01T10:00:00Z',
             'color': '#B79CED',
             'stars': 12,
             'wearing': 'party',
@@ -161,6 +169,12 @@ void main() {
       expect((f.active.name, f.active.color, f.record.stars, f.record.wearing), ('Ayaan', BodySwatch.options[4].key, 12, 'party'));
       expect(f.record.levelStars, {1: 3, 2: 1}, reason: 'the map shows this app\'s course only');
       expect(colorToHex(f.active.color), '#B79CED');
+      expect((f.active.grade, f.active.unlockedGrade, f.active.gradeConfirmedAt), (Grade.class1, Grade.class2, DateTime.utc(2026, 9, 1, 10)));
+    });
+
+    test('an account saved before classes: the class comes from the age, unconfirmed', () {
+      final p = childProfileFromJson({'id': 'k', 'name': 'Ali', 'age': 7, 'color': '#3BB273'});
+      expect((p.grade, p.unlockedGrade, p.gradeConfirmedAt, p.age), (Grade.class2, Grade.class2, null, 7));
     });
 
     test('the placement warm-up is exposed and played in the first world', () {
@@ -198,11 +212,11 @@ void main() {
     await t.enterText(find.byType(TextField), 'Sara');
     await t.tap(find.text('Aage'));
     await _pumpFor(t, const Duration(milliseconds: 400));
-    await t.tap(find.text('7'));
+    await t.tap(find.text('Class 2'));
     await _pumpFor(t, const Duration(milliseconds: 800));
     await t.tap(find.text('Ho gaya!'));
     await _pumpFor(t, const Duration(milliseconds: 800));
-    expect(backend.children.single['name'], 'Sara', reason: 'saved on the server');
+    expect((backend.children.single['name'], backend.children.single['grade']), ('Sara', 'class-2'), reason: 'saved on the server');
     expect(c.read(familyProvider).active.id, backend.children.single['id']);
     expect(find.byType(GameplayScreen), findsOneWidget, reason: 'placement warm-up');
     expect(t.takeException(), isNull);
@@ -330,7 +344,28 @@ void main() {
     await _close(t);
   });
 
-  testWidgets('add a child: name -> age -> colour -> placement warm-up', (t) async {
+  testWidgets('a Class 1 child who finds the warm-up hard starts in Small Letter Cove', (t) async {
+    final c = await _app(t, DevScreenLauncher(screen: 'onb'));
+    await _pumpFor(t, const Duration(milliseconds: 800));
+    await t.enterText(find.byType(TextField), 'Ali');
+    await t.tap(find.text('Aage'));
+    await _pumpFor(t, const Duration(milliseconds: 400));
+    await t.tap(find.text('Class 1'));
+    await _pumpFor(t, const Duration(milliseconds: 800));
+    await t.tap(find.text('Ho gaya!'));
+    await _pumpFor(t, const Duration(milliseconds: 800));
+    final warmUp = t.widget<GameplayScreen>(find.byType(GameplayScreen));
+    warmUp.onFinished(LevelResult(level: warmUp.level, stars: 1, mistakes: 4));
+    await _pumpFor(t, const Duration(milliseconds: 600));
+    expect(find.text('Small Letter Cove se shuru karte hain!'), findsOneWidget);
+    expect(c.read(progressProvider).current, 7, reason: 'revision first, then Class 1 at level 13');
+    await _pumpFor(t, const Duration(milliseconds: 2600));
+    expect(find.byType(WorldMapScreen), findsOneWidget);
+    expect(t.takeException(), isNull);
+    await _close(t);
+  });
+
+  testWidgets('add a child: name -> class -> colour -> placement warm-up', (t) async {
     final c = await _app(t, DevScreenLauncher(screen: 'onb'));
     await _pumpFor(t, const Duration(milliseconds: 800));
     await t.tap(find.text('Aage'));
@@ -339,13 +374,17 @@ void main() {
     await t.enterText(find.byType(TextField), 'Sara');
     await t.tap(find.text('Aage'));
     await _pumpFor(t, const Duration(milliseconds: 400));
-    await t.tap(find.text('7'));
+    expect(find.text('Kis class mein hai?'), findsOneWidget);
+    for (final g in Grade.values) {
+      expect(find.text(g.hint), findsOneWidget, reason: 'a line under ${g.label} helps a parent who is not sure');
+    }
+    await t.tap(find.text('Class 2'));
     await _pumpFor(t, const Duration(milliseconds: 800));
     expect(find.text('Pencil ka rang chuno!'), findsOneWidget);
     await t.tap(find.text('Ho gaya!'));
     await _pumpFor(t, const Duration(milliseconds: 800));
     final f = c.read(familyProvider);
-    expect((f.active.name, f.active.age, f.profiles.length), ('Sara', 7, 3));
+    expect((f.active.name, f.active.grade, f.profiles.length), ('Sara', Grade.class2, 3));
     expect(t.widget<GameplayScreen>(find.byType(GameplayScreen)).level.number, 0, reason: 'placement warm-up');
     expect(t.takeException(), isNull);
     await _close(t);

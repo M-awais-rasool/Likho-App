@@ -11,27 +11,57 @@ import 'api/api_client.dart';
 import 'api/likho_api.dart';
 import 'auth.dart';
 import 'course_providers.dart';
+import 'grades.dart';
 import 'shop_items.dart';
+import 'start_levels.dart';
 
 /// One child on the parent account (prototype `profiles`).
 @immutable
 class ChildProfile {
-  const ChildProfile({required this.id, required this.name, required this.age, required this.color});
+  const ChildProfile({
+    required this.id,
+    required this.name,
+    required this.color,
+    this.grade = Grade.kg,
+    Grade? unlockedGrade,
+    this.gradeConfirmedAt,
+    this.age,
+  }) : unlockedGrade = unlockedGrade ?? grade;
 
   final String id;
   final String name;
-  final int age; // 5..8
 
   /// Pencil colour: the key of one of [BodySwatch.options].
   final Color color;
 
+  /// School class. Lower classes are revision on the map; classes above
+  /// [unlockedGrade] stay locked until a parent opens them.
+  final Grade grade;
+
+  /// The highest class open: [grade], or a higher one a parent opened.
+  final Grade unlockedGrade;
+
+  /// When a parent last picked or confirmed the class; null = never (it
+  /// was guessed from the age of a child added before classes).
+  final DateTime? gradeConfirmedAt;
+
+  /// 5..8; only children added before the app asked for the class have one.
+  final int? age;
+
   BodySwatch get swatch => BodySwatch.forColor(color);
 
-  ChildProfile copyWith({String? name, int? age, Color? color}) =>
-      ChildProfile(id: id, name: name ?? this.name, age: age ?? this.age, color: color ?? this.color);
+  ChildProfile copyWith({String? name, Color? color, Grade? grade, Grade? unlockedGrade, DateTime? gradeConfirmedAt}) => ChildProfile(
+    id: id,
+    name: name ?? this.name,
+    color: color ?? this.color,
+    grade: grade ?? this.grade,
+    unlockedGrade: unlockedGrade ?? this.unlockedGrade,
+    gradeConfirmedAt: gradeConfirmedAt ?? this.gradeConfirmedAt,
+    age: age,
+  );
 
   /// Stands in while an account has no child yet.
-  static const none = ChildProfile(id: '', name: '', age: 6, color: LikhoColors.primary);
+  static const none = ChildProfile(id: '', name: '', color: LikhoColors.primary);
 }
 
 /// What one child has played and bought (prototype `data[id]`).
@@ -187,20 +217,21 @@ class FamilyState {
     );
   }
 
-  /// Trying the app before signing in: one child, nothing saved.
+  /// Trying the app before signing in: one child (in KG: the warm-up and
+  /// level 1 are theirs to try), nothing saved.
   factory FamilyState.guest() => const FamilyState(
-    profiles: [ChildProfile(id: 'guest', name: 'Dost', age: 6, color: LikhoColors.primary)],
+    profiles: [ChildProfile(id: 'guest', name: 'Dost', color: LikhoColors.primary)],
     activeId: 'guest',
     records: {'guest': ChildRecord()},
     mode: FamilyMode.guest,
   );
 
-  /// The prototype's sample family (tests, dev tools). Ayaan: 38 stars,
-  /// levels 1–7 done, owns the lamp. Zara: 6 stars, level 1 done.
+  /// The prototype's sample family (tests, dev tools), both in KG. Ayaan:
+  /// 38 stars, levels 1–7 done, owns the lamp. Zara: 6 stars, level 1 done.
   factory FamilyState.demo() => FamilyState(
     profiles: [
-      const ChildProfile(id: 'p1', name: 'Ayaan', age: 6, color: LikhoColors.primary),
-      ChildProfile(id: 'p2', name: 'Zara', age: 5, color: BodySwatch.options[4].key), // purple
+      ChildProfile(id: 'p1', name: 'Ayaan', color: LikhoColors.primary, gradeConfirmedAt: DateTime(2026, 9)),
+      ChildProfile(id: 'p2', name: 'Zara', color: BodySwatch.options[4].key, gradeConfirmedAt: DateTime(2026, 9)), // purple
     ],
     activeId: 'p1',
     records: const {
@@ -215,8 +246,20 @@ String colorToHex(Color c) => '#${(c.toARGB32() & 0xFFFFFF).toRadixString(16).pa
 
 Color colorFromHex(String hex) => Color(0xFF000000 | int.parse(hex.replaceFirst('#', ''), radix: 16));
 
-ChildProfile childProfileFromJson(Map<String, dynamic> c) =>
-    ChildProfile(id: c['id'] as String, name: c['name'] as String, age: (c['age'] as num).toInt(), color: colorFromHex(c['color'] as String));
+ChildProfile childProfileFromJson(Map<String, dynamic> c) {
+  final age = (c['age'] as num?)?.toInt();
+  // an account saved on the phone before classes has none: the usual class for the age
+  final grade = Grade.byId(c['grade'] as String?) ?? Grade.forAge(age ?? 5);
+  return ChildProfile(
+    id: c['id'] as String,
+    name: c['name'] as String,
+    color: colorFromHex(c['color'] as String),
+    grade: grade,
+    unlockedGrade: Grade.byId(c['unlockedGrade'] as String?) ?? grade,
+    gradeConfirmedAt: DateTime.tryParse(c['gradeConfirmedAt'] as String? ?? ''),
+    age: age,
+  );
+}
 
 /// A child as the API sends it; [courseId] picks the course whose progress
 /// the map shows (progress is kept per course).
@@ -310,12 +353,12 @@ class FamilyNotifier extends Notifier<FamilyState> {
 
   // ------------------------------------------------------------ children
 
-  /// Adds a child (up to 4) and makes it the active one. Throws
-  /// [ApiException] when the server cannot save it.
-  Future<void> addChild({required String name, required int age, required Color color}) async {
+  /// Adds a child (up to 4) in class [grade] and makes it the active one.
+  /// Throws [ApiException] when the server cannot save it.
+  Future<void> addChild({required String name, required Grade grade, required Color color}) async {
     if (!state.canAddChild) return;
     if (state.online) {
-      final c = await _api.createChild(name: name.trim(), age: age, color: colorToHex(color));
+      final c = await _api.createChild(name: name.trim(), grade: grade.id, color: colorToHex(color));
       if (!ref.mounted) return;
       state = state.copyWith(
         profiles: [...state.profiles, childProfileFromJson(c)],
@@ -326,21 +369,51 @@ class FamilyNotifier extends Notifier<FamilyState> {
     }
     final id = 'p${DateTime.now().microsecondsSinceEpoch}';
     state = state.copyWith(
-      profiles: [...state.profiles, ChildProfile(id: id, name: name.trim(), age: age, color: color)],
+      profiles: [...state.profiles, ChildProfile(id: id, name: name.trim(), color: color, grade: grade, gradeConfirmedAt: DateTime.now())],
       activeId: id,
       records: {...state.records, id: const ChildRecord()},
     );
   }
 
-  Future<void> editActive({required String name, int? age, required Color color}) async {
+  /// Saves the active child's name, class and colour (a parent edited the
+  /// profile, so the class counts as confirmed).
+  Future<void> editActive({required String name, required Grade grade, required Color color}) async {
     final id = state.active.id;
     if (state.online) {
-      final c = await _api.updateChild(id, name: name.trim(), age: age, color: colorToHex(color));
+      final c = await _api.updateChild(id, name: name.trim(), grade: grade.id, color: colorToHex(color));
       if (!ref.mounted) return;
+      _gradeMoved(state.active, childProfileFromJson(c));
       state = state.copyWith(profiles: [for (final p in state.profiles) p.id == id ? childProfileFromJson(c) : p]);
       return;
     }
-    state = state.copyWith(profiles: [for (final p in state.profiles) p.id == id ? p.copyWith(name: name.trim(), age: age, color: color) : p]);
+    final (g, o) = changeGrade(state.active.grade, state.active.unlockedGrade, to: grade);
+    final edited = state.active.copyWith(name: name.trim(), color: color, grade: g, unlockedGrade: o, gradeConfirmedAt: DateTime.now());
+    _gradeMoved(state.active, edited);
+    state = state.copyWith(profiles: [for (final p in state.profiles) p.id == id ? edited : p]);
+  }
+
+  /// A parent sets child [childId]'s class ([to]; the same class confirms
+  /// it) or opens the classes up to [open]. The same rules as the server
+  /// ([changeGrade]); stars and progress are never touched. Throws
+  /// [ApiException] when the server cannot save it.
+  Future<void> updateGrade(String childId, {Grade? to, Grade? open}) async {
+    final before = state.profiles.firstWhere((p) => p.id == childId);
+    ChildProfile after;
+    if (state.online) {
+      final c = await _api.updateChild(childId, grade: to?.id, unlockedGrade: open?.id);
+      if (!ref.mounted) return;
+      after = childProfileFromJson(c);
+    } else {
+      final (g, o) = changeGrade(before.grade, before.unlockedGrade, to: to, toOpen: open);
+      after = before.copyWith(grade: g, unlockedGrade: o, gradeConfirmedAt: to != null ? DateTime.now() : null);
+    }
+    _gradeMoved(before, after);
+    state = state.copyWith(profiles: [for (final p in state.profiles) p.id == childId ? after : p]);
+  }
+
+  /// A new class moves the map's zones: the warm-up's start is forgotten.
+  void _gradeMoved(ChildProfile before, ChildProfile after) {
+    if (before.grade != after.grade) ref.read(startLevelsProvider.notifier).set(before.id, null);
   }
 
   /// Deletes the active child (never the last one) and selects the first.
@@ -350,6 +423,7 @@ class FamilyNotifier extends Notifier<FamilyState> {
     if (rest.isEmpty) return;
     if (state.online) await _api.deleteChild(id);
     if (!ref.mounted) return;
+    ref.read(startLevelsProvider.notifier).set(id, null);
     state = state.copyWith(profiles: rest, activeId: rest.first.id, records: {...state.records}..remove(id));
   }
 
