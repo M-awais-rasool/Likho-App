@@ -146,7 +146,7 @@ func (r *ChildRepository) Update(ctx context.Context, parentID, childID string, 
 		if err != nil {
 			return err
 		}
-		now := time.Now()
+		now := time.Now().UTC()
 		updates := map[string]any{"updated_at": now}
 		if p.Name != nil {
 			updates["name"] = *p.Name

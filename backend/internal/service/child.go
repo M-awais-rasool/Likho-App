@@ -40,7 +40,7 @@ func (s *ChildService) Create(ctx context.Context, parentID string, in model.Chi
 	if c.Grade == "" {
 		c.Grade = domain.GradeForAge(*in.Age)
 	} else {
-		now := time.Now()
+		now := time.Now().UTC()
 		c.GradeConfirmedAt = &now
 	}
 	c.UnlockedGrade = c.Grade
