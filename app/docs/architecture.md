@@ -36,7 +36,7 @@ Google Sign-In ──► authProvider ──► familyProvider ──► screens
 ```
 Splash -> (signed in) Who's playing, or Add child for a new account
        -> (signed out) Welcome -> "Continue with Google" -> Who's playing / Add child
-Welcome "pehle try karein" / new child -> Placement warm-up -> Placement done -> World Map
+Welcome "Try it first" / new child -> Placement warm-up -> Placement done -> World Map
 Guest (not signed in): warm-up + level 1; level 2+, room, profile, parents -> Sign-in sheet
 Who's playing (root) -> World Map -> Level intro -> Gameplay -> Level complete
                                                    -> map | Session end | Certificate (level 36)
@@ -86,7 +86,7 @@ The course's pictures and Pencil's lines are app assets that the content names
   phone (`pending_results.json`, each with an Idempotency-Key), so offline play is not lost and a
   resend never counts twice. The queue is sent after each level, when the app comes back to the
   front, and before logout. Something the server refuses is undone and explained with a toast.
-* **Guests** ("pehle try karein") play with a phone-only child ("Dost"): nothing is sent or kept.
+* **Guests** ("Try it first") play with a phone-only child ("Friend"): nothing is sent or kept.
 * **Session ended by the server** (logout elsewhere, account deleted) -> back to Welcome (`AppShell`).
 * The paywall starts the 7-day trial on the server (`POST /v1/me/trial`); store purchases are not
   wired yet.
@@ -110,7 +110,7 @@ Build settings (`--dart-define`):
 {
   "schemaVersion": 1,
   "worlds": [{ "id": "world-1", "order": 1, "name": "Letter Land", "icon": "grass", "themeId": "letterLand",
-               "boss": { "id": "snail", "name": "Sust Ghonga" } }],
+               "boss": { "id": "snail", "name": "Sleepy Snail" } }],
   "levels": [{
     "id": "level-01", "number": 1, "worldId": "world-1", "name": "Balloon Pop", "icon": "celebration",
     "isBoss": false, "requiresSubscription": false,

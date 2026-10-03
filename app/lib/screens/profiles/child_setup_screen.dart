@@ -100,10 +100,10 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
 
   /// A short parent-friendly reason a save failed.
   static String saveError(ApiException e) => switch (e.code) {
-    'offline' => 'Internet nahi hai, dobara koshish karein',
-    'too_many_children' => 'Zyada se zyada 4 bache',
-    'last_child' => 'Aakhri profile delete nahi ho sakti',
-    _ => 'Save nahi hua, dobara koshish karein',
+    'offline' => 'No internet connection. Please try again.',
+    'too_many_children' => 'You can add up to 4 children.',
+    'last_child' => "The last profile can't be deleted.",
+    _ => "Couldn't save. Please try again.",
   };
 
   void _back() {
@@ -228,7 +228,7 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
                   const SymbolIcon(Symbols.delete_rounded, size: 18, color: UiColors.danger),
                   const SizedBox(width: 4),
                   Text(
-                    'Profile delete',
+                    'Delete profile',
                     style: LikhoFonts.body(size: 13, weight: FontWeight.w700, color: UiColors.danger),
                   ),
                 ],
@@ -248,7 +248,7 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
       PencilFigure(width: 130, height: 184, color: _color, state: _happy ? MascotState.happy : MascotState.watching, lookDown: true),
       const SizedBox(height: 14),
       Text(
-        'Bache ka naam?',
+        "Child's name?",
         textAlign: TextAlign.center,
         style: LikhoFonts.title(size: 34, weight: FontWeight.w800),
       ),
@@ -259,7 +259,7 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
           const SymbolIcon(Symbols.supervisor_account_rounded, size: 18, color: UiColors.inkBody),
           const SizedBox(width: 6),
           Flexible(
-            child: Text('Ye step walidain karein', style: LikhoFonts.body(size: 15, color: UiColors.inkBody)),
+            child: Text('A parent should do this step', style: LikhoFonts.body(size: 15, color: UiColors.inkBody)),
           ),
         ],
       ),
@@ -283,7 +283,7 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
           onSubmitted: (_) => _next(),
           style: LikhoFonts.title(size: 34).copyWith(height: 1.2),
           decoration: InputDecoration(
-            hintText: 'Naam likhein',
+            hintText: 'Enter name',
             hintStyle: LikhoFonts.title(size: 34, color: UiColors.inkBody).copyWith(height: 1.2),
             border: InputBorder.none,
             counterText: '',
@@ -293,7 +293,7 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
         ),
       ),
       const Spacer(),
-      BigButton(label: 'Aage', iconAfter: Symbols.arrow_forward_rounded, opacity: _nameOk ? 1 : .45, onTap: _next),
+      BigButton(label: 'Next', iconAfter: Symbols.arrow_forward_rounded, opacity: _nameOk ? 1 : .45, onTap: _next),
     ],
   );
 
@@ -303,7 +303,7 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
       const SizedBox(height: 18),
       PencilFigure(width: 96, height: 136, color: _color, state: MascotState.talking),
       const SizedBox(height: 12),
-      Text('Umar kitni hai?', style: LikhoFonts.title(size: 34, weight: FontWeight.w800)),
+      Text("Child's age?", style: LikhoFonts.title(size: 34, weight: FontWeight.w800)),
       const SizedBox(height: 30),
       SizedBox(
         width: 140 * 2 + 22,
@@ -321,7 +321,7 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
     children: [
       const SizedBox(height: 18),
       Text(
-        'Pencil ka rang chuno!',
+        "Pick Pencil's colour!",
         textAlign: TextAlign.center,
         style: LikhoFonts.title(size: 32, weight: FontWeight.w800),
       ),
@@ -354,7 +354,7 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
       ),
       const Spacer(),
       BigButton(
-        label: 'Ho gaya!',
+        label: 'Done!',
         icon: _saving ? null : Symbols.check_circle_rounded,
         iconFill: true,
         leading: _saving ? const ButtonSpinner() : null,
@@ -561,21 +561,21 @@ class _DeleteConfirm extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Text('Profile delete karein?', style: LikhoFonts.body(size: 20, weight: FontWeight.w800)),
+                      Text('Delete profile?', style: LikhoFonts.body(size: 20, weight: FontWeight.w800)),
                       const SizedBox(height: 12),
                       Text(
-                        '$name ka saara progress, stars aur stickers hamesha ke liye hat jayenge.',
+                        "All of $name's progress, stars and stickers will be permanently deleted.",
                         style: LikhoFonts.body(size: 15, color: UiColors.inkBody, height: 1.5),
                       ),
                       const SizedBox(height: 18),
                       Row(
                         children: [
                           Expanded(
-                            child: FlatButton(label: 'Nahi', color: UiColors.chip, onTap: onNo),
+                            child: FlatButton(label: 'Cancel', color: UiColors.chip, onTap: onNo),
                           ),
                           const SizedBox(width: 10),
                           Expanded(
-                            child: FlatButton(label: 'Haan, delete', color: LikhoColors.ink, textColor: LikhoColors.surface, onTap: onYes),
+                            child: FlatButton(label: 'Delete', color: LikhoColors.ink, textColor: LikhoColors.surface, onTap: onYes),
                           ),
                         ],
                       ),

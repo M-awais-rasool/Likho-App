@@ -33,7 +33,7 @@ class LevelCompleteScreen extends ConsumerStatefulWidget {
   final LevelOutcome outcome;
   final VoidCallback onAgain, onNext;
 
-  static String titleFor(int stars) => stars == 3 ? 'Zabardast!' : (stars == 2 ? 'Bohat khoob!' : 'Shabash!');
+  static String titleFor(int stars) => stars == 3 ? 'Amazing!' : (stars == 2 ? 'Great job!' : 'Well done!');
 
   @override
   ConsumerState<LevelCompleteScreen> createState() => _LevelCompleteScreenState();
@@ -209,7 +209,7 @@ class _LevelCompleteScreenState extends ConsumerState<LevelCompleteScreen> {
                         const SizedBox(width: 14),
                         Expanded(
                           child: BigButton(
-                            label: last ? 'Certificate' : 'Aage chalo',
+                            label: last ? 'Certificate' : 'Next',
                             iconAfter: Symbols.arrow_forward_rounded,
                             iconSize: 30,
                             onTap: widget.onNext,
@@ -404,7 +404,7 @@ class _StoryCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'MERI KAHANI',
+                  'MY STORY',
                   style: LikhoFonts.body(size: 12, weight: FontWeight.w800, color: UiColors.inkHint).copyWith(letterSpacing: 12 * .06),
                 ),
                 const SizedBox(height: 4),

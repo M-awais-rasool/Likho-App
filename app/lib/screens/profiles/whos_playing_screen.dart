@@ -13,7 +13,7 @@ import '../common/kid_widgets.dart';
 import '../common/pencil_figure.dart';
 
 /// 06 Who's playing, from the prototype: one round avatar per child (up to
-/// 4) and "Naya bacha". Picking a child bounces the avatar and floods the
+/// 4) and "Add child". Picking a child bounces the avatar and floods the
 /// screen with the child's colour from it, then [onPicked] (World Map).
 /// The lock opens the parent area ([onParent], behind the parent gate).
 class WhosPlayingScreen extends ConsumerStatefulWidget {
@@ -75,7 +75,7 @@ class _WhosPlayingScreenState extends ConsumerState<WhosPlayingScreen> {
                   child: Column(
                     children: [
                       Text(
-                        'Kaun khel raha hai?',
+                        "Who's playing?",
                         textAlign: TextAlign.center,
                         style: LikhoFonts.title(size: 36, weight: FontWeight.w800),
                       ),
@@ -226,7 +226,7 @@ class _AddChild extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Text('Naya bacha', style: LikhoFonts.title(size: 20, color: UiColors.inkLabel).copyWith(height: 1)),
+            Text('Add child', style: LikhoFonts.title(size: 20, color: UiColors.inkLabel).copyWith(height: 1)),
           ],
         ),
       ),

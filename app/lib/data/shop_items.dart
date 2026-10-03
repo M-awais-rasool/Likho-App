@@ -31,22 +31,22 @@ class ShopItem {
 
   /// The prototype's ten wearables mapped onto the ten Gemini accessories.
   /// Where the art differs the name follows the art: the prototype's
-  /// "Oon topi" (beanie) is the Gemini cap and its sunglasses are the star
+  /// beanie is the Gemini cap and its sunglasses are the star
   /// glasses. Pencil wears one accessory at a time.
   static const all = [
-    ShopItem(id: 'party', name: 'Party topi', price: 8, kind: ShopKind.wear, accessory: MascotAccessory.partyHat),
+    ShopItem(id: 'party', name: 'Party hat', price: 8, kind: ShopKind.wear, accessory: MascotAccessory.partyHat),
     ShopItem(id: 'cap', name: 'Cap', price: 12, kind: ShopKind.wear, accessory: MascotAccessory.cap),
-    ShopItem(id: 'wizard', name: 'Lambi topi', price: 20, kind: ShopKind.wear, accessory: MascotAccessory.wizardHat),
-    ShopItem(id: 'round', name: 'Gol chashma', price: 10, kind: ShopKind.wear, accessory: MascotAccessory.roundGlasses),
-    ShopItem(id: 'stars', name: 'Star chashma', price: 15, kind: ShopKind.wear, accessory: MascotAccessory.starGlasses),
-    ShopItem(id: 'scarf', name: 'Muffler', price: 12, kind: ShopKind.wear, accessory: MascotAccessory.scarf),
+    ShopItem(id: 'wizard', name: 'Wizard hat', price: 20, kind: ShopKind.wear, accessory: MascotAccessory.wizardHat),
+    ShopItem(id: 'round', name: 'Round glasses', price: 10, kind: ShopKind.wear, accessory: MascotAccessory.roundGlasses),
+    ShopItem(id: 'stars', name: 'Star glasses', price: 15, kind: ShopKind.wear, accessory: MascotAccessory.starGlasses),
+    ShopItem(id: 'scarf', name: 'Scarf', price: 12, kind: ShopKind.wear, accessory: MascotAccessory.scarf),
     ShopItem(id: 'cape', name: 'Cape', price: 25, kind: ShopKind.wear, accessory: MascotAccessory.cape),
-    ShopItem(id: 'crown', name: 'Taaj', price: 40, kind: ShopKind.wear, accessory: MascotAccessory.crown),
+    ShopItem(id: 'crown', name: 'Crown', price: 40, kind: ShopKind.wear, accessory: MascotAccessory.crown),
     ShopItem(id: 'phones', name: 'Headphones', price: 18, kind: ShopKind.wear, accessory: MascotAccessory.headphones),
     ShopItem(id: 'bow', name: 'Bow', price: 6, kind: ShopKind.wear, accessory: MascotAccessory.bow),
     ShopItem(id: 'lamp', name: 'Lamp', price: 10, kind: ShopKind.room, icon: 'emoji_objects'),
     ShopItem(id: 'poster', name: 'Poster', price: 14, kind: ShopKind.room, icon: 'image'),
-    ShopItem(id: 'plant', name: 'Paudha', price: 8, kind: ShopKind.room, icon: 'potted_plant'),
-    ShopItem(id: 'rug', name: 'Qaleen', price: 16, kind: ShopKind.room, icon: 'blur_circular'),
+    ShopItem(id: 'plant', name: 'Plant', price: 8, kind: ShopKind.room, icon: 'potted_plant'),
+    ShopItem(id: 'rug', name: 'Rug', price: 16, kind: ShopKind.room, icon: 'blur_circular'),
   ];
 }

@@ -7,7 +7,7 @@
     {
       "boss": {
         "id": "snail",
-        "name": "Sust Ghonga"
+        "name": "Sleepy Snail"
       },
       "icon": "grass",
       "id": "world-1",
@@ -19,7 +19,7 @@
     {
       "boss": {
         "id": "fish",
-        "name": "Neend wali Machli"
+        "name": "Sleepy Fish"
       },
       "icon": "waves",
       "id": "world-2",
@@ -31,7 +31,7 @@
     {
       "boss": {
         "id": "bear",
-        "name": "Sota Bhaalu"
+        "name": "Sleepy Bear"
       },
       "icon": "forest",
       "id": "world-3",
@@ -55,7 +55,7 @@
     {
       "boss": {
         "id": "cloud",
-        "name": "Sota Baadal"
+        "name": "Sleepy Cloud"
       },
       "icon": "cloud",
       "id": "world-5",
@@ -67,7 +67,7 @@
     {
       "boss": {
         "id": "moon",
-        "name": "Neend mein Chaand"
+        "name": "Sleepy Moon"
       },
       "icon": "rocket_launch",
       "id": "world-6",

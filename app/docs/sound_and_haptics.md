@@ -54,7 +54,7 @@ bells + air, the "you earned something" layer).
 | `coin` | "+N stars" pill | light |
 | `perfect` | 3 stars: rising run as Pencil dances | — |
 | `milestone` | certificate (course finished) | 5-beat rhythm |
-| `lullaby` | "Aaj ke liye bas!" | — |
+| `lullaby` | "That's all for today!" | — |
 | `reward` | bought in the Mascot Room | rising ripple |
 | `wear` | clothes / furniture on-off | light |
 | `sticker` | a new sticker slapped into the book | medium |

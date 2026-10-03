@@ -2,7 +2,7 @@
     <!-- Likho API: sign-in, saving progress, the course -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:label="likho"
+        android:label="Likho"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round">

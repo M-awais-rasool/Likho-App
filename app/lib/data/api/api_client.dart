@@ -22,7 +22,7 @@ abstract final class ApiConfig {
 /// An API answer that is not a success. [status] 0 = no connection.
 class ApiException implements Exception {
   const ApiException(this.status, this.code, this.message);
-  const ApiException.offline() : status = 0, code = 'offline', message = 'Internet nahi mil raha';
+  const ApiException.offline() : status = 0, code = 'offline', message = 'No internet connection';
 
   final int status;
   final String code;

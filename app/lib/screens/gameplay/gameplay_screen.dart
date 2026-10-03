@@ -47,7 +47,7 @@ class GameplayScreen extends ConsumerStatefulWidget {
 }
 
 class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProviderStateMixin {
-  static const _praise = ['Wah!', 'Shabash!', 'Zabardast!', 'Kamaal!'];
+  static const _praise = ['Wow!', 'Great job!', 'Awesome!', 'Amazing!'];
 
   late final Ticker _ticker;
   final _time = ValueNotifier<double>(0);
@@ -108,7 +108,7 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
     final r = _view.current;
     _setPad(r is WriteRound ? r : null);
     final say = r.prompt.text;
-    _say(say.length <= 14 ? say : 'Suno!', const Duration(milliseconds: 1600));
+    _say(say.length <= 14 ? say : 'Listen!', const Duration(milliseconds: 1600));
     _lookAtArea();
     _voice.speak(r.prompt, _mascot, after: _resting);
   }
@@ -148,25 +148,25 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
           if (pad == _pad) ref.read(levelSessionProvider(level).notifier).submitWriting(pad!.judge());
         });
       case PadEvent.wrongStart:
-        _say('Neele dot se shuru karo!', const Duration(milliseconds: 1500));
+        _say('Start at the blue dot!', const Duration(milliseconds: 1500));
       case PadEvent.leftPath:
         // off right after the start: most likely the wrong way
         final early = (_pad?.guide?.progress ?? 1) < .35;
-        _say(early ? 'Teer ke saath chalo!' : 'Line par raho!', const Duration(milliseconds: 1300));
+        _say(early ? 'Follow the arrow!' : 'Stay on the line!', const Duration(milliseconds: 1300));
     }
   }
 
   /// What to do with the stroke being written, as Pencil says it.
   static String stepText(StrokeShape s) => switch (s) {
-    StrokeShape.dot => 'Bindi lagao',
-    StrokeShape.down => 'Upar se neeche',
-    StrokeShape.up => 'Neeche se upar',
-    StrokeShape.right => 'Daayein taraf',
-    StrokeShape.left => 'Baayein taraf',
-    StrokeShape.slantDown => 'Tircha neeche',
-    StrokeShape.slantUp => 'Tircha upar',
-    StrokeShape.curve => 'Gol ghumao',
-    StrokeShape.zigzag => 'Teer ke saath chalo',
+    StrokeShape.dot => 'Add a dot',
+    StrokeShape.down => 'Top to bottom',
+    StrokeShape.up => 'Bottom to top',
+    StrokeShape.right => 'Left to right',
+    StrokeShape.left => 'Right to left',
+    StrokeShape.slantDown => 'Slant down',
+    StrokeShape.slantUp => 'Slant up',
+    StrokeShape.curve => 'Curve around',
+    StrokeShape.zigzag => 'Follow the arrow',
   };
 
   /// The bubble: a passing remark, else the instruction for the stroke
@@ -232,7 +232,7 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
         case RoundFeedback.wrong:
           _shake.forward(from: 0);
           _mascot.play(MascotState.encourage);
-          _say('Phir se!', const Duration(milliseconds: 1300));
+          _say('Try again!', const Duration(milliseconds: 1300));
         case RoundFeedback.none:
           if (prev.feedback == RoundFeedback.wrong) _mascot.play(_resting);
       }
@@ -242,14 +242,14 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
       final r = next.current;
       _setPad(r is WriteRound ? r : null, letter: next.spellFilled);
       _mascot.play(MascotState.happy);
-      _say('Wah!', const Duration(milliseconds: 700));
+      _say('Wow!', const Duration(milliseconds: 700));
       _later(const Duration(milliseconds: 700), () {
         if (!ref.read(levelSessionProvider(level)).correct) _mascot.play(MascotState.watching);
       });
     }
     if (next.listening && !prev.listening) {
       _mascot.play(MascotState.watching);
-      _say('Bolo!', GameTiming.listening);
+      _say('Say it!', GameTiming.listening);
     }
     if (next.finished && !_done) {
       _done = true;

@@ -9,7 +9,7 @@ import '../common/kid_widgets.dart';
 import '../common/pencil_figure.dart';
 
 /// 14 Session end, from the prototype: the sky slowly turns to evening, the
-/// moon comes out, stars twinkle and Pencil falls asleep in bed. "Ghar"
+/// moon comes out, stars twinkle and Pencil falls asleep in bed. "Home"
 /// goes back to the map (and starts a new session).
 class SessionEndScreen extends StatelessWidget {
   const SessionEndScreen({super.key, required this.stars, required this.onHome});
@@ -82,7 +82,7 @@ class SessionEndScreen extends StatelessWidget {
                       delay: .6,
                       seconds: 1,
                       child: Text(
-                        'Aaj ke liye bas!',
+                        "That's all for today!",
                         textAlign: TextAlign.center,
                         style: LikhoFonts.title(size: 36, weight: FontWeight.w800, color: LikhoColors.surface),
                       ),
@@ -96,7 +96,7 @@ class SessionEndScreen extends StatelessWidget {
                           const SymbolIcon(Symbols.star_rounded, size: 28, fill: true, color: SessionEndColors.star),
                           const SizedBox(width: 6),
                           Text(
-                            '$stars stars aaj',
+                            '$stars stars today',
                             style: LikhoFonts.title(size: 22, weight: FontWeight.w800, color: LikhoColors.surface).copyWith(height: 1.6),
                           ),
                         ],
@@ -162,7 +162,7 @@ class _HomeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BigButton(
-    label: 'Ghar',
+    label: 'Home',
     icon: Symbols.home_rounded,
     iconFill: true,
     iconSize: 30,

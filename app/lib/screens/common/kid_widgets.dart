@@ -118,7 +118,7 @@ VoidCallback? withSound(BuildContext context, ButtonSound sound, VoidCallback? o
   };
 }
 
-/// Big kid button: yellow "Shuru karein" style (edge #E0A21A) or white
+/// Big kid button: yellow "Start" style (edge #E0A21A) or white
 /// secondary (soft grey edge). [icon] goes before the label.
 class BigButton extends StatelessWidget {
   const BigButton({
@@ -319,7 +319,7 @@ class _TextLinkState extends State<TextLink> {
   }
 }
 
-/// Grey/dark rectangle button used in dialogs ("Nahi" / "Haan, delete").
+/// Grey/dark rectangle button used in dialogs ("Cancel" / "Delete").
 class FlatButton extends StatelessWidget {
   const FlatButton({
     super.key,
@@ -379,7 +379,7 @@ class _SpinnerPainter extends CustomPainter {
   bool shouldRepaint(_SpinnerPainter old) => false;
 }
 
-/// Dashed outline (the empty "Naya bacha" circle and missing stickers).
+/// Dashed outline (the empty "Add child" circle and missing stickers).
 class DashedBorderPainter extends CustomPainter {
   const DashedBorderPainter({required this.color, this.width = 3, this.dash = 9, this.gap = 6, this.radius});
   final Color color;

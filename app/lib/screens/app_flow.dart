@@ -40,7 +40,7 @@ import 'world_map/world_map_screen.dart';
 /// Stack shapes:
 /// * Splash -> Welcome (signed out) or Who's playing (signed in)
 /// * Welcome -> "Continue with Google" -> Who's playing (or adding the
-///   first child) / "Pehle try karein" -> warm-up -> map as a guest
+///   first child) / "Try it first" -> warm-up -> map as a guest
 /// * Who's playing -> World Map -> everything else
 /// * the World Map is always right above Who's playing, or the root
 abstract final class AppFlow {
@@ -84,7 +84,7 @@ abstract final class AppFlow {
         return ok;
       },
       onTryFirst: () => openPlacement(ctx),
-      onTerms: () => Toast.show(ctx, 'Privacy policy khulegi'),
+      onTerms: () => Toast.show(ctx, 'Terms and Privacy Policy coming soon'),
       onTestUser: TestUser.enabled
           ? () async {
               final ok = await _signIn(ctx, testUser: true);
@@ -120,18 +120,18 @@ abstract final class AppFlow {
       if (context.mounted) Toast.show(context, signInError(e));
     } catch (e) {
       debugPrint(testUser ? 'Test user sign-in: $e' : 'Google sign-in: $e');
-      if (context.mounted) Toast.show(context, 'Google sign in nahi hua, dobara koshish karein');
+      if (context.mounted) Toast.show(context, 'Google sign-in failed. Please try again.');
     }
     return false;
   }
 
   static String signInError(ApiException e) => switch (e.code) {
-    'offline' => 'Internet nahi hai, dobara koshish karein',
-    'rate_limited' => 'Thori der baad koshish karein',
-    _ => 'Sign in nahi hua, dobara koshish karein',
+    'offline' => 'No internet connection. Please try again.',
+    'rate_limited' => 'Please wait a moment and try again.',
+    _ => 'Sign-in failed. Please try again.',
   };
 
-  /// Guests ("pehle try karein") play the warm-up and level 1; anything
+  /// Guests ("Try it first") play the warm-up and level 1; anything
   /// more asks a parent to sign in first. Runs [open] when allowed.
   static Future<void> _member(BuildContext context, VoidCallback open) async {
     if (!_c(context).read(familyProvider).guest) return open();
@@ -155,8 +155,8 @@ abstract final class AppFlow {
 
   // ------------------------------------------------------------------ children
 
-  /// Who's playing becomes the root (after sign-in, "Badlein", "Profiles
-  /// manage karein", or editing a child).
+  /// Who's playing becomes the root (after sign-in, "Switch", "Manage
+  /// profiles", or editing a child).
   static void toWhos(BuildContext context) => Navigator.of(context).pushAndRemoveUntil(
     LikhoRoute<void>(
       settings: const RouteSettings(name: whosRoute),
@@ -238,8 +238,8 @@ abstract final class AppFlow {
       onSwitchChild: () => toWhos(ctx),
       onCourse: () => Navigator.of(ctx).push(LikhoRoute<void>(builder: (c) => CourseProgressScreen(onBack: () => Navigator.of(c).pop()))),
       onPlans: () => Navigator.of(ctx).push(_paywall()),
-      onRestore: () => Toast.show(ctx, 'Koi purani purchase nahi mili'),
-      onShare: () => Toast.show(ctx, 'Share card copy ho gaya'),
+      onRestore: () => Toast.show(ctx, 'No previous purchases found.'),
+      onShare: () => Toast.show(ctx, 'Share card copied.'),
     ),
   );
 
@@ -250,7 +250,7 @@ abstract final class AppFlow {
       onLogOut: () => unawaited(_c(ctx).read(familyProvider.notifier).logOut()),
       onManageChildren: () => toWhos(ctx),
       onPlan: () => Navigator.of(ctx).push(_paywall()),
-      onHelp: () => Toast.show(ctx, 'Help center khulega'),
+      onHelp: () => Toast.show(ctx, 'Help center coming soon'),
       onDeleteAccount: () => _deleteAccount(ctx),
     ),
   );
@@ -258,15 +258,15 @@ abstract final class AppFlow {
   static Future<void> _deleteAccount(BuildContext context) async {
     final ok = await showConfirm(
       context,
-      title: 'Account delete karein?',
-      message: 'Sab bachon ki progress, stars aur stickers hamesha ke liye hat jayenge.',
-      yes: 'Haan, delete',
+      title: 'Delete account?',
+      message: "All children's progress, stars and stickers will be permanently deleted.",
+      yes: 'Delete',
     );
     if (!ok || !context.mounted) return;
     try {
       await _c(context).read(authProvider.notifier).deleteAccount();
     } on ApiException catch (e) {
-      if (context.mounted) Toast.show(context, e.offline ? 'Internet nahi hai, dobara koshish karein' : 'Account delete nahi hua');
+      if (context.mounted) Toast.show(context, e.offline ? 'No internet connection. Please try again.' : "Couldn't delete the account. Please try again.");
     }
   }
 
@@ -275,7 +275,7 @@ abstract final class AppFlow {
   static Route<void> _paywall({int? pendingLevel}) => LikhoRoute<void>(
     builder: (ctx) => PaywallScreen(
       onClose: () => Navigator.of(ctx).pop(),
-      onRestore: () => Toast.show(ctx, 'Koi purani purchase nahi mili'),
+      onRestore: () => Toast.show(ctx, 'No previous purchases found.'),
       onStartTrial: (_) async {
         final container = _c(ctx);
         final family = container.read(familyProvider.notifier);
@@ -284,16 +284,16 @@ abstract final class AppFlow {
         } on ApiException catch (e) {
           if (!ctx.mounted) return;
           Toast.show(ctx, switch (e.code) {
-            'trial_used' => 'Free trial pehle hi use ho chuka hai',
-            'offline' => 'Internet nahi hai, dobara koshish karein',
-            _ => 'Trial shuru nahi hua, dobara koshish karein',
+            'trial_used' => 'The free trial has already been used.',
+            'offline' => 'No internet connection. Please try again.',
+            _ => "Couldn't start the trial. Please try again.",
           });
           if (e.code == 'trial_used') unawaited(family.refreshMe());
           return;
         }
         if (!ctx.mounted) return;
         container.read(feedbackProvider).unlock();
-        Toast.show(ctx, '7 din ka free trial shuru!');
+        Toast.show(ctx, 'Your 7-day free trial has started!');
         Future.delayed(const Duration(milliseconds: 700), () {
           if (!ctx.mounted) return;
           final nav = Navigator.of(ctx);
@@ -397,8 +397,8 @@ abstract final class AppFlow {
     ),
   );
 
-  /// The placement warm-up (after adding a child, or "pehle try karein"),
-  /// then "Chalo shuru karein!" and the map.
+  /// The placement warm-up (after adding a child, or "Try it first"),
+  /// then "Let's get started!" and the map.
   static void openPlacement(BuildContext context, {bool replace = false}) {
     final container = _c(context);
     final level = container.read(courseProvider).value?.placement;

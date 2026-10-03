@@ -8,7 +8,7 @@ import 'kid_widgets.dart';
 
 /// "Are you sure?" card over a blurred screen (same look as the profile
 /// delete confirm). Completes with true for [yes], false otherwise.
-Future<bool> showConfirm(BuildContext context, {required String title, required String message, required String yes, String no = 'Nahi'}) async {
+Future<bool> showConfirm(BuildContext context, {required String title, required String message, required String yes, String no = 'Cancel'}) async {
   final ok = await Navigator.of(context).push<bool>(
     PageRouteBuilder<bool>(
       opaque: false,
@@ -22,7 +22,7 @@ Future<bool> showConfirm(BuildContext context, {required String title, required 
 }
 
 class ConfirmDialog extends StatelessWidget {
-  const ConfirmDialog({super.key, required this.title, required this.message, required this.yes, this.no = 'Nahi'});
+  const ConfirmDialog({super.key, required this.title, required this.message, required this.yes, this.no = 'Cancel'});
   final String title, message, yes, no;
 
   @override

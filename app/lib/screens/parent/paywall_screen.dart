@@ -57,13 +57,13 @@ class _PaywallScreenState extends State<PaywallScreen> {
             const IconLine(Symbols.workspace_premium_rounded, size: 56, color: LikhoColors.primary),
             const SizedBox(height: 8),
             Text(
-              'Poora Likho kholein',
+              'Unlock all of Likho',
               textAlign: TextAlign.center,
               style: LikhoFonts.title(size: 30, weight: FontWeight.w800),
             ),
             const SizedBox(height: 8),
             Text(
-              'Pehle 7 din bilkul free. Kabhi bhi cancel.',
+              'First 7 days free. Cancel anytime.',
               textAlign: TextAlign.center,
               style: LikhoFonts.parent(size: 15, weight: FontWeight.w600, color: UiColors.inkBody),
             ),
@@ -75,22 +75,22 @@ class _PaywallScreenState extends State<PaywallScreen> {
           soft: false,
           child: const Column(
             children: [
-              _Feature(icon: Symbols.public_rounded, bg: ParentColors.featureGreenBg, fg: ParentColors.featureGreen, text: 'Saare 6 worlds aur 36 levels'),
+              _Feature(icon: Symbols.public_rounded, bg: ParentColors.featureGreenBg, fg: ParentColors.featureGreen, text: 'All 6 worlds and 36 levels'),
               SizedBox(height: 12),
               _Feature(
                 icon: Symbols.menu_book_rounded,
                 bg: ParentColors.featureBlueBg,
                 fg: ParentColors.featureBlue,
-                text: 'Phonics se kahani tak poora course',
+                text: 'The full course, from phonics to stories',
               ),
               SizedBox(height: 12),
-              _Feature(icon: Symbols.insights_rounded, bg: ParentColors.featureCoralBg, fg: ParentColors.featureCoral, text: 'Walidain ke liye weekly report'),
+              _Feature(icon: Symbols.insights_rounded, bg: ParentColors.featureCoralBg, fg: ParentColors.featureCoral, text: 'Weekly progress for parents'),
               SizedBox(height: 12),
               _Feature(
                 icon: Symbols.group_rounded,
                 bg: ParentColors.featurePurpleBg,
                 fg: ParentColors.featurePurple,
-                text: '4 bachon tak ke profiles, koi ads nahi',
+                text: 'Up to 4 child profiles, no ads',
               ),
             ],
           ),
@@ -99,17 +99,17 @@ class _PaywallScreenState extends State<PaywallScreen> {
           children: [
             _PlanCard(
               selected: _plan == Plan.yearly,
-              title: 'Saalana',
-              note: 'Rs 416 / mahina',
+              title: 'Yearly',
+              note: 'Rs 416 / month',
               price: 'Rs 4,999',
-              badge: 'SAB SE BEHTAR · 48% BACHAT',
+              badge: 'BEST VALUE · SAVE 48%',
               onTap: () => _pick(Plan.yearly),
             ),
             const SizedBox(height: 10),
             _PlanCard(
               selected: _plan == Plan.monthly,
-              title: 'Mahana',
-              note: 'Har mahine bill',
+              title: 'Monthly',
+              note: 'Billed monthly',
               price: 'Rs 799',
               onTap: () => _pick(Plan.monthly),
             ),
@@ -125,14 +125,14 @@ class _PaywallScreenState extends State<PaywallScreen> {
             pressScale: .98,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             child: Text(
-              '7 din free shuru karein',
+              'Start 7-day free trial',
               style: LikhoFonts.parent(size: 18, weight: FontWeight.w800, color: LikhoColors.surface),
             ),
           ),
         ),
         Text(
-          'Trial ke baad plan ke mutabiq charge hoga. Cancel karne ke liye: Settings › Apple ID / Google Play › Subscriptions › Likho. '
-          'Trial khatam hone se 24 ghante pehle yaad dahani bhejenge.',
+          "After the trial, you'll be charged for the plan you choose. To cancel: Settings › Apple ID / Google Play › Subscriptions › Likho. "
+          "We'll remind you 24 hours before the trial ends.",
           textAlign: TextAlign.center,
           style: LikhoFonts.parent(size: 13, weight: FontWeight.w600, color: LikhoColors.inkMuted).copyWith(height: 1.55),
         ),

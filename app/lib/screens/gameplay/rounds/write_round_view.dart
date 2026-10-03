@@ -30,7 +30,7 @@ enum PadEvent {
 }
 
 /// Holds the child's strokes for one writing round (one letter of a spelled
-/// word); shared by the pad and the eraser / "Ho gaya" bar.
+/// word); shared by the pad and the eraser / "Done" bar.
 ///
 /// A letter with a guide is written step by step ([StrokeGuide]): the
 /// current stroke shows where to start and which way to go, ink is only
@@ -318,7 +318,7 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
     final raw = WritePadController.rawGuides(widget.round, widget.glyphs, letter: widget.controller.letter);
     final noGuide = widget.controller.guides.isEmpty;
     final freeHint = widget.round.mode == WriteMode.free && widget.round.sentence && !widget.state.correct
-        ? 'Likho: ${widget.round.target ?? 'apni kahani'}'
+        ? 'Write: ${widget.round.target ?? 'your own story'}'
         : null;
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -802,7 +802,7 @@ class _Follower extends StatelessWidget {
   }
 }
 
-/// "Yahan se shuru" (start here) with a bobbing arrow, after a mistake on a
+/// "Start here" with a bobbing arrow, after a mistake on a
 /// pad without guides.
 class _StartHere extends StatelessWidget {
   const _StartHere({required this.time});
@@ -824,7 +824,7 @@ class _StartHere extends StatelessWidget {
           ),
           const SizedBox(width: 6),
           Text(
-            'Yahan se shuru',
+            'Start here',
             style: LikhoFonts.title(size: 16, weight: FontWeight.w800, color: LikhoColors.hint),
           ),
         ],
@@ -833,7 +833,7 @@ class _StartHere extends StatelessWidget {
   }
 }
 
-/// Eraser + "Ho gaya" (done) under the pad.
+/// Eraser + "Done" under the pad.
 class WriteBar extends StatelessWidget {
   const WriteBar({super.key, required this.onErase, required this.onDone});
   final VoidCallback onErase, onDone;
@@ -872,7 +872,7 @@ class WriteBar extends StatelessWidget {
                   children: [
                     const Icon(Symbols.check_rounded, size: 40, fill: 1, weight: 700, opticalSize: 40, color: LikhoColors.surface),
                     const SizedBox(width: 10),
-                    Text('Ho gaya', style: LikhoFonts.title(size: 24, color: LikhoColors.surface).copyWith(height: 1)),
+                    Text('Done', style: LikhoFonts.title(size: 24, color: LikhoColors.surface).copyWith(height: 1)),
                   ],
                 ),
               ),

@@ -162,7 +162,7 @@ class _Certificate extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: math.max(0, math.min(460, MediaQuery.sizeOf(context).width) - 40 - 20 - 6 - 36 - 260) / 2),
                     child: Text(
-                      'ne Likho ka poora English course — 6 worlds, 36 levels — mukammal kar liya!',
+                      'has completed the full Likho English course — 6 worlds, 36 levels!',
                       textAlign: TextAlign.center,
                       style: LikhoFonts.body(size: 15, color: UiColors.inkBody, height: 1.45),
                     ),

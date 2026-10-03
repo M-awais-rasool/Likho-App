@@ -9,7 +9,7 @@ import '../../mascot/mascot.dart';
 import '../common/kid_widgets.dart';
 import '../common/pencil_figure.dart';
 
-/// 09 Placement done, from the prototype: "Chalo shuru karein!" and Pencil
+/// 09 Placement done, from the prototype: "Let's get started!" and Pencil
 /// cheering; moves on to the World Map after 2.6 s or on tap.
 class PlacementDoneScreen extends StatefulWidget {
   const PlacementDoneScreen({super.key, required this.onDone});
@@ -86,7 +86,7 @@ class _Bubble extends StatelessWidget {
           borderRadius: BorderRadius.circular(26),
           boxShadow: const [BoxShadow(color: GameColors.ink10, offset: Offset(0, 8), blurRadius: 20)],
         ),
-        child: Text('Chalo shuru karein!', style: LikhoFonts.title(size: 30, weight: FontWeight.w800).copyWith(height: 1)),
+        child: Text("Let's get started!", style: LikhoFonts.title(size: 30, weight: FontWeight.w800).copyWith(height: 1)),
       ),
       Positioned(
         bottom: -10,

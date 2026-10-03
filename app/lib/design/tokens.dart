@@ -272,7 +272,7 @@ abstract final class ContentColors {
 /// Gameplay screen colours (prototype "12 Gameplay").
 abstract final class GameColors {
   static const secondaryDeep = Color(0xFF2F7CC0); // replay button edge
-  static const successDeep = Color(0xFF268F58); // "Ho gaya" edge
+  static const successDeep = Color(0xFF268F58); // "Done" edge
   static const hintDeep = Color(0xFFE0673A);
   static const white95 = Color(0xF2FFFFFF);
   static const white85 = Color(0xD9FFFFFF);
@@ -414,7 +414,7 @@ abstract final class GameColors {
 /// (prototype screens 02–09 and 13–23).
 abstract final class UiColors {
   static const inkBody = Color(0xFF5C5F77); // body copy under titles
-  static const inkLabel = Color(0xFF8C8577); // section labels, "Naya bacha"
+  static const inkLabel = Color(0xFF8C8577); // section labels, "Add child"
   static const inkAdd = Color(0xFF9A9384); // "add" icon on Who's playing
   static const inkHint = Color(0xFFA39D90); // "ya" divider, small print
   static const chevron = Color(0xFFB3AC9E);

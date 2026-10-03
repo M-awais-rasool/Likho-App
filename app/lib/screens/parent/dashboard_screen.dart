@@ -50,7 +50,7 @@ class DashboardScreen extends ConsumerWidget {
         ParentHeader(
           icon: Symbols.close_rounded,
           onTap: onClose,
-          title: 'Walidain',
+          title: 'Parents',
           trailing: ParentIconButton(icon: Symbols.settings_rounded, onTap: onSettings),
         ),
         ParentCard(
@@ -73,7 +73,7 @@ class DashboardScreen extends ConsumerWidget {
                       children: [
                         Text(p.name, style: LikhoFonts.parent(size: 19, weight: FontWeight.w800)),
                         Text(
-                          '${p.age} saal · World ${(current - 1) ~/ 6 + 1}',
+                          'Age ${p.age} · World ${(current - 1) ~/ 6 + 1}',
                           style: LikhoFonts.parent(size: 14, weight: FontWeight.w600, color: LikhoColors.inkMuted),
                         ),
                       ],
@@ -87,7 +87,7 @@ class DashboardScreen extends ConsumerWidget {
                       decoration: BoxDecoration(color: UiColors.chipAlt, borderRadius: BorderRadius.circular(12)),
                       child: Row(
                         children: [
-                          Text('Badlein', style: LikhoFonts.parent(size: 13, weight: FontWeight.w700)),
+                          Text('Switch', style: LikhoFonts.parent(size: 13, weight: FontWeight.w700)),
                           const SizedBox(width: 4),
                           const SymbolIcon(Symbols.expand_more_rounded, size: 18),
                         ],
@@ -100,11 +100,11 @@ class DashboardScreen extends ConsumerWidget {
               Row(
                 children: [
                   Expanded(
-                    child: _Stat(value: '${r.minutes}', unit: ' min', label: 'is hafte practice', style: label),
+                    child: _Stat(value: '${r.minutes}', unit: ' min', label: 'practice this week', style: label),
                   ),
                   const SizedBox(width: 12),
                   Expanded(
-                    child: _Stat(value: '${r.levelStars.length}', unit: ' / 36', label: 'levels mukammal', style: label),
+                    child: _Stat(value: '${r.levelStars.length}', unit: ' / 36', label: 'levels completed', style: label),
                   ),
                 ],
               ),
@@ -153,9 +153,9 @@ class DashboardScreen extends ConsumerWidget {
                 spacing: 14,
                 runSpacing: 6,
                 children: [
-                  _Legend(color: LikhoColors.success, text: 'Mazboot'),
-                  _Legend(color: LikhoColors.hint, text: 'Practice chahiye'),
-                  _Legend(color: UiColors.toggleOff, text: 'Abhi nahi seekha'),
+                  _Legend(color: LikhoColors.success, text: 'Strong'),
+                  _Legend(color: LikhoColors.hint, text: 'Needs practice'),
+                  _Legend(color: UiColors.toggleOff, text: 'Not learned yet'),
                 ],
               ),
             ],
@@ -174,7 +174,7 @@ class DashboardScreen extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text('Session ki lambai', style: LikhoFonts.parent(size: 16, weight: FontWeight.w700)),
+                    Text('Session length', style: LikhoFonts.parent(size: 16, weight: FontWeight.w700)),
                     const SizedBox(height: 10),
                     SegmentedMinutes(
                       value: family.settings.sessionMinutes,
@@ -289,7 +289,7 @@ class _Legend extends StatelessWidget {
   );
 }
 
-/// "Likhai ka safar": the first "A" the child wrote next to today's.
+/// "Handwriting journey": the first "A" the child wrote next to today's.
 class _Journey extends StatelessWidget {
   const _Journey({required this.name, required this.onShare});
   final String name;
@@ -330,11 +330,11 @@ class _Journey extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'LIKHAI KA SAFAR',
+                        'HANDWRITING JOURNEY',
                         style: LikhoFonts.parent(size: 12, weight: FontWeight.w800, color: ParentColors.journeyLabel).copyWith(letterSpacing: 1.2),
                       ),
                       const SizedBox(height: 2),
-                      Text('$name kitna aage aa gaya!', style: LikhoFonts.title(size: 22, weight: FontWeight.w800).copyWith(height: 1.2)),
+                      Text('Look how far $name has come!', style: LikhoFonts.title(size: 22, weight: FontWeight.w800).copyWith(height: 1.2)),
                     ],
                   ),
                 ),
@@ -356,11 +356,11 @@ class _Journey extends StatelessWidget {
             const SizedBox(height: 14),
             Row(
               children: [
-                const Expanded(child: _Polaroid(shaky: true, label: 'Pehla din', tilt: -2)),
+                const Expanded(child: _Polaroid(shaky: true, label: 'Day 1', tilt: -2)),
                 const SizedBox(width: 10),
                 const SymbolIcon(Symbols.arrow_forward_rounded, size: 30, color: LikhoColors.hint),
                 const SizedBox(width: 10),
-                const Expanded(child: _Polaroid(shaky: false, label: 'Aaj', tilt: 2)),
+                const Expanded(child: _Polaroid(shaky: false, label: 'Today', tilt: 2)),
               ],
             ),
           ],
@@ -495,7 +495,7 @@ class _PlusCard extends StatelessWidget {
         Opacity(
           opacity: .8,
           child: Text(
-            'Saare 6 worlds, 36 levels aur har hafte ki report. Pehle 7 din free.',
+            'All 6 worlds, 36 levels and weekly progress. First 7 days free.',
             style: LikhoFonts.parent(size: 14, weight: FontWeight.w600, color: LikhoColors.surface).copyWith(height: 1.5),
           ),
         ),
@@ -511,7 +511,7 @@ class _PlusCard extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 18),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(color: LikhoColors.primary, borderRadius: BorderRadius.circular(14)),
-                child: Text('Plans dekhein', style: LikhoFonts.parent(size: 15, weight: FontWeight.w800)),
+                child: Text('See plans', style: LikhoFonts.parent(size: 15, weight: FontWeight.w800)),
               ),
             ),
             GestureDetector(

@@ -18,7 +18,7 @@ import 'google_button.dart';
 /// the orange A: it flies to his hand and he cheers.
 ///
 /// One way in: "Continue with Google" signs a parent in, and makes the
-/// account the first time (no sign up, no password). "Pehle try karein"
+/// account the first time (no sign up, no password). "Try it first"
 /// plays without an account.
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key, required this.onGoogle, required this.onTryFirst, this.onTerms, this.onTestUser});
@@ -129,7 +129,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       ),
                       const SizedBox(height: 22),
                       Text(
-                        'Likhna seekho,\nkhel khel mein.',
+                        'Learn to write\nthrough play.',
                         textAlign: TextAlign.center,
                         style: LikhoFonts.title(size: 36, weight: FontWeight.w800).copyWith(height: 1.12),
                       ),
@@ -138,7 +138,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: math.max(0, math.min(440, w) - 48 - 290) / 2),
                         child: Text(
-                          '5–8 saal ke bachon ke liye English handwriting.',
+                          'English handwriting for children aged 5–8.',
                           textAlign: TextAlign.center,
                           style: LikhoFonts.body(size: 17, color: UiColors.inkBody, height: 1.45),
                         ),
@@ -151,13 +151,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       ],
                       const SizedBox(height: 10),
                       Text(
-                        'Pehli baar? Account khud ban jayega.',
+                        "First time? We'll create your account.",
                         textAlign: TextAlign.center,
                         style: LikhoFonts.body(size: 14, weight: FontWeight.w600, color: LikhoColors.inkMuted),
                       ),
                       const SizedBox(height: 8),
                       TextLink(
-                        text: 'Abhi nahi, pehle try karein',
+                        text: 'Not now, try it first',
                         underline: true,
                         padding: const EdgeInsets.all(10),
                         style: LikhoFonts.body(size: 16, weight: FontWeight.w700, color: LikhoColors.inkMuted),
@@ -165,7 +165,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       ),
                       if (widget.onTerms != null)
                         TextLink(
-                          text: 'Aage barh kar aap Terms aur Privacy Policy maante hain',
+                          text: 'By continuing, you agree to the Terms and Privacy Policy',
                           padding: const EdgeInsets.fromLTRB(10, 2, 10, 0),
                           style: LikhoFonts.body(size: 12, weight: FontWeight.w600, color: LikhoColors.inkMuted),
                           onTap: widget.onTerms!,
@@ -201,7 +201,7 @@ class TestUserButton extends StatelessWidget {
               onTap!();
             },
       icon: const Icon(Symbols.science_rounded, size: 22, fill: 1, opticalSize: 24),
-      label: Text('Test User se login', style: LikhoFonts.title(size: 18, weight: FontWeight.w700, color: LikhoColors.inkMuted).copyWith(height: 1)),
+      label: Text('Sign in as Test User', style: LikhoFonts.title(size: 18, weight: FontWeight.w700, color: LikhoColors.inkMuted).copyWith(height: 1)),
       style: OutlinedButton.styleFrom(
         foregroundColor: LikhoColors.inkMuted,
         side: const BorderSide(color: UiColors.inkHint, width: 2),

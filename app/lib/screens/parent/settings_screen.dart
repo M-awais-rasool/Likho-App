@@ -75,11 +75,11 @@ class SettingsScreen extends ConsumerWidget {
             trailing: const SymbolIcon(Symbols.logout_rounded, size: 24, color: UiColors.chevron),
             onTap: onLogOut,
           ),
-          SettingsRow(label: 'Account delete karein', labelColor: UiColors.danger, trailing: chevron, onTap: onDeleteAccount, last: true),
+          SettingsRow(label: 'Delete account', labelColor: UiColors.danger, trailing: chevron, onTap: onDeleteAccount, last: true),
         ]),
-        const SectionLabel('Bache'),
-        card([SettingsRow(label: 'Profiles manage karein', trailing: chevron, onTap: onManageChildren, last: true)]),
-        const SectionLabel('Khel'),
+        const SectionLabel('Children'),
+        card([SettingsRow(label: 'Manage profiles', trailing: chevron, onTap: onManageChildren, last: true)]),
+        const SectionLabel('Play'),
         card([
           SettingsRow(
             label: 'Session',
@@ -105,7 +105,7 @@ class SettingsScreen extends ConsumerWidget {
             ),
           ),
           SettingsRow(
-            label: 'Sound effects & awaaz',
+            label: 'Sound effects & voice',
             trailing: ParentSwitch(
               value: s.sfx,
               onChanged: (v) => set((x) => x.copyWith(sfx: v)),
@@ -156,7 +156,7 @@ class SettingsScreen extends ConsumerWidget {
         const SectionLabel('Help'),
         card([
           SettingsRow(label: 'FAQ', trailing: chevron, onTap: onHelp),
-          SettingsRow(label: 'Humse rabta karein', trailing: chevron, onTap: onHelp),
+          SettingsRow(label: 'Contact us', trailing: chevron, onTap: onHelp),
           SettingsRow(label: 'Privacy policy', trailing: chevron, onTap: onHelp, last: true),
         ]),
       ],

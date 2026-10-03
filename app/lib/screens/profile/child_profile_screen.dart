@@ -107,7 +107,7 @@ class _ChildProfileScreenState extends ConsumerState<ChildProfileScreen> with Si
                   const SizedBox(height: 26),
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: Text('Mera safar', style: LikhoFonts.title(size: 22, weight: FontWeight.w800).copyWith(height: 1.6)),
+                    child: Text('My journey', style: LikhoFonts.title(size: 22, weight: FontWeight.w800).copyWith(height: 1.6)),
                   ),
                   const SizedBox(height: 10),
                   Row(

@@ -12,7 +12,7 @@ import '../common/pencil_figure.dart';
 import 'google_button.dart';
 import 'welcome_screen.dart' show TestUserButton;
 
-/// Asks a guest ("pehle try karein") to sign in before going further: the
+/// Asks a guest ("Try it first") to sign in before going further: the
 /// next level, the room, the profile, parent settings. Completes with true
 /// once signed in, false when closed.
 /// [onTestUser] (test builds) adds the "Test User" sign-in.
@@ -121,13 +121,13 @@ class _SignInSheetState extends State<SignInSheet> {
                         ),
                         const SizedBox(height: 14),
                         Text(
-                          'Shabash! Aage khelne ke liye\naccount banayein',
+                          'Great job! Create an account\nto keep playing',
                           textAlign: TextAlign.center,
                           style: LikhoFonts.title(size: 24, weight: FontWeight.w800).copyWith(height: 1.15),
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          'Walidain Google se sign in karein. Taare, stickers aur har level ki progress save rahegi.',
+                          'Parents, sign in with Google to save stars, stickers and progress on every level.',
                           textAlign: TextAlign.center,
                           style: LikhoFonts.body(size: 15, color: UiColors.inkBody, height: 1.4),
                         ),
@@ -140,7 +140,7 @@ class _SignInSheetState extends State<SignInSheet> {
                         const SizedBox(height: 6),
                         Center(
                           child: TextLink(
-                            text: 'Baad mein',
+                            text: 'Maybe later',
                             padding: const EdgeInsets.all(10),
                             style: LikhoFonts.body(size: 15, weight: FontWeight.w700, color: LikhoColors.inkMuted),
                             onTap: _close,

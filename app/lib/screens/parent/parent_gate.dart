@@ -92,7 +92,7 @@ class _ParentGateState extends State<ParentGate> {
                           Row(
                             children: [
                               Expanded(
-                                child: Text('Sirf walidain ke liye', style: LikhoFonts.parent(size: 17, weight: FontWeight.w800)),
+                                child: Text('Parents only', style: LikhoFonts.parent(size: 17, weight: FontWeight.w800)),
                               ),
                               CircleIconButton(
                                 icon: Symbols.close_rounded,
@@ -107,7 +107,7 @@ class _ParentGateState extends State<ParentGate> {
                           ),
                           const SizedBox(height: 14),
                           Text(
-                            'Aage barhne ke liye sahi jawab chunein:',
+                            'Choose the correct answer to continue:',
                             style: LikhoFonts.parent(size: 15, weight: FontWeight.w600, color: UiColors.inkBody),
                           ),
                           const SizedBox(height: 14),
@@ -133,7 +133,7 @@ class _ParentGateState extends State<ParentGate> {
                           if (_err) ...[
                             const SizedBox(height: 14),
                             Text(
-                              'Dobara koshish karein',
+                              'Wrong answer. Please try again.',
                               textAlign: TextAlign.center,
                               style: LikhoFonts.parent(size: 13, weight: FontWeight.w700, color: UiColors.inkLabel),
                             ),

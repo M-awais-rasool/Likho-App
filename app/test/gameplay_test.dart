@@ -66,7 +66,7 @@ void main() {
     final bubble = find.byType(SpeechBubble);
     String said() => tester.widget<SpeechBubble>(bubble).text;
     int? step() => tester.widget<SpeechBubble>(bubble).step;
-    expect((said(), step()), ('Tircha neeche', 1));
+    expect((said(), step()), ('Slant down', 1));
 
     // the bubble sits beside the card, never on it
     final card = tester.getRect(find.byType(PromptCardView));
@@ -88,16 +88,16 @@ void main() {
     final strokes = c.lane!.strokes;
     await trace(strokes[1]); // the second stroke first (same start dot): the wrong way
     expect(c.guide!.stroke, 0);
-    expect(said(), 'Teer ke saath chalo!');
+    expect(said(), 'Follow the arrow!');
     await pumpFor(tester, const Duration(milliseconds: 1600));
     await trace(strokes[0].reversed.toList()); // from the bottom: the wrong start
-    expect(said(), 'Neele dot se shuru karo!');
+    expect(said(), 'Start at the blue dot!');
     await pumpFor(tester, const Duration(milliseconds: 1600));
 
     await trace(strokes[0]);
-    expect((said(), step()), ('Tircha neeche', 2));
+    expect((said(), step()), ('Slant down', 2));
     await trace(strokes[1]);
-    expect((said(), step()), ('Daayein taraf', 3));
+    expect((said(), step()), ('Left to right', 3));
     await trace(strokes[2]);
     await pumpFor(tester, const Duration(milliseconds: 400));
     final container = ProviderScope.containerOf(tester.element(pad));

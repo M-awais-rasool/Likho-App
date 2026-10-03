@@ -57,7 +57,7 @@ class _AppShellState extends ConsumerState<AppShell> {
       final nav = widget.navigatorKey.currentState;
       if (nav == null) return;
       AppFlow.toWelcome(nav.context);
-      if (now.expired) _toast('Dobara sign in karein');
+      if (now.expired) _toast('Please sign in again.');
     });
     return widget.child;
   }
@@ -96,19 +96,19 @@ class CourseOffline extends StatelessWidget {
               const PencilFigure(width: 150, height: 210, state: MascotState.encourage, holdEnd: true),
               const SizedBox(height: 22),
               Text(
-                'Internet chahiye',
+                "You're offline",
                 textAlign: TextAlign.center,
                 style: LikhoFonts.title(size: 32, weight: FontWeight.w800).copyWith(height: 1.12),
               ),
               const SizedBox(height: 10),
               Text(
-                'Likho ke levels pehli baar download hone hain. Internet on karke dobara try karein.',
+                'Likho downloads its levels the first time it opens. Please connect to the internet and try again.',
                 textAlign: TextAlign.center,
                 style: LikhoFonts.body(size: 17, color: UiColors.inkBody, height: 1.45),
               ),
               const Spacer(),
               BigButton(
-                label: 'Dobara try karein',
+                label: 'Try again',
                 icon: loading ? null : Symbols.refresh_rounded,
                 leading: loading ? const ButtonSpinner() : null,
                 height: 76,

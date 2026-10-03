@@ -74,7 +74,7 @@ class AppSettings {
 
   static const sessionOptions = [5, 10, 15];
 
-  /// Levels per play session before "Aaj ke liye bas!" (prototype lim).
+  /// Levels per play session before "That's all for today!" (prototype lim).
   int get levelsPerSession => switch (sessionMinutes) {
     5 => 2,
     15 => 4,
@@ -121,7 +121,7 @@ enum FamilyMode {
   /// Signed in: the server keeps it; every change is sent to the API.
   online,
 
-  /// "Pehle try karein" without an account: kept only on the phone.
+  /// "Try it first" without an account: kept only on the phone.
   guest,
 
   /// Sample data for tests and the dev tools (never sent anywhere).
@@ -189,7 +189,7 @@ class FamilyState {
 
   /// Trying the app before signing in: one child, nothing saved.
   factory FamilyState.guest() => const FamilyState(
-    profiles: [ChildProfile(id: 'guest', name: 'Dost', age: 6, color: LikhoColors.primary)],
+    profiles: [ChildProfile(id: 'guest', name: 'Friend', age: 6, color: LikhoColors.primary)],
     activeId: 'guest',
     records: {'guest': ChildRecord()},
     mode: FamilyMode.guest,
@@ -488,7 +488,7 @@ class FamilyNotifier extends Notifier<FamilyState> {
     } on ApiException catch (e) {
       if (!ref.mounted) return;
       _update(childId, (_) => before);
-      _say(e.offline ? 'Internet nahi hai, dobara koshish karein' : 'Ye kaam nahi hua, dobara koshish karein');
+      _say(e.offline ? 'No internet connection. Please try again.' : "That didn't work. Please try again.");
       if (!e.offline) unawaited(refreshMe());
     }
   }
@@ -526,7 +526,7 @@ class FamilyNotifier extends Notifier<FamilyState> {
     } on ApiException catch (_) {
       if (!ref.mounted) return;
       state = state.copyWith(settings: before);
-      _say('Setting save nahi hui, internet check karein');
+      _say("Couldn't save the setting. Check your internet connection.");
     }
   }
 }

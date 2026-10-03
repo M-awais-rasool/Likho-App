@@ -182,7 +182,7 @@ class LevelSession extends Notifier<SessionState> {
   }
 
   // ------------------------------------------------------------ write
-  /// The pad judged the drawing ("Ho gaya" pressed).
+  /// The pad judged the drawing ("Done" pressed).
   void submitWriting(WritingVerdict verdict) {
     final r = state.current;
     if (r is! WriteRound || _locked) return;

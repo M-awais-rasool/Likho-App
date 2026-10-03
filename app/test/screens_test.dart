@@ -115,7 +115,7 @@ void main() {
       expect(c.read(progressProvider).name, 'Zara');
     });
 
-    test('session length decides how many levels before "Aaj ke liye bas!"', () {
+    test('session length decides how many levels before "That\'s all for today!"', () {
       expect(const AppSettings(sessionMinutes: 5).levelsPerSession, 2);
       expect(const AppSettings().levelsPerSession, 3);
       expect(const AppSettings(sessionMinutes: 15).levelsPerSession, 4);
@@ -125,7 +125,7 @@ void main() {
       final c = ProviderContainer();
       addTearDown(c.dispose);
       final f = c.read(familyProvider);
-      expect((f.guest, f.active.name, f.profiles.length), (true, 'Dost', 1));
+      expect((f.guest, f.active.name, f.profiles.length), (true, 'Friend', 1));
       expect(c.read(progressProvider).current, 1);
     });
 
@@ -189,18 +189,18 @@ void main() {
     await c.read(authProvider.notifier).ready;
     await t.tap(find.text('go'));
     await _pumpFor(t, const Duration(milliseconds: 600));
-    expect(find.text('Shuru karein'), findsNothing, reason: 'no sign up / login buttons any more');
+    expect(find.text('Sign up'), findsNothing, reason: 'no sign up / login buttons any more');
     await t.tap(find.text('Continue with Google'));
     await _pumpFor(t, const Duration(milliseconds: 900));
     expect(c.read(authProvider).signedIn, isTrue);
     expect(find.byType(ChildSetupScreen), findsOneWidget, reason: 'new account, no children yet');
 
     await t.enterText(find.byType(TextField), 'Sara');
-    await t.tap(find.text('Aage'));
+    await t.tap(find.text('Next'));
     await _pumpFor(t, const Duration(milliseconds: 400));
     await t.tap(find.text('7'));
     await _pumpFor(t, const Duration(milliseconds: 800));
-    await t.tap(find.text('Ho gaya!'));
+    await t.tap(find.text('Done!'));
     await _pumpFor(t, const Duration(milliseconds: 800));
     expect(backend.children.single['name'], 'Sara', reason: 'saved on the server');
     expect(c.read(familyProvider).active.id, backend.children.single['id']);
@@ -233,7 +233,7 @@ void main() {
     await c.read(authProvider.notifier).ready;
     await t.tap(find.text('go'));
     await _pumpFor(t, const Duration(milliseconds: 600));
-    await t.tap(find.text('Test User se login'));
+    await t.tap(find.text('Sign in as Test User'));
     await _pumpFor(t, const Duration(milliseconds: 900));
     expect(c.read(authProvider).signedIn, isTrue);
     expect(backend.idTokens, ['dev:${TestUser.email}']);
@@ -262,7 +262,7 @@ void main() {
     await c.read(authProvider.notifier).ready;
     await t.tap(find.text('go'));
     await _pumpFor(t, const Duration(milliseconds: 600));
-    await t.tap(find.text('Abhi nahi, pehle try karein'));
+    await t.tap(find.text('Not now, try it first'));
     await _pumpFor(t, const Duration(milliseconds: 600));
     expect(t.widget<GameplayScreen>(find.byType(GameplayScreen)).level.number, 0);
     expect(c.read(familyProvider).guest, isTrue);
@@ -323,7 +323,7 @@ void main() {
     final a = int.parse(m[1]!), b = int.parse(m[2]!);
     await t.tap(find.text('${a * b - a}'));
     await t.pump(const Duration(milliseconds: 300));
-    expect(find.text('Dobara koshish karein'), findsOneWidget);
+    expect(find.text('Wrong answer. Please try again.'), findsOneWidget);
     expect(result, isNull);
     await _passGate(t);
     expect(result, isTrue);
@@ -333,16 +333,16 @@ void main() {
   testWidgets('add a child: name -> age -> colour -> placement warm-up', (t) async {
     final c = await _app(t, DevScreenLauncher(screen: 'onb'));
     await _pumpFor(t, const Duration(milliseconds: 800));
-    await t.tap(find.text('Aage'));
+    await t.tap(find.text('Next'));
     await t.pump();
-    expect(find.text('Bache ka naam?'), findsOneWidget, reason: 'no name, no next step');
+    expect(find.text("Child's name?"), findsOneWidget, reason: 'no name, no next step');
     await t.enterText(find.byType(TextField), 'Sara');
-    await t.tap(find.text('Aage'));
+    await t.tap(find.text('Next'));
     await _pumpFor(t, const Duration(milliseconds: 400));
     await t.tap(find.text('7'));
     await _pumpFor(t, const Duration(milliseconds: 800));
-    expect(find.text('Pencil ka rang chuno!'), findsOneWidget);
-    await t.tap(find.text('Ho gaya!'));
+    expect(find.text("Pick Pencil's colour!"), findsOneWidget);
+    await t.tap(find.text('Done!'));
     await _pumpFor(t, const Duration(milliseconds: 800));
     final f = c.read(familyProvider);
     expect((f.active.name, f.active.age, f.profiles.length), ('Sara', 7, 3));
