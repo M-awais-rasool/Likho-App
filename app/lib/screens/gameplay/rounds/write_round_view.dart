@@ -87,8 +87,6 @@ class WritePadController extends ChangeNotifier {
     return _guide;
   }
 
-  bool get guided => guides.isNotEmpty;
-
   void _layout() {
     if (guides.isEmpty || padSize.isEmpty || (_lane != null && _laneSize == padSize)) return;
     final before = _laneSize, old = _guide;

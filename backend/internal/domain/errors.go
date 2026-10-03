@@ -15,7 +15,6 @@ const (
 	KindPaymentRequired                 // needs Likho Plus
 	KindNotFound                        // no such thing (or not yours)
 	KindConflict                        // not allowed in the current state
-	KindUnavailable                     // try again later
 )
 
 // Error is a business error with a stable code for the app ("level_locked")
@@ -54,5 +53,4 @@ var (
 	ErrSessionInvalid  = &Error{KindUnauthorized, "session_invalid", "Sign in with Google again"}
 	ErrSessionReused   = &Error{KindUnauthorized, "session_reused", "Signed out on all devices for safety; sign in again"}
 	ErrAccountDeleted  = &Error{KindUnauthorized, "account_deleted", "This account no longer exists"}
-	ErrCourseNotLoaded = &Error{KindUnavailable, "course_unavailable", "Course content is not loaded"}
 )

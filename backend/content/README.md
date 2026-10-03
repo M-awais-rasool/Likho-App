@@ -118,9 +118,3 @@ make content-fixture                # refresh the app's test copy after a conten
 
 The version (and the `ETag` header) is a hash of the course document, so it changes exactly when
 the content does.
-
-## Importing from the prototype
-
-`tools/prototype-import/import.js` created the first course from the design prototype
-(`design/prototype/`). It overwrites `courses/english-handwriting/`, so once the JSON has been
-edited by hand, edit the JSON instead.

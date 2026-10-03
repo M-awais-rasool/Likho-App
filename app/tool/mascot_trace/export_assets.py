@@ -28,7 +28,7 @@ FILES = {
     'mouth_gentle.svg': ['mouth_gentle'], 'mouth_yawn.svg': ['mouth_yawn'],
     'hand_rest_left.svg': ['hand_rest_left'], 'hand_rest_right.svg': ['hand_rest_right'],
     'hand_open.svg': ['hand_open'], 'hand_wave.svg': ['hand_wave'], 'hand_thumbs_up.svg': ['hand_thumbs_up'],
-    'hand_point.svg': ['hand_point'], 'hand_fist.svg': ['hand_fist'], 'hand_star.svg': ['hand_star'],
+    'hand_fist.svg': ['hand_fist'],
     'accessories/cap.svg': ['acc_cap'], 'accessories/wizard_hat.svg': ['acc_wizard'], 'accessories/party_hat.svg': ['acc_party'],
     'accessories/round_glasses.svg': ['acc_round'], 'accessories/star_glasses.svg': ['acc_stars'], 'accessories/cape.svg': ['acc_cape'],
     'accessories/scarf.svg': ['acc_scarf'], 'accessories/crown.svg': ['acc_crown'], 'accessories/headphones.svg': ['acc_phones'],

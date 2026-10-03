@@ -57,7 +57,6 @@ backend/
 │   ├── service/        business layer: auth (Google, tokens), account, child, progress, room, course
 │   └── api/            router.go · handler/ · middleware/
 ├── test/e2e/           the whole API over HTTP on a real Postgres
-├── tools/prototype-import/   one-time import of the design prototype into content/
 ├── Dockerfile · docker-compose.yml · Makefile · .env.example
 ```
 

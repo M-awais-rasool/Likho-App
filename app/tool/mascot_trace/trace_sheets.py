@@ -22,38 +22,6 @@ def xf(scale, src_anchor, dst_anchor, rot=0.0, mirror=False):
     return T
 
 
-def trace_roles(px, box, palette, stack, T, pad=4, grow=None, eps=0.9, min_area=12):
-    """palette: role -> colours; stack: list of (role, [roles in region], opts) bottom->top.
-    First entry is the silhouette (all non-bg, holes filled)."""
-    x0, y0, x1, y1 = box
-    Cl = Classifier(px, (x0 - pad, y0 - pad, x1 + pad, y1 + pad), palette)
-    out = []
-    for role, members, opt in stack:
-        if members == '*':
-            m = Cl.mask([n for n in Cl.names if n != 'bg']).close(1)
-            if opt.get('fill_holes', True):
-                m = m.fill_holes()
-        else:
-            m = Cl.mask(members)
-            if opt.get('close'):
-                m = m.close(opt['close'])
-            if opt.get('open'):
-                m = m.open(opt['open'])
-            if opt.get('inside') is not None:
-                m = m.clip(opt['inside'])
-        if opt.get('grow'):
-            m = m.morph(opt['grow'], True)
-        if opt.get('keep'):
-            m = m.largest(opt['keep'])
-        d = mask_to_path(m, T, eps=opt.get('eps', eps), min_area=opt.get('min_area', min_area), smooth=opt.get('smooth', 1))
-        if d:
-            L = {'role': role, 'd': d}
-            if opt.get('fill'):
-                L['fill'] = opt['fill']
-            out.append(L)
-    return out, Cl
-
-
 # ------------------------------------------------------------------ MOUTHS
 im, px = load(MDIR + 'Gemini_Generated_Image_wv35jtwv35jtwv35.jpeg')
 mouth_pal = {'bg': ['#FFFFFF', '#F8F8F8'], 'ink': ['#2D314C', '#20243D', '#242A40', '#12172B'],

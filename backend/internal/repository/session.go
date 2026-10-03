@@ -80,12 +80,3 @@ func (r *SessionRepository) RevokeAll(ctx context.Context, parentID string) erro
 		Where("parent_id = ? AND revoked_at IS NULL", parentID).
 		Update("revoked_at", time.Now()).Error
 }
-
-// Active: the session exists, is not revoked and not expired.
-func (r *SessionRepository) Active(ctx context.Context, sessionID string) (bool, error) {
-	var n int64
-	err := r.db.WithContext(ctx).Model(&model.Session{}).
-		Where("id = ? AND revoked_at IS NULL AND expires_at > ?", sessionID, time.Now()).
-		Count(&n).Error
-	return n > 0, err
-}

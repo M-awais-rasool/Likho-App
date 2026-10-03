@@ -192,7 +192,7 @@ void main() {
     test('writing a D when b is asked is not a b', () {
       final b = round((r) => r.mode == WriteMode.free && r.target == 'b');
       final c = padFor(b);
-      expect(c.guided, isTrue, reason: 'free letters are guided too');
+      expect(c.guides, isNotEmpty, reason: 'free letters are guided too');
       // a D drawn big across the pad: stem, then a bowl on the right from top to bottom
       final geo = PadGeometry(size);
       final d = [for (final s in padFor(trace('D')).lane!.strokes) along(s)];
@@ -246,7 +246,7 @@ void main() {
     test('sentences take any writing', () {
       final r = round((r) => r.sentence);
       final c = padFor(r);
-      expect((c.guided, c.lane), (false, null));
+      expect((c.guides.isEmpty, c.lane), (true, null));
       c.start(const Offset(5, 5));
       for (var x = 10.0; x < 300; x += 10) {
         c.extend(Offset(x, 40));

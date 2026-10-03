@@ -102,8 +102,6 @@ class ApiClient {
   DateTime _accessExpires = DateTime.fromMillisecondsSinceEpoch(0);
   Future<void>? _refreshing;
 
-  bool get hasSession => _access != null;
-
   /// Stores a new token pair (from sign-in or refresh).
   Future<void> setTokens(Map<String, dynamic> t) async {
     _access = t['accessToken'] as String;

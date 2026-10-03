@@ -154,5 +154,3 @@ Edit the JSON in `backend/content/courses/` ([guide](../../backend/content/READM
 `make content` and deploy the API: phones download the new version on their next start (the ETag
 changes) and use their saved copy until then. After a content change, refresh the tests' copy with
 `make content-fixture` (in `backend/`); CI checks it.
-
-The first course was imported from the design prototype by `backend/tools/prototype-import/`.
