@@ -10,6 +10,8 @@
   "intro": {
     "text": "I.",
     "word": "pencil",
+    "say": "Sentences start with a capital letter! Let's fix them.",
+    "audio": "assets/voice/level-29-intro.m4a",
     "picture": {
       "key": "pencil",
       "label": "pencil",
@@ -29,7 +31,7 @@
       "type": "pick",
       "prompt": {
         "text": "Fix it!",
-        "audio": null
+        "audio": "assets/voice/level-29-r1.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -83,7 +85,7 @@
       "type": "pick",
       "prompt": {
         "text": "Fix it!",
-        "audio": null
+        "audio": "assets/voice/level-29-r2.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -130,7 +132,7 @@
       "type": "pick",
       "prompt": {
         "text": "Fix it!",
-        "audio": null
+        "audio": "assets/voice/level-29-r3.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -184,7 +186,7 @@
       "type": "pick",
       "prompt": {
         "text": "Fix it!",
-        "audio": null
+        "audio": "assets/voice/level-29-r4.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -238,7 +240,7 @@
       "type": "pick",
       "prompt": {
         "text": "Fix it!",
-        "audio": null
+        "audio": "assets/voice/level-29-r5.m4a"
       },
       "card": {
         "text": "Fix it!",

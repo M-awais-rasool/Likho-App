@@ -10,6 +10,8 @@
   "intro": {
     "text": "a b c",
     "word": "bottle",
+    "say": "A message in a bottle! Let's find the missing letters.",
+    "audio": "assets/voice/level-11-intro.m4a",
     "picture": {
       "key": "bottle",
       "label": "bottle",
@@ -29,7 +31,7 @@
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
-        "audio": null
+        "audio": "assets/voice/level-11-r1.m4a"
       },
       "card": {
         "text": null,
@@ -55,7 +57,7 @@
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
-        "audio": null
+        "audio": "assets/voice/level-11-r2.m4a"
       },
       "card": {
         "text": null,
@@ -81,7 +83,7 @@
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
-        "audio": null
+        "audio": "assets/voice/level-11-r3.m4a"
       },
       "card": {
         "text": null,
@@ -107,7 +109,7 @@
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
-        "audio": null
+        "audio": "assets/voice/level-11-r4.m4a"
       },
       "card": {
         "text": null,
@@ -133,7 +135,7 @@
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
-        "audio": null
+        "audio": "assets/voice/level-11-r5.m4a"
       },
       "card": {
         "text": null,

@@ -10,6 +10,8 @@
   "intro": {
     "text": "h",
     "word": "crab",
+    "say": "Tall letters, small letters, letters with tails! Help the crab sort them.",
+    "audio": "assets/voice/level-10-intro.m4a",
     "picture": {
       "key": "crab",
       "label": "crab",
@@ -29,7 +31,7 @@
       "type": "pick",
       "prompt": {
         "text": "Sort h",
-        "audio": null
+        "audio": "assets/voice/level-10-r1.m4a"
       },
       "card": {
         "text": "h",
@@ -76,7 +78,7 @@
       "type": "pick",
       "prompt": {
         "text": "Sort o",
-        "audio": null
+        "audio": "assets/voice/level-10-r2.m4a"
       },
       "card": {
         "text": "o",
@@ -123,7 +125,7 @@
       "type": "pick",
       "prompt": {
         "text": "Sort y",
-        "audio": null
+        "audio": "assets/voice/level-10-r3.m4a"
       },
       "card": {
         "text": "y",
@@ -170,7 +172,7 @@
       "type": "pick",
       "prompt": {
         "text": "Sort k",
-        "audio": null
+        "audio": "assets/voice/level-10-r4.m4a"
       },
       "card": {
         "text": "k",
@@ -217,7 +219,7 @@
       "type": "pick",
       "prompt": {
         "text": "Sort e",
-        "audio": null
+        "audio": "assets/voice/level-10-r5.m4a"
       },
       "card": {
         "text": "e",

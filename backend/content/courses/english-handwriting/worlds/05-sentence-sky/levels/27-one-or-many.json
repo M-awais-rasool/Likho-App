@@ -10,6 +10,8 @@
   "intro": {
     "text": "-s",
     "word": "birds",
+    "say": "One bird, many birds! Let's make more than one.",
+    "audio": "assets/voice/level-27-intro.m4a",
     "picture": {
       "key": "birds",
       "label": "birds",
@@ -29,7 +31,8 @@
       "type": "write",
       "prompt": {
         "text": "bird → many",
-        "audio": null
+        "say": "One bird. Many...?",
+        "audio": "assets/voice/level-27-r1.m4a"
       },
       "card": {
         "text": null,
@@ -55,7 +58,8 @@
       "type": "write",
       "prompt": {
         "text": "cat → many",
-        "audio": null
+        "say": "One cat. Many...?",
+        "audio": "assets/voice/level-27-r2.m4a"
       },
       "card": {
         "text": null,
@@ -81,7 +85,8 @@
       "type": "write",
       "prompt": {
         "text": "dog → many",
-        "audio": null
+        "say": "One dog. Many...?",
+        "audio": "assets/voice/level-27-r3.m4a"
       },
       "card": {
         "text": null,
@@ -107,7 +112,8 @@
       "type": "write",
       "prompt": {
         "text": "cup → many",
-        "audio": null
+        "say": "One cup. Many...?",
+        "audio": "assets/voice/level-27-r4.m4a"
       },
       "card": {
         "text": null,
@@ -133,7 +139,8 @@
       "type": "write",
       "prompt": {
         "text": "hat → many",
-        "audio": null
+        "say": "One hat. Many...?",
+        "audio": "assets/voice/level-27-r5.m4a"
       },
       "card": {
         "text": null,

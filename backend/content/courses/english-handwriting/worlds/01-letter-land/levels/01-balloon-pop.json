@@ -10,6 +10,8 @@
   "intro": {
     "text": "B",
     "word": "balloon",
+    "say": "B! B is for balloon. Let's pop the B balloons!",
+    "audio": "assets/voice/level-01-intro.m4a",
     "picture": {
       "key": "balloon",
       "label": "balloon",
@@ -29,7 +31,7 @@
       "type": "pick",
       "prompt": {
         "text": "Find B!",
-        "audio": null
+        "audio": "assets/voice/level-01-r1.m4a"
       },
       "card": {
         "text": "B",
@@ -83,7 +85,7 @@
       "type": "pick",
       "prompt": {
         "text": "Find M!",
-        "audio": null
+        "audio": "assets/voice/level-01-r2.m4a"
       },
       "card": {
         "text": "M",
@@ -137,7 +139,7 @@
       "type": "pick",
       "prompt": {
         "text": "Find S!",
-        "audio": null
+        "audio": "assets/voice/level-01-r3.m4a"
       },
       "card": {
         "text": "S",
@@ -191,7 +193,8 @@
       "type": "pick",
       "prompt": {
         "text": "Find A!",
-        "audio": null
+        "say": "Find {A|ˈeɪ}!",
+        "audio": "assets/voice/level-01-r4.m4a"
       },
       "card": {
         "text": "A",
@@ -245,7 +248,7 @@
       "type": "pick",
       "prompt": {
         "text": "Find T!",
-        "audio": null
+        "audio": "assets/voice/level-01-r5.m4a"
       },
       "card": {
         "text": "T",

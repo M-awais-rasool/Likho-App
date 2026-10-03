@@ -10,6 +10,8 @@
   "intro": {
     "text": "ba·na·na",
     "word": "firefly",
+    "say": "Ba, na, na! Let's clap the parts of words with the fireflies.",
+    "audio": "assets/voice/level-17-intro.m4a",
     "picture": {
       "key": "firefly",
       "label": "firefly",
@@ -29,7 +31,7 @@
       "type": "pick",
       "prompt": {
         "text": "banana",
-        "audio": null
+        "audio": "assets/voice/level-17-r1.m4a"
       },
       "card": {
         "text": "banana",
@@ -80,7 +82,7 @@
       "type": "pick",
       "prompt": {
         "text": "cat",
-        "audio": null
+        "audio": "assets/voice/level-17-r2.m4a"
       },
       "card": {
         "text": "cat",
@@ -131,7 +133,7 @@
       "type": "pick",
       "prompt": {
         "text": "apple",
-        "audio": null
+        "audio": "assets/voice/level-17-r3.m4a"
       },
       "card": {
         "text": "apple",
@@ -182,7 +184,7 @@
       "type": "pick",
       "prompt": {
         "text": "tiger",
-        "audio": null
+        "audio": "assets/voice/level-17-r4.m4a"
       },
       "card": {
         "text": "tiger",
@@ -233,7 +235,7 @@
       "type": "pick",
       "prompt": {
         "text": "butterfly",
-        "audio": null
+        "audio": "assets/voice/level-17-r5.m4a"
       },
       "card": {
         "text": "butterfly",

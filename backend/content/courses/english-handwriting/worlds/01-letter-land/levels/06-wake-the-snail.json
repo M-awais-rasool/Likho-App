@@ -10,6 +10,8 @@
   "intro": {
     "text": "A B C",
     "word": "snail",
+    "say": "{Shh|ʃːː}, the snail is sleeping. Let's wake it up with our letters!",
+    "audio": "assets/voice/level-06-intro.m4a",
     "picture": {
       "key": "snail",
       "label": "snail",
@@ -29,7 +31,8 @@
       "type": "write",
       "prompt": {
         "text": "Write A",
-        "audio": null
+        "say": "Write {A|ˈeɪ}.",
+        "audio": "assets/voice/level-06-r1.m4a"
       },
       "card": {
         "text": "A",
@@ -51,7 +54,7 @@
       "type": "write",
       "prompt": {
         "text": "Write B",
-        "audio": null
+        "audio": "assets/voice/level-06-r2.m4a"
       },
       "card": {
         "text": "B",
@@ -73,7 +76,7 @@
       "type": "write",
       "prompt": {
         "text": "Write C",
-        "audio": null
+        "audio": "assets/voice/level-06-r3.m4a"
       },
       "card": {
         "text": "C",
@@ -95,7 +98,7 @@
       "type": "write",
       "prompt": {
         "text": "Write D",
-        "audio": null
+        "audio": "assets/voice/level-06-r4.m4a"
       },
       "card": {
         "text": "D",
@@ -117,7 +120,7 @@
       "type": "write",
       "prompt": {
         "text": "Write E",
-        "audio": null
+        "audio": "assets/voice/level-06-r5.m4a"
       },
       "card": {
         "text": "E",

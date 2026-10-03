@@ -10,6 +10,8 @@
   "intro": {
     "text": "a",
     "word": "apple",
+    "say": "Apple starts with {a|æ}! Let's find the first sounds.",
+    "audio": "assets/voice/level-13-intro.m4a",
     "picture": {
       "key": "apple",
       "label": "apple",
@@ -29,7 +31,7 @@
       "type": "pick",
       "prompt": {
         "text": "apple",
-        "audio": null
+        "audio": "assets/voice/level-13-r1.m4a"
       },
       "card": {
         "text": null,
@@ -87,7 +89,7 @@
       "type": "pick",
       "prompt": {
         "text": "sun",
-        "audio": null
+        "audio": "assets/voice/level-13-r2.m4a"
       },
       "card": {
         "text": null,
@@ -145,7 +147,7 @@
       "type": "pick",
       "prompt": {
         "text": "moon",
-        "audio": null
+        "audio": "assets/voice/level-13-r3.m4a"
       },
       "card": {
         "text": null,
@@ -203,7 +205,7 @@
       "type": "pick",
       "prompt": {
         "text": "fish",
-        "audio": null
+        "audio": "assets/voice/level-13-r4.m4a"
       },
       "card": {
         "text": null,
@@ -261,7 +263,7 @@
       "type": "pick",
       "prompt": {
         "text": "dog",
-        "audio": null
+        "audio": "assets/voice/level-13-r5.m4a"
       },
       "card": {
         "text": null,

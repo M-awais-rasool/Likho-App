@@ -61,9 +61,36 @@ Each round has a `type` and an object with the same name:
 | `order` | `tiles` in the right order | puts tiles in order |
 | `speak` | `expected` | says it aloud |
 
-`prompt.audio` is a recording (asset path or URL); without it the device voice reads
-`prompt.text`. `picture.key` is a bundled image (`app/assets/illustrations/<key>.png`), or set
-`picture.url`.
+`picture.key` is a picture in the app (`app/assets/illustrations/<key>.png`), or set
+`picture.url`. Pencil says `prompt.say` (or `prompt.text` when they are the same) from the
+recording in `prompt.audio`; without a recording the device voice reads it.
+
+## Pictures and Pencil's voice
+
+Every level's intro has a picture and a line Pencil says while it shows:
+
+```json
+"intro": {
+  "text": "B", "word": "balloon",
+  "say": "B! B is for balloon. Let's pop the B balloons!",
+  "audio": "assets/voice/level-01-intro.m4a",
+  "picture": { "key": "balloon", "label": "balloon", "url": null }
+}
+```
+
+* **Pictures** are Fluent Emoji (3D, MIT) with a transparent background, one 256 x 256 PNG per
+  key, made by `tools/illustrations/build_illustrations.py`. A new picture: add its key there
+  (one emoji, or a scene of several), run the script, use the key here.
+* **What Pencil says** is `say` (intro, prompt) or the prompt's `text`. Write `say` when the
+  words on screen are not what to say: `"/b/"` → `"Which letter says {/b/|bʌ}?"`, `"c _ t"` →
+  `"Cat! Which letter is missing?"`. `{shown|IPA}` gives a pronunciation: the device voice reads
+  `shown`, recordings say the IPA (`"Trace small {a|ˈeɪ}"`: the letter, not the article).
+* **Recordings** are made by `tools/voice/generate_voice.py` (Kokoro text-to-speech, on this
+  computer): it records new and changed lines into `app/assets/voice/` and writes their `audio`
+  paths here. Check pronunciations first with `--print` (shows each line's phonemes).
+
+The app's tests fail when a picture key has no image or a line has no recording
+(`app/test/media_test.dart`).
 
 ## Checks
 
@@ -75,6 +102,8 @@ Each round has a `type` and an object with the same name:
 * world orders and level numbers 1, 2, 3 … without gaps, going up world by world
 * file and folder names start with their number
 * round payload matches its type, answers are one of the options, guides exist in `glyphs.json`
+* `say` is not empty and its pronunciations are complete (`{shown|IPA}`), `audio` is an app asset
+  (`assets/….m4a`) or a URL
 
 The API runs the same checks at start-up and refuses to start with broken content. CI runs them on
 every pull request.

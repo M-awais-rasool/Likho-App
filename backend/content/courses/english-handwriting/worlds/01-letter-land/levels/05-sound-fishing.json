@@ -10,6 +10,8 @@
   "intro": {
     "text": "F",
     "word": "fish",
+    "say": "F is for fish! Let's catch the letter sounds.",
+    "audio": "assets/voice/level-05-intro.m4a",
     "picture": {
       "key": "fish",
       "label": "fish",
@@ -29,7 +31,8 @@
       "type": "pick",
       "prompt": {
         "text": "/b/",
-        "audio": null
+        "say": "Which letter says {/b/|bʌ}?",
+        "audio": "assets/voice/level-05-r1.m4a"
       },
       "card": {
         "text": "/b/",
@@ -76,7 +79,8 @@
       "type": "pick",
       "prompt": {
         "text": "/m/",
-        "audio": null
+        "say": "Which letter says {/m/|mːː}?",
+        "audio": "assets/voice/level-05-r2.m4a"
       },
       "card": {
         "text": "/m/",
@@ -123,7 +127,8 @@
       "type": "pick",
       "prompt": {
         "text": "/s/",
-        "audio": null
+        "say": "Which letter says {/s/|sːː}?",
+        "audio": "assets/voice/level-05-r3.m4a"
       },
       "card": {
         "text": "/s/",
@@ -170,7 +175,8 @@
       "type": "pick",
       "prompt": {
         "text": "/t/",
-        "audio": null
+        "say": "Which letter says {/t/|tʌ}?",
+        "audio": "assets/voice/level-05-r4.m4a"
       },
       "card": {
         "text": "/t/",
@@ -217,7 +223,8 @@
       "type": "pick",
       "prompt": {
         "text": "/p/",
-        "audio": null
+        "say": "Which letter says {/p/|pʌ}?",
+        "audio": "assets/voice/level-05-r5.m4a"
       },
       "card": {
         "text": "/p/",

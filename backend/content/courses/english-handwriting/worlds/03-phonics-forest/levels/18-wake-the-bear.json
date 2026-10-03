@@ -10,6 +10,8 @@
   "intro": {
     "text": "dog",
     "word": "bear",
+    "say": "The bear is fast asleep. Let's spell words to wake it up!",
+    "audio": "assets/voice/level-18-intro.m4a",
     "picture": {
       "key": "bear",
       "label": "bear",
@@ -29,7 +31,7 @@
       "type": "write",
       "prompt": {
         "text": "dog",
-        "audio": null
+        "audio": "assets/voice/level-18-r1.m4a"
       },
       "card": {
         "text": null,
@@ -55,7 +57,7 @@
       "type": "write",
       "prompt": {
         "text": "sun",
-        "audio": null
+        "audio": "assets/voice/level-18-r2.m4a"
       },
       "card": {
         "text": null,
@@ -81,7 +83,7 @@
       "type": "write",
       "prompt": {
         "text": "pig",
-        "audio": null
+        "audio": "assets/voice/level-18-r3.m4a"
       },
       "card": {
         "text": null,
@@ -107,7 +109,7 @@
       "type": "write",
       "prompt": {
         "text": "cat",
-        "audio": null
+        "audio": "assets/voice/level-18-r4.m4a"
       },
       "card": {
         "text": null,
@@ -133,7 +135,7 @@
       "type": "write",
       "prompt": {
         "text": "hen",
-        "audio": null
+        "audio": "assets/voice/level-18-r5.m4a"
       },
       "card": {
         "text": null,

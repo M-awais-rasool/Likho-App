@@ -10,6 +10,8 @@
   "intro": {
     "text": "C",
     "word": "car",
+    "say": "C is for car! Let's drive on curvy roads.",
+    "audio": "assets/voice/level-04-intro.m4a",
     "picture": {
       "key": "car",
       "label": "car",
@@ -29,7 +31,7 @@
       "type": "write",
       "prompt": {
         "text": "Trace C",
-        "audio": null
+        "audio": "assets/voice/level-04-r1.m4a"
       },
       "card": {
         "text": "C",
@@ -55,7 +57,7 @@
       "type": "write",
       "prompt": {
         "text": "Trace O",
-        "audio": null
+        "audio": "assets/voice/level-04-r2.m4a"
       },
       "card": {
         "text": "O",
@@ -81,7 +83,7 @@
       "type": "write",
       "prompt": {
         "text": "Trace S",
-        "audio": null
+        "audio": "assets/voice/level-04-r3.m4a"
       },
       "card": {
         "text": "S",
@@ -107,7 +109,7 @@
       "type": "write",
       "prompt": {
         "text": "Trace U",
-        "audio": null
+        "audio": "assets/voice/level-04-r4.m4a"
       },
       "card": {
         "text": "U",
@@ -133,7 +135,7 @@
       "type": "write",
       "prompt": {
         "text": "Trace J",
-        "audio": null
+        "audio": "assets/voice/level-04-r5.m4a"
       },
       "card": {
         "text": "J",

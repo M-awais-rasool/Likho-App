@@ -10,6 +10,8 @@
   "intro": {
     "text": "1 2 3",
     "word": "story",
+    "say": "First, next, last! Let's put the story in order.",
+    "audio": "assets/voice/level-33-intro.m4a",
     "picture": {
       "key": "story",
       "label": "story",
@@ -29,7 +31,7 @@
       "type": "order",
       "prompt": {
         "text": "Put in order",
-        "audio": null
+        "audio": "assets/voice/level-33-r1.m4a"
       },
       "card": {
         "text": "1 · 2 · 3",
@@ -49,7 +51,7 @@
       "type": "order",
       "prompt": {
         "text": "Put in order",
-        "audio": null
+        "audio": "assets/voice/level-33-r2.m4a"
       },
       "card": {
         "text": "1 · 2 · 3",
@@ -69,7 +71,7 @@
       "type": "order",
       "prompt": {
         "text": "Put in order",
-        "audio": null
+        "audio": "assets/voice/level-33-r3.m4a"
       },
       "card": {
         "text": "1 · 2 · 3",
@@ -89,7 +91,7 @@
       "type": "order",
       "prompt": {
         "text": "Put in order",
-        "audio": null
+        "audio": "assets/voice/level-33-r4.m4a"
       },
       "card": {
         "text": "1 · 2 · 3",
@@ -109,7 +111,7 @@
       "type": "order",
       "prompt": {
         "text": "Put in order",
-        "audio": null
+        "audio": "assets/voice/level-33-r5.m4a"
       },
       "card": {
         "text": "1 · 2 · 3",

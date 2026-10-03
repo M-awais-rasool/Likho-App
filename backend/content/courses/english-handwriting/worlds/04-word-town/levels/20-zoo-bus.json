@@ -10,6 +10,8 @@
   "intro": {
     "text": "cow",
     "word": "zoo bus",
+    "say": "Moo! All aboard the zoo bus!",
+    "audio": "assets/voice/level-20-intro.m4a",
     "picture": {
       "key": "zoo_bus",
       "label": "zoo bus",
@@ -29,7 +31,7 @@
       "type": "pick",
       "prompt": {
         "text": "Moo!",
-        "audio": null
+        "audio": "assets/voice/level-20-r1.m4a"
       },
       "card": {
         "text": "Moo!",
@@ -88,7 +90,7 @@
       "type": "pick",
       "prompt": {
         "text": "Quack!",
-        "audio": null
+        "audio": "assets/voice/level-20-r2.m4a"
       },
       "card": {
         "text": "Quack!",
@@ -147,7 +149,7 @@
       "type": "pick",
       "prompt": {
         "text": "Meow!",
-        "audio": null
+        "audio": "assets/voice/level-20-r3.m4a"
       },
       "card": {
         "text": "Meow!",
@@ -206,7 +208,7 @@
       "type": "pick",
       "prompt": {
         "text": "Woof!",
-        "audio": null
+        "audio": "assets/voice/level-20-r4.m4a"
       },
       "card": {
         "text": "Woof!",
@@ -265,7 +267,7 @@
       "type": "pick",
       "prompt": {
         "text": "Oink!",
-        "audio": null
+        "audio": "assets/voice/level-20-r5.m4a"
       },
       "card": {
         "text": "Oink!",

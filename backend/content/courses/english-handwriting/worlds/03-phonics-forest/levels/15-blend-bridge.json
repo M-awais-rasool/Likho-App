@@ -9,10 +9,12 @@
   "requiresSubscription": true,
   "intro": {
     "text": "c-a-t",
-    "word": "bridge",
+    "word": "cat",
+    "say": "{c|kʌ}... {a|æ}... {t|tʌ}... cat! Let's blend the sounds.",
+    "audio": "assets/voice/level-15-intro.m4a",
     "picture": {
-      "key": "bridge",
-      "label": "bridge",
+      "key": "cat",
+      "label": "cat",
       "url": null
     }
   },
@@ -29,7 +31,7 @@
       "type": "order",
       "prompt": {
         "text": "cat",
-        "audio": null
+        "audio": "assets/voice/level-15-r1.m4a"
       },
       "card": {
         "text": null,
@@ -53,7 +55,7 @@
       "type": "order",
       "prompt": {
         "text": "dog",
-        "audio": null
+        "audio": "assets/voice/level-15-r2.m4a"
       },
       "card": {
         "text": null,
@@ -77,7 +79,7 @@
       "type": "order",
       "prompt": {
         "text": "sun",
-        "audio": null
+        "audio": "assets/voice/level-15-r3.m4a"
       },
       "card": {
         "text": null,
@@ -101,7 +103,7 @@
       "type": "order",
       "prompt": {
         "text": "pig",
-        "audio": null
+        "audio": "assets/voice/level-15-r4.m4a"
       },
       "card": {
         "text": null,
@@ -125,7 +127,7 @@
       "type": "order",
       "prompt": {
         "text": "hen",
-        "audio": null
+        "audio": "assets/voice/level-15-r5.m4a"
       },
       "card": {
         "text": null,

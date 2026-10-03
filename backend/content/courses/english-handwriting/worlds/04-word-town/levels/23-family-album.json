@@ -10,6 +10,8 @@
   "intro": {
     "text": "mother",
     "word": "family",
+    "say": "Mother, father, sister, brother! Let's look at the family album.",
+    "audio": "assets/voice/level-23-intro.m4a",
     "picture": {
       "key": "family",
       "label": "family",
@@ -29,7 +31,7 @@
       "type": "pick",
       "prompt": {
         "text": "Who is this?",
-        "audio": null
+        "audio": "assets/voice/level-23-r1.m4a"
       },
       "card": {
         "text": null,
@@ -80,7 +82,7 @@
       "type": "pick",
       "prompt": {
         "text": "Who is this?",
-        "audio": null
+        "audio": "assets/voice/level-23-r2.m4a"
       },
       "card": {
         "text": null,
@@ -131,7 +133,7 @@
       "type": "pick",
       "prompt": {
         "text": "Who is this?",
-        "audio": null
+        "audio": "assets/voice/level-23-r3.m4a"
       },
       "card": {
         "text": null,
@@ -182,7 +184,7 @@
       "type": "pick",
       "prompt": {
         "text": "Who is this?",
-        "audio": null
+        "audio": "assets/voice/level-23-r4.m4a"
       },
       "card": {
         "text": null,
@@ -233,7 +235,7 @@
       "type": "pick",
       "prompt": {
         "text": "Who is this?",
-        "audio": null
+        "audio": "assets/voice/level-23-r5.m4a"
       },
       "card": {
         "text": null,

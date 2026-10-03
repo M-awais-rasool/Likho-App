@@ -10,6 +10,8 @@
   "intro": {
     "text": "My…",
     "word": "storybook",
+    "say": "Let's make up our very own story!",
+    "audio": "assets/voice/level-35-intro.m4a",
     "picture": {
       "key": "storybook",
       "label": "storybook",
@@ -29,7 +31,7 @@
       "type": "pick",
       "prompt": {
         "text": "Choose a friend",
-        "audio": null
+        "audio": "assets/voice/level-35-r1.m4a"
       },
       "card": {
         "text": "Friend?",
@@ -87,7 +89,7 @@
       "type": "pick",
       "prompt": {
         "text": "Choose a place",
-        "audio": null
+        "audio": "assets/voice/level-35-r2.m4a"
       },
       "card": {
         "text": "Where?",
@@ -145,7 +147,7 @@
       "type": "pick",
       "prompt": {
         "text": "Choose a thing",
-        "audio": null
+        "audio": "assets/voice/level-35-r3.m4a"
       },
       "card": {
         "text": "What?",
@@ -203,7 +205,7 @@
       "type": "write",
       "prompt": {
         "text": "Write your story",
-        "audio": null
+        "audio": "assets/voice/level-35-r4.m4a"
       },
       "card": {
         "text": "My cat can fly.",

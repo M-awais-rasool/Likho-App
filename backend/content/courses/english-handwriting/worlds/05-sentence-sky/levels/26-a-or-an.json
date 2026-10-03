@@ -10,6 +10,8 @@
   "intro": {
     "text": "an",
     "word": "apple",
+    "say": "An apple, a ball! Let's choose a or an.",
+    "audio": "assets/voice/level-26-intro.m4a",
     "picture": {
       "key": "apple",
       "label": "apple",
@@ -29,7 +31,8 @@
       "type": "pick",
       "prompt": {
         "text": "__ apple",
-        "audio": null
+        "say": "A apple, or an apple?",
+        "audio": "assets/voice/level-26-r1.m4a"
       },
       "card": {
         "text": "__ apple",
@@ -73,7 +76,8 @@
       "type": "pick",
       "prompt": {
         "text": "__ ball",
-        "audio": null
+        "say": "A ball, or an ball?",
+        "audio": "assets/voice/level-26-r2.m4a"
       },
       "card": {
         "text": "__ ball",
@@ -117,7 +121,8 @@
       "type": "pick",
       "prompt": {
         "text": "__ egg",
-        "audio": null
+        "say": "A egg, or an egg?",
+        "audio": "assets/voice/level-26-r3.m4a"
       },
       "card": {
         "text": "__ egg",
@@ -161,7 +166,8 @@
       "type": "pick",
       "prompt": {
         "text": "__ dog",
-        "audio": null
+        "say": "A dog, or an dog?",
+        "audio": "assets/voice/level-26-r4.m4a"
       },
       "card": {
         "text": "__ dog",
@@ -205,7 +211,8 @@
       "type": "pick",
       "prompt": {
         "text": "__ owl",
-        "audio": null
+        "say": "A owl, or an owl?",
+        "audio": "assets/voice/level-26-r5.m4a"
       },
       "card": {
         "text": "__ owl",

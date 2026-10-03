@@ -10,6 +10,8 @@
   "intro": {
     "text": "-at",
     "word": "frog",
+    "say": "Cat, hat, bat! Let's hop to words that rhyme.",
+    "audio": "assets/voice/level-14-intro.m4a",
     "picture": {
       "key": "frog",
       "label": "frog",
@@ -29,7 +31,7 @@
       "type": "pick",
       "prompt": {
         "text": "cat",
-        "audio": null
+        "audio": "assets/voice/level-14-r1.m4a"
       },
       "card": {
         "text": "cat",
@@ -92,7 +94,7 @@
       "type": "pick",
       "prompt": {
         "text": "dog",
-        "audio": null
+        "audio": "assets/voice/level-14-r2.m4a"
       },
       "card": {
         "text": "dog",
@@ -155,7 +157,7 @@
       "type": "pick",
       "prompt": {
         "text": "sun",
-        "audio": null
+        "audio": "assets/voice/level-14-r3.m4a"
       },
       "card": {
         "text": "sun",
@@ -218,7 +220,7 @@
       "type": "pick",
       "prompt": {
         "text": "bee",
-        "audio": null
+        "audio": "assets/voice/level-14-r4.m4a"
       },
       "card": {
         "text": "bee",
@@ -281,7 +283,7 @@
       "type": "pick",
       "prompt": {
         "text": "car",
-        "audio": null
+        "audio": "assets/voice/level-14-r5.m4a"
       },
       "card": {
         "text": "car",

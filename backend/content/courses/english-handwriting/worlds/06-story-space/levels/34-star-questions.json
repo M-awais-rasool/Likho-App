@@ -10,6 +10,8 @@
   "intro": {
     "text": "Who?",
     "word": "story",
+    "say": "Who? What? Where? Let's answer the star questions.",
+    "audio": "assets/voice/level-34-intro.m4a",
     "picture": {
       "key": "story",
       "label": "story",
@@ -29,7 +31,7 @@
       "type": "pick",
       "prompt": {
         "text": "Who has a ball?",
-        "audio": null
+        "audio": "assets/voice/level-34-r1.m4a"
       },
       "card": {
         "text": "Sam has a red ball. He plays in the park.",
@@ -76,7 +78,7 @@
       "type": "pick",
       "prompt": {
         "text": "What does Sam have?",
-        "audio": null
+        "audio": "assets/voice/level-34-r2.m4a"
       },
       "card": {
         "text": "Sam has a red ball. He plays in the park.",
@@ -123,7 +125,7 @@
       "type": "pick",
       "prompt": {
         "text": "Where does he play?",
-        "audio": null
+        "audio": "assets/voice/level-34-r3.m4a"
       },
       "card": {
         "text": "Sam has a red ball. He plays in the park.",
@@ -170,7 +172,7 @@
       "type": "pick",
       "prompt": {
         "text": "Who sees a fish?",
-        "audio": null
+        "audio": "assets/voice/level-34-r4.m4a"
       },
       "card": {
         "text": "Mia sees a big fish in the sea.",
@@ -217,7 +219,7 @@
       "type": "pick",
       "prompt": {
         "text": "Where is the fish?",
-        "audio": null
+        "audio": "assets/voice/level-34-r5.m4a"
       },
       "card": {
         "text": "Mia sees a big fish in the sea.",
