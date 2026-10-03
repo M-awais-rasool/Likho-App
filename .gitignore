@@ -15,3 +15,11 @@ Thumbs.db
 .env.*
 !.env.example
 
+# Python (the media tools in tools/)
+.venv/
+__pycache__/
+
+# Downloads of the media tools (Fluent Emoji sources, the Kokoro voice model)
+tools/illustrations/.cache/
+tools/voice/.cache/
+

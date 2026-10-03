@@ -12,6 +12,7 @@ Likho/
 │   └── content/  courses, worlds, levels                  → backend/content/README.md
 ├── design/       prototype and mascot art the app is built from
 ├── docs/         how the pieces fit together              → docs/architecture.md
+├── tools/        course pictures (illustrations/) and Pencil's voice (voice/), Python
 └── .github/      CI for the app and the backend
 ```
 
@@ -60,6 +61,8 @@ defaults). For a real phone add `--dart-define=LIKHO_API=http://<this computer's
 | task | where |
 |---|---|
 | Add a level, world or course | `backend/content/` ([guide](backend/content/README.md)), then `make content` |
+| Add a picture for the content | key in `tools/illustrations/build_illustrations.py`, then run it |
+| Record Pencil's new or changed lines | `tools/voice/generate_voice.py` (Kokoro voice, `--print` checks pronunciations) |
 | Change an API endpoint | `backend/internal/api/` → service → repository; update `backend/docs/openapi.yaml` |
 | Change a screen | `app/lib/screens/` ([app guide](app/README.md)) |
 | Run all tests | `cd app && flutter test` · `cd backend && make test-db` |
