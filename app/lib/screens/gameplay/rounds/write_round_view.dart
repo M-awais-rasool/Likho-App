@@ -693,42 +693,50 @@ class _InkPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final ink = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round
-      ..strokeJoin = StrokeJoin.round
-      ..strokeWidth = 14
-      ..color = correct ? LikhoColors.success : (sand ? GameColors.sandInk : LikhoColors.ink);
-    final paths = <Path>[];
-    for (final st in controller.strokes) {
-      if (st.isEmpty) continue;
-      final p = Path()..moveTo(st.first.dx, st.first.dy);
-      for (var i = 1; i < st.length - 1; i++) {
-        final mid = (st[i] + st[i + 1]) / 2;
-        p.quadraticBezierTo(st[i].dx, st[i].dy, mid.dx, mid.dy);
-      }
-      p.lineTo(st.last.dx, st.last.dy + .01);
-      paths.add(p);
-    }
+    final g = controller.guide;
+    final paths = g != null ? _written(g) : [for (final st in controller.strokes) if (st.isNotEmpty) _smooth(st)];
+    final width = g != null ? math.max(10.0, g.lane.halfWidth * .62) : 14.0;
     if (correct) {
       final glow = Paint()
         ..style = PaintingStyle.stroke
         ..strokeCap = StrokeCap.round
         ..strokeJoin = StrokeJoin.round
-        ..strokeWidth = 14
+        ..strokeWidth = width
         ..color = GameColors.successInk
         ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 9);
       for (final p in paths) {
         canvas.drawPath(p, glow);
       }
     }
+    final ink = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round
+      ..strokeWidth = width
+      ..color = correct ? LikhoColors.success : (sand ? GameColors.sandInk : LikhoColors.ink);
     for (final p in paths) {
       canvas.drawPath(p, ink);
     }
   }
 
+  /// The finished strokes, and the current one up to where the finger is.
+  static List<Path> _written(StrokeGuide g) => [
+    for (var i = 0; i < math.min(g.stroke + 1, g.count); i++)
+      if (i < g.stroke || g.reached > 0) _smooth(g.lane.strokes[i].sublist(0, (i < g.stroke ? g.lane.strokes[i].length - 1 : g.reached) + 1)),
+  ];
+
+  static Path _smooth(List<Offset> st) {
+    final p = Path()..moveTo(st.first.dx, st.first.dy);
+    for (var i = 1; i < st.length - 1; i++) {
+      final mid = (st[i] + st[i + 1]) / 2;
+      p.quadraticBezierTo(st[i].dx, st[i].dy, mid.dx, mid.dy);
+    }
+    return p..lineTo(st.last.dx, st.last.dy + .01);
+  }
+
+  // a new pad (the next letter of a word) starts clean
   @override
-  bool shouldRepaint(_InkPainter old) => old.correct != correct || old.sand != sand;
+  bool shouldRepaint(_InkPainter old) => old.controller != controller || old.correct != correct || old.sand != sand;
 }
 
 class _Spark {

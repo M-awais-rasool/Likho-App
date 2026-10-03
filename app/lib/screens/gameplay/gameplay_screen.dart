@@ -29,9 +29,6 @@ class LevelResult {
   final int stars, mistakes;
 }
 
-/// 12 Gameplay, from export/Likho-Prototype.html (390 x 844). One screen for
-/// every level: the round type decides what the play area shows (see
-/// [_RoundArea]); everything else — header, mascot, prompt, feedback — is shared.
 class GameplayScreen extends ConsumerStatefulWidget {
   const GameplayScreen({super.key, required this.level, required this.onExit, required this.onFinished});
 
@@ -238,9 +235,8 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
       }
     }
     if (next.spellFilled > prev.spellFilled && !next.correct) {
-      // a spelled letter was accepted: a fresh pad for the next one
       final r = next.current;
-      _setPad(r is WriteRound ? r : null, letter: next.spellFilled);
+      if (r is WriteRound && next.spellFilled < (r.word ?? r.target ?? '').length) _setPad(r, letter: next.spellFilled);
       _mascot.play(MascotState.happy);
       _say('Wow!', const Duration(milliseconds: 700));
       _later(const Duration(milliseconds: 700), () {
