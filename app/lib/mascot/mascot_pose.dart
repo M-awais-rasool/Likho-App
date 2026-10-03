@@ -54,9 +54,7 @@ enum HandShape {
   open('hand_open'),
   wave('hand_wave'),
   thumbsUp('hand_thumbs_up'),
-  point('hand_point'),
-  fist('hand_fist'),
-  star('hand_star');
+  fist('hand_fist');
 
   const HandShape(this.part);
   final String part;

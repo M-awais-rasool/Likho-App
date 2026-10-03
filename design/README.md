@@ -10,6 +10,6 @@ Reference material the app is built from. Nothing here ships in the app.
 Where it is used:
 
 * `app/tool/mascot_trace/` turns `mascot/` into the app's mascot assets (`app/assets/mascot/`).
-* `backend/tools/prototype-import/` turned the prototype's level data into
-  `backend/content/courses/english-handwriting/`.
+* The first course (`backend/content/courses/english-handwriting/`) was imported once from the
+  prototype's level data; since then its JSON is edited by hand.
 * `app/assets/reference/` holds screen captures for the app's debug reference overlay.

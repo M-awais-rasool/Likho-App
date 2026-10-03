@@ -18,8 +18,6 @@ abstract final class LikhoColors {
   // Pencil tokens from the brief, for UI use. The mascot itself uses the values
   // measured on the master art (see [MascotColors]); they differ slightly.
   static const eraser = Color(0xFFFF9EB5);
-  static const metalBand = Color(0xFFC9CED6);
-  static const woodenCone = Color(0xFFE0B07A);
   static const graphite = Color(0xFF2B2D42);
 
   static const primaryDeep = Color(0xFFE0A21A); // 3D edge under yellow buttons (prototype)
@@ -314,7 +312,6 @@ abstract final class GameColors {
   static const hintTint = Color(0x33FF8A5B); // .2
   static const hintPale = Color(0xFFFFF1EA);
   static const hintBox = Color(0xFFFFF4EC);
-  static const glowYellow = Color(0x59FFC83D); // glowRing .35
   static const glowYellowSoft = Color(0x66FFC83D); // .4
   static const eraser = Color(0xFFF07F97);
 
@@ -424,7 +421,6 @@ abstract final class UiColors {
   static const link = Color(0xFF2F7CC0);
   static const error = Color(0xFFC2562E); // form hints (never red)
   static const okGreen = Color(0xFF1F7A4A);
-  static const apple = Color(0xFF1F2030);
   static const danger = Color(0xFF8C5A48); // "delete" text
   static const dangerTint = Color(0x1FFF8A5B); // rgba(255,138,91,.12)
   static const ink05 = Color(0x0D2B2D42);
@@ -435,8 +431,6 @@ abstract final class UiColors {
   static const black25 = Color(0x40000000);
   static const black35 = Color(0x59000000);
   static const white10 = Color(0x1AFFFFFF);
-  static const white45 = Color(0x73FFFFFF);
-  static const white75 = Color(0xBFFFFFFF);
   static const white80 = Color(0xCCFFFFFF);
   static const white92 = Color(0xEBFFFFFF);
   static const scrim = Color(0x8C1D1E2C); // rgba(29,30,44,.55), parent gate
@@ -600,10 +594,6 @@ abstract final class ParentColors {
 abstract final class LikhoSpace {
   static const double s1 = 8;
   static const double s2 = 16;
-  static const double s3 = 24;
-  static const double s4 = 32;
-  static const double s5 = 40;
-  static const double s6 = 48;
   static const double screenMargin = 24;
 }
 

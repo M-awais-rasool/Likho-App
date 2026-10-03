@@ -51,16 +51,6 @@ class TraceLane {
 
   bool contains(Offset p) => distance(p) <= halfWidth;
 
-  /// Whether the straight move [a] → [b] stays inside (a fast finger can
-  /// jump between two strokes; the ink must not cross the gap).
-  bool containsMove(Offset a, Offset b) {
-    final n = ((b - a).distance / 4).ceil();
-    for (var i = 1; i <= n; i++) {
-      if (!contains(Offset.lerp(a, b, i / n)!)) return false;
-    }
-    return true;
-  }
-
   /// Distance from [p] to the segment [a]–[b].
   static double segmentDistance(Offset p, Offset a, Offset b) {
     final ab = b - a;
