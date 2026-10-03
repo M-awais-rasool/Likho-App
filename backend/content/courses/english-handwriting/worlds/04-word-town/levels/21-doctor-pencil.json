@@ -10,6 +10,8 @@
   "intro": {
     "text": "nose",
     "word": "doctor",
+    "say": "Doctor Pencil is here! Let's learn the parts of the body.",
+    "audio": "assets/voice/level-21-intro.m4a",
     "picture": {
       "key": "doctor",
       "label": "doctor",
@@ -29,7 +31,7 @@
       "type": "pick",
       "prompt": {
         "text": "Touch the nose!",
-        "audio": null
+        "audio": "assets/voice/level-21-r1.m4a"
       },
       "card": {
         "text": "nose",
@@ -90,7 +92,7 @@
       "type": "pick",
       "prompt": {
         "text": "Touch the eye!",
-        "audio": null
+        "audio": "assets/voice/level-21-r2.m4a"
       },
       "card": {
         "text": "eye",
@@ -151,7 +153,7 @@
       "type": "pick",
       "prompt": {
         "text": "Touch the ear!",
-        "audio": null
+        "audio": "assets/voice/level-21-r3.m4a"
       },
       "card": {
         "text": "ear",
@@ -212,7 +214,7 @@
       "type": "pick",
       "prompt": {
         "text": "Touch the mouth!",
-        "audio": null
+        "audio": "assets/voice/level-21-r4.m4a"
       },
       "card": {
         "text": "mouth",
@@ -273,7 +275,7 @@
       "type": "pick",
       "prompt": {
         "text": "Touch the hand!",
-        "audio": null
+        "audio": "assets/voice/level-21-r5.m4a"
       },
       "card": {
         "text": "hand",

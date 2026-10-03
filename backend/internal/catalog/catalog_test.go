@@ -92,6 +92,17 @@ func course() fstest.MapFS {
 
 func itoa(n int) string { b, _ := json.Marshal(n); return string(b) }
 
+func TestSpokenWordsAndRecordings(t *testing.T) {
+	fs := course()
+	f := fs["courses/demo/worlds/01-one/levels/01-a.json"]
+	f.Data = bytes.Replace(f.Data, []byte(`"intro":{"text":"A","word":"apple"`),
+		[]byte(`"intro":{"text":"A","word":"apple","say":"{A|ˈeɪ} is for apple!","audio":"assets/voice/l1-intro.m4a"`), 1)
+	f.Data = bytes.Replace(f.Data, []byte(`"prompt":{"text":"Trace A"}`), []byte(`"prompt":{"text":"Trace A","say":"Trace {A|ˈeɪ}.","audio":"https://cdn.likho.app/a.m4a"}`), 1)
+	if _, err := Load(fs, Options{}); err != nil {
+		t.Fatalf("say with pronunciations and assets or URLs are fine: %v", err)
+	}
+}
+
 func TestASmallCourseLoads(t *testing.T) {
 	cat, err := Load(course(), Options{})
 	if err != nil {
@@ -137,6 +148,14 @@ func TestContentProblemsAreReportedWithTheirFile(t *testing.T) {
 			fs["courses/demo/worlds/02-two/levels/9-c.json"] = fs["courses/demo/worlds/02-two/levels/03-c.json"]
 			delete(fs, "courses/demo/worlds/02-two/levels/03-c.json")
 		}, []string{"9-c.json", "must start with the level number (03-"}},
+		{"recording that is neither an app asset nor a URL", func(fs fstest.MapFS) {
+			f := fs["courses/demo/worlds/01-one/levels/01-a.json"]
+			f.Data = bytes.Replace(f.Data, []byte(`"prompt":{"text":"Trace A"}`), []byte(`"prompt":{"text":"Trace A","audio":"voice/a.m4a"}`), 1)
+		}, []string{"01-a.json rounds[0] prompt", `audio "voice/a.m4a" must be an app asset`}},
+		{"pronunciation without its IPA", func(fs fstest.MapFS) {
+			f := fs["courses/demo/worlds/01-one/levels/01-a.json"]
+			f.Data = bytes.Replace(f.Data, []byte(`"intro":{"text":"A","word":"apple"`), []byte(`"intro":{"text":"A","word":"apple","say":"Small {a}!"`), 1)
+		}, []string{"01-a.json intro", `say "Small {a}!": a pronunciation is written {shown|IPA}`}},
 		{"levels go backwards across worlds", func(fs fstest.MapFS) {
 			fs["courses/demo/worlds/01-one/levels/03-c.json"] = fs["courses/demo/worlds/02-two/levels/03-c.json"]
 			fs["courses/demo/worlds/02-two/levels/02-b.json"] = fs["courses/demo/worlds/01-one/levels/02-b.json"]

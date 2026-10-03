@@ -10,6 +10,8 @@
   "intro": {
     "text": "Hi!",
     "word": "alien",
+    "say": "Hi! Let's talk to the friendly aliens.",
+    "audio": "assets/voice/level-32-intro.m4a",
     "picture": {
       "key": "alien",
       "label": "alien",
@@ -29,7 +31,7 @@
       "type": "speak",
       "prompt": {
         "text": "What is your name?",
-        "audio": null
+        "audio": "assets/voice/level-32-r1.m4a"
       },
       "card": {
         "text": "What is your name?",
@@ -45,7 +47,7 @@
       "type": "speak",
       "prompt": {
         "text": "How old are you?",
-        "audio": null
+        "audio": "assets/voice/level-32-r2.m4a"
       },
       "card": {
         "text": "How old are you?",
@@ -61,7 +63,7 @@
       "type": "speak",
       "prompt": {
         "text": "What color do you like?",
-        "audio": null
+        "audio": "assets/voice/level-32-r3.m4a"
       },
       "card": {
         "text": "What color do you like?",
@@ -77,7 +79,7 @@
       "type": "speak",
       "prompt": {
         "text": "Do you have a pet?",
-        "audio": null
+        "audio": "assets/voice/level-32-r4.m4a"
       },
       "card": {
         "text": "Do you have a pet?",
@@ -93,7 +95,7 @@
       "type": "speak",
       "prompt": {
         "text": "Say goodbye!",
-        "audio": null
+        "audio": "assets/voice/level-32-r5.m4a"
       },
       "card": {
         "text": "Say goodbye!",

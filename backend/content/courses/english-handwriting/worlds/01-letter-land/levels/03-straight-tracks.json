@@ -10,6 +10,8 @@
   "intro": {
     "text": "L",
     "word": "lion",
+    "say": "L is for lion! Let's draw straight lines.",
+    "audio": "assets/voice/level-03-intro.m4a",
     "picture": {
       "key": "lion",
       "label": "lion",
@@ -29,7 +31,7 @@
       "type": "write",
       "prompt": {
         "text": "Trace L",
-        "audio": null
+        "audio": "assets/voice/level-03-r1.m4a"
       },
       "card": {
         "text": "L",
@@ -55,7 +57,7 @@
       "type": "write",
       "prompt": {
         "text": "Trace T",
-        "audio": null
+        "audio": "assets/voice/level-03-r2.m4a"
       },
       "card": {
         "text": "T",
@@ -81,7 +83,7 @@
       "type": "write",
       "prompt": {
         "text": "Join E",
-        "audio": null
+        "audio": "assets/voice/level-03-r3.m4a"
       },
       "card": {
         "text": "E",
@@ -107,7 +109,7 @@
       "type": "write",
       "prompt": {
         "text": "Join F",
-        "audio": null
+        "audio": "assets/voice/level-03-r4.m4a"
       },
       "card": {
         "text": "F",
@@ -133,7 +135,7 @@
       "type": "write",
       "prompt": {
         "text": "Trace H",
-        "audio": null
+        "audio": "assets/voice/level-03-r5.m4a"
       },
       "card": {
         "text": "H",

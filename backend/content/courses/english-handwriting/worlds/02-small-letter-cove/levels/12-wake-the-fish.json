@@ -10,6 +10,8 @@
   "intro": {
     "text": "a m s",
     "word": "fish",
+    "say": "The fish is fast asleep. Let's wake it up!",
+    "audio": "assets/voice/level-12-intro.m4a",
     "picture": {
       "key": "fish",
       "label": "fish",
@@ -29,7 +31,8 @@
       "type": "write",
       "prompt": {
         "text": "Write a",
-        "audio": null
+        "say": "Write small {a|ˈeɪ}.",
+        "audio": "assets/voice/level-12-r1.m4a"
       },
       "card": {
         "text": "a",
@@ -51,7 +54,7 @@
       "type": "write",
       "prompt": {
         "text": "Write m",
-        "audio": null
+        "audio": "assets/voice/level-12-r2.m4a"
       },
       "card": {
         "text": "m",
@@ -73,7 +76,7 @@
       "type": "write",
       "prompt": {
         "text": "Write s",
-        "audio": null
+        "audio": "assets/voice/level-12-r3.m4a"
       },
       "card": {
         "text": "s",
@@ -95,7 +98,7 @@
       "type": "write",
       "prompt": {
         "text": "Write t",
-        "audio": null
+        "audio": "assets/voice/level-12-r4.m4a"
       },
       "card": {
         "text": "t",
@@ -117,7 +120,7 @@
       "type": "write",
       "prompt": {
         "text": "Write e",
-        "audio": null
+        "audio": "assets/voice/level-12-r5.m4a"
       },
       "card": {
         "text": "e",

@@ -10,6 +10,8 @@
   "intro": {
     "text": "★",
     "word": "moon",
+    "say": "The moon is sleeping. Let's read and write to wake it up!",
+    "audio": "assets/voice/level-36-intro.m4a",
     "picture": {
       "key": "moon",
       "label": "moon",
@@ -29,7 +31,7 @@
       "type": "pick",
       "prompt": {
         "text": "The cat is on the box.",
-        "audio": null
+        "audio": "assets/voice/level-36-r1.m4a"
       },
       "card": {
         "text": "The cat is on the box.",
@@ -77,7 +79,7 @@
       "type": "write",
       "prompt": {
         "text": "moon",
-        "audio": null
+        "audio": "assets/voice/level-36-r2.m4a"
       },
       "card": {
         "text": null,
@@ -103,7 +105,7 @@
       "type": "speak",
       "prompt": {
         "text": "Say: I love to read!",
-        "audio": null
+        "audio": "assets/voice/level-36-r3.m4a"
       },
       "card": {
         "text": "I love to read!",
@@ -119,7 +121,7 @@
       "type": "pick",
       "prompt": {
         "text": "Who has a kite?",
-        "audio": null
+        "audio": "assets/voice/level-36-r4.m4a"
       },
       "card": {
         "text": "Ali has a kite. Sara has a ball.",
@@ -166,7 +168,7 @@
       "type": "write",
       "prompt": {
         "text": "I can read.",
-        "audio": null
+        "audio": "assets/voice/level-36-r5.m4a"
       },
       "card": {
         "text": "I can read.",

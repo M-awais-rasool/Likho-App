@@ -10,6 +10,8 @@
   "intro": {
     "text": "bus",
     "word": "robot-bus",
+    "say": "The robot bus is sleeping. Let's write words to wake it up!",
+    "audio": "assets/voice/level-24-intro.m4a",
     "picture": {
       "key": "robot-bus",
       "label": "robot-bus",
@@ -29,7 +31,7 @@
       "type": "write",
       "prompt": {
         "text": "bus",
-        "audio": null
+        "audio": "assets/voice/level-24-r1.m4a"
       },
       "card": {
         "text": null,
@@ -55,7 +57,7 @@
       "type": "write",
       "prompt": {
         "text": "hat",
-        "audio": null
+        "audio": "assets/voice/level-24-r2.m4a"
       },
       "card": {
         "text": null,
@@ -81,7 +83,7 @@
       "type": "write",
       "prompt": {
         "text": "cup",
-        "audio": null
+        "audio": "assets/voice/level-24-r3.m4a"
       },
       "card": {
         "text": null,
@@ -107,7 +109,7 @@
       "type": "write",
       "prompt": {
         "text": "sun",
-        "audio": null
+        "audio": "assets/voice/level-24-r4.m4a"
       },
       "card": {
         "text": null,
@@ -133,7 +135,7 @@
       "type": "write",
       "prompt": {
         "text": "cat",
-        "audio": null
+        "audio": "assets/voice/level-24-r5.m4a"
       },
       "card": {
         "text": null,

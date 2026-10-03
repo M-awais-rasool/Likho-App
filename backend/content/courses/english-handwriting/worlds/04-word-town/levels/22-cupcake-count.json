@@ -10,6 +10,8 @@
   "intro": {
     "text": "1 2 3",
     "word": "cupcake",
+    "say": "One, two, three! Let's count the cupcakes.",
+    "audio": "assets/voice/level-22-intro.m4a",
     "picture": {
       "key": "cupcake",
       "label": "cupcake",
@@ -29,7 +31,7 @@
       "type": "pick",
       "prompt": {
         "text": "How many?",
-        "audio": null
+        "audio": "assets/voice/level-22-r1.m4a"
       },
       "card": {
         "text": "How many?",
@@ -76,7 +78,7 @@
       "type": "pick",
       "prompt": {
         "text": "How many?",
-        "audio": null
+        "audio": "assets/voice/level-22-r2.m4a"
       },
       "card": {
         "text": "How many?",
@@ -123,7 +125,7 @@
       "type": "pick",
       "prompt": {
         "text": "How many?",
-        "audio": null
+        "audio": "assets/voice/level-22-r3.m4a"
       },
       "card": {
         "text": "How many?",
@@ -170,7 +172,7 @@
       "type": "pick",
       "prompt": {
         "text": "How many?",
-        "audio": null
+        "audio": "assets/voice/level-22-r4.m4a"
       },
       "card": {
         "text": "How many?",
@@ -217,7 +219,7 @@
       "type": "pick",
       "prompt": {
         "text": "How many?",
-        "audio": null
+        "audio": "assets/voice/level-22-r5.m4a"
       },
       "card": {
         "text": "How many?",

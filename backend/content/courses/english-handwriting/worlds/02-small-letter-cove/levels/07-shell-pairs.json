@@ -10,6 +10,8 @@
   "intro": {
     "text": "Aa",
     "word": "shell",
+    "say": "Big {A|ˈeɪ}, small {a|ˈeɪ}! Let's match the shell pairs.",
+    "audio": "assets/voice/level-07-intro.m4a",
     "picture": {
       "key": "shell",
       "label": "shell",
@@ -29,7 +31,8 @@
       "type": "pick",
       "prompt": {
         "text": "Find a",
-        "audio": null
+        "say": "Find small {a|ˈeɪ}!",
+        "audio": "assets/voice/level-07-r1.m4a"
       },
       "card": {
         "text": "A",
@@ -76,7 +79,7 @@
       "type": "pick",
       "prompt": {
         "text": "Find b",
-        "audio": null
+        "audio": "assets/voice/level-07-r2.m4a"
       },
       "card": {
         "text": "B",
@@ -123,7 +126,7 @@
       "type": "pick",
       "prompt": {
         "text": "Find d",
-        "audio": null
+        "audio": "assets/voice/level-07-r3.m4a"
       },
       "card": {
         "text": "D",
@@ -170,7 +173,7 @@
       "type": "pick",
       "prompt": {
         "text": "Find g",
-        "audio": null
+        "audio": "assets/voice/level-07-r4.m4a"
       },
       "card": {
         "text": "G",
@@ -217,7 +220,7 @@
       "type": "pick",
       "prompt": {
         "text": "Find e",
-        "audio": null
+        "audio": "assets/voice/level-07-r5.m4a"
       },
       "card": {
         "text": "E",

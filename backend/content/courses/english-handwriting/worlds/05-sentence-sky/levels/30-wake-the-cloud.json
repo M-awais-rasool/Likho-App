@@ -10,6 +10,8 @@
   "intro": {
     "text": "I see",
     "word": "cloud",
+    "say": "The cloud is sleeping. Let's write sentences to wake it up!",
+    "audio": "assets/voice/level-30-intro.m4a",
     "picture": {
       "key": "cloud",
       "label": "cloud",
@@ -29,7 +31,7 @@
       "type": "write",
       "prompt": {
         "text": "I see a cat.",
-        "audio": null
+        "audio": "assets/voice/level-30-r1.m4a"
       },
       "card": {
         "text": "I see a cat.",
@@ -51,7 +53,7 @@
       "type": "write",
       "prompt": {
         "text": "I can run.",
-        "audio": null
+        "audio": "assets/voice/level-30-r2.m4a"
       },
       "card": {
         "text": "I can run.",
@@ -73,7 +75,7 @@
       "type": "write",
       "prompt": {
         "text": "The sun is up.",
-        "audio": null
+        "audio": "assets/voice/level-30-r3.m4a"
       },
       "card": {
         "text": "The sun is up.",
@@ -95,7 +97,7 @@
       "type": "write",
       "prompt": {
         "text": "I like red.",
-        "audio": null
+        "audio": "assets/voice/level-30-r4.m4a"
       },
       "card": {
         "text": "I like red.",
@@ -117,7 +119,7 @@
       "type": "write",
       "prompt": {
         "text": "We can play.",
-        "audio": null
+        "audio": "assets/voice/level-30-r5.m4a"
       },
       "card": {
         "text": "We can play.",

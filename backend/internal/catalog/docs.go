@@ -6,6 +6,8 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"fmt"
+	"regexp"
+	"strings"
 
 	"likho/backend/internal/model"
 )
@@ -124,6 +126,8 @@ type pictureDoc struct {
 type introDoc struct {
 	Text    string      `json:"text"`
 	Word    string      `json:"word"`
+	Say     *string     `json:"say"`
+	Audio   *string     `json:"audio"`
 	Picture *pictureDoc `json:"picture"`
 }
 
@@ -140,6 +144,7 @@ type roundDoc struct {
 	Type   string `json:"type"`
 	Prompt *struct {
 		Text  string  `json:"text"`
+		Say   *string `json:"say"`
 		Audio *string `json:"audio"`
 	} `json:"prompt"`
 	Card *struct {
@@ -215,8 +220,34 @@ func (c *checker) level(l *parsed[levelDoc]) {
 	case len(d.Rounds) == 0:
 		c.p.add(file, "a level needs at least one round")
 	}
+	if d.Intro != nil {
+		c.speech(file+" intro", d.Intro.Say, d.Intro.Audio)
+	}
 	for i := range d.Rounds {
 		c.round(file, i, &d.Rounds[i])
+	}
+}
+
+var (
+	audioRe = regexp.MustCompile(`^(assets/.+\.(m4a|wav|mp3)|https?://.+)$`)
+	// {shown|IPA}: what the device voice reads | what recordings say
+	pronRe = regexp.MustCompile(`\{[^{}|]+\|[^{}|]+\}`)
+)
+
+// speech checks spoken words and their recording: `say` is not empty and
+// its {shown|IPA} parts are complete, `audio` is an app asset or a URL.
+func (c *checker) speech(at string, say, audio *string) {
+	if say != nil {
+		rest := pronRe.ReplaceAllString(*say, "")
+		switch {
+		case strings.TrimSpace(*say) == "":
+			c.p.add(at, "say is empty (leave it out to say the text)")
+		case strings.ContainsAny(rest, "{}|"):
+			c.p.add(at, "say %q: a pronunciation is written {shown|IPA}", *say)
+		}
+	}
+	if audio != nil && !audioRe.MatchString(*audio) {
+		c.p.add(at, "audio %q must be an app asset (assets/….m4a, .wav or .mp3) or an http(s) URL", *audio)
 	}
 }
 
@@ -230,6 +261,8 @@ func (c *checker) round(file string, i int, r *roundDoc) {
 	c.roundIDs[r.ID] = file
 	if r.Prompt == nil || r.Prompt.Text == "" {
 		c.p.add(at, "prompt.text is required")
+	} else {
+		c.speech(at+" prompt", r.Prompt.Say, r.Prompt.Audio)
 	}
 	if !roundTypes[r.Type] {
 		c.p.add(at, "type %q is not one of pick, write, order, speak", r.Type)

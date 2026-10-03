@@ -10,6 +10,8 @@
   "intro": {
     "text": "red",
     "word": "paint",
+    "say": "Red, blue, yellow! Let's paint with color words.",
+    "audio": "assets/voice/level-19-intro.m4a",
     "picture": {
       "key": "paint",
       "label": "paint",
@@ -29,7 +31,7 @@
       "type": "pick",
       "prompt": {
         "text": "red",
-        "audio": null
+        "audio": "assets/voice/level-19-r1.m4a"
       },
       "card": {
         "text": "red",
@@ -76,7 +78,7 @@
       "type": "pick",
       "prompt": {
         "text": "blue",
-        "audio": null
+        "audio": "assets/voice/level-19-r2.m4a"
       },
       "card": {
         "text": "blue",
@@ -123,7 +125,7 @@
       "type": "pick",
       "prompt": {
         "text": "yellow",
-        "audio": null
+        "audio": "assets/voice/level-19-r3.m4a"
       },
       "card": {
         "text": "yellow",
@@ -170,7 +172,7 @@
       "type": "pick",
       "prompt": {
         "text": "green",
-        "audio": null
+        "audio": "assets/voice/level-19-r4.m4a"
       },
       "card": {
         "text": "green",
@@ -217,7 +219,7 @@
       "type": "pick",
       "prompt": {
         "text": "purple",
-        "audio": null
+        "audio": "assets/voice/level-19-r5.m4a"
       },
       "card": {
         "text": "purple",

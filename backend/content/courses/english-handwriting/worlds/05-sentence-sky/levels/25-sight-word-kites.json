@@ -10,6 +10,8 @@
   "intro": {
     "text": "the",
     "word": "kite",
+    "say": "The! Let's fly the word kites.",
+    "audio": "assets/voice/level-25-intro.m4a",
     "picture": {
       "key": "kite",
       "label": "kite",
@@ -29,7 +31,7 @@
       "type": "pick",
       "prompt": {
         "text": "the",
-        "audio": null
+        "audio": "assets/voice/level-25-r1.m4a"
       },
       "card": {
         "text": "the",
@@ -83,7 +85,7 @@
       "type": "pick",
       "prompt": {
         "text": "is",
-        "audio": null
+        "audio": "assets/voice/level-25-r2.m4a"
       },
       "card": {
         "text": "is",
@@ -137,7 +139,7 @@
       "type": "pick",
       "prompt": {
         "text": "and",
-        "audio": null
+        "audio": "assets/voice/level-25-r3.m4a"
       },
       "card": {
         "text": "and",
@@ -191,7 +193,7 @@
       "type": "pick",
       "prompt": {
         "text": "see",
-        "audio": null
+        "audio": "assets/voice/level-25-r4.m4a"
       },
       "card": {
         "text": "see",
@@ -245,7 +247,7 @@
       "type": "pick",
       "prompt": {
         "text": "can",
-        "audio": null
+        "audio": "assets/voice/level-25-r5.m4a"
       },
       "card": {
         "text": "can",
