@@ -6,6 +6,7 @@ Reference material the app is built from. Nothing here ships in the app.
 |---|---|
 | `prototype/` | The clickable HTML prototype (`Likho-Prototype.html`, open it in a browser) with screen and level captures in `screens/` and `levels/`. Screens, colours, copy and level data come from here. Older code comments call it `export/`. |
 | `mascot/` | Pencil the mascot: the master art sheets (Gemini images) the app's mascot rig and accessories were traced from. Older code comments call it `mascot's/`. |
+| `app-icon/` | Store icons made by `app/tool/app_icon/`: `google-play-512.png` for the Play Store listing and `likho-icon-1024.png`. The App Store takes its icon from the iOS build. |
 
 Where it is used:
 

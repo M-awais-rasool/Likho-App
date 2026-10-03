@@ -16,10 +16,13 @@ import 'rig/svg_part.dart';
 /// Arms are drawn behind the body and hands in front: on the master the arms
 /// come out from behind the body, so this is what keeps the idle pose exact.
 class MascotPainter extends CustomPainter {
-  MascotPainter({required this.controller, required this.parts}) : super(repaint: controller);
+  MascotPainter({required this.controller, required this.parts, this.shadow = true}) : super(repaint: controller);
 
   final MascotController controller;
   final MascotParts parts;
+
+  /// Draws the ground shadow under the feet (the app icon brings its own).
+  final bool shadow;
 
   final Paint _paint = Paint()..isAntiAlias = true;
   final Paint _line = Paint()
@@ -62,7 +65,7 @@ class MascotPainter extends CustomPainter {
 
     canvas.save();
     canvas.scale(size.height / PencilRig.artboard.height);
-    _shadow(canvas, p);
+    if (shadow) _shadow(canvas, p);
 
     // whole body: translate, then rotate/squash around the feet
     final f = PencilRig.feet;

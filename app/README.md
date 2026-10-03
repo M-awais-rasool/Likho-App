@@ -37,8 +37,8 @@ app/
 ├── test/                widget + data tests; fixtures/ = the course as the API serves it
 ├── assets/              mascot, sounds, course pictures (illustrations/), Pencil's voice (voice/),
 │                        reference captures (debug)
-├── tool/                asset generators: sound_design/ (sound effects), mascot_trace/ (mascot art);
-│                        course pictures and Pencil's voice: ../tools/
+├── tool/                asset generators: sound_design/ (sound effects), mascot_trace/ (mascot art),
+│                        app_icon/ (iOS and Android app icons); course pictures and Pencil's voice: ../tools/
 ├── docs/                architecture.md, sound_and_haptics.md
 ├── android/ · ios/
 ```
