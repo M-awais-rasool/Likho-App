@@ -1,0 +1,5 @@
+kokoro-onnx
+# the last onnxruntime with Intel Mac builds
+onnxruntime==1.23.2
+soundfile
+numpy
