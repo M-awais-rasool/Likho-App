@@ -50,7 +50,7 @@ class PromptVoice {
       final started = DateTime.now();
       if (tts != null) {
         try {
-          await tts.speak(prompt.text.replaceAll(RegExp(r'[/_]'), ' '));
+          await tts.speak(prompt.spoken.replaceAll(RegExp(r'[/_]'), ' '));
         } catch (_) {}
       }
       // keep the talking pose at least as long as the prototype (1.2 s)

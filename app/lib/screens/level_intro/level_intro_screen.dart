@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,40 +12,82 @@ import '../../mascot/mascot.dart';
 import '../gameplay/widgets/illustration.dart';
 
 /// 11 Level intro, from the prototype: level name, the big letters/word,
-/// its picture and Pencil talking. After 2.3 s everything lifts away; at
-/// 2.7 s (or on tap) the level starts.
+/// its picture and Pencil talking. Everything is in place by 2.3 s; then,
+/// once Pencil has said the intro's line (`intro.audio`, from 0.55 s), it
+/// all lifts away in 0.4 s and the level starts (or at once on tap).
+/// Without a recording Pencil only moves his mouth, as in the prototype.
 class LevelIntroScreen extends ConsumerStatefulWidget {
   const LevelIntroScreen({super.key, required this.level, required this.onDone});
   final CourseLevel level;
   final VoidCallback onDone;
 
+  /// When Pencil starts talking (after the letters pop and sparkle).
+  static const voiceAt = Duration(milliseconds: 550);
+
+  /// The longest a line may hold the intro (a recording that never ends).
+  static const maxVoice = Duration(seconds: 8);
+
   @override
   ConsumerState<LevelIntroScreen> createState() => _LevelIntroScreenState();
 }
 
-class _LevelIntroScreenState extends ConsumerState<LevelIntroScreen> with SingleTickerProviderStateMixin {
-  late final AnimationController _t = AnimationController(vsync: this, duration: const Duration(milliseconds: 2700));
+class _LevelIntroScreenState extends ConsumerState<LevelIntroScreen> with TickerProviderStateMixin {
+  late final AnimationController _t = AnimationController(vsync: this, duration: const Duration(milliseconds: 2300));
+  late final AnimationController _out = AnimationController(vsync: this, duration: const Duration(milliseconds: 400));
   final _mascot = MascotController();
-  bool _left = false;
+  final List<Timer> _timers = [];
+  bool _left = false, _shown = false, _said = false;
 
   @override
   void initState() {
     super.initState();
-    _mascot
-      ..setBodyColor(ref.read(progressProvider).color.key)
-      ..play(MascotState.talking);
-    _t.forward().whenComplete(_leave);
+    _mascot.setBodyColor(ref.read(progressProvider).color.key);
+    final audio = widget.level.intro.audio;
+    if (audio == null) {
+      _mascot.play(MascotState.talking);
+      _said = true;
+    } else {
+      _timers
+        ..add(Timer(LevelIntroScreen.voiceAt, () => _speak(audio)))
+        ..add(Timer(LevelIntroScreen.voiceAt + LevelIntroScreen.maxVoice, _saidIt));
+    }
+    _t.forward().whenComplete(() {
+      _shown = true;
+      _maybeOut();
+    });
+  }
+
+  Future<void> _speak(String audio) async {
+    if (!mounted) return;
+    await _mascot.say(audio);
+    _saidIt();
+  }
+
+  void _saidIt() {
+    if (_said || !mounted) return;
+    _said = true;
+    _maybeOut();
+  }
+
+  void _maybeOut() {
+    if (!_shown || !_said || !mounted || _out.isAnimating || _out.isCompleted) return;
+    _out.forward().whenComplete(_leave);
   }
 
   void _leave() {
     if (_left || !mounted) return;
     _left = true;
+    _mascot.play(MascotState.idle); // stops the voice when skipped
     widget.onDone();
   }
 
   @override
   void dispose() {
+    for (final t in _timers) {
+      t.cancel();
+    }
     _t.dispose();
+    _out.dispose();
     _mascot.dispose();
     super.dispose();
   }
@@ -67,12 +111,11 @@ class _LevelIntroScreenState extends ConsumerState<LevelIntroScreen> with Single
               gradient: RadialGradient(center: Alignment(0, -.2), radius: .9, colors: [GameColors.white55, GameColors.white00], stops: [0, .6]),
             ),
             child: AnimatedBuilder(
-              animation: _t,
+              animation: Listenable.merge([_t, _out]),
               builder: (context, _) {
-                final sec = _t.value * 2.7;
-                final out = sec >= 2.3;
+                final sec = _t.value * 2.3;
                 double seg(double a, double b) => ((sec - a) / (b - a)).clamp(0.0, 1.0);
-                final outK = Curves.easeInOut.transform(seg(2.3, 2.7));
+                final outK = Curves.easeInOut.transform(_out.value);
                 final lift = Matrix4.identity()
                   ..translateByDouble(0, -150 * outK, 0, 1)
                   ..scaleByDouble(1 - .65 * outK, 1 - .65 * outK, 1, 1);
@@ -81,7 +124,7 @@ class _LevelIntroScreenState extends ConsumerState<LevelIntroScreen> with Single
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Opacity(
-                        opacity: seg(0, .4) * (out ? 1 - seg(2.3, 2.6) : 1),
+                        opacity: seg(0, .4) * (1 - (_out.value / .75).clamp(0.0, 1.0)),
                         child: Text(
                           widget.level.name.toUpperCase(),
                           style: LikhoFonts.title(size: 16, color: color).copyWith(letterSpacing: 16 * .06),
@@ -114,16 +157,21 @@ class _LevelIntroScreenState extends ConsumerState<LevelIntroScreen> with Single
                           transform: lift,
                           child: Transform.scale(
                             scale: _popIn(seg(.35, .8)),
+                            // the picture on a white card (the prototype's 170 x 130 frame)
                             child: Container(
+                              width: 170,
+                              height: 130,
+                              padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
+                                color: LikhoColors.surface,
                                 borderRadius: BorderRadius.circular(30),
                                 boxShadow: const [BoxShadow(color: GameColors.ink12, offset: Offset(0, 10), blurRadius: 24)],
                               ),
                               child: Illustration(
                                 picture: Picture(key: intro.picture?.key ?? intro.word, label: 'illustration: ${intro.word}', url: intro.picture?.url),
-                                width: 170,
-                                height: 130,
-                                radius: 30,
+                                width: 150,
+                                height: 110,
+                                radius: 20,
                                 fontSize: 12,
                                 stripe: 7,
                               ),
@@ -152,7 +200,8 @@ class _LevelIntroScreenState extends ConsumerState<LevelIntroScreen> with Single
 
   static double _popIn(double p) {
     const c = Cubic(.34, 1.56, .64, 1);
-    return p < .7 ? 1.1 * c.transform(p / .7) : 1.1 - .1 * c.transform((p - .7) / .3);
+    // (1 - .7) / .3 is a hair above 1 in floating point: clamp for Curve.transform
+    return p < .7 ? 1.1 * c.transform(p / .7) : 1.1 - .1 * c.transform(((p - .7) / .3).clamp(0.0, 1.0));
   }
 }
 

@@ -146,13 +146,27 @@ class CourseLevel {
 
 @immutable
 class LevelIntro {
-  const LevelIntro({required this.text, required this.word, this.picture});
+  const LevelIntro({required this.text, required this.word, this.picture, this.say, this.audio});
   final String text; // big letters on the intro card, e.g. "B" or "c-a-t"
   final String word; // what the illustration shows, e.g. "balloon"
   final Picture? picture;
 
-  factory LevelIntro.fromJson(JsonReader r) => LevelIntro(text: r.optString('text') ?? '', word: r.optString('word') ?? '', picture: r.optPicture('picture'));
+  /// What Pencil says while the intro shows ("B! B is for balloon."), with
+  /// its recording ([audio], an asset path or URL).
+  final String? say, audio;
+
+  factory LevelIntro.fromJson(JsonReader r) => LevelIntro(
+    text: r.optString('text') ?? '',
+    word: r.optString('word') ?? '',
+    picture: r.optPicture('picture'),
+    say: r.optString('say'),
+    audio: r.optString('audio'),
+  );
 }
+
+/// Spoken words as the device voice should read them: a pronunciation
+/// written {shown|IPA} (for recordings) becomes its shown part.
+String spokenText(String words) => words.replaceAllMapped(RegExp(r'\{([^{}|]+)\|[^{}|]+\}'), (m) => m[1]!);
 
 /// How a level looks. Each field is optional; views fall back to defaults.
 @immutable
@@ -196,14 +210,18 @@ class Picture {
 }
 
 /// What the mascot says. [audio] is an asset path or URL of a recording;
-/// without one the text is spoken with the device voice.
+/// without one the device voice reads [say] (when the words on screen are
+/// not what to say, e.g. "/b/") or [text].
 @immutable
 class Prompt {
-  const Prompt({required this.text, this.audio});
+  const Prompt({required this.text, this.say, this.audio});
   final String text;
-  final String? audio;
+  final String? say, audio;
 
-  factory Prompt.fromJson(JsonReader r) => Prompt(text: r.string('text'), audio: r.optString('audio'));
+  /// What the device voice reads when there is no recording.
+  String get spoken => spokenText(say ?? text);
+
+  factory Prompt.fromJson(JsonReader r) => Prompt(text: r.string('text'), say: r.optString('say'), audio: r.optString('audio'));
 }
 
 /// The white card next to the mascot.
