@@ -27,9 +27,12 @@ class ReferenceOverlay extends ConsumerWidget {
   final Size designSize;
   final Alignment alignment;
 
+  /// The store screenshot tool turns the overlay and its chip off.
+  static bool enabled = true;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (!kDebugMode) return child;
+    if (!kDebugMode || !enabled) return child;
     final s = ref.watch(referenceOverlayProvider);
     final n = ref.read(referenceOverlayProvider.notifier);
     final top = MediaQuery.paddingOf(context).top;

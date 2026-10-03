@@ -223,7 +223,8 @@ class MascotPainter extends CustomPainter {
     final c = s + _rot(Offset(cl.dx * ap.reach, cl.dy + sign * ap.bend), ang);
     final w = s + _rot(Offset(len0 * ap.reach, 0), ang);
     final t = w - c;
-    return _ArmGeo(side, s, c, w, math.atan2(t.dy, t.dx));
+    final r = ((ap.raise - PencilRig.armStraightFrom) / (PencilRig.armStraightAt - PencilRig.armStraightFrom)).clamp(0.0, 1.0);
+    return _ArmGeo(side, s, c, w, math.atan2(t.dy, t.dx), r * r * (3 - 2 * r));
   }
 
   void _arm(Canvas canvas, _ArmGeo g, BodySwatch sw, {double from = 0}) {
@@ -235,6 +236,23 @@ class MascotPainter extends CustomPainter {
       final l = d.distance == 0 ? 1.0 : d.distance;
       return Offset(-d.dy / l, d.dx / l) * outer; // points to the outer edge
     });
+    // A raised back arm's underside (inner offsets) runs straight into the
+    // body from the end of the shoulder flare (see PencilRig.armFlareEnd).
+    final j = (PencilRig.armFlareEnd * n).round();
+    final run = <double>[0]; // arc length
+    for (var i = 1; i <= n; i++) {
+      run.add(run.last + (pts[i] - pts[i - 1]).distance);
+    }
+    final dj = _dbez(g, j / n);
+    final along = dj / (dj.distance == 0 ? 1.0 : dj.distance);
+    final straight = from > 0 ? 0.0 : g.lift; // front arms keep their round root
+    Offset at(int i, double Function(double hw) f) {
+      final p = pts[i] + nrm[i] * f(PencilRig.armHalfWidthAt(i / n));
+      final o = f(PencilRig.armHalfWidthAt(j / n));
+      if (i >= j || straight == 0 || o >= 0) return p;
+      return Offset.lerp(p, pts[j] + nrm[j] * o - along * (run[j] - run[i]), straight)!;
+    }
+
     Path band(double Function(double hw) a, double Function(double hw) b, double start) {
       final path = Path();
       final back = <Offset>[];
@@ -242,9 +260,8 @@ class MascotPainter extends CustomPainter {
       for (var i = 0; i <= n; i++) {
         final s = i / n;
         if (s < math.max(start, from)) continue;
-        final hw = PencilRig.armHalfWidthAt(s);
-        final pa = pts[i] + nrm[i] * a(hw);
-        back.add(pts[i] + nrm[i] * b(hw));
+        final pa = at(i, a);
+        back.add(at(i, b));
         if (first) {
           path.moveTo(pa.dx, pa.dy);
           first = false;
@@ -463,8 +480,11 @@ class MascotPainter extends CustomPainter {
 }
 
 class _ArmGeo {
-  _ArmGeo(this.side, this.s, this.c, this.w, this.tangent);
+  _ArmGeo(this.side, this.s, this.c, this.w, this.tangent, this.lift);
   final int side;
   final Offset s, c, w;
   final double tangent;
+
+  /// 0 hanging .. 1 raised (eased): how straight the underside runs.
+  final double lift;
 }

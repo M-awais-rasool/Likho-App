@@ -36,6 +36,15 @@ abstract final class PencilRig {
 
   /// Half-width of the arm (outline included) along its length.
   static const List<(double, double)> armHalfWidth = [(0, 29), (0.2, 24), (0.35, 20.2), (0.65, 20.0), (1.0, 21.5)];
+
+  /// Where the shoulder flare of [armHalfWidth] ends. The flare blends a
+  /// hanging arm into the body; a raised arm's underside runs straight on
+  /// from here instead, or the flare would curl out under the arm.
+  static const double armFlareEnd = 0.35;
+
+  /// Raise (radians) over which that underside straightens; idle sways stay
+  /// below the start, so the rest pose keeps its exact master shape.
+  static const double armStraightFrom = 0.1, armStraightAt = 0.6;
   static const double armLine = 4.6;
   static const double armLightWidth = 7.5; // light stripe on the outer edge
   static const double armLightFrom = 0.12;
