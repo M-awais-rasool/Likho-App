@@ -58,6 +58,21 @@ Debug builds can open any screen directly (the prototype's side menu):
 `echo room > "$(xcrun simctl get_app_container booted com.likho.likho data)/Documents/likho_dev_screen"`
 (keys in `AppFlowJump.screens`), or from the mascot playground (long-press the REF chip).
 
+## Pictures and voice
+
+The course's pictures and Pencil's lines are app assets that the content names
+(`backend/content/README.md` → Pictures and Pencil's voice):
+
+* `assets/illustrations/<key>.png`: Fluent Emoji 3D (MIT, `assets/licenses/`), transparent, made
+  by `../tools/illustrations/build_illustrations.py`. `Illustration` draws them (or the prototype's
+  placeholder when one is missing); cards and shapes give them their background.
+* `assets/voice/<id>.m4a` + `<id>.lip`: every intro line and round prompt, recorded by
+  `../tools/voice/generate_voice.py` (Kokoro). `MascotController.say` plays a line and moves the
+  mouth from its `.lip` file (loudness per 1/100 s); without a recording `PromptVoice` uses the
+  device voice.
+* The level intro waits for Pencil's line, then lifts away; a tap skips it.
+* `test/media_test.dart` fails when a picture or a recording is missing.
+
 ## Accounts and saving
 
 * **Sign-in** is Google only (`lib/data/auth.dart`): no sign up, no password. The first "Continue

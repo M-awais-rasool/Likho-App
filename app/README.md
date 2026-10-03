@@ -35,8 +35,10 @@ app/
 │   ├── design/          tokens (colours, sizes, fonts), motion
 │   └── dev/             debug-only: mascot playground, reference overlay, deep links
 ├── test/                widget + data tests; fixtures/ = the course as the API serves it
-├── assets/              mascot, sounds, reference captures (debug)
-├── tool/                asset generators: sound_design/ (sound effects), mascot_trace/ (mascot art)
+├── assets/              mascot, sounds, course pictures (illustrations/), Pencil's voice (voice/),
+│                        reference captures (debug)
+├── tool/                asset generators: sound_design/ (sound effects), mascot_trace/ (mascot art);
+│                        course pictures and Pencil's voice: ../tools/
 ├── docs/                architecture.md, sound_and_haptics.md
 ├── android/ · ios/
 ```

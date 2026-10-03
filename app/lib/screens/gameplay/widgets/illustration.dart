@@ -7,8 +7,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../data/models/course_models.dart';
 import '../../../design/tokens.dart';
 
-/// Bundled illustrations (`assets/illustrations/<key>.png`), read once from the
-/// asset manifest. Empty until the art is delivered.
+/// Bundled illustrations (`assets/illustrations/<key>.png`, built by
+/// tools/illustrations/build_illustrations.py at the repository root), read once from the asset
+/// manifest.
 final illustrationAssetsProvider = FutureProvider<Set<String>>((ref) async {
   try {
     final m = await AssetManifest.loadFromAssetBundle(rootBundle);
@@ -20,7 +21,8 @@ final illustrationAssetsProvider = FutureProvider<Set<String>>((ref) async {
 
 /// A picture from course content: the real image when it exists (bundled
 /// by key, or by URL), otherwise the prototype's placeholder — a striped
-/// card with the picture's name in small monospace text.
+/// card with the picture's name in small monospace text. The images have a
+/// transparent background, so they sit on whatever card or shape holds them.
 class Illustration extends ConsumerWidget {
   const Illustration({
     super.key,
@@ -42,9 +44,9 @@ class Illustration extends ConsumerWidget {
     final asset = 'assets/illustrations/${picture.key}.png';
     final Widget child;
     if (assets.contains(asset)) {
-      child = Image.asset(asset, fit: BoxFit.contain);
+      child = Image.asset(asset, fit: BoxFit.contain, filterQuality: FilterQuality.high, semanticLabel: picture.label);
     } else if (picture.url != null) {
-      child = Image.network(picture.url!, fit: BoxFit.contain, errorBuilder: (_, _, _) => _placeholder());
+      child = Image.network(picture.url!, fit: BoxFit.contain, filterQuality: FilterQuality.high, errorBuilder: (_, _, _) => _placeholder());
     } else {
       child = _placeholder();
     }

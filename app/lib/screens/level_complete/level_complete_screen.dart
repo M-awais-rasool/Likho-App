@@ -357,6 +357,28 @@ class _GainPill extends StatelessWidget {
   );
 }
 
+/// The three picks of My Story in one picture: the place behind, the
+/// friend in front, the thing in the corner.
+class _StoryPicture extends StatelessWidget {
+  const _StoryPicture({required this.who, required this.what, required this.where});
+  final String who, what, where;
+
+  static Picture _pic(String key) => Picture(key: key, label: key);
+
+  @override
+  Widget build(BuildContext context) => SizedBox(
+    width: 92,
+    height: 80,
+    child: Stack(
+      children: [
+        Positioned(left: 10, top: 0, child: Illustration(picture: _pic(where), width: 72, height: 62, radius: 0)),
+        Positioned(left: 0, bottom: 0, child: Illustration(picture: _pic(who), width: 50, height: 50, radius: 0)),
+        Positioned(right: 0, bottom: 4, child: Illustration(picture: _pic(what), width: 36, height: 36, radius: 0)),
+      ],
+    ),
+  );
+}
+
 /// My Story (level 35): the child's picks made into a sentence.
 class _StoryCard extends StatelessWidget {
   const _StoryCard({required this.choices});
@@ -375,12 +397,7 @@ class _StoryCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Illustration(
-            picture: Picture(key: 'story-$who-$what-$where', label: '$who + $what on $where'),
-            width: 92,
-            height: 80,
-            radius: 16,
-          ),
+          _StoryPicture(who: who, what: what, where: where),
           const SizedBox(width: 12),
           Expanded(
             child: Column(

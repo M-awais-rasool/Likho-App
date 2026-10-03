@@ -123,7 +123,7 @@ class PickItemBody extends StatelessWidget {
     final smallPic = shape == 'pad' || shape == 'planet';
     final labelWidget = _label();
     final children = <Widget>[
-      if (pic != null) Illustration(picture: pic, width: 84, height: smallPic ? 46 : 64, radius: 14, padding: 4),
+      if (pic != null) Illustration(picture: pic, width: 84, height: shape == 'planet' ? 60 : (smallPic ? 46 : 64), radius: 14, padding: 4),
       if (pic != null && labelWidget != null) const SizedBox(height: 4),
       ?labelWidget,
     ];

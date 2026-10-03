@@ -7,10 +7,13 @@ import 'mascot_pose.dart';
 
 /// Loudness envelope of an audio asset, 100 values per second, 0..1.
 ///
-/// just_audio exposes no live amplitude, so loudness is computed ahead of time
-/// from the asset itself. Only uncompressed PCM WAV (16-bit) can be read here;
-/// for other formats [load] returns null and the mouth falls back to random
-/// shapes while the audio plays (as the brief specifies).
+/// just_audio exposes no live amplitude, so loudness is computed ahead of time:
+/// from the asset itself for uncompressed PCM WAV (16-bit), or for compressed
+/// recordings from a `.lip` file next to it with the same name
+/// (`hello.m4a` -> `hello.lip`: one byte per 1/100 s, 0..255, written by
+/// tools/voice/generate_voice.py at the repository root). Without either [load]
+/// returns null and the mouth falls back to random shapes while the audio
+/// plays (as the brief specifies).
 class LipSyncEnvelope {
   LipSyncEnvelope._(this.values);
 
@@ -24,13 +27,25 @@ class LipSyncEnvelope {
   }
 
   static Future<LipSyncEnvelope?> _load(String asset, AssetBundle bundle) async {
-    if (!asset.toLowerCase().endsWith('.wav')) return null;
     try {
-      final data = await bundle.load(asset);
-      return fromWav(data);
+      if (asset.toLowerCase().endsWith('.wav')) return fromWav(await bundle.load(asset));
+      return fromBytes(await bundle.load(lipFileOf(asset)));
     } catch (_) {
       return null;
     }
+  }
+
+  /// The mouth-movement file of a compressed recording.
+  static String lipFileOf(String asset) => asset.replaceFirst(RegExp(r'\.[^./]+$'), '.lip');
+
+  /// A precomputed envelope: one byte (0..255) per 1/100 s.
+  static LipSyncEnvelope? fromBytes(ByteData d) {
+    if (d.lengthInBytes == 0) return null;
+    final out = Float32List(d.lengthInBytes);
+    for (var i = 0; i < out.length; i++) {
+      out[i] = d.getUint8(i) / 255;
+    }
+    return LipSyncEnvelope._(out);
   }
 
   /// Parses a RIFF/WAVE PCM16 file and returns its normalised RMS envelope.

@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'data/family.dart';
@@ -16,6 +18,7 @@ import 'screens/splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  LicenseRegistry.addLicense(_artLicenses);
   // debug-only QA shortcuts, null in release
   final devLevel = await devLaunchLevel();
   final devScreen = devLevel == null ? await devLaunchScreen() : null;
@@ -32,6 +35,12 @@ Future<void> main() async {
     ],
     child: LikhoApp(devLevel: devLevel, devScreen: devScreen),
   ));
+}
+
+/// Licences of art bundled with the app, for Flutter's licence page: the
+/// course illustrations are Microsoft's Fluent Emoji (MIT).
+Stream<LicenseEntry> _artLicenses() async* {
+  yield LicenseEntryWithLineBreaks(['Fluent Emoji (course pictures)'], await rootBundle.loadString('assets/licenses/fluent-emoji.txt'));
 }
 
 class LikhoApp extends StatelessWidget {
