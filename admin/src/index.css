@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+/* Theme: every colour is a token, redefined for dark mode. The toggle sets
+   data-theme on <html>; without it the OS setting decides. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  color-scheme: light;
+  --bg: #f7f5f1;
+  --surface: #ffffff;
+  --surface-2: #f3f1ec;
+  --surface-3: #ebe8e1;
+  --border: #e4e0d8;
+  --border-strong: #d2cdc2;
+  --ink: #23243a;
+  --ink-2: #55566a;
+  --ink-3: #8a8a99;
+  --brand: #6c4be8;
+  --brand-ink: #5536d4;
+  --brand-soft: #efeafe;
+  --star: #f2b01e;
+  --good: #1f8a4c;
+  --good-soft: #e3f4ea;
+  --warn: #a86400;
+  --warn-soft: #fdf1dc;
+  --bad: #c0392b;
+  --bad-soft: #fbe7e4;
+  --info: #2a78d6;
+  --info-soft: #e5effb;
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --grid: #ebe8e1;
+  --shadow: 0 1px 2px rgb(35 36 58 / 0.06), 0 1px 1px rgb(35 36 58 / 0.04);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --bg: #131420;
+    --surface: #1b1c2b;
+    --surface-2: #232436;
+    --surface-3: #2c2e44;
+    --border: #2f3149;
+    --border-strong: #3d3f5c;
+    --ink: #f1f0f7;
+    --ink-2: #b9b9cc;
+    --ink-3: #8586a0;
+    --brand: #8f75ff;
+    --brand-ink: #a893ff;
+    --brand-soft: #2a2550;
+    --star: #f5bd3a;
+    --good: #4cc282;
+    --good-soft: #193526;
+    --warn: #e2a33b;
+    --warn-soft: #3a2c14;
+    --bad: #ef6b5e;
+    --bad-soft: #3d1f1d;
+    --info: #3987e5;
+    --info-soft: #1b2b44;
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
+    --grid: #2c2e44;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.3);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #131420;
+  --surface: #1b1c2b;
+  --surface-2: #232436;
+  --surface-3: #2c2e44;
+  --border: #2f3149;
+  --border-strong: #3d3f5c;
+  --ink: #f1f0f7;
+  --ink-2: #b9b9cc;
+  --ink-3: #8586a0;
+  --brand: #8f75ff;
+  --brand-ink: #a893ff;
+  --brand-soft: #2a2550;
+  --star: #f5bd3a;
+  --good: #4cc282;
+  --good-soft: #193526;
+  --warn: #e2a33b;
+  --warn-soft: #3a2c14;
+  --bad: #ef6b5e;
+  --bad-soft: #3d1f1d;
+  --info: #3987e5;
+  --info-soft: #1b2b44;
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --grid: #2c2e44;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-brand: var(--brand);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-soft: var(--brand-soft);
+  --color-star: var(--star);
+  --color-good: var(--good);
+  --color-good-soft: var(--good-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-bad: var(--bad);
+  --color-bad-soft: var(--bad-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Baloo 2", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --shadow-card: var(--shadow);
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-size: 14px;
+}
+
+* {
+  border-color: var(--border);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* scrollbars that fit the theme */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-pop {
+  animation: pop 0.18s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pop {
+    animation: none;
+  }
+}

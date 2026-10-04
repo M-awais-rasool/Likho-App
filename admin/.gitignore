@@ -1,0 +1,6 @@
+node_modules
+dist
+# built by scripts/build-preview.sh (the Flutter app for the phone preview)
+public/preview
+*.local
+.DS_Store
