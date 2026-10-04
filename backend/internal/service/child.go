@@ -14,10 +14,11 @@ import (
 type ChildService struct {
 	children *repository.ChildRepository
 	cache    *cache.Cache
+	activity *ActivityService
 }
 
-func NewChildService(children *repository.ChildRepository, c *cache.Cache) *ChildService {
-	return &ChildService{children: children, cache: c}
+func NewChildService(children *repository.ChildRepository, c *cache.Cache, activity *ActivityService) *ChildService {
+	return &ChildService{children: children, cache: c, activity: activity}
 }
 
 func (s *ChildService) Create(ctx context.Context, parentID string, in model.ChildInput) (model.ChildView, error) {
@@ -34,6 +35,8 @@ func (s *ChildService) Create(ctx context.Context, parentID string, in model.Chi
 	out, err := s.children.Create(ctx, parentID, in)
 	if err == nil {
 		s.cache.ForgetMe(ctx, parentID)
+		s.activity.Event(ctx, model.ActivityEvent{Type: model.EventChildAdded, ParentID: &parentID, ChildID: &out.ID,
+			Detail: model.JSONOf(map[string]any{"age": out.Age})})
 	}
 	return out, err
 }
@@ -69,6 +72,7 @@ func (s *ChildService) Delete(ctx context.Context, parentID, childID string) err
 	err := s.children.Delete(ctx, parentID, childID)
 	if err == nil {
 		s.cache.ForgetMe(ctx, parentID)
+		s.activity.Event(ctx, model.ActivityEvent{Type: model.EventChildRemoved, ParentID: &parentID, ChildID: &childID})
 	}
 	return err
 }
