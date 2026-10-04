@@ -144,3 +144,14 @@ type Ages struct {
 	Min int `json:"min"`
 	Max int `json:"max"`
 }
+
+// ClientInfo is what a request says about the device (for the admin
+// panel): set by the app in X-Likho-* headers, plus the client IP and the
+// CDN's country header. The IP is only used to look up the country.
+type ClientInfo struct {
+	IP            string
+	CountryHeader string
+	Region        string // phone's region (language setting), e.g. "PK"
+	Platform      string // ios | android | web
+	AppVersion    string
+}

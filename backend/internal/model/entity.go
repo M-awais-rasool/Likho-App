@@ -30,8 +30,19 @@ type Parent struct {
 	CreatedAt   time.Time
 	LastLoginAt time.Time `gorm:"not null;default:now()"`
 
-	Children []Child   `gorm:"constraint:OnDelete:CASCADE"`
-	Sessions []Session `gorm:"constraint:OnDelete:CASCADE"`
+	// Where and how the family uses Likho (admin panel). Kept up to date
+	// at most every few minutes; no IP address is stored.
+	LastSeenAt    *time.Time `gorm:"index"`
+	Country       string     `gorm:"type:varchar(2);not null;default:'';index"` // ISO 3166-1 alpha-2, "" = unknown
+	CountrySource string     `gorm:"type:varchar(8);not null;default:''"`       // cdn | ip | device
+	Platform      string     `gorm:"type:varchar(16);not null;default:''"`      // ios | android | web
+	AppVersion    string     `gorm:"type:varchar(32);not null;default:''"`
+
+	Children   []Child         `gorm:"constraint:OnDelete:CASCADE"`
+	Sessions   []Session       `gorm:"constraint:OnDelete:CASCADE"`
+	Events     []ActivityEvent `gorm:"constraint:OnDelete:CASCADE"`
+	ActiveDays []ActiveDay     `gorm:"constraint:OnDelete:CASCADE"`
+	Alerts     []AdminAlert    `gorm:"constraint:OnDelete:CASCADE"`
 }
 
 func (p Parent) PlusActive(now time.Time) bool { return p.PlusUntil != nil && p.PlusUntil.After(now) }
@@ -98,8 +109,159 @@ type Session struct {
 	Rotated   bool `gorm:"not null;default:false"` // revoked because it was swapped for a new token
 }
 
+// ActivityEvent is one thing a family did (signed up, finished a level…),
+// for the admin panel's activity feed and charts. Deleting the account
+// deletes its events.
+type ActivityEvent struct {
+	ID       int64     `gorm:"primaryKey" json:"id"`
+	At       time.Time `gorm:"not null;default:now();index;index:idx_events_type_at,priority:2" json:"at"`
+	Type     string    `gorm:"type:varchar(32);not null;index:idx_events_type_at,priority:1" json:"type"`
+	ParentID *string   `gorm:"type:uuid;index" json:"parentId"`
+	ChildID  *string   `gorm:"type:uuid;index" json:"childId"`
+	CourseID string    `gorm:"type:varchar(64);not null;default:''" json:"courseId"`
+	Level    int       `gorm:"type:smallint;not null;default:0" json:"level"`
+	Stars    int       `gorm:"type:smallint;not null;default:0" json:"stars"`
+	Seconds  int       `gorm:"not null;default:0" json:"seconds"`
+	Detail   JSON      `gorm:"type:jsonb;not null;default:'{}'" json:"detail"`
+}
+
+// Activity event types.
+const (
+	EventSignedUp        = "signed_up"
+	EventSignedIn        = "signed_in"
+	EventChildAdded      = "child_added"
+	EventChildRemoved    = "child_removed"
+	EventLevelCompleted  = "level_completed"
+	EventCourseCompleted = "course_completed"
+	EventItemBought      = "item_bought"
+	EventTrialStarted    = "trial_started"
+	EventAccountDeleted  = "account_deleted"
+)
+
+// ActiveDay is one row per parent per day the app was used (daily, weekly
+// and monthly active users).
+type ActiveDay struct {
+	ParentID string    `gorm:"type:uuid;primaryKey"`
+	Day      time.Time `gorm:"type:date;primaryKey;index"`
+}
+
+// AdminUser can sign in to the admin panel (email + password; separate
+// from the parents' Google accounts).
+type AdminUser struct {
+	ID           string `gorm:"type:uuid;primaryKey;default:gen_random_uuid()"`
+	Email        string `gorm:"uniqueIndex;not null"`
+	Name         string `gorm:"not null;default:''"`
+	PasswordHash string `gorm:"not null"`
+	Role         string `gorm:"type:varchar(16);not null;default:'viewer';check:role IN ('owner', 'editor', 'viewer')"`
+	Disabled     bool   `gorm:"not null;default:false"`
+	CreatedAt    time.Time
+	LastLoginAt  *time.Time
+
+	Sessions []AdminSession `gorm:"foreignKey:AdminID;constraint:OnDelete:CASCADE"`
+}
+
+// Admin roles: viewers read, editors also change content and accounts,
+// owners also manage the team.
+const (
+	RoleOwner  = "owner"
+	RoleEditor = "editor"
+	RoleViewer = "viewer"
+)
+
+// AdminSession is one signed-in browser (a hash of the cookie is stored).
+type AdminSession struct {
+	ID        string `gorm:"type:uuid;primaryKey;default:gen_random_uuid()"`
+	AdminID   string `gorm:"type:uuid;not null;index"`
+	TokenHash []byte `gorm:"uniqueIndex;not null"`
+	UserAgent string `gorm:"not null;default:''"`
+	CreatedAt time.Time
+	ExpiresAt time.Time `gorm:"not null"`
+	RevokedAt *time.Time
+}
+
+// AdminAlert is something the team should know about, e.g. a child who
+// reached the last level (time to add more). Each happens once (Key).
+type AdminAlert struct {
+	ID       int64      `gorm:"primaryKey" json:"id"`
+	At       time.Time  `gorm:"not null;default:now();index" json:"at"`
+	Kind     string     `gorm:"type:varchar(32);not null;index" json:"kind"`
+	Key      string     `gorm:"uniqueIndex;not null" json:"-"`
+	ParentID *string    `gorm:"type:uuid;index" json:"parentId"`
+	ChildID  *string    `gorm:"type:uuid" json:"childId"`
+	CourseID string     `gorm:"type:varchar(64);not null;default:''" json:"courseId"`
+	Level    int        `gorm:"type:smallint;not null;default:0" json:"level"`
+	Title    string     `gorm:"not null" json:"title"`
+	Body     string     `gorm:"not null;default:''" json:"body"`
+	ReadAt   *time.Time `gorm:"index" json:"readAt"`
+	ReadBy   string     `gorm:"not null;default:''" json:"readBy"`
+}
+
+// Alert kinds.
+const (
+	AlertReachedEnd      = "reached_end"      // a child is on the last level(s)
+	AlertCourseCompleted = "course_completed" // a child finished every level
+	AlertNewSignup       = "new_signup"
+	AlertTrialStarted    = "trial_started"
+)
+
+// AuditEntry records every change made in the admin panel.
+type AuditEntry struct {
+	ID         int64     `gorm:"primaryKey" json:"id"`
+	At         time.Time `gorm:"not null;default:now();index" json:"at"`
+	AdminID    string    `gorm:"type:uuid;index" json:"adminId"`
+	AdminEmail string    `gorm:"not null" json:"adminEmail"`
+	Action     string    `gorm:"type:varchar(48);not null;index" json:"action"`
+	Target     string    `gorm:"not null;default:''" json:"target"`
+	Detail     JSON      `gorm:"type:jsonb;not null;default:'{}'" json:"detail"`
+}
+
+func (AuditEntry) TableName() string { return "admin_audit" }
+
+// ContentLevel is a level written in the admin panel: a new level (after
+// the ones in content/) or an edit of one of them. Doc is the working copy
+// (JSON text, as authored); LiveDoc is what phones get (nil = not
+// published). Both are checked like the files in content/.
+type ContentLevel struct {
+	CourseID    string  `gorm:"type:varchar(64);primaryKey"`
+	Number      int     `gorm:"primaryKey;autoIncrement:false"`
+	World       string  `gorm:"not null"` // world folder, e.g. "06-story-space"
+	File        string  `gorm:"not null"` // path in the content, e.g. courses/x/worlds/06-a/levels/37-b.json
+	Builtin     bool    `gorm:"not null;default:false"`
+	Doc         string  `gorm:"type:text;not null"`
+	LiveDoc     *string `gorm:"type:text"`
+	CreatedBy   string  `gorm:"not null;default:''"`
+	UpdatedBy   string  `gorm:"not null;default:''"`
+	CreatedAt   time.Time
+	UpdatedAt   time.Time
+	PublishedAt *time.Time
+}
+
+// ContentWorld is a world added in the admin panel. It is served once one
+// of its levels is published.
+type ContentWorld struct {
+	CourseID  string `gorm:"type:varchar(64);primaryKey"`
+	Folder    string `gorm:"primaryKey"` // e.g. "07-ocean-deep"
+	Order     int    `gorm:"not null"`
+	Doc       string `gorm:"type:text;not null"` // world.json
+	CreatedBy string `gorm:"not null;default:''"`
+	CreatedAt time.Time
+	UpdatedAt time.Time
+}
+
+// AdminSetting is a small piece of panel configuration (alert rules, the
+// content revision), as JSON.
+type AdminSetting struct {
+	Key       string `gorm:"primaryKey"`
+	Value     JSON   `gorm:"type:jsonb;not null"`
+	UpdatedAt time.Time
+}
+
 // Tables, in the order GORM creates them.
-var Tables = []any{&Parent{}, &Child{}, &LevelProgress{}, &ChildItem{}, &PlayDay{}, &Session{}}
+var Tables = []any{
+	&Parent{}, &Child{}, &LevelProgress{}, &ChildItem{}, &PlayDay{}, &Session{},
+	&ActivityEvent{}, &ActiveDay{}, &AdminUser{}, &AdminSession{}, &AdminAlert{}, &AuditEntry{},
+	&ContentLevel{}, &ContentWorld{}, &AdminSetting{},
+}
 
 // Account, Settings and Subscription are the parent as the API shows it.
 
