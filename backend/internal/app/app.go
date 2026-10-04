@@ -23,6 +23,7 @@ import (
 	"likho/backend/internal/catalog"
 	"likho/backend/internal/config"
 	"likho/backend/internal/database"
+	"likho/backend/internal/geo"
 	"likho/backend/internal/repository"
 	"likho/backend/internal/service"
 )
@@ -32,36 +33,71 @@ import (
 type Deps struct {
 	DB      *gorm.DB
 	Redis   *redis.Client
-	Catalog *catalog.Catalog
+	Catalog *catalog.Catalog // the content served at start (from ContentFS)
 	Google  service.GoogleVerifier
 	Tokens  service.Tokens
+
+	// Admin panel. ContentFS is the content the panel's levels are laid
+	// over (default: the built-in content); Geo finds countries.
+	ContentFS      fs.FS
+	ContentOptions catalog.Options
+	Geo            *geo.Resolver
+	CountryHeader  string
+	AdminDir       string
+	System         handler.SystemInfo
+	Production     bool
+}
+
+// Built is the API with the services that run in the background.
+type Built struct {
+	Handler http.Handler
+	Content *service.ContentService
+	Admins  *service.AdminAuthService
 }
 
 // Build returns the HTTP handler for [d].
-func Build(d Deps) http.Handler {
+func Build(d Deps) http.Handler { return BuildApp(d).Handler }
+
+// BuildApp wires everything together. Levels published in the admin panel
+// are loaded from the database here (the start-up catalog is kept when
+// they have problems).
+func BuildApp(d Deps) *Built {
 	repos := repository.New(d.DB)
 	c := cache.New(d.Redis)
+	if d.ContentFS == nil {
+		d.ContentFS = content.FS
+	}
+	store := catalog.NewStore(d.Catalog)
 
-	account := service.NewAccountService(repos.Accounts, repos.Children, c)
+	activity := service.NewActivityService(repos.Activity, repos.Admin, c, d.Geo)
+	account := service.NewAccountService(repos.Accounts, repos.Children, c, activity)
 	services := handler.Services{
-		Auth:     service.NewAuthService(repos.Accounts, repos.Sessions, d.Google, d.Tokens, account),
+		Auth:     service.NewAuthService(repos.Accounts, repos.Sessions, d.Google, d.Tokens, account, activity),
 		Account:  account,
-		Children: service.NewChildService(repos.Children, c),
-		Progress: service.NewProgressService(repos.Progress, d.Catalog, c),
-		Room:     service.NewRoomService(repos.Room, c),
-		Courses:  service.NewCourseService(d.Catalog),
+		Children: service.NewChildService(repos.Children, c, activity),
+		Progress: service.NewProgressService(repos.Progress, store, c, activity),
+		Room:     service.NewRoomService(repos.Room, c, activity),
+		Courses:  service.NewCourseService(store),
+	}
+	content := service.NewContentService(d.ContentFS, d.ContentOptions, store, repos.Content, repos.Admin, repos.Insights)
+	if rows, err := repos.Content.Levels(context.Background(), ""); err == nil && len(rows) > 0 {
+		_ = content.Reload(context.Background())
 	}
 	health := &handler.HealthHandler{Postgres: database.Pinger(d.DB), Redis: c}
-	return api.NewRouter(handler.New(services, health), d.Tokens, c)
+	admins := service.NewAdminAuthService(repos.Admin)
+	adminHandler := &handler.AdminHandler{
+		Auth: admins, Admin: service.NewAdminService(repos, store, c, activity, account), Content: content,
+		Health: health, Info: d.System, Secure: d.Production,
+	}
+	router := api.NewRouter(handler.New(services, health), adminHandler, d.Tokens, c, api.Options{
+		CountryHeader: d.CountryHeader, AdminDir: d.AdminDir, Seen: activity.Seen,
+	})
+	return &Built{Handler: router, Content: content, Admins: admins}
 }
 
 // LoadContent reads the learning content: built in, or from cfg.ContentDir.
 func LoadContent(cfg config.Config) (*catalog.Catalog, error) {
-	var fsys fs.FS = content.FS
-	if cfg.ContentDir != "" {
-		fsys = os.DirFS(cfg.ContentDir)
-	}
-	cat, err := catalog.Load(fsys, catalog.Options{IncludeDrafts: cfg.ContentDrafts})
+	cat, err := catalog.Load(contentFS(cfg), catalog.Options{IncludeDrafts: cfg.ContentDrafts})
 	if err != nil {
 		return nil, err
 	}
@@ -69,6 +105,13 @@ func LoadContent(cfg config.Config) (*catalog.Catalog, error) {
 		slog.Info("course loaded", "id", c.Summary.ID, "levels", c.Stats.Levels, "version", c.Summary.Version, "draft", c.Draft)
 	}
 	return cat, nil
+}
+
+func contentFS(cfg config.Config) fs.FS {
+	if cfg.ContentDir != "" {
+		return os.DirFS(cfg.ContentDir)
+	}
+	return content.FS
 }
 
 // Run starts the API from [cfg] and serves until [ctx] ends, then finishes
@@ -102,9 +145,26 @@ func Run(ctx context.Context, cfg config.Config) error {
 	}
 	tokens := service.Tokens{Secret: cfg.JWTSecret, AccessTTL: cfg.AccessTTL, RefreshTTL: cfg.RefreshTTL}
 
+	resolver := geo.Open(cfg.GeoIPDB)
+	defer resolver.Close()
+	built := BuildApp(Deps{
+		DB: db, Redis: rdb, Catalog: cat, Google: google, Tokens: tokens,
+		ContentFS: contentFS(cfg), ContentOptions: catalog.Options{IncludeDrafts: cfg.ContentDrafts},
+		Geo: resolver, CountryHeader: cfg.CountryHeader, AdminDir: cfg.AdminDir, Production: cfg.Production(),
+		System: handler.SystemInfo{Env: cfg.Env, StartedAt: time.Now(), GeoIP: resolver.Enabled(), CountryHeader: cfg.CountryHeader, DevLogin: cfg.DevLogin},
+	})
+	if err := built.Admins.Bootstrap(ctx, cfg.AdminBootstrapEmail, cfg.AdminBootstrapPassword); err != nil {
+		return err
+	}
+	if cfg.AdminDir != "" {
+		slog.Info("admin panel served", "url", "http://localhost:"+cfg.Port+"/admin/", "dir", cfg.AdminDir)
+	}
+	// other API servers may publish content: pick it up
+	go built.Content.Watch(ctx, 15*time.Second)
+
 	srv := &http.Server{
 		Addr:              ":" + cfg.Port,
-		Handler:           Build(Deps{DB: db, Redis: rdb, Catalog: cat, Google: google, Tokens: tokens}),
+		Handler:           built.Handler,
 		ReadHeaderTimeout: 5 * time.Second,
 		ReadTimeout:       10 * time.Second,
 		WriteTimeout:      15 * time.Second,
