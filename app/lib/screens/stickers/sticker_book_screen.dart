@@ -44,13 +44,18 @@ class _StickerBookScreenState extends ConsumerState<StickerBookScreen> with Sing
     super.initState();
     _newSticker = ref.read(playSessionProvider).newSticker;
     final current = _newSticker ?? ref.read(progressProvider).current;
-    _page = widget.page ?? ((current - 1) ~/ 6).clamp(0, 5);
+    final course = ref.read(courseProvider).value;
+    final worldOfCurrent = course == null ? (current - 1) ~/ 6 : course.worlds.indexWhere((w) => course.levelsOf(w).any((l) => l.number == current));
+    _page = widget.page ?? worldOfCurrent.clamp(0, _lastPage);
     if (_newSticker != null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) ref.read(playSessionProvider.notifier).stickerSeen();
       });
     }
   }
+
+  /// One page per world.
+  int get _lastPage => (ref.read(courseProvider).value?.worlds.length ?? 6) - 1;
 
   @override
   void dispose() {
@@ -59,7 +64,7 @@ class _StickerBookScreenState extends ConsumerState<StickerBookScreen> with Sing
   }
 
   Future<void> _turn(int dir) async {
-    final np = (_page + dir).clamp(0, 5);
+    final np = (_page + dir).clamp(0, _lastPage);
     if (np == _page || _flip.isAnimating) return;
     ref.read(feedbackProvider).pageFlip();
     _dir = dir;
@@ -112,7 +117,7 @@ class _StickerBookScreenState extends ConsumerState<StickerBookScreen> with Sing
                       alignment: Alignment.center,
                       decoration: BoxDecoration(color: GameColors.white20, borderRadius: BorderRadius.circular(20)),
                       child: Text(
-                        '$count/36',
+                        '$count/${course?.levels.length ?? 36}',
                         style: LikhoFonts.title(size: 18, weight: FontWeight.w800, color: LikhoColors.surface),
                       ),
                     ),
@@ -157,7 +162,7 @@ class _StickerBookScreenState extends ConsumerState<StickerBookScreen> with Sing
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          for (var i = 0; i < 6; i++) ...[
+                          for (var i = 0; i <= _lastPage; i++) ...[
                             if (i > 0) const SizedBox(width: 6),
                             AnimatedContainer(
                               duration: const Duration(milliseconds: 300),
@@ -173,7 +178,7 @@ class _StickerBookScreenState extends ConsumerState<StickerBookScreen> with Sing
                       ),
                     ),
                     Opacity(
-                      opacity: _page < 5 ? 1 : .35,
+                      opacity: _page < _lastPage ? 1 : .35,
                       child: CircleIconButton(
                         icon: Symbols.chevron_right_rounded,
                         onTap: () => _turn(1),

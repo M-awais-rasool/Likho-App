@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import '../../data/models/course_models.dart';
 import '../../data/course_providers.dart';
 import '../../data/family.dart';
 import '../../design/icon_registry.dart';
@@ -112,15 +113,16 @@ class _ChildProfileScreenState extends ConsumerState<ChildProfileScreen> with Si
                   const SizedBox(height: 10),
                   Row(
                     children: [
-                      for (var w = 0; w < 6; w++) ...[
+                      for (final (w, world) in (course?.worlds ?? const <CourseWorld>[]).indexed) ...[
                         if (w > 0) const SizedBox(width: 8),
                         Expanded(
                           child: Center(
                             child: _WorldDot(
                               world: w,
-                              icon: course?.worlds[w].icon ?? 'star',
-                              themeId: course?.worlds[w].themeId ?? '',
-                              done: [for (var k = 1; k <= 6; k++) r.isDone(w * 6 + k)].where((x) => x).length,
+                              icon: world.icon,
+                              themeId: world.themeId,
+                              done: course!.levelsOf(world).where((l) => r.isDone(l.number)).length,
+                              total: course.levelsOf(world).length,
                             ),
                           ),
                         ),
@@ -128,7 +130,7 @@ class _ChildProfileScreenState extends ConsumerState<ChildProfileScreen> with Si
                     ],
                   ),
                   const SizedBox(height: 24),
-                  _StickerBookCard(count: done, onTap: widget.onStickers),
+                  _StickerBookCard(count: done, total: course?.levels.length ?? 36, onTap: widget.onStickers),
                 ],
               ),
             ),
@@ -164,8 +166,8 @@ class _Stat extends StatelessWidget {
 }
 
 class _WorldDot extends StatelessWidget {
-  const _WorldDot({required this.world, required this.icon, required this.themeId, required this.done});
-  final int world, done;
+  const _WorldDot({required this.world, required this.icon, required this.themeId, required this.done, required this.total});
+  final int world, done, total;
   final String icon, themeId;
 
   @override
@@ -180,7 +182,7 @@ class _WorldDot extends StatelessWidget {
         decoration: BoxDecoration(
           color: started ? theme.accent : ChildProfileColors.worldOff,
           shape: BoxShape.circle,
-          boxShadow: [if (done == 6) const BoxShadow(color: LikhoColors.primary, spreadRadius: 3)],
+          boxShadow: [if (done == total) const BoxShadow(color: LikhoColors.primary, spreadRadius: 3)],
         ),
         child: Center(child: SymbolIcon(IconRegistry.of(icon), size: 26, fill: true, color: started ? LikhoColors.surface : UiColors.chevron)),
       ),
@@ -189,8 +191,8 @@ class _WorldDot extends StatelessWidget {
 }
 
 class _StickerBookCard extends StatelessWidget {
-  const _StickerBookCard({required this.count, required this.onTap});
-  final int count;
+  const _StickerBookCard({required this.count, required this.total, required this.onTap});
+  final int count, total;
   final VoidCallback onTap;
 
   @override
@@ -267,7 +269,7 @@ class _StickerBookCard extends StatelessWidget {
                         Opacity(
                           opacity: .85,
                           child: Text(
-                            '$count/36 stickers',
+                            '$count/$total stickers',
                             style: LikhoFonts.body(size: 16, weight: FontWeight.w700, color: LikhoColors.surface),
                           ),
                         ),

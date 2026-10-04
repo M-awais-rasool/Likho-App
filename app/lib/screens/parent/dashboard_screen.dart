@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import '../../data/course_providers.dart';
 import '../../data/family.dart';
 import '../../data/progress.dart';
 import '../../design/tokens.dart';
@@ -42,6 +43,9 @@ class DashboardScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final family = ref.watch(familyProvider);
     final current = ref.watch(progressProvider).current;
+    final course = ref.watch(courseProvider).value;
+    final total = course?.levels.length ?? 36;
+    final worldNo = course == null ? (current - 1) ~/ 6 + 1 : course.worldOf(course.level(current.clamp(1, total))).order;
     final p = family.active, r = family.record;
     final (strong, practice) = letterStatus(r);
     final label = LikhoFonts.parent(size: 13, weight: FontWeight.w600, color: LikhoColors.inkMuted);
@@ -73,7 +77,7 @@ class DashboardScreen extends ConsumerWidget {
                       children: [
                         Text(p.name, style: LikhoFonts.parent(size: 19, weight: FontWeight.w800)),
                         Text(
-                          'Age ${p.age} · World ${(current - 1) ~/ 6 + 1}',
+                          'Age ${p.age} · World $worldNo',
                           style: LikhoFonts.parent(size: 14, weight: FontWeight.w600, color: LikhoColors.inkMuted),
                         ),
                       ],
@@ -104,7 +108,7 @@ class DashboardScreen extends ConsumerWidget {
                   ),
                   const SizedBox(width: 12),
                   Expanded(
-                    child: _Stat(value: '${r.levelStars.length}', unit: ' / 36', label: 'levels completed', style: label),
+                    child: _Stat(value: '${r.levelStars.length}', unit: ' / $total', label: 'levels completed', style: label),
                   ),
                 ],
               ),
@@ -202,7 +206,7 @@ class DashboardScreen extends ConsumerWidget {
             ],
           ),
         ),
-        _PlusCard(onPlans: onPlans, onRestore: onRestore),
+        _PlusCard(worlds: course?.worlds.length ?? 6, levels: total, onPlans: onPlans, onRestore: onRestore),
       ],
     );
   }
@@ -471,7 +475,8 @@ class _SampleA extends CustomPainter {
 }
 
 class _PlusCard extends StatelessWidget {
-  const _PlusCard({required this.onPlans, required this.onRestore});
+  const _PlusCard({required this.worlds, required this.levels, required this.onPlans, required this.onRestore});
+  final int worlds, levels;
   final VoidCallback onPlans, onRestore;
 
   @override
@@ -495,7 +500,7 @@ class _PlusCard extends StatelessWidget {
         Opacity(
           opacity: .8,
           child: Text(
-            'All 6 worlds, 36 levels and weekly progress. First 7 days free.',
+            'All $worlds worlds, $levels levels and weekly progress. First 7 days free.',
             style: LikhoFonts.parent(size: 14, weight: FontWeight.w600, color: LikhoColors.surface).copyWith(height: 1.5),
           ),
         ),
