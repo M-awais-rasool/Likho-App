@@ -80,6 +80,23 @@ class MemoryTokenStore implements TokenStore {
   Future<void> clear() async => token = null;
 }
 
+/// This build's version; keep it in step with `version:` in pubspec.yaml
+/// (test/api_client_headers_test.dart checks it).
+const appVersion = '0.1.0+1';
+
+/// What every request says about the device, for the admin panel: the
+/// platform, the app version and the region of the phone's language
+/// setting (en_PK -> PK; the server prefers the IP's country when it has
+/// a GeoIP database). Nothing that identifies the child.
+Map<String, String> deviceHeaders() {
+  final region = PlatformDispatcher.instance.locale.countryCode;
+  return {
+    'X-Likho-Platform': kIsWeb ? 'web' : defaultTargetPlatform.name,
+    'X-Likho-App-Version': appVersion,
+    if (region != null && region.length == 2) 'X-Likho-Region': region,
+  };
+}
+
 /// JSON over HTTP with the app's tokens:
 /// * adds `Authorization: Bearer <access token>` to signed-in calls
 /// * refreshes the access token when it runs out (once, shared by
@@ -163,7 +180,7 @@ class ApiClient {
 
   Future<http.Response> _send(String method, String path, Object? body, bool auth, Map<String, String> headers) async {
     final req = http.Request(method, Uri.parse('$baseUrl$path'));
-    req.headers.addAll({'Accept': 'application/json', ...headers});
+    req.headers.addAll({'Accept': 'application/json', ...deviceHeaders(), ...headers});
     if (auth && _access != null) req.headers['Authorization'] = 'Bearer $_access';
     if (body != null) {
       req.headers['Content-Type'] = 'application/json';
