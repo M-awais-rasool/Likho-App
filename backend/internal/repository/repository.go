@@ -20,6 +20,12 @@ type Repositories struct {
 	Progress *ProgressRepository
 	Room     *RoomRepository
 	Sessions *SessionRepository
+
+	// admin panel
+	Activity *ActivityRepository
+	Admin    *AdminRepository
+	Insights *InsightsRepository
+	Content  *ContentRepository
 }
 
 func New(db *gorm.DB) Repositories {
@@ -29,6 +35,10 @@ func New(db *gorm.DB) Repositories {
 		Progress: &ProgressRepository{db: db},
 		Room:     &RoomRepository{db: db},
 		Sessions: &SessionRepository{db: db},
+		Activity: &ActivityRepository{db: db},
+		Admin:    &AdminRepository{db: db},
+		Insights: &InsightsRepository{db: db},
+		Content:  &ContentRepository{db: db},
 	}
 }
 

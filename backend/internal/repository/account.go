@@ -113,3 +113,12 @@ func (r *AccountRepository) Delete(ctx context.Context, parentID string) error {
 	}
 	return res.Error
 }
+
+// SetPlusUntil sets when Likho Plus ends (admin panel: grant or revoke).
+func (r *AccountRepository) SetPlusUntil(ctx context.Context, parentID string, until *time.Time) error {
+	res := r.db.WithContext(ctx).Model(&model.Parent{}).Where("id = ?", parentID).Update("plus_until", until)
+	if res.Error == nil && res.RowsAffected == 0 {
+		return domain.ErrNotFound
+	}
+	return res.Error
+}
