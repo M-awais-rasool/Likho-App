@@ -15,6 +15,7 @@ const (
 	KindPaymentRequired                 // needs Likho Plus
 	KindNotFound                        // no such thing (or not yours)
 	KindConflict                        // not allowed in the current state
+	KindForbidden                       // signed in, but not allowed
 )
 
 // Error is a business error with a stable code for the app ("level_locked")
@@ -53,4 +54,12 @@ var (
 	ErrSessionInvalid  = &Error{KindUnauthorized, "session_invalid", "Sign in with Google again"}
 	ErrSessionReused   = &Error{KindUnauthorized, "session_reused", "Signed out on all devices for safety; sign in again"}
 	ErrAccountDeleted  = &Error{KindUnauthorized, "account_deleted", "This account no longer exists"}
+
+	// admin panel
+	ErrAdminLogin     = &Error{KindUnauthorized, "invalid_login", "Wrong email or password"}
+	ErrAdminSignedOut = &Error{KindUnauthorized, "signed_out", "Sign in to the admin panel"}
+	ErrAdminForbidden = &Error{KindForbidden, "forbidden", "Your role cannot do this"}
+	ErrAdminExists    = &Error{KindConflict, "admin_exists", "An admin with this email already exists"}
+	ErrLastOwner      = &Error{KindConflict, "last_owner", "The team needs at least one owner"}
+	ErrContentInvalid = &Error{KindInvalid, "content_invalid", "The content has problems"}
 )
