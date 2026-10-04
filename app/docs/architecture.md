@@ -61,7 +61,7 @@ Debug builds can open any screen directly (the prototype's side menu):
 ## Pictures and voice
 
 The course's pictures and Pencil's lines are app assets that the content names
-(`backend/content/README.md` → Pictures and Pencil's voice):
+(root `README.md` → Learning content → Pictures and Pencil's voice):
 
 * `assets/illustrations/<key>.png`: Fluent Emoji 3D (MIT, `assets/licenses/`), transparent, made
   by `../tools/illustrations/build_illustrations.py`. `Illustration` draws them (or the prototype's
@@ -150,7 +150,7 @@ Build settings (`--dart-define`):
 
 ## Publishing new content
 
-Edit the JSON in `backend/content/courses/` ([guide](../../backend/content/README.md)), run
+Edit the JSON in `backend/content/courses/` ([guide](../../README.md#learning-content)), run
 `make content` and deploy the API: phones download the new version on their next start (the ETag
 changes) and use their saved copy until then. After a content change, refresh the tests' copy with
 `make content-fixture` (in `backend/`); CI checks it.

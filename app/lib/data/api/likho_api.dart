@@ -7,7 +7,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'api_client.dart';
 
-/// Every call the app makes to the Likho API (backend/README.md), returning
+/// Every call the app makes to the Likho API (README.md → API), returning
 /// decoded JSON.
 class LikhoApi {
   LikhoApi(this.client);

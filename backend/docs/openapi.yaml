@@ -285,7 +285,7 @@ components:
 
     CourseDocument:
       type: object
-      description: Worlds, levels and rounds as described in backend/content/README.md (schemaVersion 1).
+      description: Worlds, levels and rounds as described in the repository README, Learning content (schemaVersion 1).
       properties:
         schemaVersion: { type: integer }
         courseId: { type: string }

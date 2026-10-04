@@ -2,7 +2,7 @@
 // it and keeps every course ready to serve.
 //
 // Content is authored as many small JSON files (one per world and per
-// level, see content/README.md) and delivered as one document per course,
+// level, see the repository README) and delivered as one document per course,
 // built once at start-up: compact JSON, a gzipped copy and an ETag, so
 // serving a course costs no work and phones download it only when it
 // changed.

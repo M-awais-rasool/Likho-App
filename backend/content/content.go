@@ -1,5 +1,5 @@
 // Package content is Likho's learning content: every course, as authored
-// JSON files (see README.md). It is built into the API binary; the API
+// JSON files (see the repository README, Learning content). It is built into the API binary; the API
 // loads, checks and serves it through internal/catalog.
 package content
 

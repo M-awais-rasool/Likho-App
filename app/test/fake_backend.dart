@@ -12,7 +12,7 @@ import 'package:likho/data/course_providers.dart';
 
 import 'test_course.dart';
 
-/// A tiny in-memory Likho API (same JSON as backend/README.md) for tests:
+/// A tiny in-memory Likho API (same JSON as the API in README.md) for tests:
 /// one parent, Google sign-in, children, results with Idempotency-Key and
 /// the room. [offline] makes every call fail like a phone without internet.
 class FakeBackend {
