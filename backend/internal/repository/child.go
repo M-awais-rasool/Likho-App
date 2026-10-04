@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 
 	"likho/backend/internal/domain"
 	"likho/backend/internal/model"
@@ -179,4 +180,19 @@ func (r *ChildRepository) Delete(ctx context.Context, parentID, childID string) 
 		}
 		return nil
 	})
+}
+
+// AdjustStars changes a child's star balance by [delta] (never below 0)
+// and returns the parent and the new balance (admin panel).
+func (r *ChildRepository) AdjustStars(ctx context.Context, childID string, delta int) (parentID string, stars int, err error) {
+	var c model.Child
+	res := r.db.WithContext(ctx).Model(&c).Clauses(clause.Returning{}).Where("id = ?", childID).
+		Updates(map[string]any{"stars": gorm.Expr("GREATEST(stars + ?, 0)", delta), "updated_at": time.Now()})
+	if res.Error != nil {
+		return "", 0, res.Error
+	}
+	if res.RowsAffected == 0 {
+		return "", 0, domain.ErrNotFound
+	}
+	return c.ParentID, c.Stars, nil
 }
