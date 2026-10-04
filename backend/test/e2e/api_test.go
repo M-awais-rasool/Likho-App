@@ -26,6 +26,7 @@ import (
 	"github.com/redis/go-redis/v9"
 
 	"likho/backend/content"
+	"likho/backend/internal/api/handler"
 	"likho/backend/internal/app"
 	"likho/backend/internal/catalog"
 	"likho/backend/internal/database"
@@ -39,6 +40,7 @@ type testApp struct {
 	t     *testing.T
 	r     http.Handler
 	redis *miniredis.Miniredis
+	built *app.Built
 }
 
 // newTestApp builds the API on a fresh database; [cat] replaces the real
@@ -78,8 +80,8 @@ func newTestApp(t *testing.T, cat ...*catalog.Catalog) *testApp {
 		cat = append(cat, real)
 	}
 	tokens := service.Tokens{Secret: []byte("test-secret-test-secret-test-secret"), AccessTTL: 15 * time.Minute, RefreshTTL: time.Hour}
-	h := app.Build(app.Deps{DB: db, Redis: rdb, Catalog: cat[0], Google: service.DevGoogle{}, Tokens: tokens})
-	return &testApp{t: t, r: h, redis: mr}
+	built := app.BuildApp(app.Deps{DB: db, Redis: rdb, Catalog: cat[0], Google: service.DevGoogle{}, Tokens: tokens, System: handler.SystemInfo{StartedAt: time.Now()}})
+	return &testApp{t: t, r: built.Handler, redis: mr, built: built}
 }
 
 type res struct {
