@@ -121,6 +121,43 @@ curl -X POST localhost:8080/v1/children/$KID/courses/english-handwriting/results
   -H "Authorization: Bearer $ACCESS" -H "Idempotency-Key: $(uuidgen)" -d '{"level":1,"stars":3,"seconds":140}'
 ```
 
+### Admin panel API
+
+`/admin/api/v1`, used by the panel in `admin/` (see `admin/README.md`). Admins sign in with email
+and password (`POST /auth/login`, bcrypt); the session is a random token in an HttpOnly,
+SameSite=Strict cookie (12 h, only its hash is stored), and every change must also send
+`X-Requested-With: likho-admin`. Roles: viewer < editor < owner. Every change is written to
+`admin_audit`.
+
+| area | endpoints |
+|---|---|
+| dashboard | `GET /overview?days=`, `GET /levels/stats`, `GET /activity?types=&after=&before=` |
+| families | `GET /families` (search, country, filter, sort, paging), `GET /families.csv`, `GET /families/{id}`, `POST/DELETE /families/{id}/plus`, `POST /families/{id}/sign-out`, `DELETE /families/{id}` (owner), `POST /children/{id}/stars` |
+| learners | `GET /learners` |
+| alerts | `GET /alerts`, `GET /alerts/unread`, `POST /alerts/read`, `GET/PUT /settings/alerts` |
+| content | `GET /content/courses/{id}`, `GET …/document` (preview), `GET …/levels/{n}`, `POST …/levels/validate`, `POST …/levels`, `PUT …/levels/{n}`, `POST …/levels/{n}/publish \| unpublish \| discard`, `DELETE …/levels/{n}`, `POST/PUT/DELETE …/worlds` |
+| team | `GET/POST /team`, `PATCH/DELETE /team/{id}` (owner), `GET /audit`, `GET /system` |
+
+**Activity and countries.** Signed-in requests mark the parent active (at most every 5 minutes,
+via Redis): `last_seen_at`, today's `active_days` row, platform and app version (the app's
+`X-Likho-Platform` / `X-Likho-App-Version` headers) and the country: the CDN's header
+(`COUNTRY_HEADER`, e.g. `CF-IPCountry`), else the IP in a GeoIP database (`make geoip`,
+`GEOIP_DB`; DB-IP Lite, CC BY 4.0: "IP Geolocation by DB-IP"), else the phone's region
+(`X-Likho-Region`). Only the country code is kept, never the IP. Sign-ups, sign-ins, children,
+finished levels, room purchases and trials are `activity_events`; deleting an account deletes
+its events (an anonymous `account_deleted` stays).
+
+**Alerts.** When a child finishes, for the first time, the level `levelsBeforeEnd` before the last
+one (default: they are now on the last level), and when they finish the last level, an
+`admin_alerts` row is added once (unique key per child, course and level).
+
+**Content from the panel.** New and edited levels live in `content_levels` (working copy +
+live copy) and `content_worlds`, laid over `content/` by `catalog.Overlay`, so they pass exactly
+the same checks. Publishing checks the whole course, swaps the served catalog
+(`catalog.Store`) and bumps the content revision in `admin_settings`; other servers reload within
+15 s. If published content ever stops loading (e.g. a file in `content/` now clashes with a level
+added in the panel), the API keeps serving the last good catalog and the panel lists the problems.
+
 ### Tokens
 
 | token | lives | how |
