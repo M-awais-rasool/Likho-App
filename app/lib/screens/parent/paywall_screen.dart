@@ -75,7 +75,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
           soft: false,
           child: const Column(
             children: [
-              _Feature(icon: Symbols.public_rounded, bg: ParentColors.featureGreenBg, fg: ParentColors.featureGreen, text: 'All 6 worlds and 36 levels'),
+              _Feature(icon: Symbols.public_rounded, bg: ParentColors.featureGreenBg, fg: ParentColors.featureGreen, text: 'Every world and every level'),
               SizedBox(height: 12),
               _Feature(
                 icon: Symbols.menu_book_rounded,
