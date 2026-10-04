@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+/* Likho's colours and fonts, the same tokens the app uses (app/lib/design/tokens.dart). */
+@theme {
+  --color-cream: #fff8ec;
+  --color-cream-2: #fff0cc;
+  --color-paper: #ffffff;
+  --color-sun: #ffc83d;
+  --color-sun-deep: #e0a21a;
+  --color-ink: #2b2d42;
+  --color-ink-soft: #6b6e85;
+  --color-sky: #4d9de0;
+  --color-sky-deep: #2f7cc0;
+  --color-leaf: #3bb273;
+  --color-leaf-deep: #268f58;
+  --color-coral: #ff8a5b;
+  --color-coral-deep: #e2683a;
+  --color-grape: #9b7fe6;
+  --color-grape-deep: #6a48dd;
+  --color-eraser: #ff9eb5;
+  --color-rule: #bfd8f0;
+
+  --font-display: var(--font-baloo), ui-rounded, system-ui, sans-serif;
+  --font-body: var(--font-nunito), system-ui, sans-serif;
+  --font-letter: var(--font-andika), system-ui, sans-serif;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 9s ease-in-out infinite;
+  --animate-bob: bob 3.2s ease-in-out infinite;
+  --animate-twinkle: twinkle 2.6s ease-in-out infinite;
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-marquee-reverse: marquee 44s linear infinite reverse;
+  --animate-spin-slow: spin 60s linear infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+  @keyframes bob {
+    0%,
+    100% {
+      transform: translateY(0) rotate(-2deg);
+    }
+    50% {
+      transform: translateY(-8px) rotate(2deg);
+    }
+  }
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0.35;
+      transform: scale(0.75) rotate(0deg);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1) rotate(20deg);
+    }
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-sun) 45%, transparent);
+}
+
+/* Chunky buttons that press down, like the app's (set --edge for the 3D edge colour). */
+@utility btn-3d {
+  position: relative;
+  box-shadow: 0 6px 0 var(--edge, var(--color-sun-deep));
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    filter 0.2s ease;
+  &:hover {
+    filter: brightness(1.04);
+    transform: translateY(-1px);
+    box-shadow: 0 7px 0 var(--edge, var(--color-sun-deep));
+  }
+  &:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 var(--edge, var(--color-sun-deep));
+  }
+}
+
+/* Notebook rules, like the writing pad. */
+@utility ruled {
+  background-image: linear-gradient(
+    to bottom,
+    transparent calc(100% - 2px),
+    color-mix(in srgb, var(--color-rule) 55%, transparent) calc(100% - 2px)
+  );
+  background-size: 100% 44px;
+}
+
+@utility card {
+  background: var(--color-paper);
+  border-radius: 28px;
+  box-shadow:
+    0 1px 0 rgb(43 45 66 / 0.04),
+    0 18px 40px -18px rgb(43 45 66 / 0.18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
