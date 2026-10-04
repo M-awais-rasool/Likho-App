@@ -17,6 +17,7 @@ var statusOf = map[domain.Kind]int{
 	domain.KindPaymentRequired: http.StatusPaymentRequired,
 	domain.KindNotFound:        http.StatusNotFound,
 	domain.KindConflict:        http.StatusConflict,
+	domain.KindForbidden:       http.StatusForbidden,
 }
 
 // writeError answers {"error": "<code>", "message": "<text>"}. Domain errors
