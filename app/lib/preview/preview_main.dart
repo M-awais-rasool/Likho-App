@@ -1,0 +1,192 @@
+// Level preview for the admin panel (web only). Build it with
+// `admin/scripts/build-preview.sh`; the admin page loads it in a phone
+// frame (an iframe) and posts the level to show:
+//
+//   {"type": "likho-preview", "nonce": 3, "screen": "level" | "map",
+//    "level": 37, "course": {…the course document, draft level included…}}
+//
+// as a JSON string. It answers {"type": "likho-preview-ready"} once it can
+// take one, and {"type": "likho-preview-error", "message": "…"} when the
+// course does not parse. Only messages from its own origin are read.
+import 'dart:convert';
+import 'dart:js_interop';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:web/web.dart' as web;
+
+import '../data/course_providers.dart';
+import '../data/family.dart';
+import '../data/models/course_models.dart';
+import '../data/repositories/course_repository.dart';
+import '../design/tokens.dart';
+import '../feedback/app_feedback.dart';
+import '../feedback/game_feedback.dart';
+import '../feedback/sound_engine.dart';
+import '../screens/app_flow.dart';
+import '../screens/gameplay/gameplay_screen.dart';
+import '../screens/level_complete/level_complete_screen.dart';
+import '../screens/level_intro/level_intro_screen.dart';
+
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(PreviewApp(sound: JustAudioSoundEngine()));
+}
+
+/// What the admin page asked to show.
+class PreviewRequest {
+  const PreviewRequest({required this.nonce, required this.screen, required this.level, required this.course});
+  final int nonce;
+  final String screen; // level | map
+  final int level;
+  final Course course;
+}
+
+class PreviewApp extends StatefulWidget {
+  const PreviewApp({super.key, required this.sound});
+  final SoundEngine sound;
+
+  @override
+  State<PreviewApp> createState() => _PreviewAppState();
+}
+
+class _PreviewAppState extends State<PreviewApp> {
+  PreviewRequest? _request;
+  String? _error;
+  late final JSFunction _listener = _onMessage.toJS;
+
+  @override
+  void initState() {
+    super.initState();
+    web.window.addEventListener('message', _listener);
+    _post({'type': 'likho-preview-ready'});
+  }
+
+  @override
+  void dispose() {
+    web.window.removeEventListener('message', _listener);
+    super.dispose();
+  }
+
+  void _post(Map<String, Object?> msg) => web.window.parent?.postMessage(jsonEncode(msg).toJS, web.window.location.origin.toJS);
+
+  void _onMessage(web.MessageEvent e) {
+    if (e.origin != web.window.location.origin) return;
+    final data = e.data;
+    if (!data.isA<JSString>()) return;
+    try {
+      final msg = jsonDecode((data as JSString).toDart);
+      if (msg is! Map<String, dynamic> || msg['type'] != 'likho-preview') return;
+      final course = Course.fromJson(msg['course'] as Map<String, dynamic>);
+      final level = (msg['level'] as num).toInt();
+      if (!course.levels.any((l) => l.number == level)) throw FormatException('Level $level is not in the course');
+      setState(() {
+        _error = null;
+        _request = PreviewRequest(nonce: (msg['nonce'] as num?)?.toInt() ?? 0, screen: msg['screen'] as String? ?? 'level', level: level, course: course);
+      });
+    } catch (err) {
+      setState(() => _error = '$err');
+      _post({'type': 'likho-preview-error', 'message': '$err'});
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final r = _request;
+    if (r == null || _error != null) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: likhoTheme(),
+        home: Scaffold(
+          body: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Text(
+                _error ?? 'Waiting for a level…',
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: LikhoColors.ink),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+    // a fresh app per request: nothing carries over from the last preview
+    return ProviderScope(
+      key: ValueKey(r.nonce),
+      overrides: [
+        courseRepositoryProvider.overrideWithValue(_FixedCourse(r.course)),
+        soundEngineProvider.overrideWithValue(widget.sound),
+        familyProvider.overrideWith(() => DemoFamilyNotifier(_previewFamily(r.level))),
+      ],
+      child: MaterialApp(
+        title: 'Likho preview',
+        debugShowCheckedModeBanner: false,
+        theme: likhoTheme(),
+        home: r.screen == 'map' ? Builder(builder: AppFlow.mapScreen) : _LevelRun(level: r.course.level(r.level)),
+      ),
+    );
+  }
+}
+
+/// The sample child has finished every level before [level] (3 stars) and
+/// has Likho Plus, so the previewed level is open on the map.
+FamilyState _previewFamily(int level) {
+  final demo = FamilyState.demo();
+  final records = {...demo.records};
+  records[demo.activeId] = demo.record.copyWith(levelStars: {for (var n = 1; n < level; n++) n: 3});
+  return demo.copyWith(records: records, subscribed: true);
+}
+
+class _FixedCourse implements CourseRepository {
+  const _FixedCourse(this.course);
+  final Course course;
+
+  @override
+  Future<Course> loadCourse() async => course;
+}
+
+/// Intro -> gameplay -> Level Complete, round and round (Next starts over).
+class _LevelRun extends ConsumerStatefulWidget {
+  const _LevelRun({required this.level});
+  final CourseLevel level;
+
+  @override
+  ConsumerState<_LevelRun> createState() => _LevelRunState();
+}
+
+enum _Stage { intro, game, complete }
+
+class _LevelRunState extends ConsumerState<_LevelRun> {
+  _Stage _stage = _Stage.intro;
+  int _run = 0;
+  LevelOutcome? _outcome;
+
+  void _go(_Stage s) => setState(() {
+    _stage = s;
+    _run++;
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final level = widget.level;
+    final Widget screen = switch (_stage) {
+      _Stage.intro => IntroFeedback(
+        child: LevelIntroScreen(level: level, onDone: () => _go(_Stage.game)),
+      ),
+      _Stage.game => GameFeedback(
+        level: level,
+        child: GameplayScreen(
+          level: level,
+          onExit: () => _go(_Stage.intro),
+          onFinished: (result) {
+            _outcome = ref.read(familyProvider.notifier).recordResult(level.number, result.stars, seconds: 60);
+            _go(_Stage.complete);
+          },
+        ),
+      ),
+      _Stage.complete => LevelCompleteScreen(level: level, outcome: _outcome!, onAgain: () => _go(_Stage.game), onNext: () => _go(_Stage.intro)),
+    };
+    return KeyedSubtree(key: ValueKey(_run), child: screen);
+  }
+}
