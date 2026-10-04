@@ -70,6 +70,7 @@ type parsed[T any] struct {
 	file string
 	doc  T
 	raw  map[string]json.RawMessage
+	data []byte // the file as authored
 }
 
 func readJSON[T any](fsys fs.FS, file string, p *problems) *parsed[T] {
@@ -78,7 +79,7 @@ func readJSON[T any](fsys fs.FS, file string, p *problems) *parsed[T] {
 		p.add(file, "%v", err)
 		return nil
 	}
-	out := &parsed[T]{file: file}
+	out := &parsed[T]{file: file, data: data}
 	dec := json.NewDecoder(bytes.NewReader(data))
 	dec.DisallowUnknownFields() // a typo in a field name is an error, not a silent default
 	if err := dec.Decode(&out.doc); err != nil {
@@ -134,6 +135,7 @@ func loadCourse(fsys fs.FS, dir, name string) (*Course, problems) {
 		p.add(dir, "%v", err)
 		return nil, p
 	}
+	course.Dir = dir
 	return course, nil
 }
 
@@ -269,20 +271,32 @@ func build(m *parsed[manifestDoc], glyphs map[string][]string, placement *parsed
 		doc.Levels = append(doc.Levels, withWorld(placement.raw, nil))
 		stats.Rounds += len(placement.doc.Rounds)
 	}
+	byWorld := map[string][]int{}
 	for _, l := range levels {
 		doc.Levels = append(doc.Levels, withWorld(l.raw, &l.world.doc.ID))
 		stats.Rounds += len(l.doc.Rounds)
 		index[*l.doc.Number] = Level{
 			Number: *l.doc.Number, ID: l.doc.ID, WorldID: l.world.doc.ID,
 			IsBoss: *l.doc.IsBoss, RequiresSubscription: *l.doc.RequiresSubscription,
+			Name: l.doc.Name, Skill: l.doc.Skill, Icon: l.doc.Icon, Rounds: len(l.doc.Rounds),
+			File: l.file, Doc: l.data,
 		}
+		byWorld[l.world.doc.ID] = append(byWorld[l.world.doc.ID], *l.doc.Number)
+	}
+	infos := make([]World, 0, len(worlds))
+	for _, w := range worlds {
+		d := w.doc
+		infos = append(infos, World{
+			ID: d.ID, Name: d.Name, Skill: d.Skill, Icon: d.Icon, ThemeID: d.ThemeID, Order: d.Order,
+			BossID: d.Boss.ID, BossName: d.Boss.Name, Folder: w.folder, Levels: byWorld[d.ID],
+		})
 	}
 
 	body, err := json.Marshal(doc)
 	if err != nil {
 		return nil, err
 	}
-	c := &Course{Draft: m.doc.Status == "draft", Stats: stats, levels: index}
+	c := &Course{Draft: m.doc.Status == "draft", Stats: stats, levels: index, Worlds: infos}
 	c.setBody(body)
 	c.Summary.ID = m.doc.ID
 	c.Summary.Title = m.doc.Title

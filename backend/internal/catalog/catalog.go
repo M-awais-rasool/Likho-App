@@ -9,8 +9,10 @@
 package catalog
 
 import (
+	"encoding/json"
 	"io/fs"
 	"sort"
+	"sync/atomic"
 
 	"likho/backend/internal/model"
 )
@@ -42,16 +44,36 @@ type Course struct {
 	JSON []byte // the delivery document (GET /v1/courses/:id)
 	Gzip []byte // JSON, gzipped
 
+	// Dir is the course folder in the content ("courses/<id>"); Worlds are
+	// its worlds in map order (for the admin panel).
+	Dir    string
+	Worlds []World
+
 	levels map[int]Level
 }
 
-// Level is what the API needs to know about a map level.
+// Level is what the API (and the admin panel) needs to know about a map
+// level.
 type Level struct {
 	Number               int
 	ID                   string
 	WorldID              string
 	IsBoss               bool
 	RequiresSubscription bool
+
+	Name, Skill, Icon string
+	Rounds            int
+	File              string          // its file in the content, e.g. courses/x/worlds/01-a/levels/01-b.json
+	Doc               json.RawMessage // the file as authored (without "$schema")
+}
+
+// World is a world of the course and the folder it lives in.
+type World struct {
+	ID, Name, Skill, Icon, ThemeID string
+	Order                          int
+	BossID, BossName               string
+	Folder                         string // e.g. "06-story-space"
+	Levels                         []int  // its map level numbers
 }
 
 // Stats counts what a course contains.
@@ -65,6 +87,19 @@ func (c *Course) Level(n int) (Level, bool) {
 	l, ok := c.levels[n]
 	return l, ok
 }
+
+// Levels returns the map levels in number order.
+func (c *Course) Levels() []Level {
+	out := make([]Level, 0, len(c.levels))
+	for _, l := range c.levels {
+		out = append(out, l)
+	}
+	sort.Slice(out, func(i, j int) bool { return out[i].Number < out[j].Number })
+	return out
+}
+
+// LastLevel is the highest map level number (the end of the course).
+func (c *Course) LastLevel() int { return c.Stats.Levels }
 
 // Load reads every course under courses/ in [fsys], checks all of them and
 // returns the ones to serve. The error lists every problem found, each with
@@ -94,3 +129,22 @@ func (c *Catalog) Course(id string) (*Course, bool) {
 	co, ok := c.byID[id]
 	return co, ok
 }
+
+// Store holds the catalog being served. The admin panel can publish new
+// content while the API runs: it builds a new catalog and swaps it in, so
+// requests always see one whole, checked catalog.
+type Store struct {
+	p atomic.Pointer[Catalog]
+}
+
+func NewStore(c *Catalog) *Store {
+	s := &Store{}
+	s.p.Store(c)
+	return s
+}
+
+// Get returns the catalog being served.
+func (s *Store) Get() *Catalog { return s.p.Load() }
+
+// Set serves [c] from now on.
+func (s *Store) Set(c *Catalog) { s.p.Store(c) }
