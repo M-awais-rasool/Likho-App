@@ -34,11 +34,14 @@ fixed.
 4. **Release signing key.** `android/app/build.gradle.kts` signs release builds with the debug key,
    and Play refuses those. Create an upload key and keep it backed up (losing it means asking
    Google for a reset). Use Play App Signing.
-5. **Privacy policy and account deletion links.** Both need to be web pages:
+5. **Privacy policy and account deletion links.** Both need to be web pages, and both are ready on
+   the website in `landing/` (see `landing/README.md`). Deploy it, then use
+   `https://<your site>/privacy` and `https://<your site>/delete-account`.
    - The privacy policy is required for every app, and especially for kids apps. The app's
-     Settings → Privacy policy row must open it too; today it only opens the help action.
+     Settings → Privacy policy row and the Welcome screen's Terms and Privacy Policy link must open
+     it too; today they only open the help action and a "coming soon" message.
    - Apps with accounts must give a web link where people can ask for their account to be deleted
-     (in-app deletion already exists: Settings → Account delete karein).
+     (in-app deletion already exists: Settings → Delete account).
 6. **Store builds:** build without `LIKHO_TEST_LOGIN`. It is off unless passed, so just don't pass it.
 7. **Closed test first (new personal accounts).** Personal developer accounts created after 13
    November 2023 must run a closed test with at least 12 testers, opted in for 14 days in a row,
@@ -214,9 +217,9 @@ reviews from the first week.
 - **App or game:** App. **Category:** Education. (ABC Kids is listed as a game in the Educational
   category; that also works, but parents mostly look for apps.)
 - **Tags:** pick up to 5 that fit: early learning, kids, language learning or education.
-- **Contact details:** an email address (required) and a website (recommended).
+- **Contact details:** an email address (required) and a website (recommended): the site from part 1.
 - **Countries:**
-  - Start with Pakistan: the app speaks Roman Urdu to parents.
+  - Start with Pakistan: the prices are set in rupees and the course follows KG to Class 3.
   - Add countries with many Urdu-speaking families (UAE, Saudi Arabia, UK, US, Canada) when ready.
 - **Price:** Free. Play adds "In-app purchases" to the listing once the Likho Plus subscription
   exists.
