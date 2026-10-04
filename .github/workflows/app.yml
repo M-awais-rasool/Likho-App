@@ -28,3 +28,5 @@ jobs:
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test
+      - name: Admin phone preview compiles for the web
+        run: flutter build web -t lib/preview/preview_main.dart --base-href /admin/preview/ --no-web-resources-cdn --no-wasm-dry-run
