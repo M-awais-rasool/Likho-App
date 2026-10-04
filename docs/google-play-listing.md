@@ -35,7 +35,7 @@ fixed.
    and Play refuses those. Create an upload key and keep it backed up (losing it means asking
    Google for a reset). Use Play App Signing.
 5. **Privacy policy and account deletion links.** Both need to be web pages, and both are ready on
-   the website in `landing/` (see `landing/README.md`). Deploy it, then use
+   the website in `landing/` (see the Website section of `README.md`). Deploy it, then use
    `https://<your site>/privacy` and `https://<your site>/delete-account`.
    - The privacy policy is required for every app, and especially for kids apps. The app's
      Settings → Privacy policy row and the Welcome screen's Terms and Privacy Policy link must open

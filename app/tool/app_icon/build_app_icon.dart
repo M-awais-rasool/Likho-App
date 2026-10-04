@@ -4,7 +4,7 @@
 //
 //   flutter test tool/app_icon/build_app_icon.dart
 //
-// It writes every icon file (see README.md) and fails if Pencil leaves the
+// It writes every icon file (see the repository README, App icon) and fails if Pencil leaves the
 // adaptive icon's safe zone, the part that no launcher mask cuts off.
 import 'dart:io';
 import 'dart:math' as math;

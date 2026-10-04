@@ -1,8 +1,8 @@
 # Architecture
 
 How the app, the API and the content fit together. Each part has its own details:
-[app](../app/docs/architecture.md) · [API](../backend/README.md) ·
-[content](../backend/content/README.md) · [API contract](../backend/docs/openapi.yaml).
+[app](../app/docs/architecture.md) · [API](../README.md#api-go) ·
+[content](../README.md#learning-content) · [API contract](../backend/docs/openapi.yaml).
 
 ## Repository
 
