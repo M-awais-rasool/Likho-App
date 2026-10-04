@@ -34,7 +34,7 @@ func (h *AuthHandler) GoogleSignIn(c *gin.Context) {
 	if device == "" {
 		device = c.GetHeader("User-Agent")
 	}
-	out, err := h.auth.SignInWithGoogle(c.Request.Context(), in.IDToken, truncate(device, 120))
+	out, err := h.auth.SignInWithGoogle(c.Request.Context(), in.IDToken, truncate(device, 120), middleware.Client(c))
 	if err != nil {
 		writeError(c, err)
 		return

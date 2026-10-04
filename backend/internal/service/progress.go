@@ -15,19 +15,20 @@ import (
 // exist and which need Likho Plus; the rules decide stars and unlocks.
 type ProgressService struct {
 	progress *repository.ProgressRepository
-	catalog  *catalog.Catalog
+	catalog  *catalog.Store
 	cache    *cache.Cache
+	activity *ActivityService
 }
 
-func NewProgressService(progress *repository.ProgressRepository, cat *catalog.Catalog, c *cache.Cache) *ProgressService {
-	return &ProgressService{progress: progress, catalog: cat, cache: c}
+func NewProgressService(progress *repository.ProgressRepository, cat *catalog.Store, c *cache.Cache, activity *ActivityService) *ProgressService {
+	return &ProgressService{progress: progress, catalog: cat, cache: c, activity: activity}
 }
 
 // Record saves a finished level of a course: the best stars are kept, the
 // child earns the improvement (+2 the first time), the level must be
 // unlocked, and Plus levels need the subscription.
 func (s *ProgressService) Record(ctx context.Context, parentID, childID, courseID string, in model.ResultInput) (model.Outcome, error) {
-	course, ok := s.catalog.Course(courseID)
+	course, ok := s.catalog.Get().Course(courseID)
 	if !ok {
 		return model.Outcome{}, domain.ErrCourseNotFound
 	}
@@ -43,6 +44,7 @@ func (s *ProgressService) Record(ctx context.Context, parentID, childID, courseI
 	out, err := s.progress.Record(ctx, parentID, childID, courseID, in, level.RequiresSubscription)
 	if err == nil {
 		s.cache.ForgetMe(ctx, parentID)
+		s.activity.LevelCompleted(ctx, parentID, childID, courseID, out, in.Seconds, course.LastLevel())
 	}
 	return out, err
 }

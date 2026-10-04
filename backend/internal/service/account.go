@@ -18,10 +18,11 @@ type AccountService struct {
 	accounts *repository.AccountRepository
 	children *repository.ChildRepository
 	cache    *cache.Cache
+	activity *ActivityService
 }
 
-func NewAccountService(accounts *repository.AccountRepository, children *repository.ChildRepository, c *cache.Cache) *AccountService {
-	return &AccountService{accounts: accounts, children: children, cache: c}
+func NewAccountService(accounts *repository.AccountRepository, children *repository.ChildRepository, c *cache.Cache, activity *ActivityService) *AccountService {
+	return &AccountService{accounts: accounts, children: children, cache: c, activity: activity}
 }
 
 // Me loads the whole account: parent, settings, subscription and every
@@ -75,13 +76,21 @@ func (s *AccountService) StartTrial(ctx context.Context, parentID string) (model
 	out, err := s.accounts.StartTrial(ctx, parentID, domain.TrialDays)
 	if err == nil {
 		s.cache.ForgetMe(ctx, parentID)
+		s.activity.TrialStarted(ctx, parentID)
 	}
 	return out, err
 }
 
 // Delete removes the account and everything in it.
+// Its events go with it; only an anonymous "account deleted" (with the
+// country) is kept for the numbers.
 func (s *AccountService) Delete(ctx context.Context, parentID string) error {
+	p, _ := s.accounts.Get(ctx, parentID)
 	err := s.accounts.Delete(ctx, parentID)
 	s.cache.ForgetMe(ctx, parentID)
+	if err == nil {
+		s.activity.Event(ctx, model.ActivityEvent{Type: model.EventAccountDeleted,
+			Detail: model.JSONOf(map[string]any{"country": p.Country, "platform": p.Platform})})
+	}
 	return err
 }

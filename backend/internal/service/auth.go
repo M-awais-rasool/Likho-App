@@ -21,16 +21,17 @@ type AuthService struct {
 	google   GoogleVerifier
 	tokens   Tokens
 	me       *AccountService
+	activity *ActivityService
 }
 
-func NewAuthService(accounts *repository.AccountRepository, sessions *repository.SessionRepository, google GoogleVerifier, tokens Tokens, me *AccountService) *AuthService {
-	return &AuthService{accounts: accounts, sessions: sessions, google: google, tokens: tokens, me: me}
+func NewAuthService(accounts *repository.AccountRepository, sessions *repository.SessionRepository, google GoogleVerifier, tokens Tokens, me *AccountService, activity *ActivityService) *AuthService {
+	return &AuthService{accounts: accounts, sessions: sessions, google: google, tokens: tokens, me: me, activity: activity}
 }
 
 // SignInWithGoogle verifies the Google ID token, finds or creates the
 // account, opens a session for this device and returns tokens plus the
 // whole account (so the app needs no second request).
-func (s *AuthService) SignInWithGoogle(ctx context.Context, idToken, device string) (model.SignIn, error) {
+func (s *AuthService) SignInWithGoogle(ctx context.Context, idToken, device string, info model.ClientInfo) (model.SignIn, error) {
 	user, err := s.google.Verify(ctx, idToken)
 	if err != nil {
 		return model.SignIn{}, err
@@ -43,6 +44,7 @@ func (s *AuthService) SignInWithGoogle(ctx context.Context, idToken, device stri
 	if err != nil {
 		return model.SignIn{}, err
 	}
+	s.activity.SignedIn(ctx, parent, created, info)
 	me, err := s.me.Me(ctx, parent.ID)
 	if err != nil {
 		return model.SignIn{}, err
