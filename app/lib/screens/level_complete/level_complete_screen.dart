@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import '../world_map/boss_painter.dart';
 import '../../data/course_providers.dart';
 import '../../data/family.dart';
 import '../../data/models/course_models.dart';
@@ -87,7 +88,7 @@ class _LevelCompleteScreenState extends ConsumerState<LevelCompleteScreen> {
     final reduce = ref.watch(reduceMotionProvider);
     final fg = theme.dark ? LikhoColors.surface : LikhoColors.ink;
     final o = widget.outcome;
-    final last = widget.level.number == 36;
+    final last = widget.level.number == (course?.levels.last.number ?? 36);
     // one layout for every phone: shorter phones get a slightly smaller
     // group, the gaps inside it stay the same
     final compact = MediaQuery.sizeOf(context).height < 760;
@@ -186,7 +187,7 @@ class _LevelCompleteScreenState extends ConsumerState<LevelCompleteScreen> {
                           PopIn(
                             delay: 1,
                             seconds: .5,
-                            child: BossFigure(world: (world?.order ?? 1) - 1, dance: _expr == MascotState.dance),
+                            child: BossFigure(world: BossPainter.indexOf(world?.bossId ?? ''), dance: _expr == MascotState.dance),
                           ),
                           const SizedBox(width: 6),
                         ],

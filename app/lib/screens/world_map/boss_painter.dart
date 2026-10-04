@@ -11,6 +11,18 @@ class BossPainter extends CustomPainter {
   BossPainter({required this.world, required this.awake, required this.time, this.dance = false}) : super(repaint: time);
 
   final int world;
+
+  /// Which of the six boss drawings a world's boss id is (world ids from
+  /// the course; a new world in the admin panel picks one of these).
+  static int indexOf(String bossId) => switch (bossId) {
+        'snail' => 0,
+        'fish' => 1,
+        'bear' => 2,
+        'robotBus' => 3,
+        'cloud' => 4,
+        'moon' => 5,
+        _ => 0,
+      };
   final bool awake;
   final bool dance; // bDance: rock and hop (woken in gameplay)
   final ValueListenable<double> time; // seconds
