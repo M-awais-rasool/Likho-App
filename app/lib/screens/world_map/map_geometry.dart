@@ -4,46 +4,83 @@ import 'dart:ui';
 import '../../design/tokens.dart';
 
 /// Layout of the world map, ported from the prototype (mapGeom / mapVals).
-/// The map is one tall canvas: world 1 at the bottom, world 6 at the top.
+/// The map is one tall canvas: world 1 at the bottom, the last world at the
+/// top. Each world is a block of 900 px with up to 6 levels 128 px apart;
+/// a world with more levels (added in the admin panel) gets a taller block.
+/// [levelsPerWorld] says how many map levels each world has, in order
+/// (levels are numbered 1, 2, 3… world after world).
 class MapGeometry {
-  MapGeometry(this.width)
+  MapGeometry(this.width, {List<int> levelsPerWorld = const [6, 6, 6, 6, 6, 6], List<int>? decoKinds})
       : contentWidth = math.min(width, 520),
-        offsetX = (width - math.min(width, 520)) / 2;
+        offsetX = (width - math.min(width, 520)) / 2,
+        levelsPerWorld = List.unmodifiable(levelsPerWorld),
+        decoKinds = List.unmodifiable(decoKinds ?? [for (var w = 0; w < levelsPerWorld.length; w++) w % _kinds.length]) {
+    var y = 0.0;
+    for (final k in levelsPerWorld) {
+      _blockStart.add(y);
+      y += blockOf(k);
+    }
+    _blocksHeight = y;
+    for (var w = 0; w < levelsPerWorld.length; w++) {
+      for (var li = 0; li < levelsPerWorld[w]; li++) {
+        _place.add((w, li));
+      }
+    }
+  }
 
   final double width;
   final double contentWidth;
   final double offsetX;
+  final List<int> levelsPerWorld;
 
-  static const double block = 900; // one world
+  /// Decoration set per world (index into the six worlds' kinds), so a new
+  /// world looks like the world whose theme it borrows.
+  final List<int> decoKinds;
+
+  static const double block = 900; // one world of up to 6 levels
   static const double top = 190;
   static const double bottom = 150;
-  static const double height = top + 6 * block + bottom; // 5740
   static const _xs = [.32, .64, .74, .46, .26, .52];
 
-  /// Bottom edge of world [w]'s block.
-  double worldBottom(int w) => height - bottom - w * block;
+  final List<double> _blockStart = []; // from the bottom
+  late final double _blocksHeight;
+  final List<(int, int)> _place = []; // level n-1 -> (world, index in world)
 
-  /// Centre of level [n] (1..36).
+  /// Height of a world's block with [levels] levels.
+  static double blockOf(int levels) => math.max(block, 110 + (levels - 1) * 128 + 12 + 138);
+
+  int get worlds => levelsPerWorld.length;
+  int get levels => _place.length;
+
+  /// The whole canvas (5740 for six worlds of six levels).
+  double get height => top + _blocksHeight + bottom;
+
+  /// Bottom edge of world [w]'s block.
+  double worldBottom(int w) => height - bottom - _blockStart[w];
+
+  /// Centre of level [n] (1..levels).
   Offset node(int n) {
-    final w = (n - 1) ~/ 6, li = (n - 1) % 6;
-    final x = offsetX + contentWidth * (w.isOdd ? 1 - _xs[li] : _xs[li]);
-    final y = worldBottom(w) - 110 - li * 128 - (li == 5 ? 12 : 0);
+    final (w, li) = _place[n - 1];
+    final x = offsetX + contentWidth * (w.isOdd ? 1 - _xs[li % 6] : _xs[li % 6]);
+    final last = li == levelsPerWorld[w] - 1; // the boss: 12 px higher
+    final y = worldBottom(w) - 110 - li * 128 - (last ? 12 : 0);
     return Offset(x, y);
   }
 
   /// Vertical extent of world [w]'s background section.
   (double top, double height) section(int w) {
     final yb = worldBottom(w);
-    final t = w == 5 ? 0.0 : yb - block;
+    final t = w == worlds - 1 ? 0.0 : yb - blockOf(levelsPerWorld[w]);
     return (t, yb - t + (w == 0 ? bottom : 0));
   }
 
-  /// "M x1 y1 C prev.x prev.y-70, x y+70, x y" through all 36 nodes.
+  /// "M x1 y1 C prev.x prev.y-70, x y+70, x y" through every node.
   Path path() {
     final p = Path();
+    if (levels == 0) return p;
     final a = node(1);
     p.moveTo(a.dx, a.dy);
-    for (var n = 2; n <= 36; n++) {
+    for (var n = 2; n <= levels; n++) {
       final q = node(n), pq = node(n - 1);
       p.cubicTo(pq.dx, pq.dy - 70, q.dx, q.dy + 70, q.dx, q.dy);
     }
@@ -51,9 +88,11 @@ class MapGeometry {
   }
 
   /// Scroll offset (from the top) that puts level [n] at 55 % of the view.
-  double scrollFor(int n, double viewport) => (node(n).dy - viewport * .55).clamp(0.0, math.max(0.0, height - viewport));
+  double scrollFor(int n, double viewport) =>
+      (node(n.clamp(1, math.max(levels, 1))).dy - viewport * .55).clamp(0.0, math.max(0.0, height - viewport));
 
-  /// Decorations: 12 per world, placed by the prototype's seeded generator.
+  /// Decorations: 12 per 900 px of world, placed by the prototype's seeded
+  /// generator.
   List<MapDeco> decorations() {
     var seed = 11;
     double rnd() {
@@ -62,13 +101,16 @@ class MapGeometry {
     }
 
     final out = <MapDeco>[];
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < worlds; i++) {
       final yb = worldBottom(i);
-      for (var k = 0; k < 12; k++) {
-        final kind = _kinds[i][k % 3];
+      final h = blockOf(levelsPerWorld[i]);
+      final count = (12 * h / block).round();
+      final kinds = _kinds[decoKinds[i] % _kinds.length];
+      for (var k = 0; k < count; k++) {
+        final kind = kinds[k % 3];
         final left = k.isEven;
         final x = left ? rnd() * (offsetX + contentWidth * .14) : width - rnd() * (offsetX + contentWidth * .14) - kind.w;
-        final y = yb - block + 40 + k * (block - 80) / 12 + rnd() * 30;
+        final y = yb - h + 40 + k * (h - 80) / count + rnd() * 30;
         final delay = double.parse((rnd() * -6).toStringAsFixed(1));
         out.add(MapDeco(world: i, kind: kind, rect: Rect.fromLTWH(x, y, kind.w, kind.h), phase: -delay));
       }

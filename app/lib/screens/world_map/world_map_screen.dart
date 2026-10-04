@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'dart:ui' as ui;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -70,12 +71,13 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen> with SingleTick
     super.dispose();
   }
 
-  MapGeometry _geometryFor(double width) {
+  MapGeometry _geometryFor(double width, Course course) {
+    final perWorld = [for (final w in course.worlds) course.levelsOf(w).length];
     final g = _geometry;
-    if (g != null && g.width == width) return g;
-    final ng = MapGeometry(width);
+    if (g != null && g.width == width && listEquals(g.levelsPerWorld, perWorld)) return g;
+    final ng = MapGeometry(width, levelsPerWorld: perWorld, decoKinds: [for (final w in course.worlds) LikhoWorlds.indexOf(w.themeId)]);
     final decos = ng.decorations();
-    _decosByWorld = [for (var w = 0; w < 6; w++) decos.where((d) => d.world == w).toList()];
+    _decosByWorld = [for (var w = 0; w < ng.worlds; w++) decos.where((d) => d.world == w).toList()];
     return _geometry = ng;
   }
 
@@ -87,7 +89,7 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen> with SingleTick
       Future.delayed(const Duration(milliseconds: 250), () {
         if (!mounted || !_scroll.hasClients) return;
         final fromTop = g.scrollFor(current, viewport);
-        final target = MapGeometry.height - viewport - fromTop;
+        final target = g.height - viewport - fromTop;
         _scroll.animateTo(target, duration: const Duration(milliseconds: 600), curve: Curves.easeInOut);
       });
     });
@@ -107,17 +109,17 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen> with SingleTick
           child: LayoutBuilder(builder: (context, box) {
             // still loading (Splash normally preloads it): plain app background
             if (course == null) return const SizedBox.expand(child: ColoredBox(color: LikhoColors.background));
-            final g = _geometryFor(box.maxWidth);
+            final g = _geometryFor(box.maxWidth, course);
             _scrollToCurrent(g, box.maxHeight, current);
-            final sections = [for (var w = 0; w < 6; w++) g.section(w)];
+            final sections = [for (var w = 0; w < g.worlds; w++) g.section(w)];
             return Stack(
               children: [
                 ListView.builder(
                   controller: _scroll,
                   reverse: true,
                   padding: EdgeInsets.zero,
-                  itemCount: 6,
-                  itemExtentBuilder: (i, _) => i < 6 ? sections[i].$2 : null,
+                  itemCount: g.worlds,
+                  itemExtentBuilder: (i, _) => i < g.worlds ? sections[i].$2 : null,
                   itemBuilder: (context, w) => RepaintBoundary(
                     child: _WorldSection(
                       course: course,
@@ -191,9 +193,8 @@ class _WorldSection extends StatelessWidget {
       Positioned(left: 24, top: labelY, height: 40, child: _WorldLabel(index: world, world: info, theme: theme)),
     ];
     Widget? mascotOnTop;
-    for (var li = 0; li < 6; li++) {
-      final n = world * 6 + li + 1;
-      final level = course.level(n);
+    for (final level in course.levelsOf(info)) {
+      final n = level.number;
       final c = geometry.node(n) - Offset(0, top);
       final done = progress.isDone(n);
       final isCur = n == current && !done;
@@ -203,7 +204,7 @@ class _WorldSection extends StatelessWidget {
           top: c.dy - 66,
           width: 96,
           height: 80,
-          child: IgnorePointer(child: CustomPaint(painter: BossPainter(world: world, awake: done, time: time))),
+          child: IgnorePointer(child: CustomPaint(painter: BossPainter(world: BossPainter.indexOf(info.bossId), awake: done, time: time))),
         ));
       }
       if (isCur) {
@@ -232,7 +233,7 @@ class _WorldSection extends StatelessWidget {
         // edge. When the next level is just above, he steps to the other
         // side of the node so it never covers him.
         final r = level.isBoss ? 50.0 : (isCur ? 44.0 : 36.0); // _LevelNode sizes
-        final ahead = n < 36 ? geometry.node(n + 1) - Offset(0, top) : null;
+        final ahead = n < geometry.levels ? geometry.node(n + 1) - Offset(0, top) : null;
         final dx = ahead == null || (ahead.dx - c.dx).abs() > 90 ? 0.0 : (ahead.dx >= c.dx ? -22.0 : 22.0);
         final rim = math.sqrt(r * r - dx * dx);
         mascotOnTop = Positioned(

@@ -167,6 +167,12 @@ abstract final class LikhoWorlds {
   static const storySpace = WorldTheme(bg: Color(0xFF252950), accent: Color(0xFFA08BF0), deep: Color(0xFF7A63D4), soft: Color(0xFF3A4077), dark: true);
   static const all = [letterLand, smallLetterCove, phonicsForest, wordTown, sentenceSky, storySpace];
 
+  static const ids = ['letterLand', 'smallLetterCove', 'phonicsForest', 'wordTown', 'sentenceSky', 'storySpace'];
+
+  /// Position of a `themeId` in [all] (0 when unknown), e.g. for the map's
+  /// decorations of a world.
+  static int indexOf(String id) => ids.contains(id) ? ids.indexOf(id) : 0;
+
   /// Theme for a course world's `themeId`.
   static WorldTheme byId(String id) => switch (id) {
         'letterLand' => letterLand,

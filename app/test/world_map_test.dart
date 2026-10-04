@@ -12,7 +12,7 @@ import 'test_course.dart';
 void main() {
   test('geometry matches the prototype (390 px wide phone)', () {
     final g = MapGeometry(390);
-    expect(MapGeometry.height, 5740);
+    expect(g.height, 5740);
     // level 1: x = 390 * .32, y = 5740 - 150 - 110
     expect(g.node(1), const Offset(124.8, 5480));
     // level 8 (world 2 mirrors x): x = 390 * (1 - .64), y = 5590 - 900 - 110 - 128
@@ -21,6 +21,25 @@ void main() {
     // boss nodes sit 12 px higher
     expect(g.node(6).dy, 5590 - 110 - 640 - 12);
     expect(g.decorations().length, 72);
+  });
+
+  test('levels added in the admin panel: a taller last world and a new world on top', () {
+    final g = MapGeometry(390, levelsPerWorld: const [6, 6, 6, 6, 6, 7, 2]);
+    expect(g.levels, 39);
+    expect(g.worlds, 7);
+    // the 7-level world is taller than 900, the new world sits above it
+    expect(MapGeometry.blockOf(7), greaterThan(MapGeometry.block));
+    expect(g.height, MapGeometry.top + 5 * 900 + MapGeometry.blockOf(7) + 900 + MapGeometry.bottom);
+    expect(g.node(37).dy, lessThan(g.node(36).dy)); // level 37 above 36
+    expect(g.node(38).dy, lessThan(g.node(37).dy)); // new world above
+    expect(g.node(38).dy, lessThan(g.worldBottom(6)));
+    // every node is inside its world's section
+    for (var w = 0; w < g.worlds; w++) {
+      final (top, h) = g.section(w);
+      expect(top, greaterThanOrEqualTo(0));
+      expect(h, greaterThan(0));
+    }
+    expect(g.decorations().where((d) => d.world == 6), isNotEmpty);
   });
 
   testWidgets('taps: current level opens, locked level does not', (tester) async {
