@@ -12,6 +12,7 @@ Likho/
 │   └── content/  courses, worlds, levels                  → backend/content/README.md
 ├── design/       prototype and mascot art the app is built from
 ├── docs/         how the pieces fit together              → docs/architecture.md
+├── landing/      website: landing page, privacy, terms     → landing/README.md
 ├── tools/        course pictures (illustrations/) and Pencil's voice (voice/), Python
 └── .github/      CI for the app and the backend
 ```
