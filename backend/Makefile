@@ -1,6 +1,6 @@
 # Likho API. Run `make help` for the list.
 .DEFAULT_GOAL := help
-.PHONY: help run db db-reset up down test test-db lint build content content-bundle content-fixture docker tidy
+.PHONY: help run db db-reset up down test test-db lint build content content-bundle content-fixture docker tidy geoip admin
 
 TEST_DB ?= postgres://likho:likho@localhost:5432/likho_test?sslmode=disable
 COURSE  ?= english-handwriting
@@ -49,6 +49,14 @@ build: ## static binary in bin/
 
 docker: ## production image
 	docker build -t likho-api .
+
+geoip: ## download the free DB-IP country database (CC BY 4.0) to geoip/ (set GEOIP_DB)
+	mkdir -p geoip
+	curl -fsSL "https://download.db-ip.com/free/dbip-country-lite-$$(date -u +%Y-%m).mmdb.gz" | gunzip > geoip/country.mmdb
+	@echo "Saved geoip/country.mmdb. Set GEOIP_DB=./geoip/country.mmdb (attribution: IP Geolocation by DB-IP, https://db-ip.com)"
+
+admin: ## build the admin panel (and its phone preview) for ADMIN_DIR=../admin/dist
+	cd ../admin && npm ci && scripts/build-preview.sh && npm run build
 
 tidy:
 	go mod tidy

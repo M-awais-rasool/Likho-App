@@ -34,6 +34,17 @@ type Config struct {
 
 	// Development only: accept "dev:<email>" instead of a Google ID token.
 	DevLogin bool
+
+	// Admin panel. AdminDir serves its build (admin/dist) at /admin/; the
+	// bootstrap owner is created at start-up when there are no admins yet.
+	AdminDir               string
+	AdminBootstrapEmail    string
+	AdminBootstrapPassword string
+
+	// Countries of families: a header set by the CDN in front of the API
+	// (e.g. CF-IPCountry) and/or a GeoIP country database (.mmdb).
+	CountryHeader string
+	GeoIPDB       string
 }
 
 func (c Config) Production() bool { return c.Env == "production" }
@@ -50,6 +61,12 @@ func Load() (Config, error) {
 		RefreshTTL:      duration("REFRESH_TOKEN_TTL", 60*24*time.Hour),
 		ContentDir:      os.Getenv("CONTENT_DIR"),
 		DevLogin:        boolean("DEV_LOGIN", false),
+
+		AdminDir:               os.Getenv("ADMIN_DIR"),
+		AdminBootstrapEmail:    strings.ToLower(strings.TrimSpace(os.Getenv("ADMIN_BOOTSTRAP_EMAIL"))),
+		AdminBootstrapPassword: os.Getenv("ADMIN_BOOTSTRAP_PASSWORD"),
+		CountryHeader:          strings.TrimSpace(os.Getenv("COUNTRY_HEADER")),
+		GeoIPDB:                os.Getenv("GEOIP_DB"),
 	}
 	c.ContentDrafts = boolean("CONTENT_DRAFTS", !c.Production())
 
@@ -59,6 +76,9 @@ func Load() (Config, error) {
 	}
 	if len(c.GoogleClientIDs) == 0 && !c.DevLogin {
 		errs = append(errs, errors.New("GOOGLE_CLIENT_IDS is required (comma separated OAuth client IDs)"))
+	}
+	if c.AdminBootstrapEmail != "" && len(c.AdminBootstrapPassword) < 10 {
+		errs = append(errs, errors.New("ADMIN_BOOTSTRAP_PASSWORD must be at least 10 characters"))
 	}
 	if c.Production() && c.DevLogin {
 		errs = append(errs, errors.New("DEV_LOGIN cannot be on in production"))
