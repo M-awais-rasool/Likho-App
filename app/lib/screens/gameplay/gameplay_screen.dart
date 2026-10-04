@@ -6,6 +6,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../world_map/boss_painter.dart';
 import '../../data/course_providers.dart';
 import '../../data/models/course_models.dart';
 import '../../data/progress.dart';
@@ -342,7 +343,7 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
                         children: [
                           if (level.isBoss) ...[
                             BossStrip(
-                              world: (world?.order ?? 1) - 1,
+                              world: BossPainter.indexOf(world?.bossId ?? ''),
                               rounds: s.roundCount,
                               done: s.round + (s.correct ? 1 : 0),
                               awake: s.correct && s.isLastRound,

@@ -370,7 +370,7 @@ abstract final class AppFlow {
       onNext: () {
         final nav = Navigator.of(ctx);
         final session = container.read(playSessionProvider);
-        if (level.number == 36) {
+        if (level.number == container.read(courseProvider).value?.levels.last.number) {
           nav.pushReplacement(
             LikhoRoute<void>(
               rise: false,
@@ -438,10 +438,11 @@ abstract final class AppFlowJump {
     void push(Widget Function(BuildContext) b, {bool rise = true}) => nav.push(LikhoRoute<void>(rise: rise, builder: b));
     final cur = (() {
       final r = container.read(familyProvider).record;
-      for (var n = 1; n <= 36; n++) {
+      final total = course?.levels.length ?? 36;
+      for (var n = 1; n <= total; n++) {
         if (!r.isDone(n)) return n;
       }
-      return 36;
+      return total;
     })();
     void complete(int n, int stars, int gain) {
       if (course == null) return;

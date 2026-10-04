@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../design/tokens.dart';
+import 'course_providers.dart';
 import 'family.dart';
 import 'shop_items.dart';
 
@@ -14,6 +15,7 @@ class ChildProgress {
     required this.stars,
     required this.levelStars,
     this.accessory,
+    this.total = 36,
   });
 
   final String name;
@@ -22,15 +24,18 @@ class ChildProgress {
   final Map<int, int> levelStars;
   final String? accessory;
 
+  /// Map levels in the course (the last level's number).
+  final int total;
+
   bool isDone(int n) => levelStars.containsKey(n);
   bool isUnlocked(int n) => n <= 1 || isDone(n - 1) || isDone(n);
 
   /// First level without stars (the prototype's current()).
   int get current {
-    for (var n = 1; n <= 36; n++) {
+    for (var n = 1; n <= total; n++) {
       if (!isDone(n)) return n;
     }
-    return 36;
+    return total;
   }
 }
 
@@ -41,7 +46,9 @@ class ProgressNotifier extends Notifier<ChildProgress> {
   ChildProgress build() {
     final f = ref.watch(familyProvider);
     final r = f.record;
+    final levels = ref.watch(courseProvider).value?.levels.length;
     return ChildProgress(
+      total: levels == null || levels == 0 ? 36 : levels,
       name: f.active.name,
       color: f.active.swatch,
       stars: r.stars,

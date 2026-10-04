@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import '../../data/course_providers.dart';
 import '../../data/family.dart';
 import '../../feedback/game_feedback.dart';
 import '../../design/motion.dart';
@@ -28,6 +29,8 @@ class CertificateScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final name = ref.watch(familyProvider.select((f) => f.active.name));
+    final course = ref.watch(courseProvider).value;
+    final summary = '${course?.worlds.length ?? 6} worlds, ${course?.levels.length ?? 36} levels';
     final top = frameTop(context, 0);
     Widget dot(Color c, double size, double seconds) => Twinkle(
       seconds: seconds,
@@ -69,7 +72,7 @@ class CertificateScreen extends ConsumerWidget {
                         const SizedBox(height: 14),
                         BigPop(
                           delay: .3,
-                          child: _Certificate(name: name, date: formatDate(date ?? DateTime.now())),
+                          child: _Certificate(name: name, summary: summary, date: formatDate(date ?? DateTime.now())),
                         ),
                         const Spacer(),
                         Row(
@@ -109,8 +112,8 @@ class CertificateScreen extends ConsumerWidget {
 }
 
 class _Certificate extends StatelessWidget {
-  const _Certificate({required this.name, required this.date});
-  final String name, date;
+  const _Certificate({required this.name, required this.summary, required this.date});
+  final String name, summary, date;
 
   @override
   Widget build(BuildContext context) {
@@ -162,7 +165,7 @@ class _Certificate extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: math.max(0, math.min(460, MediaQuery.sizeOf(context).width) - 40 - 20 - 6 - 36 - 260) / 2),
                     child: Text(
-                      'has completed the full Likho English course — 6 worlds, 36 levels!',
+                      'has completed the full Likho English course — $summary!',
                       textAlign: TextAlign.center,
                       style: LikhoFonts.body(size: 15, color: UiColors.inkBody, height: 1.45),
                     ),
