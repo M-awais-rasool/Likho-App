@@ -20,7 +20,7 @@ dependencies:
   path_drawing: ^1.0.1
   path_provider: ^2.1.6
   web: ^1.1.1 # admin level preview (lib/preview)
-  xml: ^7.0.1
+  xml: ^7.1.0
 
 dev_dependencies:
   flutter_test:
