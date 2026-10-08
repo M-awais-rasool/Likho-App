@@ -48,6 +48,30 @@ List<int> tileOrder({required int level, required int round, required int count}
   return identity && count > 1 ? a.reversed.toList() : a;
 }
 
+/// What bubble [index] of a pop round says: the target about every other
+/// bubble, never three others in a row and never three targets in a row.
+/// The same for a given level and round, so the view and the rules agree.
+String popLabel(PopRound r, {required int level, required int round, required int index}) {
+  var seed = (level * 31 + round * 17 + 11) & 0x7fffffff;
+  int next() => seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+  var others = 0, targets = 0;
+  String label = r.target;
+  for (var i = 0; i <= index; i++) {
+    final roll = next() % 100;
+    final target = others >= 2 || (targets < 2 && roll < 48) || r.others.isEmpty;
+    if (target) {
+      targets++;
+      others = 0;
+      label = r.target;
+    } else {
+      others++;
+      targets = 0;
+      label = r.others[next() % r.others.length];
+    }
+  }
+  return label;
+}
+
 @immutable
 class SessionState {
   const SessionState({
@@ -233,6 +257,21 @@ class LevelSession extends Notifier<SessionState> {
     final r = state.current;
     if (r is! HuntRound || _locked || state.found.contains(index) || state.wrongOptions.contains(index)) return;
     if (r.grid[index] == r.target) {
+      final found = {...state.found, index};
+      state = state.copyWith(found: found);
+      if (found.length >= r.count) _correct();
+    } else {
+      state = state.copyWith(wrongOptions: {...state.wrongOptions, index});
+      _wrong();
+    }
+  }
+
+  // ------------------------------------------------------------ pop
+  /// Bubble [index] popped (see [popLabel]).
+  void popBubble(int index) {
+    final r = state.current;
+    if (r is! PopRound || _locked || state.found.contains(index) || state.wrongOptions.contains(index)) return;
+    if (popLabel(r, level: level.number, round: state.round, index: index) == r.target) {
       final found = {...state.found, index};
       state = state.copyWith(found: found);
       if (found.length >= r.count) _correct();
