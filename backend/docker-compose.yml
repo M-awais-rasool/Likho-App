@@ -1,5 +1,6 @@
 # Postgres + Redis for development:   docker compose up -d postgres redis
 # Everything (API included):          docker compose up --build
+# Production on a server: ../deploy/ (docker-compose.yml, nginx, deploy.sh)
 services:
   postgres:
     image: postgres:17-alpine
@@ -31,6 +32,8 @@ services:
     environment:
       DATABASE_URL: postgres://likho:likho@postgres:5432/likho?sslmode=disable
       REDIS_URL: redis://redis:6379/0
+      MEDIA_DIR: /media
+    volumes: ["../media:/media:ro"]
     ports: ["8080:8080"]
     depends_on:
       postgres: { condition: service_healthy }
