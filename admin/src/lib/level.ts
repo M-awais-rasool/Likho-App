@@ -12,6 +12,7 @@ export const WRITE_MODES: { value: string; label: string }[] = [
   { value: 'trace', label: 'Trace the guide' },
   { value: 'dots', label: 'Join the dots' },
   { value: 'free', label: 'Write it freely' },
+  { value: 'flash', label: 'Look, then write from memory' },
   { value: 'missing', label: 'Fill the missing letter' },
   { value: 'spell', label: 'Spell the word' },
 ]
@@ -22,7 +23,15 @@ export const ROUND_TYPES: { value: string; label: string; hint: string }[] = [
   { value: 'order', label: 'Order', hint: 'Put tiles in order' },
   { value: 'speak', label: 'Speak', hint: 'Say it out loud' },
   { value: 'hunt', label: 'Letter hunt', hint: 'Tap every matching letter' },
+  { value: 'pop', label: 'Bubble pop', hint: 'Pop the bubbles that say it' },
+  { value: 'fix', label: "Fix Pencil's mistakes", hint: 'Tap what is written backwards' },
+  { value: 'sort', label: 'Sort', hint: 'Feed the monster, or fill the baskets' },
+  { value: 'match', label: 'Memory match', hint: 'Find the pairs' },
+  { value: 'truth', label: 'True or silly', hint: 'Is the sentence true?' },
 ]
+
+/** Round types with a payload object of the same name. */
+export const PAYLOADS = ['pick', 'write', 'order', 'speak', 'hunt', 'pop', 'fix', 'sort', 'match', 'truth']
 
 /** Icons the app has (app/lib/design/icon_registry.dart); others show a star. */
 export const LEVEL_ICONS = [
@@ -94,6 +103,38 @@ export function blankRound(type: string): Doc {
       return { ...base, prompt: { text: 'Put the letters in order!' }, card: { text: null, picture: null, listen: false }, order: { tiles: ['c', 'a', 't'] } }
     case 'hunt':
       return { ...base, prompt: { text: 'Find every B!' }, card: { text: 'B', picture: null, listen: false }, hunt: { target: 'B', grid: ['B', 'D', 'P', 'B', 'R', 'E', 'B', 'D', 'P'] } }
+    case 'pop':
+      return { ...base, prompt: { text: 'Pop every B!' }, card: { text: 'B', picture: null, listen: false }, pop: { target: 'B', others: ['D', 'P', 'R'], count: 5 } }
+    case 'fix':
+      return {
+        ...base,
+        prompt: { text: "Fix Pencil's mistakes!" },
+        card: { text: 'B', picture: null, listen: false },
+        fix: { items: ['B', 'B', 'B', 'B', 'B', 'B'].map((text, i) => ({ text, wrong: i === 1 || i === 4 ? 'mirror' : null, at: null })) },
+      }
+    case 'sort':
+      return {
+        ...base,
+        prompt: { text: 'Feed it /b/!' },
+        card: { text: 'b', picture: null, listen: false },
+        sort: {
+          bins: [{ label: 'b', picture: null, bin: null }],
+          items: [
+            { label: 'ball', picture: { key: 'ball', label: 'ball', url: null }, bin: 0 },
+            { label: 'bed', picture: { key: 'bed', label: 'bed', url: null }, bin: 0 },
+            { label: 'sun', picture: { key: 'sun', label: 'sun', url: null }, bin: null },
+          ],
+        },
+      }
+    case 'match':
+      return {
+        ...base,
+        prompt: { text: 'Find the pairs!' },
+        card: { text: null, picture: null, listen: false },
+        match: { pairs: ['A', 'B', 'C'].map((c) => ({ a: { text: c, picture: null }, b: { text: c.toLowerCase(), picture: null } })) },
+      }
+    case 'truth':
+      return { ...base, prompt: { text: 'True or silly?' }, card: { text: null, picture: null, listen: true }, truth: { text: 'The cat can fly.', picture: { key: 'cat', label: 'cat', url: null }, answer: false } }
     default:
       return { ...base, prompt: { text: 'Say cat!' }, card: { text: 'cat', picture: { key: 'cat', label: 'cat', url: null }, listen: false }, speak: { expected: 'cat' } }
   }
@@ -103,7 +144,7 @@ export function blankRound(type: string): Doc {
 export function withType(r: Doc, type: string): Doc {
   const fresh = blankRound(type)
   const out: Doc = { ...r, type }
-  for (const t of ['pick', 'write', 'order', 'speak', 'hunt']) delete out[t]
+  for (const t of PAYLOADS) delete out[t]
   out[type] = fresh[type]
   return out
 }

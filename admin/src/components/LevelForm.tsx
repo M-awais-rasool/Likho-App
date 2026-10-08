@@ -308,6 +308,173 @@ function WriteEditor({ r, at, change, assets }: { r: Doc; at: (string | number)[
   )
 }
 
+/** A list of rows with add and remove (fix items, sort bins and items, match pairs). */
+function Rows({ rows, onChange, blank, render, min = 1, add }: { rows: Doc[]; onChange: (rows: Doc[]) => void; blank: Doc; render: (row: Doc, set: (row: Doc) => void, k: number) => ReactNode; min?: number; add: string }) {
+  return (
+    <div className="space-y-2">
+      {rows.map((row, k) => (
+        <div key={k} className="flex items-end gap-2 rounded-lg border border-line p-2">
+          <div className="grid flex-1 items-end gap-2 sm:grid-cols-3">
+            {render(
+              row,
+              (next) => {
+                const all = clone(rows)
+                all[k] = next
+                onChange(all)
+              },
+              k,
+            )}
+          </div>
+          <Button variant="ghost" aria-label="Remove" disabled={rows.length <= min} onClick={() => onChange(rows.filter((_, i) => i !== k))} icon={<Trash2 className="size-4" />} />
+        </div>
+      ))}
+      <Button size="sm" icon={<Plus className="size-3.5" />} onClick={() => onChange([...rows, clone(blank)])}>
+        {add}
+      </Button>
+    </div>
+  )
+}
+
+const csv = (v: string) => v.split(',').map((s) => s.trim()).filter(Boolean)
+
+function StarEditor({ r, at, change, assets }: { r: Doc; at: (string | number)[]; change: Change; assets: Assets }) {
+  switch (r.type) {
+    case 'pop':
+      return (
+        <div className="grid gap-3 sm:grid-cols-3">
+          <Field label="Pop the bubbles that say">
+            <Input value={r.pop?.target ?? ''} onChange={(e) => change([...at, 'pop', 'target'], e.target.value)} />
+          </Field>
+          <Field label="Other bubbles say" hint="Separated by commas">
+            <Input value={(r.pop?.others ?? []).join(', ')} onChange={(e) => change([...at, 'pop', 'others'], csv(e.target.value))} />
+          </Field>
+          <Field label="How many to pop" hint="1 to 10">
+            <Input type="number" min={1} max={10} value={r.pop?.count ?? 5} onChange={(e) => change([...at, 'pop', 'count'], Number(e.target.value) || 1)} />
+          </Field>
+        </div>
+      )
+    case 'fix':
+      return (
+        <Field label="Pencil's notebook" hint="3 to 12 items; at least one written wrong and one written right">
+          <Rows
+            rows={r.fix?.items ?? []}
+            min={3}
+            add="Add item"
+            blank={{ text: '?', wrong: null, at: null }}
+            onChange={(items) => change([...at, 'fix', 'items'], items)}
+            render={(it, set) => (
+              <>
+                <Field label="Written">
+                  <Input value={it.text} onChange={(e) => set({ ...it, text: e.target.value })} />
+                </Field>
+                <Field label="Wrong?">
+                  <Select value={it.wrong ?? ''} onChange={(e) => set({ ...it, wrong: e.target.value || null })}>
+                    <option value="">Right</option>
+                    <option value="mirror">Backwards</option>
+                    <option value="upside">Upside down</option>
+                  </Select>
+                </Field>
+                <Field label="Only letter (from 0)" hint="Empty = all of it">
+                  <Input type="number" min={0} value={it.at ?? ''} onChange={(e) => set({ ...it, at: e.target.value === '' ? null : Number(e.target.value) })} />
+                </Field>
+              </>
+            )}
+          />
+        </Field>
+      )
+    case 'sort': {
+      const bins: Doc[] = r.sort?.bins ?? []
+      return (
+        <div className="space-y-3">
+          <Field label="Bins" hint="One bin = the hungry monster (things without a bin are not its food); two or three = baskets">
+            <Rows
+              rows={bins}
+              add="Add bin"
+              blank={{ label: '?', picture: null, bin: null }}
+              onChange={(next) => change([...at, 'sort', 'bins'], next.slice(0, 3))}
+              render={(b, set) => (
+                <>
+                  <Field label="Sign">
+                    <Input value={b.label} onChange={(e) => set({ ...b, label: e.target.value })} />
+                  </Field>
+                  <PictureField label="Sign picture" value={b.picture} assets={assets} onChange={(pic) => set({ ...b, picture: pic })} />
+                </>
+              )}
+            />
+          </Field>
+          <Field label="Things to sort" hint="A thing shows its picture, or its label when it has none">
+            <Rows
+              rows={r.sort?.items ?? []}
+              min={2}
+              add="Add thing"
+              blank={{ label: '?', picture: null, bin: 0 }}
+              onChange={(items) => change([...at, 'sort', 'items'], items)}
+              render={(it, set) => (
+                <>
+                  <Field label="Label">
+                    <Input value={it.label} onChange={(e) => set({ ...it, label: e.target.value })} />
+                  </Field>
+                  <PictureField label="Picture" value={it.picture} assets={assets} onChange={(pic) => set({ ...it, picture: pic })} />
+                  <Field label="Goes in">
+                    <Select value={it.bin ?? ''} onChange={(e) => set({ ...it, bin: e.target.value === '' ? null : Number(e.target.value) })}>
+                      {bins.length === 1 && <option value="">Not food</option>}
+                      {bins.map((b, k) => (
+                        <option key={k} value={k}>
+                          {b.label || `Bin ${k + 1}`}
+                        </option>
+                      ))}
+                    </Select>
+                  </Field>
+                </>
+              )}
+            />
+          </Field>
+        </div>
+      )
+    }
+    case 'match':
+      return (
+        <Field label="Pairs" hint="2 to 6 pairs; each card shows its text, or its picture">
+          <Rows
+            rows={r.match?.pairs ?? []}
+            min={2}
+            add="Add pair"
+            blank={{ a: { text: '?', picture: null }, b: { text: '?', picture: null } }}
+            onChange={(pairs) => change([...at, 'match', 'pairs'], pairs.slice(0, 6))}
+            render={(pr, set) => (
+              <>
+                <Field label="Card 1 text">
+                  <Input value={pr.a?.text ?? ''} onChange={(e) => set({ ...pr, a: { ...pr.a, text: e.target.value || null } })} />
+                </Field>
+                <Field label="Card 2 text">
+                  <Input value={pr.b?.text ?? ''} onChange={(e) => set({ ...pr, b: { ...pr.b, text: e.target.value || null } })} />
+                </Field>
+                <PictureField label="Card 2 picture" value={pr.b?.picture} assets={assets} onChange={(pic) => set({ ...pr, b: { ...pr.b, picture: pic } })} />
+              </>
+            )}
+          />
+        </Field>
+      )
+    case 'truth':
+      return (
+        <div className="grid gap-3 sm:grid-cols-3">
+          <Field label="Sentence">
+            <Input value={r.truth?.text ?? ''} onChange={(e) => change([...at, 'truth', 'text'], e.target.value)} />
+          </Field>
+          <PictureField label="Picture" value={r.truth?.picture} assets={assets} onChange={(pic) => change([...at, 'truth', 'picture'], pic)} />
+          <Field label="The answer">
+            <Select value={r.truth?.answer ? 'true' : 'false'} onChange={(e) => change([...at, 'truth', 'answer'], e.target.value === 'true')}>
+              <option value="true">True</option>
+              <option value="false">Silly</option>
+            </Select>
+          </Field>
+        </div>
+      )
+    default:
+      return null
+  }
+}
+
 function RoundCard({ r, i, count, change, move, remove, duplicate, assets }: { r: Doc; i: number; count: number; change: Change; move: (d: number) => void; remove: () => void; duplicate: () => void; assets: Assets }) {
   const at = ['rounds', i]
   const voice = { voice: [...at, 'prompt', 'audio'] }
@@ -365,6 +532,7 @@ function RoundCard({ r, i, count, change, move, remove, duplicate, assets }: { r
               </Field>
             </div>
           )}
+          <StarEditor r={r} at={at} change={change} assets={assets} />
           {r.type === 'speak' && (
             <Field label="What the child should say">
               <Input value={r.speak?.expected ?? ''} onChange={(e) => change([...at, 'speak', 'expected'], e.target.value || null)} />
