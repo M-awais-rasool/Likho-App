@@ -33,7 +33,7 @@ class MapGeometry {
   final double offsetX;
   final List<int> levelsPerWorld;
 
-  /// Decoration set per world (index into the six worlds' kinds), so a new
+  /// Decoration set per world (index into the world themes' kinds), so a new
   /// world looks like the world whose theme it borrows.
   final List<int> decoKinds;
 
@@ -149,6 +149,42 @@ class MapGeometry {
       DecoKind(6, 6, DecoRadius.percent(50, 50, 50, 50), MapColors.starDot, DecoAnim.twinkle, 3),
       DecoKind(48, 48, DecoRadius.percent(50, 50, 50, 50), MapColors.planet, DecoAnim.drift, 10, insetShade: true),
       DecoKind(8, 8, DecoRadius.percent(50, 50, 50, 50), MapColors.cloudWhite, DecoAnim.twinkle, 4),
+    ],
+    // sound mountain: rocks and clouds
+    [
+      DecoKind(70, 44, DecoRadius.percent(50, 50, 30, 30), MapColors.rock, DecoAnim.none, 0),
+      DecoKind(34, 24, DecoRadius.percent(50, 50, 30, 30), MapColors.rockDark, DecoAnim.none, 0),
+      DecoKind(96, 30, DecoRadius.px(20, 20, 20, 20), MapColors.cloud, DecoAnim.drift, 8),
+    ],
+    // blend beach: beach balls, sand, waves
+    [
+      DecoKind(30, 30, DecoRadius.percent(50, 50, 50, 50), MapColors.beachBall, DecoAnim.sway, 5, ring: 4),
+      DecoKind(64, 26, DecoRadius.percent(50, 50, 50, 50), MapColors.sandWarm, DecoAnim.none, 0),
+      DecoKind(84, 14, DecoRadius.px(10, 10, 10, 10), MapColors.wave, DecoAnim.waveBob, 4),
+    ],
+    // sight word garden: blossoms and bushes
+    [
+      DecoKind(16, 16, DecoRadius.percent(50, 50, 50, 50), MapColors.blossom, DecoAnim.sway, 4, ring: 5),
+      DecoKind(76, 46, DecoRadius.percent(50, 50, 40, 40), MapColors.blossomBush, DecoAnim.sway, 6),
+      DecoKind(18, 11, DecoRadius.px(10, 0, 10, 0), MapColors.leaf, DecoAnim.drift, 5),
+    ],
+    // action jungle: big leaves
+    [
+      DecoKind(84, 60, DecoRadius.px(40, 4, 40, 4), MapColors.jungleLeaf, DecoAnim.sway, 6),
+      DecoKind(56, 40, DecoRadius.px(4, 30, 4, 30), MapColors.jungleLeafDark, DecoAnim.sway, 7),
+      DecoKind(18, 11, DecoRadius.px(10, 0, 10, 0), MapColors.leaf, DecoAnim.drift, 5),
+    ],
+    // question island: palms, sand, clouds
+    [
+      DecoKind(60, 60, DecoRadius.percent(50, 50, 50, 50), MapColors.palm, DecoAnim.sway, 7),
+      DecoKind(64, 26, DecoRadius.percent(50, 50, 50, 50), MapColors.sandWarm, DecoAnim.none, 0),
+      DecoKind(96, 30, DecoRadius.px(20, 20, 20, 20), MapColors.cloud, DecoAnim.drift, 8),
+    ],
+    // reading river: ripples, lily pads, stones
+    [
+      DecoKind(90, 14, DecoRadius.px(10, 10, 10, 10), MapColors.ripple, DecoAnim.waveBob, 4),
+      DecoKind(40, 26, DecoRadius.percent(50, 50, 50, 50), MapColors.lilyPad, DecoAnim.sway, 6),
+      DecoKind(30, 20, DecoRadius.percent(50, 50, 40, 40), MapColors.riverStone, DecoAnim.none, 0),
     ],
   ];
 }

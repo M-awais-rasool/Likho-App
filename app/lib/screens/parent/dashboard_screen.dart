@@ -6,6 +6,7 @@ import 'package:material_symbols_icons/symbols.dart';
 
 import '../../data/course_providers.dart';
 import '../../data/family.dart';
+import '../../data/models/course_models.dart';
 import '../../data/progress.dart';
 import '../../design/tokens.dart';
 import '../common/kid_widgets.dart';
@@ -28,16 +29,28 @@ class DashboardScreen extends ConsumerWidget {
 
   final VoidCallback onClose, onSettings, onSwitchChild, onCourse, onPlans, onRestore, onShare;
 
-  /// Letters strong / to practise, estimated from stars in levels 1–12
-  /// (prototype dashVals).
-  static (int, int) letterStatus(ChildRecord r) {
-    var score = 0;
-    for (var n = 1; n <= 12; n++) {
-      score += r.levelStars[n] ?? 0;
+  /// Each letter A–Z from its own levels ("Letter A", "Small a"): 0 strong
+  /// (2 or 3 stars), 1 needs practice (1 star in its capital or small
+  /// level), 2 not learned yet (no level of it finished).
+  static Map<String, int> letterStatus(ChildRecord r, Course? course) {
+    final weakest = <String, int>{};
+    for (final l in course?.levels ?? const <CourseLevel>[]) {
+      final letter = _letterLevel.firstMatch(l.name)?[1]?.toUpperCase();
+      final stars = r.levelStars[l.number];
+      if (letter == null || stars == null) continue;
+      weakest[letter] = math.min(weakest[letter] ?? 3, stars);
     }
-    final strong = math.min(26, (score * .75).round());
-    return (strong, math.min(26 - strong, 4));
+    return {
+      for (var i = 0; i < 26; i++)
+        String.fromCharCode(65 + i): switch (weakest[String.fromCharCode(65 + i)]) {
+          null => 2,
+          1 => 1,
+          _ => 0,
+        },
+    };
   }
+
+  static final _letterLevel = RegExp(r'^(?:Letter|Small) ([A-Za-z])$');
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -47,7 +60,7 @@ class DashboardScreen extends ConsumerWidget {
     final total = course?.levels.length ?? 36;
     final worldNo = course == null ? (current - 1) ~/ 6 + 1 : course.worldOf(course.level(current.clamp(1, total))).order;
     final p = family.active, r = family.record;
-    final (strong, practice) = letterStatus(r);
+    final letters = letterStatus(r, course);
     final label = LikhoFonts.parent(size: 13, weight: FontWeight.w600, color: LikhoColors.inkMuted);
     return ParentPage(
       children: [
@@ -147,7 +160,7 @@ class DashboardScreen extends ConsumerWidget {
                     runSpacing: 6,
                     children: [
                       for (var i = 0; i < 26; i++)
-                        _LetterTile(ch: String.fromCharCode(65 + i), size: cell, status: i < strong ? 0 : (i < strong + practice ? 1 : 2)),
+                        _LetterTile(ch: String.fromCharCode(65 + i), size: cell, status: letters[String.fromCharCode(65 + i)]!),
                     ],
                   );
                 },

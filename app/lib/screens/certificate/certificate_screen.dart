@@ -6,6 +6,7 @@ import 'package:material_symbols_icons/symbols.dart';
 
 import '../../data/course_providers.dart';
 import '../../data/family.dart';
+import '../../data/models/course_models.dart';
 import '../../feedback/game_feedback.dart';
 import '../../design/motion.dart';
 import '../../design/tokens.dart';
@@ -13,8 +14,9 @@ import '../../mascot/mascot.dart';
 import '../common/clock.dart';
 import '../common/kid_widgets.dart';
 import '../common/pencil_figure.dart';
+import '../world_map/boss_painter.dart';
 
-/// 18 Certificate (after level 36), from the prototype: the six woken bosses
+/// 18 Certificate (after the last level), from the prototype: every woken boss
 /// dance over Pencil in a crown, and the certificate pops in. Print makes a
 /// PDF ([onPrint]); "Letter Playground" goes back to the map.
 class CertificateScreen extends ConsumerWidget {
@@ -31,6 +33,7 @@ class CertificateScreen extends ConsumerWidget {
     final name = ref.watch(familyProvider.select((f) => f.active.name));
     final course = ref.watch(courseProvider).value;
     final summary = '${course?.worlds.length ?? 6} worlds, ${course?.levels.length ?? 36} levels';
+    final bosses = [for (final w in course?.worlds ?? const <CourseWorld>[]) BossPainter.indexOf(w.bossId)];
     final top = frameTop(context, 0);
     Widget dot(Color c, double size, double seconds) => Twinkle(
       seconds: seconds,
@@ -63,9 +66,12 @@ class CertificateScreen extends ConsumerWidget {
                     padding: EdgeInsets.fromLTRB(20, top + 64, 20, 40),
                     child: Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [for (var w = 0; w < 6; w++) BossFigure(world: w, dance: true, width: 52, height: 44)],
+                        // every world's boss, awake (six to a row)
+                        Wrap(
+                          alignment: WrapAlignment.center,
+                          children: [
+                            for (final w in bosses) BossFigure(world: w, dance: true, width: 52, height: 44),
+                          ],
                         ),
                         const SizedBox(height: 4),
                         const PencilFigure(width: 110, height: 156, state: MascotState.dance, accessory: MascotAccessory.crown, repeat: true),

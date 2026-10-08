@@ -4,30 +4,29 @@ import 'package:flutter/rendering.dart';
 
 import '../../design/tokens.dart';
 
-/// The six world bosses (prototype Boss component, viewBox 120 x 100):
-/// snail, fish, bear, robot-bus, cloud, moon. Asleep they breathe and
-/// float "z z"; awake they smile.
+/// The world bosses (prototype Boss component, viewBox 120 x 100): snail,
+/// fish, bear, robot-bus, cloud, moon from the prototype, then goat, crab,
+/// ladybug, monkey, turtle and frog for the later worlds. Asleep they
+/// breathe and float "z z"; awake they smile.
 class BossPainter extends CustomPainter {
   BossPainter({required this.world, required this.awake, required this.time, this.dance = false}) : super(repaint: time);
 
   final int world;
 
-  /// Which of the six boss drawings a world's boss id is (world ids from
-  /// the course; a new world in the admin panel picks one of these).
-  static int indexOf(String bossId) => switch (bossId) {
-        'snail' => 0,
-        'fish' => 1,
-        'bear' => 2,
-        'robotBus' => 3,
-        'cloud' => 4,
-        'moon' => 5,
-        _ => 0,
-      };
+  /// Boss ids in drawing order (a world in the course or the admin panel
+  /// picks one of these).
+  static const ids = ['snail', 'fish', 'bear', 'robotBus', 'cloud', 'moon', 'goat', 'crab', 'ladybug', 'monkey', 'turtle', 'frog'];
+
+  /// Which boss drawing a world's boss id is (unknown ids: the snail).
+  static int indexOf(String bossId) => ids.contains(bossId) ? ids.indexOf(bossId) : 0;
   final bool awake;
   final bool dance; // bDance: rock and hop (woken in gameplay)
   final ValueListenable<double> time; // seconds
 
-  static const _faces = [(24.0, 58.0, .8), (40.0, 50.0, 1.0), (60.0, 50.0, 1.1), (60.0, 43.0, 1.0), (62.0, 60.0, 1.0), (60.0, 52.0, 1.2)];
+  static const _faces = [
+    (24.0, 58.0, .8), (40.0, 50.0, 1.0), (60.0, 50.0, 1.1), (60.0, 43.0, 1.0), (62.0, 60.0, 1.0), (60.0, 52.0, 1.2), //
+    (60.0, 54.0, .9), (60.0, 60.0, 1.0), (60.0, 62.0, .95), (60.0, 58.0, .85), (95.0, 60.0, .7), (60.0, 62.0, 1.1),
+  ];
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -199,6 +198,93 @@ class BossPainter extends CustomPainter {
           ..color = BossColors.cloudLine
           ..strokeWidth = 3;
         canvas.drawPath(Path()..moveTo(22, 80)..quadraticBezierTo(60, 92, 102, 80), stroke);
+      case 6: // goat
+        stroke
+          ..color = BossColors.goatHorn
+          ..strokeWidth = 7;
+        canvas.drawPath(Path()..moveTo(44, 26)..quadraticBezierTo(32, 6, 22, 18), stroke);
+        canvas.drawPath(Path()..moveTo(76, 26)..quadraticBezierTo(88, 6, 98, 18), stroke);
+        fill.color = BossColors.goatEar;
+        canvas.drawOval(Rect.fromCenter(center: const Offset(22, 44), width: 28, height: 14), fill);
+        canvas.drawOval(Rect.fromCenter(center: const Offset(98, 44), width: 28, height: 14), fill);
+        fill.color = BossColors.goatBody;
+        canvas.drawOval(Rect.fromCenter(center: const Offset(60, 58), width: 70, height: 74), fill);
+        fill.color = BossColors.goatEar;
+        canvas.drawPath(Path()..moveTo(52, 90)..quadraticBezierTo(60, 102, 68, 90)..close(), fill);
+      case 7: // crab
+        stroke
+          ..color = BossColors.crabClaw
+          ..strokeWidth = 4;
+        canvas.drawLine(const Offset(44, 40), const Offset(40, 24), stroke);
+        canvas.drawLine(const Offset(76, 40), const Offset(80, 24), stroke);
+        canvas.drawLine(const Offset(24, 62), const Offset(14, 40), stroke);
+        canvas.drawLine(const Offset(96, 62), const Offset(106, 40), stroke);
+        for (final x in [24.0, 34.0, 86.0, 96.0]) {
+          canvas.drawLine(Offset(x, 78), Offset(x + (x < 60 ? -10 : 10), 90), stroke);
+        }
+        fill.color = BossColors.crabClaw;
+        canvas.drawCircle(const Offset(12, 34), 11, fill);
+        canvas.drawCircle(const Offset(108, 34), 11, fill);
+        fill.color = BossColors.cloudBody;
+        canvas.drawCircle(const Offset(40, 22), 6, fill);
+        canvas.drawCircle(const Offset(80, 22), 6, fill);
+        fill.color = BossColors.crabBody;
+        canvas.drawOval(Rect.fromCenter(center: const Offset(60, 62), width: 82, height: 50), fill);
+        fill.color = BossColors.shine;
+        canvas.drawOval(Rect.fromCenter(center: const Offset(46, 50), width: 18, height: 9), fill);
+      case 8: // ladybug
+        fill.color = BossColors.ladybugSpot;
+        canvas.drawCircle(const Offset(60, 26), 16, fill);
+        stroke
+          ..color = BossColors.ladybugSpot
+          ..strokeWidth = 3;
+        canvas.drawLine(const Offset(52, 14), const Offset(44, 2), stroke);
+        canvas.drawLine(const Offset(68, 14), const Offset(76, 2), stroke);
+        fill.color = BossColors.ladybugBody;
+        canvas.drawCircle(const Offset(60, 60), 36, fill);
+        fill.color = BossColors.ladybugSpot;
+        for (final c in const [Offset(36, 48), Offset(84, 48), Offset(34, 74), Offset(86, 74), Offset(60, 88)]) {
+          canvas.drawCircle(c, 6.5, fill);
+        }
+        fill.color = BossColors.shine;
+        canvas.drawOval(Rect.fromCenter(center: const Offset(44, 36), width: 16, height: 9), fill);
+      case 9: // monkey
+        fill.color = BossColors.monkeyBody;
+        canvas.drawCircle(const Offset(22, 48), 14, fill);
+        canvas.drawCircle(const Offset(98, 48), 14, fill);
+        fill.color = BossColors.monkeyFace;
+        canvas.drawCircle(const Offset(22, 48), 7, fill);
+        canvas.drawCircle(const Offset(98, 48), 7, fill);
+        fill.color = BossColors.monkeyBody;
+        canvas.drawCircle(const Offset(60, 52), 38, fill);
+        fill.color = BossColors.monkeyFace;
+        canvas.drawOval(Rect.fromCenter(center: const Offset(60, 62), width: 54, height: 40), fill);
+      case 10: // turtle
+        fill.color = BossColors.turtleSkin;
+        for (final x in [30.0, 72.0]) {
+          canvas.drawRRect(RRect.fromLTRBR(x, 74, x + 16, 92, const Radius.circular(7)), fill);
+        }
+        canvas.drawCircle(const Offset(95, 58), 18, fill);
+        fill.color = BossColors.turtleShell;
+        canvas.drawPath(Path()..moveTo(12, 80)..quadraticBezierTo(14, 26, 50, 26)..quadraticBezierTo(86, 26, 88, 80)..close(), fill);
+        stroke
+          ..color = BossColors.turtleShellLine
+          ..strokeWidth = 3;
+        canvas.drawCircle(const Offset(50, 56), 12, stroke);
+        canvas.drawLine(const Offset(50, 44), const Offset(50, 30), stroke);
+        canvas.drawLine(const Offset(38, 60), const Offset(22, 66), stroke);
+        canvas.drawLine(const Offset(62, 60), const Offset(78, 66), stroke);
+        canvas.drawLine(const Offset(12, 80), const Offset(88, 80), stroke);
+      case 11: // frog
+        fill.color = BossColors.frogBody;
+        canvas.drawCircle(const Offset(38, 34), 15, fill);
+        canvas.drawCircle(const Offset(82, 34), 15, fill);
+        canvas.drawOval(Rect.fromCenter(center: const Offset(60, 64), width: 96, height: 60), fill);
+        fill.color = BossColors.frogBelly;
+        canvas.drawOval(Rect.fromCenter(center: const Offset(60, 76), width: 56, height: 28), fill);
+        fill.color = BossColors.frogBelly;
+        canvas.drawCircle(const Offset(38, 32), 6, fill);
+        canvas.drawCircle(const Offset(82, 32), 6, fill);
       default: // moon
         fill.color = BossColors.moon;
         canvas.drawCircle(const Offset(60, 50), 42, fill);
