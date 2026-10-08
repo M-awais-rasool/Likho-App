@@ -171,7 +171,7 @@ String spokenText(String words) => words.replaceAllMapped(RegExp(r'\{([^{}|]+)\|
 /// How a level looks. Each field is optional; views fall back to defaults.
 @immutable
 class Presentation {
-  const Presentation({this.shape, this.slot, this.pad, this.layout, this.stage});
+  const Presentation({this.shape, this.slot, this.layout, this.stage});
 
   /// pick items: balloon, bubble, kite, fish, mushroom, shell, pad, basket,
   /// jar, bucket, card (default), cloud, planet
@@ -179,9 +179,6 @@ class Presentation {
 
   /// order slots: wagon (default), plank, stripe, panel
   final String? slot;
-
-  /// writing pad: paper (default), track, road, sand
-  final String? pad;
 
   /// pick layout: field (default), patient, flow, alien
   final String? layout;
@@ -192,7 +189,6 @@ class Presentation {
   factory Presentation.fromJson(JsonReader r) => Presentation(
         shape: r.optString('shape'),
         slot: r.optString('slot'),
-        pad: r.optString('pad'),
         layout: r.optString('layout'),
         stage: r.optString('stage'),
       );
@@ -265,6 +261,7 @@ sealed class Round {
           count: p.optInt('count'),
           choiceKey: p.optString('choiceKey'),
           fixCapital: p.optBool('fixCapital'),
+          stage: p.optString('stage'),
         );
       case 'write':
         final w = r.object('write');
@@ -282,9 +279,12 @@ sealed class Round {
         );
       case 'order':
         final o = r.object('order');
-        return OrderRound(id: id, prompt: prompt, card: card, tiles: o.strings('tiles'));
+        return OrderRound(id: id, prompt: prompt, card: card, tiles: o.strings('tiles'), slot: o.optString('slot'));
       case 'speak':
         return SpeakRound(id: id, prompt: prompt, card: card);
+      case 'hunt':
+        final h = r.object('hunt');
+        return HuntRound(id: id, prompt: prompt, card: card, target: h.string('target'), grid: h.strings('grid'));
       default:
         return UnknownRound(id: id, prompt: prompt, card: card, rawType: r.string('type'));
     }
@@ -304,13 +304,14 @@ final class PickRound extends Round {
     this.count,
     this.choiceKey,
     this.fixCapital = false,
+    this.stage,
   });
 
   final List<PickOption> options;
 
   /// Label of the correct option; null = any option is right (story choices).
   final String? answer;
-  final String? shape, layout; // override the level's presentation
+  final String? shape, layout, stage; // override the level's presentation
   final int? count; // cupcakes shown on the "count" stage
   final String? choiceKey; // remembers the pick (e.g. "who" in My Story)
   final bool fixCapital; // Fix-It: the picked word gets a capital letter
@@ -377,8 +378,9 @@ final class WriteRound extends Round {
 
 /// Put tiles in order.
 final class OrderRound extends Round {
-  const OrderRound({required super.id, required super.prompt, super.card, required this.tiles});
+  const OrderRound({required super.id, required super.prompt, super.card, required this.tiles, this.slot});
   final List<String> tiles; // in the correct order
+  final String? slot; // overrides the level's presentation.slot
 
   @override
   String get type => 'order';
@@ -390,6 +392,19 @@ final class SpeakRound extends Round {
 
   @override
   String get type => 'speak';
+}
+
+/// Letter hunt: tap every cell of [grid] that is [target].
+final class HuntRound extends Round {
+  const HuntRound({required super.id, required super.prompt, super.card, required this.target, required this.grid});
+  final String target;
+  final List<String> grid;
+
+  /// Cells to find.
+  int get count => grid.where((c) => c == target).length;
+
+  @override
+  String get type => 'hunt';
 }
 
 /// A round type this app version does not know yet. Dropped from play.
