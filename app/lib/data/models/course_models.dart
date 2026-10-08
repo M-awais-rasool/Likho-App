@@ -285,6 +285,9 @@ sealed class Round {
       case 'hunt':
         final h = r.object('hunt');
         return HuntRound(id: id, prompt: prompt, card: card, target: h.string('target'), grid: h.strings('grid'));
+      case 'truth':
+        final t = r.object('truth');
+        return TruthRound(id: id, prompt: prompt, card: card, text: t.string('text'), picture: t.optPicture('picture'), answer: t.boolean('answer'));
       default:
         return UnknownRound(id: id, prompt: prompt, card: card, rawType: r.string('type'));
     }
@@ -407,6 +410,17 @@ final class HuntRound extends Round {
   String get type => 'hunt';
 }
 
+/// True or silly: is [text] (about [picture]) true?
+final class TruthRound extends Round {
+  const TruthRound({required super.id, required super.prompt, super.card, required this.text, this.picture, required this.answer});
+  final String text;
+  final Picture? picture;
+  final bool answer;
+
+  @override
+  String get type => 'truth';
+}
+
 /// A round type this app version does not know yet. Dropped from play.
 final class UnknownRound extends Round {
   const UnknownRound({required super.id, required super.prompt, super.card, required this.rawType});
@@ -435,7 +449,8 @@ class JsonReader {
   String? optString(String k) => json[k] == null ? null : string(k);
   int integer(String k) => json[k] is int ? json[k] as int : _bad(k, 'an integer');
   int? optInt(String k) => json[k] == null ? null : integer(k);
-  bool optBool(String k) => json[k] == null ? false : (json[k] is bool ? json[k] as bool : _bad(k, 'a boolean'));
+  bool optBool(String k) => json[k] == null ? false : boolean(k);
+  bool boolean(String k) => json[k] is bool ? json[k] as bool : _bad(k, 'a boolean');
 
   JsonReader object(String k) => json[k] is Map<String, dynamic> ? JsonReader(json[k] as Map<String, dynamic>, '$path.$k') : _bad(k, 'an object');
 

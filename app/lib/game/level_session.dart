@@ -242,6 +242,21 @@ class LevelSession extends Notifier<SessionState> {
     }
   }
 
+  // ------------------------------------------------------------ truth
+  /// "True" ([value]) or "silly" tapped.
+  void answerTruth(bool value) {
+    final r = state.current;
+    final index = value ? 0 : 1;
+    if (r is! TruthRound || _locked || state.wrongOptions.contains(index)) return;
+    if (value == r.answer) {
+      state = state.copyWith(picked: index);
+      _correct();
+    } else {
+      state = state.copyWith(wrongOptions: {...state.wrongOptions, index});
+      _wrong();
+    }
+  }
+
   // ------------------------------------------------------------ resume
   /// Goes on from round [round] with the [mistakes] and story [choices] of
   /// an earlier try (the child left the level part way). Only before the
