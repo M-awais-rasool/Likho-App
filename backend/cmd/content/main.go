@@ -18,6 +18,7 @@ import (
 	"text/tabwriter"
 
 	"likho/backend/internal/catalog"
+	"likho/backend/internal/media"
 )
 
 func main() {
@@ -28,7 +29,7 @@ func main() {
 }
 
 func usage() error {
-	return fmt.Errorf("usage: content [-dir content] validate | list | bundle <course-id> [-o file] [-indent]")
+	return fmt.Errorf("usage: content [-dir content] validate | list | bundle <course-id> [-o file] [-indent] | media-check [-media ../media]")
 }
 
 func run(args []string) error {
@@ -49,6 +50,33 @@ func run(args []string) error {
 	case "validate":
 		for _, c := range cat.Courses() {
 			fmt.Printf("ok  %-24s %d worlds, %d levels, %d rounds  %s\n", c.Summary.ID, c.Stats.Worlds, c.Stats.Levels, c.Stats.Rounds, c.ETag)
+		}
+		return nil
+
+	case "media-check":
+		// every picture and recording the courses use is in the media folder
+		mf := flag.NewFlagSet("media-check", flag.ContinueOnError)
+		mdir := mf.String("media", "../media", "the media folder (MEDIA_DIR)")
+		if err := mf.Parse(rest); err != nil {
+			return err
+		}
+		lib, err := media.Open(*mdir)
+		if err != nil {
+			return err
+		}
+		bad := 0
+		for _, c := range cat.Courses() {
+			want := c.MediaPaths()
+			missing := lib.Missing(want)
+			fmt.Printf("%-24s %d files used, %d missing\n", c.Summary.ID, len(want), len(missing))
+			for _, m := range missing {
+				fmt.Println("  missing", m)
+			}
+			bad += len(missing)
+		}
+		fmt.Printf("media folder: %d files, %d MB\n", lib.Len(), lib.Bytes>>20)
+		if bad > 0 {
+			return fmt.Errorf("%d media files missing (run tools/voice and tools/illustrations)", bad)
 		}
 		return nil
 
