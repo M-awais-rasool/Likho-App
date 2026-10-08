@@ -8,14 +8,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../world_map/boss_painter.dart';
 import '../../data/course_providers.dart';
+import '../../data/family.dart';
 import '../../data/models/course_models.dart';
 import '../../data/progress.dart';
 import '../../design/tokens.dart';
-import '../../dev/reference_overlay.dart';
+import '../../game/level_resume.dart';
 import '../../game/level_session.dart';
 import '../../game/speech/prompt_voice.dart';
 import '../../game/writing/stroke_guide.dart';
 import '../../mascot/mascot.dart';
+import 'rounds/hunt_round_view.dart';
 import 'rounds/order_round_view.dart';
 import 'rounds/pick_round_view.dart';
 import 'rounds/speak_round_view.dart';
@@ -36,9 +38,6 @@ class GameplayScreen extends ConsumerStatefulWidget {
   final CourseLevel level;
   final VoidCallback onExit;
   final ValueChanged<LevelResult> onFinished;
-
-  /// Overlay reference for this level's first round (dev builds).
-  static String referenceFor(CourseLevel l) => 'assets/reference/levels/level_${l.number.toString().padLeft(2, '0')}.png';
 
   @override
   ConsumerState<GameplayScreen> createState() => _GameplayScreenState();
@@ -73,8 +72,25 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
     _ticker = createTicker((e) => _time.value = e.inMicroseconds / 1e6)..start();
     _mascot.setBodyColor(ref.read(progressProvider).color.key);
     _voice; // resolve while mounted (ref is not usable in dispose)
+    final back = _resume();
     _view = ref.read(levelSessionProvider(level));
-    WidgetsBinding.instance.addPostFrameCallback((_) => _startRound());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _startRound();
+      if (back) _say('Welcome back!', const Duration(milliseconds: 1600));
+    });
+  }
+
+  /// The active child; null in the placement warm-up (never resumed).
+  String? get _childId => level.placement ? null : ref.read(familyProvider).active.id;
+
+  /// Goes on where the child left this level; true when it did.
+  bool _resume() {
+    final child = _childId;
+    if (child == null) return false;
+    final p = ref.read(levelResumeProvider.notifier).pointFor(child, level);
+    if (p == null) return false;
+    ref.read(levelSessionProvider(level).notifier).resumeAt(p.round, mistakes: p.mistakes, choices: p.choices);
+    return ref.read(levelSessionProvider(level)).round == p.round;
   }
 
   @override
@@ -202,6 +218,10 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
 
   void _onSession(SessionState? prev, SessionState next) {
     if (prev == null) return;
+    final child = _childId;
+    if (child != null && next.round > prev.round && !next.finished) {
+      ref.read(levelResumeProvider.notifier).save(child, level, round: next.round, mistakes: next.mistakes, choices: next.choices);
+    }
     if (next.round != prev.round) {
       // flip the old round away, then flip the new one in (prototype next())
       _flipOut = true;
@@ -215,6 +235,7 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
         _flip.duration = const Duration(milliseconds: 320);
         _flip.forward(from: 0);
         _startRound();
+        if (_view.isHalfway) _halfway();
       });
       return;
     }
@@ -250,8 +271,17 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
     }
     if (next.finished && !_done) {
       _done = true;
+      if (child != null) ref.read(levelResumeProvider.notifier).clear(child, level);
       widget.onFinished(LevelResult(level: level, stars: next.stars, mistakes: next.mistakes));
     }
+  }
+
+  /// Halfway through a long level: Pencil cheers and confetti flies.
+  void _halfway() {
+    _burst++;
+    _mascot.play(MascotState.happy);
+    _say('Halfway there!', const Duration(milliseconds: 1600));
+    _later(const Duration(milliseconds: 900), () => _mascot.play(_resting));
   }
 
   // ------------------------------------------------------------ build
@@ -269,108 +299,105 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: (theme.dark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark).copyWith(statusBarColor: LikhoColors.clear),
-      child: ReferenceOverlay(
-        asset: GameplayScreen.referenceFor(level),
-        child: Material(
-          color: theme.bg,
-          child: Stack(
-            children: [
-              Positioned(left: -60, bottom: -60, width: 220, height: 220, child: _SoftCircle(color: theme.soft, opacity: .7)),
-              Positioned(right: -80, top: 120, width: 200, height: 200, child: _SoftCircle(color: theme.soft, opacity: .5)),
-              Padding(
-                // prototype: 54 px from the top of the 844 frame = 7 px under its status bar
-                padding: EdgeInsets.fromLTRB(24, pad.top + 7, 24, 30),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    SizedBox(
-                      height: 56,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          HomeButton(onTap: widget.onExit),
-                          ProgressDots(count: s.roundCount, current: s.round, currentDone: s.correct, dark: theme.dark),
-                          const SizedBox(width: 56),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    // Pencil on the left; what he says next to his face, the
-                    // prompt card under it (the bubble never covers the card)
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+      child: Material(
+        color: theme.bg,
+        child: Stack(
+          children: [
+            Positioned(left: -60, bottom: -60, width: 220, height: 220, child: _SoftCircle(color: theme.soft, opacity: .7)),
+            Positioned(right: -80, top: 120, width: 200, height: 200, child: _SoftCircle(color: theme.soft, opacity: .5)),
+            Padding(
+              // prototype: 54 px from the top of the 844 frame = 7 px under its status bar
+              padding: EdgeInsets.fromLTRB(24, pad.top + 7, 24, 30),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  SizedBox(
+                    height: 56,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox(
-                          key: _mascotKey,
-                          width: 78,
-                          height: 120,
-                          child: OverflowBox(maxWidth: 90, child: PencilMascot(controller: _mascot, size: 110)),
-                        ),
-                        const SizedBox(width: 6),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              SizedBox(
-                                height: 36,
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: switch (_speech) {
-                                    (final text, final step) => SpeechBubble(text: text, step: step),
-                                    null => const SizedBox.shrink(),
-                                  },
-                                ),
-                              ),
-                              const SizedBox(height: 6),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: PromptCardView(key: ValueKey(s.current.id), card: s.current.card),
-                                  ),
-                                  const SizedBox(width: 12),
-                                  ReplayButton(onTap: _replay),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
+                        HomeButton(onTap: widget.onExit),
+                        ProgressDots(count: s.roundCount, current: s.round, currentDone: s.correct, dark: theme.dark),
+                        const SizedBox(width: 56),
                       ],
                     ),
-                    const SizedBox(height: 14),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          if (level.isBoss) ...[
-                            BossStrip(
-                              world: BossPainter.indexOf(world?.bossId ?? ''),
-                              rounds: s.roundCount,
-                              done: s.round + (s.correct ? 1 : 0),
-                              awake: s.correct && s.isLastRound,
-                              time: _time,
-                            ),
-                            const SizedBox(height: 12),
-                          ],
-                          if (hasBoxes) ...[LetterBoxes(round: write, spellFilled: s.spellFilled, correct: s.correct), const SizedBox(height: 12)],
-                          Expanded(child: _animatedArea(s)),
-                          if (write != null) ...[
-                            const SizedBox(height: 12),
-                            WriteBar(
-                              onErase: () => setState(() => _pad?.erase()),
-                              onDone: () {
-                                final p = _pad;
-                                if (p != null) ref.read(levelSessionProvider(level).notifier).submitWriting(p.judge());
-                              },
-                            ),
-                          ],
-                        ],
+                  ),
+                  const SizedBox(height: 8),
+                  // Pencil on the left; what he says next to his face, the
+                  // prompt card under it (the bubble never covers the card)
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        key: _mascotKey,
+                        width: 78,
+                        height: 120,
+                        child: OverflowBox(maxWidth: 90, child: PencilMascot(controller: _mascot, size: 110)),
                       ),
+                      const SizedBox(width: 6),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            SizedBox(
+                              height: 36,
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: switch (_speech) {
+                                  (final text, final step) => SpeechBubble(text: text, step: step),
+                                  null => const SizedBox.shrink(),
+                                },
+                              ),
+                            ),
+                            const SizedBox(height: 6),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: PromptCardView(key: ValueKey(s.current.id), card: s.current.card),
+                                ),
+                                const SizedBox(width: 12),
+                                ReplayButton(onTap: _replay),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 14),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        if (level.isBoss) ...[
+                          BossStrip(
+                            world: BossPainter.indexOf(world?.bossId ?? ''),
+                            rounds: s.roundCount,
+                            done: s.round + (s.correct ? 1 : 0),
+                            awake: s.correct && s.isLastRound,
+                            time: _time,
+                          ),
+                          const SizedBox(height: 12),
+                        ],
+                        if (hasBoxes) ...[LetterBoxes(round: write, spellFilled: s.spellFilled, correct: s.correct), const SizedBox(height: 12)],
+                        Expanded(child: _animatedArea(s)),
+                        if (write != null) ...[
+                          const SizedBox(height: 12),
+                          WriteBar(
+                            onErase: () => setState(() => _pad?.erase()),
+                            onDone: () {
+                              final p = _pad;
+                              if (p != null) ref.read(levelSessionProvider(level).notifier).submitWriting(p.judge());
+                            },
+                          ),
+                        ],
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -438,6 +465,7 @@ class _RoundArea extends ConsumerWidget {
             ? const SizedBox.shrink()
             : WritePad(key: ValueKey(r.id), controller: pad!, state: state, round: r, glyphs: glyphs, time: time, onPen: onPen),
       SpeakRound() => SpeakRoundView(key: ValueKey(state.current.id), state: state, onMic: session.listen, time: time),
+      final HuntRound r => HuntRoundView(key: ValueKey(r.id), state: state, round: r, onTap: session.tapCell, time: time),
       UnknownRound() => const SizedBox.shrink(),
     };
   }
