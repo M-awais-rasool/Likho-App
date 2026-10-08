@@ -52,7 +52,7 @@ func newTestApp(t *testing.T, cat ...*catalog.Catalog) *testApp {
 	}
 	gin.SetMode(gin.TestMode)
 	ctx := context.Background()
-	db, err := database.Connect(ctx, url, false)
+	db, err := database.Connect(ctx, url, false, 0)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -198,7 +198,7 @@ func TestChildrenProgressAndRoom(t *testing.T) {
 	// results: locked levels, stars rules
 	path := "/v1/children/" + id + "/courses/" + course + "/results"
 	want(t, a.do("POST", path, tok, map[string]any{"level": 2, "stars": 3}), http.StatusConflict, "level_locked")
-	want(t, a.do("POST", path, tok, map[string]any{"level": 99, "stars": 3}), 400, "invalid_input")
+	want(t, a.do("POST", path, tok, map[string]any{"level": 999, "stars": 3}), 400, "invalid_input")
 	want(t, a.do("POST", "/v1/children/"+id+"/courses/no-such-course/results", tok, map[string]any{"level": 1, "stars": 3}), 404, "course_not_found")
 	want(t, a.do("POST", path, tok, map[string]any{"level": 1, "stars": 4}), 400)
 	outcome := func(level, stars int) map[string]any {
@@ -231,13 +231,15 @@ func TestChildrenProgressAndRoom(t *testing.T) {
 		t.Fatalf("progress in /me: %v", ayaan)
 	}
 
-	// Plus levels (13+) need the subscription
+	// Plus levels (world 2 on, 32+) need the subscription; with it they
+	// still unlock one after another
 	for lvl := 3; lvl <= 12; lvl++ {
 		outcome(lvl, 3)
 	}
-	want(t, a.do("POST", path, tok, map[string]any{"level": 13, "stars": 3}), http.StatusPaymentRequired, "plus_required")
+	want(t, a.do("POST", path, tok, map[string]any{"level": 32, "stars": 3}), http.StatusPaymentRequired, "plus_required")
 	want(t, a.do("POST", "/v1/me/trial", tok, nil), 200)
 	want(t, a.do("POST", "/v1/me/trial", tok, nil), http.StatusConflict, "trial_used")
+	want(t, a.do("POST", path, tok, map[string]any{"level": 32, "stars": 3}), http.StatusConflict, "level_locked")
 	outcome(13, 2)
 
 	// Mascot Room
@@ -354,7 +356,7 @@ func TestCoursesRateLimitAndRedisDown(t *testing.T) {
 	list := a.do("GET", "/v1/courses", "", nil)
 	want(t, list, 200)
 	courses := list.json()["courses"].([]any)
-	if len(courses) != 1 || courses[0].(map[string]any)["id"] != course || courses[0].(map[string]any)["levels"] != 36.0 {
+	if len(courses) != 1 || courses[0].(map[string]any)["id"] != course || courses[0].(map[string]any)["levels"] != 144.0 {
 		t.Fatalf("catalog: %s", list.body)
 	}
 	want(t, a.do("GET", "/v1/courses/nope", "", nil), 404, "course_not_found")
@@ -370,7 +372,7 @@ func TestCoursesRateLimitAndRedisDown(t *testing.T) {
 		t.Fatal(err)
 	}
 	var doc map[string]any
-	if err := json.NewDecoder(zr).Decode(&doc); err != nil || len(doc["levels"].([]any)) != 37 || doc["courseId"] != course {
+	if err := json.NewDecoder(zr).Decode(&doc); err != nil || len(doc["levels"].([]any)) != 145 || doc["courseId"] != course {
 		t.Fatalf("course body: %v", err)
 	}
 	if r.header.Get("ETag") != `"`+courses[0].(map[string]any)["version"].(string)+`"` {

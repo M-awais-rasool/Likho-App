@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"strings"
 	"testing"
+	"time"
 )
 
 const ownerEmail, ownerPassword = "owner@likho.test", "owner-password-1"
@@ -127,6 +128,9 @@ func TestAdminSeesFamiliesProgressAndEndAlerts(t *testing.T) {
 		want(t, a.do("POST", path, tok, map[string]any{"level": level, "stars": 3, "seconds": 90}), 200)
 	}
 	for n := 1; n < last; n++ {
+		if n%100 == 0 {
+			a.redis.FastForward(time.Minute) // the course is longer than a minute's play limit
+		}
 		play(n)
 	}
 
@@ -300,14 +304,14 @@ func TestAdminAddsEditsAndPublishesLevels(t *testing.T) {
 
 	// a built-in level can be edited and reverted
 	one := adm.json("GET", "/content/courses/"+course+"/levels/1", nil, 200)
-	adm.json("PUT", "/content/courses/"+course+"/levels/1", map[string]any{"doc": strings.Replace(one["doc"].(string), `"Balloon Pop"`, `"Balloon Party"`, 1)}, 200)
+	adm.json("PUT", "/content/courses/"+course+"/levels/1", map[string]any{"doc": strings.Replace(one["doc"].(string), `"Letter A"`, `"Letter A Party"`, 1)}, 200)
 	adm.json("POST", "/content/courses/"+course+"/levels/1/publish", nil, 200)
-	if !strings.Contains(string(a.do("GET", "/v1/courses/"+course, "", nil).body), "Balloon Party") {
+	if !strings.Contains(string(a.do("GET", "/v1/courses/"+course, "", nil).body), "Letter A Party") {
 		t.Error("edited built-in level is live")
 	}
 	want(t, adm.do("POST", "/content/courses/"+course+"/levels/1/unpublish", nil), 400)
 	want(t, adm.do("DELETE", "/content/courses/"+course+"/levels/1", nil), 204)
-	if strings.Contains(string(a.do("GET", "/v1/courses/"+course, "", nil).body), "Balloon Party") {
+	if strings.Contains(string(a.do("GET", "/v1/courses/"+course, "", nil).body), "Letter A Party") {
 		t.Error("reverted to the original")
 	}
 
