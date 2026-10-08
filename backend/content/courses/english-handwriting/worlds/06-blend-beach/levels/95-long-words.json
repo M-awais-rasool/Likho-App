@@ -87,6 +87,44 @@
     },
     {
       "id": "level-95-r2",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "rabbit",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "robot",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "pencil",
+            "wrong": "mirror",
+            "at": 0
+          },
+          {
+            "text": "tiger",
+            "wrong": "mirror",
+            "at": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-95-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -115,7 +153,7 @@
       }
     },
     {
-      "id": "level-95-r3",
+      "id": "level-95-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -130,21 +168,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-95-r3-o1",
+            "id": "level-95-r4-o1",
             "label": "robot",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-95-r3-o2",
+            "id": "level-95-r4-o2",
             "label": "rainbow",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-95-r3-o3",
+            "id": "level-95-r4-o3",
             "label": "pencil",
             "picture": null,
             "color": null,
@@ -163,7 +201,7 @@
       }
     },
     {
-      "id": "level-95-r4",
+      "id": "level-95-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
@@ -190,7 +228,30 @@
       }
     },
     {
-      "id": "level-95-r5",
+      "id": "level-95-r6",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a bus. True, or silly?",
+        "audio": "voice/line-6a9ebaa8a238af23.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a bus.",
+        "picture": {
+          "key": "bus",
+          "label": "bus",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-95-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every pencil!",
@@ -218,59 +279,7 @@
       }
     },
     {
-      "id": "level-95-r6",
-      "type": "pick",
-      "prompt": {
-        "text": "What is this?",
-        "say": "What is this? Find the word!",
-        "audio": "voice/line-69b2bf73b2b7783d.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "lemon",
-          "label": "lemon",
-          "url": null
-        },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-95-r6-o1",
-            "label": "rabbit",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-95-r6-o2",
-            "label": "bus",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-95-r6-o3",
-            "label": "lemon",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "lemon"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-95-r7",
+      "id": "level-95-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: rabbit, robot, rainbow, pencil!",
@@ -291,7 +300,91 @@
       }
     },
     {
-      "id": "level-95-r8",
+      "id": "level-95-r9",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/f/|fːː}?",
+        "audio": "voice/line-7b4dba625cd77da5.m4a"
+      },
+      "card": {
+        "text": "d f",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "d",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "f",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "four",
+            "picture": {
+              "key": "four",
+              "label": "four",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "foot",
+            "picture": {
+              "key": "foot",
+              "label": "foot",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-95-r10",
       "type": "write",
       "prompt": {
         "text": "Write rainbow",

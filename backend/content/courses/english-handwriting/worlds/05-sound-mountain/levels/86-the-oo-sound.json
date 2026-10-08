@@ -87,6 +87,29 @@
     },
     {
       "id": "level-86-r2",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a four. True, or silly?",
+        "audio": "voice/line-3f3ac2923b45b250.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a four.",
+        "picture": {
+          "key": "goat",
+          "label": "goat",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-86-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -112,7 +135,7 @@
       }
     },
     {
-      "id": "level-86-r3",
+      "id": "level-86-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -127,21 +150,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-86-r3-o1",
+            "id": "level-86-r4-o1",
             "label": "boot",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-86-r3-o2",
+            "id": "level-86-r4-o2",
             "label": "zoo",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-86-r3-o3",
+            "id": "level-86-r4-o3",
             "label": "spoon",
             "picture": null,
             "color": null,
@@ -160,7 +183,7 @@
       }
     },
     {
-      "id": "level-86-r4",
+      "id": "level-86-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
@@ -187,7 +210,86 @@
       }
     },
     {
-      "id": "level-86-r5",
+      "id": "level-86-r6",
+      "type": "sort",
+      "prompt": {
+        "text": "Feed it /oo/!",
+        "say": "This monster only eats words with {/oo/|uː}. Feed it!",
+        "audio": "voice/line-8d6d5d9aca731766.m4a"
+      },
+      "card": {
+        "text": "oo",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "oo",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "hand",
+            "picture": {
+              "key": "hand",
+              "label": "hand",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "brother",
+            "picture": {
+              "key": "family_brother",
+              "label": "brother",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "moon",
+            "picture": {
+              "key": "moon",
+              "label": "moon",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "book",
+            "picture": {
+              "key": "book",
+              "label": "book",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bus",
+            "picture": {
+              "key": "bus",
+              "label": "bus",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "boot",
+            "picture": {
+              "key": "boot",
+              "label": "boot",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-86-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every spoon!",
@@ -215,59 +317,7 @@
       }
     },
     {
-      "id": "level-86-r6",
-      "type": "pick",
-      "prompt": {
-        "text": "What is this?",
-        "say": "What is this? Find the word!",
-        "audio": "voice/line-69b2bf73b2b7783d.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "food",
-          "label": "food",
-          "url": null
-        },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-86-r6-o1",
-            "label": "moon",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-86-r6-o2",
-            "label": "brother",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-86-r6-o3",
-            "label": "food",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "food"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-86-r7",
+      "id": "level-86-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: moon, boot, book, spoon!",
@@ -288,7 +338,34 @@
       }
     },
     {
-      "id": "level-86-r8",
+      "id": "level-86-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write moon",
+        "say": "Look at the word moon. Then write it from memory!",
+        "audio": "voice/line-baa17432d91261a8.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "moon",
+          "label": "moon",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "moon",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-86-r10",
       "type": "write",
       "prompt": {
         "text": "Write book",

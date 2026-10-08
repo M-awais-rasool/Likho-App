@@ -87,6 +87,44 @@
     },
     {
       "id": "level-81-r2",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "chick",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "chair",
+            "wrong": "mirror",
+            "at": 2
+          },
+          {
+            "text": "cheese",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "cherry",
+            "wrong": "mirror",
+            "at": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-81-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -113,7 +151,7 @@
       }
     },
     {
-      "id": "level-81-r3",
+      "id": "level-81-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -128,21 +166,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-81-r3-o1",
+            "id": "level-81-r4-o1",
             "label": "chick",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-81-r3-o2",
+            "id": "level-81-r4-o2",
             "label": "chair",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-81-r3-o3",
+            "id": "level-81-r4-o3",
             "label": "cheese",
             "picture": null,
             "color": null,
@@ -161,7 +199,7 @@
       }
     },
     {
-      "id": "level-81-r4",
+      "id": "level-81-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
@@ -188,7 +226,30 @@
       }
     },
     {
-      "id": "level-81-r5",
+      "id": "level-81-r6",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a cheese. True, or silly?",
+        "audio": "voice/line-67892eb6cb34e426.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a cheese.",
+        "picture": {
+          "key": "cheese",
+          "label": "cheese",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-81-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every cherry!",
@@ -216,59 +277,7 @@
       }
     },
     {
-      "id": "level-81-r6",
-      "type": "pick",
-      "prompt": {
-        "text": "What is this?",
-        "say": "What is this? Find the word!",
-        "audio": "voice/line-69b2bf73b2b7783d.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "watch",
-          "label": "watch",
-          "url": null
-        },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-81-r6-o1",
-            "label": "watch",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-81-r6-o2",
-            "label": "brother",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-81-r6-o3",
-            "label": "hand",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "watch"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-81-r7",
+      "id": "level-81-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: chick, chair, cheese, cherry!",
@@ -289,7 +298,86 @@
       }
     },
     {
-      "id": "level-81-r8",
+      "id": "level-81-r9",
+      "type": "sort",
+      "prompt": {
+        "text": "Feed it /ch/!",
+        "say": "This monster only eats words with {/ch/|ʧʌ}. Feed it!",
+        "audio": "voice/line-a627d0b1429e1c50.m4a"
+      },
+      "card": {
+        "text": "ch",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "ch",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "brother",
+            "picture": {
+              "key": "family_brother",
+              "label": "brother",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "hand",
+            "picture": {
+              "key": "hand",
+              "label": "hand",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "chick",
+            "picture": {
+              "key": "chick",
+              "label": "chick",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "cheese",
+            "picture": {
+              "key": "cheese",
+              "label": "cheese",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bus",
+            "picture": {
+              "key": "bus",
+              "label": "bus",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "chair",
+            "picture": {
+              "key": "chair",
+              "label": "chair",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-81-r10",
       "type": "write",
       "prompt": {
         "text": "Write cheese",

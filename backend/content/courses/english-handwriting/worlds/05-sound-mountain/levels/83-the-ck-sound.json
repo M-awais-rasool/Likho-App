@@ -87,6 +87,66 @@
     },
     {
       "id": "level-83-r2",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "duck",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "duck",
+                "label": "duck",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "sock",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "sock",
+                "label": "sock",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "clock",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "clock",
+                "label": "clock",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-83-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -112,7 +172,7 @@
       }
     },
     {
-      "id": "level-83-r3",
+      "id": "level-83-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -127,21 +187,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-83-r3-o1",
+            "id": "level-83-r4-o1",
             "label": "duck",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-83-r3-o2",
+            "id": "level-83-r4-o2",
             "label": "sock",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-83-r3-o3",
+            "id": "level-83-r4-o3",
             "label": "truck",
             "picture": null,
             "color": null,
@@ -160,7 +220,7 @@
       }
     },
     {
-      "id": "level-83-r4",
+      "id": "level-83-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
@@ -187,7 +247,45 @@
       }
     },
     {
-      "id": "level-83-r5",
+      "id": "level-83-r6",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "duck",
+            "wrong": "mirror",
+            "at": 0
+          },
+          {
+            "text": "sock",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "clock",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "rock",
+            "wrong": "mirror",
+            "at": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-83-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every rock!",
@@ -215,59 +313,7 @@
       }
     },
     {
-      "id": "level-83-r6",
-      "type": "pick",
-      "prompt": {
-        "text": "What is this?",
-        "say": "What is this? Find the word!",
-        "audio": "voice/line-69b2bf73b2b7783d.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "chick",
-          "label": "chick",
-          "url": null
-        },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-83-r6-o1",
-            "label": "duck",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-83-r6-o2",
-            "label": "chick",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-83-r6-o3",
-            "label": "hand",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "chick"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-83-r7",
+      "id": "level-83-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: duck, sock, clock, rock!",
@@ -288,7 +334,30 @@
       }
     },
     {
-      "id": "level-83-r8",
+      "id": "level-83-r9",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a brother. True, or silly?",
+        "audio": "voice/line-dc575af44a6100b8.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a brother.",
+        "picture": {
+          "key": "family_brother",
+          "label": "brother",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-83-r10",
       "type": "write",
       "prompt": {
         "text": "Write clock",
