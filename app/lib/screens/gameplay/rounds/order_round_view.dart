@@ -20,7 +20,7 @@ class OrderRoundView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final slot = state.level.presentation.slot ?? 'wagon';
+    final slot = round.slot ?? state.level.presentation.slot ?? 'wagon';
     final placed = state.placed.length;
     final slots = switch (slot) {
       'plank' => _Bridge(round: round, placed: placed, deer: state.correct),
@@ -154,20 +154,7 @@ class _TileState extends State<_Tile> with SingleTickerProviderStateMixin {
                       valueListenable: widget.time,
                       builder: (context, t, _) {
                         final k = 1 - (2 * (t % 1.0) - 1).abs();
-                        return IgnorePointer(
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(24),
-                              border: Border.all(color: LikhoColors.hint, width: 4),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: LikhoColors.primary.withValues(alpha: .35 * k),
-                                  spreadRadius: 16 * k,
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
+                        return IgnorePointer(child: CustomPaint(painter: _HintGlow(k)));
                       },
                     ),
                   ),
@@ -616,4 +603,35 @@ class _Panels extends StatelessWidget {
       ),
     );
   }
+}
+
+/// The hint around a tile: a coral ring and a pulsing yellow glow outside it
+/// (strokes only: a spread shadow would also tint the tile).
+class _HintGlow extends CustomPainter {
+  const _HintGlow(this.k);
+  final double k; // pulse 0..1
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final r = RRect.fromRectAndRadius(Offset.zero & size, const Radius.circular(24));
+    if (k > 0) {
+      canvas.drawRRect(
+        r.inflate(8 * k),
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 16 * k
+          ..color = LikhoColors.primary.withValues(alpha: .35 * k),
+      );
+    }
+    canvas.drawRRect(
+      r.deflate(2),
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 4
+        ..color = LikhoColors.hint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(_HintGlow old) => old.k != k;
 }
