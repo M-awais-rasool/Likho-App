@@ -39,7 +39,7 @@ Splash -> (signed in) Who's playing, or Add child for a new account
 Welcome "Try it first" / new child -> Placement warm-up -> Placement done -> World Map
 Guest (not signed in): warm-up + level 1; level 2+, room, profile, parents -> Sign-in sheet
 Who's playing (root) -> World Map -> Level intro -> Gameplay -> Level complete
-                                                   -> map | Session end | Certificate (level 36)
+                                                   -> map | Session end | Certificate (last level)
 World Map: avatar -> Child profile -> Sticker book (edit -> parent gate -> Edit child)
            room button -> Mascot room;  settings -> parent gate -> Parent dashboard
 Parent dashboard -> Settings, Course progress, Paywall; Plus levels (13+) -> Paywall first
