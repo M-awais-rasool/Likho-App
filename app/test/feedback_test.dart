@@ -95,7 +95,9 @@ void main() {
 
   testWidgets('gameplay: the chime climbs with each right answer in a row and resets after a mistake', (t) async {
     final (c, sound, haptics) = _container();
-    final level = testCourse.level(1); // Balloon Pop: five pick rounds
+    // the picks of the letters A and B, the first on balloons
+    final picks = [for (final n in [1, 2]) ...testCourse.level(n).rounds.whereType<PickRound>()];
+    final level = levelWithRounds(testCourse.level(1), picks);
     await t.pumpWidget(
       UncontrolledProviderScope(
         container: c,
@@ -139,7 +141,7 @@ void main() {
 
   testWidgets('gameplay: tiles rise one note per step, then the chime', (t) async {
     final (c, sound, _) = _container();
-    final level = testCourse.level(2); // Alphabet Train: order rounds
+    final level = onlyRounds(testCourse.level(5), (r) => r is OrderRound); // ABC order
     await t.pumpWidget(
       UncontrolledProviderScope(
         container: c,
@@ -171,8 +173,8 @@ void main() {
         container: c,
         child: MaterialApp(
           home: LevelCompleteScreen(
-            level: testCourse.level(6),
-            outcome: const LevelOutcome(level: 6, stars: 3, gain: 5, firstTime: true),
+            level: testCourse.level(31),
+            outcome: const LevelOutcome(level: 31, stars: 3, gain: 5, firstTime: true),
             onAgain: () {},
             onNext: () {},
           ),

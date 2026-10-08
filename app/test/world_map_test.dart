@@ -60,7 +60,7 @@ void main() {
     expect(container.read(progressProvider).current, 8);
 
     // current level 8 sits at 55 % of the screen after the glide
-    final g = MapGeometry(390);
+    final g = MapGeometry(390, levelsPerWorld: [for (final w in testCourse.worlds) testCourse.levelsOf(w).length]);
     final y8 = 844 * .55;
     await tester.tapAt(Offset(g.node(8).dx, y8));
     await tester.pump(const Duration(milliseconds: 300));

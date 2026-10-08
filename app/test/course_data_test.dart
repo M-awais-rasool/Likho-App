@@ -1,11 +1,13 @@
 import 'dart:ui';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:likho/data/family.dart';
 import 'package:likho/data/models/course_models.dart';
 import 'package:likho/game/level_session.dart';
 import 'package:likho/game/writing/stroke_guide.dart';
 import 'package:likho/game/writing/writing_judge.dart';
 import 'package:likho/screens/gameplay/rounds/write_round_view.dart';
+import 'package:likho/screens/parent/dashboard_screen.dart';
 
 import 'test_course.dart';
 
@@ -13,18 +15,66 @@ void main() {
   final course = testCourse;
 
   group('course.json (API-shaped static content)', () {
-    test('6 worlds x 6 levels, every level playable', () {
+    test('12 worlds, ABC first, every level playable', () {
       expect(course.schemaVersion, 1);
-      expect(course.worlds.length, 6);
-      expect(course.levels.length, 36);
+      expect(course.worlds.length, 12);
+      expect(course.levels.length, 144);
+      expect([for (final w in course.worlds) course.levelsOf(w).length], [31, 31, 9, 8, 10, 7, 8, 8, 8, 8, 8, 8]);
+      expect([for (final n in [1, 2, 30, 32]) course.level(n).name], ['Letter A', 'Letter B', 'Letter Z', 'Small a']);
       for (final l in course.levels) {
         expect(l.rounds, isNotEmpty, reason: l.id);
         expect(course.worlds.any((w) => w.id == l.worldId), isTrue, reason: l.id);
-        expect(l.isBoss, l.number % 6 == 0, reason: '${l.id}: every 6th level is a boss');
+        // a world's boss is its last level
+        expect(l.isBoss, course.levelsOf(course.worldOf(l)).last == l, reason: '${l.id}: the boss ends its world');
+        expect(l.rounds.length, inInclusiveRange(8, 10), reason: '${l.id}: 8 to 10 games');
+        expect(l.requiresSubscription, l.number > 31, reason: '${l.id}: world 1 is free');
       }
       final ids = [for (final l in course.levels) for (final r in l.rounds) r.id];
       expect(ids.toSet().length, ids.length, reason: 'round ids are unique');
-      expect(ids.length, 179);
+    });
+
+    test('no level plays a game twice', () {
+      // what the child sees as one game: every order game is one, so is every box to fill
+      Object kind(Round r) => switch (r) {
+        WriteRound(:final mode) => 'write ${mode == WriteMode.spell ? WriteMode.missing : mode}',
+        PickRound(:final layout, :final stage, :final options, :final card) =>
+          'pick $layout $stage ${options.any((o) => o.picture != null)} ${(card?.listen ?? false) && options.every((o) => o.picture == null)}',
+        _ => r.type,
+      };
+      for (final l in course.levels) {
+        final kinds = [for (final r in l.rounds) kind(r)];
+        expect(kinds.toSet().length, kinds.length, reason: '${l.id}: $kinds');
+      }
+    });
+
+    test('a letter level plays its letter in many different games', () {
+      final l = course.levels.firstWhere((l) => l.name == 'Letter A');
+      expect(l.rounds.map((r) => r.type).toSet(), {'pick', 'write', 'order', 'speak', 'hunt'});
+      final modes = l.rounds.whereType<WriteRound>().map((r) => r.mode).toSet();
+      expect(modes, containsAll([WriteMode.trace, WriteMode.dots, WriteMode.free, WriteMode.missing]));
+    });
+
+    test('parents see each letter from its own levels', () {
+      int numberOf(String name) => course.levels.firstWhere((l) => l.name == name).number;
+      final r = ChildRecord(levelStars: {
+        numberOf('Letter L'): 3,
+        numberOf('Small l'): 2, // L: strong
+        numberOf('Letter T'): 3,
+        numberOf('Small t'): 1, // T: its small letter needs practice
+        numberOf('K to O'): 1, // a review is not one letter
+      });
+      final s = DashboardScreen.letterStatus(r, course);
+      expect((s['L'], s['T'], s['A']), (0, 1, 2));
+      expect(s.length, 26);
+    });
+
+    test('hunts have the letter to find and something else', () {
+      final hunts = [for (final l in course.levels) ...l.rounds.whereType<HuntRound>()];
+      expect(hunts, isNotEmpty);
+      for (final r in hunts) {
+        expect(r.count, greaterThan(0), reason: r.id);
+        expect(r.count, lessThan(r.grid.length), reason: r.id);
+      }
     });
 
     test('pick answers exist among the options', () {
@@ -61,13 +111,15 @@ void main() {
   });
 
   group('rules', () {
-    test('stars from mistakes', () {
+    test('stars from mistakes, by the length of the level', () {
       expect([starsFor(0), starsFor(1), starsFor(2), starsFor(3), starsFor(9)], [3, 2, 2, 1, 1]);
+      // a 14-game level allows a slip or two for 3 stars
+      expect([for (final m in [0, 2, 3, 5, 6]) starsFor(m, rounds: 14)], [3, 3, 2, 2, 1]);
     });
 
     test('tile order is fixed per level/round and never already solved', () {
-      for (var lv = 1; lv <= 36; lv++) {
-        for (var rd = 0; rd < 5; rd++) {
+      for (var lv = 1; lv <= 148; lv++) {
+        for (var rd = 0; rd < 15; rd++) {
           for (var n = 2; n <= 4; n++) {
             final o = tileOrder(level: lv, round: rd, count: n);
             expect(o.toSet().length, n);

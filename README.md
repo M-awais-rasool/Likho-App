@@ -21,7 +21,9 @@ Likho/
 ├── landing/      website: landing page, privacy, terms, account deletion
 ├── design/       prototype and mascot art the app is built from
 ├── docs/         how the pieces fit together (architecture.md), Play Store listing
-├── tools/        course pictures (illustrations/) and Pencil's voice (voice/), Python
+├── tools/        the course's levels (curriculum/), pictures (illustrations/) and Pencil's voice (voice/), Python
+├── media/        what tools/ makes: pictures/ and voice/ (not in git; served by the API, see below)
+├── deploy/       production on one server: docker-compose.yml, nginx, deploy.sh
 └── .github/      CI for the app, the backend and the admin panel
 ```
 
@@ -113,8 +115,8 @@ app/
 │   ├── preview/         web-only level preview for the admin panel
 │   └── dev/             debug-only: mascot playground, reference overlay, deep links
 ├── test/                widget + data tests; fixtures/ = the course as the API serves it
-├── assets/              mascot, sounds, course pictures (illustrations/), Pencil's voice (voice/),
-│                        reference captures (debug)
+├── assets/              mascot, sounds, licences, reference captures (debug); the course's
+│                        pictures and voice come from the server (lib/data/media.dart)
 ├── tool/                asset generators: sound_design/, mascot_trace/, app_icon/
 ├── docs/                architecture.md, sound_and_haptics.md
 ├── android/ · ios/ · web/
@@ -265,6 +267,8 @@ The full contract is [`backend/docs/openapi.yaml`](backend/docs/openapi.yaml). E
 |---|---|---|
 | GET | `/v1/courses` | the catalog: every served course with its version |
 | GET | `/v1/courses/{courseId}` | a whole course, gzipped, `ETag` (`If-None-Match` → 304) |
+| GET | `/v1/media` | the media manifest: `{"files": {"voice/line-….m4a": "<hash>", …}}`, gzipped, `ETag` |
+| GET | `/media/{path}?v={hash}` | a picture or recording; with its current hash cached for a year, ranges, 304 |
 | POST | `/v1/auth/google` | `{"idToken"}` → tokens + `isNewAccount` + the whole account; 201 when new |
 | POST | `/v1/auth/refresh` | `{"refreshToken"}` → new token pair |
 | POST | `/v1/auth/logout` | sign this device out |
@@ -332,7 +336,10 @@ Development databases from before per-course progress can be reset with `make db
 * **GORM tuned for speed:** prepared statements cached per connection, no transaction around single
   writes, a pool sized to the CPU, only slow queries (> 200 ms) logged in production.
 * **Few queries:** `/v1/me` loads any number of children in 4 queries.
-* **Content from memory:** each course is built once, gzipped (≈ 9 KB), with an ETag.
+* **Content from memory:** each course is built once, gzipped (≈ 65 KB), with an ETag.
+* **Media never asked twice:** pictures and recordings are indexed once at start-up; their URLs
+  carry the file's hash, so the phone keeps each file forever and nginx can send it straight from
+  the disk (`deploy/nginx/likho.conf`). The app downloads the next levels' files ahead.
 * **Safe under load:** stars and purchases run in transactions that lock the child's row, so
   parallel requests never double-award or double-spend.
 
@@ -369,7 +376,7 @@ backend/content/
             ├── 01-letter-land/          NN = the world's order on the map
             │   ├── world.json           name, icon, theme, boss
             │   └── levels/
-            │       ├── 01-balloon-pop.json      NN = the level number
+            │       ├── 01-straight-lines.json   NN = the level number
             │       └── …
             └── 02-small-letter-cove/
                 └── …
@@ -379,16 +386,43 @@ Every file starts with a `"$schema"` line pointing at its schema in `schema/`, f
 API removes it). Levels can also be written in the [admin panel](#admin-panel), without touching
 these files.
 
+**The course is generated.** All 12 worlds (144 levels) are written by
+`tools/curriculum/build_levels.py` (worlds 1–2, the alphabet) and `tools/curriculum/later_worlds.py`
+(worlds 3–12) from their tables:
+
+| World | Levels | Teaches |
+|---|---|---|
+| 1 Letter Land | 1–31 | capitals A–Z, in alphabet order |
+| 2 Small Letter Cove | 32–62 | small a–z and their sounds |
+| 3 Phonics Forest | 63–71 | blending three-letter words, short vowels, rhymes |
+| 4 Word Town | 72–79 | colours, numbers, animals, body, family, food, school |
+| 5 Sound Mountain | 80–89 | sh ch th ck ng ee oo ai oa ar or |
+| 6 Blend Beach | 90–96 | blends (st, fl, tr, -nd) and two-beat words |
+| 7 Sight Word Garden | 97–104 | sight words (the, said, was, they …) |
+| 8 Sentence Sky | 105–112 | spaces, capitals, full stops, a/an, plurals, sentences |
+| 9 Action Jungle | 113–120 | doing and describing words, opposites, in/on/under, -ing |
+| 10 Question Island | 121–128 | who/what/where, ? and !, days, talking |
+| 11 Reading River | 129–136 | reading sentences and short passages |
+| 12 Story Space | 137–144 | story order, writing about me, my story |
+
+One new idea per level in 8 to 10 games, never two games of one kind in a level (the script
+checks it), writing always on the one paper pad, a boss at the end of each world. The games the
+course had before (Paint Shop, Doctor Pencil, Talk to Aliens, My Story …) are kept in
+`tools/curriculum/classic_rounds.json` and played inside these levels. Change the plan there and
+run it (`--check` prints the plan and the pictures still to draw), then draw the pictures and
+record the new lines (below). World 1 is free; Likho Plus starts at level 32.
+
 **Add a level.** Copy a level file of the same kind into the world's `levels/` folder, give it the
-next `number` (and start the file name with it: `37-…json`), a new `id` and new round ids
+next `number` (and start the file name with it: `145-…json`), a new `id` and new round ids
 (`<level id>-r1`, `-r2` …), then run `make content`. Numbers run 1, 2, 3 … across the whole course,
 world after world. **Never renumber a published level**: each child's progress is stored by level
 number. Add new levels at the end of the last world, or in a new world.
 
 **Add a world.** Make a folder `worlds/NN-name/` with a `world.json` (`order` = NN) and at least one
 level. `themeId` picks its look (`letterLand`, `smallLetterCove`, `phonicsForest`, `wordTown`,
-`sentenceSky`, `storySpace`) and `boss.id` its boss (`snail`, `fish`, `bear`, `robotBus`, `cloud`,
-`moon`).
+`sentenceSky`, `storySpace`, `soundMountain`, `blendBeach`, `sightGarden`, `actionJungle`,
+`questionIsland`, `readingRiver`) and `boss.id` its boss (`snail`, `fish`, `bear`, `robotBus`,
+`cloud`, `moon`, `goat`, `crab`, `ladybug`, `monkey`, `turtle`, `frog`).
 
 **Add a course.** Make a folder `courses/<course-id>/` with `course.json`, `glyphs.json` and
 `worlds/`. Keep `"status": "draft"` while you work on it: drafts are served in development only.
@@ -405,8 +439,15 @@ Each round has a `type` and an object with the same name:
 | `write` | `mode` (`trace`, `dots`, `free`, `missing`, `spell`), `guide` (key in `glyphs.json`) | writes on the pad |
 | `order` | `tiles` in the right order | puts tiles in order |
 | `speak` | `expected` | says it aloud |
+| `hunt` | `target`, `grid` (4–16 cells, the target among them) | taps every cell that is the target |
 
-`picture.key` is a picture in the app (`app/assets/illustrations/<key>.png`), or set `picture.url`.
+Writing is always on the one ruled paper pad. A `pick` round can set its own `stage` and an `order`
+round its own `slot`, instead of the level's. A card with `"listen": true` and no text or picture shows a speaker: the child hears the answer
+instead of seeing it. Levels are 8 to 10 rounds; from 8 rounds Pencil cheers halfway, and a child
+who leaves part way goes on from that round next time (kept on the phone for 7 days). Stars come
+from the share of mistakes (`starsFor` in `app/lib/game/level_session.dart`).
+
+`picture.key` is a picture on the server (`media/pictures/<key>.png`), or set `picture.url`.
 Pencil says `prompt.say` (or `prompt.text` when they are the same) from the recording in
 `prompt.audio`; without a recording the device voice reads it.
 
@@ -416,26 +457,33 @@ Every level's intro has a picture and a line Pencil says while it shows:
 
 ```json
 "intro": {
-  "text": "B", "word": "balloon",
-  "say": "B! B is for balloon. Let's pop the B balloons!",
-  "audio": "assets/voice/level-01-intro.m4a",
-  "picture": { "key": "balloon", "label": "balloon", "url": null }
+  "text": "B", "word": "ball",
+  "say": "{B|bˈiː}! {B|bˈiː} is for ball. Let's learn {B|bˈiː}!",
+  "audio": "voice/line-174f3f68010c3535.m4a",
+  "picture": { "key": "ball", "label": "ball", "url": null }
 }
 ```
 
+* **They live on the server, not in the app or git.** The tools write them to `media/` at the
+  repository root (git-ignored); the API serves that folder (`MEDIA_DIR`) at `/media/` with a
+  manifest at `/v1/media`. The app keeps every file it downloads (by hash, so it is never stale),
+  fetches the next three levels ahead, plays offline what it has, and falls back to placeholders
+  and the device voice for what it does not. `deploy/deploy.sh user@server media` sends new files.
 * **Pictures** are Fluent Emoji (3D, MIT) with a transparent background, one 256 x 256 PNG per key,
-  made by `tools/illustrations/build_illustrations.py`. For a new picture add its key there (one
-  emoji, or a scene of several), run the script, use the key in the content.
+  made by `tools/illustrations/build_illustrations.py` into `media/pictures/`. For a new picture
+  add its key there (one emoji, or a scene of several), run the script, use the key in the content.
 * **What Pencil says** is `say` (intro, prompt) or the prompt's `text`. Write `say` when the words
   on screen are not what to say: `"/b/"` → `"Which letter says {/b/|bʌ}?"`. `{shown|IPA}` gives a
   pronunciation: the device voice reads `shown`, recordings say the IPA (`"Trace small {a|ˈeɪ}"`:
   the letter, not the article).
 * **Recordings** are made by `tools/voice/generate_voice.py` (Kokoro text-to-speech, on this
-  computer): it records new and changed lines into `app/assets/voice/` and writes their `audio`
-  paths into the content. Check pronunciations first with `--print`.
+  computer): it records new and changed lines into `media/voice/` and writes their `audio` paths
+  (`voice/line-….m4a`) into the content. A recording is named after what it says, so a line used by many levels
+  is one file and renumbering levels records nothing. Check pronunciations first with `--print`.
 
-The app's tests fail when a picture key has no image or a line has no recording
-(`app/test/media_test.dart`).
+`go run ./cmd/content media-check` (in `backend/`) fails when a picture or recording the content
+uses is missing from the media folder; `deploy.sh` runs it first, and the API logs any it lacks at
+start-up. The app's tests check every line has a recording, and the folder when it exists.
 
 ### Checks
 
@@ -588,7 +636,7 @@ landing/
 └── public/           pencil/ (mascot art), pictures/ (course pictures), brand/ (app icon)
 ```
 
-Pencil art comes from the app's mascot painter; the course pictures from `app/assets/illustrations/`
+Pencil art comes from the app's mascot painter; the course pictures from `media/pictures/`
 (192 px WebP); the icons from `design/app-icon/likho-icon-1024.png`; `glyphs.ts` is copied from the
 course's `glyphs.json`, so the demo traces letters exactly as the app does. Animations follow the
 visitor's "reduce motion" setting.
@@ -617,9 +665,34 @@ by hand. `app/assets/reference/` holds screen captures for the app's debug refer
 | Add a level, world or course | the [admin panel](#admin-panel), or `backend/content/` ([guide](#learning-content)) then `make content` |
 | Add a picture for the content | key in `tools/illustrations/build_illustrations.py`, then run it |
 | Record Pencil's new or changed lines | `tools/voice/generate_voice.py` (Kokoro voice, `--print` checks pronunciations) |
+| Change the course plan | `tools/curriculum/` (tables), then the two tools above, then `make content-fixture` |
+| Deploy | `deploy/deploy.sh user@server` ([guide](#deploy-one-server)); new media only: `… media` |
 | Change an API endpoint | `backend/internal/api/` → service → repository; update `backend/docs/openapi.yaml` |
 | Change a screen | `app/lib/screens/` ([app](#app-flutter)) |
 | Run all tests | `cd app && flutter test` · `cd backend && make test-db` · `cd admin && npm run build` |
+
+## Deploy (one server)
+
+Everything runs on one server next to other projects, from `deploy/`:
+
+* **`docker-compose.yml`:** Postgres, Redis and the API, each with a memory and CPU cap (512 MB,
+  128 MB, 384 MB), restarting by themselves, 30 MB of logs at most. Only the API has a port, on
+  `127.0.0.1` (`LIKHO_PORT`); Postgres and Redis are on Likho's own Docker network. Postgres is
+  tuned for its share (128 MB shared buffers, 40 connections, the API uses at most 16), Redis is a
+  96 MB cache with no disk, the API's Go heap is held under 300 MB. The API image is a static
+  binary on distroless, read-only, with `likho-api health` as its health check.
+* **`nginx/likho.conf`:** the site for your nginx: `/media/` straight from the disk (sendfile,
+  cached a year), the rest to the API with keep-alive. Add HTTPS with certbot.
+* **`deploy.sh user@server`:** checks the media, sends the media folder, the admin panel's build
+  and the code (rsync, only what changed), builds and starts the containers, restarts the API so it
+  indexes new media, and waits until it is ready. `deploy.sh user@server media` only sends media.
+
+First time on the server: install Docker and rsync, run `deploy.sh` once (it creates
+`/srv/likho/src/deploy/`), fill in `/srv/likho/src/deploy/.env` from `.env.example`, run it again,
+then add the nginx site. Measured with the production image under Docker Desktop on a laptop:
+36 MB of memory for the API, the course and the media manifest at 1,300–1,900 requests/s and a
+picture at 900/s through Docker's network (a Linux server is several times faster, and nginx
+serves the media itself).
 
 ## Before production
 

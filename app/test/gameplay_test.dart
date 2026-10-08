@@ -33,11 +33,11 @@ void main() {
     await tester.pumpWidget(const SizedBox());
   });
 
-  testWidgets('play Balloon Pop to the end by tapping the right balloons', (tester) async {
+  testWidgets('play the letter picks to the end by tapping the right balloons and fish', (tester) async {
     tester.view.physicalSize = const Size(390, 844);
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.reset);
-    final level = testCourse.level(1);
+    final level = onlyRounds(testCourse.level(5), labelledPick);
     LevelResult? result;
     await tester.pumpWidget(ProviderScope(
       overrides: [courseProvider.overrideWith((ref) async => testCourse)],
@@ -50,6 +50,29 @@ void main() {
     }
     expect(result, isNotNull);
     expect(result!.stars, 3);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('letter hunt: tap every L in the grid', (tester) async {
+    tester.view.physicalSize = const Size(390, 844);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+    final level = onlyRounds(testCourse.level(5), (r) => r is HuntRound);
+    final r = level.rounds.single as HuntRound;
+    LevelResult? result;
+    await tester.pumpWidget(ProviderScope(
+      overrides: [courseProvider.overrideWith((ref) async => testCourse)],
+      child: MaterialApp(home: GameplayScreen(level: level, onExit: () {}, onFinished: (x) => result = x)),
+    ));
+    await pumpFor(tester, const Duration(milliseconds: 400));
+    expect(tester.takeException(), isNull);
+    for (var i = 0; i < r.grid.length; i++) {
+      if (r.grid[i] != r.target) continue;
+      await tester.tap(find.byKey(ValueKey('${r.id}-$i')));
+      await pumpFor(tester, const Duration(milliseconds: 100));
+    }
+    await pumpFor(tester, const Duration(milliseconds: 2000));
+    expect(result?.stars, 3);
     await tester.pumpWidget(const SizedBox());
   });
 
