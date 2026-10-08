@@ -6,7 +6,6 @@ export type Doc = Record<string, any>
 
 export const SHAPES = ['card', 'balloon', 'bubble', 'kite', 'fish', 'mushroom', 'shell', 'pad', 'basket', 'jar', 'bucket', 'cloud', 'planet']
 export const SLOTS = ['wagon', 'plank', 'stripe', 'panel']
-export const PADS = ['paper', 'track', 'road', 'sand']
 export const LAYOUTS = ['field', 'patient', 'flow', 'alien']
 export const STAGES = ['house', 'count', 'stars']
 export const WRITE_MODES: { value: string; label: string }[] = [
@@ -22,6 +21,7 @@ export const ROUND_TYPES: { value: string; label: string; hint: string }[] = [
   { value: 'write', label: 'Write', hint: 'Write on the pad' },
   { value: 'order', label: 'Order', hint: 'Put tiles in order' },
   { value: 'speak', label: 'Speak', hint: 'Say it out loud' },
+  { value: 'hunt', label: 'Letter hunt', hint: 'Tap every matching letter' },
 ]
 
 /** Icons the app has (app/lib/design/icon_registry.dart); others show a star. */
@@ -30,6 +30,7 @@ export const LEVEL_ICONS = [
   'linear_scale', 'visibility', 'emoji_objects', 'format_paint', 'directions_bus', 'medical_services', 'cake', 'photo_library', 'air', 'flutter_dash', 'looks',
   'edit', 'public', 'record_voice_over', 'view_carousel', 'auto_awesome', 'auto_stories', 'dark_mode', 'self_improvement', 'grass', 'waves', 'forest',
   'location_city', 'cloud', 'rocket_launch',
+  'landscape', 'local_florist', 'directions_run', 'help', 'menu_book', 'graphic_eq', 'sailing', 'restaurant', 'backpack', 'space_bar', 'fiber_manual_record', 'filter_none', 'edit_note', 'sports_soccer', 'zoom_out_map', 'swap_horiz', 'person', 'category', 'place', 'calendar_month', 'question_answer', 'check_circle', 'music_note', 'format_list_numbered', 'map', 'face', 'family_restroom', 'wb_sunny', 'egg',
 ]
 
 export const pad2 = (n: number) => String(n).padStart(2, '0')
@@ -91,6 +92,8 @@ export function blankRound(type: string): Doc {
       return { ...base, prompt: { text: 'Trace B!' }, card: { text: 'B', picture: null, listen: false }, write: { mode: 'trace', target: 'B', guide: 'B', word: null, missingIndex: null, sentence: false, story: false } }
     case 'order':
       return { ...base, prompt: { text: 'Put the letters in order!' }, card: { text: null, picture: null, listen: false }, order: { tiles: ['c', 'a', 't'] } }
+    case 'hunt':
+      return { ...base, prompt: { text: 'Find every B!' }, card: { text: 'B', picture: null, listen: false }, hunt: { target: 'B', grid: ['B', 'D', 'P', 'B', 'R', 'E', 'B', 'D', 'P'] } }
     default:
       return { ...base, prompt: { text: 'Say cat!' }, card: { text: 'cat', picture: { key: 'cat', label: 'cat', url: null }, listen: false }, speak: { expected: 'cat' } }
   }
@@ -100,7 +103,7 @@ export function blankRound(type: string): Doc {
 export function withType(r: Doc, type: string): Doc {
   const fresh = blankRound(type)
   const out: Doc = { ...r, type }
-  for (const t of ['pick', 'write', 'order', 'speak']) delete out[t]
+  for (const t of ['pick', 'write', 'order', 'speak', 'hunt']) delete out[t]
   out[type] = fresh[type]
   return out
 }

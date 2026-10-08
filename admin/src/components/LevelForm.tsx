@@ -5,7 +5,6 @@ import {
   COLORS,
   LAYOUTS,
   LEVEL_ICONS,
-  PADS,
   ROUND_TYPES,
   SHAPES,
   SLOTS,
@@ -29,7 +28,7 @@ export interface Assets {
 
 type Change = (path: (string | number)[], value: unknown, opts?: { voice?: (string | number)[] }) => void
 
-const pictureUrl = (key: string) => `/admin/preview/assets/assets/illustrations/${key}.png`
+const pictureUrl = (key: string) => `/media/pictures/${key}.png`
 
 function Section({ title, children, hint }: { title: string; children: ReactNode; hint?: ReactNode }) {
   return (
@@ -60,7 +59,7 @@ function PictureField({ value, onChange, assets, label = 'Picture' }: { value: D
   const [broken, setBroken] = useState<string>('')
   const id = `pics-${label.replace(/\W/g, '')}`
   return (
-    <Field label={label} hint={assets.pictures.length ? `${assets.pictures.length} pictures in the app` : 'A picture key from app/assets/illustrations'}>
+    <Field label={label} hint={assets.pictures.length ? `${assets.pictures.length} pictures on the server` : 'A picture key from the media folder (media/pictures)'}>
       <div className="flex items-center gap-2">
         <span className="grid size-9 shrink-0 place-items-center overflow-hidden rounded-lg border border-line bg-surface-2">
           {key && broken !== key ? <img src={pictureUrl(key)} alt="" className="size-8 object-contain" onError={() => setBroken(key)} /> : <span className="text-[10px] text-ink-3">none</span>}
@@ -80,7 +79,7 @@ function PictureField({ value, onChange, assets, label = 'Picture' }: { value: D
           ))}
         </datalist>
       </div>
-      {key && assets.pictures.length > 0 && !assets.pictures.includes(key) && <span className="mt-1 block text-[11.5px] text-warn">Not a picture in the app: a labelled placeholder shows instead.</span>}
+      {key && assets.pictures.length > 0 && !assets.pictures.includes(key) && <span className="mt-1 block text-[11.5px] text-warn">Not a picture on the server: a labelled placeholder shows instead.</span>}
     </Field>
   )
 }
@@ -137,9 +136,6 @@ export function BasicsForm({ doc, change }: { doc: Doc; change: Change }) {
           </Field>
           <Field label="Pick stage">
             <Opt value={doc.presentation?.stage} onChange={(v) => change(['presentation', 'stage'], v)} options={STAGES} none="None" />
-          </Field>
-          <Field label="Writing pad">
-            <Opt value={doc.presentation?.pad} onChange={(v) => change(['presentation', 'pad'], v)} options={PADS} />
           </Field>
           <Field label="Order slots">
             <Opt value={doc.presentation?.slot} onChange={(v) => change(['presentation', 'slot'], v)} options={SLOTS} />
@@ -250,6 +246,9 @@ function PickEditor({ r, at, change, assets }: { r: Doc; at: (string | number)[]
         <Field label="Layout (this round)">
           <Opt value={p.layout} onChange={(v) => change([...at, 'pick', 'layout'], v)} options={LAYOUTS} none="Level's" />
         </Field>
+        <Field label="Stage (this round)">
+          <Opt value={p.stage} onChange={(v) => change([...at, 'pick', 'stage'], v)} options={STAGES} none="Level's" />
+        </Field>
         <Field label="Count (count stage)">
           <Input type="number" min={0} value={p.count ?? ''} onChange={(e) => change([...at, 'pick', 'count'], e.target.value === '' ? null : Number(e.target.value))} />
         </Field>
@@ -347,9 +346,24 @@ function RoundCard({ r, i, count, change, move, remove, duplicate, assets }: { r
           {r.type === 'pick' && <PickEditor r={r} at={at} change={change} assets={assets} />}
           {r.type === 'write' && <WriteEditor r={r} at={at} change={change} assets={assets} />}
           {r.type === 'order' && (
-            <Field label="Tiles, in the right order" hint="Separated by commas; the app shuffles them">
-              <Input value={(r.order?.tiles ?? []).join(', ')} onChange={(e) => change([...at, 'order', 'tiles'], e.target.value.split(',').map((s) => s.trim()).filter(Boolean))} />
-            </Field>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <Field label="Tiles, in the right order" hint="Separated by commas; the app shuffles them">
+                <Input value={(r.order?.tiles ?? []).join(', ')} onChange={(e) => change([...at, 'order', 'tiles'], e.target.value.split(',').map((s) => s.trim()).filter(Boolean))} />
+              </Field>
+              <Field label="Slots (this round)">
+                <Opt value={r.order?.slot} onChange={(v) => change([...at, 'order', 'slot'], v)} options={SLOTS} none="Level's" />
+              </Field>
+            </div>
+          )}
+          {r.type === 'hunt' && (
+            <div className="grid gap-3 sm:grid-cols-2">
+              <Field label="Letter to find">
+                <Input value={r.hunt?.target ?? ''} onChange={(e) => change([...at, 'hunt', 'target'], e.target.value)} />
+              </Field>
+              <Field label="Grid, in reading order" hint="4 to 16 letters separated by commas; include the letter at least once">
+                <Input value={(r.hunt?.grid ?? []).join(', ')} onChange={(e) => change([...at, 'hunt', 'grid'], e.target.value.split(',').map((s) => s.trim()).filter(Boolean))} />
+              </Field>
+            </div>
           )}
           {r.type === 'speak' && (
             <Field label="What the child should say">
