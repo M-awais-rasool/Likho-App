@@ -64,6 +64,46 @@ paths:
         "304": { description: The client already has this version }
         "404": { $ref: "#/components/responses/Error" }
 
+  /v1/media:
+    get:
+      tags: [courses]
+      summary: The media manifest (which file is which picture or recording)
+      description: |
+        Every file of the server's media folder (`MEDIA_DIR`) with the hash of its bytes. Content
+        names recordings by path (`voice/line-….m4a`, with `voice/line-….lip` next to it) and
+        pictures by key (`pictures/<key>.png`). Gzipped, `ETag`, `304` when unchanged.
+      parameters:
+        - in: header
+          name: If-None-Match
+          schema: { type: string }
+      responses:
+        "200":
+          description: The manifest
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  files: { type: object, additionalProperties: { type: string }, example: { "pictures/cat.png": "42d9c17ad64aedee" } }
+        "304": { description: The client already has this version }
+
+  /media/{path}:
+    get:
+      tags: [courses]
+      summary: A picture or recording
+      description: |
+        With `v` = the file's current hash the answer is cached for a year (`immutable`); without
+        it, for an hour. Ranges (`206`), `HEAD` and `If-None-Match` (`304`) work. Only files of
+        the manifest are served. In production nginx serves this path straight from the disk.
+      parameters:
+        - { in: path, name: path, required: true, schema: { type: string }, example: pictures/cat.png }
+        - { in: query, name: v, schema: { type: string } }
+      responses:
+        "200": { description: The file (audio/mp4, image/png or application/octet-stream for .lip) }
+        "206": { description: Part of the file (Range) }
+        "304": { description: Unchanged }
+        "404": { $ref: "#/components/responses/Error" }
+
   /v1/auth/google:
     post:
       tags: [auth]
