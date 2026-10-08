@@ -1,0 +1,325 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-23",
+  "number": 23,
+  "name": "Letter T",
+  "skill": "Capital T",
+  "icon": "edit",
+  "isBoss": false,
+  "requiresSubscription": false,
+  "intro": {
+    "text": "T",
+    "word": "tiger",
+    "say": "{T|tˈiː}! {T|tˈiː} is for tiger. Let's learn {T|tˈiː}!",
+    "audio": "voice/line-bb3b867ec105f29b.m4a",
+    "picture": {
+      "key": "tiger",
+      "label": "tiger",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-23-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find T!",
+        "say": "Find {T|tˈiː}!",
+        "audio": "voice/line-c362111d3e9622f7.m4a"
+      },
+      "card": {
+        "text": "T",
+        "picture": {
+          "key": "tiger",
+          "label": "tiger",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-23-r1-o1",
+            "label": "T",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-23-r1-o2",
+            "label": "I",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-23-r1-o3",
+            "label": "L",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-23-r1-o4",
+            "label": "F",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "T"
+        },
+        "shape": "bubble",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-23-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace T",
+        "say": "Trace {T|tˈiː}.",
+        "audio": "voice/line-d9e53d0bc158855e.m4a"
+      },
+      "card": {
+        "text": "T",
+        "picture": {
+          "key": "tiger",
+          "label": "tiger",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "T",
+        "guide": "T",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-23-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /t/?",
+        "say": "{T|tˈiː} says {/t/|tʌ}. Which one starts with {/t/|tʌ}?",
+        "audio": "voice/line-9335f1ac7a21afb4.m4a"
+      },
+      "card": {
+        "text": "T",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-23-r3-o1",
+            "label": "tiger",
+            "picture": {
+              "key": "tiger",
+              "label": "tiger",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-23-r3-o2",
+            "label": "egg",
+            "picture": {
+              "key": "egg",
+              "label": "egg",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-23-r3-o3",
+            "label": "whale",
+            "picture": {
+              "key": "whale",
+              "label": "whale",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "tiger"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-23-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make T",
+        "say": "Join the dots to make {T|tˈiː}.",
+        "audio": "voice/line-085590b023179288.m4a"
+      },
+      "card": {
+        "text": "T",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "T",
+        "guide": "T",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-23-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every T!",
+        "say": "Find every {T|tˈiː}!",
+        "audio": "voice/line-eabde065e42b8f06.m4a"
+      },
+      "card": {
+        "text": "T",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "T",
+        "grid": [
+          "F",
+          "T",
+          "L",
+          "L",
+          "I",
+          "T",
+          "T",
+          "I",
+          "L",
+          "F",
+          "I",
+          "T"
+        ]
+      }
+    },
+    {
+      "id": "level-23-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "{S|ˈɛs}, ..., {U|jˈuː}! Which letter is missing?",
+        "audio": "voice/line-d3f4c5a238fc98e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bottle_message",
+          "label": "bottle message",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "T",
+        "guide": "T",
+        "word": "STU",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-23-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write T by yourself",
+        "say": "Now write {T|tˈiː} all by yourself!",
+        "audio": "voice/line-296980e327386706.m4a"
+      },
+      "card": {
+        "text": "T",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "T",
+        "guide": "T",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-23-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: T is for tiger!",
+        "say": "{T|tˈiː} is for tiger! Now you say it.",
+        "audio": "voice/line-cf0603cb513cbe7a.m4a"
+      },
+      "card": {
+        "text": "T is for tiger!",
+        "picture": {
+          "key": "tiger",
+          "label": "tiger",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "T is for tiger!"
+      }
+    },
+    {
+      "id": "level-23-r9",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "S",
+          "T",
+          "U"
+        ]
+      }
+    }
+  ]
+}

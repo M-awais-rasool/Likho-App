@@ -1,0 +1,325 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-20",
+  "number": 20,
+  "name": "Letter Q",
+  "skill": "Capital Q",
+  "icon": "edit",
+  "isBoss": false,
+  "requiresSubscription": false,
+  "intro": {
+    "text": "Q",
+    "word": "queen",
+    "say": "{Q|kjˈuː}! {Q|kjˈuː} is for queen. Let's learn {Q|kjˈuː}!",
+    "audio": "voice/line-e5307e30ecd5b284.m4a",
+    "picture": {
+      "key": "queen",
+      "label": "queen",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-20-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find Q!",
+        "say": "Find {Q|kjˈuː}!",
+        "audio": "voice/line-92ca34c1cedcb892.m4a"
+      },
+      "card": {
+        "text": "Q",
+        "picture": {
+          "key": "queen",
+          "label": "queen",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-20-r1-o1",
+            "label": "Q",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-20-r1-o2",
+            "label": "O",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-20-r1-o3",
+            "label": "G",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-20-r1-o4",
+            "label": "C",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Q"
+        },
+        "shape": "mushroom",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-20-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace Q",
+        "say": "Trace {Q|kjˈuː}.",
+        "audio": "voice/line-7ec629db633296bc.m4a"
+      },
+      "card": {
+        "text": "Q",
+        "picture": {
+          "key": "queen",
+          "label": "queen",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "Q",
+        "guide": "Q",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-20-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /q/?",
+        "say": "{Q|kjˈuː} says {/q/|kwʌ}. Which one starts with {/q/|kwʌ}?",
+        "audio": "voice/line-c6b3c40ca4fab971.m4a"
+      },
+      "card": {
+        "text": "Q",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-20-r3-o1",
+            "label": "queen",
+            "picture": {
+              "key": "queen",
+              "label": "queen",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-20-r3-o2",
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-20-r3-o3",
+            "label": "pig",
+            "picture": {
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "queen"
+        },
+        "shape": "bucket",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-20-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make Q",
+        "say": "Join the dots to make {Q|kjˈuː}.",
+        "audio": "voice/line-79030f28d87d84e1.m4a"
+      },
+      "card": {
+        "text": "Q",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "Q",
+        "guide": "Q",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-20-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every Q!",
+        "say": "Find every {Q|kjˈuː}!",
+        "audio": "voice/line-eac918726bd903a4.m4a"
+      },
+      "card": {
+        "text": "Q",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "Q",
+        "grid": [
+          "Q",
+          "C",
+          "Q",
+          "G",
+          "C",
+          "O",
+          "G",
+          "Q",
+          "O",
+          "G",
+          "Q",
+          "O"
+        ]
+      }
+    },
+    {
+      "id": "level-20-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "{P|pˈiː}, ..., {R|ˈɑːɹ}! Which letter is missing?",
+        "audio": "voice/line-a2a5716e87267e92.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bottle_message",
+          "label": "bottle message",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "Q",
+        "guide": "Q",
+        "word": "PQR",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-20-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write Q by yourself",
+        "say": "Now write {Q|kjˈuː} all by yourself!",
+        "audio": "voice/line-8163a7b871c2e43e.m4a"
+      },
+      "card": {
+        "text": "Q",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "Q",
+        "guide": "Q",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-20-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Q is for queen!",
+        "say": "{Q|kjˈuː} is for queen! Now you say it.",
+        "audio": "voice/line-a18feb1e29e19ad4.m4a"
+      },
+      "card": {
+        "text": "Q is for queen!",
+        "picture": {
+          "key": "queen",
+          "label": "queen",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Q is for queen!"
+      }
+    },
+    {
+      "id": "level-20-r9",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "P",
+          "Q",
+          "R"
+        ]
+      }
+    }
+  ]
+}

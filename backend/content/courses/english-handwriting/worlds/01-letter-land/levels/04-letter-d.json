@@ -1,0 +1,325 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-04",
+  "number": 4,
+  "name": "Letter D",
+  "skill": "Capital D",
+  "icon": "edit",
+  "isBoss": false,
+  "requiresSubscription": false,
+  "intro": {
+    "text": "D",
+    "word": "dog",
+    "say": "{D|dˈiː}! {D|dˈiː} is for dog. Let's learn {D|dˈiː}!",
+    "audio": "voice/line-83ca7f0e2c43be37.m4a",
+    "picture": {
+      "key": "dog",
+      "label": "dog",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-04-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find D!",
+        "say": "Find {D|dˈiː}!",
+        "audio": "voice/line-6a1937307b5b2c50.m4a"
+      },
+      "card": {
+        "text": "D",
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-04-r1-o1",
+            "label": "D",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-04-r1-o2",
+            "label": "P",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-04-r1-o3",
+            "label": "B",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-04-r1-o4",
+            "label": "O",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "D"
+        },
+        "shape": "fish",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-04-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace D",
+        "say": "Trace {D|dˈiː}.",
+        "audio": "voice/line-b479bcf3875781ea.m4a"
+      },
+      "card": {
+        "text": "D",
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "D",
+        "guide": "D",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-04-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /d/?",
+        "say": "{D|dˈiː} says {/d/|dʌ}. Which one starts with {/d/|dʌ}?",
+        "audio": "voice/line-b0a6cb3ca9733855.m4a"
+      },
+      "card": {
+        "text": "D",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-04-r3-o1",
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-04-r3-o2",
+            "label": "robot",
+            "picture": {
+              "key": "robot",
+              "label": "robot",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-04-r3-o3",
+            "label": "box",
+            "picture": {
+              "key": "box",
+              "label": "box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "dog"
+        },
+        "shape": "bucket",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-04-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make D",
+        "say": "Join the dots to make {D|dˈiː}.",
+        "audio": "voice/line-82bb9af7fe16d986.m4a"
+      },
+      "card": {
+        "text": "D",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "D",
+        "guide": "D",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-04-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every D!",
+        "say": "Find every {D|dˈiː}!",
+        "audio": "voice/line-2dc0cc2da72605a0.m4a"
+      },
+      "card": {
+        "text": "D",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "D",
+        "grid": [
+          "D",
+          "D",
+          "O",
+          "B",
+          "D",
+          "O",
+          "P",
+          "P",
+          "B",
+          "O",
+          "D",
+          "P"
+        ]
+      }
+    },
+    {
+      "id": "level-04-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "{C|sˈiː}, ..., {E|ˈiː}! Which letter is missing?",
+        "audio": "voice/line-b0f19fd7496241ce.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bottle_message",
+          "label": "bottle message",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "D",
+        "guide": "D",
+        "word": "CDE",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-04-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write D by yourself",
+        "say": "Now write {D|dˈiː} all by yourself!",
+        "audio": "voice/line-86bca00b13e8612c.m4a"
+      },
+      "card": {
+        "text": "D",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "D",
+        "guide": "D",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-04-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: D is for dog!",
+        "say": "{D|dˈiː} is for dog! Now you say it.",
+        "audio": "voice/line-d27d7ada4a915e00.m4a"
+      },
+      "card": {
+        "text": "D is for dog!",
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "D is for dog!"
+      }
+    },
+    {
+      "id": "level-04-r9",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "C",
+          "D",
+          "E"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,325 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-02",
+  "number": 2,
+  "name": "Letter B",
+  "skill": "Capital B",
+  "icon": "edit",
+  "isBoss": false,
+  "requiresSubscription": false,
+  "intro": {
+    "text": "B",
+    "word": "ball",
+    "say": "{B|bˈiː}! {B|bˈiː} is for ball. Let's learn {B|bˈiː}!",
+    "audio": "voice/line-174f3f68010c3535.m4a",
+    "picture": {
+      "key": "ball",
+      "label": "ball",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-02-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find B!",
+        "say": "Find {B|bˈiː}!",
+        "audio": "voice/line-74266253581507de.m4a"
+      },
+      "card": {
+        "text": "B",
+        "picture": {
+          "key": "ball",
+          "label": "ball",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-02-r1-o1",
+            "label": "P",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-02-r1-o2",
+            "label": "B",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-02-r1-o3",
+            "label": "R",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-02-r1-o4",
+            "label": "D",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "B"
+        },
+        "shape": "bubble",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-02-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace B",
+        "say": "Trace {B|bˈiː}.",
+        "audio": "voice/line-49f21b5eaa81bd90.m4a"
+      },
+      "card": {
+        "text": "B",
+        "picture": {
+          "key": "ball",
+          "label": "ball",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "B",
+        "guide": "B",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-02-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /b/?",
+        "say": "{B|bˈiː} says {/b/|bʌ}. Which one starts with {/b/|bʌ}?",
+        "audio": "voice/line-3d9ffcf9decf16e2.m4a"
+      },
+      "card": {
+        "text": "B",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-02-r3-o1",
+            "label": "ball",
+            "picture": {
+              "key": "ball",
+              "label": "ball",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-02-r3-o2",
+            "label": "violin",
+            "picture": {
+              "key": "violin",
+              "label": "violin",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-02-r3-o3",
+            "label": "lion",
+            "picture": {
+              "key": "lion",
+              "label": "lion",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "ball"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-02-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make B",
+        "say": "Join the dots to make {B|bˈiː}.",
+        "audio": "voice/line-a1e7f3f739717ad8.m4a"
+      },
+      "card": {
+        "text": "B",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "B",
+        "guide": "B",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-02-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every B!",
+        "say": "Find every {B|bˈiː}!",
+        "audio": "voice/line-fabbcf27b55d0f61.m4a"
+      },
+      "card": {
+        "text": "B",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "B",
+        "grid": [
+          "R",
+          "R",
+          "B",
+          "B",
+          "D",
+          "R",
+          "B",
+          "D",
+          "P",
+          "P",
+          "B",
+          "P"
+        ]
+      }
+    },
+    {
+      "id": "level-02-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "{A|ˈeɪ}, ..., {C|sˈiː}! Which letter is missing?",
+        "audio": "voice/line-19d5a34eab465a5c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bottle_message",
+          "label": "bottle message",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "B",
+        "guide": "B",
+        "word": "ABC",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-02-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write B by yourself",
+        "say": "Now write {B|bˈiː} all by yourself!",
+        "audio": "voice/line-643defa45feada76.m4a"
+      },
+      "card": {
+        "text": "B",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "B",
+        "guide": "B",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-02-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: B is for ball!",
+        "say": "{B|bˈiː} is for ball! Now you say it.",
+        "audio": "voice/line-20cc9ae3d0c41f0e.m4a"
+      },
+      "card": {
+        "text": "B is for ball!",
+        "picture": {
+          "key": "ball",
+          "label": "ball",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "B is for ball!"
+      }
+    },
+    {
+      "id": "level-02-r9",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "A",
+          "B",
+          "C"
+        ]
+      }
+    }
+  ]
+}

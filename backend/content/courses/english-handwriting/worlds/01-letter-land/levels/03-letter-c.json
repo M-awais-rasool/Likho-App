@@ -1,0 +1,325 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-03",
+  "number": 3,
+  "name": "Letter C",
+  "skill": "Capital C",
+  "icon": "edit",
+  "isBoss": false,
+  "requiresSubscription": false,
+  "intro": {
+    "text": "C",
+    "word": "cat",
+    "say": "{C|sˈiː}! {C|sˈiː} is for cat. Let's learn {C|sˈiː}!",
+    "audio": "voice/line-1ea670295abe1cea.m4a",
+    "picture": {
+      "key": "cat",
+      "label": "cat",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-03-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find C!",
+        "say": "Find {C|sˈiː}!",
+        "audio": "voice/line-0e8f8791d0bc338c.m4a"
+      },
+      "card": {
+        "text": "C",
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-03-r1-o1",
+            "label": "C",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-03-r1-o2",
+            "label": "O",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-03-r1-o3",
+            "label": "Q",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-03-r1-o4",
+            "label": "G",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "C"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-03-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace C",
+        "say": "Trace {C|sˈiː}.",
+        "audio": "voice/line-25b835b35b24d7a2.m4a"
+      },
+      "card": {
+        "text": "C",
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "C",
+        "guide": "C",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-03-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /c/?",
+        "say": "{C|sˈiː} says {/c/|kʌ}. Which one starts with {/c/|kʌ}?",
+        "audio": "voice/line-c566afa798262705.m4a"
+      },
+      "card": {
+        "text": "C",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-03-r3-o1",
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-03-r3-o2",
+            "label": "box",
+            "picture": {
+              "key": "box",
+              "label": "box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-03-r3-o3",
+            "label": "apple",
+            "picture": {
+              "key": "apple",
+              "label": "apple",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "cat"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-03-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make C",
+        "say": "Join the dots to make {C|sˈiː}.",
+        "audio": "voice/line-9d96bf14c2f13a60.m4a"
+      },
+      "card": {
+        "text": "C",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "C",
+        "guide": "C",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-03-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every C!",
+        "say": "Find every {C|sˈiː}!",
+        "audio": "voice/line-bc30130f04553b8f.m4a"
+      },
+      "card": {
+        "text": "C",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "C",
+        "grid": [
+          "O",
+          "Q",
+          "C",
+          "O",
+          "C",
+          "O",
+          "Q",
+          "C",
+          "C",
+          "G",
+          "G",
+          "G"
+        ]
+      }
+    },
+    {
+      "id": "level-03-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "{B|bˈiː}, ..., {D|dˈiː}! Which letter is missing?",
+        "audio": "voice/line-d3b0e5fb847c4edf.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bottle_message",
+          "label": "bottle message",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "C",
+        "guide": "C",
+        "word": "BCD",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-03-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write C by yourself",
+        "say": "Now write {C|sˈiː} all by yourself!",
+        "audio": "voice/line-c78fa17bd875e1ae.m4a"
+      },
+      "card": {
+        "text": "C",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "C",
+        "guide": "C",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-03-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: C is for cat!",
+        "say": "{C|sˈiː} is for cat! Now you say it.",
+        "audio": "voice/line-255cdb501f670a54.m4a"
+      },
+      "card": {
+        "text": "C is for cat!",
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "C is for cat!"
+      }
+    },
+    {
+      "id": "level-03-r9",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "B",
+          "C",
+          "D"
+        ]
+      }
+    }
+  ]
+}
