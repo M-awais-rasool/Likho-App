@@ -34,7 +34,6 @@
       "properties": {
         "shape": { "type": ["string", "null"] },
         "slot": { "type": ["string", "null"] },
-        "pad": { "type": ["string", "null"] },
         "layout": { "type": ["string", "null"] },
         "stage": { "type": ["string", "null"] }
       }
@@ -49,15 +48,15 @@
     },
     "audio": {
       "type": ["string", "null"],
-      "pattern": "^(assets/.+\\.(m4a|wav|mp3)|https?://.+)$",
-      "description": "Recording of `say` (or `text`): an app asset (assets/voice/…, made by tools/voice at the repository root) or a URL. Without it the device voice reads the words."
+      "pattern": "^([a-z0-9_-]+/)+[A-Za-z0-9_.-]+\\.(m4a|wav|mp3)$|^https?://.+$",
+      "description": "Recording of `say` (or `text`): a file in the media folder (voice/line-….m4a, made by tools/voice at the repository root, served at /media/) or a URL. Without it the device voice reads the words."
     },
     "picture": {
       "type": ["object", "null"],
       "required": ["key", "label"],
       "additionalProperties": false,
       "properties": {
-        "key": { "type": "string", "description": "Bundled image assets/illustrations/<key>.png." },
+        "key": { "type": "string", "description": "Image media/pictures/<key>.png (tools/illustrations), served at /media/pictures/<key>.png." },
         "label": { "type": "string" },
         "url": { "type": ["string", "null"], "description": "Remote image instead of a bundled one." }
       }
@@ -67,7 +66,7 @@
       "required": ["id", "type", "prompt"],
       "properties": {
         "id": { "type": "string" },
-        "type": { "enum": ["pick", "write", "order", "speak"], "description": "The payload object has the same name." },
+        "type": { "enum": ["pick", "write", "order", "speak", "hunt"], "description": "The payload object has the same name." },
         "prompt": {
           "type": "object",
           "required": ["text"],
@@ -86,13 +85,15 @@
         "pick": { "$ref": "#/$defs/pick" },
         "write": { "$ref": "#/$defs/write" },
         "order": { "$ref": "#/$defs/order" },
-        "speak": { "$ref": "#/$defs/speak" }
+        "speak": { "$ref": "#/$defs/speak" },
+        "hunt": { "$ref": "#/$defs/hunt" }
       },
       "allOf": [
         { "if": { "properties": { "type": { "const": "pick" } } }, "then": { "required": ["pick"] } },
         { "if": { "properties": { "type": { "const": "write" } } }, "then": { "required": ["write"] } },
         { "if": { "properties": { "type": { "const": "order" } } }, "then": { "required": ["order"] } },
-        { "if": { "properties": { "type": { "const": "speak" } } }, "then": { "required": ["speak"] } }
+        { "if": { "properties": { "type": { "const": "speak" } } }, "then": { "required": ["speak"] } },
+        { "if": { "properties": { "type": { "const": "hunt" } } }, "then": { "required": ["hunt"] } }
       ]
     },
     "pick": {
@@ -123,6 +124,7 @@
         "layout": { "type": ["string", "null"] },
         "count": { "type": ["integer", "null"] },
         "choiceKey": { "type": ["string", "null"], "description": "Story choice this pick fills (My Story)." },
+        "stage": { "enum": ["house", "count", "stars", null], "description": "This round's stage instead of the level's presentation.stage." },
         "fixCapital": { "type": "boolean" }
       }
     },
@@ -142,11 +144,23 @@
     "order": {
       "type": "object",
       "required": ["tiles"],
-      "properties": { "tiles": { "type": "array", "minItems": 2, "items": { "type": "string" } } }
+      "properties": {
+        "tiles": { "type": "array", "minItems": 2, "items": { "type": "string" } },
+        "slot": { "enum": ["wagon", "plank", "stripe", "panel", null], "description": "This round's slots instead of the level's presentation.slot." }
+      }
     },
     "speak": {
       "type": "object",
       "properties": { "expected": { "type": ["string", "null"] } }
+    },
+    "hunt": {
+      "type": "object",
+      "description": "Letter hunt: tap every cell that is the target (wrong cells count a mistake).",
+      "required": ["target", "grid"],
+      "properties": {
+        "target": { "type": "string", "minLength": 1 },
+        "grid": { "type": "array", "minItems": 4, "maxItems": 16, "items": { "type": "string", "minLength": 1 } }
+      }
     }
   }
 }

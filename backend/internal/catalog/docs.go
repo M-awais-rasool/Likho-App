@@ -134,7 +134,6 @@ type introDoc struct {
 type presentationDoc struct {
 	Shape  *string `json:"shape"`
 	Slot   *string `json:"slot"`
-	Pad    *string `json:"pad"`
 	Layout *string `json:"layout"`
 	Stage  *string `json:"stage"`
 }
@@ -156,10 +155,15 @@ type roundDoc struct {
 	Write *writeDoc `json:"write"`
 	Order *struct {
 		Tiles []string `json:"tiles"`
+		Slot  *string  `json:"slot"`
 	} `json:"order"`
 	Speak *struct {
 		Expected *string `json:"expected"`
 	} `json:"speak"`
+	Hunt *struct {
+		Target string   `json:"target"`
+		Grid   []string `json:"grid"`
+	} `json:"hunt"`
 }
 
 type pickDoc struct {
@@ -179,6 +183,7 @@ type pickDoc struct {
 	Count      *int    `json:"count"`
 	ChoiceKey  *string `json:"choiceKey"`
 	FixCapital bool    `json:"fixCapital"`
+	Stage      *string `json:"stage"`
 }
 
 type writeDoc struct {
@@ -229,7 +234,8 @@ func (c *checker) level(l *parsed[levelDoc]) {
 }
 
 var (
-	audioRe = regexp.MustCompile(`^(assets/.+\.(m4a|wav|mp3)|https?://.+)$`)
+	// a recording in the media folder ("voice/line-….m4a") or a URL
+	audioRe = regexp.MustCompile(`^([a-z0-9_-]+/)+[A-Za-z0-9_.-]+\.(m4a|wav|mp3)$|^https?://.+$`)
 	// {shown|IPA}: what the device voice reads | what recordings say
 	pronRe = regexp.MustCompile(`\{[^{}|]+\|[^{}|]+\}`)
 )
@@ -247,7 +253,7 @@ func (c *checker) speech(at string, say, audio *string) {
 		}
 	}
 	if audio != nil && !audioRe.MatchString(*audio) {
-		c.p.add(at, "audio %q must be an app asset (assets/….m4a, .wav or .mp3) or an http(s) URL", *audio)
+		c.p.add(at, "audio %q must be a file in the media folder (voice/….m4a, .wav or .mp3) or an http(s) URL", *audio)
 	}
 }
 
@@ -265,10 +271,10 @@ func (c *checker) round(file string, i int, r *roundDoc) {
 		c.speech(at+" prompt", r.Prompt.Say, r.Prompt.Audio)
 	}
 	if !roundTypes[r.Type] {
-		c.p.add(at, "type %q is not one of pick, write, order, speak", r.Type)
+		c.p.add(at, "type %q is not one of pick, write, order, speak, hunt", r.Type)
 		return
 	}
-	payloads := map[string]bool{"pick": r.Pick != nil, "write": r.Write != nil, "order": r.Order != nil, "speak": r.Speak != nil}
+	payloads := map[string]bool{"pick": r.Pick != nil, "write": r.Write != nil, "order": r.Order != nil, "speak": r.Speak != nil, "hunt": r.Hunt != nil}
 	for name, present := range payloads {
 		if name == r.Type && !present {
 			c.p.add(at, "a %q round needs a %q object", r.Type, r.Type)
@@ -293,6 +299,32 @@ func (c *checker) round(file string, i int, r *roundDoc) {
 		if len(r.Order.Tiles) < 2 {
 			c.p.add(at, "order.tiles needs at least two tiles")
 		}
+		if s := r.Order.Slot; s != nil && !slots[*s] {
+			c.p.add(at, "order.slot %q is not one of wagon, plank, stripe, panel", *s)
+		}
+	case r.Hunt != nil:
+		c.hunt(at, r.Hunt.Target, r.Hunt.Grid)
+	}
+}
+
+// hunt: a grid of 4 to 16 cells with the target in it at least once and at
+// least one cell that is not the target.
+func (c *checker) hunt(at, target string, grid []string) {
+	found, other := 0, 0
+	for _, cell := range grid {
+		if cell == target {
+			found++
+		} else {
+			other++
+		}
+	}
+	switch {
+	case target == "":
+		c.p.add(at, "hunt.target is required")
+	case len(grid) < 4 || len(grid) > 16:
+		c.p.add(at, "hunt.grid needs 4 to 16 cells")
+	case found == 0 || other == 0:
+		c.p.add(at, "hunt.grid needs the target and at least one other cell")
 	}
 }
 
@@ -311,6 +343,9 @@ func (c *checker) pick(at string, p *pickDoc) {
 		if o.Color != nil && !colors[*o.Color] {
 			c.p.add(at, "option color %q is not one of red, blue, yellow, green, purple", *o.Color)
 		}
+	}
+	if s := p.Stage; s != nil && !stages[*s] {
+		c.p.add(at, "pick.stage %q is not one of house, count, stars", *s)
 	}
 	switch {
 	case p.Answer == nil:
