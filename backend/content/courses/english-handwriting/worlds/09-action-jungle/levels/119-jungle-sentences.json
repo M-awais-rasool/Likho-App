@@ -53,6 +53,81 @@
     },
     {
       "id": "level-119-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/j/|ʤʌ}?",
+        "audio": "voice/line-ad0f5467c4b713b8.m4a"
+      },
+      "card": {
+        "text": "d j",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "d",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "j",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "jump",
+            "picture": {
+              "key": "jump",
+              "label": "jump",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "jam",
+            "picture": {
+              "key": "jam",
+              "label": "jam",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-119-r3",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -75,7 +150,7 @@
       }
     },
     {
-      "id": "level-119-r3",
+      "id": "level-119-r4",
       "type": "speak",
       "prompt": {
         "text": "Say: I can jump.",
@@ -96,7 +171,7 @@
       }
     },
     {
-      "id": "level-119-r4",
+      "id": "level-119-r5",
       "type": "pick",
       "prompt": {
         "text": "I can jump.",
@@ -111,7 +186,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-119-r4-o1",
+            "id": "level-119-r5-o1",
             "label": "jump",
             "picture": {
               "key": "jump",
@@ -122,7 +197,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-119-r4-o2",
+            "id": "level-119-r5-o2",
             "label": "swim",
             "picture": {
               "key": "swim",
@@ -133,7 +208,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-119-r4-o3",
+            "id": "level-119-r5-o3",
             "label": "bird in sky",
             "picture": {
               "key": "bird_in_sky",
@@ -156,7 +231,30 @@
       }
     },
     {
-      "id": "level-119-r5",
+      "id": "level-119-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write the",
+        "say": "Look at the word the. Then write it from memory!",
+        "audio": "voice/line-9ca35a4f6e45755e.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "the",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-119-r7",
       "type": "pick",
       "prompt": {
         "text": "Which mark ends it?",
@@ -171,21 +269,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-119-r5-o1",
+            "id": "level-119-r7-o1",
             "label": "?",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-119-r5-o2",
+            "id": "level-119-r7-o2",
             "label": ".",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-119-r5-o3",
+            "id": "level-119-r7-o3",
             "label": "!",
             "picture": null,
             "color": null,
@@ -204,7 +302,7 @@
       }
     },
     {
-      "id": "level-119-r6",
+      "id": "level-119-r8",
       "type": "hunt",
       "prompt": {
         "text": "Find every and!",
@@ -232,7 +330,7 @@
       }
     },
     {
-      "id": "level-119-r7",
+      "id": "level-119-r9",
       "type": "write",
       "prompt": {
         "text": "Spell said",
@@ -255,51 +353,26 @@
       }
     },
     {
-      "id": "level-119-r8",
-      "type": "pick",
+      "id": "level-119-r10",
+      "type": "pop",
       "prompt": {
-        "text": "Find the word you hear",
-        "say": "Listen! Find the word jumping.",
-        "audio": "voice/line-4da5104a3bebf06e.m4a"
+        "text": "Pop every under!",
+        "say": "Pop every bubble that says under!",
+        "audio": "voice/line-06c2f94d5d1fdada.m4a"
       },
       "card": {
-        "text": null,
+        "text": "under",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-119-r8-o1",
-            "label": "look",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-119-r8-o2",
-            "label": "jumping",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-119-r8-o3",
-            "label": "star",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "under",
+        "others": [
+          "tiger",
+          "down",
+          "like"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "jumping"
-        },
-        "shape": "mushroom",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 4
       }
     }
   ]

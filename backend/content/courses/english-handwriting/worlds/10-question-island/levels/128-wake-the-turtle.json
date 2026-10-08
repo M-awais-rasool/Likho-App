@@ -75,6 +75,29 @@
     },
     {
       "id": "level-128-r2",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a jump. True, or silly?",
+        "audio": "voice/line-7d7fa34612501c10.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a jump.",
+        "picture": {
+          "key": "down",
+          "label": "down",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-128-r3",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -101,7 +124,7 @@
       }
     },
     {
-      "id": "level-128-r3",
+      "id": "level-128-r4",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -124,7 +147,82 @@
       }
     },
     {
-      "id": "level-128-r4",
+      "id": "level-128-r5",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/j/|ʤʌ}?",
+        "audio": "voice/line-ad0f5467c4b713b8.m4a"
+      },
+      "card": {
+        "text": "d j",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "d",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "j",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "jump",
+            "picture": {
+              "key": "jump",
+              "label": "jump",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "jam",
+            "picture": {
+              "key": "jam",
+              "label": "jam",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-128-r6",
       "type": "write",
       "prompt": {
         "text": "Spell where",
@@ -147,7 +245,7 @@
       }
     },
     {
-      "id": "level-128-r5",
+      "id": "level-128-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every what!",
@@ -175,7 +273,7 @@
       }
     },
     {
-      "id": "level-128-r6",
+      "id": "level-128-r8",
       "type": "pick",
       "prompt": {
         "text": "I see a red car.",
@@ -190,7 +288,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-128-r6-o1",
+            "id": "level-128-r8-o1",
             "label": "red car",
             "picture": {
               "key": "red_car",
@@ -201,7 +299,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-128-r6-o2",
+            "id": "level-128-r8-o2",
             "label": "hot sun",
             "picture": {
               "key": "hot_sun",
@@ -212,7 +310,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-128-r6-o3",
+            "id": "level-128-r8-o3",
             "label": "dog running",
             "picture": {
               "key": "dog_running",
@@ -235,55 +333,30 @@
       }
     },
     {
-      "id": "level-128-r7",
-      "type": "pick",
+      "id": "level-128-r9",
+      "type": "write",
       "prompt": {
-        "text": "Find the word you hear",
-        "say": "Listen! Find the word Monday.",
-        "audio": "voice/line-c8ffde019149633c.m4a"
+        "text": "Look, then write what",
+        "say": "Look at the word what. Then write it from memory!",
+        "audio": "voice/line-6468b14d1ebfca5e.m4a"
       },
       "card": {
         "text": null,
         "picture": null,
         "listen": true
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-128-r7-o1",
-            "label": "like",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-128-r7-o2",
-            "label": "jump",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-128-r7-o3",
-            "label": "Monday",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "Monday"
-        },
-        "shape": "balloon",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+      "write": {
+        "mode": "flash",
+        "target": "what",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
       }
     },
     {
-      "id": "level-128-r8",
+      "id": "level-128-r10",
       "type": "speak",
       "prompt": {
         "text": "Say: What is this? It is a turtle!",
