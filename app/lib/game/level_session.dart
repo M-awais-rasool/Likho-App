@@ -19,6 +19,7 @@ abstract final class GameTiming {
   static const afterWrong = Duration(milliseconds: 1300);
   static const orderSettle = Duration(milliseconds: 250); // last tile -> correct
   static const listening = Duration(milliseconds: 1800); // simulated voice check
+  static const matchPeek = Duration(milliseconds: 900); // two cards that are not a pair stay up
 }
 
 enum RoundFeedback { none, correct, wrong }
@@ -88,6 +89,7 @@ class SessionState {
     this.paint,
     this.listening = false,
     this.found = const {},
+    this.open = const [],
     this.finished = false,
   });
 
@@ -117,6 +119,9 @@ class SessionState {
   // hunt: cells found so far
   final Set<int> found;
 
+  // match: cards turned up and not matched yet (at most two)
+  final List<int> open;
+
   final bool finished;
 
   Round get current => level.rounds[round];
@@ -131,6 +136,12 @@ class SessionState {
   List<int> get tiles {
     final r = current;
     return r is OrderRound ? tileOrder(level: level.number, round: round, count: r.tiles.length) : const [];
+  }
+
+  /// Match rounds: the card at each position (shuffled, see [MatchRound.side]).
+  List<int> get cards {
+    final r = current;
+    return r is MatchRound ? tileOrder(level: level.number, round: round + 5, count: r.cardCount) : const [];
   }
 
   SessionState copyWith({
@@ -148,6 +159,7 @@ class SessionState {
     bool clearPaint = false,
     bool? listening,
     Set<int>? found,
+    List<int>? open,
     bool? finished,
   }) =>
       SessionState(
@@ -164,6 +176,7 @@ class SessionState {
         paint: clearPaint ? null : paint ?? this.paint,
         listening: listening ?? this.listening,
         found: found ?? this.found,
+        open: open ?? this.open,
         finished: finished ?? this.finished,
       );
 }
@@ -279,6 +292,29 @@ class LevelSession extends Notifier<SessionState> {
     } else {
       state = state.copyWith(wrongOptions: {...state.wrongOptions, index});
       _wrong();
+    }
+  }
+
+  // ------------------------------------------------------------ match
+  /// The card at [position] tapped: turns it up; two up that are a pair
+  /// stay up, two that are not turn back down (not a mistake: memory games
+  /// are about trying).
+  void flipCard(int position) {
+    final r = state.current;
+    if (r is! MatchRound || _locked || state.open.length >= 2 || state.open.contains(position) || state.found.contains(position)) return;
+    if (state.open.isEmpty) {
+      state = state.copyWith(open: [position]);
+      return;
+    }
+    final first = state.open.first;
+    final cards = state.cards;
+    if (cards[first] ~/ 2 == cards[position] ~/ 2) {
+      final found = {...state.found, first, position};
+      state = state.copyWith(found: found, open: const []);
+      if (found.length >= r.cardCount) _after(GameTiming.orderSettle, _correct);
+    } else {
+      state = state.copyWith(open: [first, position]);
+      _after(GameTiming.matchPeek, () => state = state.copyWith(open: const []));
     }
   }
 

@@ -288,6 +288,17 @@ sealed class Round {
       case 'fix':
         final f = r.object('fix');
         return FixRound(id: id, prompt: prompt, card: card, items: f.list('items', (x, q) => FixItem.fromJson(JsonReader(x, q))));
+      case 'match':
+        final m = r.object('match');
+        return MatchRound(
+          id: id,
+          prompt: prompt,
+          card: card,
+          pairs: m.list('pairs', (x, q) {
+            final p = JsonReader(x, q);
+            return (MatchSide.fromJson(p.object('a')), MatchSide.fromJson(p.object('b')));
+          }),
+        );
       case 'pop':
         final p = r.object('pop');
         return PopRound(id: id, prompt: prompt, card: card, target: p.string('target'), others: p.strings('others'), count: p.integer('count'));
@@ -451,6 +462,29 @@ class FixItem {
       at: r.optInt('at'),
     );
   }
+}
+
+/// Memory: cards face down, find the [pairs] (A and a, a word and its picture).
+final class MatchRound extends Round {
+  const MatchRound({required super.id, required super.prompt, super.card, required this.pairs});
+  final List<(MatchSide, MatchSide)> pairs;
+
+  int get cardCount => pairs.length * 2;
+
+  /// Card [c] (pair c ~/ 2, side a when even).
+  MatchSide side(int c) => c.isEven ? pairs[c ~/ 2].$1 : pairs[c ~/ 2].$2;
+
+  @override
+  String get type => 'match';
+}
+
+@immutable
+class MatchSide {
+  const MatchSide({this.text, this.picture});
+  final String? text;
+  final Picture? picture;
+
+  factory MatchSide.fromJson(JsonReader r) => MatchSide(text: r.optString('text'), picture: r.optPicture('picture'));
 }
 
 /// Bubble pop: bubbles float up, pop [count] that say [target] (the rest
