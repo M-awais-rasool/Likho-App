@@ -175,7 +175,7 @@ class _FieldView extends StatelessWidget {
     final level = state.level;
     final shape = PickShape.resolve(round.shape ?? level.presentation.shape);
     final floats = PickShape.floating.contains(shape);
-    final stage = level.presentation.stage;
+    final stage = round.stage ?? level.presentation.stage;
     final hasStage = round.count != null || stage != null;
     final n = round.options.length;
     var pos = ((floats ? _float : _grid)[n] ?? _grid[3]!).map((p) => (p.$1.toDouble(), p.$2.toDouble())).toList();
@@ -352,21 +352,40 @@ class _Ring extends StatelessWidget {
       duration: const Duration(milliseconds: 200),
       builder: (context, t, _) => Opacity(
         opacity: t,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(40),
-            boxShadow: [
-              BoxShadow(color: glow, blurRadius: 30),
-              BoxShadow(color: color, spreadRadius: 4),
-            ],
-          ),
-          child: DecoratedBox(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(40), color: LikhoColors.clear),
-          ),
-        ),
+        child: CustomPaint(painter: _OkRingPainter(color: color, glow: glow)),
       ),
     ),
   );
+}
+
+/// The ok ring as strokes only: a box shadow would also fill the inside
+/// (Flutter paints shadows under the box), covering the picked item.
+class _OkRingPainter extends CustomPainter {
+  const _OkRingPainter({required this.color, required this.glow});
+  final Color color, glow;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final r = RRect.fromRectAndRadius(Offset.zero & size, const Radius.circular(40));
+    canvas.drawRRect(
+      r.inflate(6),
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 12
+        ..color = glow
+        ..maskFilter = const MaskFilter.blur(BlurStyle.outer, 12),
+    );
+    canvas.drawRRect(
+      r.inflate(2),
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 4
+        ..color = color,
+    );
+  }
+
+  @override
+  bool shouldRepaint(_OkRingPainter old) => old.color != color || old.glow != glow;
 }
 
 /// Hint: coral ring with a pulsing yellow glow (glowRing 1 s).
@@ -825,16 +844,16 @@ class _PatientView extends StatelessWidget {
                 : hint
                 ? GameColors.hintTint
                 : GameColors.white01,
-            boxShadow: [
-              BoxShadow(
-                color: ok
-                    ? LikhoColors.success
-                    : hint
-                    ? LikhoColors.hint
-                    : GameColors.ink00,
-                spreadRadius: 4,
-              ),
-            ],
+            // a ring outside the spot (a spread shadow would fill it and hide the face)
+            border: Border.all(
+              color: ok
+                  ? LikhoColors.success
+                  : hint
+                  ? LikhoColors.hint
+                  : GameColors.ink00,
+              width: 4,
+              strokeAlign: BorderSide.strokeAlignOutside,
+            ),
           ),
         ),
       ),
