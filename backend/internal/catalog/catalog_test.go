@@ -21,14 +21,24 @@ func TestLoadsTheRealContent(t *testing.T) {
 	if !ok || len(cat.Courses()) != 1 {
 		t.Fatalf("courses: %v", cat.Courses())
 	}
-	if c.Stats != (Stats{Worlds: 6, Levels: 36, Rounds: 182, Placement: true}) {
+	if c.Stats.Worlds != 12 || c.Stats.Levels != 144 || !c.Stats.Placement || c.Stats.Rounds < 144*8 {
 		t.Errorf("stats: %+v", c.Stats)
 	}
-	if l, ok := c.Level(13); !ok || !l.RequiresSubscription || l.WorldID != "world-3" {
-		t.Errorf("level 13: %+v", l)
+	// world 1 (strokes and capitals) is free, Likho Plus from world 2
+	if l, ok := c.Level(31); !ok || l.RequiresSubscription || l.WorldID != "world-1" || !l.IsBoss {
+		t.Errorf("level 31: %+v", l)
 	}
-	if l, _ := c.Level(6); !l.IsBoss {
-		t.Error("level 6 is a boss")
+	if l, ok := c.Level(32); !ok || !l.RequiresSubscription || l.WorldID != "world-2" {
+		t.Errorf("level 32: %+v", l)
+	}
+	if l, _ := c.Level(62); !l.IsBoss || l.WorldID != "world-2" {
+		t.Error("level 62 is the small letters boss")
+	}
+	// every level is 8 to 10 games long
+	for n := 1; n <= 144; n++ {
+		if l, _ := c.Level(n); l.Rounds < 8 || l.Rounds > 10 {
+			t.Errorf("level %d has %d rounds", n, l.Rounds)
+		}
 	}
 	if _, ok := c.Level(0); ok {
 		t.Error("the placement warm-up is not a map level")
@@ -45,7 +55,7 @@ func TestLoadsTheRealContent(t *testing.T) {
 	if err := json.Unmarshal(c.JSON, &doc); err != nil {
 		t.Fatal(err)
 	}
-	if doc.SchemaVersion != 1 || doc.CourseID != "english-handwriting" || len(doc.Worlds) != 6 || len(doc.Levels) != 37 || len(doc.Glyphs) == 0 {
+	if doc.SchemaVersion != 1 || doc.CourseID != "english-handwriting" || len(doc.Worlds) != 12 || len(doc.Levels) != 145 || len(doc.Glyphs) == 0 {
 		t.Fatalf("document: v%d %s %d worlds %d levels", doc.SchemaVersion, doc.CourseID, len(doc.Worlds), len(doc.Levels))
 	}
 	first, second := doc.Levels[0], doc.Levels[1]
@@ -96,10 +106,35 @@ func TestSpokenWordsAndRecordings(t *testing.T) {
 	fs := course()
 	f := fs["courses/demo/worlds/01-one/levels/01-a.json"]
 	f.Data = bytes.Replace(f.Data, []byte(`"intro":{"text":"A","word":"apple"`),
-		[]byte(`"intro":{"text":"A","word":"apple","say":"{A|ˈeɪ} is for apple!","audio":"assets/voice/l1-intro.m4a"`), 1)
+		[]byte(`"intro":{"text":"A","word":"apple","say":"{A|ˈeɪ} is for apple!","audio":"voice/l1-intro.m4a"`), 1)
 	f.Data = bytes.Replace(f.Data, []byte(`"prompt":{"text":"Trace A"}`), []byte(`"prompt":{"text":"Trace A","say":"Trace {A|ˈeɪ}.","audio":"https://cdn.likho.app/a.m4a"}`), 1)
 	if _, err := Load(fs, Options{}); err != nil {
 		t.Fatalf("say with pronunciations and assets or URLs are fine: %v", err)
+	}
+}
+
+func TestMediaPathsAreTheFilesTheCourseUses(t *testing.T) {
+	fs := course()
+	f := fs["courses/demo/worlds/01-one/levels/01-a.json"]
+	f.Data = bytes.Replace(f.Data, []byte(`"intro":{"text":"A","word":"apple","picture":null}`),
+		[]byte(`"intro":{"text":"A","word":"apple","audio":"voice/a.m4a","picture":{"key":"apple","label":"apple","url":null}}`), 1)
+	cat, err := Load(fs, Options{})
+	if err != nil {
+		t.Fatal(err)
+	}
+	c, _ := cat.Course("demo")
+	if got := strings.Join(c.MediaPaths(), " "); got != "pictures/apple.png voice/a.lip voice/a.m4a" {
+		t.Errorf("media paths: %s", got)
+	}
+}
+
+func TestHuntRoundsLoad(t *testing.T) {
+	fs := course()
+	f := fs["courses/demo/worlds/01-one/levels/01-a.json"]
+	f.Data = bytes.Replace(f.Data, []byte(`"type":"pick","prompt":{"text":"Find A"},"pick":{"options":[{"id":"o1","label":"A"},{"id":"o2","label":"B"}],"answer":{"kind":"label","value":"A"}}`),
+		[]byte(`"type":"hunt","prompt":{"text":"Find every A"},"hunt":{"target":"A","grid":["A","B","A","C"]}`), 1)
+	if _, err := Load(fs, Options{}); err != nil {
+		t.Fatalf("a letter hunt is fine: %v", err)
 	}
 }
 
@@ -148,14 +183,23 @@ func TestContentProblemsAreReportedWithTheirFile(t *testing.T) {
 			fs["courses/demo/worlds/02-two/levels/9-c.json"] = fs["courses/demo/worlds/02-two/levels/03-c.json"]
 			delete(fs, "courses/demo/worlds/02-two/levels/03-c.json")
 		}, []string{"9-c.json", "must start with the level number (03-"}},
-		{"recording that is neither an app asset nor a URL", func(fs fstest.MapFS) {
+		{"recording that is neither a media file nor a URL", func(fs fstest.MapFS) {
 			f := fs["courses/demo/worlds/01-one/levels/01-a.json"]
-			f.Data = bytes.Replace(f.Data, []byte(`"prompt":{"text":"Trace A"}`), []byte(`"prompt":{"text":"Trace A","audio":"voice/a.m4a"}`), 1)
-		}, []string{"01-a.json rounds[0] prompt", `audio "voice/a.m4a" must be an app asset`}},
+			f.Data = bytes.Replace(f.Data, []byte(`"prompt":{"text":"Trace A"}`), []byte(`"prompt":{"text":"Trace A","audio":"../a.m4a"}`), 1)
+		}, []string{"01-a.json rounds[0] prompt", `audio "../a.m4a" must be a file in the media folder`}},
 		{"pronunciation without its IPA", func(fs fstest.MapFS) {
 			f := fs["courses/demo/worlds/01-one/levels/01-a.json"]
 			f.Data = bytes.Replace(f.Data, []byte(`"intro":{"text":"A","word":"apple"`), []byte(`"intro":{"text":"A","word":"apple","say":"Small {a}!"`), 1)
 		}, []string{"01-a.json intro", `say "Small {a}!": a pronunciation is written {shown|IPA}`}},
+		{"hunt without the letter to find", func(fs fstest.MapFS) {
+			f := fs["courses/demo/worlds/01-one/levels/01-a.json"]
+			f.Data = bytes.Replace(f.Data, []byte(`"type":"write","prompt":{"text":"Trace A"},"write":{"mode":"trace","guide":"A"}`),
+				[]byte(`"type":"hunt","prompt":{"text":"Find every A"},"hunt":{"target":"A","grid":["B","C","D","E"]}`), 1)
+		}, []string{"01-a.json rounds[0]", "hunt.grid needs the target and at least one other cell"}},
+		{"writing pads are gone: there is only the paper", func(fs fstest.MapFS) {
+			f := fs["courses/demo/worlds/01-one/levels/01-a.json"]
+			f.Data = bytes.Replace(f.Data, []byte(`"mode":"trace","guide":"A"`), []byte(`"mode":"trace","guide":"A","pad":"sand"`), 1)
+		}, []string{"01-a.json", `unknown field "pad"`}},
 		{"levels go backwards across worlds", func(fs fstest.MapFS) {
 			fs["courses/demo/worlds/01-one/levels/03-c.json"] = fs["courses/demo/worlds/02-two/levels/03-c.json"]
 			fs["courses/demo/worlds/02-two/levels/02-b.json"] = fs["courses/demo/worlds/01-one/levels/02-b.json"]
