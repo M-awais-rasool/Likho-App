@@ -75,6 +75,9 @@ class AppFeedback {
     if (balloon) _go(Sfx.balloonPop, null, volume: .9);
   }
 
+  /// A bubble popped (pop rounds).
+  void pop() => _go(Sfx.balloonPop, HapticCue.tick, volume: .9);
+
   /// Wrong answer: friendly "not yet".
   void wrong() => _go(Sfx.wrong, HapticCue.gentleError);
 

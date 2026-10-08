@@ -285,6 +285,9 @@ sealed class Round {
       case 'hunt':
         final h = r.object('hunt');
         return HuntRound(id: id, prompt: prompt, card: card, target: h.string('target'), grid: h.strings('grid'));
+      case 'pop':
+        final p = r.object('pop');
+        return PopRound(id: id, prompt: prompt, card: card, target: p.string('target'), others: p.strings('others'), count: p.integer('count'));
       case 'truth':
         final t = r.object('truth');
         return TruthRound(id: id, prompt: prompt, card: card, text: t.string('text'), picture: t.optPicture('picture'), answer: t.boolean('answer'));
@@ -408,6 +411,18 @@ final class HuntRound extends Round {
 
   @override
   String get type => 'hunt';
+}
+
+/// Bubble pop: bubbles float up, pop [count] that say [target] (the rest
+/// say one of [others]).
+final class PopRound extends Round {
+  const PopRound({required super.id, required super.prompt, super.card, required this.target, required this.others, required this.count});
+  final String target;
+  final List<String> others;
+  final int count;
+
+  @override
+  String get type => 'pop';
 }
 
 /// True or silly: is [text] (about [picture]) true?
