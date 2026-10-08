@@ -1,0 +1,318 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-87",
+  "number": 87,
+  "name": "The ai Sound",
+  "skill": "ai words",
+  "icon": "graphic_eq",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "ai",
+    "word": "rain",
+    "say": "Two letters, one sound: {/ai/|eɪ}! Like rain.",
+    "audio": "voice/line-47cb0fbc79bc8f02.m4a",
+    "picture": {
+      "key": "rain",
+      "label": "rain",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-87-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is rain?",
+        "say": "Read the word. Which picture is rain?",
+        "audio": "voice/line-50745f7ad9e936bc.m4a"
+      },
+      "card": {
+        "text": "rain",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-87-r1-o1",
+            "label": "rain",
+            "picture": {
+              "key": "rain",
+              "label": "rain",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-87-r1-o2",
+            "label": "chain",
+            "picture": {
+              "key": "chain",
+              "label": "chain",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-87-r1-o3",
+            "label": "nail",
+            "picture": {
+              "key": "nail",
+              "label": "nail",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "rain"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-87-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Rain! Build the word rain.",
+        "audio": "voice/line-c72d497d62580b89.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "rain",
+          "label": "rain",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "r",
+          "ai",
+          "n"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-87-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word snail.",
+        "audio": "voice/line-bc04d50e67fcd3ba.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-87-r3-o1",
+            "label": "paint",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-87-r3-o2",
+            "label": "snail",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-87-r3-o3",
+            "label": "nail",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "snail"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-87-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Snail! Which letter is missing?",
+        "audio": "voice/line-01176b08b8f43e2c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "snail",
+          "label": "snail",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "a",
+        "guide": "a",
+        "word": "snail",
+        "missingIndex": 2,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-87-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every nail!",
+        "say": "Find every word nail!",
+        "audio": "voice/line-eb880f8f49e8bed8.m4a"
+      },
+      "card": {
+        "text": "nail",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "nail",
+        "grid": [
+          "paint",
+          "rain",
+          "pink",
+          "nail",
+          "chain",
+          "train",
+          "nail",
+          "snail",
+          "nail"
+        ]
+      }
+    },
+    {
+      "id": "level-87-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "chain",
+          "label": "chain",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-87-r6-o1",
+            "label": "snail",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-87-r6-o2",
+            "label": "chain",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-87-r6-o3",
+            "label": "four",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "chain"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-87-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: rain, snail, train, nail!",
+        "say": "Say them with me! rain, snail, train, nail!",
+        "audio": "voice/line-e430169e9b584565.m4a"
+      },
+      "card": {
+        "text": "rain, snail, train, nail!",
+        "picture": {
+          "key": "rain",
+          "label": "rain",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "rain, snail, train, nail!"
+      }
+    },
+    {
+      "id": "level-87-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write train",
+        "say": "Write the word train.",
+        "audio": "voice/line-b9d182e1efab8983.m4a"
+      },
+      "card": {
+        "text": "train",
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "train",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

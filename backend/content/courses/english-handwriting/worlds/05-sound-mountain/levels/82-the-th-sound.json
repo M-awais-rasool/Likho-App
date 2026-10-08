@@ -1,0 +1,319 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-82",
+  "number": 82,
+  "name": "The th Sound",
+  "skill": "th words",
+  "icon": "graphic_eq",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "th",
+    "word": "thumb",
+    "say": "Two letters, one sound: {/th/|θːː}! Like thumb.",
+    "audio": "voice/line-879f8dea244d8117.m4a",
+    "picture": {
+      "key": "thumb",
+      "label": "thumb",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-82-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is thumb?",
+        "say": "Read the word. Which picture is thumb?",
+        "audio": "voice/line-a8371b5f02036011.m4a"
+      },
+      "card": {
+        "text": "thumb",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-82-r1-o1",
+            "label": "thumb",
+            "picture": {
+              "key": "thumb",
+              "label": "thumb",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-82-r1-o2",
+            "label": "mouth",
+            "picture": {
+              "key": "mouth",
+              "label": "mouth",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-82-r1-o3",
+            "label": "three",
+            "picture": {
+              "key": "three",
+              "label": "three",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "thumb"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-82-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Thumb! Build the word thumb.",
+        "audio": "voice/line-9d64f2d63c318742.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "thumb",
+          "label": "thumb",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "th",
+          "u",
+          "m",
+          "b"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-82-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word bath.",
+        "audio": "voice/line-9ed3b5388e9bcbd8.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-82-r3-o1",
+            "label": "thumb",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-82-r3-o2",
+            "label": "bath",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-82-r3-o3",
+            "label": "mouth",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "bath"
+        },
+        "shape": "shell",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-82-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Bath! Which letter is missing?",
+        "audio": "voice/line-9c2d8092535bb40e.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bath",
+          "label": "bath",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "a",
+        "guide": "a",
+        "word": "bath",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-82-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every three!",
+        "say": "Find every word three!",
+        "audio": "voice/line-dd4b889423260050.m4a"
+      },
+      "card": {
+        "text": "three",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "three",
+        "grid": [
+          "pink",
+          "tooth",
+          "three",
+          "three",
+          "bath",
+          "teeth",
+          "thumb",
+          "three",
+          "mouth"
+        ]
+      }
+    },
+    {
+      "id": "level-82-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "tooth",
+          "label": "teeth",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-82-r6-o1",
+            "label": "tooth",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-82-r6-o2",
+            "label": "hand",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-82-r6-o3",
+            "label": "teeth",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "teeth"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-82-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: thumb, bath, tooth, three!",
+        "say": "Say them with me! thumb, bath, tooth, three!",
+        "audio": "voice/line-515ab6d56a084274.m4a"
+      },
+      "card": {
+        "text": "thumb, bath, tooth, three!",
+        "picture": {
+          "key": "thumb",
+          "label": "thumb",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "thumb, bath, tooth, three!"
+      }
+    },
+    {
+      "id": "level-82-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write tooth",
+        "say": "Write the word tooth.",
+        "audio": "voice/line-568ca74559049029.m4a"
+      },
+      "card": {
+        "text": "tooth",
+        "picture": {
+          "key": "tooth",
+          "label": "tooth",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "tooth",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

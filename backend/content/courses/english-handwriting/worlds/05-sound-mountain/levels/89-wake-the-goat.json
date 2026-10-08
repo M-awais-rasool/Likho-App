@@ -1,0 +1,319 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-89",
+  "number": 89,
+  "name": "Wake the Goat",
+  "skill": "Boss · letter pairs",
+  "icon": "bedtime",
+  "isBoss": true,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "ship chick thumb",
+    "word": "star",
+    "say": "The goat is sleeping on the mountain. Let's read and write to wake it up!",
+    "audio": "voice/line-e4497c1989f55708.m4a",
+    "picture": {
+      "key": "star",
+      "label": "star",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-89-r1",
+      "type": "write",
+      "prompt": {
+        "text": "Spell ship",
+        "say": "Ship! Write it one letter at a time.",
+        "audio": "voice/line-25637619d04774dc.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "ship",
+          "label": "ship",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "ship",
+        "guide": null,
+        "word": "ship",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-89-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word chick.",
+        "audio": "voice/line-00868934f84df758.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-89-r2-o1",
+            "label": "chick",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-89-r2-o2",
+            "label": "dog",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-89-r2-o3",
+            "label": "duck",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "chick"
+        },
+        "shape": "mushroom",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-89-r3",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every thumb!",
+        "say": "Find every word thumb!",
+        "audio": "voice/line-283d698c1d2f89a0.m4a"
+      },
+      "card": {
+        "text": "thumb",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "thumb",
+        "grid": [
+          "moon",
+          "ring",
+          "chick",
+          "thumb",
+          "log",
+          "thumb",
+          "duck",
+          "thumb",
+          "ship"
+        ]
+      }
+    },
+    {
+      "id": "level-89-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "duck",
+          "label": "duck",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-89-r4-o1",
+            "label": "thumb",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-89-r4-o2",
+            "label": "brother",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-89-r4-o3",
+            "label": "duck",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "duck"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-89-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Write ring",
+        "say": "Write the word ring.",
+        "audio": "voice/line-0eaf9ed52f48019a.m4a"
+      },
+      "card": {
+        "text": "ring",
+        "picture": {
+          "key": "ring",
+          "label": "ring",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "ring",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-89-r6",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Moon! Build the word moon.",
+        "audio": "voice/line-7c139dddbaa5edf8.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "moon",
+          "label": "moon",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "m",
+          "o",
+          "o",
+          "n"
+        ],
+        "slot": "plank"
+      }
+    },
+    {
+      "id": "level-89-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-89-r7-o1",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-89-r7-o2",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-89-r7-o3",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-89-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: ship, chick, thumb, duck!",
+        "say": "Say them with me! ship, chick, thumb, duck!",
+        "audio": "voice/line-f57b7c35c59d1a2a.m4a"
+      },
+      "card": {
+        "text": "ship, chick, thumb, duck!",
+        "picture": {
+          "key": "ship",
+          "label": "ship",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "ship, chick, thumb, duck!"
+      }
+    }
+  ]
+}

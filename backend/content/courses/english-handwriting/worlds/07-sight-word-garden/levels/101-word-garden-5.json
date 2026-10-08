@@ -1,0 +1,332 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-101",
+  "number": 101,
+  "name": "Word Garden 5",
+  "skill": "Sight words",
+  "icon": "local_florist",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "look go come",
+    "word": "flower",
+    "say": "Words to know by sight: look, go, come, play, here!",
+    "audio": "voice/line-64c6d5dd579f6e2b.m4a",
+    "picture": {
+      "key": "flower",
+      "label": "flower",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-101-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word look.",
+        "audio": "voice/line-93cbb96066e6eba9.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-101-r1-o1",
+            "label": "look",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-101-r1-o2",
+            "label": "here",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-101-r1-o3",
+            "label": "come",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "look"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-101-r2",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every look!",
+        "say": "Find every word look!",
+        "audio": "voice/line-46b76c96594b7e12.m4a"
+      },
+      "card": {
+        "text": "look",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "look",
+        "grid": [
+          "play",
+          "come",
+          "star",
+          "go",
+          "look",
+          "look",
+          "tiger",
+          "here",
+          "look"
+        ]
+      }
+    },
+    {
+      "id": "level-101-r3",
+      "type": "write",
+      "prompt": {
+        "text": "Spell look",
+        "say": "Look! Write it one letter at a time.",
+        "audio": "voice/line-137d664cb930fbf2.m4a"
+      },
+      "card": {
+        "text": "look",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "look",
+        "guide": null,
+        "word": "look",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-101-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "what at the kite. Which word fits?",
+        "audio": "voice/line-0941902a315c139b.m4a"
+      },
+      "card": {
+        "text": "___ at the kite.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-101-r4-o1",
+            "label": "look",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-101-r4-o2",
+            "label": "play",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-101-r4-o3",
+            "label": "Look",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-101-r4-o4",
+            "label": "come",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-101-r4-o5",
+            "label": "go",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-101-r4-o6",
+            "label": "here",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Look"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-101-r5",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "Look at the kite. Put the words in order.",
+        "audio": "voice/line-8e2d03bfe8a2db5d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "kite",
+          "label": "kite",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "Look",
+          "at",
+          "the",
+          "kite"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-101-r6",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Come and play.",
+        "say": "Come and play. Now you say it!",
+        "audio": "voice/line-111956fee1ce5db8.m4a"
+      },
+      "card": {
+        "text": "Come and play.",
+        "picture": {
+          "key": "play",
+          "label": "play",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Come and play."
+      }
+    },
+    {
+      "id": "level-101-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write play",
+        "say": "Write the word play.",
+        "audio": "voice/line-12c0b1660e39af61.m4a"
+      },
+      "card": {
+        "text": "play",
+        "picture": {
+          "key": "play",
+          "label": "play",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "play",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-101-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-101-r8-o1",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-101-r8-o2",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-101-r8-o3",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

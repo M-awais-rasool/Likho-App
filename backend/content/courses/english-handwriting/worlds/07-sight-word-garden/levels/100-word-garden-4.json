@@ -1,0 +1,329 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-100",
+  "number": 100,
+  "name": "Word Garden 4",
+  "skill": "Sight words",
+  "icon": "local_florist",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "you it in",
+    "word": "flower",
+    "say": "Words to know by sight: you, it, in, on, up!",
+    "audio": "voice/line-96e73cc65312f704.m4a",
+    "picture": {
+      "key": "flower",
+      "label": "flower",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-100-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word you.",
+        "audio": "voice/line-0f1999606d12109d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-100-r1-o1",
+            "label": "you",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-100-r1-o2",
+            "label": "up",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-100-r1-o3",
+            "label": "in",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "you"
+        },
+        "shape": "bubble",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-100-r2",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every you!",
+        "say": "Find every word you!",
+        "audio": "voice/line-67f494978782721f.m4a"
+      },
+      "card": {
+        "text": "you",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "you",
+        "grid": [
+          "up",
+          "in",
+          "it",
+          "ship",
+          "you",
+          "on",
+          "you",
+          "you",
+          "tiger"
+        ]
+      }
+    },
+    {
+      "id": "level-100-r3",
+      "type": "write",
+      "prompt": {
+        "text": "Spell you",
+        "say": "You! Write it one letter at a time.",
+        "audio": "voice/line-c49e70800e772118.m4a"
+      },
+      "card": {
+        "text": "you",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "you",
+        "guide": null,
+        "word": "you",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-100-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "what is in the box. Which word fits?",
+        "audio": "voice/line-2c1bfe3cf78d4027.m4a"
+      },
+      "card": {
+        "text": "___ is in the box.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-100-r4-o1",
+            "label": "on",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-100-r4-o2",
+            "label": "in",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-100-r4-o3",
+            "label": "it",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-100-r4-o4",
+            "label": "you",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-100-r4-o5",
+            "label": "up",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-100-r4-o6",
+            "label": "It",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "It"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-100-r5",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "It is in the box. Put the words in order.",
+        "audio": "voice/line-259634c4dcaaf02c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cat_on_box",
+          "label": "cat on box",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "It",
+          "is",
+          "in",
+          "the",
+          "box"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-100-r6",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: The cat is on the box.",
+        "say": "The cat is on the box. Now you say it!",
+        "audio": "voice/line-e9d3279873a1471a.m4a"
+      },
+      "card": {
+        "text": "The cat is on the box.",
+        "picture": {
+          "key": "cat_on_box",
+          "label": "cat on box",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "The cat is on the box."
+      }
+    },
+    {
+      "id": "level-100-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write on",
+        "say": "Write the word on.",
+        "audio": "voice/line-3e66d645eb74fb64.m4a"
+      },
+      "card": {
+        "text": "on",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "on",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-100-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-100-r8-o1",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-100-r8-o2",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-100-r8-o3",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

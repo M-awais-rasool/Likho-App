@@ -1,0 +1,319 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-93",
+  "number": 93,
+  "name": "Sand Tent",
+  "skill": "nd nt mp st at the end",
+  "icon": "beach_access",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "tent",
+    "word": "tent",
+    "say": "Hand, tent, lamp! Two sounds at the end.",
+    "audio": "voice/line-4355152a5e0d51e9.m4a",
+    "picture": {
+      "key": "tent",
+      "label": "tent",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-93-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is hand?",
+        "say": "Read the word. Which picture is hand?",
+        "audio": "voice/line-278ded660a1e4071.m4a"
+      },
+      "card": {
+        "text": "hand",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-93-r1-o1",
+            "label": "hand",
+            "picture": {
+              "key": "hand",
+              "label": "hand",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-93-r1-o2",
+            "label": "tent",
+            "picture": {
+              "key": "tent",
+              "label": "tent",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-93-r1-o3",
+            "label": "lamp",
+            "picture": {
+              "key": "lamp",
+              "label": "lamp",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "hand"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-93-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Hand! Build the word hand.",
+        "audio": "voice/line-e410dec5e3a6c7ea.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "hand",
+          "label": "hand",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "h",
+          "a",
+          "n",
+          "d"
+        ],
+        "slot": "plank"
+      }
+    },
+    {
+      "id": "level-93-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word tent.",
+        "audio": "voice/line-d505d07aff4fdd06.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-93-r3-o1",
+            "label": "hand",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-93-r3-o2",
+            "label": "gift",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-93-r3-o3",
+            "label": "tent",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "tent"
+        },
+        "shape": "bubble",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-93-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Tent! Which letter is missing?",
+        "audio": "voice/line-8c841899208448d0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "tent",
+          "label": "tent",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "e",
+        "guide": "e",
+        "word": "tent",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-93-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every nest!",
+        "say": "Find every word nest!",
+        "audio": "voice/line-b0f5d59955781631.m4a"
+      },
+      "card": {
+        "text": "nest",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "nest",
+        "grid": [
+          "hand",
+          "nest",
+          "lamp",
+          "nest",
+          "nest",
+          "milk",
+          "gift",
+          "four",
+          "tent"
+        ]
+      }
+    },
+    {
+      "id": "level-93-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "gift",
+          "label": "gift",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-93-r6-o1",
+            "label": "hand",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-93-r6-o2",
+            "label": "lamp",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-93-r6-o3",
+            "label": "gift",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "gift"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-93-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: hand, tent, lamp, nest!",
+        "say": "Say them with me! hand, tent, lamp, nest!",
+        "audio": "voice/line-d9af575f0c74da7a.m4a"
+      },
+      "card": {
+        "text": "hand, tent, lamp, nest!",
+        "picture": {
+          "key": "hand",
+          "label": "hand",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "hand, tent, lamp, nest!"
+      }
+    },
+    {
+      "id": "level-93-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write lamp",
+        "say": "Write the word lamp.",
+        "audio": "voice/line-c3745a9ab2d2a23d.m4a"
+      },
+      "card": {
+        "text": "lamp",
+        "picture": {
+          "key": "lamp",
+          "label": "lamp",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "lamp",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,318 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-86",
+  "number": 86,
+  "name": "The oo Sound",
+  "skill": "oo words",
+  "icon": "graphic_eq",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "oo",
+    "word": "moon",
+    "say": "Two letters, one sound: {/oo/|uː}! Like moon.",
+    "audio": "voice/line-898e34c86d766093.m4a",
+    "picture": {
+      "key": "moon",
+      "label": "moon",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-86-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is moon?",
+        "say": "Read the word. Which picture is moon?",
+        "audio": "voice/line-8b6de1a997054403.m4a"
+      },
+      "card": {
+        "text": "moon",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-86-r1-o1",
+            "label": "moon",
+            "picture": {
+              "key": "moon",
+              "label": "moon",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-86-r1-o2",
+            "label": "spoon",
+            "picture": {
+              "key": "spoon",
+              "label": "spoon",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-86-r1-o3",
+            "label": "food",
+            "picture": {
+              "key": "food",
+              "label": "food",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "moon"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-86-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Moon! Build the word moon.",
+        "audio": "voice/line-7c139dddbaa5edf8.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "moon",
+          "label": "moon",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "m",
+          "oo",
+          "n"
+        ],
+        "slot": "wagon"
+      }
+    },
+    {
+      "id": "level-86-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word boot.",
+        "audio": "voice/line-61f2e21df12b7185.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-86-r3-o1",
+            "label": "boot",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-86-r3-o2",
+            "label": "zoo",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-86-r3-o3",
+            "label": "spoon",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "boot"
+        },
+        "shape": "bubble",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-86-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Boot! Which letter is missing?",
+        "audio": "voice/line-2f688c1c27a4cbdf.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "boot",
+          "label": "boot",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "o",
+        "guide": "o",
+        "word": "boot",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-86-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every spoon!",
+        "say": "Find every word spoon!",
+        "audio": "voice/line-c225ba1e0bcd62cc.m4a"
+      },
+      "card": {
+        "text": "spoon",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "spoon",
+        "grid": [
+          "book",
+          "food",
+          "zoo",
+          "moon",
+          "spoon",
+          "spoon",
+          "spoon",
+          "pink",
+          "boot"
+        ]
+      }
+    },
+    {
+      "id": "level-86-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "food",
+          "label": "food",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-86-r6-o1",
+            "label": "moon",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-86-r6-o2",
+            "label": "brother",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-86-r6-o3",
+            "label": "food",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "food"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-86-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: moon, boot, book, spoon!",
+        "say": "Say them with me! moon, boot, book, spoon!",
+        "audio": "voice/line-f8dc73d77afb1261.m4a"
+      },
+      "card": {
+        "text": "moon, boot, book, spoon!",
+        "picture": {
+          "key": "moon",
+          "label": "moon",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "moon, boot, book, spoon!"
+      }
+    },
+    {
+      "id": "level-86-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write book",
+        "say": "Write the word book.",
+        "audio": "voice/line-39318ea5675ec06a.m4a"
+      },
+      "card": {
+        "text": "book",
+        "picture": {
+          "key": "book",
+          "label": "book",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "book",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

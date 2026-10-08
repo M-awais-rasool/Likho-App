@@ -1,0 +1,321 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-103",
+  "number": 103,
+  "name": "Word Garden 7",
+  "skill": "Sight words",
+  "icon": "local_florist",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "like big little",
+    "word": "flower",
+    "say": "Words to know by sight: like, big, little, this, what!",
+    "audio": "voice/line-c7f6ca8a94caf11f.m4a",
+    "picture": {
+      "key": "flower",
+      "label": "flower",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-103-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word like.",
+        "audio": "voice/line-0e49269b26f07822.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-103-r1-o1",
+            "label": "what",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-103-r1-o2",
+            "label": "like",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-103-r1-o3",
+            "label": "he",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "like"
+        },
+        "shape": "shell",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-103-r2",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every like!",
+        "say": "Find every word like!",
+        "audio": "voice/line-ef09687e3c13ecc5.m4a"
+      },
+      "card": {
+        "text": "like",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "like",
+        "grid": [
+          "like",
+          "this",
+          "what",
+          "the",
+          "big",
+          "and",
+          "little",
+          "like",
+          "like"
+        ]
+      }
+    },
+    {
+      "id": "level-103-r3",
+      "type": "write",
+      "prompt": {
+        "text": "Spell like",
+        "say": "Like! Write it one letter at a time.",
+        "audio": "voice/line-09eccae45ea66ed4.m4a"
+      },
+      "card": {
+        "text": "like",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "like",
+        "guide": null,
+        "word": "like",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-103-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "I what this cake. Which word fits?",
+        "audio": "voice/line-fa3867752b3c28fa.m4a"
+      },
+      "card": {
+        "text": "I ___ this cake.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-103-r4-o1",
+            "label": "like",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-103-r4-o2",
+            "label": "little",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-103-r4-o3",
+            "label": "this",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-103-r4-o4",
+            "label": "what",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-103-r4-o5",
+            "label": "big",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "like"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-103-r5",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "I like this cake. Put the words in order.",
+        "audio": "voice/line-e3f469e16eeee43e.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cake",
+          "label": "cake",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "I",
+          "like",
+          "this",
+          "cake"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-103-r6",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: What is this?",
+        "say": "What is this? Now you say it!",
+        "audio": "voice/line-01af29cb2edaa8ec.m4a"
+      },
+      "card": {
+        "text": "What is this?",
+        "picture": {
+          "key": "box",
+          "label": "box",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "What is this?"
+      }
+    },
+    {
+      "id": "level-103-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write this",
+        "say": "Write the word this.",
+        "audio": "voice/line-2d83d8258113e95d.m4a"
+      },
+      "card": {
+        "text": "this",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "this",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-103-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-103-r8-o1",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-103-r8-o2",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-103-r8-o3",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

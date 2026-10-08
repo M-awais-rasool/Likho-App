@@ -1,0 +1,319 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-92",
+  "number": 92,
+  "name": "Frog Pond",
+  "skill": "fr tr dr cr gr",
+  "icon": "beach_access",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "frog",
+    "word": "frog",
+    "say": "Frog, tree, drum! Hear the two sounds at the start.",
+    "audio": "voice/line-5990e852bd368b62.m4a",
+    "picture": {
+      "key": "frog",
+      "label": "frog",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-92-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is frog?",
+        "say": "Read the word. Which picture is frog?",
+        "audio": "voice/line-995ec315a88936db.m4a"
+      },
+      "card": {
+        "text": "frog",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-92-r1-o1",
+            "label": "frog",
+            "picture": {
+              "key": "frog",
+              "label": "frog",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-92-r1-o2",
+            "label": "train",
+            "picture": {
+              "key": "train",
+              "label": "train",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-92-r1-o3",
+            "label": "drum",
+            "picture": {
+              "key": "drum",
+              "label": "drum",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "frog"
+        },
+        "shape": "bucket",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-92-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Frog! Build the word frog.",
+        "audio": "voice/line-5da10ac5ddde6121.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "frog",
+          "label": "frog",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "f",
+          "r",
+          "o",
+          "g"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-92-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word tree.",
+        "audio": "voice/line-c7d303a69c28897a.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-92-r3-o1",
+            "label": "frog",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-92-r3-o2",
+            "label": "tree",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-92-r3-o3",
+            "label": "grapes",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "tree"
+        },
+        "shape": "balloon",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-92-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Tree! Which letter is missing?",
+        "audio": "voice/line-c2762eda42a98556.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "tree",
+          "label": "tree",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "e",
+        "guide": "e",
+        "word": "tree",
+        "missingIndex": 2,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-92-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every crab!",
+        "say": "Find every word crab!",
+        "audio": "voice/line-c7b4a5bfb670f61e.m4a"
+      },
+      "card": {
+        "text": "crab",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "crab",
+        "grid": [
+          "frog",
+          "four",
+          "tree",
+          "train",
+          "drum",
+          "crab",
+          "crab",
+          "grapes",
+          "crab"
+        ]
+      }
+    },
+    {
+      "id": "level-92-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-92-r6-o1",
+            "label": "train",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-92-r6-o2",
+            "label": "tree",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-92-r6-o3",
+            "label": "crab",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "train"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-92-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: frog, tree, drum, crab!",
+        "say": "Say them with me! frog, tree, drum, crab!",
+        "audio": "voice/line-4614fd5baf667952.m4a"
+      },
+      "card": {
+        "text": "frog, tree, drum, crab!",
+        "picture": {
+          "key": "frog",
+          "label": "frog",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "frog, tree, drum, crab!"
+      }
+    },
+    {
+      "id": "level-92-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write drum",
+        "say": "Write the word drum.",
+        "audio": "voice/line-f77b3d21e850b99a.m4a"
+      },
+      "card": {
+        "text": "drum",
+        "picture": {
+          "key": "drum",
+          "label": "drum",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "drum",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

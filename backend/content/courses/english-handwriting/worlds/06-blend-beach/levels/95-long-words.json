@@ -1,0 +1,321 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-95",
+  "number": 95,
+  "name": "Long Words",
+  "skill": "Words of two beats",
+  "icon": "auto_awesome",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "rainbow",
+    "word": "rainbow",
+    "say": "Rain, bow... rainbow! Let's read longer words.",
+    "audio": "voice/line-e2518afd69becf94.m4a",
+    "picture": {
+      "key": "rainbow",
+      "label": "rainbow",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-95-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is rabbit?",
+        "say": "Read the word. Which picture is rabbit?",
+        "audio": "voice/line-f8f24a9ca13ba994.m4a"
+      },
+      "card": {
+        "text": "rabbit",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-95-r1-o1",
+            "label": "rainbow",
+            "picture": {
+              "key": "rainbow",
+              "label": "rainbow",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-95-r1-o2",
+            "label": "pencil",
+            "picture": {
+              "key": "pencil",
+              "label": "pencil",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-95-r1-o3",
+            "label": "rabbit",
+            "picture": {
+              "key": "rabbit",
+              "label": "rabbit",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "rabbit"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-95-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Rabbit! Build the word rabbit.",
+        "audio": "voice/line-396f5df90236059c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "rabbit",
+          "label": "rabbit",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "r",
+          "a",
+          "b",
+          "b",
+          "i",
+          "t"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-95-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word robot.",
+        "audio": "voice/line-025afb086db2b08a.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-95-r3-o1",
+            "label": "robot",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-95-r3-o2",
+            "label": "rainbow",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-95-r3-o3",
+            "label": "pencil",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "robot"
+        },
+        "shape": "fish",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-95-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Robot! Which letter is missing?",
+        "audio": "voice/line-58c2a405cbea682b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "robot",
+          "label": "robot",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "o",
+        "guide": "o",
+        "word": "robot",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-95-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every pencil!",
+        "say": "Find every word pencil!",
+        "audio": "voice/line-a04168b49c390b8b.m4a"
+      },
+      "card": {
+        "text": "pencil",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "pencil",
+        "grid": [
+          "rabbit",
+          "pencil",
+          "robot",
+          "tiger",
+          "pencil",
+          "pencil",
+          "lemon",
+          "goat",
+          "rainbow"
+        ]
+      }
+    },
+    {
+      "id": "level-95-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "lemon",
+          "label": "lemon",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-95-r6-o1",
+            "label": "rabbit",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-95-r6-o2",
+            "label": "bus",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-95-r6-o3",
+            "label": "lemon",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "lemon"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-95-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: rabbit, robot, rainbow, pencil!",
+        "say": "Say them with me! rabbit, robot, rainbow, pencil!",
+        "audio": "voice/line-cf8e254b98a7082d.m4a"
+      },
+      "card": {
+        "text": "rabbit, robot, rainbow, pencil!",
+        "picture": {
+          "key": "rabbit",
+          "label": "rabbit",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "rabbit, robot, rainbow, pencil!"
+      }
+    },
+    {
+      "id": "level-95-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write rainbow",
+        "say": "Write the word rainbow.",
+        "audio": "voice/line-54d7723a240c4378.m4a"
+      },
+      "card": {
+        "text": "rainbow",
+        "picture": {
+          "key": "rainbow",
+          "label": "rainbow",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "rainbow",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

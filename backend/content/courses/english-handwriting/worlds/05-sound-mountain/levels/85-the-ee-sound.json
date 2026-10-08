@@ -1,0 +1,318 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-85",
+  "number": 85,
+  "name": "The ee Sound",
+  "skill": "ee words",
+  "icon": "graphic_eq",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "ee",
+    "word": "tree",
+    "say": "Two letters, one sound: {/ee/|iː}! Like tree.",
+    "audio": "voice/line-30708de0e0cc477e.m4a",
+    "picture": {
+      "key": "tree",
+      "label": "tree",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-85-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is tree?",
+        "say": "Read the word. Which picture is tree?",
+        "audio": "voice/line-f01a1b4f6ac1a2bb.m4a"
+      },
+      "card": {
+        "text": "tree",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-85-r1-o1",
+            "label": "sheep",
+            "picture": {
+              "key": "sheep",
+              "label": "sheep",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-85-r1-o2",
+            "label": "tree",
+            "picture": {
+              "key": "tree",
+              "label": "tree",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-85-r1-o3",
+            "label": "teeth",
+            "picture": {
+              "key": "tooth",
+              "label": "teeth",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "tree"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-85-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Tree! Build the word tree.",
+        "audio": "voice/line-d8171fa75822a4db.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "tree",
+          "label": "tree",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "t",
+          "r",
+          "ee"
+        ],
+        "slot": "plank"
+      }
+    },
+    {
+      "id": "level-85-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word bee.",
+        "audio": "voice/line-b11094d4e5932078.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-85-r3-o1",
+            "label": "teeth",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-85-r3-o2",
+            "label": "feet",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-85-r3-o3",
+            "label": "bee",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "bee"
+        },
+        "shape": "balloon",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-85-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Bee! Which letter is missing?",
+        "audio": "voice/line-9c4d71b6d9d625ee.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bee",
+          "label": "bee",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "e",
+        "guide": "e",
+        "word": "bee",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-85-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every feet!",
+        "say": "Find every word feet!",
+        "audio": "voice/line-51ab0aacd95c3924.m4a"
+      },
+      "card": {
+        "text": "feet",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "feet",
+        "grid": [
+          "sheep",
+          "bee",
+          "feet",
+          "seed",
+          "feet",
+          "teeth",
+          "tree",
+          "pink",
+          "feet"
+        ]
+      }
+    },
+    {
+      "id": "level-85-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "tooth",
+          "label": "teeth",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-85-r6-o1",
+            "label": "teeth",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-85-r6-o2",
+            "label": "feet",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-85-r6-o3",
+            "label": "seed",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "teeth"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-85-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: tree, bee, sheep, feet!",
+        "say": "Say them with me! tree, bee, sheep, feet!",
+        "audio": "voice/line-804309d93bba538f.m4a"
+      },
+      "card": {
+        "text": "tree, bee, sheep, feet!",
+        "picture": {
+          "key": "tree",
+          "label": "tree",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "tree, bee, sheep, feet!"
+      }
+    },
+    {
+      "id": "level-85-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write sheep",
+        "say": "Write the word sheep.",
+        "audio": "voice/line-793a35a1396bfabf.m4a"
+      },
+      "card": {
+        "text": "sheep",
+        "picture": {
+          "key": "sheep",
+          "label": "sheep",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "sheep",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

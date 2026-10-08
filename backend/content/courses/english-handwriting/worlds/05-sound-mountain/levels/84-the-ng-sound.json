@@ -1,0 +1,318 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-84",
+  "number": 84,
+  "name": "The ng Sound",
+  "skill": "ng words",
+  "icon": "graphic_eq",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "ng",
+    "word": "ring",
+    "say": "Two letters, one sound: {/ng/|ŋːː}! Like ring.",
+    "audio": "voice/line-8b89d030eb250ace.m4a",
+    "picture": {
+      "key": "ring",
+      "label": "ring",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-84-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is ring?",
+        "say": "Read the word. Which picture is ring?",
+        "audio": "voice/line-89d4c22777207bee.m4a"
+      },
+      "card": {
+        "text": "ring",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-84-r1-o1",
+            "label": "king",
+            "picture": {
+              "key": "king",
+              "label": "king",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-84-r1-o2",
+            "label": "sing",
+            "picture": {
+              "key": "sing",
+              "label": "sing",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-84-r1-o3",
+            "label": "ring",
+            "picture": {
+              "key": "ring",
+              "label": "ring",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "ring"
+        },
+        "shape": "bucket",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-84-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Ring! Build the word ring.",
+        "audio": "voice/line-548e6fdfaa945c9e.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "ring",
+          "label": "ring",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "r",
+          "i",
+          "ng"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-84-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word king.",
+        "audio": "voice/line-524726e5bcafe71c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-84-r3-o1",
+            "label": "song",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-84-r3-o2",
+            "label": "wing",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-84-r3-o3",
+            "label": "king",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "king"
+        },
+        "shape": "cloud",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-84-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "King! Which letter is missing?",
+        "audio": "voice/line-33793554453314a3.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "king",
+          "label": "king",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "i",
+        "guide": "i",
+        "word": "king",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-84-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every sing!",
+        "say": "Find every word sing!",
+        "audio": "voice/line-9869131c1f01573d.m4a"
+      },
+      "card": {
+        "text": "sing",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "sing",
+        "grid": [
+          "wing",
+          "four",
+          "sing",
+          "sing",
+          "king",
+          "sing",
+          "song",
+          "pink",
+          "ring"
+        ]
+      }
+    },
+    {
+      "id": "level-84-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "ring",
+          "label": "ring",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-84-r6-o1",
+            "label": "pink",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-84-r6-o2",
+            "label": "ring",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-84-r6-o3",
+            "label": "brother",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "ring"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-84-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: ring, king, wing, sing!",
+        "say": "Say them with me! ring, king, wing, sing!",
+        "audio": "voice/line-b5fbceec84b35e05.m4a"
+      },
+      "card": {
+        "text": "ring, king, wing, sing!",
+        "picture": {
+          "key": "ring",
+          "label": "ring",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "ring, king, wing, sing!"
+      }
+    },
+    {
+      "id": "level-84-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write wing",
+        "say": "Write the word wing.",
+        "audio": "voice/line-5e31caabac4c8b87.m4a"
+      },
+      "card": {
+        "text": "wing",
+        "picture": {
+          "key": "wing",
+          "label": "wing",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "wing",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,319 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-94",
+  "number": 94,
+  "name": "Firefly Claps",
+  "skill": "Syllables",
+  "icon": "flutter_dash",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "ba-na-na",
+    "word": "banana",
+    "say": "Ba, na, na! Let's clap the parts of words with the fireflies.",
+    "audio": "voice/line-8707e1e5f5ea401a.m4a",
+    "picture": {
+      "key": "banana",
+      "label": "banana",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-94-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "banana",
+        "audio": "voice/line-5b648008b8e1b40c.m4a"
+      },
+      "card": {
+        "text": "banana",
+        "picture": {
+          "key": "banana",
+          "label": "banana",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "label": "1",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-94-r1-o1"
+          },
+          {
+            "label": "2",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-94-r1-o2"
+          },
+          {
+            "label": "3",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-94-r1-o3"
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "3"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-94-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is rabbit?",
+        "say": "Read the word. Which picture is rabbit?",
+        "audio": "voice/line-f8f24a9ca13ba994.m4a"
+      },
+      "card": {
+        "text": "rabbit",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-94-r2-o1",
+            "label": "robot",
+            "picture": {
+              "key": "robot",
+              "label": "robot",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-94-r2-o2",
+            "label": "rabbit",
+            "picture": {
+              "key": "rabbit",
+              "label": "rabbit",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-94-r2-o3",
+            "label": "rainbow",
+            "picture": {
+              "key": "rainbow",
+              "label": "rainbow",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "rabbit"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-94-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Robot! Build the word robot.",
+        "audio": "voice/line-7151d61aa3b8af2c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "robot",
+          "label": "robot",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "r",
+          "o",
+          "b",
+          "o",
+          "t"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-94-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word pencil.",
+        "audio": "voice/line-0faa8a30c25ab2dd.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-94-r4-o1",
+            "label": "tiger",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-94-r4-o2",
+            "label": "pencil",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-94-r4-o3",
+            "label": "hand",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "pencil"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-94-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Spell tiger",
+        "say": "Tiger! Write it one letter at a time.",
+        "audio": "voice/line-e5ad59bc2685261e.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "tiger",
+          "label": "tiger",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "tiger",
+        "guide": null,
+        "word": "tiger",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-94-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every rainbow!",
+        "say": "Find every word rainbow!",
+        "audio": "voice/line-2f2b702123428c3e.m4a"
+      },
+      "card": {
+        "text": "rainbow",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "rainbow",
+        "grid": [
+          "robot",
+          "four",
+          "rainbow",
+          "tiger",
+          "rainbow",
+          "rainbow",
+          "pencil",
+          "rabbit",
+          "banana"
+        ]
+      }
+    },
+    {
+      "id": "level-94-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: rabbit, robot, pencil, tiger!",
+        "say": "Say them with me! rabbit, robot, pencil, tiger!",
+        "audio": "voice/line-0a77e1077f7a1ae5.m4a"
+      },
+      "card": {
+        "text": "rabbit, robot, pencil, tiger!",
+        "picture": {
+          "key": "rabbit",
+          "label": "rabbit",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "rabbit, robot, pencil, tiger!"
+      }
+    },
+    {
+      "id": "level-94-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write pencil",
+        "say": "Write the word pencil.",
+        "audio": "voice/line-ee16fc4cbc111b1c.m4a"
+      },
+      "card": {
+        "text": "pencil",
+        "picture": {
+          "key": "pencil",
+          "label": "pencil",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "pencil",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}
