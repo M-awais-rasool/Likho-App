@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../data/course_providers.dart';
+import '../../data/media.dart';
 import '../../data/models/course_models.dart';
 import '../../data/progress.dart';
 import '../../design/icon_registry.dart';
@@ -95,11 +96,26 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen> with SingleTick
     });
   }
 
+  /// The levels whose pictures and recordings are being fetched ahead.
+  int? _fetchedFrom;
+
+  /// Downloads the current level's and the next two levels' media in the
+  /// background, so they start without waiting (and play offline later).
+  void _fetchAhead(Course course, int current) {
+    if (_fetchedFrom == current) return;
+    _fetchedFrom = current;
+    final media = ref.read(mediaProvider);
+    for (final l in course.levels.where((l) => l.number >= current && l.number < current + 3)) {
+      media.prefetchLevel(l);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final progress = ref.watch(progressProvider);
     final current = progress.current;
     final course = ref.watch(courseProvider).value;
+    if (course != null) _fetchAhead(course, current);
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark.copyWith(statusBarColor: LikhoColors.clear),
       child: ReferenceOverlay(

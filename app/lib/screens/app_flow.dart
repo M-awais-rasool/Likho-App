@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../data/api/api_client.dart';
 import '../data/auth.dart';
 import '../data/course_providers.dart';
+import '../data/media.dart';
 import '../data/family.dart';
 import '../data/models/course_models.dart';
 import '../feedback/app_feedback.dart';
@@ -323,6 +324,7 @@ abstract final class AppFlow {
       return;
     }
     container.read(feedbackProvider).levelStart();
+    container.read(mediaProvider).prefetchLevel(level); // usually kept already (the map fetches ahead)
     if (skipIntro) {
       nav.push(_game(container, level));
       return;
