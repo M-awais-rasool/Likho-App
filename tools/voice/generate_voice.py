@@ -4,15 +4,18 @@
 Reads the course in backend/content, speaks each line with the Kokoro text-to-
 speech model (Apache-2.0, runs on this computer) and writes, per line:
 
-    app/assets/voice/<id>.m4a   the recording (AAC, mono)
-    app/assets/voice/<id>.lip   mouth movement: loudness, 100 bytes a second (the
-                                app's LipSyncEnvelope reads it next to the .m4a)
+    media/voice/line-<hash>.m4a   the recording (AAC, mono)
+    media/voice/line-<hash>.lip   mouth movement: loudness, 100 bytes a
+                                  second (the app's LipSyncEnvelope reads
+                                  it next to the .m4a)
 
 and puts the recording's path in the content (`intro.audio`, `prompt.audio`).
 Lines are `intro.say` and `prompt.say`, or the prompt's `text`. A
 pronunciation is written {shown|IPA}: "Trace small {a|ˈeɪ}" says the letter,
-not the article. Only lines that changed are recorded again
-(tools/voice/voice.lock.json).
+not the article. A recording is named after what it says (voice, speed and
+phonemes), so a line used in many levels is one file, renumbering levels
+records nothing, and only new words are recorded. tools/voice/voice.lock.json
+lists what every file says.
 
     python3 -m venv .venv && .venv/bin/pip install -r tools/voice/requirements.txt   # Python 3.10+
     .venv/bin/python tools/voice/generate_voice.py            # new and changed lines
@@ -50,7 +53,7 @@ MODEL_FILES = ("kokoro-v1.0.onnx", "voices-v1.0.bin")
 HERE = pathlib.Path(__file__).resolve().parent
 ROOT = HERE.parent.parent  # the repository
 CONTENT = ROOT / "backend" / "content" / "courses" / COURSE
-OUT = ROOT / "app" / "assets" / "voice"
+OUT = ROOT / "media" / "voice"  # served by the API at /media/voice/ (MEDIA_DIR); not in git
 LOCK = HERE / "voice.lock.json"
 CACHE = HERE / ".cache"
 
@@ -75,6 +78,11 @@ def lines():
             words = r["prompt"].get("say") or r["prompt"]["text"]
             out.append((r["id"], words, f, ("rounds", i, "prompt")))
     return out
+
+
+def spoken(words):
+    """The words with each {shown|IPA} as shown."""
+    return PRON.sub(lambda m: m.group(1), words)
 
 
 # ---------------------------------------------------------------- speech
@@ -175,37 +183,35 @@ def main():
     args = ap.parse_args()
 
     voice = Voice()
-    lock = json.loads(LOCK.read_text()) if LOCK.exists() else {}
     OUT.mkdir(parents=True, exist_ok=True)
-    keep, recorded, linked = set(), 0, 0
+    said, recorded, linked, done = {}, 0, 0, set()
     try:
-        for clip, words, f, where in lines():
+        for where_id, words, f, where in lines():
             ph = voice.phonemes(words)
             if args.print:
-                print(f"{clip:22} {words!r}\n{'':22} {ph}")
+                print(f"{where_id:22} {words!r}\n{'':22} {ph}")
                 continue
-            key = hashlib.sha1(json.dumps([VOICE, SPEED, ph]).encode()).hexdigest()[:16]
+            clip = "line-" + hashlib.sha1(json.dumps([VOICE, SPEED, ph]).encode()).hexdigest()[:16]
             m4a, lipf = OUT / f"{clip}.m4a", OUT / f"{clip}.lip"
-            keep |= {m4a.name, lipf.name}
-            if args.all or lock.get(clip) != key or not m4a.exists() or not lipf.exists():
+            said.setdefault(clip, spoken(words))
+            if clip not in done and (args.all or not m4a.exists() or not lipf.exists()):
                 x = polish(voice.speak(ph))
                 encode(x, m4a)
                 lipf.write_bytes(lip(x))
-                lock[clip] = key
                 recorded += 1
-                print(f"recorded {clip:22} {len(x) / RATE:4.1f} s  {words}")
-            if set_audio(f, where, f"assets/voice/{clip}.m4a"):
+                print(f"recorded {where_id:22} {len(x) / RATE:4.1f} s  {words}")
+            done.add(clip)
+            if set_audio(f, where, f"voice/{clip}.m4a"):
                 linked += 1
     finally:
         voice.close()
     if args.print:
         return
-    for old in OUT.iterdir():  # lines that no longer exist
-        if old.name not in keep and old.suffix in (".m4a", ".lip"):
+    for old in OUT.iterdir():  # lines no level says any more
+        if old.stem not in said and old.suffix in (".m4a", ".lip"):
             old.unlink()
-            lock.pop(old.stem, None)
-    LOCK.write_text(json.dumps(dict(sorted(lock.items())), indent=1) + "\n")
-    print(f"{recorded} recorded, {linked} linked in the content, {len(keep) // 2} lines")
+    LOCK.write_text(json.dumps(dict(sorted(said.items())), indent=1, ensure_ascii=False) + "\n")
+    print(f"{recorded} recorded, {linked} linked in the content, {len(said)} different lines")
 
 
 if __name__ == "__main__":
