@@ -27,57 +27,25 @@
   "rounds": [
     {
       "id": "level-31-r1",
-      "type": "pick",
+      "type": "pop",
       "prompt": {
-        "text": "Which letter do you hear?",
-        "say": "Listen! Find {Z|zˈiː}.",
-        "audio": "voice/line-05d8cbcbccfd4e06.m4a"
+        "text": "Pop every Z!",
+        "say": "Listen! Pop every {Z|zˈiː} bubble!",
+        "audio": "voice/line-b82f81a751c70260.m4a"
       },
       "card": {
         "text": null,
         "picture": null,
         "listen": true
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-31-r1-o1",
-            "label": "Z",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-31-r1-o2",
-            "label": "U",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-31-r1-o3",
-            "label": "W",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-31-r1-o4",
-            "label": "V",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "Z",
+        "others": [
+          "U",
+          "V",
+          "W"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "Z"
-        },
-        "shape": "kite",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 5
       }
     },
     {
@@ -135,10 +103,10 @@
           },
           {
             "id": "level-31-r3-o2",
-            "label": "lion",
+            "label": "queen",
             "picture": {
-              "key": "lion",
-              "label": "lion",
+              "key": "queen",
+              "label": "queen",
               "url": null
             },
             "color": null,
@@ -192,32 +160,49 @@
     },
     {
       "id": "level-31-r5",
-      "type": "hunt",
+      "type": "fix",
       "prompt": {
-        "text": "Find every U!",
-        "say": "Find every {U|jˈuː}!",
-        "audio": "voice/line-b4b35e2d31a7d6dc.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote some letters the wrong way. Tap them to fix them!",
+        "audio": "voice/line-5b61022a0ee7b93d.m4a"
       },
       "card": {
-        "text": "U",
+        "text": "U V W X Y Z",
         "picture": null,
         "listen": false
       },
-      "hunt": {
-        "target": "U",
-        "grid": [
-          "U",
-          "U",
-          "X",
-          "O",
-          "Y",
-          "U",
-          "U",
-          "V",
-          "J",
-          "Z",
-          "W",
-          "V"
+      "fix": {
+        "items": [
+          {
+            "text": "U",
+            "wrong": "upside",
+            "at": null
+          },
+          {
+            "text": "V",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "W",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "X",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "Y",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "Z",
+            "wrong": "mirror",
+            "at": null
+          }
         ]
       }
     },

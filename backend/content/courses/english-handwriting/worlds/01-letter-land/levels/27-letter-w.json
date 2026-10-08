@@ -113,62 +113,81 @@
     },
     {
       "id": "level-27-r3",
-      "type": "pick",
+      "type": "sort",
       "prompt": {
-        "text": "What starts with /w/?",
-        "say": "{W|dˈʌbəljuː} says {/w/|wʌ}. Which one starts with {/w/|wʌ}?",
-        "audio": "voice/line-e36e5ca30a28f273.m4a"
+        "text": "Feed it /w/!",
+        "say": "This monster only eats things that start with {/w/|wʌ}. Feed it!",
+        "audio": "voice/line-408f02f27abad061.m4a"
       },
       "card": {
         "text": "W",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "sort": {
+        "bins": [
           {
-            "id": "level-27-r3-o1",
-            "label": "hat",
+            "label": "W",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "watch",
             "picture": {
-              "key": "hat",
-              "label": "hat",
+              "key": "watch",
+              "label": "watch",
               "url": null
             },
-            "color": null,
-            "hideLabel": true
+            "bin": 0
           },
           {
-            "id": "level-27-r3-o2",
+            "label": "wing",
+            "picture": {
+              "key": "wing",
+              "label": "wing",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
             "label": "whale",
             "picture": {
               "key": "whale",
               "label": "whale",
               "url": null
             },
-            "color": null,
-            "hideLabel": true
+            "bin": 0
           },
           {
-            "id": "level-27-r3-o3",
-            "label": "box",
+            "label": "fish",
             "picture": {
-              "key": "box",
-              "label": "box",
+              "key": "fish",
+              "label": "fish",
               "url": null
             },
-            "color": null,
-            "hideLabel": true
+            "bin": null
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "moon",
+            "picture": {
+              "key": "moon",
+              "label": "moon",
+              "url": null
+            },
+            "bin": null
           }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "whale"
-        },
-        "shape": "jar",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        ]
       }
     },
     {
@@ -196,77 +215,112 @@
     },
     {
       "id": "level-27-r5",
-      "type": "hunt",
+      "type": "match",
       "prompt": {
-        "text": "Find every W!",
-        "say": "Find every {W|dˈʌbəljuː}!",
-        "audio": "voice/line-7f853839370a3fd3.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each letter to its picture.",
+        "audio": "voice/line-5bbaa5b0c4fb6512.m4a"
       },
       "card": {
         "text": "W",
-        "picture": null,
+        "picture": {
+          "key": "whale",
+          "label": "whale",
+          "url": null
+        },
         "listen": false
       },
-      "hunt": {
-        "target": "W",
-        "grid": [
-          "N",
-          "W",
-          "M",
-          "V",
-          "W",
-          "W",
-          "V",
-          "M",
-          "V",
-          "W",
-          "N",
-          "M"
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "V",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "violin",
+                "label": "violin",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "W",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "whale",
+                "label": "whale",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "X",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "box",
+                "label": "box",
+                "url": null
+              }
+            }
+          }
         ]
       }
     },
     {
       "id": "level-27-r6",
-      "type": "write",
+      "type": "order",
       "prompt": {
-        "text": "Which letter is missing?",
-        "say": "{V|vˈiː}, ..., {X|ˈɛks}! Which letter is missing?",
-        "audio": "voice/line-c28f7119c547fd52.m4a"
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "bottle_message",
-          "label": "bottle message",
+          "key": "train",
+          "label": "train",
           "url": null
         },
         "listen": false
       },
-      "write": {
-        "mode": "missing",
-        "target": "W",
-        "guide": "W",
-        "word": "VWX",
-        "missingIndex": 1,
-        "sentence": false,
-        "story": false
+      "order": {
+        "tiles": [
+          "V",
+          "W",
+          "X"
+        ]
       }
     },
     {
       "id": "level-27-r7",
       "type": "write",
       "prompt": {
-        "text": "Write W by yourself",
-        "say": "Now write {W|dˈʌbəljuː} all by yourself!",
-        "audio": "voice/line-0852798cfb4b3576.m4a"
+        "text": "Look, then write W",
+        "say": "Look at {W|dˈʌbəljuː}. Then write it from memory!",
+        "audio": "voice/line-b63e89bc58218b5a.m4a"
       },
       "card": {
-        "text": "W",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "whale",
+          "label": "whale",
+          "url": null
+        },
         "listen": false
       },
       "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "W",
         "guide": "W",
         "word": null,
@@ -294,31 +348,6 @@
       },
       "speak": {
         "expected": "W is for whale!"
-      }
-    },
-    {
-      "id": "level-27-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "V",
-          "W",
-          "X"
-        ]
       }
     }
   ]

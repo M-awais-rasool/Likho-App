@@ -113,62 +113,72 @@
     },
     {
       "id": "level-13-r3",
-      "type": "pick",
+      "type": "sort",
       "prompt": {
-        "text": "What starts with /k/?",
-        "say": "{K|kˈeɪ} says {/k/|kʌ}. Which one starts with {/k/|kʌ}?",
-        "audio": "voice/line-dbf375a4edea00f7.m4a"
+        "text": "Feed it /k/!",
+        "say": "This monster only eats things that start with {/k/|kʌ}. Feed it!",
+        "audio": "voice/line-e10cafb53ca96c00.m4a"
       },
       "card": {
         "text": "K",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "sort": {
+        "bins": [
           {
-            "id": "level-13-r3-o1",
-            "label": "jam",
-            "picture": {
-              "key": "jam",
-              "label": "jam",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
+            "label": "K",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
           {
-            "id": "level-13-r3-o2",
-            "label": "kite",
-            "picture": {
-              "key": "kite",
-              "label": "kite",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-13-r3-o3",
             "label": "lion",
             "picture": {
               "key": "lion",
               "label": "lion",
               "url": null
             },
-            "color": null,
-            "hideLabel": true
+            "bin": null
+          },
+          {
+            "label": "jam",
+            "picture": {
+              "key": "jam",
+              "label": "jam",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "kite",
+            "picture": {
+              "key": "kite",
+              "label": "kite",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "apple",
+            "picture": {
+              "key": "apple",
+              "label": "apple",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "king",
+            "picture": {
+              "key": "king",
+              "label": "king",
+              "url": null
+            },
+            "bin": 0
           }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "kite"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        ]
       }
     },
     {
@@ -211,62 +221,64 @@
         "target": "K",
         "grid": [
           "R",
-          "K",
+          "H",
           "X",
           "K",
           "K",
+          "H",
           "R",
-          "H",
-          "X",
-          "H",
-          "X",
           "K",
+          "K",
+          "X",
+          "X",
           "R"
         ]
       }
     },
     {
       "id": "level-13-r6",
-      "type": "write",
+      "type": "order",
       "prompt": {
-        "text": "Which letter is missing?",
-        "say": "{J|ʤˈeɪ}, ..., {L|ˈɛl}! Which letter is missing?",
-        "audio": "voice/line-e71b3eeacfa70004.m4a"
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "bottle_message",
-          "label": "bottle message",
+          "key": "train",
+          "label": "train",
           "url": null
         },
         "listen": false
       },
-      "write": {
-        "mode": "missing",
-        "target": "K",
-        "guide": "K",
-        "word": "JKL",
-        "missingIndex": 1,
-        "sentence": false,
-        "story": false
+      "order": {
+        "tiles": [
+          "J",
+          "K",
+          "L"
+        ]
       }
     },
     {
       "id": "level-13-r7",
       "type": "write",
       "prompt": {
-        "text": "Write K by yourself",
-        "say": "Now write {K|kˈeɪ} all by yourself!",
-        "audio": "voice/line-c43b3f643b1ef3be.m4a"
+        "text": "Look, then write K",
+        "say": "Look at {K|kˈeɪ}. Then write it from memory!",
+        "audio": "voice/line-304d577110ee9b23.m4a"
       },
       "card": {
-        "text": "K",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "kite",
+          "label": "kite",
+          "url": null
+        },
         "listen": false
       },
       "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "K",
         "guide": "K",
         "word": null,
@@ -294,31 +306,6 @@
       },
       "speak": {
         "expected": "K is for kite!"
-      }
-    },
-    {
-      "id": "level-13-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "J",
-          "K",
-          "L"
-        ]
       }
     }
   ]

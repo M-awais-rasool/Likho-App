@@ -27,11 +27,11 @@
   "rounds": [
     {
       "id": "level-26-r1",
-      "type": "pick",
+      "type": "pop",
       "prompt": {
-        "text": "Find V!",
-        "say": "Find {V|vˈiː}!",
-        "audio": "voice/line-cd8d47d4643d6db1.m4a"
+        "text": "Pop every V!",
+        "say": "Pop every {V|vˈiː} bubble!",
+        "audio": "voice/line-53ab0fced9372479.m4a"
       },
       "card": {
         "text": "V",
@@ -42,46 +42,14 @@
         },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-26-r1-o1",
-            "label": "Y",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-26-r1-o2",
-            "label": "W",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-26-r1-o3",
-            "label": "V",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-26-r1-o4",
-            "label": "U",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "V",
+        "others": [
+          "W",
+          "Y",
+          "U"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "V"
-        },
-        "shape": "shell",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 5
       }
     },
     {
@@ -113,62 +81,33 @@
     },
     {
       "id": "level-26-r3",
-      "type": "pick",
+      "type": "hunt",
       "prompt": {
-        "text": "What starts with /v/?",
-        "say": "{V|vˈiː} says {/v/|vːː}. Which one starts with {/v/|vːː}?",
-        "audio": "voice/line-1fa631ef270a2086.m4a"
+        "text": "Find every V!",
+        "say": "Find every {V|vˈiː}!",
+        "audio": "voice/line-cf714231fb9ca570.m4a"
       },
       "card": {
         "text": "V",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-26-r3-o1",
-            "label": "goat",
-            "picture": {
-              "key": "goat",
-              "label": "goat",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-26-r3-o2",
-            "label": "violin",
-            "picture": {
-              "key": "violin",
-              "label": "violin",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-26-r3-o3",
-            "label": "pig",
-            "picture": {
-              "key": "pig",
-              "label": "pig",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "violin"
-        },
-        "shape": "planet",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+      "hunt": {
+        "target": "V",
+        "grid": [
+          "Y",
+          "Y",
+          "W",
+          "V",
+          "V",
+          "W",
+          "Y",
+          "U",
+          "V",
+          "W",
+          "V",
+          "U"
+        ]
       }
     },
     {
@@ -196,33 +135,25 @@
     },
     {
       "id": "level-26-r5",
-      "type": "hunt",
+      "type": "truth",
       "prompt": {
-        "text": "Find every V!",
-        "say": "Find every {V|vˈiː}!",
-        "audio": "voice/line-cf714231fb9ca570.m4a"
+        "text": "True or silly?",
+        "say": "Goat starts with {V|vˈiː}. True, or silly?",
+        "audio": "voice/line-db35f2a2a7b3d3df.m4a"
       },
       "card": {
-        "text": "V",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "hunt": {
-        "target": "V",
-        "grid": [
-          "V",
-          "U",
-          "Y",
-          "U",
-          "Y",
-          "V",
-          "Y",
-          "W",
-          "W",
-          "V",
-          "W",
-          "V"
-        ]
+      "truth": {
+        "text": "Goat starts with V.",
+        "picture": {
+          "key": "goat",
+          "label": "goat",
+          "url": null
+        },
+        "answer": false
       }
     },
     {
@@ -294,31 +225,6 @@
       },
       "speak": {
         "expected": "V is for violin!"
-      }
-    },
-    {
-      "id": "level-26-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "U",
-          "V",
-          "W"
-        ]
       }
     }
   ]

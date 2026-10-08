@@ -196,32 +196,65 @@
     },
     {
       "id": "level-15-r5",
-      "type": "hunt",
+      "type": "match",
       "prompt": {
-        "text": "Find every M!",
-        "say": "Find every {M|ˈɛm}!",
-        "audio": "voice/line-f2496f43c7a8a65e.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each letter to its picture.",
+        "audio": "voice/line-5bbaa5b0c4fb6512.m4a"
       },
       "card": {
         "text": "M",
-        "picture": null,
+        "picture": {
+          "key": "moon",
+          "label": "moon",
+          "url": null
+        },
         "listen": false
       },
-      "hunt": {
-        "target": "M",
-        "grid": [
-          "N",
-          "M",
-          "W",
-          "M",
-          "W",
-          "H",
-          "N",
-          "M",
-          "W",
-          "H",
-          "M",
-          "N"
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "L",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "lion",
+                "label": "lion",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "M",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "moon",
+                "label": "moon",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "N",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "nest",
+                "label": "nest",
+                "url": null
+              }
+            }
+          }
         ]
       }
     },
@@ -256,17 +289,21 @@
       "id": "level-15-r7",
       "type": "write",
       "prompt": {
-        "text": "Write M by yourself",
-        "say": "Now write {M|ˈɛm} all by yourself!",
-        "audio": "voice/line-2941e34234cf2112.m4a"
+        "text": "Look, then write M",
+        "say": "Look at {M|ˈɛm}. Then write it from memory!",
+        "audio": "voice/line-c19bce2069cb6639.m4a"
       },
       "card": {
-        "text": "M",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "moon",
+          "label": "moon",
+          "url": null
+        },
         "listen": false
       },
       "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "M",
         "guide": "M",
         "word": null,
@@ -294,31 +331,6 @@
       },
       "speak": {
         "expected": "M is for moon!"
-      }
-    },
-    {
-      "id": "level-15-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "L",
-          "M",
-          "N"
-        ]
       }
     }
   ]

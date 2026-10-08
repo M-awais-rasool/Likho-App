@@ -109,62 +109,86 @@
     },
     {
       "id": "level-24-r3",
-      "type": "pick",
+      "type": "sort",
       "prompt": {
-        "text": "What starts with /r/?",
-        "say": "Which one starts with {/r/|ɹːː}?",
-        "audio": "voice/line-a095229e9b8af86f.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/p/|pʌ} or {/r/|ɹːː}?",
+        "audio": "voice/line-32a5b13c92c49a18.m4a"
       },
       "card": {
-        "text": null,
+        "text": "P R",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "sort": {
+        "bins": [
           {
-            "id": "level-24-r3-o1",
-            "label": "robot",
-            "picture": {
-              "key": "robot",
-              "label": "robot",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "label": "P",
+            "picture": null,
+            "bin": null
           },
           {
-            "id": "level-24-r3-o2",
+            "label": "R",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
             "label": "pig",
             "picture": {
               "key": "pig",
               "label": "pig",
               "url": null
             },
-            "color": null,
-            "hideLabel": true
+            "bin": 0
           },
           {
-            "id": "level-24-r3-o3",
-            "label": "box",
+            "label": "rain",
             "picture": {
-              "key": "box",
-              "label": "box",
+              "key": "rain",
+              "label": "rain",
               "url": null
             },
-            "color": null,
-            "hideLabel": true
+            "bin": 1
+          },
+          {
+            "label": "ring",
+            "picture": {
+              "key": "ring",
+              "label": "ring",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "pen",
+            "picture": {
+              "key": "pen",
+              "label": "pen",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "robot",
+            "picture": {
+              "key": "robot",
+              "label": "robot",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "pot",
+            "picture": {
+              "key": "pot",
+              "label": "pot",
+              "url": null
+            },
+            "bin": 0
           }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "robot"
-        },
-        "shape": "bucket",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        ]
       }
     },
     {
@@ -192,32 +216,44 @@
     },
     {
       "id": "level-24-r5",
-      "type": "hunt",
+      "type": "fix",
       "prompt": {
-        "text": "Find every P!",
-        "say": "Find every {P|pˈiː}!",
-        "audio": "voice/line-925ad0c9b535f1c0.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote some letters the wrong way. Tap them to fix them!",
+        "audio": "voice/line-5b61022a0ee7b93d.m4a"
       },
       "card": {
-        "text": "P",
+        "text": "P Q R S T",
         "picture": null,
         "listen": false
       },
-      "hunt": {
-        "target": "P",
-        "grid": [
-          "B",
-          "D",
-          "R",
-          "P",
-          "S",
-          "P",
-          "P",
-          "Q",
-          "P",
-          "Q",
-          "T",
-          "R"
+      "fix": {
+        "items": [
+          {
+            "text": "P",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "Q",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "R",
+            "wrong": "mirror",
+            "at": null
+          },
+          {
+            "text": "S",
+            "wrong": "mirror",
+            "at": null
+          },
+          {
+            "text": "T",
+            "wrong": null,
+            "at": null
+          }
         ]
       }
     },
@@ -225,17 +261,21 @@
       "id": "level-24-r6",
       "type": "write",
       "prompt": {
-        "text": "Write the letter you hear",
-        "say": "Listen, then write it! {T|tˈiː}.",
-        "audio": "voice/line-e479f0205f664dcd.m4a"
+        "text": "Look, then write T",
+        "say": "Look at {T|tˈiː}. Then write it from memory!",
+        "audio": "voice/line-dbf6d311b9f83c4f.m4a"
       },
       "card": {
         "text": null,
-        "picture": null,
-        "listen": true
+        "picture": {
+          "key": "tiger",
+          "label": "tiger",
+          "url": null
+        },
+        "listen": false
       },
       "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "T",
         "guide": "T",
         "word": null,

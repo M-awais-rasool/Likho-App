@@ -27,11 +27,11 @@
   "rounds": [
     {
       "id": "level-20-r1",
-      "type": "pick",
+      "type": "pop",
       "prompt": {
-        "text": "Find Q!",
-        "say": "Find {Q|kjˈuː}!",
-        "audio": "voice/line-92ca34c1cedcb892.m4a"
+        "text": "Pop every Q!",
+        "say": "Pop every {Q|kjˈuː} bubble!",
+        "audio": "voice/line-be5b3948bc6f46fa.m4a"
       },
       "card": {
         "text": "Q",
@@ -42,46 +42,14 @@
         },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-20-r1-o1",
-            "label": "Q",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-20-r1-o2",
-            "label": "O",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-20-r1-o3",
-            "label": "G",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-20-r1-o4",
-            "label": "C",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "Q",
+        "others": [
+          "O",
+          "G",
+          "C"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "Q"
-        },
-        "shape": "mushroom",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 5
       }
     },
     {
@@ -113,62 +81,66 @@
     },
     {
       "id": "level-20-r3",
-      "type": "pick",
+      "type": "match",
       "prompt": {
-        "text": "What starts with /q/?",
-        "say": "{Q|kjˈuː} says {/q/|kwʌ}. Which one starts with {/q/|kwʌ}?",
-        "audio": "voice/line-c6b3c40ca4fab971.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each letter to its picture.",
+        "audio": "voice/line-5bbaa5b0c4fb6512.m4a"
       },
       "card": {
         "text": "Q",
-        "picture": null,
-        "listen": true
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-20-r3-o1",
-            "label": "queen",
-            "picture": {
-              "key": "queen",
-              "label": "queen",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-20-r3-o2",
-            "label": "fish",
-            "picture": {
-              "key": "fish",
-              "label": "fish",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-20-r3-o3",
-            "label": "pig",
-            "picture": {
-              "key": "pig",
-              "label": "pig",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "queen"
+        "picture": {
+          "key": "queen",
+          "label": "queen",
+          "url": null
         },
-        "shape": "bucket",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "P",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "pig",
+                "label": "pig",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "Q",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "queen",
+                "label": "queen",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "R",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "robot",
+                "label": "robot",
+                "url": null
+              }
+            }
+          }
+        ]
       }
     },
     {
@@ -196,60 +168,50 @@
     },
     {
       "id": "level-20-r5",
-      "type": "hunt",
+      "type": "truth",
       "prompt": {
-        "text": "Find every Q!",
-        "say": "Find every {Q|kjˈuː}!",
-        "audio": "voice/line-eac918726bd903a4.m4a"
+        "text": "True or silly?",
+        "say": "Egg starts with {Q|kjˈuː}. True, or silly?",
+        "audio": "voice/line-970242572bc300f8.m4a"
       },
       "card": {
-        "text": "Q",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "hunt": {
-        "target": "Q",
-        "grid": [
-          "Q",
-          "C",
-          "Q",
-          "G",
-          "C",
-          "O",
-          "G",
-          "Q",
-          "O",
-          "G",
-          "Q",
-          "O"
-        ]
+      "truth": {
+        "text": "Egg starts with Q.",
+        "picture": {
+          "key": "egg",
+          "label": "egg",
+          "url": null
+        },
+        "answer": false
       }
     },
     {
       "id": "level-20-r6",
-      "type": "write",
+      "type": "order",
       "prompt": {
-        "text": "Which letter is missing?",
-        "say": "{P|pˈiː}, ..., {R|ˈɑːɹ}! Which letter is missing?",
-        "audio": "voice/line-a2a5716e87267e92.m4a"
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "bottle_message",
-          "label": "bottle message",
+          "key": "train",
+          "label": "train",
           "url": null
         },
         "listen": false
       },
-      "write": {
-        "mode": "missing",
-        "target": "Q",
-        "guide": "Q",
-        "word": "PQR",
-        "missingIndex": 1,
-        "sentence": false,
-        "story": false
+      "order": {
+        "tiles": [
+          "P",
+          "Q",
+          "R"
+        ]
       }
     },
     {
@@ -294,31 +256,6 @@
       },
       "speak": {
         "expected": "Q is for queen!"
-      }
-    },
-    {
-      "id": "level-20-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "P",
-          "Q",
-          "R"
-        ]
       }
     }
   ]

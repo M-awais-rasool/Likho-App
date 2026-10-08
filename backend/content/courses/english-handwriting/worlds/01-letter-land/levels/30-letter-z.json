@@ -27,11 +27,11 @@
   "rounds": [
     {
       "id": "level-30-r1",
-      "type": "pick",
+      "type": "pop",
       "prompt": {
-        "text": "Find Z!",
-        "say": "Find {Z|zˈiː}!",
-        "audio": "voice/line-419ba0336f26cd98.m4a"
+        "text": "Pop every Z!",
+        "say": "Pop every {Z|zˈiː} bubble!",
+        "audio": "voice/line-46496fcdafaaa2cc.m4a"
       },
       "card": {
         "text": "Z",
@@ -42,46 +42,14 @@
         },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-30-r1-o1",
-            "label": "S",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-30-r1-o2",
-            "label": "Z",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-30-r1-o3",
-            "label": "X",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-30-r1-o4",
-            "label": "N",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "Z",
+        "others": [
+          "N",
+          "S",
+          "X"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "Z"
-        },
-        "shape": "bubble",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 5
       }
     },
     {
@@ -113,62 +81,50 @@
     },
     {
       "id": "level-30-r3",
-      "type": "pick",
+      "type": "fix",
       "prompt": {
-        "text": "What starts with /z/?",
-        "say": "{Z|zˈiː} says {/z/|zːː}. Which one starts with {/z/|zːː}?",
-        "audio": "voice/line-20791d7030802652.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote some {Z|zˈiː} the wrong way. Tap them to fix them!",
+        "audio": "voice/line-c2a1c322857a460f.m4a"
       },
       "card": {
         "text": "Z",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "fix": {
+        "items": [
           {
-            "id": "level-30-r3-o1",
-            "label": "jam",
-            "picture": {
-              "key": "jam",
-              "label": "jam",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "text": "Z",
+            "wrong": null,
+            "at": null
           },
           {
-            "id": "level-30-r3-o2",
-            "label": "zebra",
-            "picture": {
-              "key": "zebra",
-              "label": "zebra",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "text": "Z",
+            "wrong": "mirror",
+            "at": null
           },
           {
-            "id": "level-30-r3-o3",
-            "label": "yo-yo",
-            "picture": {
-              "key": "yoyo",
-              "label": "yo-yo",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "text": "Z",
+            "wrong": "mirror",
+            "at": null
+          },
+          {
+            "text": "Z",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "Z",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "Z",
+            "wrong": null,
+            "at": null
           }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "zebra"
-        },
-        "shape": "planet",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        ]
       }
     },
     {
@@ -196,60 +152,50 @@
     },
     {
       "id": "level-30-r5",
-      "type": "hunt",
+      "type": "truth",
       "prompt": {
-        "text": "Find every Z!",
-        "say": "Find every {Z|zˈiː}!",
-        "audio": "voice/line-630b7469981a63ba.m4a"
+        "text": "True or silly?",
+        "say": "Ball starts with {Z|zˈiː}. True, or silly?",
+        "audio": "voice/line-1fc7db7bb7d51b66.m4a"
       },
       "card": {
-        "text": "Z",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "hunt": {
-        "target": "Z",
-        "grid": [
-          "S",
-          "Z",
-          "N",
-          "N",
-          "X",
-          "S",
-          "Z",
-          "Z",
-          "S",
-          "N",
-          "Z",
-          "X"
-        ]
+      "truth": {
+        "text": "Ball starts with Z.",
+        "picture": {
+          "key": "ball",
+          "label": "ball",
+          "url": null
+        },
+        "answer": false
       }
     },
     {
       "id": "level-30-r6",
-      "type": "write",
+      "type": "order",
       "prompt": {
-        "text": "Which letter is missing?",
-        "say": "{X|ˈɛks}, {Y|wˈaɪ}, ...! Which letter is missing?",
-        "audio": "voice/line-e01b78bb0cad73b1.m4a"
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "bottle_message",
-          "label": "bottle message",
+          "key": "train",
+          "label": "train",
           "url": null
         },
         "listen": false
       },
-      "write": {
-        "mode": "missing",
-        "target": "Z",
-        "guide": "Z",
-        "word": "XYZ",
-        "missingIndex": 2,
-        "sentence": false,
-        "story": false
+      "order": {
+        "tiles": [
+          "X",
+          "Y",
+          "Z"
+        ]
       }
     },
     {
@@ -294,31 +240,6 @@
       },
       "speak": {
         "expected": "Z is for zebra!"
-      }
-    },
-    {
-      "id": "level-30-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "X",
-          "Y",
-          "Z"
-        ]
       }
     }
   ]

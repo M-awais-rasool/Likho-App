@@ -27,11 +27,11 @@
   "rounds": [
     {
       "id": "level-11-r1",
-      "type": "pick",
+      "type": "pop",
       "prompt": {
-        "text": "Find J!",
-        "say": "Find {J|ʤˈeɪ}!",
-        "audio": "voice/line-984a8b43f6290aba.m4a"
+        "text": "Pop every J!",
+        "say": "Pop every {J|ʤˈeɪ} bubble!",
+        "audio": "voice/line-c3f672da8f9b429f.m4a"
       },
       "card": {
         "text": "J",
@@ -42,46 +42,14 @@
         },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-11-r1-o1",
-            "label": "I",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-11-r1-o2",
-            "label": "U",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-11-r1-o3",
-            "label": "L",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-11-r1-o4",
-            "label": "J",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "J",
+        "others": [
+          "U",
+          "L",
+          "I"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "J"
-        },
-        "shape": "fish",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 5
       }
     },
     {
@@ -128,10 +96,10 @@
         "options": [
           {
             "id": "level-11-r3-o1",
-            "label": "egg",
+            "label": "insect",
             "picture": {
-              "key": "egg",
-              "label": "egg",
+              "key": "insect",
+              "label": "insect",
               "url": null
             },
             "color": null,
@@ -150,10 +118,10 @@
           },
           {
             "id": "level-11-r3-o3",
-            "label": "zebra",
+            "label": "umbrella",
             "picture": {
-              "key": "zebra",
-              "label": "zebra",
+              "key": "umbrella",
+              "label": "umbrella",
               "url": null
             },
             "color": null,
@@ -211,16 +179,16 @@
         "target": "J",
         "grid": [
           "J",
-          "J",
+          "U",
           "I",
+          "L",
+          "L",
           "I",
           "U",
-          "L",
-          "L",
           "J",
-          "U",
-          "U",
           "L",
+          "U",
+          "J",
           "J"
         ]
       }
@@ -256,17 +224,21 @@
       "id": "level-11-r7",
       "type": "write",
       "prompt": {
-        "text": "Write J by yourself",
-        "say": "Now write {J|ʤˈeɪ} all by yourself!",
-        "audio": "voice/line-67dc029df843e6e7.m4a"
+        "text": "Look, then write J",
+        "say": "Look at {J|ʤˈeɪ}. Then write it from memory!",
+        "audio": "voice/line-8574db380bd3d7cc.m4a"
       },
       "card": {
-        "text": "J",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "jam",
+          "label": "jam",
+          "url": null
+        },
         "listen": false
       },
       "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "J",
         "guide": "J",
         "word": null,
@@ -294,31 +266,6 @@
       },
       "speak": {
         "expected": "J is for jam!"
-      }
-    },
-    {
-      "id": "level-11-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "I",
-          "J",
-          "K"
-        ]
       }
     }
   ]

@@ -196,77 +196,147 @@
     },
     {
       "id": "level-17-r5",
-      "type": "hunt",
+      "type": "match",
       "prompt": {
-        "text": "Find every O!",
-        "say": "Find every {O|ˈoʊ}!",
-        "audio": "voice/line-9c6df8318ac830d9.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each letter to its picture.",
+        "audio": "voice/line-5bbaa5b0c4fb6512.m4a"
       },
       "card": {
         "text": "O",
-        "picture": null,
+        "picture": {
+          "key": "octopus",
+          "label": "octopus",
+          "url": null
+        },
         "listen": false
       },
-      "hunt": {
-        "target": "O",
-        "grid": [
-          "O",
-          "C",
-          "Q",
-          "O",
-          "Q",
-          "C",
-          "D",
-          "C",
-          "D",
-          "Q",
-          "O",
-          "O"
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "N",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "nest",
+                "label": "nest",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "O",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "octopus",
+                "label": "octopus",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "P",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "pig",
+                "label": "pig",
+                "url": null
+              }
+            }
+          }
         ]
       }
     },
     {
       "id": "level-17-r6",
-      "type": "write",
+      "type": "sort",
       "prompt": {
-        "text": "Which letter is missing?",
-        "say": "{N|ˈɛn}, ..., {P|pˈiː}! Which letter is missing?",
-        "audio": "voice/line-72284e5241a48a9a.m4a"
+        "text": "Sort the letters!",
+        "say": "Put each letter in its basket: {O|ˈoʊ} or {Q|kjˈuː}!",
+        "audio": "voice/line-346fb648360ef26c.m4a"
       },
       "card": {
-        "text": null,
-        "picture": {
-          "key": "bottle_message",
-          "label": "bottle message",
-          "url": null
-        },
+        "text": "O Q",
+        "picture": null,
         "listen": false
       },
-      "write": {
-        "mode": "missing",
-        "target": "O",
-        "guide": "O",
-        "word": "NOP",
-        "missingIndex": 1,
-        "sentence": false,
-        "story": false
+      "sort": {
+        "bins": [
+          {
+            "label": "O",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "Q",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "O",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "O",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "Q",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "Q",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "Q",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "O",
+            "picture": null,
+            "bin": 0
+          }
+        ]
       }
     },
     {
       "id": "level-17-r7",
       "type": "write",
       "prompt": {
-        "text": "Write O by yourself",
-        "say": "Now write {O|ˈoʊ} all by yourself!",
-        "audio": "voice/line-4c4b9b0b4d0b39ca.m4a"
+        "text": "Look, then write O",
+        "say": "Look at {O|ˈoʊ}. Then write it from memory!",
+        "audio": "voice/line-27c0166c5b74807f.m4a"
       },
       "card": {
-        "text": "O",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "octopus",
+          "label": "octopus",
+          "url": null
+        },
         "listen": false
       },
       "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "O",
         "guide": "O",
         "word": null,
@@ -294,31 +364,6 @@
       },
       "speak": {
         "expected": "O is for octopus!"
-      }
-    },
-    {
-      "id": "level-17-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "N",
-          "O",
-          "P"
-        ]
       }
     }
   ]
