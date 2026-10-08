@@ -1,0 +1,319 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-91",
+  "number": 91,
+  "name": "Flying Flags",
+  "skill": "fl cl pl gl",
+  "icon": "beach_access",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "flag",
+    "word": "flag",
+    "say": "Flag, clock, plane! Let's blend the sounds.",
+    "audio": "voice/line-cd84dd6f57388c68.m4a",
+    "picture": {
+      "key": "flag",
+      "label": "flag",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-91-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is flag?",
+        "say": "Read the word. Which picture is flag?",
+        "audio": "voice/line-a4035c5e7fa14ff3.m4a"
+      },
+      "card": {
+        "text": "flag",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-91-r1-o1",
+            "label": "flower",
+            "picture": {
+              "key": "flower",
+              "label": "flower",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-91-r1-o2",
+            "label": "flag",
+            "picture": {
+              "key": "flag",
+              "label": "flag",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-91-r1-o3",
+            "label": "clock",
+            "picture": {
+              "key": "clock",
+              "label": "clock",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "flag"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-91-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Flag! Build the word flag.",
+        "audio": "voice/line-d98b103fe2c3a873.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "flag",
+          "label": "flag",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "f",
+          "l",
+          "a",
+          "g"
+        ],
+        "slot": "plank"
+      }
+    },
+    {
+      "id": "level-91-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word clock.",
+        "audio": "voice/line-0fd6ee9851a27cc5.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-91-r3-o1",
+            "label": "glove",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-91-r3-o2",
+            "label": "flag",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-91-r3-o3",
+            "label": "clock",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "clock"
+        },
+        "shape": "cloud",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-91-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Clock! Which letter is missing?",
+        "audio": "voice/line-b0394c4774df8024.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "clock",
+          "label": "clock",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "o",
+        "guide": "o",
+        "word": "clock",
+        "missingIndex": 2,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-91-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every flower!",
+        "say": "Find every word flower!",
+        "audio": "voice/line-9dbd7ca962813e8a.m4a"
+      },
+      "card": {
+        "text": "flower",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "flower",
+        "grid": [
+          "four",
+          "clock",
+          "flower",
+          "glass",
+          "plane",
+          "flag",
+          "glove",
+          "flower",
+          "flower"
+        ]
+      }
+    },
+    {
+      "id": "level-91-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "glove",
+          "label": "glove",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-91-r6-o1",
+            "label": "hand",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-91-r6-o2",
+            "label": "glove",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-91-r6-o3",
+            "label": "clock",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "glove"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-91-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: flag, clock, plane, flower!",
+        "say": "Say them with me! flag, clock, plane, flower!",
+        "audio": "voice/line-384a7074bcd79b28.m4a"
+      },
+      "card": {
+        "text": "flag, clock, plane, flower!",
+        "picture": {
+          "key": "flag",
+          "label": "flag",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "flag, clock, plane, flower!"
+      }
+    },
+    {
+      "id": "level-91-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write plane",
+        "say": "Write the word plane.",
+        "audio": "voice/line-4cedaf74cba33598.m4a"
+      },
+      "card": {
+        "text": "plane",
+        "picture": {
+          "key": "plane",
+          "label": "plane",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "plane",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

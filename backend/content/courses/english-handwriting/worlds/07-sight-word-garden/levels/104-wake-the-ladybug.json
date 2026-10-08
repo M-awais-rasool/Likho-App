@@ -1,0 +1,298 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-104",
+  "number": 104,
+  "name": "Wake the Ladybug",
+  "skill": "Boss · sight words",
+  "icon": "bedtime",
+  "isBoss": true,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "the said was",
+    "word": "star",
+    "say": "The ladybug is sleeping on a leaf. Let's read sight words to wake it up!",
+    "audio": "voice/line-a45383db4205e674.m4a",
+    "picture": {
+      "key": "star",
+      "label": "star",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-104-r1",
+      "type": "write",
+      "prompt": {
+        "text": "Spell the",
+        "say": "The! Write it one letter at a time.",
+        "audio": "voice/line-61ac95545babdf16.m4a"
+      },
+      "card": {
+        "text": "the",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "the",
+        "guide": null,
+        "word": "the",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-104-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word said.",
+        "audio": "voice/line-1737dc474958d86e.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-104-r2-o1",
+            "label": "said",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-104-r2-o2",
+            "label": "was",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-104-r2-o3",
+            "label": "and",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "said"
+        },
+        "shape": "cloud",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-104-r3",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every was!",
+        "say": "Find every word was!",
+        "audio": "voice/line-9df44f3b0b9eb6c6.m4a"
+      },
+      "card": {
+        "text": "was",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "was",
+        "grid": [
+          "was",
+          "they",
+          "was",
+          "said",
+          "have",
+          "was",
+          "the",
+          "like",
+          "star"
+        ]
+      }
+    },
+    {
+      "id": "level-104-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "audio": "voice/line-7a2c7d4750e1443e.m4a"
+      },
+      "card": {
+        "text": "they",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-104-r4-o1",
+            "label": "he",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-104-r4-o2",
+            "label": "said",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-104-r4-o3",
+            "label": "they",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "they"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-104-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Write have",
+        "say": "Write the word have.",
+        "audio": "voice/line-957cbc0297fd1f87.m4a"
+      },
+      "card": {
+        "text": "have",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "have",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-104-r6",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Like! Build the word like.",
+        "audio": "voice/line-a9b7439cf9190183.m4a"
+      },
+      "card": {
+        "text": "like",
+        "picture": null,
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "l",
+          "i",
+          "k",
+          "e"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-104-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-104-r7-o1",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-104-r7-o2",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-104-r7-o3",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-104-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: the, said, was, they!",
+        "say": "Say them with me! the, said, was, they!",
+        "audio": "voice/line-eef4d6f95768c232.m4a"
+      },
+      "card": {
+        "text": "the, said, was, they!",
+        "picture": null,
+        "listen": true
+      },
+      "speak": {
+        "expected": "the, said, was, they!"
+      }
+    }
+  ]
+}

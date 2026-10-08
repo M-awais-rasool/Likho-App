@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../../schema/world.schema.json",
+  "id": "world-7",
+  "order": 7,
+  "name": "Sight Word Garden",
+  "skill": "Sight words",
+  "icon": "local_florist",
+  "themeId": "sightGarden",
+  "boss": {
+    "id": "ladybug",
+    "name": "Sleepy Ladybug"
+  }
+}

@@ -1,0 +1,319 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-81",
+  "number": 81,
+  "name": "The ch Sound",
+  "skill": "ch words",
+  "icon": "graphic_eq",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "ch",
+    "word": "chick",
+    "say": "Two letters, one sound: {/ch/|ʧʌ}! Like chick.",
+    "audio": "voice/line-77cf3f9d95ff071f.m4a",
+    "picture": {
+      "key": "chick",
+      "label": "chick",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-81-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is chick?",
+        "say": "Read the word. Which picture is chick?",
+        "audio": "voice/line-5d19be8023d6f311.m4a"
+      },
+      "card": {
+        "text": "chick",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-81-r1-o1",
+            "label": "chick",
+            "picture": {
+              "key": "chick",
+              "label": "chick",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-81-r1-o2",
+            "label": "chair",
+            "picture": {
+              "key": "chair",
+              "label": "chair",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-81-r1-o3",
+            "label": "cheese",
+            "picture": {
+              "key": "cheese",
+              "label": "cheese",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "chick"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-81-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Chick! Build the word chick.",
+        "audio": "voice/line-b48a9ea51d056058.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "chick",
+          "label": "chick",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "ch",
+          "i",
+          "c",
+          "k"
+        ],
+        "slot": "plank"
+      }
+    },
+    {
+      "id": "level-81-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word chair.",
+        "audio": "voice/line-80ac30aad6d1bf11.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-81-r3-o1",
+            "label": "chick",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-81-r3-o2",
+            "label": "chair",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-81-r3-o3",
+            "label": "cheese",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "chair"
+        },
+        "shape": "fish",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-81-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Chair! Which letter is missing?",
+        "audio": "voice/line-49ef7e27c527df8c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "chair",
+          "label": "chair",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "a",
+        "guide": "a",
+        "word": "chair",
+        "missingIndex": 2,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-81-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every cherry!",
+        "say": "Find every word cherry!",
+        "audio": "voice/line-d605ebc65a041dc5.m4a"
+      },
+      "card": {
+        "text": "cherry",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "cherry",
+        "grid": [
+          "peach",
+          "chick",
+          "cherry",
+          "cheese",
+          "pink",
+          "watch",
+          "cherry",
+          "cherry",
+          "chair"
+        ]
+      }
+    },
+    {
+      "id": "level-81-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "watch",
+          "label": "watch",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-81-r6-o1",
+            "label": "watch",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-81-r6-o2",
+            "label": "brother",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-81-r6-o3",
+            "label": "hand",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "watch"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-81-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: chick, chair, cheese, cherry!",
+        "say": "Say them with me! chick, chair, cheese, cherry!",
+        "audio": "voice/line-2c4a8aad9eb502f4.m4a"
+      },
+      "card": {
+        "text": "chick, chair, cheese, cherry!",
+        "picture": {
+          "key": "chick",
+          "label": "chick",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "chick, chair, cheese, cherry!"
+      }
+    },
+    {
+      "id": "level-81-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write cheese",
+        "say": "Write the word cheese.",
+        "audio": "voice/line-4eb7362e2c13d033.m4a"
+      },
+      "card": {
+        "text": "cheese",
+        "picture": {
+          "key": "cheese",
+          "label": "cheese",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "cheese",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

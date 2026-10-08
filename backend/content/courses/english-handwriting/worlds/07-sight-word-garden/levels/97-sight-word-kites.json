@@ -1,0 +1,313 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-97",
+  "number": 97,
+  "name": "Sight Word Kites",
+  "skill": "Sight words",
+  "icon": "air",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "the",
+    "word": "kite",
+    "say": "The! Let's fly the word kites.",
+    "audio": "voice/line-f4bd60255a386ab0.m4a",
+    "picture": {
+      "key": "kite",
+      "label": "kite",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-97-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "the",
+        "audio": "voice/line-9044101fd39286bf.m4a"
+      },
+      "card": {
+        "text": "the",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "label": "the",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-97-r1-o1"
+          },
+          {
+            "label": "is",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-97-r1-o2"
+          },
+          {
+            "label": "and",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-97-r1-o3"
+          },
+          {
+            "label": "see",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-97-r1-o4"
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "the"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-97-r2",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every the!",
+        "say": "Find every word the!",
+        "audio": "voice/line-752e9283e18836d9.m4a"
+      },
+      "card": {
+        "text": "the",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "the",
+        "grid": [
+          "he",
+          "a",
+          "a",
+          "the",
+          "the",
+          "I",
+          "the",
+          "she",
+          "is"
+        ]
+      }
+    },
+    {
+      "id": "level-97-r3",
+      "type": "write",
+      "prompt": {
+        "text": "Spell the",
+        "say": "The! Write it one letter at a time.",
+        "audio": "voice/line-61ac95545babdf16.m4a"
+      },
+      "card": {
+        "text": "the",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "the",
+        "guide": null,
+        "word": "the",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-97-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "I see what cat. Which word fits?",
+        "audio": "voice/line-a68648b1654c2717.m4a"
+      },
+      "card": {
+        "text": "I see ___ cat.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-97-r4-o1",
+            "label": "the",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-97-r4-o2",
+            "label": "is",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-97-r4-o3",
+            "label": "a",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "the"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-97-r5",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "The sun is hot. Put the words in order.",
+        "audio": "voice/line-a1eb6dd0d30b137f.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "hot_sun",
+          "label": "hot sun",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "The",
+          "sun",
+          "is",
+          "hot"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-97-r6",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: It is a dog.",
+        "say": "It is a dog. Now you say it!",
+        "audio": "voice/line-90b811973d2fbd49.m4a"
+      },
+      "card": {
+        "text": "It is a dog.",
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "It is a dog."
+      }
+    },
+    {
+      "id": "level-97-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write the",
+        "say": "Write the word the.",
+        "audio": "voice/line-7e4a872bc8efa56b.m4a"
+      },
+      "card": {
+        "text": "the",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "the",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-97-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-97-r8-o1",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-97-r8-o2",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-97-r8-o3",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

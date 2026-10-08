@@ -1,0 +1,319 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-90",
+  "number": 90,
+  "name": "Starfish Blends",
+  "skill": "st sn sp sw",
+  "icon": "beach_access",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "star",
+    "word": "star",
+    "say": "Star, snake, spoon! Two sounds at the start.",
+    "audio": "voice/line-c0be61b510908579.m4a",
+    "picture": {
+      "key": "star",
+      "label": "star",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-90-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is star?",
+        "say": "Read the word. Which picture is star?",
+        "audio": "voice/line-d7d5745f7cc7528d.m4a"
+      },
+      "card": {
+        "text": "star",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-90-r1-o1",
+            "label": "stop",
+            "picture": {
+              "key": "stop",
+              "label": "stop",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-90-r1-o2",
+            "label": "star",
+            "picture": {
+              "key": "star",
+              "label": "star",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-90-r1-o3",
+            "label": "spoon",
+            "picture": {
+              "key": "spoon",
+              "label": "spoon",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "star"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-90-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Star! Build the word star.",
+        "audio": "voice/line-0a5495d2ed6b797b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "star",
+          "label": "star",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "s",
+          "t",
+          "a",
+          "r"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-90-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word stop.",
+        "audio": "voice/line-ae4bb5db35bb2858.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-90-r3-o1",
+            "label": "stop",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-90-r3-o2",
+            "label": "swim",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-90-r3-o3",
+            "label": "snail",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "stop"
+        },
+        "shape": "mushroom",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-90-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Stop! Which letter is missing?",
+        "audio": "voice/line-6d514706e60082e3.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "stop",
+          "label": "stop",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "o",
+        "guide": "o",
+        "word": "stop",
+        "missingIndex": 2,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-90-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every spoon!",
+        "say": "Find every word spoon!",
+        "audio": "voice/line-c225ba1e0bcd62cc.m4a"
+      },
+      "card": {
+        "text": "spoon",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "spoon",
+        "grid": [
+          "snake",
+          "snail",
+          "spoon",
+          "spoon",
+          "four",
+          "star",
+          "stop",
+          "spoon",
+          "swim"
+        ]
+      }
+    },
+    {
+      "id": "level-90-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "snail",
+          "label": "snail",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-90-r6-o1",
+            "label": "snail",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-90-r6-o2",
+            "label": "goat",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-90-r6-o3",
+            "label": "spoon",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "snail"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-90-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: star, stop, snake, spoon!",
+        "say": "Say them with me! star, stop, snake, spoon!",
+        "audio": "voice/line-d9e47d94f0c037ab.m4a"
+      },
+      "card": {
+        "text": "star, stop, snake, spoon!",
+        "picture": {
+          "key": "star",
+          "label": "star",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "star, stop, snake, spoon!"
+      }
+    },
+    {
+      "id": "level-90-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write snake",
+        "say": "Write the word snake.",
+        "audio": "voice/line-2926427c60281d54.m4a"
+      },
+      "card": {
+        "text": "snake",
+        "picture": {
+          "key": "snake",
+          "label": "snake",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "snake",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

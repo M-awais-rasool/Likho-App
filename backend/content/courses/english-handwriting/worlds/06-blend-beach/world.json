@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../../schema/world.schema.json",
+  "id": "world-6",
+  "order": 6,
+  "name": "Blend Beach",
+  "skill": "Blends",
+  "icon": "beach_access",
+  "themeId": "blendBeach",
+  "boss": {
+    "id": "crab",
+    "name": "Sleepy Crab"
+  }
+}

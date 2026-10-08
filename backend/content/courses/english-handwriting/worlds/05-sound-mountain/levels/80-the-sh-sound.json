@@ -1,0 +1,318 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-80",
+  "number": 80,
+  "name": "The sh Sound",
+  "skill": "sh words",
+  "icon": "graphic_eq",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "sh",
+    "word": "ship",
+    "say": "Two letters, one sound: {/sh/|ʃːː}! Like ship.",
+    "audio": "voice/line-d7a116298e934423.m4a",
+    "picture": {
+      "key": "ship",
+      "label": "ship",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-80-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is ship?",
+        "say": "Read the word. Which picture is ship?",
+        "audio": "voice/line-ce785152aa14dbbc.m4a"
+      },
+      "card": {
+        "text": "ship",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-80-r1-o1",
+            "label": "ship",
+            "picture": {
+              "key": "ship",
+              "label": "ship",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-80-r1-o2",
+            "label": "sheep",
+            "picture": {
+              "key": "sheep",
+              "label": "sheep",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-80-r1-o3",
+            "label": "shell",
+            "picture": {
+              "key": "shell",
+              "label": "shell",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "ship"
+        },
+        "shape": "bucket",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-80-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Ship! Build the word ship.",
+        "audio": "voice/line-3b1fd5e1837e0747.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "ship",
+          "label": "ship",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "sh",
+          "i",
+          "p"
+        ],
+        "slot": "wagon"
+      }
+    },
+    {
+      "id": "level-80-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word shop.",
+        "audio": "voice/line-b25151afc487f6a9.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-80-r3-o1",
+            "label": "shell",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-80-r3-o2",
+            "label": "shop",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-80-r3-o3",
+            "label": "brush",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "shop"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-80-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Shop! Which letter is missing?",
+        "audio": "voice/line-8f74005659ba00e3.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "shop",
+          "label": "shop",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "o",
+        "guide": "o",
+        "word": "shop",
+        "missingIndex": 2,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-80-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every shell!",
+        "say": "Find every word shell!",
+        "audio": "voice/line-185f4047ba2d878c.m4a"
+      },
+      "card": {
+        "text": "shell",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "shell",
+        "grid": [
+          "shop",
+          "brush",
+          "sheep",
+          "ship",
+          "shell",
+          "fish",
+          "shell",
+          "pink",
+          "shell"
+        ]
+      }
+    },
+    {
+      "id": "level-80-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "brush",
+          "label": "brush",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-80-r6-o1",
+            "label": "shell",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-80-r6-o2",
+            "label": "pink",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-80-r6-o3",
+            "label": "brush",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "brush"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-80-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: ship, shop, fish, shell!",
+        "say": "Say them with me! ship, shop, fish, shell!",
+        "audio": "voice/line-b6e9cafe50cafa76.m4a"
+      },
+      "card": {
+        "text": "ship, shop, fish, shell!",
+        "picture": {
+          "key": "ship",
+          "label": "ship",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "ship, shop, fish, shell!"
+      }
+    },
+    {
+      "id": "level-80-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write fish",
+        "say": "Write the word fish.",
+        "audio": "voice/line-c26674bc8d172313.m4a"
+      },
+      "card": {
+        "text": "fish",
+        "picture": {
+          "key": "fish",
+          "label": "fish",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "fish",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}
