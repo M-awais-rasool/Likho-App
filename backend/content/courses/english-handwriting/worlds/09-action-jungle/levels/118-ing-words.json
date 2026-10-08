@@ -75,6 +75,66 @@
     },
     {
       "id": "level-118-r2",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "ship",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "ship",
+                "label": "ship",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "tiger",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "tiger",
+                "label": "tiger",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "star",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "star",
+                "label": "star",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-118-r3",
       "type": "write",
       "prompt": {
         "text": "Spell jumping",
@@ -97,7 +157,7 @@
       }
     },
     {
-      "id": "level-118-r3",
+      "id": "level-118-r4",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -124,7 +184,7 @@
       }
     },
     {
-      "id": "level-118-r4",
+      "id": "level-118-r5",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -147,7 +207,45 @@
       }
     },
     {
-      "id": "level-118-r5",
+      "id": "level-118-r6",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "ship",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "tiger",
+            "wrong": "mirror",
+            "at": 4
+          },
+          {
+            "text": "star",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "the",
+            "wrong": "mirror",
+            "at": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-118-r7",
       "type": "speak",
       "prompt": {
         "text": "Say: Run, running! Jump, jumping!",
@@ -168,7 +266,7 @@
       }
     },
     {
-      "id": "level-118-r6",
+      "id": "level-118-r8",
       "type": "hunt",
       "prompt": {
         "text": "Find every ing!",
@@ -196,7 +294,7 @@
       }
     },
     {
-      "id": "level-118-r7",
+      "id": "level-118-r9",
       "type": "pick",
       "prompt": {
         "text": "I see a red car.",
@@ -211,7 +309,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-118-r7-o1",
+            "id": "level-118-r9-o1",
             "label": "hot sun",
             "picture": {
               "key": "hot_sun",
@@ -222,7 +320,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-118-r7-o2",
+            "id": "level-118-r9-o2",
             "label": "red car",
             "picture": {
               "key": "red_car",
@@ -233,7 +331,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-118-r7-o3",
+            "id": "level-118-r9-o3",
             "label": "dog running",
             "picture": {
               "key": "dog_running",
@@ -256,51 +354,26 @@
       }
     },
     {
-      "id": "level-118-r8",
-      "type": "pick",
+      "id": "level-118-r10",
+      "type": "truth",
       "prompt": {
-        "text": "Find the word you hear",
-        "say": "Listen! Find the word under.",
-        "audio": "voice/line-2cdd30a17adecb57.m4a"
+        "text": "True or silly?",
+        "say": "This is a tiger. True, or silly?",
+        "audio": "voice/line-41b38e15543df7ab.m4a"
       },
       "card": {
         "text": null,
         "picture": null,
         "listen": true
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-118-r8-o1",
-            "label": "under",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-118-r8-o2",
-            "label": "and",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-118-r8-o3",
-            "label": "tiger",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "under"
+      "truth": {
+        "text": "This is a tiger.",
+        "picture": {
+          "key": "star",
+          "label": "star",
+          "url": null
         },
-        "shape": "shell",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "answer": false
       }
     }
   ]

@@ -79,6 +79,29 @@
     },
     {
       "id": "level-122-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write the",
+        "say": "Look at the word the. Then write it from memory!",
+        "audio": "voice/line-9ca35a4f6e45755e.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "the",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-122-r3",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -105,7 +128,7 @@
       }
     },
     {
-      "id": "level-122-r3",
+      "id": "level-122-r4",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -128,7 +151,7 @@
       }
     },
     {
-      "id": "level-122-r4",
+      "id": "level-122-r5",
       "type": "speak",
       "prompt": {
         "text": "Say: It is my mother.",
@@ -149,7 +172,30 @@
       }
     },
     {
-      "id": "level-122-r5",
+      "id": "level-122-r6",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every the!",
+        "say": "Pop every bubble that says the!",
+        "audio": "voice/line-a7ada38a09bec518.m4a"
+      },
+      "card": {
+        "text": "the",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "the",
+        "others": [
+          "and",
+          "you",
+          "down"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-122-r7",
       "type": "write",
       "prompt": {
         "text": "Spell who",
@@ -172,7 +218,7 @@
       }
     },
     {
-      "id": "level-122-r6",
+      "id": "level-122-r8",
       "type": "hunt",
       "prompt": {
         "text": "Find every who!",
@@ -200,7 +246,7 @@
       }
     },
     {
-      "id": "level-122-r7",
+      "id": "level-122-r9",
       "type": "pick",
       "prompt": {
         "text": "I see a red car.",
@@ -215,7 +261,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-122-r7-o1",
+            "id": "level-122-r9-o1",
             "label": "red car",
             "picture": {
               "key": "red_car",
@@ -226,7 +272,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-122-r7-o2",
+            "id": "level-122-r9-o2",
             "label": "dog running",
             "picture": {
               "key": "dog_running",
@@ -237,7 +283,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-122-r7-o3",
+            "id": "level-122-r9-o3",
             "label": "hot sun",
             "picture": {
               "key": "hot_sun",
@@ -260,51 +306,63 @@
       }
     },
     {
-      "id": "level-122-r8",
-      "type": "pick",
+      "id": "level-122-r10",
+      "type": "match",
       "prompt": {
-        "text": "Find the word you hear",
-        "say": "Listen! Find the word jump.",
-        "audio": "voice/line-06a5d1f078e8b391.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
       },
       "card": {
-        "text": null,
+        "text": "Find the pairs!",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "match": {
+        "pairs": [
           {
-            "id": "level-122-r8-o1",
-            "label": "the",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
+            "a": {
+              "text": "star",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "star",
+                "label": "star",
+                "url": null
+              }
+            }
           },
           {
-            "id": "level-122-r8-o2",
-            "label": "said",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
+            "a": {
+              "text": "down",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "down",
+                "label": "down",
+                "url": null
+              }
+            }
           },
           {
-            "id": "level-122-r8-o3",
-            "label": "jump",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
+            "a": {
+              "text": "jump",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "jump",
+                "label": "jump",
+                "url": null
+              }
+            }
           }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "jump"
-        },
-        "shape": "bubble",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        ]
       }
     }
   ]

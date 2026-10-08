@@ -79,6 +79,29 @@
     },
     {
       "id": "level-127-r2",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every jumping!",
+        "say": "Pop every bubble that says jumping!",
+        "audio": "voice/line-3d8127f8e2a80503.m4a"
+      },
+      "card": {
+        "text": "jumping",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "jumping",
+        "others": [
+          "under",
+          "where",
+          "jump"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-127-r3",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -104,7 +127,7 @@
       }
     },
     {
-      "id": "level-127-r3",
+      "id": "level-127-r4",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -127,7 +150,7 @@
       }
     },
     {
-      "id": "level-127-r4",
+      "id": "level-127-r5",
       "type": "speak",
       "prompt": {
         "text": "Say: Can you swim? Yes, I can!",
@@ -148,7 +171,55 @@
       }
     },
     {
-      "id": "level-127-r5",
+      "id": "level-127-r6",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to the same word with a capital letter.",
+        "audio": "voice/line-d82ba5aa00efefb3.m4a"
+      },
+      "card": {
+        "text": "the = The",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "you",
+              "picture": null
+            },
+            "b": {
+              "text": "You",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "look",
+              "picture": null
+            },
+            "b": {
+              "text": "Look",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "said",
+              "picture": null
+            },
+            "b": {
+              "text": "Said",
+              "picture": null
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-127-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every like!",
@@ -176,7 +247,7 @@
       }
     },
     {
-      "id": "level-127-r6",
+      "id": "level-127-r8",
       "type": "write",
       "prompt": {
         "text": "Spell jump",
@@ -203,7 +274,7 @@
       }
     },
     {
-      "id": "level-127-r7",
+      "id": "level-127-r9",
       "type": "pick",
       "prompt": {
         "text": "I see a red car.",
@@ -218,7 +289,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-127-r7-o1",
+            "id": "level-127-r9-o1",
             "label": "red car",
             "picture": {
               "key": "red_car",
@@ -229,7 +300,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-127-r7-o2",
+            "id": "level-127-r9-o2",
             "label": "hot sun",
             "picture": {
               "key": "hot_sun",
@@ -240,7 +311,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-127-r7-o3",
+            "id": "level-127-r9-o3",
             "label": "dog running",
             "picture": {
               "key": "dog_running",
@@ -263,51 +334,41 @@
       }
     },
     {
-      "id": "level-127-r8",
-      "type": "pick",
+      "id": "level-127-r10",
+      "type": "fix",
       "prompt": {
-        "text": "Find the word you hear",
-        "say": "Listen! Find the word Monday.",
-        "audio": "voice/line-c8ffde019149633c.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
       },
       "card": {
-        "text": null,
+        "text": "Fix it!",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "fix": {
+        "items": [
           {
-            "id": "level-127-r8-o1",
-            "label": "Monday",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
+            "text": "you",
+            "wrong": null,
+            "at": null
           },
           {
-            "id": "level-127-r8-o2",
-            "label": "look",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
+            "text": "look",
+            "wrong": "mirror",
+            "at": 3
           },
           {
-            "id": "level-127-r8-o3",
-            "label": "jump",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
+            "text": "said",
+            "wrong": "mirror",
+            "at": 0
+          },
+          {
+            "text": "like",
+            "wrong": null,
+            "at": null
           }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "Monday"
-        },
-        "shape": "cloud",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        ]
       }
     }
   ]

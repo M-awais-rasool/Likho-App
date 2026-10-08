@@ -87,6 +87,90 @@
     },
     {
       "id": "level-117-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/t/|tʌ} or {/h/|hʌ}?",
+        "audio": "voice/line-de288a4886c4567e.m4a"
+      },
+      "card": {
+        "text": "t h",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "t",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "h",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "tent",
+            "picture": {
+              "key": "tent",
+              "label": "tent",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "hen",
+            "picture": {
+              "key": "hen",
+              "label": "hen",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "hut",
+            "picture": {
+              "key": "hut",
+              "label": "hut",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "turtle",
+            "picture": {
+              "key": "turtle",
+              "label": "turtle",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "tiger",
+            "picture": {
+              "key": "tiger",
+              "label": "tiger",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-117-r3",
       "type": "pick",
       "prompt": {
         "text": "Which word fits?",
@@ -101,21 +185,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-117-r2-o1",
+            "id": "level-117-r3-o1",
             "label": "on",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-117-r2-o2",
+            "id": "level-117-r3-o2",
             "label": "under",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-117-r2-o3",
+            "id": "level-117-r3-o3",
             "label": "in",
             "picture": null,
             "color": null,
@@ -134,7 +218,7 @@
       }
     },
     {
-      "id": "level-117-r3",
+      "id": "level-117-r4",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -163,7 +247,7 @@
       }
     },
     {
-      "id": "level-117-r4",
+      "id": "level-117-r5",
       "type": "write",
       "prompt": {
         "text": "Spell under",
@@ -186,7 +270,30 @@
       }
     },
     {
-      "id": "level-117-r5",
+      "id": "level-117-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write you",
+        "say": "Look at the word you. Then write it from memory!",
+        "audio": "voice/line-d78b3ba09c239bc9.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "you",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-117-r7",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -209,7 +316,7 @@
       }
     },
     {
-      "id": "level-117-r6",
+      "id": "level-117-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: In, on, under!",
@@ -230,7 +337,7 @@
       }
     },
     {
-      "id": "level-117-r7",
+      "id": "level-117-r9",
       "type": "hunt",
       "prompt": {
         "text": "Find every on!",
@@ -258,51 +365,26 @@
       }
     },
     {
-      "id": "level-117-r8",
-      "type": "pick",
+      "id": "level-117-r10",
+      "type": "pop",
       "prompt": {
-        "text": "Find the word you hear",
-        "say": "Listen! Find the word down.",
-        "audio": "voice/line-4ebbf06b1365f749.m4a"
+        "text": "Pop every look!",
+        "say": "Pop every bubble that says look!",
+        "audio": "voice/line-5f4f7927532f36b6.m4a"
       },
       "card": {
-        "text": null,
+        "text": "look",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-117-r8-o1",
-            "label": "like",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-117-r8-o2",
-            "label": "he",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-117-r8-o3",
-            "label": "down",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "look",
+        "others": [
+          "like",
+          "down",
+          "said"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "down"
-        },
-        "shape": "fish",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 4
       }
     }
   ]

@@ -75,6 +75,29 @@
     },
     {
       "id": "level-121-r2",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a star. True, or silly?",
+        "audio": "voice/line-ef41122bac3f4f2c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a star.",
+        "picture": {
+          "key": "star",
+          "label": "star",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-121-r3",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -102,7 +125,7 @@
       }
     },
     {
-      "id": "level-121-r3",
+      "id": "level-121-r4",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -125,7 +148,7 @@
       }
     },
     {
-      "id": "level-121-r4",
+      "id": "level-121-r5",
       "type": "speak",
       "prompt": {
         "text": "Say: Is it a cat? Yes, it is!",
@@ -146,7 +169,91 @@
       }
     },
     {
-      "id": "level-121-r5",
+      "id": "level-121-r6",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/s/|sːː} or {/t/|tʌ}?",
+        "audio": "voice/line-780408637d318bc0.m4a"
+      },
+      "card": {
+        "text": "s t",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "s",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "t",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "six",
+            "picture": {
+              "key": "six",
+              "label": "six",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "seed",
+            "picture": {
+              "key": "seed",
+              "label": "seed",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "tiger",
+            "picture": {
+              "key": "tiger",
+              "label": "tiger",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "turtle",
+            "picture": {
+              "key": "turtle",
+              "label": "turtle",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "tooth",
+            "picture": {
+              "key": "tooth",
+              "label": "tooth",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-121-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every ?!",
@@ -174,7 +281,7 @@
       }
     },
     {
-      "id": "level-121-r6",
+      "id": "level-121-r8",
       "type": "write",
       "prompt": {
         "text": "Spell like",
@@ -197,7 +304,7 @@
       }
     },
     {
-      "id": "level-121-r7",
+      "id": "level-121-r9",
       "type": "pick",
       "prompt": {
         "text": "I see a red car.",
@@ -212,7 +319,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-121-r7-o1",
+            "id": "level-121-r9-o1",
             "label": "hot sun",
             "picture": {
               "key": "hot_sun",
@@ -223,7 +330,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-121-r7-o2",
+            "id": "level-121-r9-o2",
             "label": "red car",
             "picture": {
               "key": "red_car",
@@ -234,7 +341,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-121-r7-o3",
+            "id": "level-121-r9-o3",
             "label": "dog running",
             "picture": {
               "key": "dog_running",
@@ -257,51 +364,30 @@
       }
     },
     {
-      "id": "level-121-r8",
-      "type": "pick",
+      "id": "level-121-r10",
+      "type": "write",
       "prompt": {
-        "text": "Find the word you hear",
-        "say": "Listen! Find the word jump.",
-        "audio": "voice/line-06a5d1f078e8b391.m4a"
+        "text": "Look, then write star",
+        "say": "Look at the word star. Then write it from memory!",
+        "audio": "voice/line-2b1987733fd4b077.m4a"
       },
       "card": {
         "text": null,
-        "picture": null,
-        "listen": true
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-121-r8-o1",
-            "label": "look",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-121-r8-o2",
-            "label": "jump",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-121-r8-o3",
-            "label": "the",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "jump"
+        "picture": {
+          "key": "star",
+          "label": "star",
+          "url": null
         },
-        "shape": "balloon",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "star",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
       }
     }
   ]

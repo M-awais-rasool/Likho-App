@@ -87,6 +87,29 @@
     },
     {
       "id": "level-114-r2",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a sit. True, or silly?",
+        "audio": "voice/line-28db1841e3370b41.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a sit.",
+        "picture": {
+          "key": "dance",
+          "label": "dance",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-114-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -113,7 +136,7 @@
       }
     },
     {
-      "id": "level-114-r3",
+      "id": "level-114-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -128,21 +151,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-114-r3-o1",
+            "id": "level-114-r4-o1",
             "label": "sing",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-114-r3-o2",
+            "id": "level-114-r4-o2",
             "label": "walk",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-114-r3-o3",
+            "id": "level-114-r4-o3",
             "label": "kick",
             "picture": null,
             "color": null,
@@ -161,7 +184,7 @@
       }
     },
     {
-      "id": "level-114-r4",
+      "id": "level-114-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
@@ -188,7 +211,91 @@
       }
     },
     {
-      "id": "level-114-r5",
+      "id": "level-114-r6",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/b/|bʌ} or {/t/|tʌ}?",
+        "audio": "voice/line-b7f215f68cfcd368.m4a"
+      },
+      "card": {
+        "text": "b t",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "b",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "t",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "ball",
+            "picture": {
+              "key": "ball",
+              "label": "ball",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bee",
+            "picture": {
+              "key": "bee",
+              "label": "bee",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bug",
+            "picture": {
+              "key": "bug",
+              "label": "bug",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "turtle",
+            "picture": {
+              "key": "turtle",
+              "label": "turtle",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "tiger",
+            "picture": {
+              "key": "tiger",
+              "label": "tiger",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "tent",
+            "picture": {
+              "key": "tent",
+              "label": "tent",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-114-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every sit!",
@@ -216,59 +323,7 @@
       }
     },
     {
-      "id": "level-114-r6",
-      "type": "pick",
-      "prompt": {
-        "text": "What is this?",
-        "say": "What is this? Find the word!",
-        "audio": "voice/line-69b2bf73b2b7783d.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "dance",
-          "label": "dance",
-          "url": null
-        },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-114-r6-o1",
-            "label": "dance",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-114-r6-o2",
-            "label": "sing",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-114-r6-o3",
-            "label": "like",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "dance"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-114-r7",
+      "id": "level-114-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: kick, sing, fly, sit!",
@@ -289,7 +344,34 @@
       }
     },
     {
-      "id": "level-114-r8",
+      "id": "level-114-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write sit",
+        "say": "Look at the word sit. Then write it from memory!",
+        "audio": "voice/line-098afd811dbfef8e.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "chair",
+          "label": "sit",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "sit",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-114-r10",
       "type": "write",
       "prompt": {
         "text": "Write fly",

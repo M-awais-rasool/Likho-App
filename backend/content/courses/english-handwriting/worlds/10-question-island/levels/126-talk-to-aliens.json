@@ -43,6 +43,90 @@
     },
     {
       "id": "level-126-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/l/|lːː} or {/s/|sːː}?",
+        "audio": "voice/line-b6c439fac7c04efd.m4a"
+      },
+      "card": {
+        "text": "l s",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "l",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "s",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "leg",
+            "picture": {
+              "key": "leg",
+              "label": "leg",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "seed",
+            "picture": {
+              "key": "seed",
+              "label": "seed",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "lamp",
+            "picture": {
+              "key": "lamp",
+              "label": "lamp",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "sock",
+            "picture": {
+              "key": "sock",
+              "label": "sock",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "lemon",
+            "picture": {
+              "key": "lemon",
+              "label": "lemon",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-126-r3",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -69,7 +153,7 @@
       }
     },
     {
-      "id": "level-126-r3",
+      "id": "level-126-r4",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -92,7 +176,7 @@
       }
     },
     {
-      "id": "level-126-r4",
+      "id": "level-126-r5",
       "type": "pick",
       "prompt": {
         "text": "Answer: How old are you?",
@@ -111,21 +195,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-126-r4-o1",
+            "id": "level-126-r5-o1",
             "label": "It is red.",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-126-r4-o2",
+            "id": "level-126-r5-o2",
             "label": "I am a cat.",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-126-r4-o3",
+            "id": "level-126-r5-o3",
             "label": "I am six.",
             "picture": null,
             "color": null,
@@ -144,7 +228,34 @@
       }
     },
     {
-      "id": "level-126-r5",
+      "id": "level-126-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write jump",
+        "say": "Look at the word jump. Then write it from memory!",
+        "audio": "voice/line-db2df7e90ad5e116.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "jump",
+          "label": "jump",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "jump",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-126-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every like!",
@@ -172,7 +283,7 @@
       }
     },
     {
-      "id": "level-126-r6",
+      "id": "level-126-r8",
       "type": "write",
       "prompt": {
         "text": "Spell jump",
@@ -199,7 +310,7 @@
       }
     },
     {
-      "id": "level-126-r7",
+      "id": "level-126-r9",
       "type": "pick",
       "prompt": {
         "text": "I see a red car.",
@@ -214,7 +325,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-126-r7-o1",
+            "id": "level-126-r9-o1",
             "label": "dog running",
             "picture": {
               "key": "dog_running",
@@ -225,7 +336,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-126-r7-o2",
+            "id": "level-126-r9-o2",
             "label": "red car",
             "picture": {
               "key": "red_car",
@@ -236,7 +347,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-126-r7-o3",
+            "id": "level-126-r9-o3",
             "label": "hot sun",
             "picture": {
               "key": "hot_sun",
@@ -259,51 +370,26 @@
       }
     },
     {
-      "id": "level-126-r8",
-      "type": "pick",
+      "id": "level-126-r10",
+      "type": "pop",
       "prompt": {
-        "text": "Find the word you hear",
-        "say": "Listen! Find the word Monday.",
-        "audio": "voice/line-c8ffde019149633c.m4a"
+        "text": "Pop every under!",
+        "say": "Pop every bubble that says under!",
+        "audio": "voice/line-06c2f94d5d1fdada.m4a"
       },
       "card": {
-        "text": null,
+        "text": "under",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-126-r8-o1",
-            "label": "Monday",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-126-r8-o2",
-            "label": "under",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-126-r8-o3",
-            "label": "jump",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "under",
+        "others": [
+          "where",
+          "down",
+          "jump"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "Monday"
-        },
-        "shape": "mushroom",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 4
       }
     }
   ]
