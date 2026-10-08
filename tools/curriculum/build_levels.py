@@ -176,6 +176,30 @@ class Level:
         self.rnd.shuffle(grid)
         self._add("hunt", text, say, crd, {"target": target, "grid": grid})
 
+    def fix(self, text, say, crd, items):
+        """Pencil's notebook: items are (text, how it is wrong: "mirror" / "upside" / None, letter index or None)."""
+        self._add("fix", text, say, crd, {"items": [{"text": t, "wrong": how, "at": at} for t, how, at in items]})
+
+    def sort(self, text, say, crd, bins, items):
+        """bins: [(label, picture)]; items: [(label, picture, bin or None)], shuffled."""
+        things = list(items)
+        self.rnd.shuffle(things)
+        self._add("sort", text, say, crd, {
+            "bins": [{"label": lab, "picture": p, "bin": None} for lab, p in bins],
+            "items": [{"label": lab, "picture": p, "bin": b} for lab, p, b in things],
+        })
+
+    def match(self, text, say, crd, pairs):
+        """pairs: [((text, picture), (text, picture))]."""
+        side = lambda x: {"text": x[0], "picture": x[1]}
+        self._add("match", text, say, crd, {"pairs": [{"a": side(a), "b": side(b)} for a, b in pairs]})
+
+    def pop(self, text, say, crd, target, others, count=5):
+        self._add("pop", text, say, crd, {"target": target, "others": [o for o in unique(others) if o != target][:3], "count": count})
+
+    def truth(self, text, say, crd, sentence, picture, answer):
+        self._add("truth", text, say, crd, {"text": sentence, "picture": picture, "answer": answer})
+
 
 def letter_case(ch, small):
     return ch.lower() if small else ch.upper()
@@ -206,8 +230,74 @@ def picture_choices(ch, rnd, count=3):
     return {WORDS[k][0]: pic(WORDS[k][1], WORDS[k][0]) for k in keys}
 
 
+# Pictures whose word starts with the letter's sound (the hungry monster and
+# the two baskets). Blends (fr, st) and letter pairs (sh, ch) are left out.
+STARTS = {
+    "a": ["apple"], "b": ["ball", "bat", "bag", "bed", "bee", "bus", "bug", "boat", "book"],
+    "c": ["cat", "cake", "car", "cow", "cup", "corn"], "d": ["dog", "duck", "doctor"], "e": ["egg", "elephant"],
+    "f": ["fish", "foot", "four"], "g": ["goat", "gift"], "h": ["hat", "hen", "hand", "hut"], "i": ["insect"],
+    "j": ["jam", "jump"], "k": ["kite", "king"], "l": ["lion", "lamp", "leg", "lemon", "log"],
+    "m": ["moon", "milk", "monkey", "mouse"], "n": ["nest", "nose", "nut", "nail"], "o": ["octopus"],
+    "p": ["pig", "pen", "pin", "pot", "pencil"], "q": ["queen"], "r": ["robot", "rabbit", "rain", "ring"],
+    "s": ["sun", "six", "sock", "seed"], "t": ["tiger", "tent", "tooth", "turtle"], "u": ["umbrella"], "v": ["violin"],
+    "w": ["whale", "web", "watch", "wing"], "x": [], "y": ["yoyo"], "z": ["zebra"],
+}
+
+# Fix Pencil's mistakes: a letter is written backwards, or upside down when
+# it looks the same backwards. Letters that look the same both ways, or turn
+# into another letter (M/W, n/u), have no such game.
+SAME_MIRRORED = set("AHIMOTUVWXYilmnouvwx")
+NO_FIX = set("HIOXMWlmnoux")
+
+
+def fix_how(ch):
+    return None if ch in NO_FIX else ("upside" if ch in SAME_MIRRORED else "mirror")
+
+
+def start_pics(ch):
+    return [pic(w, "yo-yo" if w == "yoyo" else w) for w in STARTS[ch.lower()]]
+
+
+def contrast(ch):
+    """A letter to sort against ch by sound: near it in the alphabet, with pictures, another sound."""
+    abc = "abcdefghijklmnopqrstuvwxyz"
+    i = abc.index(ch.lower())
+    clash = set().union(*[g for g in SAME_SOUND if ch.lower() in g]) | {ch.lower()}
+    for d in (-1, 1, -2, 2, -3, 3, -4, 4, -5, 5):
+        c = abc[(i + d) % 26]
+        if c not in clash and len(STARTS[c]) >= 2:
+            return c
+    return "b"
+
+
+def is_new(r):
+    """One of the games added for varied levels (pop, fix, sort, match, truth, writing from memory)."""
+    return r["type"] in ("pop", "fix", "sort", "match", "truth") or (r["type"] == "write" and r["write"]["mode"] == "flash")
+
+
+def choose(slots, step, feasible, at_least=2):
+    """One game per slot, turning with the level (step), so neighbouring levels play different
+    games. slots: [(variants, offset)]; feasible(name) says a game can be made. At least
+    [at_least] new games a level."""
+    picked = []
+    for k, (variants, offset) in enumerate(slots):
+        ok = [v for v in variants if feasible(v)]
+        # the slots turn at different speeds (step // 6 shifts some), so a pattern does not come back every few levels
+        picked.append(ok[(step + offset + (step // 6) * (k % 3)) % len(ok)])
+    new = lambda v: v in ("pop", "fix", "monster", "baskets", "match", "truth", "flash")
+    for k, (variants, _) in enumerate(slots):
+        if sum(map(new, picked)) >= at_least:
+            break
+        if not new(picked[k]):
+            alt = [v for v in variants if new(v) and feasible(v)]
+            if alt:
+                picked[k] = alt[step % len(alt)]
+    return picked
+
+
 def letter_level(number, ch, small, step):
-    """One new letter in nine games, each a different kind."""
+    """One new letter in eight games, each a different kind. Every slot has a few games
+    that teach the same thing; the level's step picks one, so no two letters play alike."""
     L = Level(number, seed=f"{number}{ch}")
     word, key, fill, at = WORDS[ch.lower()]
     big = ch.upper()
@@ -215,80 +305,199 @@ def letter_level(number, ch, small, step):
     shown = f"small {ch}" if small else ch
     like = [letter_case(c, small) for c in LOOKALIKE[ch]]
     picture = pic(key, word)
-
-    # 1 meet it: tap the letter (small letters: the small one of a capital)
-    if small:
-        L.pick(f"Find {shown}!", f"Big {name(big)}, small {name(ch)}! Find small {name(ch)}.", card(big, picture),
-               [ch] + like[:3], ch, shape=LETTER_SHAPES[step % len(LETTER_SHAPES)])
-    else:
-        L.pick(f"Find {ch}!", f"Find {name(ch)}!", card(ch, picture), [ch] + like[:3], ch, shape=LETTER_SHAPES[step % len(LETTER_SHAPES)])
-    # 2 trace it
-    L.write(f"Trace {shown}", f"Trace {tag}.", card(ch, picture), "trace", ch)
-    # 3 its sound: which picture starts with it
-    choices = picture_choices(ch, L.rnd)
     x = ch.lower() == "x"
-    L.pick(f"{'Which one has' if x else 'What starts with'} /{ch.lower()}/?",
-           f"{name(ch)} says {sound(ch)}. Which one {'has' if x else 'starts with'} {sound(ch)}?",
-           card(ch, None, listen=True), list(choices), word, shape=PICTURE_SHAPES[step % len(PICTURE_SHAPES)], pictures=choices, hide=True)
-    # 4 join the dots
-    L.write(f"Join the dots to make {shown}", f"Join the dots to make {tag}.", card(ch), "dots", ch)
-    # 5 letter hunt
-    L.hunt(f"Find every {shown}!", f"Find every {tag}!", card(ch), ch, like)
-    # 6 fill a box: capitals in the alphabet, small letters at the start of their word
-    if small:
-        L.write("Finish the word!", f"{fill.capitalize()}! Write the missing letter.", card(None, pic(key if fill in (word, key) else fill, fill)),
-                "missing", ch, word=fill, missing=at)
-    else:
-        run = alphabet_run(ch, 3)
-        L.write("Which letter is missing?", f"{', '.join(name(c) if c != ch else '...' for c in run)}! Which letter is missing?",
-                card(None, pic("bottle_message", "bottle message")), "missing", ch, word="".join(run), missing=run.index(ch))
-    # 7 write it alone
-    L.write(f"Write {shown} by yourself", f"Now write {tag} all by yourself!", card(ch), "free", ch)
-    # 8 say it
-    line = f"{ch} says /{ch}/ like {word}!" if small else f"{big} is for {word}!"
-    say_line = f"{name(ch)} says {sound(ch)}, like {word}! Now you say it." if small else f"{name(ch)} is for {word}! Now you say it."
-    L.speak(f"Say: {line}", say_line, card(line, picture, listen=True), line)
-    # 9 its place in ABC order (three wagons fit the train)
-    L.order("Put the letters in ABC order!", "Put the letters in A B C order!", card(None, pic("train")),
-            alphabet_run(ch, 3, small))
+
+    def find():
+        if small:
+            L.pick(f"Find {shown}!", f"Big {name(big)}, small {name(ch)}! Find small {name(ch)}.", card(big, picture),
+                   [ch] + like[:3], ch, shape=LETTER_SHAPES[step % len(LETTER_SHAPES)])
+        else:
+            L.pick(f"Find {ch}!", f"Find {name(ch)}!", card(ch, picture), [ch] + like[:3], ch, shape=LETTER_SHAPES[step % len(LETTER_SHAPES)])
+
+    def pop():
+        L.pop(f"Pop every {shown}!", f"Pop every {tag} bubble!", card(ch, picture), ch, like)
+
+    def trace():
+        L.write(f"Trace {shown}", f"Trace {tag}.", card(ch, picture), "trace", ch)
+
+    def sound_pick():
+        choices = picture_choices(ch, L.rnd)
+        L.pick(f"{'Which one has' if x else 'What starts with'} /{ch.lower()}/?",
+               f"{name(ch)} says {sound(ch)}. Which one {'has' if x else 'starts with'} {sound(ch)}?",
+               card(ch, None, listen=True), list(choices), word, shape=PICTURE_SHAPES[step % len(PICTURE_SHAPES)], pictures=choices, hide=True)
+
+    def monster():
+        food = start_pics(ch)
+        L.rnd.shuffle(food)
+        other = [p for c in STARTS if c != ch.lower() and c not in set().union(*[g for g in SAME_SOUND if ch.lower() in g])
+                 for p in start_pics(c)[:1]]
+        L.rnd.shuffle(other)
+        L.sort(f"Feed it /{ch.lower()}/!", f"This monster only eats things that start with {sound(ch)}. Feed it!", card(ch),
+               [(ch, None)], [(p["label"], p, 0) for p in food[:3]] + [(p["label"], p, None) for p in other[:3]])
+
+    def truth():
+        right = step % 2 == 0
+        other = next(w for w in picture_choices(ch, L.rnd) if w != word)
+        shown_word = word if right else other
+        thing = picture if right else pic(WORDS[other[0]][1] if other[0] in WORDS and WORDS[other[0]][0] == other else other, other)
+        verb = "has" if x else "starts with"
+        L.truth("True or silly?", f"{shown_word.capitalize()} {verb} {tag}. True, or silly?", card(None, None, listen=True),
+                f"{shown_word.capitalize()} {verb} {ch}.", thing, right)
+
+    def dots():
+        L.write(f"Join the dots to make {shown}", f"Join the dots to make {tag}.", card(ch), "dots", ch)
+
+    def hunt():
+        L.hunt(f"Find every {shown}!", f"Find every {tag}!", card(ch), ch, like)
+
+    def fix():
+        wrong = set(L.rnd.sample(range(6), 2))
+        L.fix("Fix Pencil's mistakes!", f"Oops! Pencil wrote some {tag} the wrong way. Tap them to fix them!", card(ch),
+              [(ch, fix_how(ch) if i in wrong else None, None) for i in range(6)])
+
+    def match():
+        run = alphabet_run(ch, 3, small)
+        if small:
+            L.match("Find the pairs!", "Find the pairs! Match each big letter to its small letter.", card(f"{big}{ch}"),
+                    [((c.upper(), None), (c, None)) for c in run])
+        else:
+            L.match("Find the pairs!", "Find the pairs! Match each letter to its picture.", card(ch, picture),
+                    [((c, None), (None, pic(WORDS[c.lower()][1], WORDS[c.lower()][0]))) for c in run])
+
+    def missing():
+        if small:
+            L.write("Finish the word!", f"{fill.capitalize()}! Write the missing letter.", card(None, pic(key if fill in (word, key) else fill, fill)),
+                    "missing", ch, word=fill, missing=at)
+        else:
+            run = alphabet_run(ch, 3)
+            L.write("Which letter is missing?", f"{', '.join(name(c) if c != ch else '...' for c in run)}! Which letter is missing?",
+                    card(None, pic("bottle_message", "bottle message")), "missing", ch, word="".join(run), missing=run.index(ch))
+
+    def order():
+        L.order("Put the letters in ABC order!", "Put the letters in A B C order!", card(None, pic("train")), alphabet_run(ch, 3, small))
+
+    def baskets():
+        if len(STARTS[ch.lower()]) >= 2:
+            c2 = letter_case(contrast(ch), small)
+            a, b = start_pics(ch), start_pics(c2)
+            L.rnd.shuffle(a)
+            L.rnd.shuffle(b)
+            L.sort("Sort the pictures!", f"Sort the pictures! Do they start with {sound(ch)} or {sound(c2)}?", card(f"{ch} {c2}"),
+                   [(ch, None), (c2, None)], [(p["label"], p, 0) for p in a[:3]] + [(p["label"], p, 1) for p in b[:2]])
+        else:
+            c2 = like[0]
+            L.sort("Sort the letters!", f"Put each letter in its basket: {tag} or {name(c2)}!", card(f"{ch} {c2}"),
+                   [(ch, None), (c2, None)], [(ch, None, 0)] * 3 + [(c2, None, 1)] * 3)
+
+    def free():
+        L.write(f"Write {shown} by yourself", f"Now write {tag} all by yourself!", card(ch), "free", ch)
+
+    def flash():
+        L.write(f"Look, then write {shown}", f"Look at {tag}. Then write it from memory!", card(None, picture), "flash", ch)
+
+    def speak():
+        line = f"{ch} says /{ch}/ like {word}!" if small else f"{big} is for {word}!"
+        say_line = f"{name(ch)} says {sound(ch)}, like {word}! Now you say it." if small else f"{name(ch)} is for {word}! Now you say it."
+        L.speak(f"Say: {line}", say_line, card(line, picture, listen=True), line)
+
+    games = {"find": find, "pop": pop, "trace": trace, "sound": sound_pick, "monster": monster, "truth": truth, "dots": dots,
+             "hunt": hunt, "fix": fix, "match": match, "missing": missing, "order": order, "baskets": baskets, "free": free,
+             "flash": flash, "speak": speak}
+    feasible = lambda g: {"monster": len(STARTS[ch.lower()]) >= 2, "fix": fix_how(ch) is not None}.get(g, True)
+    picked = choose([(["find", "pop"], 0), (["trace"], 0), (["sound", "monster", "truth"], 0), (["dots"], 0),
+                     (["hunt", "fix", "match"], 1), (["missing", "order", "baskets"], 0), (["free", "flash"], 1), (["speak"], 0)],
+                    step, feasible)
+    if step % 2:  # every other letter: its look game before its sound game
+        picked[2], picked[4] = picked[4], picked[2]
+    for g in picked:
+        games[g]()
     return L
 
 
 def review_level(number, letters, small, step, boss=False):
-    """The group's letters again, one game each, every game a different kind."""
+    """The group's letters again, one game each, every game a different kind (turning like the letters)."""
     L = Level(number, seed=f"review{number}")
     say_small = "small " if small else ""
     g = [letter_case(c, small) for c in letters]
     picture = lambda c: pic(WORDS[c.lower()][1], WORDS[c.lower()][0])
-    # 1 by ear
-    L.pick("Which letter do you hear?", f"Listen! Find {say_small}{name(g[-1])}.", card(None, None, listen=True),
-           unique([g[-1]] + g[:3] + [letter_case(x, small) for x in LOOKALIKE[g[-1]]])[:4], g[-1], shape=LETTER_SHAPES[step % len(LETTER_SHAPES)])
-    # 2 trace
-    L.write(f"Trace {say_small}{g[1]}", f"Trace {say_small}{name(g[1])}.", card(g[1], picture(g[1])), "trace", g[1])
-    # 3 sound and picture
-    choices = picture_choices(g[2], L.rnd)
-    L.pick(f"What starts with /{g[2].lower()}/?", f"Which one starts with {sound(g[2])}?", card(None, None, listen=True), list(choices),
-           WORDS[g[2].lower()][0], shape=PICTURE_SHAPES[step % len(PICTURE_SHAPES)], pictures=choices, hide=True)
-    # 4 dots
-    L.write(f"Join the dots to make {say_small}{g[3]}", f"Join the dots to make {say_small}{name(g[3])}.", card(g[3]), "dots", g[3])
-    # 5 hunt
-    L.hunt(f"Find every {say_small}{g[0]}!", f"Find every {say_small}{name(g[0])}!", card(g[0]), g[0],
-           [c for c in g if c != g[0]] + [letter_case(x, small) for x in LOOKALIKE[g[0]]])
-    # 6 write by ear
-    L.write("Write the letter you hear", f"Listen, then write it! {say_small}{name(g[4])}.", card(None, None, listen=True), "free", g[4])
-    # 7 ABC order
-    L.order("Put the letters in ABC order!", "Put the letters in A B C order!", card(None, pic("train")), g[:3])
-    # 8 say them all
-    line = ", ".join(g) + "!"
-    L.speak(f"Say: {line}", "Say all the letters with me! " + ", ".join(name(c) for c in g) + "!", card(line, None, listen=True), line)
-    # 9 fill a box (the boss wakes up on this one)
-    if boss:
-        w = "cat" if small else "CAT"
-        L.write("Finish the word!", "Cat! Write the missing letter to wake it up!", card(None, pic("cat")), "missing", w[0], word=w, missing=0)
-    else:
-        run = alphabet_run(g[1], 3, small)
-        L.write("Which letter is missing?", "Which letter is missing?", card(None, pic("bottle_message", "bottle message")), "missing", g[1],
-                word="".join(run), missing=run.index(g[1]))
+
+    def by_ear():
+        L.pick("Which letter do you hear?", f"Listen! Find {say_small}{name(g[-1])}.", card(None, None, listen=True),
+               unique([g[-1]] + g[:3] + [letter_case(x, small) for x in LOOKALIKE[g[-1]]])[:4], g[-1], shape=LETTER_SHAPES[step % len(LETTER_SHAPES)])
+
+    def pop():
+        L.pop(f"Pop every {say_small}{g[-1]}!", f"Listen! Pop every {say_small}{name(g[-1])} bubble!", card(None, None, listen=True), g[-1], g[:3])
+
+    def trace():
+        L.write(f"Trace {say_small}{g[1]}", f"Trace {say_small}{name(g[1])}.", card(g[1], picture(g[1])), "trace", g[1])
+
+    def sound_pick():
+        choices = picture_choices(g[2], L.rnd)
+        L.pick(f"What starts with /{g[2].lower()}/?", f"Which one starts with {sound(g[2])}?", card(None, None, listen=True), list(choices),
+               WORDS[g[2].lower()][0], shape=PICTURE_SHAPES[step % len(PICTURE_SHAPES)], pictures=choices, hide=True)
+
+    def baskets():
+        with_pics = [c for c in g if len(STARTS[c.lower()]) >= 2][:2]
+        a, b = with_pics
+        pa, pb = start_pics(a), start_pics(b)
+        L.rnd.shuffle(pa)
+        L.rnd.shuffle(pb)
+        L.sort("Sort the pictures!", f"Sort the pictures! Do they start with {sound(a)} or {sound(b)}?", card(f"{a} {b}"),
+               [(a, None), (b, None)], [(p["label"], p, 0) for p in pa[:3]] + [(p["label"], p, 1) for p in pb[:3]])
+
+    def dots():
+        L.write(f"Join the dots to make {say_small}{g[3]}", f"Join the dots to make {say_small}{name(g[3])}.", card(g[3]), "dots", g[3])
+
+    def hunt():
+        L.hunt(f"Find every {say_small}{g[0]}!", f"Find every {say_small}{name(g[0])}!", card(g[0]), g[0],
+               [c for c in g if c != g[0]] + [letter_case(x, small) for x in LOOKALIKE[g[0]]])
+
+    def match():
+        run = g[:4]
+        if small:
+            L.match("Find the pairs!", "Find the pairs! Match each big letter to its small letter.", card(" ".join(run)),
+                    [((c.upper(), None), (c, None)) for c in run])
+        else:
+            L.match("Find the pairs!", "Find the pairs! Match each letter to its picture.", card(" ".join(run)),
+                    [((c, None), (None, picture(c))) for c in run])
+
+    def fix():
+        fixable = [i for i, c in enumerate(g) if fix_how(c)]
+        wrong = set(L.rnd.sample(fixable, 2))
+        L.fix("Fix Pencil's mistakes!", "Oops! Pencil wrote some letters the wrong way. Tap them to fix them!", card(" ".join(g)),
+              [(c, fix_how(c) if i in wrong else None, None) for i, c in enumerate(g)])
+
+    def by_ear_write():
+        L.write("Write the letter you hear", f"Listen, then write it! {say_small}{name(g[4])}.", card(None, None, listen=True), "free", g[4])
+
+    def flash():
+        L.write(f"Look, then write {say_small}{g[4]}", f"Look at {say_small}{name(g[4])}. Then write it from memory!",
+                card(None, picture(g[4])), "flash", g[4])
+
+    def order():
+        L.order("Put the letters in ABC order!", "Put the letters in A B C order!", card(None, pic("train")), g[:3])
+
+    def speak():
+        line = ", ".join(g) + "!"
+        L.speak(f"Say: {line}", "Say all the letters with me! " + ", ".join(name(c) for c in g) + "!", card(line, None, listen=True), line)
+
+    def last():  # fill a box (the boss wakes up on this one)
+        if boss:
+            w = "cat" if small else "CAT"
+            L.write("Finish the word!", "Cat! Write the missing letter to wake it up!", card(None, pic("cat")), "missing", w[0], word=w, missing=0)
+        else:
+            run = alphabet_run(g[1], 3, small)
+            L.write("Which letter is missing?", "Which letter is missing?", card(None, pic("bottle_message", "bottle message")), "missing", g[1],
+                    word="".join(run), missing=run.index(g[1]))
+
+    games = {"ear": by_ear, "pop": pop, "trace": trace, "sound": sound_pick, "baskets": baskets, "dots": dots, "hunt": hunt,
+             "match": match, "fix": fix, "free": by_ear_write, "flash": flash, "order": order, "speak": speak, "last": last}
+    feasible = lambda name_: {"baskets": len([c for c in g if len(STARTS[c.lower()]) >= 2]) >= 2,
+                              "fix": len([c for c in g if fix_how(c)]) >= 2}.get(name_, True)
+    picked = choose([(["ear", "pop"], 1), (["trace"], 0), (["sound", "baskets"], 0), (["dots"], 0), (["hunt", "match", "fix"], 0),
+                     (["free", "flash"], 0), (["order"], 0), (["speak"], 0), (["last"], 0)], step, feasible)
+    for name_ in picked:
+        games[name_]()
     return L
 
 
@@ -303,6 +512,8 @@ def signature(r):
         pics = any(o.get("picture") for o in p.get("options", []))
         by_ear = bool((r.get("card") or {}).get("listen")) and not pics
         return ("pick", p.get("layout"), p.get("stage"), pics, by_ear)
+    if t == "sort":
+        return ("sort", len(p.get("bins", [])) == 1)
     return (t,)
 
 
