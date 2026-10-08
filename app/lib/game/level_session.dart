@@ -20,6 +20,7 @@ abstract final class GameTiming {
   static const orderSettle = Duration(milliseconds: 250); // last tile -> correct
   static const listening = Duration(milliseconds: 1800); // simulated voice check
   static const matchPeek = Duration(milliseconds: 900); // two cards that are not a pair stay up
+  static const flash = Duration(milliseconds: 2600); // flash writing: the letter shows, then hides
 }
 
 enum RoundFeedback { none, correct, wrong }

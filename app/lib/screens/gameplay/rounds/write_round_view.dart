@@ -246,6 +246,11 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
   late final AnimationController _sparkClock = AnimationController(vsync: this, duration: const Duration(days: 1))..forward();
   int? _pointer; // the finger that writes (a second finger or palm is ignored)
 
+  /// Flash writing: pad clock time the letter hides (it shows until then).
+  late final double _flashUntil = widget.round.mode == WriteMode.flash ? widget.time.value + GameTiming.flash.inMilliseconds / 1000 : 0;
+
+  bool get _flashing => widget.time.value < _flashUntil;
+
   @override
   void initState() {
     super.initState();
@@ -288,7 +293,7 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
   double get _now => _sparkClock.lastElapsedDuration == null ? 0 : _sparkClock.lastElapsedDuration!.inMicroseconds / 1e6;
 
   void _down(PointerDownEvent e) {
-    if (widget.state.correct || _pointer != null) return;
+    if (widget.state.correct || _pointer != null || _flashing) return;
     _pointer = e.pointer;
     widget.controller.start(e.localPosition);
     widget.onPen(e.position);
@@ -351,6 +356,7 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
                           hint: widget.state.hint,
                           time: widget.time,
                           controller: widget.controller,
+                          flashUntil: _flashUntil,
                         ),
                       ),
                     ),
@@ -369,6 +375,7 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
                       ),
                     ),
                   if (widget.state.hint && noGuide) Positioned(left: 24, top: 24, child: _StartHere(time: widget.time)),
+                  if (widget.round.mode == WriteMode.flash) Positioned.fill(child: _FlashCover(text: widget.round.target ?? '', word: noGuide, until: _flashUntil, time: widget.time)),
                   Positioned.fill(
                     child: RepaintBoundary(
                       child: CustomPaint(
@@ -381,7 +388,13 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
                       child: IgnorePointer(
                         child: RepaintBoundary(
                           child: CustomPaint(
-                            painter: _StepPainter(controller: widget.controller, hint: widget.state.hint, time: widget.time),
+                            painter: _StepPainter(
+                              controller: widget.controller,
+                              hint: widget.state.hint,
+                              time: widget.time,
+                              memory: widget.round.mode == WriteMode.flash,
+                              flashUntil: _flashUntil,
+                            ),
                           ),
                         ),
                       ),
@@ -416,6 +429,7 @@ class _GuidePainter extends CustomPainter {
     required this.hint,
     required this.time,
     required this.controller,
+    this.flashUntil = 0,
   }) : super(repaint: guides.isNotEmpty ? Listenable.merge([time, controller]) : (hint ? time : null));
 
   final WriteMode mode;
@@ -424,6 +438,9 @@ class _GuidePainter extends CustomPainter {
   final bool hint;
   final ValueNotifier<double> time;
   final WritePadController controller;
+
+  /// Flash writing: when the letter hides (pad clock seconds).
+  final double flashUntil;
 
   /// How long the lane / start marker flashes after a slip (seconds).
   static const laneFlash = .45;
@@ -461,11 +478,31 @@ class _GuidePainter extends CustomPainter {
 
     canvas.save();
     geo.apply(canvas);
+    if (mode == WriteMode.flash) {
+      // the letter shows in ink, then fades away (the last .4 s)
+      final shown = ((flashUntil - t) / .4).clamp(0.0, 1.0);
+      if (shown > 0) {
+        final ink = Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeCap = StrokeCap.round
+          ..strokeJoin = StrokeJoin.round
+          ..strokeWidth = 7
+          ..color = LikhoColors.ink.withValues(alpha: shown);
+        for (final path in guides) {
+          canvas.drawPath(path, ink);
+        }
+        canvas.restore();
+        return;
+      }
+    }
+    // from memory: no lane to see unless the finger slips or after a mistake
+    final memory = mode == WriteMode.flash && !hint;
     // the lane: where ink may go; finished strokes are green, the current
     // one flashes when the finger slips off it
     const base = GameColors.lanePaper;
     final flash = flashOf(controller.leftLaneAt);
     for (final (i, path) in guides.indexed) {
+      if (memory && i >= current && flash == 0) continue;
       final lane = Paint()
         ..style = PaintingStyle.stroke
         ..strokeCap = StrokeCap.round
@@ -474,8 +511,8 @@ class _GuidePainter extends CustomPainter {
         ..color = i < current
             ? GameColors.laneDone
             : i == current
-            ? Color.lerp(base, LikhoColors.hint.withValues(alpha: .35), flash)!
-            : base;
+            ? Color.lerp(memory ? LikhoColors.clear : base, LikhoColors.hint.withValues(alpha: .35), flash)!
+            : (memory ? LikhoColors.clear : base);
       canvas.drawPath(path, lane);
     }
     if (mode == WriteMode.trace) {
@@ -488,7 +525,7 @@ class _GuidePainter extends CustomPainter {
       for (final path in guides) {
         canvas.drawPath(path, stroke);
       }
-    } else if (current < guides.length) {
+    } else if (current < guides.length && !memory) {
       // writing without a traced letter: a dashed line shows the stroke's path
       canvas.drawPath(
         _dashed(guides[current], 2.2, 2.4),
@@ -517,7 +554,8 @@ class _GuidePainter extends CustomPainter {
   static Path _dashed(Path p, double on, double off) => dashPath(p, dashArray: CircularIntervalList<double>([on, off]));
 
   @override
-  bool shouldRepaint(_GuidePainter old) => old.mode != mode || old.guides != guides || old.hint != hint || old.controller != controller;
+  bool shouldRepaint(_GuidePainter old) =>
+      old.mode != mode || old.guides != guides || old.hint != hint || old.controller != controller || old.flashUntil != flashUntil;
 }
 
 /// The step-by-step marks, drawn over the ink: where the current stroke
@@ -525,11 +563,17 @@ class _GuidePainter extends CustomPainter {
 /// went down elsewhere), which way it goes (arrows marching to its end, a
 /// ring at the end) and, after a mistake, a finger running along it.
 class _StepPainter extends CustomPainter {
-  _StepPainter({required this.controller, required this.hint, required this.time}) : super(repaint: Listenable.merge([time, controller]));
+  _StepPainter({required this.controller, required this.hint, required this.time, this.memory = false, this.flashUntil = 0})
+    : super(repaint: Listenable.merge([time, controller]));
 
   final WritePadController controller;
   final bool hint;
   final ValueNotifier<double> time;
+
+  /// Flash writing: only where to start shows (no arrows), until a mistake;
+  /// nothing while the letter shows.
+  final bool memory;
+  final double flashUntil;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -537,9 +581,14 @@ class _StepPainter extends CustomPainter {
     final t = time.value;
     double flashOf(double? at) => at == null ? 0.0 : (1 - (t - at) / _GuidePainter.laneFlash).clamp(0.0, 1.0);
 
-    if (g == null || g.done) return;
+    if (g == null || g.done || t < flashUntil) return;
     final pts = g.points;
     final h = g.lane.halfWidth;
+
+    if (memory && !hint) {
+      _start(canvas, g, h, t, flashOf);
+      return;
+    }
 
     // direction: arrows marching from the written part to the end
     _arrows(canvas, pts, from: g.reached, spacing: h * 1.2, size: h * .42, shift: (t * h * 1.1) % (h * 1.2));
@@ -574,8 +623,12 @@ class _StepPainter extends CustomPainter {
       canvas.drawCircle(pts[k], h * .36, Paint()..color = LikhoColors.hint.withValues(alpha: alpha));
     }
 
-    // where to start (or carry on): a pulsing numbered dot; it jumps when
-    // the finger went down somewhere else
+    _start(canvas, g, h, t, flashOf);
+  }
+
+  /// Where to start (or carry on): a pulsing numbered dot; it jumps when
+  /// the finger went down somewhere else.
+  void _start(Canvas canvas, StrokeGuide g, double h, double t, double Function(double?) flashOf) {
     final at = g.resumeAt!;
     final pulse = Curves.easeOut.transform((t / 1.4) % 1.0);
     final nudge = flashOf(controller.wrongStartAt);
@@ -633,7 +686,7 @@ class _StepPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_StepPainter old) => old.controller != controller || old.hint != hint;
+  bool shouldRepaint(_StepPainter old) => old.controller != controller || old.hint != hint || old.memory != memory || old.flashUntil != flashUntil;
 }
 
 class _InkPainter extends CustomPainter {
@@ -726,6 +779,71 @@ class _SparkPainter extends CustomPainter {
 /// Track / road pads: a train or car rides under the finger.
 /// "Start here" with a bobbing arrow, after a mistake on a
 /// pad without guides.
+/// Flash writing: "Look!" with a shrinking bar while the letter shows; a
+/// word without letter guides shows here in big type. Gone once it hides.
+class _FlashCover extends StatelessWidget {
+  const _FlashCover({required this.text, required this.word, required this.until, required this.time});
+  final String text;
+  final bool word;
+  final double until;
+  final ValueNotifier<double> time;
+
+  @override
+  Widget build(BuildContext context) => IgnorePointer(
+    child: ValueListenableBuilder<double>(
+      valueListenable: time,
+      builder: (context, t, _) {
+        final left = until - t;
+        if (left <= 0) return const SizedBox.shrink();
+        final total = GameTiming.flash.inMilliseconds / 1000;
+        final shown = (left / .4).clamp(0.0, 1.0);
+        return Stack(
+          children: [
+            if (word)
+              Center(
+                child: Opacity(
+                  opacity: shown,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: FittedBox(fit: BoxFit.scaleDown, child: Text(text, style: LikhoFonts.letter(size: 72).copyWith(height: 1))),
+                  ),
+                ),
+              ),
+            Positioned(
+              left: 0,
+              right: 0,
+              top: 14,
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Symbols.visibility_rounded, size: 22, fill: 1, color: LikhoColors.secondary),
+                      const SizedBox(width: 6),
+                      Text('Look!', style: LikhoFonts.title(size: 20, weight: FontWeight.w800, color: LikhoColors.secondary)),
+                    ],
+                  ),
+                  const SizedBox(height: 6),
+                  Container(
+                    width: 120,
+                    height: 8,
+                    alignment: Alignment.centerLeft,
+                    decoration: BoxDecoration(color: GameColors.ink08, borderRadius: BorderRadius.circular(4)),
+                    child: FractionallySizedBox(
+                      widthFactor: (left / total).clamp(0.0, 1.0),
+                      child: Container(decoration: BoxDecoration(color: LikhoColors.secondary, borderRadius: BorderRadius.circular(4))),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
+    ),
+  );
+}
+
 class _StartHere extends StatelessWidget {
   const _StartHere({required this.time});
   final ValueNotifier<double> time;

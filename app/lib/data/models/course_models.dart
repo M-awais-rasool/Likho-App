@@ -372,6 +372,7 @@ enum WriteMode {
   trace, // follow the guide strokes
   dots, // join the numbered dots
   free, // write it yourself (letters or sentences)
+  flash, // see it for a moment, then write it from memory
   missing, // fill the missing letter in a word
   spell; // write a word letter by letter
 
