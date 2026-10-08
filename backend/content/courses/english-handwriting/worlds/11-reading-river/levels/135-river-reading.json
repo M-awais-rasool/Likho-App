@@ -1,0 +1,313 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-135",
+  "number": 135,
+  "name": "River Reading",
+  "skill": "Reading and writing",
+  "icon": "menu_book",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Read!",
+    "word": "fish in sea",
+    "say": "Let's read, then write!",
+    "audio": "voice/line-b5ecb4829dd49a9e.m4a",
+    "picture": {
+      "key": "fish_in_sea",
+      "label": "fish_in_sea",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-135-r1",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "The fish is in the sea. Put the words in order.",
+        "audio": "voice/line-b0e8743ffce465a1.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "fish_in_sea",
+          "label": "fish in sea",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "The",
+          "fish",
+          "is",
+          "in",
+          "the",
+          "sea"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-135-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "The fish is in the sea. Now write it!",
+        "audio": "voice/line-f54502ec15ca82e5.m4a"
+      },
+      "card": {
+        "text": "The fish is in the sea.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "The fish is in the sea.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-135-r3",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: The fish is in the sea.",
+        "say": "The fish is in the sea. Now you say it!",
+        "audio": "voice/line-2df628b3d985ec5f.m4a"
+      },
+      "card": {
+        "text": "The fish is in the sea.",
+        "picture": {
+          "key": "fish_in_sea",
+          "label": "fish in sea",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "The fish is in the sea."
+      }
+    },
+    {
+      "id": "level-135-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "The fish is in the sea.",
+        "say": "The fish is in the sea. Find the picture!",
+        "audio": "voice/line-37aae851a419f92a.m4a"
+      },
+      "card": {
+        "text": "The fish is in the sea.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-135-r4-o1",
+            "label": "fish in sea",
+            "picture": {
+              "key": "fish_in_sea",
+              "label": "fish in sea",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-135-r4-o2",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-135-r4-o3",
+            "label": "cat on box",
+            "picture": {
+              "key": "cat_on_box",
+              "label": "cat on box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "fish in sea"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-135-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "Which mark ends it?",
+        "say": "The fish is in the sea. Which mark goes at the end?",
+        "audio": "voice/line-bd884caecc8a3613.m4a"
+      },
+      "card": {
+        "text": "The fish is in the sea ___",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-135-r5-o1",
+            "label": "?",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-135-r5-o2",
+            "label": ".",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-135-r5-o3",
+            "label": "!",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "."
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-135-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every like!",
+        "say": "Find every word like!",
+        "audio": "voice/line-ef09687e3c13ecc5.m4a"
+      },
+      "card": {
+        "text": "like",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "like",
+        "grid": [
+          "like",
+          "jumping",
+          "you",
+          "like",
+          "look",
+          "like",
+          "under",
+          "down",
+          "said"
+        ]
+      }
+    },
+    {
+      "id": "level-135-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Spell jump",
+        "say": "Jump! Write it one letter at a time.",
+        "audio": "voice/line-cc81fb1811517725.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "jump",
+          "label": "jump",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "jump",
+        "guide": null,
+        "word": "jump",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-135-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word Monday.",
+        "audio": "voice/line-c8ffde019149633c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-135-r8-o1",
+            "label": "said",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-135-r8-o2",
+            "label": "Monday",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-135-r8-o3",
+            "label": "under",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Monday"
+        },
+        "shape": "balloon",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

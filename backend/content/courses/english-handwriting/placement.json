@@ -19,7 +19,6 @@
   "presentation": {
     "shape": "balloon",
     "slot": null,
-    "pad": null,
     "layout": null,
     "stage": null
   },
@@ -30,7 +29,7 @@
       "prompt": {
         "text": "Trace A",
         "say": "Trace {A|ˈeɪ}.",
-        "audio": "assets/voice/placement-r1.m4a"
+        "audio": "voice/line-98736d9beeae8383.m4a"
       },
       "card": {
         "text": "A",
@@ -56,7 +55,7 @@
       "type": "pick",
       "prompt": {
         "text": "Find M!",
-        "audio": "assets/voice/placement-r2.m4a"
+        "audio": "voice/line-3b6612106ec430b0.m4a"
       },
       "card": {
         "text": "M",
@@ -103,7 +102,7 @@
       "type": "write",
       "prompt": {
         "text": "Write b",
-        "audio": "assets/voice/placement-r3.m4a"
+        "audio": "voice/line-642e81833086182d.m4a"
       },
       "card": {
         "text": "b",

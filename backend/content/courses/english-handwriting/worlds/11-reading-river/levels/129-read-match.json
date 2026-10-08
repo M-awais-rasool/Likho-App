@@ -1,0 +1,311 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-129",
+  "number": 129,
+  "name": "Read & Match",
+  "skill": "Reading",
+  "icon": "view_carousel",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Read!",
+    "word": "storybook",
+    "say": "Read the sentence, then find the picture!",
+    "audio": "voice/line-bb8e312f272f43d1.m4a",
+    "picture": {
+      "key": "storybook",
+      "label": "storybook",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-129-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "The cat is on the box.",
+        "audio": "voice/line-e8d6d1f6a9534fb4.m4a"
+      },
+      "card": {
+        "text": "The cat is on the box.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "label": "cat on box",
+            "picture": {
+              "key": "cat_on_box",
+              "label": "cat on box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false,
+            "id": "level-129-r1-o1"
+          },
+          {
+            "label": "cat in bed",
+            "picture": {
+              "key": "cat_in_bed",
+              "label": "cat in bed",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false,
+            "id": "level-129-r1-o2"
+          },
+          {
+            "label": "dog on box",
+            "picture": {
+              "key": "dog_on_box",
+              "label": "dog on box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": false,
+            "id": "level-129-r1-o3"
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "cat on box"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-129-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "The dog is asleep. Now write it!",
+        "audio": "voice/line-b115ae07f46c714d.m4a"
+      },
+      "card": {
+        "text": "The dog is asleep.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "The dog is asleep.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-129-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "I see a red bus. Put the words in order.",
+        "audio": "voice/line-c4876632f8498117.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "red_bus",
+          "label": "red bus",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "I",
+          "see",
+          "a",
+          "red",
+          "bus"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-129-r4",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: A bird is in the sky.",
+        "say": "A bird is in the sky. Now you say it!",
+        "audio": "voice/line-99c5fa980663015f.m4a"
+      },
+      "card": {
+        "text": "A bird is in the sky.",
+        "picture": {
+          "key": "bird_in_sky",
+          "label": "bird in sky",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "A bird is in the sky."
+      }
+    },
+    {
+      "id": "level-129-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every like!",
+        "say": "Find every word like!",
+        "audio": "voice/line-ef09687e3c13ecc5.m4a"
+      },
+      "card": {
+        "text": "like",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "like",
+        "grid": [
+          "look",
+          "like",
+          "down",
+          "said",
+          "like",
+          "under",
+          "jumping",
+          "like",
+          "you"
+        ]
+      }
+    },
+    {
+      "id": "level-129-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Spell jump",
+        "say": "Jump! Write it one letter at a time.",
+        "audio": "voice/line-cc81fb1811517725.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "jump",
+          "label": "jump",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "jump",
+        "guide": null,
+        "word": "jump",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-129-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word Monday.",
+        "audio": "voice/line-c8ffde019149633c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-129-r7-o1",
+            "label": "like",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-129-r7-o2",
+            "label": "jump",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-129-r7-o3",
+            "label": "Monday",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Monday"
+        },
+        "shape": "bubble",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-129-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "Which mark ends it?",
+        "say": "The dog can run. Which mark goes at the end?",
+        "audio": "voice/line-f31c208fc8040d04.m4a"
+      },
+      "card": {
+        "text": "The dog can run ___",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-129-r8-o1",
+            "label": "?",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-129-r8-o2",
+            "label": ".",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-129-r8-o3",
+            "label": "!",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "."
+        },
+        "shape": "fish",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

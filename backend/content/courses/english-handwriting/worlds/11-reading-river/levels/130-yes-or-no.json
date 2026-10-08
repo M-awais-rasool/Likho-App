@@ -1,0 +1,308 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-130",
+  "number": 130,
+  "name": "Yes or No?",
+  "skill": "Reading carefully",
+  "icon": "check_circle",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Yes No",
+    "word": "cat",
+    "say": "Read, look, and say yes or no!",
+    "audio": "voice/line-7357525bc8c8e24d.m4a",
+    "picture": {
+      "key": "cat",
+      "label": "cat",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-130-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Yes or no?",
+        "say": "Look at the picture. The cat is on the box. Yes or no?",
+        "audio": "voice/line-0b3b76ffa0f114a2.m4a"
+      },
+      "card": {
+        "text": "The cat is on the box.",
+        "picture": {
+          "key": "cat_on_box",
+          "label": "cat on box",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-130-r1-o1",
+            "label": "Yes",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-130-r1-o2",
+            "label": "No",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Yes"
+        },
+        "shape": "cloud",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-130-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "The sun is hot. Now write it!",
+        "audio": "voice/line-d0d916388e4abc9f.m4a"
+      },
+      "card": {
+        "text": "The sun is hot.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "The sun is hot.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-130-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "The bus is red. Put the words in order.",
+        "audio": "voice/line-409b00789c9f1cf6.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "red_bus",
+          "label": "red bus",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "The",
+          "bus",
+          "is",
+          "red"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-130-r4",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Yes, the cat is on the box!",
+        "say": "Yes, the cat is on the box! Now you say it!",
+        "audio": "voice/line-575473f2a6c85877.m4a"
+      },
+      "card": {
+        "text": "Yes, the cat is on the box!",
+        "picture": {
+          "key": "cat_on_box",
+          "label": "cat on box",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Yes, the cat is on the box!"
+      }
+    },
+    {
+      "id": "level-130-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every like!",
+        "say": "Find every word like!",
+        "audio": "voice/line-ef09687e3c13ecc5.m4a"
+      },
+      "card": {
+        "text": "like",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "like",
+        "grid": [
+          "like",
+          "look",
+          "under",
+          "like",
+          "jumping",
+          "said",
+          "you",
+          "like",
+          "down"
+        ]
+      }
+    },
+    {
+      "id": "level-130-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Spell jump",
+        "say": "Jump! Write it one letter at a time.",
+        "audio": "voice/line-cc81fb1811517725.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "jump",
+          "label": "jump",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "jump",
+        "guide": null,
+        "word": "jump",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-130-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-130-r7-o1",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-130-r7-o2",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-130-r7-o3",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-130-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word Monday.",
+        "audio": "voice/line-c8ffde019149633c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-130-r8-o1",
+            "label": "you",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-130-r8-o2",
+            "label": "Monday",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-130-r8-o3",
+            "label": "look",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Monday"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

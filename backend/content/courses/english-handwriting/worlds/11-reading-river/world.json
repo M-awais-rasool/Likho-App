@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../../schema/world.schema.json",
+  "id": "world-11",
+  "order": 11,
+  "name": "Reading River",
+  "skill": "Reading",
+  "icon": "menu_book",
+  "themeId": "readingRiver",
+  "boss": {
+    "id": "frog",
+    "name": "Sleepy Frog"
+  }
+}

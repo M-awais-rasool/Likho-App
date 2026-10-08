@@ -1,0 +1,316 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-139",
+  "number": 139,
+  "name": "Who and Where",
+  "skill": "Story people and places",
+  "icon": "map",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Who? Where?",
+    "word": "dragon",
+    "say": "Every story has someone and somewhere!",
+    "audio": "voice/line-77ad497fe7c125e9.m4a",
+    "picture": {
+      "key": "dragon",
+      "label": "dragon",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-139-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Who is in the story?",
+        "say": "Who is in the story? A dragon.",
+        "audio": "voice/line-b27c75301558d213.m4a"
+      },
+      "card": {
+        "text": "Who is in the story?",
+        "picture": {
+          "key": "dragon",
+          "label": "dragon",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-139-r1-o1",
+            "label": "dragon",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-139-r1-o2",
+            "label": "cat",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-139-r1-o3",
+            "label": "bus",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "dragon"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-139-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "A dragon lives in the forest. Now write it!",
+        "audio": "voice/line-555d111f88d789f5.m4a"
+      },
+      "card": {
+        "text": "A dragon lives in the forest.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "A dragon lives in the forest.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-139-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "The robot flies in space. Put the words in order.",
+        "audio": "voice/line-9899464a751c9cc4.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "robot",
+          "label": "robot",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "The",
+          "robot",
+          "flies",
+          "in",
+          "space"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-139-r4",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Once upon a time, a fish lived in the sea.",
+        "say": "Once upon a time, a fish lived in the sea. Now you say it!",
+        "audio": "voice/line-9b0294331f421759.m4a"
+      },
+      "card": {
+        "text": "Once upon a time, a fish lived in the sea.",
+        "picture": {
+          "key": "fish_in_sea",
+          "label": "fish in sea",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Once upon a time, a fish lived in the sea."
+      }
+    },
+    {
+      "id": "level-139-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Spell forest",
+        "say": "Forest! Write it one letter at a time.",
+        "audio": "voice/line-0d66abd809bcddb3.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "forest",
+          "label": "forest",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "forest",
+        "guide": null,
+        "word": "forest",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-139-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every down!",
+        "say": "Find every word down!",
+        "audio": "voice/line-562c2debd7ccadc8.m4a"
+      },
+      "card": {
+        "text": "down",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "down",
+        "grid": [
+          "jump",
+          "down",
+          "said",
+          "down",
+          "jumping",
+          "down",
+          "look",
+          "like",
+          "under"
+        ]
+      }
+    },
+    {
+      "id": "level-139-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-139-r7-o1",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-139-r7-o2",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-139-r7-o3",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-139-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word first.",
+        "audio": "voice/line-23e1f8eee1eea002.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-139-r8-o1",
+            "label": "who",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-139-r8-o2",
+            "label": "look",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-139-r8-o3",
+            "label": "first",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "first"
+        },
+        "shape": "shell",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}
