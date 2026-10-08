@@ -229,8 +229,8 @@ class Words:
                     shape="planet", pictures=pics, hide=True)
 
     def yes_no(self, sentence, pic_key, yes):
-        self.L.pick("Yes or no?", f"Look at the picture. {sentence} Yes or no?", B.card(sentence, B.pic(pic_key)), ["Yes", "No"],
-                    "Yes" if yes else "No", shape="cloud")
+        self.L.truth("True or silly?", f"Look at the picture. {sentence} True, or silly?", B.card(None, None, listen=True), sentence,
+                     B.pic(pic_key), yes)
 
     def fix_capital(self, sentence):
         words = sentence.rstrip(".?!").split()
@@ -259,6 +259,54 @@ class Words:
     def speak_line(self, line, pic_key=None):
         self.L.speak(f"Say: {line}", f"{line} Now you say it!", B.card(line, B.pic(pic_key) if pic_key else None, listen=True), line)
 
+    # -- the games that make levels differ (finalize() adds some to every level)
+    def pop_word(self, word, pool):
+        others = [w for w in B.unique(pool) if w != word and len(w) <= 5]
+        others.sort(key=lambda w: (abs(len(w) - len(word)), w[0] != word[0], w))
+        self.L.pop(f"Pop every {word}!", f"Pop every bubble that says {word}!", B.card(word), word, others[:3], count=4)
+
+    def fix_words(self, words):
+        """Pencil wrote the words; in two of them one letter is backwards."""
+        ws = B.unique(words)[:4]
+        # letters that look plainly wrong backwards (a backwards t or l hardly shows)
+        letters = [[i for i, c in enumerate(w) if c.isalpha() and B.fix_how(c) == "mirror" and c not in "tlI"] for w in ws]
+        can = [k for k, ls in enumerate(letters) if ls]
+        wrong = set(self.rnd.sample(can, min(2, len(can))))
+        self.L.fix("Fix Pencil's mistakes!", "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!", B.card("Fix it!"),
+                   [(w, "mirror" if k in wrong else None, self.rnd.choice(letters[k]) if k in wrong else None) for k, w in enumerate(ws)])
+
+    def monster(self, focus, food, other):
+        items = [(w, picture(w), 0) for w in food[:3]] + [(w, picture(w), None) for w in other[:3]]
+        self.L.sort(f"Feed it /{focus}/!", f"This monster only eats words with {say_sound(focus)}. Feed it!", B.card(focus),
+                    [(focus, None)], items)
+
+    def baskets(self, a, b):
+        """Pictures sorted by their first sound: letters a and b."""
+        pa, pb = B.start_pics(a), B.start_pics(b)
+        self.rnd.shuffle(pa)
+        self.rnd.shuffle(pb)
+        self.L.sort("Sort the pictures!", f"Sort the pictures! Do they start with {B.sound(a)} or {B.sound(b)}?", B.card(f"{a} {b}"),
+                    [(a, None), (b, None)], [(q["label"], q, 0) for q in pa[:3]] + [(q["label"], q, 1) for q in pb[:3]])
+
+    def match_words(self, words, sight=False):
+        with_pics = [w for w in B.unique(words) if has_picture(w)]
+        if len(with_pics) >= 3 and not sight:
+            self.L.match("Find the pairs!", "Find the pairs! Match each word to its picture.", B.card("Find the pairs!"),
+                         [((w, None), (None, picture(w))) for w in with_pics[:3]])
+        else:
+            ws = [w for w in B.unique(words) if w.islower()][:3]
+            self.L.match("Find the pairs!", "Find the pairs! Match each word to the same word with a capital letter.", B.card("the = The"),
+                         [((w, None), (w.capitalize(), None)) for w in ws])
+
+    def truth_word(self, word, other, right):
+        shown = word if right else other
+        self.L.truth("True or silly?", f"This is a {word}. True, or silly?", B.card(None, None, listen=True), f"This is a {word}.", picture(shown), right)
+
+    def flash_word(self, word):
+        self.L.write(f"Look, then write {word}", f"Look at the word {word}. Then write it from memory!", word_card(word) if has_picture(word) else B.card(None, None, listen=True),
+                     "flash", word)
+        self._no_guide()
+
     def classic(self, name, take=None):
         for r in classic(name, take):
             self.L._add(r["type"], r["prompt"]["text"], r["prompt"].get("say"), r.get("card"), r[r["type"]])
@@ -269,6 +317,7 @@ class Words:
 def word_level(n, step, words, focus, earlier, extra=None):
     """Reading and writing words with one sound (or one topic); finalize() keeps one game of each kind."""
     L = B.Level(n, seed=f"words{n}")
+    L.words, L.focus = words, focus
     W = Words(L, step)
     w = (words * 2)[:6]
     pool = words + earlier[-6:]
@@ -310,6 +359,7 @@ def word_in(sentence, words):
 def sight_level(n, step, words, sentences, earlier):
     """Words to know on sight (no pictures)."""
     L = B.Level(n, seed=f"sight{n}")
+    L.words, L.sight = words, True
     W = Words(L, step)
     w = (words * 2)[:5]
     pool = words + earlier[-6:]
@@ -364,6 +414,7 @@ def phonics_forest():
 def mixed(n, step, earlier, words, classic_names=(), sentences=()):
     """A level that opens with a classic game, then plays its words."""
     L = B.Level(n, seed=f"mixed{n}")
+    L.words = words
     W = Words(L, step)
     for name_, take in classic_names:
         W.classic(name_, take)
@@ -597,6 +648,7 @@ def level_specs(world):
 def boss_words(title, skill, boss, say, words, classic_level=None, sight=False):
     def build(n, step, earlier):
         L = B.Level(n, seed=f"boss{n}")
+        L.words, L.sight = words, sight
         W = Words(L, step)
         if classic_level:
             W.classic(*classic_level)
@@ -614,6 +666,7 @@ def boss_words(title, skill, boss, say, words, classic_level=None, sight=False):
 
 def kites_level(n, step, earlier):
     L = B.Level(n, seed=f"kites{n}")
+    L.words, L.sight = ["the", "a", "I", "is"], True
     W = Words(L, step)
     W.classic("Sight Word Kites", None)
     words = ["the", "a", "I", "is"]
@@ -645,6 +698,7 @@ SENTENCES = {
 def sentence_level(n, step, earlier, kind, classics=()):
     """Sentence, grammar, question, reading and story games."""
     L = B.Level(n, seed=f"{kind}{n}")
+    L.sentences = SENTENCES.get(kind)
     W = Words(L, step)
     for name_, take in classics:
         W.classic(name_, take)
@@ -917,7 +971,8 @@ signature = B.signature
 
 
 def finalize(L, step, earlier, boss):
-    """8-10 games, no two of one kind. A boss level ends with its own last game."""
+    """8-10 games, no two of one kind, three of them new games (add_star_games). A boss level ends with its own last game."""
+    L._boss = boss
     last = L.rounds[-1] if boss else None
     seen = {signature(last)} if boss else set()
     body = []
@@ -950,11 +1005,81 @@ def finalize(L, step, earlier, boss):
                 L.rounds.pop()
             else:
                 seen.add(signature(L.rounds[-1]))
-    L.rounds = L.rounds[:10 - (1 if boss else 0)] + ([last] if boss else [])
+    add_star_games(L, W, step, earlier, pool)
+    L.rounds = L.rounds + ([last] if boss else [])
     for k, r in enumerate(L.rounds):  # ids follow the final order
         r["id"] = f"{L.id}-r{k + 1}"
         for j, o in enumerate((r.get("pick") or {}).get("options", [])):
             o["id"] = f"{r['id']}-o{j + 1}"
+
+
+# The new games, turned through level by level: every level gets three, starting further on each time.
+STAR_GAMES = ["pop", "match", "fix", "truth", "monster", "baskets", "flash"]
+
+
+def add_star_games(L, W, step, earlier, pool):
+    """Three of the new games (pop, match, fix, truth, sort, flash writing) on the level's words, spread through
+    it; then the level is cut back to ten games (with the boss game), older picks going first."""
+    words = [w for w in getattr(L, "words", None) or pool if w.isalpha()] or pool
+    has = {signature(r) for r in L.rounds}
+    focus = getattr(L, "focus", None)
+    pics = [w for w in B.unique(words + pool) if has_picture(w)]
+    letters = [c for c in B.unique(w[0] for w in words + pool) if c in B.STARTS and len(B.STARTS[c]) >= 2]
+    ss = getattr(L, "sentences", None) or SENTENCES["readwrite"]
+    star = []
+
+    def make(kind):
+        if kind in ("monster", "baskets") and any(r["type"] == "sort" for r in star):
+            return  # one sorting game a level: the monster and the baskets are both drag-and-drop
+        before = len(L.rounds)
+        if kind == "pop":
+            W.pop_word(words[step % len(words)], words + pool)
+        elif kind == "match" and (len(pics) >= 3 or len([w for w in words if w.islower()]) >= 3):
+            sight = getattr(L, "sight", False) and len([w for w in words if w.islower()]) >= 3
+            W.match_words(words if sight else words + pics, sight)
+        elif kind == "fix" and len([w for w in words + pool if any(B.fix_how(c) == "mirror" and c not in "tlI" for c in w)]) >= 2:
+            ws = [w for w in B.unique(words + pool) if len(w) <= 6]
+            W.fix_words(ws[:4] if len(ws) >= 4 else ws + pool[:4 - len(ws)])
+        elif kind == "truth":
+            if getattr(L, "sentences", None) is None and len(pics) >= 2:
+                w = pics[step % len(pics)]
+                W.truth_word(w, pics[(step + 1) % len(pics)], step % 2 == 0)
+            else:
+                s, k = ss[step % len(ss)]
+                other = ss[(step + 2) % len(ss)][1]
+                W.yes_no(s, k if step % 2 == 0 else other, step % 2 == 0)
+        elif kind == "monster" and focus in SOUNDS:
+            food = [w for w in words if focus in w]
+            other = [w for w in B.unique(earlier[::-1]) if focus not in w and w.isalpha()]
+            if len(food) >= 2 and len(other) >= 2:
+                W.monster(focus, food, other)
+        elif kind == "baskets" and len(letters) >= 2:
+            W.baskets(letters[step % len(letters)], letters[(step + 1) % len(letters)])
+        elif kind == "flash":
+            short = [w for w in words if 2 <= len(w) <= 4] or [w for w in pool if 2 <= len(w) <= 4]
+            if short:
+                W.flash_word(short[step % len(short)])
+        if len(L.rounds) > before:
+            r = L.rounds.pop()
+            if signature(r) not in has:
+                has.add(signature(r))
+                star.append(r)
+
+    k = (step * 3) % len(STAR_GAMES)
+    for kind in STAR_GAMES[k:] + STAR_GAMES[:k]:
+        if len(star) == 3:
+            break
+        make(kind)
+    # spread them: after the first game, in the middle, near the end
+    for r, at in zip(star, (1, len(L.rounds) // 2 + 1, len(L.rounds) - 1 + 2)):
+        L.rounds.insert(min(at, len(L.rounds)), r)
+    room = 10 - (1 if getattr(L, "_boss", False) else 0)
+    while len(L.rounds) > room:
+        old = [i for i, r in enumerate(L.rounds) if r not in star]
+        picks = [i for i in old if L.rounds[i]["type"] == "pick"]
+        writes = [i for i in old if L.rounds[i]["type"] == "write"]
+        drop = picks[-1] if picks else next(i for i in reversed(old) if not (L.rounds[i]["type"] == "write" and len(writes) == 1))
+        L.rounds.pop(drop)
 
 
 def plan(first_number, start_step):
