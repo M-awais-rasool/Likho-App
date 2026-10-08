@@ -1,0 +1,308 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-107",
+  "number": 107,
+  "name": "Full Stop",
+  "skill": "Ending a sentence",
+  "icon": "fiber_manual_record",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": ".",
+    "word": "star",
+    "say": "A sentence ends with a full stop. Let's find it!",
+    "audio": "voice/line-18f94a3da214ce63.m4a",
+    "picture": {
+      "key": "star",
+      "label": "star",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-107-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which mark ends it?",
+        "say": "I see a cat. Which mark goes at the end?",
+        "audio": "voice/line-1148e78c9b062f3a.m4a"
+      },
+      "card": {
+        "text": "I see a cat ___",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-107-r1-o1",
+            "label": "?",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-107-r1-o2",
+            "label": ".",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-107-r1-o3",
+            "label": "!",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "."
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-107-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "I can see the moon. Put the words in order.",
+        "audio": "voice/line-2300b8f845e026e4.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "moon",
+          "label": "moon",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "I",
+          "can",
+          "see",
+          "the",
+          "moon"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-107-r3",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "I see a star. Now write it!",
+        "audio": "voice/line-bed498cb222305eb.m4a"
+      },
+      "card": {
+        "text": "I see a star.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I see a star.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-107-r4",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: A full stop ends a sentence.",
+        "say": "A full stop ends a sentence. Now you say it!",
+        "audio": "voice/line-285cd4b90fe34fb1.m4a"
+      },
+      "card": {
+        "text": "A full stop ends a sentence.",
+        "picture": {
+          "key": "star",
+          "label": "star",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "A full stop ends a sentence."
+      }
+    },
+    {
+      "id": "level-107-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every tiger!",
+        "say": "Find every word tiger!",
+        "audio": "voice/line-d92215d3aad1476b.m4a"
+      },
+      "card": {
+        "text": "tiger",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "tiger",
+        "grid": [
+          "tiger",
+          "ship",
+          "and",
+          "star",
+          "the",
+          "bus",
+          "tiger",
+          "tiger",
+          "brother"
+        ]
+      }
+    },
+    {
+      "id": "level-107-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Spell he",
+        "say": "He! Write it one letter at a time.",
+        "audio": "voice/line-487d7956bd61835e.m4a"
+      },
+      "card": {
+        "text": "he",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "he",
+        "guide": null,
+        "word": "he",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-107-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-107-r7-o1",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-107-r7-o2",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-107-r7-o3",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-107-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word like.",
+        "audio": "voice/line-0e49269b26f07822.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-107-r8-o1",
+            "label": "tiger",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-107-r8-o2",
+            "label": "the",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-107-r8-o3",
+            "label": "like",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "like"
+        },
+        "shape": "balloon",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,306 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-112",
+  "number": 112,
+  "name": "Wake the Cloud",
+  "skill": "Boss · sentences",
+  "icon": "bedtime",
+  "isBoss": true,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "I see a cat.",
+    "word": "cloud",
+    "say": "The cloud is sleeping. Let's write sentences to wake it up!",
+    "audio": "voice/line-d46cdf6cc06a2ef3.m4a",
+    "picture": {
+      "key": "cloud",
+      "label": "cloud",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-112-r1",
+      "type": "write",
+      "prompt": {
+        "text": "I see a cat.",
+        "audio": "voice/line-b8cadddbaaf86176.m4a"
+      },
+      "card": {
+        "text": "I see a cat.",
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "free",
+        "target": "I see a cat.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-112-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "Fix it!",
+        "say": "This sentence needs a capital letter. Tap the word to fix it!",
+        "audio": "voice/line-3653b06ee41d03ec.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-112-r2-o1",
+            "label": "run",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-112-r2-o2",
+            "label": "can",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-112-r2-o3",
+            "label": "ali",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "ali"
+        },
+        "shape": null,
+        "layout": "flow",
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": true
+      }
+    },
+    {
+      "id": "level-112-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Which mark ends it?",
+        "say": "Is it a cat? Which mark goes at the end?",
+        "audio": "voice/line-34175555638b6ab9.m4a"
+      },
+      "card": {
+        "text": "Is it a cat ___",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-112-r3-o1",
+            "label": ".",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-112-r3-o2",
+            "label": "!",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-112-r3-o3",
+            "label": "?",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "?"
+        },
+        "shape": "balloon",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-112-r4",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "I have two hats. Put the words in order.",
+        "audio": "voice/line-12eaf1af7d926e2f.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "many_hats",
+          "label": "many hats",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "I",
+          "have",
+          "two",
+          "hats"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-112-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every tiger!",
+        "say": "Find every word tiger!",
+        "audio": "voice/line-d92215d3aad1476b.m4a"
+      },
+      "card": {
+        "text": "tiger",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "tiger",
+        "grid": [
+          "and",
+          "the",
+          "tiger",
+          "bus",
+          "tiger",
+          "tiger",
+          "brother",
+          "ship",
+          "star"
+        ]
+      }
+    },
+    {
+      "id": "level-112-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Spell he",
+        "say": "He! Write it one letter at a time.",
+        "audio": "voice/line-487d7956bd61835e.m4a"
+      },
+      "card": {
+        "text": "he",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "he",
+        "guide": null,
+        "word": "he",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-112-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-112-r7-o1",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-112-r7-o2",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-112-r7-o3",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-112-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: I can write a sentence!",
+        "say": "I can write a sentence! Now you say it!",
+        "audio": "voice/line-3cc0299f74343e65.m4a"
+      },
+      "card": {
+        "text": "I can write a sentence!",
+        "picture": {
+          "key": "pencil",
+          "label": "pencil",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "I can write a sentence!"
+      }
+    }
+  ]
+}

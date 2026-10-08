@@ -1,0 +1,306 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-119",
+  "number": 119,
+  "name": "Jungle Sentences",
+  "skill": "Writing what we do",
+  "icon": "edit_note",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "I can",
+    "word": "monkey",
+    "say": "Let's write sentences about what we can do!",
+    "audio": "voice/line-435bca4fdc6adc83.m4a",
+    "picture": {
+      "key": "monkey",
+      "label": "monkey",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-119-r1",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "I can jump. Put the words in order.",
+        "audio": "voice/line-e12080d798380e16.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "jump",
+          "label": "jump",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "I",
+          "can",
+          "jump"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-119-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "I can jump. Now write it!",
+        "audio": "voice/line-514c125d8b269680.m4a"
+      },
+      "card": {
+        "text": "I can jump.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I can jump.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-119-r3",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: I can jump.",
+        "say": "I can jump. Now you say it!",
+        "audio": "voice/line-4a5a5f63bc0a9557.m4a"
+      },
+      "card": {
+        "text": "I can jump.",
+        "picture": {
+          "key": "jump",
+          "label": "jump",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "I can jump."
+      }
+    },
+    {
+      "id": "level-119-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "I can jump.",
+        "say": "I can jump. Find the picture!",
+        "audio": "voice/line-ff5c10c8dedda062.m4a"
+      },
+      "card": {
+        "text": "I can jump.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-119-r4-o1",
+            "label": "jump",
+            "picture": {
+              "key": "jump",
+              "label": "jump",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-119-r4-o2",
+            "label": "swim",
+            "picture": {
+              "key": "swim",
+              "label": "swim",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-119-r4-o3",
+            "label": "bird in sky",
+            "picture": {
+              "key": "bird_in_sky",
+              "label": "bird in sky",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "jump"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-119-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "Which mark ends it?",
+        "say": "I can jump. Which mark goes at the end?",
+        "audio": "voice/line-97cf78551bd99f18.m4a"
+      },
+      "card": {
+        "text": "I can jump ___",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-119-r5-o1",
+            "label": "?",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-119-r5-o2",
+            "label": ".",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-119-r5-o3",
+            "label": "!",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "."
+        },
+        "shape": "balloon",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-119-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every and!",
+        "say": "Find every word and!",
+        "audio": "voice/line-3779725e51b55a1f.m4a"
+      },
+      "card": {
+        "text": "and",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "and",
+        "grid": [
+          "and",
+          "he",
+          "and",
+          "you",
+          "star",
+          "and",
+          "tiger",
+          "the",
+          "look"
+        ]
+      }
+    },
+    {
+      "id": "level-119-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Spell said",
+        "say": "Said! Write it one letter at a time.",
+        "audio": "voice/line-604a037fd1f29408.m4a"
+      },
+      "card": {
+        "text": "said",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "said",
+        "guide": null,
+        "word": "said",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-119-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word jumping.",
+        "audio": "voice/line-4da5104a3bebf06e.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-119-r8-o1",
+            "label": "look",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-119-r8-o2",
+            "label": "jumping",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-119-r8-o3",
+            "label": "star",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "jumping"
+        },
+        "shape": "mushroom",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

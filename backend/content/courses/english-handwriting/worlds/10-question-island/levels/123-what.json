@@ -1,0 +1,311 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-123",
+  "number": 123,
+  "name": "What?",
+  "skill": "Asking about things",
+  "icon": "category",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "What?",
+    "word": "box",
+    "say": "What is it? Let's ask about things.",
+    "audio": "voice/line-b3f67005faecfad8.m4a",
+    "picture": {
+      "key": "box",
+      "label": "box",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-123-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "Look! What is this?",
+        "audio": "voice/line-608525342b8d16dc.m4a"
+      },
+      "card": {
+        "text": "What is this?",
+        "picture": {
+          "key": "cup",
+          "label": "cup",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-123-r1-o1",
+            "label": "hat",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-123-r1-o2",
+            "label": "box",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-123-r1-o3",
+            "label": "cup",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "cup"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-123-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "It is a cup. Put the words in order.",
+        "audio": "voice/line-a01596c86bca7d8e.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cup",
+          "label": "cup",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "It",
+          "is",
+          "a",
+          "cup"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-123-r3",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "It is a cup. Now write it!",
+        "audio": "voice/line-f1b7daa6307dd2f4.m4a"
+      },
+      "card": {
+        "text": "It is a cup.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "It is a cup.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-123-r4",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: It is a cup.",
+        "say": "It is a cup. Now you say it!",
+        "audio": "voice/line-abdd27f25322651f.m4a"
+      },
+      "card": {
+        "text": "It is a cup.",
+        "picture": {
+          "key": "cup",
+          "label": "cup",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "It is a cup."
+      }
+    },
+    {
+      "id": "level-123-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Spell what",
+        "say": "What! Write it one letter at a time.",
+        "audio": "voice/line-93fc4e40497990fc.m4a"
+      },
+      "card": {
+        "text": "what",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "what",
+        "guide": null,
+        "word": "what",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-123-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every what!",
+        "say": "Find every word what!",
+        "audio": "voice/line-640ff94f9745ce06.m4a"
+      },
+      "card": {
+        "text": "what",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "what",
+        "grid": [
+          "what",
+          "what",
+          "where",
+          "who",
+          "what",
+          "who",
+          "where",
+          "when",
+          "why"
+        ]
+      }
+    },
+    {
+      "id": "level-123-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-123-r7-o1",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-123-r7-o2",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-123-r7-o3",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-123-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word who.",
+        "audio": "voice/line-580aaaccf4a83b49.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-123-r8-o1",
+            "label": "who",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-123-r8-o2",
+            "label": "the",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-123-r8-o3",
+            "label": "he",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "who"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

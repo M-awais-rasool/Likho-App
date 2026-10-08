@@ -1,0 +1,307 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-128",
+  "number": 128,
+  "name": "Wake the Turtle",
+  "skill": "Boss · questions",
+  "icon": "bedtime",
+  "isBoss": true,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "?",
+    "word": "turtle",
+    "say": "The turtle is sleeping in its shell. Let's ask and answer to wake it up!",
+    "audio": "voice/line-972b10240bb0583b.m4a",
+    "picture": {
+      "key": "turtle",
+      "label": "turtle",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-128-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which mark ends it?",
+        "say": "Where is the dog? Which mark goes at the end?",
+        "audio": "voice/line-5358a1745baebc02.m4a"
+      },
+      "card": {
+        "text": "Where is the dog ___",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-128-r1-o1",
+            "label": ".",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-128-r1-o2",
+            "label": "?",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-128-r1-o3",
+            "label": "!",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "?"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-128-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "Where is the cat? Put the words in order.",
+        "audio": "voice/line-b0fe96b704e34c58.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cat_on_box",
+          "label": "cat on box",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "Where",
+          "is",
+          "the",
+          "cat"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-128-r3",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "Can you swim? Now write it!",
+        "audio": "voice/line-42338dd52c11d9ce.m4a"
+      },
+      "card": {
+        "text": "Can you swim?",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "Can you swim?",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-128-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Spell where",
+        "say": "Where! Write it one letter at a time.",
+        "audio": "voice/line-b1ead44849a8ab76.m4a"
+      },
+      "card": {
+        "text": "where",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "where",
+        "guide": null,
+        "word": "where",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-128-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every what!",
+        "say": "Find every word what!",
+        "audio": "voice/line-640ff94f9745ce06.m4a"
+      },
+      "card": {
+        "text": "what",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "what",
+        "grid": [
+          "who",
+          "what",
+          "what",
+          "hat",
+          "hat",
+          "who",
+          "when",
+          "what",
+          "when"
+        ]
+      }
+    },
+    {
+      "id": "level-128-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-128-r6-o1",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-128-r6-o2",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-128-r6-o3",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-128-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word Monday.",
+        "audio": "voice/line-c8ffde019149633c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-128-r7-o1",
+            "label": "like",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-128-r7-o2",
+            "label": "jump",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-128-r7-o3",
+            "label": "Monday",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Monday"
+        },
+        "shape": "balloon",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-128-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: What is this? It is a turtle!",
+        "say": "What is this? It is a turtle! Now you say it!",
+        "audio": "voice/line-ece26a9999877b18.m4a"
+      },
+      "card": {
+        "text": "What is this? It is a turtle!",
+        "picture": {
+          "key": "turtle",
+          "label": "turtle",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "What is this? It is a turtle!"
+      }
+    }
+  ]
+}

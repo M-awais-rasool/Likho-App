@@ -1,0 +1,319 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-114",
+  "number": 114,
+  "name": "More Actions",
+  "skill": "Doing words",
+  "icon": "sports_soccer",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "kick",
+    "word": "ball",
+    "say": "Kick, sing, fly! More doing words.",
+    "audio": "voice/line-9e9cb96efc9fbdb5.m4a",
+    "picture": {
+      "key": "ball",
+      "label": "ball",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-114-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is kick?",
+        "say": "Read the word. Which picture is kick?",
+        "audio": "voice/line-0739d69456d95243.m4a"
+      },
+      "card": {
+        "text": "kick",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-114-r1-o1",
+            "label": "kick",
+            "picture": {
+              "key": "ball",
+              "label": "kick",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-114-r1-o2",
+            "label": "fly",
+            "picture": {
+              "key": "bird_in_sky",
+              "label": "fly",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-114-r1-o3",
+            "label": "sing",
+            "picture": {
+              "key": "sing",
+              "label": "sing",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "kick"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-114-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Kick! Build the word kick.",
+        "audio": "voice/line-382787ed21dc1fb1.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "ball",
+          "label": "kick",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "k",
+          "i",
+          "c",
+          "k"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-114-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word sing.",
+        "audio": "voice/line-4afb9ef3ae0385b3.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-114-r3-o1",
+            "label": "sing",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-114-r3-o2",
+            "label": "walk",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-114-r3-o3",
+            "label": "kick",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "sing"
+        },
+        "shape": "bubble",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-114-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Sing! Which letter is missing?",
+        "audio": "voice/line-1a3e87c7f74d12b8.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "sing",
+          "label": "sing",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "i",
+        "guide": "i",
+        "word": "sing",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-114-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every sit!",
+        "say": "Find every word sit!",
+        "audio": "voice/line-19c1abf51d1ccffe.m4a"
+      },
+      "card": {
+        "text": "sit",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "sit",
+        "grid": [
+          "and",
+          "sit",
+          "walk",
+          "sing",
+          "fly",
+          "sit",
+          "sit",
+          "kick",
+          "dance"
+        ]
+      }
+    },
+    {
+      "id": "level-114-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "dance",
+          "label": "dance",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-114-r6-o1",
+            "label": "dance",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-114-r6-o2",
+            "label": "sing",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-114-r6-o3",
+            "label": "like",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "dance"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-114-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: kick, sing, fly, sit!",
+        "say": "Say them with me! kick, sing, fly, sit!",
+        "audio": "voice/line-acbb7f45ad4097b8.m4a"
+      },
+      "card": {
+        "text": "kick, sing, fly, sit!",
+        "picture": {
+          "key": "ball",
+          "label": "kick",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "kick, sing, fly, sit!"
+      }
+    },
+    {
+      "id": "level-114-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write fly",
+        "say": "Write the word fly.",
+        "audio": "voice/line-a1d389189e239d21.m4a"
+      },
+      "card": {
+        "text": "fly",
+        "picture": {
+          "key": "bird_in_sky",
+          "label": "fly",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "fly",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

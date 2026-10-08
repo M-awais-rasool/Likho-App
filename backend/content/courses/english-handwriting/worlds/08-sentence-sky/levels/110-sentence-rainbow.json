@@ -1,0 +1,306 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-110",
+  "number": 110,
+  "name": "Sentence Rainbow",
+  "skill": "Word order",
+  "icon": "looks",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "I see",
+    "word": "rainbow",
+    "say": "I see a rainbow! Let's put the words in order.",
+    "audio": "voice/line-f467080e408c7ada.m4a",
+    "picture": {
+      "key": "rainbow",
+      "label": "rainbow",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-110-r1",
+      "type": "order",
+      "prompt": {
+        "text": "I see a cat",
+        "audio": "voice/line-47a07161ea60e135.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": true
+      },
+      "order": {
+        "tiles": [
+          "I",
+          "see",
+          "a",
+          "cat"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-110-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "I see a rainbow. Now write it!",
+        "audio": "voice/line-c3922b6261c1eb7c.m4a"
+      },
+      "card": {
+        "text": "I see a rainbow.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I see a rainbow.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-110-r3",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: The fish is in the sea.",
+        "say": "The fish is in the sea. Now you say it!",
+        "audio": "voice/line-2df628b3d985ec5f.m4a"
+      },
+      "card": {
+        "text": "The fish is in the sea.",
+        "picture": {
+          "key": "fish_in_sea",
+          "label": "fish in sea",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "The fish is in the sea."
+      }
+    },
+    {
+      "id": "level-110-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "The cat is on the box.",
+        "say": "The cat is on the box. Find the picture!",
+        "audio": "voice/line-7def30e60b7af41e.m4a"
+      },
+      "card": {
+        "text": "The cat is on the box.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-110-r4-o1",
+            "label": "cat in bed",
+            "picture": {
+              "key": "cat_in_bed",
+              "label": "cat in bed",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-110-r4-o2",
+            "label": "cat on box",
+            "picture": {
+              "key": "cat_on_box",
+              "label": "cat on box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-110-r4-o3",
+            "label": "dog on box",
+            "picture": {
+              "key": "dog_on_box",
+              "label": "dog on box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "cat on box"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-110-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every tiger!",
+        "say": "Find every word tiger!",
+        "audio": "voice/line-d92215d3aad1476b.m4a"
+      },
+      "card": {
+        "text": "tiger",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "tiger",
+        "grid": [
+          "and",
+          "tiger",
+          "the",
+          "bus",
+          "star",
+          "brother",
+          "ship",
+          "tiger",
+          "tiger"
+        ]
+      }
+    },
+    {
+      "id": "level-110-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Spell he",
+        "say": "He! Write it one letter at a time.",
+        "audio": "voice/line-487d7956bd61835e.m4a"
+      },
+      "card": {
+        "text": "he",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "he",
+        "guide": null,
+        "word": "he",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-110-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word like.",
+        "audio": "voice/line-0e49269b26f07822.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-110-r7-o1",
+            "label": "like",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-110-r7-o2",
+            "label": "bus",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-110-r7-o3",
+            "label": "brother",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "like"
+        },
+        "shape": "fish",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-110-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "Which mark ends it?",
+        "say": "The dog can run. Which mark goes at the end?",
+        "audio": "voice/line-f31c208fc8040d04.m4a"
+      },
+      "card": {
+        "text": "The dog can run ___",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-110-r8-o1",
+            "label": "?",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-110-r8-o2",
+            "label": ".",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-110-r8-o3",
+            "label": "!",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "."
+        },
+        "shape": "mushroom",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

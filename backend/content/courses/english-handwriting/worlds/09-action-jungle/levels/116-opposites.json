@@ -1,0 +1,315 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-116",
+  "number": 116,
+  "name": "Opposites",
+  "skill": "Opposites",
+  "icon": "swap_horiz",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "up down",
+    "word": "up",
+    "say": "Up and down, day and night! Words that are opposite.",
+    "audio": "voice/line-143827a9dca868a1.m4a",
+    "picture": {
+      "key": "up",
+      "label": "up",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-116-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "The opposite of up?",
+        "say": "Up! What is the opposite of up?",
+        "audio": "voice/line-bf2c2cac610cbfc5.m4a"
+      },
+      "card": {
+        "text": "up",
+        "picture": {
+          "key": "up",
+          "label": "up",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-116-r1-o1",
+            "label": "up",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-116-r1-o2",
+            "label": "down",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-116-r1-o3",
+            "label": "red",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "down"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-116-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Spell down",
+        "say": "Down! Write it one letter at a time.",
+        "audio": "voice/line-5659146748ccd093.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "down",
+          "label": "down",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "down",
+        "guide": null,
+        "word": "down",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-116-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "The kite goes up. Put the words in order.",
+        "audio": "voice/line-8223cf0242f4e7f4.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "kite",
+          "label": "kite",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "The",
+          "kite",
+          "goes",
+          "up"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-116-r4",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Up and down, big and small!",
+        "say": "Up and down, big and small! Now you say it!",
+        "audio": "voice/line-83348840f62e6957.m4a"
+      },
+      "card": {
+        "text": "Up and down, big and small!",
+        "picture": {
+          "key": "up",
+          "label": "up",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Up and down, big and small!"
+      }
+    },
+    {
+      "id": "level-116-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "I am happy. Now write it!",
+        "audio": "voice/line-a261885d6aa29dcb.m4a"
+      },
+      "card": {
+        "text": "I am happy.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I am happy.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-116-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every up!",
+        "say": "Find every word up!",
+        "audio": "voice/line-6b1ec91f9205962b.m4a"
+      },
+      "card": {
+        "text": "up",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "up",
+        "grid": [
+          "on",
+          "up",
+          "us",
+          "up",
+          "down",
+          "on",
+          "up",
+          "at",
+          "down"
+        ]
+      }
+    },
+    {
+      "id": "level-116-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-116-r7-o1",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-116-r7-o2",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-116-r7-o3",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-116-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word like.",
+        "audio": "voice/line-0e49269b26f07822.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-116-r8-o1",
+            "label": "look",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-116-r8-o2",
+            "label": "ship",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-116-r8-o3",
+            "label": "like",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "like"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

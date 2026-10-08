@@ -1,0 +1,308 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-109",
+  "number": 109,
+  "name": "One or Many",
+  "skill": "Plurals",
+  "icon": "filter_none",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "cat cats",
+    "word": "many cats",
+    "say": "One bird, many birds! Let's make more than one.",
+    "audio": "voice/line-7afb5f57a07f1a7d.m4a",
+    "picture": {
+      "key": "many_cats",
+      "label": "many_cats",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-109-r1",
+      "type": "write",
+      "prompt": {
+        "text": "bird → many",
+        "say": "One bird. Many...?",
+        "audio": "voice/line-be8cad3f193d67e7.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "many_birds",
+          "label": "many birds",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "s",
+        "guide": null,
+        "word": "birds",
+        "missingIndex": 4,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-109-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "One cat, many...?",
+        "say": "One cat. Many...?",
+        "audio": "voice/line-120dd5392eb8a43b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "many_cats",
+          "label": "many cats",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-109-r2-o1",
+            "label": "cats",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-109-r2-o2",
+            "label": "cat",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "cats"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-109-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "I have three hats. Put the words in order.",
+        "audio": "voice/line-e3a6ee90d3c2a55d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "many_hats",
+          "label": "many hats",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "I",
+          "have",
+          "three",
+          "hats"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-109-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "I see two dogs. Now write it!",
+        "audio": "voice/line-8f7aea35a9c1620a.m4a"
+      },
+      "card": {
+        "text": "I see two dogs.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I see two dogs.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-109-r5",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: One cat, two cats, three cats!",
+        "say": "One cat, two cats, three cats! Now you say it!",
+        "audio": "voice/line-2225c4ac3c799549.m4a"
+      },
+      "card": {
+        "text": "One cat, two cats, three cats!",
+        "picture": {
+          "key": "many_cats",
+          "label": "many cats",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "One cat, two cats, three cats!"
+      }
+    },
+    {
+      "id": "level-109-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every tiger!",
+        "say": "Find every word tiger!",
+        "audio": "voice/line-d92215d3aad1476b.m4a"
+      },
+      "card": {
+        "text": "tiger",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "tiger",
+        "grid": [
+          "and",
+          "tiger",
+          "tiger",
+          "the",
+          "tiger",
+          "brother",
+          "bus",
+          "star",
+          "ship"
+        ]
+      }
+    },
+    {
+      "id": "level-109-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-109-r7-o1",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-109-r7-o2",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-109-r7-o3",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-109-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word like.",
+        "audio": "voice/line-0e49269b26f07822.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-109-r8-o1",
+            "label": "ship",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-109-r8-o2",
+            "label": "like",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-109-r8-o3",
+            "label": "brother",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "like"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,310 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-126",
+  "number": 126,
+  "name": "Talk to Aliens",
+  "skill": "Speaking",
+  "icon": "record_voice_over",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Hi!",
+    "word": "alien",
+    "say": "Hi! Let's talk to the friendly aliens.",
+    "audio": "voice/line-76da4c3be4a265e4.m4a",
+    "picture": {
+      "key": "alien",
+      "label": "alien",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-126-r1",
+      "type": "speak",
+      "prompt": {
+        "text": "What is your name?",
+        "audio": "voice/line-83fafdb33504dfb4.m4a"
+      },
+      "card": {
+        "text": "What is your name?",
+        "picture": null,
+        "listen": true
+      },
+      "speak": {
+        "expected": null
+      }
+    },
+    {
+      "id": "level-126-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "My name is Ali. Put the words in order.",
+        "audio": "voice/line-45e2b73af3753303.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "alien",
+          "label": "alien",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "My",
+          "name",
+          "is",
+          "Ali"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-126-r3",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "I am six. Now write it!",
+        "audio": "voice/line-440b17958585a53c.m4a"
+      },
+      "card": {
+        "text": "I am six.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I am six.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-126-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Answer: How old are you?",
+        "say": "How old are you? Pick the answer!",
+        "audio": "voice/line-febea97b6441db48.m4a"
+      },
+      "card": {
+        "text": "How old are you?",
+        "picture": {
+          "key": "alien",
+          "label": "alien",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-126-r4-o1",
+            "label": "It is red.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-126-r4-o2",
+            "label": "I am a cat.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-126-r4-o3",
+            "label": "I am six.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "I am six."
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-126-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every like!",
+        "say": "Find every word like!",
+        "audio": "voice/line-ef09687e3c13ecc5.m4a"
+      },
+      "card": {
+        "text": "like",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "like",
+        "grid": [
+          "said",
+          "like",
+          "like",
+          "under",
+          "you",
+          "like",
+          "look",
+          "jumping",
+          "down"
+        ]
+      }
+    },
+    {
+      "id": "level-126-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Spell jump",
+        "say": "Jump! Write it one letter at a time.",
+        "audio": "voice/line-cc81fb1811517725.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "jump",
+          "label": "jump",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "jump",
+        "guide": null,
+        "word": "jump",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-126-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-126-r7-o1",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-126-r7-o2",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-126-r7-o3",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-126-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word Monday.",
+        "audio": "voice/line-c8ffde019149633c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-126-r8-o1",
+            "label": "Monday",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-126-r8-o2",
+            "label": "under",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-126-r8-o3",
+            "label": "jump",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Monday"
+        },
+        "shape": "mushroom",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}
