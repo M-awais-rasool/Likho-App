@@ -406,7 +406,12 @@ these files.
 | 12 Story Space | 137–144 | story order, writing about me, my story |
 
 One new idea per level in 8 to 10 games, never two games of one kind in a level (the script
-checks it), writing always on the one paper pad, a boss at the end of each world. The games the
+checks it), writing always on the one paper pad, a boss at the end of each world. So that no two
+levels play alike, every level has at least two of the newer games (bubble pop, fix Pencil's
+mistakes, the hungry monster or baskets, memory match, true or silly, writing from memory): in the
+letter worlds each game slot (meet, sound, look, build, write) has a few games that teach the same
+thing and turns with the level; in worlds 3–12 three new games are added to every level, starting
+further along the list each time (`add_star_games` in `later_worlds.py`). The games the
 course had before (Paint Shop, Doctor Pencil, Talk to Aliens, My Story …) are kept in
 `tools/curriculum/classic_rounds.json` and played inside these levels. Change the plan there and
 run it (`--check` prints the plan and the pictures still to draw), then draw the pictures and
@@ -436,10 +441,15 @@ Each round has a `type` and an object with the same name:
 | type | object | the child… |
 |---|---|---|
 | `pick` | `options`, `answer` (`label` = the right option's label, or `any`) | taps the right answer |
-| `write` | `mode` (`trace`, `dots`, `free`, `missing`, `spell`), `guide` (key in `glyphs.json`) | writes on the pad |
+| `write` | `mode` (`trace`, `dots`, `free`, `flash`, `missing`, `spell`), `guide` (key in `glyphs.json`) | writes on the pad (`flash`: sees it for a moment, then writes it from memory) |
 | `order` | `tiles` in the right order | puts tiles in order |
 | `speak` | `expected` | says it aloud |
 | `hunt` | `target`, `grid` (4–16 cells, the target among them) | taps every cell that is the target |
+| `pop` | `target`, `others`, `count` (1–10) | pops the bubbles that say the target as they float up |
+| `fix` | `items` (3–12: `text`, `wrong` = `mirror` / `upside` / null, `at` = the one wrong letter) | taps what Pencil wrote backwards or upside down |
+| `sort` | `bins` (1–3), `items` (`label`, `picture`, `bin`) | drags things into bins: one bin is the hungry monster (`bin: null` = not food), two or three are baskets |
+| `match` | `pairs` (2–6, sides `a` and `b` with `text` or `picture`) | turns cards to find the pairs (no mistakes) |
+| `truth` | `text`, `picture`, `answer` | taps True or Silly |
 
 Writing is always on the one ruled paper pad. A `pick` round can set its own `stage` and an `order`
 round its own `slot`, instead of the level's. A card with `"listen": true` and no text or picture shows a speaker: the child hears the answer
