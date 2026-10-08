@@ -75,6 +75,44 @@
     },
     {
       "id": "level-144-r2",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "said",
+            "wrong": "mirror",
+            "at": 0
+          },
+          {
+            "text": "like",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "down",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "under",
+            "wrong": "mirror",
+            "at": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-144-r3",
       "type": "write",
       "prompt": {
         "text": "moon",
@@ -100,7 +138,7 @@
       }
     },
     {
-      "id": "level-144-r3",
+      "id": "level-144-r4",
       "type": "speak",
       "prompt": {
         "text": "Say: I love to read!",
@@ -116,7 +154,30 @@
       }
     },
     {
-      "id": "level-144-r4",
+      "id": "level-144-r5",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a forest. True, or silly?",
+        "audio": "voice/line-720bff6cc57e0270.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a forest.",
+        "picture": {
+          "key": "down",
+          "label": "down",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-144-r6",
       "type": "pick",
       "prompt": {
         "text": "Who has a kite?",
@@ -134,21 +195,21 @@
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-144-r4-o1"
+            "id": "level-144-r6-o1"
           },
           {
             "label": "Sara",
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-144-r4-o2"
+            "id": "level-144-r6-o2"
           },
           {
             "label": "Sam",
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-144-r4-o3"
+            "id": "level-144-r6-o3"
           }
         ],
         "answer": {
@@ -163,7 +224,7 @@
       }
     },
     {
-      "id": "level-144-r5",
+      "id": "level-144-r7",
       "type": "write",
       "prompt": {
         "text": "I can read.",
@@ -185,55 +246,91 @@
       }
     },
     {
-      "id": "level-144-r6",
-      "type": "pick",
+      "id": "level-144-r8",
+      "type": "sort",
       "prompt": {
-        "text": "Fix it!",
-        "say": "This sentence needs a capital letter. Tap the word to fix it!",
-        "audio": "voice/line-3653b06ee41d03ec.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/f/|fːː} or {/s/|sːː}?",
+        "audio": "voice/line-a7cf97e07b4dc8d0.m4a"
       },
       "card": {
-        "text": "Fix it!",
+        "text": "f s",
         "picture": null,
         "listen": false
       },
-      "pick": {
-        "options": [
+      "sort": {
+        "bins": [
           {
-            "id": "level-144-r6-o1",
-            "label": "ali",
+            "label": "f",
             "picture": null,
-            "color": null,
-            "hideLabel": false
+            "bin": null
           },
           {
-            "id": "level-144-r6-o2",
-            "label": "write",
+            "label": "s",
             "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-144-r6-o3",
-            "label": "can",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
+            "bin": null
           }
         ],
-        "answer": {
-          "kind": "label",
-          "value": "ali"
-        },
-        "shape": null,
-        "layout": "flow",
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": true
+        "items": [
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "four",
+            "picture": {
+              "key": "four",
+              "label": "four",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "foot",
+            "picture": {
+              "key": "foot",
+              "label": "foot",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "sock",
+            "picture": {
+              "key": "sock",
+              "label": "sock",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "six",
+            "picture": {
+              "key": "six",
+              "label": "six",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "seed",
+            "picture": {
+              "key": "seed",
+              "label": "seed",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
       }
     },
     {
-      "id": "level-144-r7",
+      "id": "level-144-r9",
       "type": "hunt",
       "prompt": {
         "text": "Find every under!",
@@ -261,7 +358,7 @@
       }
     },
     {
-      "id": "level-144-r8",
+      "id": "level-144-r10",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",

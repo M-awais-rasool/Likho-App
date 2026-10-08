@@ -79,6 +79,54 @@
     },
     {
       "id": "level-139-r2",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to the same word with a capital letter.",
+        "audio": "voice/line-d82ba5aa00efefb3.m4a"
+      },
+      "card": {
+        "text": "the = The",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "look",
+              "picture": null
+            },
+            "b": {
+              "text": "Look",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "said",
+              "picture": null
+            },
+            "b": {
+              "text": "Said",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "like",
+              "picture": null
+            },
+            "b": {
+              "text": "Like",
+              "picture": null
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-139-r3",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -101,7 +149,7 @@
       }
     },
     {
-      "id": "level-139-r3",
+      "id": "level-139-r4",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -129,7 +177,7 @@
       }
     },
     {
-      "id": "level-139-r4",
+      "id": "level-139-r5",
       "type": "speak",
       "prompt": {
         "text": "Say: Once upon a time, a fish lived in the sea.",
@@ -150,7 +198,45 @@
       }
     },
     {
-      "id": "level-139-r5",
+      "id": "level-139-r6",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "look",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "said",
+            "wrong": "mirror",
+            "at": 1
+          },
+          {
+            "text": "like",
+            "wrong": "mirror",
+            "at": 2
+          },
+          {
+            "text": "down",
+            "wrong": null,
+            "at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-139-r7",
       "type": "write",
       "prompt": {
         "text": "Spell forest",
@@ -177,7 +263,7 @@
       }
     },
     {
-      "id": "level-139-r6",
+      "id": "level-139-r8",
       "type": "hunt",
       "prompt": {
         "text": "Find every down!",
@@ -205,7 +291,7 @@
       }
     },
     {
-      "id": "level-139-r7",
+      "id": "level-139-r9",
       "type": "pick",
       "prompt": {
         "text": "I see a red car.",
@@ -220,7 +306,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-139-r7-o1",
+            "id": "level-139-r9-o1",
             "label": "dog running",
             "picture": {
               "key": "dog_running",
@@ -231,7 +317,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-139-r7-o2",
+            "id": "level-139-r9-o2",
             "label": "hot sun",
             "picture": {
               "key": "hot_sun",
@@ -242,7 +328,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-139-r7-o3",
+            "id": "level-139-r9-o3",
             "label": "red car",
             "picture": {
               "key": "red_car",
@@ -265,51 +351,26 @@
       }
     },
     {
-      "id": "level-139-r8",
-      "type": "pick",
+      "id": "level-139-r10",
+      "type": "truth",
       "prompt": {
-        "text": "Find the word you hear",
-        "say": "Listen! Find the word first.",
-        "audio": "voice/line-23e1f8eee1eea002.m4a"
+        "text": "True or silly?",
+        "say": "This is a down. True, or silly?",
+        "audio": "voice/line-4a9b4311660d87fc.m4a"
       },
       "card": {
         "text": null,
         "picture": null,
         "listen": true
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-139-r8-o1",
-            "label": "who",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-139-r8-o2",
-            "label": "look",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-139-r8-o3",
-            "label": "first",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "first"
+      "truth": {
+        "text": "This is a down.",
+        "picture": {
+          "key": "down",
+          "label": "down",
+          "url": null
         },
-        "shape": "shell",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "answer": true
       }
     }
   ]

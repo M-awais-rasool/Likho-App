@@ -53,6 +53,29 @@
     },
     {
       "id": "level-142-r2",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a down. True, or silly?",
+        "audio": "voice/line-4a9b4311660d87fc.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a down.",
+        "picture": {
+          "key": "jump",
+          "label": "jump",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-142-r3",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -75,7 +98,7 @@
       }
     },
     {
-      "id": "level-142-r3",
+      "id": "level-142-r4",
       "type": "speak",
       "prompt": {
         "text": "Say: I wake up.",
@@ -96,7 +119,7 @@
       }
     },
     {
-      "id": "level-142-r4",
+      "id": "level-142-r5",
       "type": "hunt",
       "prompt": {
         "text": "Find every under!",
@@ -124,7 +147,82 @@
       }
     },
     {
-      "id": "level-142-r5",
+      "id": "level-142-r6",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/j/|ʤʌ} or {/w/|wʌ}?",
+        "audio": "voice/line-e48ccae55ea807d9.m4a"
+      },
+      "card": {
+        "text": "j w",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "j",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "w",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "web",
+            "picture": {
+              "key": "web",
+              "label": "web",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "watch",
+            "picture": {
+              "key": "watch",
+              "label": "watch",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "jump",
+            "picture": {
+              "key": "jump",
+              "label": "jump",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "whale",
+            "picture": {
+              "key": "whale",
+              "label": "whale",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "jam",
+            "picture": {
+              "key": "jam",
+              "label": "jam",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-142-r7",
       "type": "write",
       "prompt": {
         "text": "Spell what",
@@ -147,7 +245,7 @@
       }
     },
     {
-      "id": "level-142-r6",
+      "id": "level-142-r8",
       "type": "pick",
       "prompt": {
         "text": "I see a red car.",
@@ -162,7 +260,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-142-r6-o1",
+            "id": "level-142-r8-o1",
             "label": "dog running",
             "picture": {
               "key": "dog_running",
@@ -173,7 +271,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-142-r6-o2",
+            "id": "level-142-r8-o2",
             "label": "red car",
             "picture": {
               "key": "red_car",
@@ -184,7 +282,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-142-r6-o3",
+            "id": "level-142-r8-o3",
             "label": "hot sun",
             "picture": {
               "key": "hot_sun",
@@ -207,7 +305,7 @@
       }
     },
     {
-      "id": "level-142-r7",
+      "id": "level-142-r9",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -222,21 +320,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-142-r7-o1",
+            "id": "level-142-r9-o1",
             "label": "forest",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-142-r7-o2",
+            "id": "level-142-r9-o2",
             "label": "under",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-142-r7-o3",
+            "id": "level-142-r9-o3",
             "label": "what",
             "picture": null,
             "color": null,
@@ -255,51 +353,30 @@
       }
     },
     {
-      "id": "level-142-r8",
-      "type": "pick",
+      "id": "level-142-r10",
+      "type": "write",
       "prompt": {
-        "text": "Which mark ends it?",
-        "say": "The dog can run. Which mark goes at the end?",
-        "audio": "voice/line-f31c208fc8040d04.m4a"
+        "text": "Look, then write jump",
+        "say": "Look at the word jump. Then write it from memory!",
+        "audio": "voice/line-db2df7e90ad5e116.m4a"
       },
       "card": {
-        "text": "The dog can run ___",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "jump",
+          "label": "jump",
+          "url": null
+        },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-142-r8-o1",
-            "label": ".",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-142-r8-o2",
-            "label": "!",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-142-r8-o3",
-            "label": "?",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "."
-        },
-        "shape": "kite",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+      "write": {
+        "mode": "flash",
+        "target": "jump",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
       }
     }
   ]
