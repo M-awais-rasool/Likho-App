@@ -16,6 +16,7 @@ type Config struct {
 	Port string
 
 	DatabaseURL string
+	DBMaxConns  int // connections to Postgres (0 = by CPUs, 8 to 20)
 	RedisURL    string
 
 	// Google OAuth client IDs whose ID tokens we accept (iOS, Android, web).
@@ -41,6 +42,10 @@ type Config struct {
 	AdminBootstrapEmail    string
 	AdminBootstrapPassword string
 
+	// Pictures and recordings of the courses: a folder on the server's
+	// disk (not in the binary, not in git), served at /media/.
+	MediaDir string
+
 	// Countries of families: a header set by the CDN in front of the API
 	// (e.g. CF-IPCountry) and/or a GeoIP country database (.mmdb).
 	CountryHeader string
@@ -55,11 +60,13 @@ func Load() (Config, error) {
 		Port:            get("PORT", "8080"),
 		DatabaseURL:     get("DATABASE_URL", "postgres://likho:likho@localhost:5432/likho?sslmode=disable"),
 		RedisURL:        get("REDIS_URL", "redis://localhost:6379/0"),
+		DBMaxConns:      number("DB_MAX_CONNS", 0),
 		GoogleClientIDs: list(os.Getenv("GOOGLE_CLIENT_IDS")),
 		JWTSecret:       []byte(os.Getenv("JWT_SECRET")),
 		AccessTTL:       duration("ACCESS_TOKEN_TTL", 15*time.Minute),
 		RefreshTTL:      duration("REFRESH_TOKEN_TTL", 60*24*time.Hour),
 		ContentDir:      os.Getenv("CONTENT_DIR"),
+		MediaDir:        get("MEDIA_DIR", "../media"),
 		DevLogin:        boolean("DEV_LOGIN", false),
 
 		AdminDir:               os.Getenv("ADMIN_DIR"),
@@ -125,4 +132,11 @@ func boolean(key string, def bool) bool {
 		panic(fmt.Sprintf("%s: %v", key, err))
 	}
 	return b
+}
+
+func number(key string, def int) int {
+	if n, err := strconv.Atoi(strings.TrimSpace(os.Getenv(key))); err == nil {
+		return n
+	}
+	return def
 }
