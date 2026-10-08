@@ -105,10 +105,20 @@ function Editor({ isNew, number, world, initial, detail, editor }: { isNew: bool
 
   // the preview gets the course with this level in it
   const staged = useQuery({ queryKey: ['document', course], queryFn: () => get<Doc>(`/content/courses/${course}/document`) })
+  // the pictures on the server (its media folder, GET /v1/media)
   const assets = useQuery({
-    queryKey: ['preview-assets'],
-    queryFn: () => fetch('/admin/preview/likho-assets.json').then((r) => (r.ok ? r.json() : { pictures: [] })).catch(() => ({ pictures: [] })) as Promise<{ pictures: string[] }>,
-    staleTime: Infinity,
+    queryKey: ['media'],
+    queryFn: () =>
+      fetch('/v1/media')
+        .then((r) => (r.ok ? r.json() : { files: {} }))
+        .then((m: { files: Record<string, string> }) => ({
+          pictures: Object.keys(m.files)
+            .filter((p) => p.startsWith('pictures/') && p.endsWith('.png'))
+            .map((p) => p.slice('pictures/'.length, -'.png'.length))
+            .sort(),
+        }))
+        .catch(() => ({ pictures: [] as string[] })),
+    staleTime: 5 * 60_000,
   })
   const assetList: Assets = useMemo(() => ({ pictures: assets.data?.pictures ?? [], glyphs: Object.keys(staged.data?.glyphs ?? {}).sort() }), [assets.data, staged.data])
   const previewDoc = useDebounced(doc, 700)
