@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 import '../../../data/models/course_models.dart';
 import '../../../design/tokens.dart';
@@ -16,18 +17,21 @@ class ProgressDots extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // long levels (12–15 rounds) get smaller dots so the row fits the bar
+    final small = count > 8;
+    final dot = small ? 9.0 : 14.0, gap = small ? 4.0 : 7.0;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         for (var i = 0; i < count; i++) ...[
-          if (i > 0) const SizedBox(width: 7),
+          if (i > 0) SizedBox(width: gap),
           AnimatedContainer(
             duration: const Duration(milliseconds: 350),
             curve: const Cubic(.34, 1.56, .64, 1),
-            height: 14,
-            width: i == current ? 30 : 14,
+            height: dot,
+            width: i == current ? dot * 2 : dot,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(7),
+              borderRadius: BorderRadius.circular(dot / 2),
               color: i < current || (i == current && currentDone)
                   ? LikhoColors.success
                   : i == current
@@ -73,6 +77,10 @@ class PromptCardView extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          // a "listen" card with nothing to show: the answer is heard, not
+          // seen (the replay button is next to the card)
+          if ((card?.listen ?? false) && pic == null && text.isEmpty)
+            const Icon(Symbols.volume_up_rounded, size: 64, weight: 600, fill: 1, color: LikhoColors.primaryDeep),
           if (pic != null) Illustration(picture: pic, width: 78, height: 84),
           if (pic != null && text.isNotEmpty) const SizedBox(width: 10),
           // the text box is `flex:1; min-width:0`: it takes the rest of the
@@ -345,6 +353,9 @@ class BossStrip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // long boss levels (12–15 rounds): smaller bubbles in two rows
+    final many = rounds > 6;
+    final size = many ? 18.0 : 28.0, gap = many ? 5.0 : 6.0;
     return SizedBox(
       height: 88,
       child: Row(
@@ -359,40 +370,45 @@ class BossStrip extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 14),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 40),
-            child: Row(
-              children: [
-                for (var i = 0; i < rounds; i++) ...[
-                  if (i > 0) const SizedBox(width: 6),
-                  AnimatedScale(
-                    scale: i < done ? 1.8 : 1,
-                    duration: const Duration(milliseconds: 350),
-                    curve: const Cubic(.34, 1.56, .64, 1),
-                    child: AnimatedOpacity(
-                      opacity: i < done ? 0 : 1,
-                      duration: const Duration(milliseconds: 350),
-                      // CSS content-box: 24 px + 2 px border each side = 28 px.
-                      // The gradient is `circle at 35% 30%` of the 24 px padding
-                      // box, sized to its farthest corner (22.9 px).
-                      child: Container(
-                        width: 28,
-                        height: 28,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(color: GameColors.bubbleRim, width: 2),
-                          gradient: const RadialGradient(
-                            center: Alignment(-.257, -.343),
-                            radius: .819,
-                            colors: [LikhoColors.surface, LikhoColors.surface, GameColors.bubbleMid, GameColors.bubbleMid, GameColors.bubbleBlue],
-                            stops: [0, .18, .2, .7, 1],
+          Flexible(
+            child: Padding(
+              padding: EdgeInsets.only(bottom: many ? 30 : 40),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: many ? ((rounds + 1) ~/ 2) * (size + gap) : double.infinity),
+                child: Wrap(
+                  spacing: gap,
+                  runSpacing: gap,
+                  children: [
+                    for (var i = 0; i < rounds; i++)
+                      AnimatedScale(
+                        scale: i < done ? 1.8 : 1,
+                        duration: const Duration(milliseconds: 350),
+                        curve: const Cubic(.34, 1.56, .64, 1),
+                        child: AnimatedOpacity(
+                          opacity: i < done ? 0 : 1,
+                          duration: const Duration(milliseconds: 350),
+                          // CSS content-box: 24 px + 2 px border each side = 28 px.
+                          // The gradient is `circle at 35% 30%` of the 24 px padding
+                          // box, sized to its farthest corner (22.9 px).
+                          child: Container(
+                            width: size,
+                            height: size,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(color: GameColors.bubbleRim, width: many ? 1.5 : 2),
+                              gradient: const RadialGradient(
+                                center: Alignment(-.257, -.343),
+                                radius: .819,
+                                colors: [LikhoColors.surface, LikhoColors.surface, GameColors.bubbleMid, GameColors.bubbleMid, GameColors.bubbleBlue],
+                                stops: [0, .18, .2, .7, 1],
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                ],
-              ],
+                  ],
+                ),
+              ),
             ),
           ),
         ],
