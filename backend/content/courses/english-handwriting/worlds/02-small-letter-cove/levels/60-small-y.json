@@ -1,0 +1,325 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-60",
+  "number": 60,
+  "name": "Small y",
+  "skill": "Small y and its sound",
+  "icon": "spa",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Yy",
+    "word": "yo-yo",
+    "say": "Big {Y|wˈaɪ}, small {y|wˈaɪ}! Small {y|wˈaɪ} says {/y/|jʌ}, like yo-yo.",
+    "audio": "voice/line-06795f223be5b86f.m4a",
+    "picture": {
+      "key": "yoyo",
+      "label": "yo-yo",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-60-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find small y!",
+        "say": "Big {Y|wˈaɪ}, small {y|wˈaɪ}! Find small {y|wˈaɪ}.",
+        "audio": "voice/line-e7098e82f9b2c616.m4a"
+      },
+      "card": {
+        "text": "Y",
+        "picture": {
+          "key": "yoyo",
+          "label": "yo-yo",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-60-r1-o1",
+            "label": "g",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-60-r1-o2",
+            "label": "y",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-60-r1-o3",
+            "label": "v",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-60-r1-o4",
+            "label": "j",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "y"
+        },
+        "shape": "balloon",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-60-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace small y",
+        "say": "Trace small {y|wˈaɪ}.",
+        "audio": "voice/line-9d805d3eaaccab2b.m4a"
+      },
+      "card": {
+        "text": "y",
+        "picture": {
+          "key": "yoyo",
+          "label": "yo-yo",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "y",
+        "guide": "y",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-60-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /y/?",
+        "say": "{y|wˈaɪ} says {/y/|jʌ}. Which one starts with {/y/|jʌ}?",
+        "audio": "voice/line-61a570d3be495165.m4a"
+      },
+      "card": {
+        "text": "y",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-60-r3-o1",
+            "label": "robot",
+            "picture": {
+              "key": "robot",
+              "label": "robot",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-60-r3-o2",
+            "label": "yo-yo",
+            "picture": {
+              "key": "yoyo",
+              "label": "yo-yo",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-60-r3-o3",
+            "label": "zebra",
+            "picture": {
+              "key": "zebra",
+              "label": "zebra",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "yo-yo"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-60-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make small y",
+        "say": "Join the dots to make small {y|wˈaɪ}.",
+        "audio": "voice/line-5c19a2d75b0ec3a6.m4a"
+      },
+      "card": {
+        "text": "y",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "y",
+        "guide": "y",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-60-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every small y!",
+        "say": "Find every small {y|wˈaɪ}!",
+        "audio": "voice/line-96f25f2e6a83e377.m4a"
+      },
+      "card": {
+        "text": "y",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "y",
+        "grid": [
+          "g",
+          "v",
+          "y",
+          "v",
+          "y",
+          "j",
+          "g",
+          "g",
+          "y",
+          "y",
+          "j",
+          "v"
+        ]
+      }
+    },
+    {
+      "id": "level-60-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Finish the word!",
+        "say": "Yoyo! Write the missing letter.",
+        "audio": "voice/line-ad9e2d1bcdce76a7.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "yoyo",
+          "label": "yoyo",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "y",
+        "guide": "y",
+        "word": "yoyo",
+        "missingIndex": 0,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-60-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write small y by yourself",
+        "say": "Now write small {y|wˈaɪ} all by yourself!",
+        "audio": "voice/line-bcee20a3765ef87c.m4a"
+      },
+      "card": {
+        "text": "y",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "y",
+        "guide": "y",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-60-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: y says /y/ like yo-yo!",
+        "say": "{y|wˈaɪ} says {/y/|jʌ}, like yo-yo! Now you say it.",
+        "audio": "voice/line-36ea4973e8ad34e7.m4a"
+      },
+      "card": {
+        "text": "y says /y/ like yo-yo!",
+        "picture": {
+          "key": "yoyo",
+          "label": "yo-yo",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "y says /y/ like yo-yo!"
+      }
+    },
+    {
+      "id": "level-60-r9",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "x",
+          "y",
+          "z"
+        ]
+      }
+    }
+  ]
+}

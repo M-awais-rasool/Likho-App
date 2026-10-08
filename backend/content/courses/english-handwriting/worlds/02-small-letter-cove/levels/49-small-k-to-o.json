@@ -1,0 +1,316 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-49",
+  "number": 49,
+  "name": "Small k to o",
+  "skill": "Review",
+  "icon": "auto_awesome",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "k l m n o",
+    "word": "star",
+    "say": "k to o! Let's play with small {k|kˈeɪ}, small {l|ˈɛl}, small {m|ˈɛm}, small {n|ˈɛn}, small {o|ˈoʊ}.",
+    "audio": "voice/line-94497e8d7e17b645.m4a",
+    "picture": {
+      "key": "star",
+      "label": "star",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-49-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which letter do you hear?",
+        "say": "Listen! Find small {o|ˈoʊ}.",
+        "audio": "voice/line-2b9f4ae7a4aecccb.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-49-r1-o1",
+            "label": "m",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-49-r1-o2",
+            "label": "l",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-49-r1-o3",
+            "label": "k",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-49-r1-o4",
+            "label": "o",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "o"
+        },
+        "shape": "fish",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-49-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace small l",
+        "say": "Trace small {l|ˈɛl}.",
+        "audio": "voice/line-f9fc7f065419df99.m4a"
+      },
+      "card": {
+        "text": "l",
+        "picture": {
+          "key": "lion",
+          "label": "lion",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "l",
+        "guide": "l",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-49-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /m/?",
+        "say": "Which one starts with {/m/|mːː}?",
+        "audio": "voice/line-bec70d9e96ee43dc.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-49-r3-o1",
+            "label": "moon",
+            "picture": {
+              "key": "moon",
+              "label": "moon",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-49-r3-o2",
+            "label": "queen",
+            "picture": {
+              "key": "queen",
+              "label": "queen",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-49-r3-o3",
+            "label": "whale",
+            "picture": {
+              "key": "whale",
+              "label": "whale",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "moon"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-49-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make small n",
+        "say": "Join the dots to make small {n|ˈɛn}.",
+        "audio": "voice/line-588a1274780c6c5c.m4a"
+      },
+      "card": {
+        "text": "n",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "n",
+        "guide": "n",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-49-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every small k!",
+        "say": "Find every small {k|kˈeɪ}!",
+        "audio": "voice/line-554aa446cbc4f4bc.m4a"
+      },
+      "card": {
+        "text": "k",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "k",
+        "grid": [
+          "k",
+          "l",
+          "m",
+          "l",
+          "k",
+          "x",
+          "k",
+          "k",
+          "l",
+          "o",
+          "n",
+          "h"
+        ]
+      }
+    },
+    {
+      "id": "level-49-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Write the letter you hear",
+        "say": "Listen, then write it! small {o|ˈoʊ}.",
+        "audio": "voice/line-501cbd329b41db64.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "free",
+        "target": "o",
+        "guide": "o",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-49-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "k",
+          "l",
+          "m"
+        ]
+      }
+    },
+    {
+      "id": "level-49-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: k, l, m, n, o!",
+        "say": "Say all the letters with me! {k|kˈeɪ}, {l|ˈɛl}, {m|ˈɛm}, {n|ˈɛn}, {o|ˈoʊ}!",
+        "audio": "voice/line-3eb1e009757768f1.m4a"
+      },
+      "card": {
+        "text": "k, l, m, n, o!",
+        "picture": null,
+        "listen": true
+      },
+      "speak": {
+        "expected": "k, l, m, n, o!"
+      }
+    },
+    {
+      "id": "level-49-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "audio": "voice/line-ab7242535fe9991a.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bottle_message",
+          "label": "bottle message",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "l",
+        "guide": "l",
+        "word": "klm",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

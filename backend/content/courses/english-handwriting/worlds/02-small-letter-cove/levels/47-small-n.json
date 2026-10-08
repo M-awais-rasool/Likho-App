@@ -1,0 +1,325 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-47",
+  "number": 47,
+  "name": "Small n",
+  "skill": "Small n and its sound",
+  "icon": "spa",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Nn",
+    "word": "nest",
+    "say": "Big {N|ˈɛn}, small {n|ˈɛn}! Small {n|ˈɛn} says {/n/|nːː}, like nest.",
+    "audio": "voice/line-e5e7c1cc1b4dca20.m4a",
+    "picture": {
+      "key": "nest",
+      "label": "nest",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-47-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find small n!",
+        "say": "Big {N|ˈɛn}, small {n|ˈɛn}! Find small {n|ˈɛn}.",
+        "audio": "voice/line-8e6c3c5619acee51.m4a"
+      },
+      "card": {
+        "text": "N",
+        "picture": {
+          "key": "nest",
+          "label": "nest",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-47-r1-o1",
+            "label": "u",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-47-r1-o2",
+            "label": "h",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-47-r1-o3",
+            "label": "m",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-47-r1-o4",
+            "label": "n",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "n"
+        },
+        "shape": "bubble",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-47-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace small n",
+        "say": "Trace small {n|ˈɛn}.",
+        "audio": "voice/line-d3884549c518989b.m4a"
+      },
+      "card": {
+        "text": "n",
+        "picture": {
+          "key": "nest",
+          "label": "nest",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "n",
+        "guide": "n",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-47-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /n/?",
+        "say": "{n|ˈɛn} says {/n/|nːː}. Which one starts with {/n/|nːː}?",
+        "audio": "voice/line-8e92a0ef2b98184d.m4a"
+      },
+      "card": {
+        "text": "n",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-47-r3-o1",
+            "label": "kite",
+            "picture": {
+              "key": "kite",
+              "label": "kite",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-47-r3-o2",
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-47-r3-o3",
+            "label": "nest",
+            "picture": {
+              "key": "nest",
+              "label": "nest",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "nest"
+        },
+        "shape": "bucket",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-47-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make small n",
+        "say": "Join the dots to make small {n|ˈɛn}.",
+        "audio": "voice/line-588a1274780c6c5c.m4a"
+      },
+      "card": {
+        "text": "n",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "n",
+        "guide": "n",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-47-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every small n!",
+        "say": "Find every small {n|ˈɛn}!",
+        "audio": "voice/line-71e4741edaa5d23a.m4a"
+      },
+      "card": {
+        "text": "n",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "n",
+        "grid": [
+          "h",
+          "n",
+          "u",
+          "n",
+          "m",
+          "n",
+          "h",
+          "n",
+          "h",
+          "m",
+          "u",
+          "m"
+        ]
+      }
+    },
+    {
+      "id": "level-47-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Finish the word!",
+        "say": "Nest! Write the missing letter.",
+        "audio": "voice/line-5c92ddd391b3f1e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "nest",
+          "label": "nest",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "n",
+        "guide": "n",
+        "word": "nest",
+        "missingIndex": 0,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-47-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write small n by yourself",
+        "say": "Now write small {n|ˈɛn} all by yourself!",
+        "audio": "voice/line-8f3974fcb5cca779.m4a"
+      },
+      "card": {
+        "text": "n",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "n",
+        "guide": "n",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-47-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: n says /n/ like nest!",
+        "say": "{n|ˈɛn} says {/n/|nːː}, like nest! Now you say it.",
+        "audio": "voice/line-6e566a284df55dce.m4a"
+      },
+      "card": {
+        "text": "n says /n/ like nest!",
+        "picture": {
+          "key": "nest",
+          "label": "nest",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "n says /n/ like nest!"
+      }
+    },
+    {
+      "id": "level-47-r9",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "m",
+          "n",
+          "o"
+        ]
+      }
+    }
+  ]
+}

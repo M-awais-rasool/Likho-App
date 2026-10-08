@@ -1,0 +1,325 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-32",
+  "number": 32,
+  "name": "Small a",
+  "skill": "Small a and its sound",
+  "icon": "spa",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Aa",
+    "word": "apple",
+    "say": "Big {A|ˈeɪ}, small {a|ˈeɪ}! Small {a|ˈeɪ} says {/a/|æ}, like apple.",
+    "audio": "voice/line-200c7007500a1a0b.m4a",
+    "picture": {
+      "key": "apple",
+      "label": "apple",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-32-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find small a!",
+        "say": "Big {A|ˈeɪ}, small {a|ˈeɪ}! Find small {a|ˈeɪ}.",
+        "audio": "voice/line-f627733f4bdb915e.m4a"
+      },
+      "card": {
+        "text": "A",
+        "picture": {
+          "key": "apple",
+          "label": "apple",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-32-r1-o1",
+            "label": "d",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-32-r1-o2",
+            "label": "a",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-32-r1-o3",
+            "label": "o",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-32-r1-o4",
+            "label": "e",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "a"
+        },
+        "shape": "balloon",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-32-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace small a",
+        "say": "Trace small {a|ˈeɪ}.",
+        "audio": "voice/line-e9eb3e411f605f77.m4a"
+      },
+      "card": {
+        "text": "a",
+        "picture": {
+          "key": "apple",
+          "label": "apple",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "a",
+        "guide": "a",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-32-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /a/?",
+        "say": "{a|ˈeɪ} says {/a/|æ}. Which one starts with {/a/|æ}?",
+        "audio": "voice/line-0da61b9c56a021bb.m4a"
+      },
+      "card": {
+        "text": "a",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-32-r3-o1",
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-32-r3-o2",
+            "label": "apple",
+            "picture": {
+              "key": "apple",
+              "label": "apple",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-32-r3-o3",
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "apple"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-32-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make small a",
+        "say": "Join the dots to make small {a|ˈeɪ}.",
+        "audio": "voice/line-98dc7a265f94ea0a.m4a"
+      },
+      "card": {
+        "text": "a",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "a",
+        "guide": "a",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-32-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every small a!",
+        "say": "Find every small {a|ˈeɪ}!",
+        "audio": "voice/line-d87aa5bc6ae6b4b0.m4a"
+      },
+      "card": {
+        "text": "a",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "a",
+        "grid": [
+          "e",
+          "a",
+          "d",
+          "a",
+          "o",
+          "d",
+          "d",
+          "e",
+          "o",
+          "o",
+          "a",
+          "a"
+        ]
+      }
+    },
+    {
+      "id": "level-32-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Finish the word!",
+        "say": "Apple! Write the missing letter.",
+        "audio": "voice/line-f628cb8570359134.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "apple",
+          "label": "apple",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "a",
+        "guide": "a",
+        "word": "apple",
+        "missingIndex": 0,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-32-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write small a by yourself",
+        "say": "Now write small {a|ˈeɪ} all by yourself!",
+        "audio": "voice/line-752b14ca7b42f55c.m4a"
+      },
+      "card": {
+        "text": "a",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "a",
+        "guide": "a",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-32-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: a says /a/ like apple!",
+        "say": "{a|ˈeɪ} says {/a/|æ}, like apple! Now you say it.",
+        "audio": "voice/line-6851df192c9edd23.m4a"
+      },
+      "card": {
+        "text": "a says /a/ like apple!",
+        "picture": {
+          "key": "apple",
+          "label": "apple",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "a says /a/ like apple!"
+      }
+    },
+    {
+      "id": "level-32-r9",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "a",
+          "b",
+          "c"
+        ]
+      }
+    }
+  ]
+}

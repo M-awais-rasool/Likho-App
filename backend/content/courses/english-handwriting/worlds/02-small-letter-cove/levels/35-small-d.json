@@ -1,0 +1,325 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-35",
+  "number": 35,
+  "name": "Small d",
+  "skill": "Small d and its sound",
+  "icon": "spa",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Dd",
+    "word": "dog",
+    "say": "Big {D|dˈiː}, small {d|dˈiː}! Small {d|dˈiː} says {/d/|dʌ}, like dog.",
+    "audio": "voice/line-a682000754d250ac.m4a",
+    "picture": {
+      "key": "dog",
+      "label": "dog",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-35-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find small d!",
+        "say": "Big {D|dˈiː}, small {d|dˈiː}! Find small {d|dˈiː}.",
+        "audio": "voice/line-7cd099ed83933b47.m4a"
+      },
+      "card": {
+        "text": "D",
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-35-r1-o1",
+            "label": "d",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-35-r1-o2",
+            "label": "q",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-35-r1-o3",
+            "label": "a",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-35-r1-o4",
+            "label": "b",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "d"
+        },
+        "shape": "fish",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-35-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace small d",
+        "say": "Trace small {d|dˈiː}.",
+        "audio": "voice/line-4de5727f758a521c.m4a"
+      },
+      "card": {
+        "text": "d",
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "d",
+        "guide": "d",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-35-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /d/?",
+        "say": "{d|dˈiː} says {/d/|dʌ}. Which one starts with {/d/|dʌ}?",
+        "audio": "voice/line-b0a6cb3ca9733855.m4a"
+      },
+      "card": {
+        "text": "d",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-35-r3-o1",
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-35-r3-o2",
+            "label": "goat",
+            "picture": {
+              "key": "goat",
+              "label": "goat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-35-r3-o3",
+            "label": "insect",
+            "picture": {
+              "key": "insect",
+              "label": "insect",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "dog"
+        },
+        "shape": "bucket",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-35-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make small d",
+        "say": "Join the dots to make small {d|dˈiː}.",
+        "audio": "voice/line-22b586edf4de97db.m4a"
+      },
+      "card": {
+        "text": "d",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "d",
+        "guide": "d",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-35-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every small d!",
+        "say": "Find every small {d|dˈiː}!",
+        "audio": "voice/line-fe06d8915cfba23e.m4a"
+      },
+      "card": {
+        "text": "d",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "d",
+        "grid": [
+          "q",
+          "b",
+          "d",
+          "a",
+          "b",
+          "d",
+          "a",
+          "q",
+          "d",
+          "a",
+          "d",
+          "b"
+        ]
+      }
+    },
+    {
+      "id": "level-35-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Finish the word!",
+        "say": "Dog! Write the missing letter.",
+        "audio": "voice/line-cca5a7c6e253ca57.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "d",
+        "guide": "d",
+        "word": "dog",
+        "missingIndex": 0,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-35-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write small d by yourself",
+        "say": "Now write small {d|dˈiː} all by yourself!",
+        "audio": "voice/line-8c29466874389de2.m4a"
+      },
+      "card": {
+        "text": "d",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "d",
+        "guide": "d",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-35-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: d says /d/ like dog!",
+        "say": "{d|dˈiː} says {/d/|dʌ}, like dog! Now you say it.",
+        "audio": "voice/line-40a71630a84dfbc0.m4a"
+      },
+      "card": {
+        "text": "d says /d/ like dog!",
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "d says /d/ like dog!"
+      }
+    },
+    {
+      "id": "level-35-r9",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "c",
+          "d",
+          "e"
+        ]
+      }
+    }
+  ]
+}

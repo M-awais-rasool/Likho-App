@@ -1,0 +1,325 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-57",
+  "number": 57,
+  "name": "Small v",
+  "skill": "Small v and its sound",
+  "icon": "spa",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Vv",
+    "word": "violin",
+    "say": "Big {V|vˈiː}, small {v|vˈiː}! Small {v|vˈiː} says {/v/|vːː}, like violin.",
+    "audio": "voice/line-2ef35f2b7ec2a409.m4a",
+    "picture": {
+      "key": "violin",
+      "label": "violin",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-57-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find small v!",
+        "say": "Big {V|vˈiː}, small {v|vˈiː}! Find small {v|vˈiː}.",
+        "audio": "voice/line-b418e63feeb8210b.m4a"
+      },
+      "card": {
+        "text": "V",
+        "picture": {
+          "key": "violin",
+          "label": "violin",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-57-r1-o1",
+            "label": "y",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-57-r1-o2",
+            "label": "w",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-57-r1-o3",
+            "label": "u",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-57-r1-o4",
+            "label": "v",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "v"
+        },
+        "shape": "shell",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-57-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace small v",
+        "say": "Trace small {v|vˈiː}.",
+        "audio": "voice/line-c2d2d466d91843d0.m4a"
+      },
+      "card": {
+        "text": "v",
+        "picture": {
+          "key": "violin",
+          "label": "violin",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "v",
+        "guide": "v",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-57-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /v/?",
+        "say": "{v|vˈiː} says {/v/|vːː}. Which one starts with {/v/|vːː}?",
+        "audio": "voice/line-1fa631ef270a2086.m4a"
+      },
+      "card": {
+        "text": "v",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-57-r3-o1",
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-57-r3-o2",
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-57-r3-o3",
+            "label": "violin",
+            "picture": {
+              "key": "violin",
+              "label": "violin",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "violin"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-57-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make small v",
+        "say": "Join the dots to make small {v|vˈiː}.",
+        "audio": "voice/line-55354925a9f33091.m4a"
+      },
+      "card": {
+        "text": "v",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "v",
+        "guide": "v",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-57-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every small v!",
+        "say": "Find every small {v|vˈiː}!",
+        "audio": "voice/line-4959400ceb37a639.m4a"
+      },
+      "card": {
+        "text": "v",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "v",
+        "grid": [
+          "u",
+          "v",
+          "y",
+          "w",
+          "w",
+          "u",
+          "y",
+          "v",
+          "w",
+          "u",
+          "v",
+          "v"
+        ]
+      }
+    },
+    {
+      "id": "level-57-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Finish the word!",
+        "say": "Violin! Write the missing letter.",
+        "audio": "voice/line-af6c6b81c8082464.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "violin",
+          "label": "violin",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "v",
+        "guide": "v",
+        "word": "violin",
+        "missingIndex": 0,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-57-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write small v by yourself",
+        "say": "Now write small {v|vˈiː} all by yourself!",
+        "audio": "voice/line-120dd25e0e1779d6.m4a"
+      },
+      "card": {
+        "text": "v",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "v",
+        "guide": "v",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-57-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: v says /v/ like violin!",
+        "say": "{v|vˈiː} says {/v/|vːː}, like violin! Now you say it.",
+        "audio": "voice/line-6bb769338a11917d.m4a"
+      },
+      "card": {
+        "text": "v says /v/ like violin!",
+        "picture": {
+          "key": "violin",
+          "label": "violin",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "v says /v/ like violin!"
+      }
+    },
+    {
+      "id": "level-57-r9",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "u",
+          "v",
+          "w"
+        ]
+      }
+    }
+  ]
+}

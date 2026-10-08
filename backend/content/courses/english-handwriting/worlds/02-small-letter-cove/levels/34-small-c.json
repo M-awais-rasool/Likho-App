@@ -1,0 +1,325 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-34",
+  "number": 34,
+  "name": "Small c",
+  "skill": "Small c and its sound",
+  "icon": "spa",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Cc",
+    "word": "cat",
+    "say": "Big {C|sˈiː}, small {c|sˈiː}! Small {c|sˈiː} says {/c/|kʌ}, like cat.",
+    "audio": "voice/line-2adfea8f7dfc62cd.m4a",
+    "picture": {
+      "key": "cat",
+      "label": "cat",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-34-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find small c!",
+        "say": "Big {C|sˈiː}, small {c|sˈiː}! Find small {c|sˈiː}.",
+        "audio": "voice/line-5214d9a4d578da31.m4a"
+      },
+      "card": {
+        "text": "C",
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-34-r1-o1",
+            "label": "c",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-34-r1-o2",
+            "label": "o",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-34-r1-o3",
+            "label": "a",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-34-r1-o4",
+            "label": "e",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "c"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-34-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace small c",
+        "say": "Trace small {c|sˈiː}.",
+        "audio": "voice/line-cb5455e1bc4c130f.m4a"
+      },
+      "card": {
+        "text": "c",
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "c",
+        "guide": "c",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-34-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /c/?",
+        "say": "{c|sˈiː} says {/c/|kʌ}. Which one starts with {/c/|kʌ}?",
+        "audio": "voice/line-c566afa798262705.m4a"
+      },
+      "card": {
+        "text": "c",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-34-r3-o1",
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-34-r3-o2",
+            "label": "nest",
+            "picture": {
+              "key": "nest",
+              "label": "nest",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-34-r3-o3",
+            "label": "jam",
+            "picture": {
+              "key": "jam",
+              "label": "jam",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "cat"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-34-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make small c",
+        "say": "Join the dots to make small {c|sˈiː}.",
+        "audio": "voice/line-ea34ede00a8b7ce9.m4a"
+      },
+      "card": {
+        "text": "c",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "c",
+        "guide": "c",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-34-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every small c!",
+        "say": "Find every small {c|sˈiː}!",
+        "audio": "voice/line-7c879c62004873e8.m4a"
+      },
+      "card": {
+        "text": "c",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "c",
+        "grid": [
+          "a",
+          "e",
+          "o",
+          "c",
+          "c",
+          "o",
+          "c",
+          "o",
+          "e",
+          "a",
+          "c",
+          "e"
+        ]
+      }
+    },
+    {
+      "id": "level-34-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Finish the word!",
+        "say": "Cat! Write the missing letter.",
+        "audio": "voice/line-5799925b6c277c78.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "c",
+        "guide": "c",
+        "word": "cat",
+        "missingIndex": 0,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-34-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write small c by yourself",
+        "say": "Now write small {c|sˈiː} all by yourself!",
+        "audio": "voice/line-06da6e2f22907514.m4a"
+      },
+      "card": {
+        "text": "c",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "c",
+        "guide": "c",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-34-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: c says /c/ like cat!",
+        "say": "{c|sˈiː} says {/c/|kʌ}, like cat! Now you say it.",
+        "audio": "voice/line-83079b97b4e96fc4.m4a"
+      },
+      "card": {
+        "text": "c says /c/ like cat!",
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "c says /c/ like cat!"
+      }
+    },
+    {
+      "id": "level-34-r9",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "b",
+          "c",
+          "d"
+        ]
+      }
+    }
+  ]
+}

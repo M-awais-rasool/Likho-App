@@ -1,0 +1,325 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-40",
+  "number": 40,
+  "name": "Small h",
+  "skill": "Small h and its sound",
+  "icon": "spa",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Hh",
+    "word": "hat",
+    "say": "Big {H|ˈeɪʧ}, small {h|ˈeɪʧ}! Small {h|ˈeɪʧ} says {/h/|hʌ}, like hat.",
+    "audio": "voice/line-61409224763f18d6.m4a",
+    "picture": {
+      "key": "hat",
+      "label": "hat",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-40-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find small h!",
+        "say": "Big {H|ˈeɪʧ}, small {h|ˈeɪʧ}! Find small {h|ˈeɪʧ}.",
+        "audio": "voice/line-e11c0ad39e4ca55b.m4a"
+      },
+      "card": {
+        "text": "H",
+        "picture": {
+          "key": "hat",
+          "label": "hat",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-40-r1-o1",
+            "label": "n",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-40-r1-o2",
+            "label": "h",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-40-r1-o3",
+            "label": "b",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-40-r1-o4",
+            "label": "k",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "h"
+        },
+        "shape": "bubble",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-40-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace small h",
+        "say": "Trace small {h|ˈeɪʧ}.",
+        "audio": "voice/line-5966bbb68261088d.m4a"
+      },
+      "card": {
+        "text": "h",
+        "picture": {
+          "key": "hat",
+          "label": "hat",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "h",
+        "guide": "h",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-40-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /h/?",
+        "say": "{h|ˈeɪʧ} says {/h/|hʌ}. Which one starts with {/h/|hʌ}?",
+        "audio": "voice/line-85fc64b9bfbea17a.m4a"
+      },
+      "card": {
+        "text": "h",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-40-r3-o1",
+            "label": "box",
+            "picture": {
+              "key": "box",
+              "label": "box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-40-r3-o2",
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-40-r3-o3",
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "hat"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-40-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make small h",
+        "say": "Join the dots to make small {h|ˈeɪʧ}.",
+        "audio": "voice/line-1164136b115216a6.m4a"
+      },
+      "card": {
+        "text": "h",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "h",
+        "guide": "h",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-40-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every small h!",
+        "say": "Find every small {h|ˈeɪʧ}!",
+        "audio": "voice/line-5c0bcb1cd7227a9f.m4a"
+      },
+      "card": {
+        "text": "h",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "h",
+        "grid": [
+          "b",
+          "k",
+          "b",
+          "b",
+          "n",
+          "k",
+          "n",
+          "h",
+          "n",
+          "h",
+          "h",
+          "h"
+        ]
+      }
+    },
+    {
+      "id": "level-40-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Finish the word!",
+        "say": "Hat! Write the missing letter.",
+        "audio": "voice/line-8130b0e05b190e1f.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "hat",
+          "label": "hat",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "h",
+        "guide": "h",
+        "word": "hat",
+        "missingIndex": 0,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-40-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write small h by yourself",
+        "say": "Now write small {h|ˈeɪʧ} all by yourself!",
+        "audio": "voice/line-02d515ed8b0b2f13.m4a"
+      },
+      "card": {
+        "text": "h",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "h",
+        "guide": "h",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-40-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: h says /h/ like hat!",
+        "say": "{h|ˈeɪʧ} says {/h/|hʌ}, like hat! Now you say it.",
+        "audio": "voice/line-9709fc6fd42671b8.m4a"
+      },
+      "card": {
+        "text": "h says /h/ like hat!",
+        "picture": {
+          "key": "hat",
+          "label": "hat",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "h says /h/ like hat!"
+      }
+    },
+    {
+      "id": "level-40-r9",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "g",
+          "h",
+          "i"
+        ]
+      }
+    }
+  ]
+}
