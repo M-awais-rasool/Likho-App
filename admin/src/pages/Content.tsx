@@ -15,6 +15,12 @@ export const themeNames: Record<string, string> = {
   wordTown: 'Word Town (orange)',
   sentenceSky: 'Sentence Sky (blue)',
   storySpace: 'Story Space (dark violet)',
+  soundMountain: 'Sound Mountain (lavender)',
+  blendBeach: 'Blend Beach (orange)',
+  sightGarden: 'Sight Word Garden (pink)',
+  actionJungle: 'Action Jungle (lime)',
+  questionIsland: 'Question Island (gold)',
+  readingRiver: 'Reading River (cyan)',
 }
 export const themeColors: Record<string, string> = {
   letterLand: '#5DAE3B',
@@ -23,8 +29,27 @@ export const themeColors: Record<string, string> = {
   wordTown: '#DB7453',
   sentenceSky: '#3B89D2',
   storySpace: '#7A63D4',
+  soundMountain: '#8A6FD1',
+  blendBeach: '#EE9A32',
+  sightGarden: '#DD5E8C',
+  actionJungle: '#86A321',
+  questionIsland: '#D4A20A',
+  readingRiver: '#1897B9',
 }
-export const bossNames: Record<string, string> = { snail: 'Snail', fish: 'Fish', bear: 'Bear', robotBus: 'Robot bus', cloud: 'Cloud', moon: 'Moon' }
+export const bossNames: Record<string, string> = {
+  snail: 'Snail',
+  fish: 'Fish',
+  bear: 'Bear',
+  robotBus: 'Robot bus',
+  cloud: 'Cloud',
+  moon: 'Moon',
+  goat: 'Goat',
+  crab: 'Crab',
+  ladybug: 'Ladybug',
+  monkey: 'Monkey',
+  turtle: 'Turtle',
+  frog: 'Frog',
+}
 
 export const statusBadge = (l: Pick<ContentLevel, 'status' | 'source'>) =>
   l.status === 'draft' ? (
