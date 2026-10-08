@@ -33,6 +33,7 @@ type Handlers struct {
 	Room     *RoomHandler
 	Courses  *CourseHandler
 	Health   *HealthHandler
+	Media    *MediaHandler
 }
 
 func New(s Services, health *HealthHandler) *Handlers {
