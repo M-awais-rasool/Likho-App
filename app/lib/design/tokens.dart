@@ -376,6 +376,12 @@ abstract final class GameColors {
   static const lilyPadShadow = Color(0x402C6B41);
   static const basketA = Color(0xFFD9A066);
   static const basketB = Color(0xFFC78A50);
+  static const basketDeep = Color(0xFFA86F3A);
+  // sort rounds: the hungry monster
+  static const monster = Color(0xFF8E6CE0);
+  static const monsterDeep = Color(0xFF6E4FC4);
+  static const monsterMouth = Color(0xFF3B1F6B);
+  static const monsterTongue = Color(0xFFFF8FA8);
   static const jarTop = Color(0xBFFFFFFF);
   static const jarBottom = Color(0x73FFFFFF);
   static const jarShadow = Color(0x2E2C6B41);
