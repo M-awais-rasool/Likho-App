@@ -109,62 +109,86 @@
     },
     {
       "id": "level-55-r3",
-      "type": "pick",
+      "type": "sort",
       "prompt": {
-        "text": "What starts with /r/?",
-        "say": "Which one starts with {/r/|ɹːː}?",
-        "audio": "voice/line-a095229e9b8af86f.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/p/|pʌ} or {/r/|ɹːː}?",
+        "audio": "voice/line-32a5b13c92c49a18.m4a"
       },
       "card": {
-        "text": null,
+        "text": "p r",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "sort": {
+        "bins": [
           {
-            "id": "level-55-r3-o1",
+            "label": "p",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "r",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "rain",
+            "picture": {
+              "key": "rain",
+              "label": "rain",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "pin",
+            "picture": {
+              "key": "pin",
+              "label": "pin",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "ring",
+            "picture": {
+              "key": "ring",
+              "label": "ring",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "pencil",
+            "picture": {
+              "key": "pencil",
+              "label": "pencil",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "pot",
+            "picture": {
+              "key": "pot",
+              "label": "pot",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
             "label": "robot",
             "picture": {
               "key": "robot",
               "label": "robot",
               "url": null
             },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-55-r3-o2",
-            "label": "sun",
-            "picture": {
-              "key": "sun",
-              "label": "sun",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-55-r3-o3",
-            "label": "queen",
-            "picture": {
-              "key": "queen",
-              "label": "queen",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "bin": 1
           }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "robot"
-        },
-        "shape": "bucket",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        ]
       }
     },
     {
@@ -192,32 +216,44 @@
     },
     {
       "id": "level-55-r5",
-      "type": "hunt",
+      "type": "fix",
       "prompt": {
-        "text": "Find every small p!",
-        "say": "Find every small {p|pˈiː}!",
-        "audio": "voice/line-36ae70b022c4ca1f.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote some letters the wrong way. Tap them to fix them!",
+        "audio": "voice/line-5b61022a0ee7b93d.m4a"
       },
       "card": {
-        "text": "p",
+        "text": "p q r s t",
         "picture": null,
         "listen": false
       },
-      "hunt": {
-        "target": "p",
-        "grid": [
-          "b",
-          "d",
-          "s",
-          "p",
-          "t",
-          "q",
-          "r",
-          "p",
-          "q",
-          "q",
-          "p",
-          "p"
+      "fix": {
+        "items": [
+          {
+            "text": "p",
+            "wrong": "mirror",
+            "at": null
+          },
+          {
+            "text": "q",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "r",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "s",
+            "wrong": "mirror",
+            "at": null
+          },
+          {
+            "text": "t",
+            "wrong": null,
+            "at": null
+          }
         ]
       }
     },
@@ -225,17 +261,21 @@
       "id": "level-55-r6",
       "type": "write",
       "prompt": {
-        "text": "Write the letter you hear",
-        "say": "Listen, then write it! small {t|tˈiː}.",
-        "audio": "voice/line-955e093c40f8945a.m4a"
+        "text": "Look, then write small t",
+        "say": "Look at small {t|tˈiː}. Then write it from memory!",
+        "audio": "voice/line-9048bfbfd7d10617.m4a"
       },
       "card": {
         "text": null,
-        "picture": null,
-        "listen": true
+        "picture": {
+          "key": "tiger",
+          "label": "tiger",
+          "url": null
+        },
+        "listen": false
       },
       "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "t",
         "guide": "t",
         "word": null,

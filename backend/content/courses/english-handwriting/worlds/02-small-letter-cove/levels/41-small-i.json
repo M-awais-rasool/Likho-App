@@ -27,14 +27,14 @@
   "rounds": [
     {
       "id": "level-41-r1",
-      "type": "pick",
+      "type": "pop",
       "prompt": {
-        "text": "Find small i!",
-        "say": "Big {I|ˈaɪ}, small {i|ˈaɪ}! Find small {i|ˈaɪ}.",
-        "audio": "voice/line-85f45f34d0a4a9ad.m4a"
+        "text": "Pop every small i!",
+        "say": "Pop every small {i|ˈaɪ} bubble!",
+        "audio": "voice/line-4df3291cb6d68efe.m4a"
       },
       "card": {
-        "text": "I",
+        "text": "i",
         "picture": {
           "key": "insect",
           "label": "insect",
@@ -42,46 +42,14 @@
         },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-41-r1-o1",
-            "label": "l",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-41-r1-o2",
-            "label": "j",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-41-r1-o3",
-            "label": "i",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-41-r1-o4",
-            "label": "t",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "i",
+        "others": [
+          "j",
+          "l",
+          "t"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "i"
-        },
-        "shape": "kite",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 5
       }
     },
     {
@@ -113,62 +81,50 @@
     },
     {
       "id": "level-41-r3",
-      "type": "pick",
+      "type": "match",
       "prompt": {
-        "text": "What starts with /i/?",
-        "say": "{i|ˈaɪ} says {/i/|ɪ}. Which one starts with {/i/|ɪ}?",
-        "audio": "voice/line-2b6f83c885258bec.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each big letter to its small letter.",
+        "audio": "voice/line-4140f52a5074e7c8.m4a"
       },
       "card": {
-        "text": "i",
+        "text": "Ii",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "match": {
+        "pairs": [
           {
-            "id": "level-41-r3-o1",
-            "label": "insect",
-            "picture": {
-              "key": "insect",
-              "label": "insect",
-              "url": null
+            "a": {
+              "text": "H",
+              "picture": null
             },
-            "color": null,
-            "hideLabel": true
+            "b": {
+              "text": "h",
+              "picture": null
+            }
           },
           {
-            "id": "level-41-r3-o2",
-            "label": "sun",
-            "picture": {
-              "key": "sun",
-              "label": "sun",
-              "url": null
+            "a": {
+              "text": "I",
+              "picture": null
             },
-            "color": null,
-            "hideLabel": true
+            "b": {
+              "text": "i",
+              "picture": null
+            }
           },
           {
-            "id": "level-41-r3-o3",
-            "label": "moon",
-            "picture": {
-              "key": "moon",
-              "label": "moon",
-              "url": null
+            "a": {
+              "text": "J",
+              "picture": null
             },
-            "color": null,
-            "hideLabel": true
+            "b": {
+              "text": "j",
+              "picture": null
+            }
           }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "insect"
-        },
-        "shape": "planet",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        ]
       }
     },
     {
@@ -196,60 +152,85 @@
     },
     {
       "id": "level-41-r5",
-      "type": "hunt",
+      "type": "truth",
       "prompt": {
-        "text": "Find every small i!",
-        "say": "Find every small {i|ˈaɪ}!",
-        "audio": "voice/line-e91349649b3fc030.m4a"
+        "text": "True or silly?",
+        "say": "Hat starts with small {i|ˈaɪ}. True, or silly?",
+        "audio": "voice/line-b41879c8a889ddfe.m4a"
       },
       "card": {
-        "text": "i",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "hunt": {
-        "target": "i",
-        "grid": [
-          "t",
-          "i",
-          "t",
-          "j",
-          "l",
-          "j",
-          "i",
-          "j",
-          "l",
-          "i",
-          "l",
-          "i"
-        ]
+      "truth": {
+        "text": "Hat starts with i.",
+        "picture": {
+          "key": "hat",
+          "label": "hat",
+          "url": null
+        },
+        "answer": false
       }
     },
     {
       "id": "level-41-r6",
-      "type": "write",
+      "type": "sort",
       "prompt": {
-        "text": "Finish the word!",
-        "say": "Pig! Write the missing letter.",
-        "audio": "voice/line-c031acb1c5729cfd.m4a"
+        "text": "Sort the letters!",
+        "say": "Put each letter in its basket: small {i|ˈaɪ} or {j|ʤˈeɪ}!",
+        "audio": "voice/line-c3c3000284c11988.m4a"
       },
       "card": {
-        "text": null,
-        "picture": {
-          "key": "pig",
-          "label": "pig",
-          "url": null
-        },
+        "text": "i j",
+        "picture": null,
         "listen": false
       },
-      "write": {
-        "mode": "missing",
-        "target": "i",
-        "guide": "i",
-        "word": "pig",
-        "missingIndex": 1,
-        "sentence": false,
-        "story": false
+      "sort": {
+        "bins": [
+          {
+            "label": "i",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "j",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "j",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "i",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "i",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "j",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "i",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "j",
+            "picture": null,
+            "bin": 1
+          }
+        ]
       }
     },
     {
@@ -294,31 +275,6 @@
       },
       "speak": {
         "expected": "i says /i/ like insect!"
-      }
-    },
-    {
-      "id": "level-41-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "h",
-          "i",
-          "j"
-        ]
       }
     }
   ]

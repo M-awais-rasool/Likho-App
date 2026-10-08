@@ -196,32 +196,49 @@
     },
     {
       "id": "level-46-r5",
-      "type": "hunt",
+      "type": "match",
       "prompt": {
-        "text": "Find every small m!",
-        "say": "Find every small {m|ˈɛm}!",
-        "audio": "voice/line-311b3aa4065b9c93.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each big letter to its small letter.",
+        "audio": "voice/line-4140f52a5074e7c8.m4a"
       },
       "card": {
-        "text": "m",
+        "text": "Mm",
         "picture": null,
         "listen": false
       },
-      "hunt": {
-        "target": "m",
-        "grid": [
-          "m",
-          "h",
-          "m",
-          "h",
-          "m",
-          "m",
-          "n",
-          "n",
-          "n",
-          "w",
-          "w",
-          "w"
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "L",
+              "picture": null
+            },
+            "b": {
+              "text": "l",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "M",
+              "picture": null
+            },
+            "b": {
+              "text": "m",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "N",
+              "picture": null
+            },
+            "b": {
+              "text": "n",
+              "picture": null
+            }
+          }
         ]
       }
     },
@@ -256,17 +273,21 @@
       "id": "level-46-r7",
       "type": "write",
       "prompt": {
-        "text": "Write small m by yourself",
-        "say": "Now write small {m|ˈɛm} all by yourself!",
-        "audio": "voice/line-4ad8da9a04cdf8e2.m4a"
+        "text": "Look, then write small m",
+        "say": "Look at small {m|ˈɛm}. Then write it from memory!",
+        "audio": "voice/line-1c4a859f2d571797.m4a"
       },
       "card": {
-        "text": "m",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "moon",
+          "label": "moon",
+          "url": null
+        },
         "listen": false
       },
       "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "m",
         "guide": "m",
         "word": null,
@@ -294,31 +315,6 @@
       },
       "speak": {
         "expected": "m says /m/ like moon!"
-      }
-    },
-    {
-      "id": "level-46-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "l",
-          "m",
-          "n"
-        ]
       }
     }
   ]

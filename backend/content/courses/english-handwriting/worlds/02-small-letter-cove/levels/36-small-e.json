@@ -113,62 +113,72 @@
     },
     {
       "id": "level-36-r3",
-      "type": "pick",
+      "type": "sort",
       "prompt": {
-        "text": "What starts with /e/?",
-        "say": "{e|ˈiː} says {/e/|ɛ}. Which one starts with {/e/|ɛ}?",
-        "audio": "voice/line-4289f5986f2cbdd5.m4a"
+        "text": "Feed it /e/!",
+        "say": "This monster only eats things that start with {/e/|ɛ}. Feed it!",
+        "audio": "voice/line-31053af8c2b0a3fd.m4a"
       },
       "card": {
         "text": "e",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "sort": {
+        "bins": [
           {
-            "id": "level-36-r3-o1",
+            "label": "e",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "elephant",
+            "picture": {
+              "key": "elephant",
+              "label": "elephant",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
             "label": "hat",
             "picture": {
               "key": "hat",
               "label": "hat",
               "url": null
             },
-            "color": null,
-            "hideLabel": true
+            "bin": null
           },
           {
-            "id": "level-36-r3-o2",
             "label": "apple",
             "picture": {
               "key": "apple",
               "label": "apple",
               "url": null
             },
-            "color": null,
-            "hideLabel": true
+            "bin": null
           },
           {
-            "id": "level-36-r3-o3",
+            "label": "violin",
+            "picture": {
+              "key": "violin",
+              "label": "violin",
+              "url": null
+            },
+            "bin": null
+          },
+          {
             "label": "egg",
             "picture": {
               "key": "egg",
               "label": "egg",
               "url": null
             },
-            "color": null,
-            "hideLabel": true
+            "bin": 0
           }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "egg"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        ]
       }
     },
     {
@@ -196,42 +206,84 @@
     },
     {
       "id": "level-36-r5",
-      "type": "hunt",
+      "type": "match",
       "prompt": {
-        "text": "Find every small e!",
-        "say": "Find every small {e|ˈiː}!",
-        "audio": "voice/line-57e7d7d77341144a.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each big letter to its small letter.",
+        "audio": "voice/line-4140f52a5074e7c8.m4a"
       },
       "card": {
-        "text": "e",
+        "text": "Ee",
         "picture": null,
         "listen": false
       },
-      "hunt": {
-        "target": "e",
-        "grid": [
-          "e",
-          "e",
-          "o",
-          "o",
-          "a",
-          "c",
-          "a",
-          "c",
-          "c",
-          "a",
-          "e",
-          "e"
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "D",
+              "picture": null
+            },
+            "b": {
+              "text": "d",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "E",
+              "picture": null
+            },
+            "b": {
+              "text": "e",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "F",
+              "picture": null
+            },
+            "b": {
+              "text": "f",
+              "picture": null
+            }
+          }
         ]
       }
     },
     {
       "id": "level-36-r6",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "d",
+          "e",
+          "f"
+        ]
+      }
+    },
+    {
+      "id": "level-36-r7",
       "type": "write",
       "prompt": {
-        "text": "Finish the word!",
-        "say": "Egg! Write the missing letter.",
-        "audio": "voice/line-229d47679e5e83b3.m4a"
+        "text": "Look, then write small e",
+        "say": "Look at small {e|ˈiː}. Then write it from memory!",
+        "audio": "voice/line-143e48e6cca862ee.m4a"
       },
       "card": {
         "text": null,
@@ -243,30 +295,7 @@
         "listen": false
       },
       "write": {
-        "mode": "missing",
-        "target": "e",
-        "guide": "e",
-        "word": "egg",
-        "missingIndex": 0,
-        "sentence": false,
-        "story": false
-      }
-    },
-    {
-      "id": "level-36-r7",
-      "type": "write",
-      "prompt": {
-        "text": "Write small e by yourself",
-        "say": "Now write small {e|ˈiː} all by yourself!",
-        "audio": "voice/line-1aab3a54c1084ebc.m4a"
-      },
-      "card": {
-        "text": "e",
-        "picture": null,
-        "listen": false
-      },
-      "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "e",
         "guide": "e",
         "word": null,
@@ -294,31 +323,6 @@
       },
       "speak": {
         "expected": "e says /e/ like egg!"
-      }
-    },
-    {
-      "id": "level-36-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "d",
-          "e",
-          "f"
-        ]
       }
     }
   ]

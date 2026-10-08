@@ -27,14 +27,14 @@
   "rounds": [
     {
       "id": "level-33-r1",
-      "type": "pick",
+      "type": "pop",
       "prompt": {
-        "text": "Find small b!",
-        "say": "Big {B|bˈiː}, small {b|bˈiː}! Find small {b|bˈiː}.",
-        "audio": "voice/line-77ffecac337fe2d2.m4a"
+        "text": "Pop every small b!",
+        "say": "Pop every small {b|bˈiː} bubble!",
+        "audio": "voice/line-4344c76046a2a3fd.m4a"
       },
       "card": {
-        "text": "B",
+        "text": "b",
         "picture": {
           "key": "ball",
           "label": "ball",
@@ -42,46 +42,14 @@
         },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-33-r1-o1",
-            "label": "b",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-33-r1-o2",
-            "label": "p",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-33-r1-o3",
-            "label": "h",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-33-r1-o4",
-            "label": "d",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "b",
+        "others": [
+          "d",
+          "p",
+          "h"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "b"
-        },
-        "shape": "bubble",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 5
       }
     },
     {
@@ -113,62 +81,50 @@
     },
     {
       "id": "level-33-r3",
-      "type": "pick",
+      "type": "match",
       "prompt": {
-        "text": "What starts with /b/?",
-        "say": "{b|bˈiː} says {/b/|bʌ}. Which one starts with {/b/|bʌ}?",
-        "audio": "voice/line-3d9ffcf9decf16e2.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each big letter to its small letter.",
+        "audio": "voice/line-4140f52a5074e7c8.m4a"
       },
       "card": {
-        "text": "b",
+        "text": "Bb",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "match": {
+        "pairs": [
           {
-            "id": "level-33-r3-o1",
-            "label": "ball",
-            "picture": {
-              "key": "ball",
-              "label": "ball",
-              "url": null
+            "a": {
+              "text": "A",
+              "picture": null
             },
-            "color": null,
-            "hideLabel": true
+            "b": {
+              "text": "a",
+              "picture": null
+            }
           },
           {
-            "id": "level-33-r3-o2",
-            "label": "octopus",
-            "picture": {
-              "key": "octopus",
-              "label": "octopus",
-              "url": null
+            "a": {
+              "text": "B",
+              "picture": null
             },
-            "color": null,
-            "hideLabel": true
+            "b": {
+              "text": "b",
+              "picture": null
+            }
           },
           {
-            "id": "level-33-r3-o3",
-            "label": "fish",
-            "picture": {
-              "key": "fish",
-              "label": "fish",
-              "url": null
+            "a": {
+              "text": "C",
+              "picture": null
             },
-            "color": null,
-            "hideLabel": true
+            "b": {
+              "text": "c",
+              "picture": null
+            }
           }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "ball"
-        },
-        "shape": "planet",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        ]
       }
     },
     {
@@ -196,60 +152,106 @@
     },
     {
       "id": "level-33-r5",
-      "type": "hunt",
+      "type": "sort",
       "prompt": {
-        "text": "Find every small b!",
-        "say": "Find every small {b|bˈiː}!",
-        "audio": "voice/line-6e23c6b2bec3e06c.m4a"
+        "text": "Feed it /b/!",
+        "say": "This monster only eats things that start with {/b/|bʌ}. Feed it!",
+        "audio": "voice/line-8b2d3c5fa67cddd5.m4a"
       },
       "card": {
         "text": "b",
         "picture": null,
         "listen": false
       },
-      "hunt": {
-        "target": "b",
-        "grid": [
-          "p",
-          "d",
-          "p",
-          "b",
-          "h",
-          "b",
-          "d",
-          "b",
-          "b",
-          "d",
-          "h",
-          "p"
+      "sort": {
+        "bins": [
+          {
+            "label": "b",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "boat",
+            "picture": {
+              "key": "boat",
+              "label": "boat",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "egg",
+            "picture": {
+              "key": "egg",
+              "label": "egg",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "ball",
+            "picture": {
+              "key": "ball",
+              "label": "ball",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "pig",
+            "picture": {
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "bat",
+            "picture": {
+              "key": "bat",
+              "label": "bat",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "jam",
+            "picture": {
+              "key": "jam",
+              "label": "jam",
+              "url": null
+            },
+            "bin": null
+          }
         ]
       }
     },
     {
       "id": "level-33-r6",
-      "type": "write",
+      "type": "order",
       "prompt": {
-        "text": "Finish the word!",
-        "say": "Ball! Write the missing letter.",
-        "audio": "voice/line-8096e4a2168a3d88.m4a"
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "ball",
-          "label": "ball",
+          "key": "train",
+          "label": "train",
           "url": null
         },
         "listen": false
       },
-      "write": {
-        "mode": "missing",
-        "target": "b",
-        "guide": "b",
-        "word": "ball",
-        "missingIndex": 0,
-        "sentence": false,
-        "story": false
+      "order": {
+        "tiles": [
+          "a",
+          "b",
+          "c"
+        ]
       }
     },
     {
@@ -294,31 +296,6 @@
       },
       "speak": {
         "expected": "b says /b/ like ball!"
-      }
-    },
-    {
-      "id": "level-33-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "a",
-          "b",
-          "c"
-        ]
       }
     }
   ]

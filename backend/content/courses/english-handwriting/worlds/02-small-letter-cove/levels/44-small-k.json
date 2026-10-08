@@ -113,62 +113,72 @@
     },
     {
       "id": "level-44-r3",
-      "type": "pick",
+      "type": "sort",
       "prompt": {
-        "text": "What starts with /k/?",
-        "say": "{k|kˈeɪ} says {/k/|kʌ}. Which one starts with {/k/|kʌ}?",
-        "audio": "voice/line-dbf375a4edea00f7.m4a"
+        "text": "Feed it /k/!",
+        "say": "This monster only eats things that start with {/k/|kʌ}. Feed it!",
+        "audio": "voice/line-e10cafb53ca96c00.m4a"
       },
       "card": {
         "text": "k",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "sort": {
+        "bins": [
           {
-            "id": "level-44-r3-o1",
-            "label": "jam",
+            "label": "k",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "hat",
             "picture": {
-              "key": "jam",
-              "label": "jam",
+              "key": "hat",
+              "label": "hat",
               "url": null
             },
-            "color": null,
-            "hideLabel": true
+            "bin": null
           },
           {
-            "id": "level-44-r3-o2",
             "label": "kite",
             "picture": {
               "key": "kite",
               "label": "kite",
               "url": null
             },
-            "color": null,
-            "hideLabel": true
+            "bin": 0
           },
           {
-            "id": "level-44-r3-o3",
+            "label": "jam",
+            "picture": {
+              "key": "jam",
+              "label": "jam",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "king",
+            "picture": {
+              "key": "king",
+              "label": "king",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
             "label": "egg",
             "picture": {
               "key": "egg",
               "label": "egg",
               "url": null
             },
-            "color": null,
-            "hideLabel": true
+            "bin": null
           }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "kite"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        ]
       }
     },
     {
@@ -210,28 +220,53 @@
       "hunt": {
         "target": "k",
         "grid": [
+          "k",
+          "h",
+          "x",
+          "k",
+          "k",
+          "x",
+          "h",
           "l",
-          "k",
           "h",
-          "k",
-          "x",
-          "h",
-          "x",
           "l",
           "x",
-          "k",
-          "h",
           "k"
         ]
       }
     },
     {
       "id": "level-44-r6",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "j",
+          "k",
+          "l"
+        ]
+      }
+    },
+    {
+      "id": "level-44-r7",
       "type": "write",
       "prompt": {
-        "text": "Finish the word!",
-        "say": "Kite! Write the missing letter.",
-        "audio": "voice/line-269236b766ff0162.m4a"
+        "text": "Look, then write small k",
+        "say": "Look at small {k|kˈeɪ}. Then write it from memory!",
+        "audio": "voice/line-7713c9b205ce7836.m4a"
       },
       "card": {
         "text": null,
@@ -243,30 +278,7 @@
         "listen": false
       },
       "write": {
-        "mode": "missing",
-        "target": "k",
-        "guide": "k",
-        "word": "kite",
-        "missingIndex": 0,
-        "sentence": false,
-        "story": false
-      }
-    },
-    {
-      "id": "level-44-r7",
-      "type": "write",
-      "prompt": {
-        "text": "Write small k by yourself",
-        "say": "Now write small {k|kˈeɪ} all by yourself!",
-        "audio": "voice/line-4cacc2192f921341.m4a"
-      },
-      "card": {
-        "text": "k",
-        "picture": null,
-        "listen": false
-      },
-      "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "k",
         "guide": "k",
         "word": null,
@@ -294,31 +306,6 @@
       },
       "speak": {
         "expected": "k says /k/ like kite!"
-      }
-    },
-    {
-      "id": "level-44-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "j",
-          "k",
-          "l"
-        ]
       }
     }
   ]

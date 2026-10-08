@@ -196,32 +196,49 @@
     },
     {
       "id": "level-32-r5",
-      "type": "hunt",
+      "type": "fix",
       "prompt": {
-        "text": "Find every small a!",
-        "say": "Find every small {a|ˈeɪ}!",
-        "audio": "voice/line-d87aa5bc6ae6b4b0.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote some small {a|ˈeɪ} the wrong way. Tap them to fix them!",
+        "audio": "voice/line-52027ade3077e416.m4a"
       },
       "card": {
         "text": "a",
         "picture": null,
         "listen": false
       },
-      "hunt": {
-        "target": "a",
-        "grid": [
-          "e",
-          "a",
-          "d",
-          "a",
-          "o",
-          "d",
-          "d",
-          "e",
-          "o",
-          "o",
-          "a",
-          "a"
+      "fix": {
+        "items": [
+          {
+            "text": "a",
+            "wrong": "mirror",
+            "at": null
+          },
+          {
+            "text": "a",
+            "wrong": "mirror",
+            "at": null
+          },
+          {
+            "text": "a",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "a",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "a",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "a",
+            "wrong": null,
+            "at": null
+          }
         ]
       }
     },
@@ -256,17 +273,21 @@
       "id": "level-32-r7",
       "type": "write",
       "prompt": {
-        "text": "Write small a by yourself",
-        "say": "Now write small {a|ˈeɪ} all by yourself!",
-        "audio": "voice/line-752b14ca7b42f55c.m4a"
+        "text": "Look, then write small a",
+        "say": "Look at small {a|ˈeɪ}. Then write it from memory!",
+        "audio": "voice/line-ebb43411dbad0865.m4a"
       },
       "card": {
-        "text": "a",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "apple",
+          "label": "apple",
+          "url": null
+        },
         "listen": false
       },
       "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "a",
         "guide": "a",
         "word": null,
@@ -294,31 +315,6 @@
       },
       "speak": {
         "expected": "a says /a/ like apple!"
-      }
-    },
-    {
-      "id": "level-32-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "a",
-          "b",
-          "c"
-        ]
       }
     }
   ]

@@ -27,14 +27,14 @@
   "rounds": [
     {
       "id": "level-59-r1",
-      "type": "pick",
+      "type": "pop",
       "prompt": {
-        "text": "Find small x!",
-        "say": "Big {X|ˈɛks}, small {x|ˈɛks}! Find small {x|ˈɛks}.",
-        "audio": "voice/line-c16bf6a203e3acff.m4a"
+        "text": "Pop every small x!",
+        "say": "Pop every small {x|ˈɛks} bubble!",
+        "audio": "voice/line-354940e96c30a013.m4a"
       },
       "card": {
-        "text": "X",
+        "text": "x",
         "picture": {
           "key": "box",
           "label": "box",
@@ -42,46 +42,14 @@
         },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-59-r1-o1",
-            "label": "z",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-59-r1-o2",
-            "label": "y",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-59-r1-o3",
-            "label": "k",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-59-r1-o4",
-            "label": "x",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "x",
+        "others": [
+          "k",
+          "z",
+          "y"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "x"
-        },
-        "shape": "cloud",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 5
       }
     },
     {
@@ -113,62 +81,33 @@
     },
     {
       "id": "level-59-r3",
-      "type": "pick",
+      "type": "hunt",
       "prompt": {
-        "text": "Which one has /x/?",
-        "say": "{x|ˈɛks} says {/x/|ks}. Which one has {/x/|ks}?",
-        "audio": "voice/line-f489ff6b944404ed.m4a"
+        "text": "Find every small x!",
+        "say": "Find every small {x|ˈɛks}!",
+        "audio": "voice/line-f3cd2f21c4789488.m4a"
       },
       "card": {
         "text": "x",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-59-r3-o1",
-            "label": "box",
-            "picture": {
-              "key": "box",
-              "label": "box",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-59-r3-o2",
-            "label": "tiger",
-            "picture": {
-              "key": "tiger",
-              "label": "tiger",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-59-r3-o3",
-            "label": "apple",
-            "picture": {
-              "key": "apple",
-              "label": "apple",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "box"
-        },
-        "shape": "bucket",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+      "hunt": {
+        "target": "x",
+        "grid": [
+          "x",
+          "k",
+          "z",
+          "k",
+          "y",
+          "y",
+          "x",
+          "z",
+          "x",
+          "k",
+          "x",
+          "z"
+        ]
       }
     },
     {
@@ -196,60 +135,85 @@
     },
     {
       "id": "level-59-r5",
-      "type": "hunt",
+      "type": "truth",
       "prompt": {
-        "text": "Find every small x!",
-        "say": "Find every small {x|ˈɛks}!",
-        "audio": "voice/line-f3cd2f21c4789488.m4a"
+        "text": "True or silly?",
+        "say": "Ball has small {x|ˈɛks}. True, or silly?",
+        "audio": "voice/line-83d3c5588fe1dbbe.m4a"
       },
       "card": {
-        "text": "x",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "hunt": {
-        "target": "x",
-        "grid": [
-          "x",
-          "z",
-          "k",
-          "k",
-          "x",
-          "z",
-          "k",
-          "y",
-          "y",
-          "x",
-          "z",
-          "x"
-        ]
+      "truth": {
+        "text": "Ball has x.",
+        "picture": {
+          "key": "ball",
+          "label": "ball",
+          "url": null
+        },
+        "answer": false
       }
     },
     {
       "id": "level-59-r6",
-      "type": "write",
+      "type": "sort",
       "prompt": {
-        "text": "Finish the word!",
-        "say": "Box! Write the missing letter.",
-        "audio": "voice/line-1fb4ec263f1f910c.m4a"
+        "text": "Sort the letters!",
+        "say": "Put each letter in its basket: small {x|ˈɛks} or {k|kˈeɪ}!",
+        "audio": "voice/line-cedd7a00cc9b69ea.m4a"
       },
       "card": {
-        "text": null,
-        "picture": {
-          "key": "box",
-          "label": "box",
-          "url": null
-        },
+        "text": "x k",
+        "picture": null,
         "listen": false
       },
-      "write": {
-        "mode": "missing",
-        "target": "x",
-        "guide": "x",
-        "word": "box",
-        "missingIndex": 2,
-        "sentence": false,
-        "story": false
+      "sort": {
+        "bins": [
+          {
+            "label": "x",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "k",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "x",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "k",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "x",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "k",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "x",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "k",
+            "picture": null,
+            "bin": 1
+          }
+        ]
       }
     },
     {
@@ -294,31 +258,6 @@
       },
       "speak": {
         "expected": "x says /x/ like box!"
-      }
-    },
-    {
-      "id": "level-59-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "w",
-          "x",
-          "y"
-        ]
       }
     }
   ]

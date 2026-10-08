@@ -196,77 +196,131 @@
     },
     {
       "id": "level-56-r5",
-      "type": "hunt",
+      "type": "match",
       "prompt": {
-        "text": "Find every small u!",
-        "say": "Find every small {u|jˈuː}!",
-        "audio": "voice/line-ad5c7e232c10de49.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each big letter to its small letter.",
+        "audio": "voice/line-4140f52a5074e7c8.m4a"
       },
       "card": {
-        "text": "u",
+        "text": "Uu",
         "picture": null,
         "listen": false
       },
-      "hunt": {
-        "target": "u",
-        "grid": [
-          "u",
-          "u",
-          "v",
-          "n",
-          "u",
-          "u",
-          "v",
-          "y",
-          "v",
-          "n",
-          "n",
-          "y"
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "T",
+              "picture": null
+            },
+            "b": {
+              "text": "t",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "U",
+              "picture": null
+            },
+            "b": {
+              "text": "u",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "V",
+              "picture": null
+            },
+            "b": {
+              "text": "v",
+              "picture": null
+            }
+          }
         ]
       }
     },
     {
       "id": "level-56-r6",
-      "type": "write",
+      "type": "sort",
       "prompt": {
-        "text": "Finish the word!",
-        "say": "Bus! Write the missing letter.",
-        "audio": "voice/line-40461999e25209ad.m4a"
+        "text": "Sort the letters!",
+        "say": "Put each letter in its basket: small {u|jˈuː} or {n|ˈɛn}!",
+        "audio": "voice/line-36745410c68d1e03.m4a"
       },
       "card": {
-        "text": null,
-        "picture": {
-          "key": "bus",
-          "label": "bus",
-          "url": null
-        },
+        "text": "u n",
+        "picture": null,
         "listen": false
       },
-      "write": {
-        "mode": "missing",
-        "target": "u",
-        "guide": "u",
-        "word": "bus",
-        "missingIndex": 1,
-        "sentence": false,
-        "story": false
+      "sort": {
+        "bins": [
+          {
+            "label": "u",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "n",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "n",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "u",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "u",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "n",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "u",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "n",
+            "picture": null,
+            "bin": 1
+          }
+        ]
       }
     },
     {
       "id": "level-56-r7",
       "type": "write",
       "prompt": {
-        "text": "Write small u by yourself",
-        "say": "Now write small {u|jˈuː} all by yourself!",
-        "audio": "voice/line-30627a0c699df139.m4a"
+        "text": "Look, then write small u",
+        "say": "Look at small {u|jˈuː}. Then write it from memory!",
+        "audio": "voice/line-5f2c8dc6062ab2c4.m4a"
       },
       "card": {
-        "text": "u",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "umbrella",
+          "label": "umbrella",
+          "url": null
+        },
         "listen": false
       },
       "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "u",
         "guide": "u",
         "word": null,
@@ -294,31 +348,6 @@
       },
       "speak": {
         "expected": "u says /u/ like umbrella!"
-      }
-    },
-    {
-      "id": "level-56-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "t",
-          "u",
-          "v"
-        ]
       }
     }
   ]

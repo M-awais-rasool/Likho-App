@@ -27,14 +27,14 @@
   "rounds": [
     {
       "id": "level-57-r1",
-      "type": "pick",
+      "type": "pop",
       "prompt": {
-        "text": "Find small v!",
-        "say": "Big {V|vˈiː}, small {v|vˈiː}! Find small {v|vˈiː}.",
-        "audio": "voice/line-b418e63feeb8210b.m4a"
+        "text": "Pop every small v!",
+        "say": "Pop every small {v|vˈiː} bubble!",
+        "audio": "voice/line-5788d48936560611.m4a"
       },
       "card": {
-        "text": "V",
+        "text": "v",
         "picture": {
           "key": "violin",
           "label": "violin",
@@ -42,46 +42,14 @@
         },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-57-r1-o1",
-            "label": "y",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-57-r1-o2",
-            "label": "w",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-57-r1-o3",
-            "label": "u",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-57-r1-o4",
-            "label": "v",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "v",
+        "others": [
+          "w",
+          "u",
+          "y"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "v"
-        },
-        "shape": "shell",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 5
       }
     },
     {
@@ -113,62 +81,33 @@
     },
     {
       "id": "level-57-r3",
-      "type": "pick",
+      "type": "hunt",
       "prompt": {
-        "text": "What starts with /v/?",
-        "say": "{v|vˈiː} says {/v/|vːː}. Which one starts with {/v/|vːː}?",
-        "audio": "voice/line-1fa631ef270a2086.m4a"
+        "text": "Find every small v!",
+        "say": "Find every small {v|vˈiː}!",
+        "audio": "voice/line-4959400ceb37a639.m4a"
       },
       "card": {
         "text": "v",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-57-r3-o1",
-            "label": "sun",
-            "picture": {
-              "key": "sun",
-              "label": "sun",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-57-r3-o2",
-            "label": "dog",
-            "picture": {
-              "key": "dog",
-              "label": "dog",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-57-r3-o3",
-            "label": "violin",
-            "picture": {
-              "key": "violin",
-              "label": "violin",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "violin"
-        },
-        "shape": "planet",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+      "hunt": {
+        "target": "v",
+        "grid": [
+          "y",
+          "v",
+          "v",
+          "u",
+          "u",
+          "v",
+          "w",
+          "y",
+          "w",
+          "w",
+          "u",
+          "v"
+        ]
       }
     },
     {
@@ -196,33 +135,25 @@
     },
     {
       "id": "level-57-r5",
-      "type": "hunt",
+      "type": "truth",
       "prompt": {
-        "text": "Find every small v!",
-        "say": "Find every small {v|vˈiː}!",
-        "audio": "voice/line-4959400ceb37a639.m4a"
+        "text": "True or silly?",
+        "say": "Hat starts with small {v|vˈiː}. True, or silly?",
+        "audio": "voice/line-813e188fcf7d8507.m4a"
       },
       "card": {
-        "text": "v",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "hunt": {
-        "target": "v",
-        "grid": [
-          "u",
-          "v",
-          "y",
-          "w",
-          "w",
-          "u",
-          "y",
-          "v",
-          "w",
-          "u",
-          "v",
-          "v"
-        ]
+      "truth": {
+        "text": "Hat starts with v.",
+        "picture": {
+          "key": "hat",
+          "label": "hat",
+          "url": null
+        },
+        "answer": false
       }
     },
     {
@@ -294,31 +225,6 @@
       },
       "speak": {
         "expected": "v says /v/ like violin!"
-      }
-    },
-    {
-      "id": "level-57-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "u",
-          "v",
-          "w"
-        ]
       }
     }
   ]

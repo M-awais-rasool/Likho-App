@@ -113,62 +113,25 @@
     },
     {
       "id": "level-38-r3",
-      "type": "pick",
+      "type": "truth",
       "prompt": {
-        "text": "What starts with /f/?",
-        "say": "{f|ˈɛf} says {/f/|fːː}. Which one starts with {/f/|fːː}?",
-        "audio": "voice/line-f681ec338b02bd2c.m4a"
+        "text": "True or silly?",
+        "say": "Fish starts with small {f|ˈɛf}. True, or silly?",
+        "audio": "voice/line-2a36abfff99e20bc.m4a"
       },
       "card": {
-        "text": "f",
+        "text": null,
         "picture": null,
         "listen": true
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-38-r3-o1",
-            "label": "pig",
-            "picture": {
-              "key": "pig",
-              "label": "pig",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-38-r3-o2",
-            "label": "yo-yo",
-            "picture": {
-              "key": "yoyo",
-              "label": "yo-yo",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-38-r3-o3",
-            "label": "fish",
-            "picture": {
-              "key": "fish",
-              "label": "fish",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "fish"
+      "truth": {
+        "text": "Fish starts with f.",
+        "picture": {
+          "key": "fish",
+          "label": "fish",
+          "url": null
         },
-        "shape": "jar",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "answer": true
       }
     },
     {
@@ -196,42 +159,134 @@
     },
     {
       "id": "level-38-r5",
-      "type": "hunt",
+      "type": "match",
       "prompt": {
-        "text": "Find every small f!",
-        "say": "Find every small {f|ˈɛf}!",
-        "audio": "voice/line-3e4ed3fe66d95cc4.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each big letter to its small letter.",
+        "audio": "voice/line-4140f52a5074e7c8.m4a"
       },
       "card": {
-        "text": "f",
+        "text": "Ff",
         "picture": null,
         "listen": false
       },
-      "hunt": {
-        "target": "f",
-        "grid": [
-          "t",
-          "f",
-          "l",
-          "t",
-          "j",
-          "f",
-          "l",
-          "l",
-          "f",
-          "t",
-          "j",
-          "f"
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "E",
+              "picture": null
+            },
+            "b": {
+              "text": "e",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "F",
+              "picture": null
+            },
+            "b": {
+              "text": "f",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "G",
+              "picture": null
+            },
+            "b": {
+              "text": "g",
+              "picture": null
+            }
+          }
         ]
       }
     },
     {
       "id": "level-38-r6",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/f/|fːː} or {/e/|ɛ}?",
+        "audio": "voice/line-720432df76aad235.m4a"
+      },
+      "card": {
+        "text": "f e",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "f",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "e",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "four",
+            "picture": {
+              "key": "four",
+              "label": "four",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "foot",
+            "picture": {
+              "key": "foot",
+              "label": "foot",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "egg",
+            "picture": {
+              "key": "egg",
+              "label": "egg",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "elephant",
+            "picture": {
+              "key": "elephant",
+              "label": "elephant",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-38-r7",
       "type": "write",
       "prompt": {
-        "text": "Finish the word!",
-        "say": "Fish! Write the missing letter.",
-        "audio": "voice/line-0de258971fa88a20.m4a"
+        "text": "Look, then write small f",
+        "say": "Look at small {f|ˈɛf}. Then write it from memory!",
+        "audio": "voice/line-d43db40164288ab6.m4a"
       },
       "card": {
         "text": null,
@@ -243,30 +298,7 @@
         "listen": false
       },
       "write": {
-        "mode": "missing",
-        "target": "f",
-        "guide": "f",
-        "word": "fish",
-        "missingIndex": 0,
-        "sentence": false,
-        "story": false
-      }
-    },
-    {
-      "id": "level-38-r7",
-      "type": "write",
-      "prompt": {
-        "text": "Write small f by yourself",
-        "say": "Now write small {f|ˈɛf} all by yourself!",
-        "audio": "voice/line-1da585c75d966b62.m4a"
-      },
-      "card": {
-        "text": "f",
-        "picture": null,
-        "listen": false
-      },
-      "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "f",
         "guide": "f",
         "word": null,
@@ -294,31 +326,6 @@
       },
       "speak": {
         "expected": "f says /f/ like fish!"
-      }
-    },
-    {
-      "id": "level-38-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "e",
-          "f",
-          "g"
-        ]
       }
     }
   ]

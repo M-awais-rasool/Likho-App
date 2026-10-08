@@ -27,14 +27,14 @@
   "rounds": [
     {
       "id": "level-35-r1",
-      "type": "pick",
+      "type": "pop",
       "prompt": {
-        "text": "Find small d!",
-        "say": "Big {D|dˈiː}, small {d|dˈiː}! Find small {d|dˈiː}.",
-        "audio": "voice/line-7cd099ed83933b47.m4a"
+        "text": "Pop every small d!",
+        "say": "Pop every small {d|dˈiː} bubble!",
+        "audio": "voice/line-8a98f62a21b816f9.m4a"
       },
       "card": {
-        "text": "D",
+        "text": "d",
         "picture": {
           "key": "dog",
           "label": "dog",
@@ -42,46 +42,14 @@
         },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-35-r1-o1",
-            "label": "d",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-35-r1-o2",
-            "label": "q",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-35-r1-o3",
-            "label": "a",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-35-r1-o4",
-            "label": "b",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "d",
+        "others": [
+          "b",
+          "a",
+          "q"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "d"
-        },
-        "shape": "fish",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 5
       }
     },
     {
@@ -113,62 +81,50 @@
     },
     {
       "id": "level-35-r3",
-      "type": "pick",
+      "type": "fix",
       "prompt": {
-        "text": "What starts with /d/?",
-        "say": "{d|dˈiː} says {/d/|dʌ}. Which one starts with {/d/|dʌ}?",
-        "audio": "voice/line-b0a6cb3ca9733855.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote some small {d|dˈiː} the wrong way. Tap them to fix them!",
+        "audio": "voice/line-5afb74e2db38d268.m4a"
       },
       "card": {
         "text": "d",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "fix": {
+        "items": [
           {
-            "id": "level-35-r3-o1",
-            "label": "dog",
-            "picture": {
-              "key": "dog",
-              "label": "dog",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "text": "d",
+            "wrong": null,
+            "at": null
           },
           {
-            "id": "level-35-r3-o2",
-            "label": "goat",
-            "picture": {
-              "key": "goat",
-              "label": "goat",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "text": "d",
+            "wrong": "mirror",
+            "at": null
           },
           {
-            "id": "level-35-r3-o3",
-            "label": "insect",
-            "picture": {
-              "key": "insect",
-              "label": "insect",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "text": "d",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "d",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "d",
+            "wrong": "mirror",
+            "at": null
+          },
+          {
+            "text": "d",
+            "wrong": null,
+            "at": null
           }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "dog"
-        },
-        "shape": "bucket",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        ]
       }
     },
     {
@@ -196,33 +152,62 @@
     },
     {
       "id": "level-35-r5",
-      "type": "hunt",
+      "type": "pick",
       "prompt": {
-        "text": "Find every small d!",
-        "say": "Find every small {d|dˈiː}!",
-        "audio": "voice/line-fe06d8915cfba23e.m4a"
+        "text": "What starts with /d/?",
+        "say": "{d|dˈiː} says {/d/|dʌ}. Which one starts with {/d/|dʌ}?",
+        "audio": "voice/line-b0a6cb3ca9733855.m4a"
       },
       "card": {
         "text": "d",
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "hunt": {
-        "target": "d",
-        "grid": [
-          "q",
-          "b",
-          "d",
-          "a",
-          "b",
-          "d",
-          "a",
-          "q",
-          "d",
-          "a",
-          "d",
-          "b"
-        ]
+      "pick": {
+        "options": [
+          {
+            "id": "level-35-r5-o1",
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-35-r5-o2",
+            "label": "goat",
+            "picture": {
+              "key": "goat",
+              "label": "goat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-35-r5-o3",
+            "label": "insect",
+            "picture": {
+              "key": "insect",
+              "label": "insect",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "dog"
+        },
+        "shape": "bucket",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
       }
     },
     {
@@ -294,31 +279,6 @@
       },
       "speak": {
         "expected": "d says /d/ like dog!"
-      }
-    },
-    {
-      "id": "level-35-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "c",
-          "d",
-          "e"
-        ]
       }
     }
   ]
