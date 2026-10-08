@@ -1,0 +1,4786 @@
+{
+ "Mushroom Sounds": {
+  "intro": {
+   "text": "a",
+   "word": "apple",
+   "say": "Apple starts with {a|æ}! Let's find the first sounds.",
+   "picture": {
+    "key": "apple",
+    "label": "apple",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "apple"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "apple",
+      "label": "apple",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "a",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "m",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "s",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "t",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "a"
+     },
+     "shape": "mushroom",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "sun"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "sun",
+      "label": "sun",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "b",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "s",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "o",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "f",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "s"
+     },
+     "shape": "mushroom",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "moon"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "moon",
+      "label": "moon",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "n",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "w",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "m",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "u",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "m"
+     },
+     "shape": "mushroom",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "fish"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "fish",
+      "label": "fish",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "t",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "h",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "l",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "f",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "f"
+     },
+     "shape": "mushroom",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "dog"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "dog",
+      "label": "dog",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "b",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "p",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "d",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "g",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "d"
+     },
+     "shape": "mushroom",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   }
+  ]
+ },
+ "Rhyme Frogs": {
+  "intro": {
+   "text": "-at",
+   "word": "frog",
+   "say": "Cat, hat, bat! Let's hop to words that rhyme.",
+   "picture": {
+    "key": "frog",
+    "label": "frog",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "cat"
+    },
+    "card": {
+     "text": "cat",
+     "picture": {
+      "key": "cat",
+      "label": "cat",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "hat",
+       "picture": {
+        "key": "hat",
+        "label": "hat",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "dog",
+       "picture": {
+        "key": "dog",
+        "label": "dog",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "sun",
+       "picture": {
+        "key": "sun",
+        "label": "sun",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "hat"
+     },
+     "shape": "pad",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "dog"
+    },
+    "card": {
+     "text": "dog",
+     "picture": {
+      "key": "dog",
+      "label": "dog",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "cup",
+       "picture": {
+        "key": "cup",
+        "label": "cup",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "log",
+       "picture": {
+        "key": "log",
+        "label": "log",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "bee",
+       "picture": {
+        "key": "bee",
+        "label": "bee",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "log"
+     },
+     "shape": "pad",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "sun"
+    },
+    "card": {
+     "text": "sun",
+     "picture": {
+      "key": "sun",
+      "label": "sun",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "bun",
+       "picture": {
+        "key": "bun",
+        "label": "bun",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "car",
+       "picture": {
+        "key": "car",
+        "label": "car",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "pig",
+       "picture": {
+        "key": "pig",
+        "label": "pig",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "bun"
+     },
+     "shape": "pad",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "bee"
+    },
+    "card": {
+     "text": "bee",
+     "picture": {
+      "key": "bee",
+      "label": "bee",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "box",
+       "picture": {
+        "key": "box",
+        "label": "box",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "hen",
+       "picture": {
+        "key": "hen",
+        "label": "hen",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "tree",
+       "picture": {
+        "key": "tree",
+        "label": "tree",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "tree"
+     },
+     "shape": "pad",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "car"
+    },
+    "card": {
+     "text": "car",
+     "picture": {
+      "key": "car",
+      "label": "car",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "star",
+       "picture": {
+        "key": "star",
+        "label": "star",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "cat",
+       "picture": {
+        "key": "cat",
+        "label": "cat",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "egg",
+       "picture": {
+        "key": "egg",
+        "label": "egg",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "star"
+     },
+     "shape": "pad",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   }
+  ]
+ },
+ "Blend Bridge": {
+  "intro": {
+   "text": "c-a-t",
+   "word": "cat",
+   "say": "{c|kʌ}... {a|æ}... {t|tʌ}... cat! Let's blend the sounds.",
+   "picture": {
+    "key": "cat",
+    "label": "cat",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "order",
+    "prompt": {
+     "text": "cat"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "cat",
+      "label": "cat",
+      "url": null
+     },
+     "listen": false
+    },
+    "order": {
+     "tiles": [
+      "c",
+      "a",
+      "t"
+     ],
+     "slot": "plank"
+    }
+   },
+   {
+    "type": "order",
+    "prompt": {
+     "text": "dog"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "dog",
+      "label": "dog",
+      "url": null
+     },
+     "listen": false
+    },
+    "order": {
+     "tiles": [
+      "d",
+      "o",
+      "g"
+     ],
+     "slot": "plank"
+    }
+   },
+   {
+    "type": "order",
+    "prompt": {
+     "text": "sun"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "sun",
+      "label": "sun",
+      "url": null
+     },
+     "listen": false
+    },
+    "order": {
+     "tiles": [
+      "s",
+      "u",
+      "n"
+     ],
+     "slot": "plank"
+    }
+   },
+   {
+    "type": "order",
+    "prompt": {
+     "text": "pig"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "pig",
+      "label": "pig",
+      "url": null
+     },
+     "listen": false
+    },
+    "order": {
+     "tiles": [
+      "p",
+      "i",
+      "g"
+     ],
+     "slot": "plank"
+    }
+   },
+   {
+    "type": "order",
+    "prompt": {
+     "text": "hen"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "hen",
+      "label": "hen",
+      "url": null
+     },
+     "listen": false
+    },
+    "order": {
+     "tiles": [
+      "h",
+      "e",
+      "n"
+     ],
+     "slot": "plank"
+    }
+   }
+  ]
+ },
+ "Vowel Owl": {
+  "intro": {
+   "text": "a e i o u",
+   "word": "owl",
+   "say": "{A|ˈeɪ}, {E|ˈiː}, {I|ˈaɪ}, {O|ˈoʊ}, {U|jˈuː}! The owl loves vowels.",
+   "picture": {
+    "key": "owl",
+    "label": "owl",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "write",
+    "prompt": {
+     "text": "c _ t",
+     "say": "Cat! Which letter is missing?"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "cat",
+      "label": "cat",
+      "url": null
+     },
+     "listen": false
+    },
+    "write": {
+     "mode": "missing",
+     "target": "a",
+     "guide": "a",
+     "word": "cat",
+     "missingIndex": 1,
+     "sentence": false,
+     "story": false
+    }
+   },
+   {
+    "type": "write",
+    "prompt": {
+     "text": "d _ g",
+     "say": "Dog! Which letter is missing?"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "dog",
+      "label": "dog",
+      "url": null
+     },
+     "listen": false
+    },
+    "write": {
+     "mode": "missing",
+     "target": "o",
+     "guide": "o",
+     "word": "dog",
+     "missingIndex": 1,
+     "sentence": false,
+     "story": false
+    }
+   },
+   {
+    "type": "write",
+    "prompt": {
+     "text": "s _ n",
+     "say": "Sun! Which letter is missing?"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "sun",
+      "label": "sun",
+      "url": null
+     },
+     "listen": false
+    },
+    "write": {
+     "mode": "missing",
+     "target": "u",
+     "guide": null,
+     "word": "sun",
+     "missingIndex": 1,
+     "sentence": false,
+     "story": false
+    }
+   },
+   {
+    "type": "write",
+    "prompt": {
+     "text": "p _ g",
+     "say": "Pig! Which letter is missing?"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "pig",
+      "label": "pig",
+      "url": null
+     },
+     "listen": false
+    },
+    "write": {
+     "mode": "missing",
+     "target": "i",
+     "guide": null,
+     "word": "pig",
+     "missingIndex": 1,
+     "sentence": false,
+     "story": false
+    }
+   },
+   {
+    "type": "write",
+    "prompt": {
+     "text": "b _ d",
+     "say": "Bed! Which letter is missing?"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "bed",
+      "label": "bed",
+      "url": null
+     },
+     "listen": false
+    },
+    "write": {
+     "mode": "missing",
+     "target": "e",
+     "guide": null,
+     "word": "bed",
+     "missingIndex": 1,
+     "sentence": false,
+     "story": false
+    }
+   }
+  ]
+ },
+ "Firefly Claps": {
+  "intro": {
+   "text": "ba·na·na",
+   "word": "firefly",
+   "say": "Ba, na, na! Let's clap the parts of words with the fireflies.",
+   "picture": {
+    "key": "firefly",
+    "label": "firefly",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "banana"
+    },
+    "card": {
+     "text": "banana",
+     "picture": {
+      "key": "banana",
+      "label": "banana",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "1",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "2",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "3",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "3"
+     },
+     "shape": "jar",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "cat"
+    },
+    "card": {
+     "text": "cat",
+     "picture": {
+      "key": "cat",
+      "label": "cat",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "1",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "2",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "3",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "1"
+     },
+     "shape": "jar",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "apple"
+    },
+    "card": {
+     "text": "apple",
+     "picture": {
+      "key": "apple",
+      "label": "apple",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "1",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "2",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "3",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "2"
+     },
+     "shape": "jar",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "tiger"
+    },
+    "card": {
+     "text": "tiger",
+     "picture": {
+      "key": "tiger",
+      "label": "tiger",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "1",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "2",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "3",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "2"
+     },
+     "shape": "jar",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "butterfly"
+    },
+    "card": {
+     "text": "butterfly",
+     "picture": {
+      "key": "butterfly",
+      "label": "butterfly",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "1",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "2",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "3",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "3"
+     },
+     "shape": "jar",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   }
+  ]
+ },
+ "Wake the Bear": {
+  "intro": {
+   "text": "dog",
+   "word": "bear",
+   "say": "The bear is fast asleep. Let's spell words to wake it up!",
+   "picture": {
+    "key": "bear",
+    "label": "bear",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "write",
+    "prompt": {
+     "text": "dog"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "dog",
+      "label": "dog",
+      "url": null
+     },
+     "listen": true
+    },
+    "write": {
+     "mode": "spell",
+     "target": "dog",
+     "guide": null,
+     "word": "dog",
+     "missingIndex": null,
+     "sentence": false,
+     "story": false
+    }
+   },
+   {
+    "type": "write",
+    "prompt": {
+     "text": "sun"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "sun",
+      "label": "sun",
+      "url": null
+     },
+     "listen": true
+    },
+    "write": {
+     "mode": "spell",
+     "target": "sun",
+     "guide": null,
+     "word": "sun",
+     "missingIndex": null,
+     "sentence": false,
+     "story": false
+    }
+   },
+   {
+    "type": "write",
+    "prompt": {
+     "text": "pig"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "pig",
+      "label": "pig",
+      "url": null
+     },
+     "listen": true
+    },
+    "write": {
+     "mode": "spell",
+     "target": "pig",
+     "guide": null,
+     "word": "pig",
+     "missingIndex": null,
+     "sentence": false,
+     "story": false
+    }
+   },
+   {
+    "type": "write",
+    "prompt": {
+     "text": "cat"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "cat",
+      "label": "cat",
+      "url": null
+     },
+     "listen": true
+    },
+    "write": {
+     "mode": "spell",
+     "target": "cat",
+     "guide": null,
+     "word": "cat",
+     "missingIndex": null,
+     "sentence": false,
+     "story": false
+    }
+   },
+   {
+    "type": "write",
+    "prompt": {
+     "text": "hen"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "hen",
+      "label": "hen",
+      "url": null
+     },
+     "listen": true
+    },
+    "write": {
+     "mode": "spell",
+     "target": "hen",
+     "guide": null,
+     "word": "hen",
+     "missingIndex": null,
+     "sentence": false,
+     "story": false
+    }
+   }
+  ]
+ },
+ "Paint Shop": {
+  "intro": {
+   "text": "red",
+   "word": "paint",
+   "say": "Red, blue, yellow! Let's paint with color words.",
+   "picture": {
+    "key": "paint",
+    "label": "paint",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "red"
+    },
+    "card": {
+     "text": "red",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "red",
+       "picture": null,
+       "color": "red",
+       "hideLabel": true
+      },
+      {
+       "label": "yellow",
+       "picture": null,
+       "color": "yellow",
+       "hideLabel": true
+      },
+      {
+       "label": "purple",
+       "picture": null,
+       "color": "purple",
+       "hideLabel": true
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "red"
+     },
+     "shape": "bucket",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false,
+     "stage": "house"
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "blue"
+    },
+    "card": {
+     "text": "blue",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "green",
+       "picture": null,
+       "color": "green",
+       "hideLabel": true
+      },
+      {
+       "label": "red",
+       "picture": null,
+       "color": "red",
+       "hideLabel": true
+      },
+      {
+       "label": "blue",
+       "picture": null,
+       "color": "blue",
+       "hideLabel": true
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "blue"
+     },
+     "shape": "bucket",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false,
+     "stage": "house"
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "yellow"
+    },
+    "card": {
+     "text": "yellow",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "blue",
+       "picture": null,
+       "color": "blue",
+       "hideLabel": true
+      },
+      {
+       "label": "yellow",
+       "picture": null,
+       "color": "yellow",
+       "hideLabel": true
+      },
+      {
+       "label": "purple",
+       "picture": null,
+       "color": "purple",
+       "hideLabel": true
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "yellow"
+     },
+     "shape": "bucket",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false,
+     "stage": "house"
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "green"
+    },
+    "card": {
+     "text": "green",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "green",
+       "picture": null,
+       "color": "green",
+       "hideLabel": true
+      },
+      {
+       "label": "red",
+       "picture": null,
+       "color": "red",
+       "hideLabel": true
+      },
+      {
+       "label": "yellow",
+       "picture": null,
+       "color": "yellow",
+       "hideLabel": true
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "green"
+     },
+     "shape": "bucket",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false,
+     "stage": "house"
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "purple"
+    },
+    "card": {
+     "text": "purple",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "blue",
+       "picture": null,
+       "color": "blue",
+       "hideLabel": true
+      },
+      {
+       "label": "green",
+       "picture": null,
+       "color": "green",
+       "hideLabel": true
+      },
+      {
+       "label": "purple",
+       "picture": null,
+       "color": "purple",
+       "hideLabel": true
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "purple"
+     },
+     "shape": "bucket",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false,
+     "stage": "house"
+    }
+   }
+  ]
+ },
+ "Zoo Bus": {
+  "intro": {
+   "text": "cow",
+   "word": "zoo bus",
+   "say": "Moo! All aboard the zoo bus!",
+   "picture": {
+    "key": "zoo_bus",
+    "label": "zoo bus",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Moo!"
+    },
+    "card": {
+     "text": "Moo!",
+     "picture": null,
+     "listen": true
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "cow",
+       "picture": {
+        "key": "cow",
+        "label": "cow",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "duck",
+       "picture": {
+        "key": "duck",
+        "label": "duck",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "cat",
+       "picture": {
+        "key": "cat",
+        "label": "cat",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "cow"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Quack!"
+    },
+    "card": {
+     "text": "Quack!",
+     "picture": null,
+     "listen": true
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "dog",
+       "picture": {
+        "key": "dog",
+        "label": "dog",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "duck",
+       "picture": {
+        "key": "duck",
+        "label": "duck",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "pig",
+       "picture": {
+        "key": "pig",
+        "label": "pig",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "duck"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Meow!"
+    },
+    "card": {
+     "text": "Meow!",
+     "picture": null,
+     "listen": true
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "pig",
+       "picture": {
+        "key": "pig",
+        "label": "pig",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "cow",
+       "picture": {
+        "key": "cow",
+        "label": "cow",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "cat",
+       "picture": {
+        "key": "cat",
+        "label": "cat",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "cat"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Woof!"
+    },
+    "card": {
+     "text": "Woof!",
+     "picture": null,
+     "listen": true
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "dog",
+       "picture": {
+        "key": "dog",
+        "label": "dog",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "cat",
+       "picture": {
+        "key": "cat",
+        "label": "cat",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "duck",
+       "picture": {
+        "key": "duck",
+        "label": "duck",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "dog"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Oink!"
+    },
+    "card": {
+     "text": "Oink!",
+     "picture": null,
+     "listen": true
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "cow",
+       "picture": {
+        "key": "cow",
+        "label": "cow",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "pig",
+       "picture": {
+        "key": "pig",
+        "label": "pig",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "dog",
+       "picture": {
+        "key": "dog",
+        "label": "dog",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "pig"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   }
+  ]
+ },
+ "Doctor Pencil": {
+  "intro": {
+   "text": "nose",
+   "word": "doctor",
+   "say": "Doctor Pencil is here! Let's learn the parts of the body.",
+   "picture": {
+    "key": "doctor",
+    "label": "doctor",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Touch the nose!"
+    },
+    "card": {
+     "text": "nose",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "nose",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "eye",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "ear",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "mouth",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "hand",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "nose"
+     },
+     "shape": null,
+     "layout": "patient",
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Touch the eye!"
+    },
+    "card": {
+     "text": "eye",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "nose",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "eye",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "ear",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "mouth",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "hand",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "eye"
+     },
+     "shape": null,
+     "layout": "patient",
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Touch the ear!"
+    },
+    "card": {
+     "text": "ear",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "nose",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "eye",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "ear",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "mouth",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "hand",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "ear"
+     },
+     "shape": null,
+     "layout": "patient",
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Touch the mouth!"
+    },
+    "card": {
+     "text": "mouth",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "nose",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "eye",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "ear",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "mouth",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "hand",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "mouth"
+     },
+     "shape": null,
+     "layout": "patient",
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Touch the hand!"
+    },
+    "card": {
+     "text": "hand",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "nose",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "eye",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "ear",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "mouth",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "hand",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "hand"
+     },
+     "shape": null,
+     "layout": "patient",
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   }
+  ]
+ },
+ "Cupcake Count": {
+  "intro": {
+   "text": "1 2 3",
+   "word": "cupcake",
+   "say": "One, two, three! Let's count the cupcakes.",
+   "picture": {
+    "key": "cupcake",
+    "label": "cupcake",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "How many?"
+    },
+    "card": {
+     "text": "How many?",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "two",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "three",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "five",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "three"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": 3,
+     "choiceKey": null,
+     "fixCapital": false,
+     "stage": "count"
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "How many?"
+    },
+    "card": {
+     "text": "How many?",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "four",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "six",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "one",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "four"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": 4,
+     "choiceKey": null,
+     "fixCapital": false,
+     "stage": "count"
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "How many?"
+    },
+    "card": {
+     "text": "How many?",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "two",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "seven",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "three",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "two"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": 2,
+     "choiceKey": null,
+     "fixCapital": false,
+     "stage": "count"
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "How many?"
+    },
+    "card": {
+     "text": "How many?",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "one",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "five",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "four",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "five"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": 5,
+     "choiceKey": null,
+     "fixCapital": false,
+     "stage": "count"
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "How many?"
+    },
+    "card": {
+     "text": "How many?",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "three",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "one",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "two",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "one"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": 1,
+     "choiceKey": null,
+     "fixCapital": false,
+     "stage": "count"
+    }
+   }
+  ]
+ },
+ "Family Album": {
+  "intro": {
+   "text": "mother",
+   "word": "family",
+   "say": "Mother, father, sister, brother! Let's look at the family album.",
+   "picture": {
+    "key": "family",
+    "label": "family",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Who is this?"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "family_mother",
+      "label": "mother",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "mother",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "father",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "baby",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "mother"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Who is this?"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "family_father",
+      "label": "father",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "sister",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "father",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "brother",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "father"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Who is this?"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "family_baby",
+      "label": "baby",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "baby",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "mother",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "sister",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "baby"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Who is this?"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "family_sister",
+      "label": "sister",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "brother",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "baby",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "sister",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "sister"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Who is this?"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "family_brother",
+      "label": "brother",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "brother",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "father",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "mother",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "brother"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   }
+  ]
+ },
+ "Wake the Robot-Bus": {
+  "intro": {
+   "text": "bus",
+   "word": "robot-bus",
+   "say": "The robot bus is sleeping. Let's write words to wake it up!",
+   "picture": {
+    "key": "robot-bus",
+    "label": "robot-bus",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "write",
+    "prompt": {
+     "text": "bus"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "bus",
+      "label": "bus",
+      "url": null
+     },
+     "listen": false
+    },
+    "write": {
+     "mode": "spell",
+     "target": "bus",
+     "guide": null,
+     "word": "bus",
+     "missingIndex": null,
+     "sentence": false,
+     "story": false
+    }
+   },
+   {
+    "type": "write",
+    "prompt": {
+     "text": "hat"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "hat",
+      "label": "hat",
+      "url": null
+     },
+     "listen": false
+    },
+    "write": {
+     "mode": "spell",
+     "target": "hat",
+     "guide": null,
+     "word": "hat",
+     "missingIndex": null,
+     "sentence": false,
+     "story": false
+    }
+   },
+   {
+    "type": "write",
+    "prompt": {
+     "text": "cup"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "cup",
+      "label": "cup",
+      "url": null
+     },
+     "listen": false
+    },
+    "write": {
+     "mode": "spell",
+     "target": "cup",
+     "guide": null,
+     "word": "cup",
+     "missingIndex": null,
+     "sentence": false,
+     "story": false
+    }
+   },
+   {
+    "type": "write",
+    "prompt": {
+     "text": "sun"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "sun",
+      "label": "sun",
+      "url": null
+     },
+     "listen": false
+    },
+    "write": {
+     "mode": "spell",
+     "target": "sun",
+     "guide": null,
+     "word": "sun",
+     "missingIndex": null,
+     "sentence": false,
+     "story": false
+    }
+   },
+   {
+    "type": "write",
+    "prompt": {
+     "text": "cat"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "cat",
+      "label": "cat",
+      "url": null
+     },
+     "listen": false
+    },
+    "write": {
+     "mode": "spell",
+     "target": "cat",
+     "guide": null,
+     "word": "cat",
+     "missingIndex": null,
+     "sentence": false,
+     "story": false
+    }
+   }
+  ]
+ },
+ "Sight Word Kites": {
+  "intro": {
+   "text": "the",
+   "word": "kite",
+   "say": "The! Let's fly the word kites.",
+   "picture": {
+    "key": "kite",
+    "label": "kite",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "the"
+    },
+    "card": {
+     "text": "the",
+     "picture": null,
+     "listen": true
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "the",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "is",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "and",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "see",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "the"
+     },
+     "shape": "kite",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "is"
+    },
+    "card": {
+     "text": "is",
+     "picture": null,
+     "listen": true
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "can",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "is",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "the",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "and",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "is"
+     },
+     "shape": "kite",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "and"
+    },
+    "card": {
+     "text": "and",
+     "picture": null,
+     "listen": true
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "see",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "and",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "is",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "can",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "and"
+     },
+     "shape": "kite",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "see"
+    },
+    "card": {
+     "text": "see",
+     "picture": null,
+     "listen": true
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "the",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "can",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "see",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "is",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "see"
+     },
+     "shape": "kite",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "can"
+    },
+    "card": {
+     "text": "can",
+     "picture": null,
+     "listen": true
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "and",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "see",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "the",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "can",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "can"
+     },
+     "shape": "kite",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   }
+  ]
+ },
+ "a or an?": {
+  "intro": {
+   "text": "an",
+   "word": "apple",
+   "say": "An apple, a ball! Let's choose a or an.",
+   "picture": {
+    "key": "apple",
+    "label": "apple",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "__ apple",
+     "say": "A apple, or an apple?"
+    },
+    "card": {
+     "text": "__ apple",
+     "picture": {
+      "key": "apple",
+      "label": "apple",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "a",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "an",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "an"
+     },
+     "shape": "cloud",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "__ ball",
+     "say": "A ball, or an ball?"
+    },
+    "card": {
+     "text": "__ ball",
+     "picture": {
+      "key": "ball",
+      "label": "ball",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "a",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "an",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "a"
+     },
+     "shape": "cloud",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "__ egg",
+     "say": "A egg, or an egg?"
+    },
+    "card": {
+     "text": "__ egg",
+     "picture": {
+      "key": "egg",
+      "label": "egg",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "a",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "an",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "an"
+     },
+     "shape": "cloud",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "__ dog",
+     "say": "A dog, or an dog?"
+    },
+    "card": {
+     "text": "__ dog",
+     "picture": {
+      "key": "dog",
+      "label": "dog",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "a",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "an",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "a"
+     },
+     "shape": "cloud",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "__ owl",
+     "say": "A owl, or an owl?"
+    },
+    "card": {
+     "text": "__ owl",
+     "picture": {
+      "key": "owl",
+      "label": "owl",
+      "url": null
+     },
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "a",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "an",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "an"
+     },
+     "shape": "cloud",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   }
+  ]
+ },
+ "One or Many": {
+  "intro": {
+   "text": "-s",
+   "word": "birds",
+   "say": "One bird, many birds! Let's make more than one.",
+   "picture": {
+    "key": "birds",
+    "label": "birds",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "write",
+    "prompt": {
+     "text": "bird → many",
+     "say": "One bird. Many...?"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "many_birds",
+      "label": "many birds",
+      "url": null
+     },
+     "listen": false
+    },
+    "write": {
+     "mode": "missing",
+     "target": "s",
+     "guide": null,
+     "word": "birds",
+     "missingIndex": 4,
+     "sentence": false,
+     "story": false
+    }
+   },
+   {
+    "type": "write",
+    "prompt": {
+     "text": "cat → many",
+     "say": "One cat. Many...?"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "many_cats",
+      "label": "many cats",
+      "url": null
+     },
+     "listen": false
+    },
+    "write": {
+     "mode": "missing",
+     "target": "s",
+     "guide": null,
+     "word": "cats",
+     "missingIndex": 3,
+     "sentence": false,
+     "story": false
+    }
+   },
+   {
+    "type": "write",
+    "prompt": {
+     "text": "dog → many",
+     "say": "One dog. Many...?"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "many_dogs",
+      "label": "many dogs",
+      "url": null
+     },
+     "listen": false
+    },
+    "write": {
+     "mode": "missing",
+     "target": "s",
+     "guide": null,
+     "word": "dogs",
+     "missingIndex": 3,
+     "sentence": false,
+     "story": false
+    }
+   },
+   {
+    "type": "write",
+    "prompt": {
+     "text": "cup → many",
+     "say": "One cup. Many...?"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "many_cups",
+      "label": "many cups",
+      "url": null
+     },
+     "listen": false
+    },
+    "write": {
+     "mode": "missing",
+     "target": "s",
+     "guide": null,
+     "word": "cups",
+     "missingIndex": 3,
+     "sentence": false,
+     "story": false
+    }
+   },
+   {
+    "type": "write",
+    "prompt": {
+     "text": "hat → many",
+     "say": "One hat. Many...?"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "many_hats",
+      "label": "many hats",
+      "url": null
+     },
+     "listen": false
+    },
+    "write": {
+     "mode": "missing",
+     "target": "s",
+     "guide": null,
+     "word": "hats",
+     "missingIndex": 3,
+     "sentence": false,
+     "story": false
+    }
+   }
+  ]
+ },
+ "Sentence Rainbow": {
+  "intro": {
+   "text": "I see",
+   "word": "rainbow",
+   "say": "I see a rainbow! Let's put the words in order.",
+   "picture": {
+    "key": "rainbow",
+    "label": "rainbow",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "order",
+    "prompt": {
+     "text": "I see a cat"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "cat",
+      "label": "cat",
+      "url": null
+     },
+     "listen": true
+    },
+    "order": {
+     "tiles": [
+      "I",
+      "see",
+      "a",
+      "cat"
+     ],
+     "slot": "stripe"
+    }
+   },
+   {
+    "type": "order",
+    "prompt": {
+     "text": "I can run"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "run",
+      "label": "run",
+      "url": null
+     },
+     "listen": true
+    },
+    "order": {
+     "tiles": [
+      "I",
+      "can",
+      "run"
+     ],
+     "slot": "stripe"
+    }
+   },
+   {
+    "type": "order",
+    "prompt": {
+     "text": "The sun is hot"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "hot",
+      "label": "hot",
+      "url": null
+     },
+     "listen": true
+    },
+    "order": {
+     "tiles": [
+      "The",
+      "sun",
+      "is",
+      "hot"
+     ],
+     "slot": "stripe"
+    }
+   },
+   {
+    "type": "order",
+    "prompt": {
+     "text": "I like red"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "red",
+      "label": "red",
+      "url": null
+     },
+     "listen": true
+    },
+    "order": {
+     "tiles": [
+      "I",
+      "like",
+      "red"
+     ],
+     "slot": "stripe"
+    }
+   },
+   {
+    "type": "order",
+    "prompt": {
+     "text": "We can play"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "play",
+      "label": "play",
+      "url": null
+     },
+     "listen": true
+    },
+    "order": {
+     "tiles": [
+      "We",
+      "can",
+      "play"
+     ],
+     "slot": "stripe"
+    }
+   }
+  ]
+ },
+ "Fix-It Pencil": {
+  "intro": {
+   "text": "I.",
+   "word": "pencil",
+   "say": "Sentences start with a capital letter! Let's fix them.",
+   "picture": {
+    "key": "pencil",
+    "label": "pencil",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Fix it!"
+    },
+    "card": {
+     "text": "Fix it!",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "i",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "see",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "a",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "dog",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "i"
+     },
+     "shape": null,
+     "layout": "flow",
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": true
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Fix it!"
+    },
+    "card": {
+     "text": "Fix it!",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "we",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "can",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "run",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "we"
+     },
+     "shape": null,
+     "layout": "flow",
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": true
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Fix it!"
+    },
+    "card": {
+     "text": "Fix it!",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "the",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "cat",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "is",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "big",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "the"
+     },
+     "shape": null,
+     "layout": "flow",
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": true
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Fix it!"
+    },
+    "card": {
+     "text": "Fix it!",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "my",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "dog",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "is",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "fun",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "my"
+     },
+     "shape": null,
+     "layout": "flow",
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": true
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Fix it!"
+    },
+    "card": {
+     "text": "Fix it!",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "i",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "like",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "cake",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "i"
+     },
+     "shape": null,
+     "layout": "flow",
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": true
+    }
+   }
+  ]
+ },
+ "Wake the Cloud": {
+  "intro": {
+   "text": "I see",
+   "word": "cloud",
+   "say": "The cloud is sleeping. Let's write sentences to wake it up!",
+   "picture": {
+    "key": "cloud",
+    "label": "cloud",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "write",
+    "prompt": {
+     "text": "I see a cat."
+    },
+    "card": {
+     "text": "I see a cat.",
+     "picture": null,
+     "listen": true
+    },
+    "write": {
+     "mode": "free",
+     "target": "I see a cat.",
+     "guide": null,
+     "word": null,
+     "missingIndex": null,
+     "sentence": true,
+     "story": false
+    }
+   },
+   {
+    "type": "write",
+    "prompt": {
+     "text": "I can run."
+    },
+    "card": {
+     "text": "I can run.",
+     "picture": null,
+     "listen": true
+    },
+    "write": {
+     "mode": "free",
+     "target": "I can run.",
+     "guide": null,
+     "word": null,
+     "missingIndex": null,
+     "sentence": true,
+     "story": false
+    }
+   },
+   {
+    "type": "write",
+    "prompt": {
+     "text": "The sun is up."
+    },
+    "card": {
+     "text": "The sun is up.",
+     "picture": null,
+     "listen": true
+    },
+    "write": {
+     "mode": "free",
+     "target": "The sun is up.",
+     "guide": null,
+     "word": null,
+     "missingIndex": null,
+     "sentence": true,
+     "story": false
+    }
+   },
+   {
+    "type": "write",
+    "prompt": {
+     "text": "I like red."
+    },
+    "card": {
+     "text": "I like red.",
+     "picture": null,
+     "listen": true
+    },
+    "write": {
+     "mode": "free",
+     "target": "I like red.",
+     "guide": null,
+     "word": null,
+     "missingIndex": null,
+     "sentence": true,
+     "story": false
+    }
+   },
+   {
+    "type": "write",
+    "prompt": {
+     "text": "We can play."
+    },
+    "card": {
+     "text": "We can play.",
+     "picture": null,
+     "listen": true
+    },
+    "write": {
+     "mode": "free",
+     "target": "We can play.",
+     "guide": null,
+     "word": null,
+     "missingIndex": null,
+     "sentence": true,
+     "story": false
+    }
+   }
+  ]
+ },
+ "Read & Match": {
+  "intro": {
+   "text": "read",
+   "word": "planet",
+   "say": "Read the sentence, then find the picture!",
+   "picture": {
+    "key": "planet",
+    "label": "planet",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "The cat is on the box."
+    },
+    "card": {
+     "text": "The cat is on the box.",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "cat on box",
+       "picture": {
+        "key": "cat_on_box",
+        "label": "cat on box",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "cat in bed",
+       "picture": {
+        "key": "cat_in_bed",
+        "label": "cat in bed",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "dog on box",
+       "picture": {
+        "key": "dog_on_box",
+        "label": "dog on box",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "cat on box"
+     },
+     "shape": "planet",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "The dog can run."
+    },
+    "card": {
+     "text": "The dog can run.",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "dog asleep",
+       "picture": {
+        "key": "dog_asleep",
+        "label": "dog asleep",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "dog running",
+       "picture": {
+        "key": "dog_running",
+        "label": "dog running",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "cat running",
+       "picture": {
+        "key": "cat_running",
+        "label": "cat running",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "dog running"
+     },
+     "shape": "planet",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "The sun is hot."
+    },
+    "card": {
+     "text": "The sun is hot.",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "rain cloud",
+       "picture": {
+        "key": "rain_cloud",
+        "label": "rain cloud",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "moon",
+       "picture": {
+        "key": "moon",
+        "label": "moon",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "hot sun",
+       "picture": {
+        "key": "hot_sun",
+        "label": "hot sun",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "hot sun"
+     },
+     "shape": "planet",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "I see a red car."
+    },
+    "card": {
+     "text": "I see a red car.",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "red car",
+       "picture": {
+        "key": "red_car",
+        "label": "red car",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "blue car",
+       "picture": {
+        "key": "blue_car",
+        "label": "blue car",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "red bus",
+       "picture": {
+        "key": "red_bus",
+        "label": "red bus",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "red car"
+     },
+     "shape": "planet",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "The fish is in the sea."
+    },
+    "card": {
+     "text": "The fish is in the sea.",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "bird in sky",
+       "picture": {
+        "key": "bird_in_sky",
+        "label": "bird in sky",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "fish in sea",
+       "picture": {
+        "key": "fish_in_sea",
+        "label": "fish in sea",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "fish in bowl",
+       "picture": {
+        "key": "fish_in_bowl",
+        "label": "fish in bowl",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "fish in sea"
+     },
+     "shape": "planet",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   }
+  ]
+ },
+ "Talk to Aliens": {
+  "intro": {
+   "text": "Hi!",
+   "word": "alien",
+   "say": "Hi! Let's talk to the friendly aliens.",
+   "picture": {
+    "key": "alien",
+    "label": "alien",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "speak",
+    "prompt": {
+     "text": "What is your name?"
+    },
+    "card": {
+     "text": "What is your name?",
+     "picture": null,
+     "listen": true
+    },
+    "speak": {
+     "expected": null
+    }
+   },
+   {
+    "type": "speak",
+    "prompt": {
+     "text": "How old are you?"
+    },
+    "card": {
+     "text": "How old are you?",
+     "picture": null,
+     "listen": true
+    },
+    "speak": {
+     "expected": null
+    }
+   },
+   {
+    "type": "speak",
+    "prompt": {
+     "text": "What color do you like?"
+    },
+    "card": {
+     "text": "What color do you like?",
+     "picture": null,
+     "listen": true
+    },
+    "speak": {
+     "expected": null
+    }
+   },
+   {
+    "type": "speak",
+    "prompt": {
+     "text": "Do you have a pet?"
+    },
+    "card": {
+     "text": "Do you have a pet?",
+     "picture": null,
+     "listen": true
+    },
+    "speak": {
+     "expected": null
+    }
+   },
+   {
+    "type": "speak",
+    "prompt": {
+     "text": "Say goodbye!"
+    },
+    "card": {
+     "text": "Say goodbye!",
+     "picture": null,
+     "listen": true
+    },
+    "speak": {
+     "expected": null
+    }
+   }
+  ]
+ },
+ "Story Order": {
+  "intro": {
+   "text": "1 2 3",
+   "word": "story",
+   "say": "First, next, last! Let's put the story in order.",
+   "picture": {
+    "key": "story",
+    "label": "story",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "order",
+    "prompt": {
+     "text": "Put in order"
+    },
+    "card": {
+     "text": "1 · 2 · 3",
+     "picture": null,
+     "listen": false
+    },
+    "order": {
+     "tiles": [
+      "seed",
+      "sprout",
+      "flower"
+     ],
+     "slot": "panel"
+    }
+   },
+   {
+    "type": "order",
+    "prompt": {
+     "text": "Put in order"
+    },
+    "card": {
+     "text": "1 · 2 · 3",
+     "picture": null,
+     "listen": false
+    },
+    "order": {
+     "tiles": [
+      "egg",
+      "crack",
+      "chick"
+     ],
+     "slot": "panel"
+    }
+   },
+   {
+    "type": "order",
+    "prompt": {
+     "text": "Put in order"
+    },
+    "card": {
+     "text": "1 · 2 · 3",
+     "picture": null,
+     "listen": false
+    },
+    "order": {
+     "tiles": [
+      "cloud",
+      "rain",
+      "puddle"
+     ],
+     "slot": "panel"
+    }
+   },
+   {
+    "type": "order",
+    "prompt": {
+     "text": "Put in order"
+    },
+    "card": {
+     "text": "1 · 2 · 3",
+     "picture": null,
+     "listen": false
+    },
+    "order": {
+     "tiles": [
+      "dough",
+      "oven",
+      "bread"
+     ],
+     "slot": "panel"
+    }
+   },
+   {
+    "type": "order",
+    "prompt": {
+     "text": "Put in order"
+    },
+    "card": {
+     "text": "1 · 2 · 3",
+     "picture": null,
+     "listen": false
+    },
+    "order": {
+     "tiles": [
+      "wake up",
+      "eat",
+      "school"
+     ],
+     "slot": "panel"
+    }
+   }
+  ]
+ },
+ "Star Questions": {
+  "intro": {
+   "text": "Who?",
+   "word": "story",
+   "say": "Who? What? Where? Let's answer the star questions.",
+   "picture": {
+    "key": "story",
+    "label": "story",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Who has a ball?"
+    },
+    "card": {
+     "text": "Sam has a red ball. He plays in the park.",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "Sam",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "Mia",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "Tom",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "Sam"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false,
+     "stage": "stars"
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "What does Sam have?"
+    },
+    "card": {
+     "text": "Sam has a red ball. He plays in the park.",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "kite",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "ball",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "bat",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "ball"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false,
+     "stage": "stars"
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Where does he play?"
+    },
+    "card": {
+     "text": "Sam has a red ball. He plays in the park.",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "school",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "home",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "park",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "park"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false,
+     "stage": "stars"
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Who sees a fish?"
+    },
+    "card": {
+     "text": "Mia sees a big fish in the sea.",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "Dad",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "Mia",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "Sam",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "Mia"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false,
+     "stage": "stars"
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Where is the fish?"
+    },
+    "card": {
+     "text": "Mia sees a big fish in the sea.",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "sea",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "tree",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "car",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "sea"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false,
+     "stage": "stars"
+    }
+   }
+  ]
+ },
+ "My Story": {
+  "intro": {
+   "text": "My…",
+   "word": "storybook",
+   "say": "Let's make up our very own story!",
+   "picture": {
+    "key": "storybook",
+    "label": "storybook",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Choose a friend"
+    },
+    "card": {
+     "text": "Friend?",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "cat",
+       "picture": {
+        "key": "cat",
+        "label": "cat",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "robot",
+       "picture": {
+        "key": "robot",
+        "label": "robot",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "dragon",
+       "picture": {
+        "key": "dragon",
+        "label": "dragon",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "any"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": null,
+     "choiceKey": "who",
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Choose a place"
+    },
+    "card": {
+     "text": "Where?",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "moon",
+       "picture": {
+        "key": "moon",
+        "label": "moon",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "sea",
+       "picture": {
+        "key": "sea",
+        "label": "sea",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "forest",
+       "picture": {
+        "key": "forest",
+        "label": "forest",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "any"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": null,
+     "choiceKey": "where",
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Choose a thing"
+    },
+    "card": {
+     "text": "What?",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "kite",
+       "picture": {
+        "key": "kite",
+        "label": "kite",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "cake",
+       "picture": {
+        "key": "cake",
+        "label": "cake",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "hat",
+       "picture": {
+        "key": "hat",
+        "label": "hat",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "any"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": null,
+     "choiceKey": "what",
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "write",
+    "prompt": {
+     "text": "Write your story"
+    },
+    "card": {
+     "text": "My cat can fly.",
+     "picture": null,
+     "listen": false
+    },
+    "write": {
+     "mode": "free",
+     "target": null,
+     "guide": null,
+     "word": null,
+     "missingIndex": null,
+     "sentence": true,
+     "story": true
+    }
+   }
+  ]
+ },
+ "Wake the Moon": {
+  "intro": {
+   "text": "★",
+   "word": "moon",
+   "say": "The moon is sleeping. Let's read and write to wake it up!",
+   "picture": {
+    "key": "moon",
+    "label": "moon",
+    "url": null
+   }
+  },
+  "rounds": [
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "The cat is on the box."
+    },
+    "card": {
+     "text": "The cat is on the box.",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "cat on box",
+       "picture": {
+        "key": "cat_on_box",
+        "label": "cat on box",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "cat in bed",
+       "picture": {
+        "key": "cat_in_bed",
+        "label": "cat in bed",
+        "url": null
+       },
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "cat on box"
+     },
+     "shape": "planet",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "write",
+    "prompt": {
+     "text": "moon"
+    },
+    "card": {
+     "text": null,
+     "picture": {
+      "key": "moon",
+      "label": "moon",
+      "url": null
+     },
+     "listen": true
+    },
+    "write": {
+     "mode": "spell",
+     "target": "moon",
+     "guide": null,
+     "word": "moon",
+     "missingIndex": null,
+     "sentence": false,
+     "story": false
+    }
+   },
+   {
+    "type": "speak",
+    "prompt": {
+     "text": "Say: I love to read!"
+    },
+    "card": {
+     "text": "I love to read!",
+     "picture": null,
+     "listen": false
+    },
+    "speak": {
+     "expected": null
+    }
+   },
+   {
+    "type": "pick",
+    "prompt": {
+     "text": "Who has a kite?"
+    },
+    "card": {
+     "text": "Ali has a kite. Sara has a ball.",
+     "picture": null,
+     "listen": false
+    },
+    "pick": {
+     "options": [
+      {
+       "label": "Ali",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "Sara",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      },
+      {
+       "label": "Sam",
+       "picture": null,
+       "color": null,
+       "hideLabel": false
+      }
+     ],
+     "answer": {
+      "kind": "label",
+      "value": "Ali"
+     },
+     "shape": "card",
+     "layout": null,
+     "count": null,
+     "choiceKey": null,
+     "fixCapital": false
+    }
+   },
+   {
+    "type": "write",
+    "prompt": {
+     "text": "I can read."
+    },
+    "card": {
+     "text": "I can read.",
+     "picture": null,
+     "listen": true
+    },
+    "write": {
+     "mode": "free",
+     "target": "I can read.",
+     "guide": null,
+     "word": null,
+     "missingIndex": null,
+     "sentence": true,
+     "story": false
+    }
+   }
+  ]
+ }
+}
