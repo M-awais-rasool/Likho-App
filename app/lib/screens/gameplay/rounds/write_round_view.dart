@@ -215,8 +215,7 @@ class WritePadController extends ChangeNotifier {
   }
 }
 
-/// The writing pad (prototype write area). Pad styles: paper (default),
-/// track (train), road (car), sand.
+/// The writing pad (prototype write area): ruled paper.
 class WritePad extends StatefulWidget {
   const WritePad({
     super.key,
@@ -313,8 +312,6 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
-    final pad = widget.state.level.presentation.pad ?? 'paper';
-    final sand = pad == 'sand';
     final raw = WritePadController.rawGuides(widget.round, widget.glyphs, letter: widget.controller.letter);
     final noGuide = widget.controller.guides.isEmpty;
     final freeHint = widget.round.mode == WriteMode.free && widget.round.sentence && !widget.state.correct
@@ -342,14 +339,13 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
               child: Stack(
                 children: [
                   Positioned.fill(
-                    child: CustomPaint(painter: _PadBackground(sand: sand)),
+                    child: const ColoredBox(color: LikhoColors.surface),
                   ),
                   Positioned.fill(
                     child: RepaintBoundary(
                       child: CustomPaint(
                         painter: _GuidePainter(
                           mode: widget.round.mode,
-                          pad: pad,
                           guides: widget.controller.guides,
                           raw: raw,
                           hint: widget.state.hint,
@@ -376,7 +372,7 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
                   Positioned.fill(
                     child: RepaintBoundary(
                       child: CustomPaint(
-                        painter: _InkPainter(controller: widget.controller, correct: widget.state.correct, sand: sand),
+                        painter: _InkPainter(controller: widget.controller, correct: widget.state.correct),
                       ),
                     ),
                   ),
@@ -398,8 +394,6 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
                       ),
                     ),
                   ),
-                  if (pad == 'track' || pad == 'road')
-                    _Follower(controller: widget.controller, icon: pad == 'track' ? Symbols.train_rounded : Symbols.directions_car_rounded),
                   if (widget.state.correct) const Positioned.fill(child: CorrectGlow(inner: true)),
                 ],
               ),
@@ -411,34 +405,12 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
   }
 }
 
-class _PadBackground extends CustomPainter {
-  const _PadBackground({required this.sand});
-  final bool sand;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    canvas.drawRect(Offset.zero & size, Paint()..color = sand ? GameColors.sand : LikhoColors.surface);
-    if (!sand) return;
-    // radial-gradient(grain 1px, transparent 1.5px) 0 0 / 9px 9px
-    final dot = Paint()..color = GameColors.sandGrain;
-    for (var y = 0.0; y < size.height; y += 9) {
-      for (var x = 0.0; x < size.width; x += 9) {
-        canvas.drawCircle(Offset(x, y), 1.2, dot);
-      }
-    }
-  }
-
-  @override
-  bool shouldRepaint(_PadBackground old) => old.sand != sand;
-}
-
 /// Ruled lines, the letter's lane and guide, and the step-by-step marks:
 /// finished strokes turn green, the current one shows its start (a pulsing
 /// numbered dot) and its direction (chevrons marching to its end).
 class _GuidePainter extends CustomPainter {
   _GuidePainter({
     required this.mode,
-    required this.pad,
     required this.guides,
     required this.raw,
     required this.hint,
@@ -447,7 +419,6 @@ class _GuidePainter extends CustomPainter {
   }) : super(repaint: guides.isNotEmpty ? Listenable.merge([time, controller]) : (hint ? time : null));
 
   final WriteMode mode;
-  final String pad;
   final List<Path> guides;
   final List<String> raw;
   final bool hint;
@@ -492,12 +463,7 @@ class _GuidePainter extends CustomPainter {
     geo.apply(canvas);
     // the lane: where ink may go; finished strokes are green, the current
     // one flashes when the finger slips off it
-    final base = switch (pad) {
-      'track' => GameColors.laneTrack,
-      'road' => GameColors.laneRoad,
-      'sand' => GameColors.laneSand,
-      _ => GameColors.lanePaper,
-    };
+    const base = GameColors.lanePaper;
     final flash = flashOf(controller.leftLaneAt);
     for (final (i, path) in guides.indexed) {
       final lane = Paint()
@@ -512,31 +478,15 @@ class _GuidePainter extends CustomPainter {
             : base;
       canvas.drawPath(path, lane);
     }
-    final guideColor = switch (pad) {
-      'track' => GameColors.guideTrack,
-      'road' => GameColors.guideRoad,
-      'sand' => GameColors.sandGuide,
-      _ => GameColors.guidePaper,
-    };
     if (mode == WriteMode.trace) {
       final stroke = Paint()
         ..style = PaintingStyle.stroke
         ..strokeCap = StrokeCap.round
         ..strokeJoin = StrokeJoin.round
-        ..strokeWidth = pad == 'road' ? 8 : 7
-        ..color = guideColor;
+        ..strokeWidth = 7
+        ..color = GameColors.guidePaper;
       for (final path in guides) {
-        canvas.drawPath(pad == 'track' ? _dashed(path, 1.3, 2.4) : path, stroke);
-      }
-      if (pad == 'road' || pad == 'track') {
-        final mid = Paint()
-          ..style = PaintingStyle.stroke
-          ..strokeCap = StrokeCap.round
-          ..strokeWidth = pad == 'road' ? .7 : .8
-          ..color = pad == 'road' ? LikhoColors.surface : GameColors.trackRail;
-        for (final path in guides) {
-          canvas.drawPath(pad == 'road' ? _dashed(path, 2.5, 2.5) : path, mid);
-        }
+        canvas.drawPath(path, stroke);
       }
     } else if (current < guides.length) {
       // writing without a traced letter: a dashed line shows the stroke's path
@@ -546,7 +496,7 @@ class _GuidePainter extends CustomPainter {
           ..style = PaintingStyle.stroke
           ..strokeCap = StrokeCap.round
           ..strokeWidth = 2.2
-          ..color = pad == 'sand' ? GameColors.sandGuide : GameColors.guideRoad,
+          ..color = GameColors.guideDashed,
       );
     }
     if (mode == WriteMode.dots) {
@@ -567,7 +517,7 @@ class _GuidePainter extends CustomPainter {
   static Path _dashed(Path p, double on, double off) => dashPath(p, dashArray: CircularIntervalList<double>([on, off]));
 
   @override
-  bool shouldRepaint(_GuidePainter old) => old.mode != mode || old.pad != pad || old.guides != guides || old.hint != hint || old.controller != controller;
+  bool shouldRepaint(_GuidePainter old) => old.mode != mode || old.guides != guides || old.hint != hint || old.controller != controller;
 }
 
 /// The step-by-step marks, drawn over the ink: where the current stroke
@@ -687,9 +637,9 @@ class _StepPainter extends CustomPainter {
 }
 
 class _InkPainter extends CustomPainter {
-  _InkPainter({required this.controller, required this.correct, required this.sand}) : super(repaint: controller);
+  _InkPainter({required this.controller, required this.correct}) : super(repaint: controller);
   final WritePadController controller;
-  final bool correct, sand;
+  final bool correct;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -713,7 +663,7 @@ class _InkPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round
       ..strokeJoin = StrokeJoin.round
       ..strokeWidth = width
-      ..color = correct ? LikhoColors.success : (sand ? GameColors.sandInk : LikhoColors.ink);
+      ..color = correct ? LikhoColors.success : LikhoColors.ink;
     for (final p in paths) {
       canvas.drawPath(p, ink);
     }
@@ -736,7 +686,7 @@ class _InkPainter extends CustomPainter {
 
   // a new pad (the next letter of a word) starts clean
   @override
-  bool shouldRepaint(_InkPainter old) => old.controller != controller || old.correct != correct || old.sand != sand;
+  bool shouldRepaint(_InkPainter old) => old.controller != controller || old.correct != correct;
 }
 
 class _Spark {
@@ -774,42 +724,6 @@ class _SparkPainter extends CustomPainter {
 }
 
 /// Track / road pads: a train or car rides under the finger.
-class _Follower extends StatelessWidget {
-  const _Follower({required this.controller, required this.icon});
-  final WritePadController controller;
-  final IconData icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: controller,
-      builder: (context, _) {
-        final p = controller.pen ?? Offset.zero;
-        return Positioned(
-          left: p.dx - 20,
-          top: p.dy - 46,
-          child: IgnorePointer(
-            child: AnimatedOpacity(
-              opacity: controller.penUsed ? 1 : 0,
-              duration: const Duration(milliseconds: 200),
-              child: Container(
-                width: 40,
-                height: 40,
-                decoration: const BoxDecoration(
-                  color: LikhoColors.hint,
-                  shape: BoxShape.circle,
-                  boxShadow: [BoxShadow(color: GameColors.hintDeep, offset: Offset(0, 4))],
-                ),
-                child: Icon(icon, size: 26, fill: 1, opticalSize: 26, color: LikhoColors.surface),
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
 /// "Start here" with a bobbing arrow, after a mistake on a
 /// pad without guides.
 class _StartHere extends StatelessWidget {
