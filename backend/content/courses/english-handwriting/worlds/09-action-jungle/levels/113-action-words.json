@@ -1,0 +1,318 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-113",
+  "number": 113,
+  "name": "Action Words",
+  "skill": "Doing words",
+  "icon": "directions_run",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "run",
+    "word": "run",
+    "say": "Run, jump, swim! Words for things we do.",
+    "audio": "voice/line-dc4c31dfb5857d56.m4a",
+    "picture": {
+      "key": "run",
+      "label": "run",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-113-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is run?",
+        "say": "Read the word. Which picture is run?",
+        "audio": "voice/line-4d1671aea65bfdfa.m4a"
+      },
+      "card": {
+        "text": "run",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-113-r1-o1",
+            "label": "run",
+            "picture": {
+              "key": "run",
+              "label": "run",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-113-r1-o2",
+            "label": "eat",
+            "picture": {
+              "key": "eat",
+              "label": "eat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-113-r1-o3",
+            "label": "sleep",
+            "picture": {
+              "key": "sleep",
+              "label": "sleep",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "run"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-113-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Run! Build the word run.",
+        "audio": "voice/line-1d46724347d2330b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "run",
+          "label": "run",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "r",
+          "u",
+          "n"
+        ],
+        "slot": "wagon"
+      }
+    },
+    {
+      "id": "level-113-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word jump.",
+        "audio": "voice/line-06a5d1f078e8b391.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-113-r3-o1",
+            "label": "swim",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-113-r3-o2",
+            "label": "sleep",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-113-r3-o3",
+            "label": "jump",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "jump"
+        },
+        "shape": "balloon",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-113-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Jump! Which letter is missing?",
+        "audio": "voice/line-ff75f3a146379700.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "jump",
+          "label": "jump",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "u",
+        "guide": "u",
+        "word": "jump",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-113-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every eat!",
+        "say": "Find every word eat!",
+        "audio": "voice/line-2a66ec62e8d23129.m4a"
+      },
+      "card": {
+        "text": "eat",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "eat",
+        "grid": [
+          "run",
+          "eat",
+          "eat",
+          "jump",
+          "sleep",
+          "read",
+          "eat",
+          "swim",
+          "and"
+        ]
+      }
+    },
+    {
+      "id": "level-113-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "story",
+          "label": "read",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-113-r6-o1",
+            "label": "read",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-113-r6-o2",
+            "label": "and",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-113-r6-o3",
+            "label": "said",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "read"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-113-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: run, jump, swim, eat!",
+        "say": "Say them with me! run, jump, swim, eat!",
+        "audio": "voice/line-a2fcf007ec7c3ac1.m4a"
+      },
+      "card": {
+        "text": "run, jump, swim, eat!",
+        "picture": {
+          "key": "run",
+          "label": "run",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "run, jump, swim, eat!"
+      }
+    },
+    {
+      "id": "level-113-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write swim",
+        "say": "Write the word swim.",
+        "audio": "voice/line-f50a11510a082204.m4a"
+      },
+      "card": {
+        "text": "swim",
+        "picture": {
+          "key": "swim",
+          "label": "swim",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "swim",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

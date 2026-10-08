@@ -1,0 +1,304 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-108",
+  "number": 108,
+  "name": "a or an?",
+  "skill": "Articles",
+  "icon": "cloud",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "a an",
+    "word": "apple",
+    "say": "An apple, a ball! Let's choose a or an.",
+    "audio": "voice/line-36b0df45255eec69.m4a",
+    "picture": {
+      "key": "apple",
+      "label": "apple",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-108-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "__ apple",
+        "say": "A apple, or an apple?",
+        "audio": "voice/line-54402513d9dc8249.m4a"
+      },
+      "card": {
+        "text": "__ apple",
+        "picture": {
+          "key": "apple",
+          "label": "apple",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "label": "a",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-108-r1-o1"
+          },
+          {
+            "label": "an",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-108-r1-o2"
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "an"
+        },
+        "shape": "cloud",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-108-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "I have an apple. Put the words in order.",
+        "audio": "voice/line-7036da207a6ab53c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "apple",
+          "label": "apple",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "I",
+          "have",
+          "an",
+          "apple"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-108-r3",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "I see an owl. Now write it!",
+        "audio": "voice/line-155a7fe3af0f46de.m4a"
+      },
+      "card": {
+        "text": "I see an owl.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I see an owl.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-108-r4",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: An apple, a ball, an egg, a cat!",
+        "say": "An apple, a ball, an egg, a cat! Now you say it!",
+        "audio": "voice/line-e74ed6364a3f5719.m4a"
+      },
+      "card": {
+        "text": "An apple, a ball, an egg, a cat!",
+        "picture": {
+          "key": "apple",
+          "label": "apple",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "An apple, a ball, an egg, a cat!"
+      }
+    },
+    {
+      "id": "level-108-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every tiger!",
+        "say": "Find every word tiger!",
+        "audio": "voice/line-d92215d3aad1476b.m4a"
+      },
+      "card": {
+        "text": "tiger",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "tiger",
+        "grid": [
+          "the",
+          "tiger",
+          "tiger",
+          "star",
+          "and",
+          "tiger",
+          "ship",
+          "brother",
+          "bus"
+        ]
+      }
+    },
+    {
+      "id": "level-108-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Spell he",
+        "say": "He! Write it one letter at a time.",
+        "audio": "voice/line-487d7956bd61835e.m4a"
+      },
+      "card": {
+        "text": "he",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "he",
+        "guide": null,
+        "word": "he",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-108-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-108-r7-o1",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-108-r7-o2",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-108-r7-o3",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-108-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word like.",
+        "audio": "voice/line-0e49269b26f07822.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-108-r8-o1",
+            "label": "like",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-108-r8-o2",
+            "label": "star",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-108-r8-o3",
+            "label": "tiger",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "like"
+        },
+        "shape": "bubble",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

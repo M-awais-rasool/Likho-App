@@ -1,0 +1,307 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-118",
+  "number": 118,
+  "name": "-ing Words",
+  "skill": "Running, jumping",
+  "icon": "directions_run",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "ing",
+    "word": "run",
+    "say": "Run, running! Jump, jumping! Let's add i n g.",
+    "audio": "voice/line-bfee3dd525c4d6ac.m4a",
+    "picture": {
+      "key": "run",
+      "label": "run",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-118-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "The boy is what. Which word fits?",
+        "audio": "voice/line-10adbf9d02cad7df.m4a"
+      },
+      "card": {
+        "text": "The boy is ___.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-118-r1-o1",
+            "label": "run",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-118-r1-o2",
+            "label": "red",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-118-r1-o3",
+            "label": "running",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "running"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-118-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Spell jumping",
+        "say": "Jumping! Write it one letter at a time.",
+        "audio": "voice/line-f8ee1bc1f3a64222.m4a"
+      },
+      "card": {
+        "text": "jumping",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "jumping",
+        "guide": null,
+        "word": "jumping",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-118-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "The dog is running. Put the words in order.",
+        "audio": "voice/line-3ddb5ee8c1f1a20a.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "dog_running",
+          "label": "dog running",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "The",
+          "dog",
+          "is",
+          "running"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-118-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "I am reading. Now write it!",
+        "audio": "voice/line-2cfc894bf0154739.m4a"
+      },
+      "card": {
+        "text": "I am reading.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I am reading.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-118-r5",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Run, running! Jump, jumping!",
+        "say": "Run, running! Jump, jumping! Now you say it!",
+        "audio": "voice/line-27aa908287a09375.m4a"
+      },
+      "card": {
+        "text": "Run, running! Jump, jumping!",
+        "picture": {
+          "key": "run",
+          "label": "run",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Run, running! Jump, jumping!"
+      }
+    },
+    {
+      "id": "level-118-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every ing!",
+        "say": "Find every word ing!",
+        "audio": "voice/line-7ba4ee64812e5111.m4a"
+      },
+      "card": {
+        "text": "ing",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "ing",
+        "grid": [
+          "sing",
+          "in",
+          "ing",
+          "ink",
+          "in",
+          "ing",
+          "king",
+          "ing",
+          "ink"
+        ]
+      }
+    },
+    {
+      "id": "level-118-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-118-r7-o1",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-118-r7-o2",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-118-r7-o3",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-118-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word under.",
+        "audio": "voice/line-2cdd30a17adecb57.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-118-r8-o1",
+            "label": "under",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-118-r8-o2",
+            "label": "and",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-118-r8-o3",
+            "label": "tiger",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "under"
+        },
+        "shape": "shell",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

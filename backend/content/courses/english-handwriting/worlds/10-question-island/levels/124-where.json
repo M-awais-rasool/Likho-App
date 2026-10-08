@@ -1,0 +1,312 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-124",
+  "number": 124,
+  "name": "Where?",
+  "skill": "Asking about places",
+  "icon": "place",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Where?",
+    "word": "school",
+    "say": "Where is it? Let's ask about places.",
+    "audio": "voice/line-51a00bb9f7cc9986.m4a",
+    "picture": {
+      "key": "school",
+      "label": "school",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-124-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Where is the cat?",
+        "say": "Look! Where is the cat?",
+        "audio": "voice/line-9ad8ba013f6dcf90.m4a"
+      },
+      "card": {
+        "text": "Where is the cat?",
+        "picture": {
+          "key": "cat_on_box",
+          "label": "cat on box",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-124-r1-o1",
+            "label": "chair",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-124-r1-o2",
+            "label": "bed",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-124-r1-o3",
+            "label": "box",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "box"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-124-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "It is on the box. Put the words in order.",
+        "audio": "voice/line-9fbe2c22c7dea4dc.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cat_on_box",
+          "label": "cat on box",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "It",
+          "is",
+          "on",
+          "the",
+          "box"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-124-r3",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "It is on the box. Now write it!",
+        "audio": "voice/line-aaa13478294d318e.m4a"
+      },
+      "card": {
+        "text": "It is on the box.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "It is on the box.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-124-r4",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: It is on the box.",
+        "say": "It is on the box. Now you say it!",
+        "audio": "voice/line-779c6236d26dcf53.m4a"
+      },
+      "card": {
+        "text": "It is on the box.",
+        "picture": {
+          "key": "cat_on_box",
+          "label": "cat on box",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "It is on the box."
+      }
+    },
+    {
+      "id": "level-124-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Spell where",
+        "say": "Where! Write it one letter at a time.",
+        "audio": "voice/line-b1ead44849a8ab76.m4a"
+      },
+      "card": {
+        "text": "where",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "where",
+        "guide": null,
+        "word": "where",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-124-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every where!",
+        "say": "Find every word where!",
+        "audio": "voice/line-2c0235790c506dda.m4a"
+      },
+      "card": {
+        "text": "where",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "where",
+        "grid": [
+          "where",
+          "when",
+          "who",
+          "why",
+          "what",
+          "where",
+          "where",
+          "what",
+          "who"
+        ]
+      }
+    },
+    {
+      "id": "level-124-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-124-r7-o1",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-124-r7-o2",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-124-r7-o3",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-124-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word what.",
+        "audio": "voice/line-05b2f956939a0bfe.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-124-r8-o1",
+            "label": "what",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-124-r8-o2",
+            "label": "down",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-124-r8-o3",
+            "label": "you",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "what"
+        },
+        "shape": "fish",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

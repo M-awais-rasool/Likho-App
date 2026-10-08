@@ -1,0 +1,314 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-127",
+  "number": 127,
+  "name": "Answer Me",
+  "skill": "Answering in sentences",
+  "icon": "question_answer",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Yes, I can.",
+    "word": "robot",
+    "say": "Let's answer questions with a whole sentence.",
+    "audio": "voice/line-ef4414e6617f203c.m4a",
+    "picture": {
+      "key": "robot",
+      "label": "robot",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-127-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Can you jump?",
+        "say": "Can you jump? Pick the answer!",
+        "audio": "voice/line-6f28f930b6870a5d.m4a"
+      },
+      "card": {
+        "text": "Can you jump?",
+        "picture": {
+          "key": "jump",
+          "label": "jump",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-127-r1-o1",
+            "label": "Yes, it is.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-127-r1-o2",
+            "label": "Yes, I can.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-127-r1-o3",
+            "label": "I am red.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Yes, I can."
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-127-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "Yes, I can. Put the words in order.",
+        "audio": "voice/line-33b7c1830379111a.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "jump",
+          "label": "jump",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "Yes,",
+          "I",
+          "can"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-127-r3",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "Yes, I can. Now write it!",
+        "audio": "voice/line-ed90e2fefdb1eb2a.m4a"
+      },
+      "card": {
+        "text": "Yes, I can.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "Yes, I can.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-127-r4",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Can you swim? Yes, I can!",
+        "say": "Can you swim? Yes, I can! Now you say it!",
+        "audio": "voice/line-42b1b841684e134d.m4a"
+      },
+      "card": {
+        "text": "Can you swim? Yes, I can!",
+        "picture": {
+          "key": "swim",
+          "label": "swim",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Can you swim? Yes, I can!"
+      }
+    },
+    {
+      "id": "level-127-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every like!",
+        "say": "Find every word like!",
+        "audio": "voice/line-ef09687e3c13ecc5.m4a"
+      },
+      "card": {
+        "text": "like",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "like",
+        "grid": [
+          "said",
+          "under",
+          "look",
+          "jumping",
+          "down",
+          "you",
+          "like",
+          "like",
+          "like"
+        ]
+      }
+    },
+    {
+      "id": "level-127-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Spell jump",
+        "say": "Jump! Write it one letter at a time.",
+        "audio": "voice/line-cc81fb1811517725.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "jump",
+          "label": "jump",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "jump",
+        "guide": null,
+        "word": "jump",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-127-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-127-r7-o1",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-127-r7-o2",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-127-r7-o3",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-127-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word Monday.",
+        "audio": "voice/line-c8ffde019149633c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-127-r8-o1",
+            "label": "Monday",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-127-r8-o2",
+            "label": "look",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-127-r8-o3",
+            "label": "jump",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Monday"
+        },
+        "shape": "cloud",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

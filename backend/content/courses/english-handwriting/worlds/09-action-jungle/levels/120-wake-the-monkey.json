@@ -1,0 +1,315 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-120",
+  "number": 120,
+  "name": "Wake the Monkey",
+  "skill": "Boss · action words",
+  "icon": "bedtime",
+  "isBoss": true,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "jump",
+    "word": "monkey",
+    "say": "The monkey is asleep in a tree. Let's wake it up!",
+    "audio": "voice/line-b041086ad56fc6a2.m4a",
+    "picture": {
+      "key": "monkey",
+      "label": "monkey",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-120-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "swim",
+          "label": "swim",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-120-r1-o1",
+            "label": "fly",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-120-r1-o2",
+            "label": "eat",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-120-r1-o3",
+            "label": "swim",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "swim"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-120-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Spell jump",
+        "say": "Jump! Write it one letter at a time.",
+        "audio": "voice/line-cc81fb1811517725.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "jump",
+          "label": "jump",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "jump",
+        "guide": null,
+        "word": "jump",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-120-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "The cat is under the chair.",
+        "say": "The cat is under the chair. Find the picture!",
+        "audio": "voice/line-521165d3476926e6.m4a"
+      },
+      "card": {
+        "text": "The cat is under the chair.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-120-r3-o1",
+            "label": "cat in bed",
+            "picture": {
+              "key": "cat_in_bed",
+              "label": "cat in bed",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-120-r3-o2",
+            "label": "cat on box",
+            "picture": {
+              "key": "cat_on_box",
+              "label": "cat on box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-120-r3-o3",
+            "label": "cat under chair",
+            "picture": {
+              "key": "cat_under_chair",
+              "label": "cat under chair",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "cat under chair"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-120-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "I can jump. Now write it!",
+        "audio": "voice/line-514c125d8b269680.m4a"
+      },
+      "card": {
+        "text": "I can jump.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I can jump.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-120-r5",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "The monkey is happy. Put the words in order.",
+        "audio": "voice/line-9a60277893fe2342.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "monkey",
+          "label": "monkey",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "The",
+          "monkey",
+          "is",
+          "happy"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-120-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every run!",
+        "say": "Find every word run!",
+        "audio": "voice/line-c65aad11ddebccd3.m4a"
+      },
+      "card": {
+        "text": "run",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "run",
+        "grid": [
+          "run",
+          "fun",
+          "rug",
+          "fun",
+          "sun",
+          "run",
+          "sun",
+          "ran",
+          "run"
+        ]
+      }
+    },
+    {
+      "id": "level-120-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word jumping.",
+        "audio": "voice/line-4da5104a3bebf06e.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-120-r7-o1",
+            "label": "like",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-120-r7-o2",
+            "label": "jumping",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-120-r7-o3",
+            "label": "he",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "jumping"
+        },
+        "shape": "cloud",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-120-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: I can run, jump and swim!",
+        "say": "I can run, jump and swim! Now you say it!",
+        "audio": "voice/line-c42199d1282197ba.m4a"
+      },
+      "card": {
+        "text": "I can run, jump and swim!",
+        "picture": {
+          "key": "monkey",
+          "label": "monkey",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "I can run, jump and swim!"
+      }
+    }
+  ]
+}

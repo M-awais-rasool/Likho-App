@@ -1,0 +1,307 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-105",
+  "number": 105,
+  "name": "Word Spaces",
+  "skill": "Spaces between words",
+  "icon": "space_bar",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "I see",
+    "word": "cat",
+    "say": "Words need spaces! Let's put the words in order.",
+    "audio": "voice/line-5845890989322295.m4a",
+    "picture": {
+      "key": "cat",
+      "label": "cat",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-105-r1",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "I see a cat. Put the words in order.",
+        "audio": "voice/line-fdd5ede01b220a61.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "I",
+          "see",
+          "a",
+          "cat"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-105-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "I see a cat. Now write it!",
+        "audio": "voice/line-48e086c1ac0c9fcc.m4a"
+      },
+      "card": {
+        "text": "I see a cat.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I see a cat.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-105-r3",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: I see a cat.",
+        "say": "I see a cat. Now you say it!",
+        "audio": "voice/line-ee54b6b907531e5c.m4a"
+      },
+      "card": {
+        "text": "I see a cat.",
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "I see a cat."
+      }
+    },
+    {
+      "id": "level-105-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a cat.",
+        "say": "I see a cat. Find the picture!",
+        "audio": "voice/line-9bbfc0a32fe4234d.m4a"
+      },
+      "card": {
+        "text": "I see a cat.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-105-r4-o1",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-105-r4-o2",
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-105-r4-o3",
+            "label": "run",
+            "picture": {
+              "key": "run",
+              "label": "run",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "cat"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-105-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "Which mark ends it?",
+        "say": "I see a cat. Which mark goes at the end?",
+        "audio": "voice/line-1148e78c9b062f3a.m4a"
+      },
+      "card": {
+        "text": "I see a cat ___",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-105-r5-o1",
+            "label": ".",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-105-r5-o2",
+            "label": "!",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-105-r5-o3",
+            "label": "?",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "."
+        },
+        "shape": "balloon",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-105-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every tiger!",
+        "say": "Find every word tiger!",
+        "audio": "voice/line-d92215d3aad1476b.m4a"
+      },
+      "card": {
+        "text": "tiger",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "tiger",
+        "grid": [
+          "tiger",
+          "tiger",
+          "ship",
+          "the",
+          "bus",
+          "and",
+          "star",
+          "tiger",
+          "brother"
+        ]
+      }
+    },
+    {
+      "id": "level-105-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Spell he",
+        "say": "He! Write it one letter at a time.",
+        "audio": "voice/line-487d7956bd61835e.m4a"
+      },
+      "card": {
+        "text": "he",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "he",
+        "guide": null,
+        "word": "he",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-105-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word like.",
+        "audio": "voice/line-0e49269b26f07822.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-105-r8-o1",
+            "label": "tiger",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-105-r8-o2",
+            "label": "said",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-105-r8-o3",
+            "label": "like",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "like"
+        },
+        "shape": "mushroom",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

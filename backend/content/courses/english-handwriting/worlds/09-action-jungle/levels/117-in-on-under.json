@@ -1,0 +1,309 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-117",
+  "number": 117,
+  "name": "In, On, Under",
+  "skill": "Where things are",
+  "icon": "pets",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "in on",
+    "word": "cat on box",
+    "say": "Is the cat in, on or under? Let's look!",
+    "audio": "voice/line-e919440c743c09b0.m4a",
+    "picture": {
+      "key": "cat_on_box",
+      "label": "cat_on_box",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-117-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "The cat is in the bed.",
+        "say": "The cat is in the bed. Find the picture!",
+        "audio": "voice/line-ad09036e713cfdc9.m4a"
+      },
+      "card": {
+        "text": "The cat is in the bed.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-117-r1-o1",
+            "label": "cat under chair",
+            "picture": {
+              "key": "cat_under_chair",
+              "label": "cat under chair",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-117-r1-o2",
+            "label": "cat on box",
+            "picture": {
+              "key": "cat_on_box",
+              "label": "cat on box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-117-r1-o3",
+            "label": "cat in bed",
+            "picture": {
+              "key": "cat_in_bed",
+              "label": "cat in bed",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "cat in bed"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-117-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "The cat is what the chair. Which word fits?",
+        "audio": "voice/line-55671baef3da6eff.m4a"
+      },
+      "card": {
+        "text": "The cat is ___ the chair.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-117-r2-o1",
+            "label": "on",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-117-r2-o2",
+            "label": "under",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-117-r2-o3",
+            "label": "in",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "under"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-117-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "The dog is on the box. Put the words in order.",
+        "audio": "voice/line-f37b8d7fd0689a60.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "dog_on_box",
+          "label": "dog on box",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "The",
+          "dog",
+          "is",
+          "on",
+          "the",
+          "box"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-117-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Spell under",
+        "say": "Under! Write it one letter at a time.",
+        "audio": "voice/line-fd76d17355c77826.m4a"
+      },
+      "card": {
+        "text": "under",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "under",
+        "guide": null,
+        "word": "under",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-117-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "The cat is in the bed. Now write it!",
+        "audio": "voice/line-24ca86df7ee30db7.m4a"
+      },
+      "card": {
+        "text": "The cat is in the bed.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "The cat is in the bed.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-117-r6",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: In, on, under!",
+        "say": "In, on, under! Now you say it!",
+        "audio": "voice/line-2bde12b9f521263e.m4a"
+      },
+      "card": {
+        "text": "In, on, under!",
+        "picture": {
+          "key": "cat_on_box",
+          "label": "cat on box",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "In, on, under!"
+      }
+    },
+    {
+      "id": "level-117-r7",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every on!",
+        "say": "Find every word on!",
+        "audio": "voice/line-678ac9b7a5410b28.m4a"
+      },
+      "card": {
+        "text": "on",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "on",
+        "grid": [
+          "in",
+          "an",
+          "up",
+          "on",
+          "no",
+          "in",
+          "on",
+          "on",
+          "no"
+        ]
+      }
+    },
+    {
+      "id": "level-117-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word down.",
+        "audio": "voice/line-4ebbf06b1365f749.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-117-r8-o1",
+            "label": "like",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-117-r8-o2",
+            "label": "he",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-117-r8-o3",
+            "label": "down",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "down"
+        },
+        "shape": "fish",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

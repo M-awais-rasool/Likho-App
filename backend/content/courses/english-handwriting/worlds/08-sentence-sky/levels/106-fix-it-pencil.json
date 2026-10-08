@@ -1,0 +1,310 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-106",
+  "number": 106,
+  "name": "Fix-It Pencil",
+  "skill": "Capital letters",
+  "icon": "edit",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Aa",
+    "word": "pencil",
+    "say": "Sentences start with a capital letter! Let's fix them.",
+    "audio": "voice/line-b8839ea6c28a89ae.m4a",
+    "picture": {
+      "key": "pencil",
+      "label": "pencil",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-106-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Fix it!",
+        "audio": "voice/line-811662bc5d931d72.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "label": "i",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-106-r1-o1"
+          },
+          {
+            "label": "see",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-106-r1-o2"
+          },
+          {
+            "label": "a",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-106-r1-o3"
+          },
+          {
+            "label": "dog",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-106-r1-o4"
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "i"
+        },
+        "shape": null,
+        "layout": "flow",
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": true
+      }
+    },
+    {
+      "id": "level-106-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "I can see. Now write it!",
+        "audio": "voice/line-e44b503be30eb2c2.m4a"
+      },
+      "card": {
+        "text": "I can see.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I can see.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-106-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "Sara has a cat. Put the words in order.",
+        "audio": "voice/line-858d0f63c4d3a4a0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "Sara",
+          "has",
+          "a",
+          "cat"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-106-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Which one is right?",
+        "say": "Which sentence starts the right way?",
+        "audio": "voice/line-ae04a18c031023aa.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "pencil",
+          "label": "pencil",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-106-r4-o1",
+            "label": "The cat is big.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-106-r4-o2",
+            "label": "the cat is big.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "The cat is big."
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-106-r5",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: A sentence starts with a capital letter.",
+        "say": "A sentence starts with a capital letter. Now you say it!",
+        "audio": "voice/line-eb5923470ab4fba3.m4a"
+      },
+      "card": {
+        "text": "A sentence starts with a capital letter.",
+        "picture": {
+          "key": "pencil",
+          "label": "pencil",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "A sentence starts with a capital letter."
+      }
+    },
+    {
+      "id": "level-106-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every tiger!",
+        "say": "Find every word tiger!",
+        "audio": "voice/line-d92215d3aad1476b.m4a"
+      },
+      "card": {
+        "text": "tiger",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "tiger",
+        "grid": [
+          "ship",
+          "tiger",
+          "brother",
+          "the",
+          "star",
+          "tiger",
+          "tiger",
+          "bus",
+          "and"
+        ]
+      }
+    },
+    {
+      "id": "level-106-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Spell he",
+        "say": "He! Write it one letter at a time.",
+        "audio": "voice/line-487d7956bd61835e.m4a"
+      },
+      "card": {
+        "text": "he",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "he",
+        "guide": null,
+        "word": "he",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-106-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-106-r8-o1",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-106-r8-o2",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-106-r8-o3",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

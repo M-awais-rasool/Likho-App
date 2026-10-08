@@ -1,0 +1,306 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-125",
+  "number": 125,
+  "name": "Days of the Week",
+  "skill": "Days",
+  "icon": "calendar_month",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Monday",
+    "word": "calendar",
+    "say": "Monday, Tuesday, Wednesday! Let's learn the days.",
+    "audio": "voice/line-37c32c1f18de7281.m4a",
+    "picture": {
+      "key": "calendar",
+      "label": "calendar",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-125-r1",
+      "type": "order",
+      "prompt": {
+        "text": "Put the days in order!",
+        "say": "Monday, Tuesday, Wednesday... Put the days in order!",
+        "audio": "voice/line-75eee4dcab34dd88.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "calendar",
+          "label": "calendar",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "Monday",
+          "Tuesday",
+          "Wednesday"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-125-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "Monday, what, Wednesday. Which word fits?",
+        "audio": "voice/line-f209b0c6719a77c9.m4a"
+      },
+      "card": {
+        "text": "Monday, ___, Wednesday.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-125-r2-o1",
+            "label": "Sunday",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-125-r2-o2",
+            "label": "Friday",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-125-r2-o3",
+            "label": "Tuesday",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Tuesday"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-125-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word Friday.",
+        "audio": "voice/line-361e9658e5992ab5.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-125-r3-o1",
+            "label": "Friday",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-125-r3-o2",
+            "label": "Tuesday",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-125-r3-o3",
+            "label": "Saturday",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Friday"
+        },
+        "shape": "mushroom",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-125-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Spell Monday",
+        "say": "Monday! Write it one letter at a time.",
+        "audio": "voice/line-6d3da37afc3d0e62.m4a"
+      },
+      "card": {
+        "text": "Monday",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "Monday",
+        "guide": null,
+        "word": "Monday",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-125-r5",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday!",
+        "say": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday! Now you say it!",
+        "audio": "voice/line-f20f264367ba99cd.m4a"
+      },
+      "card": {
+        "text": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday!",
+        "picture": {
+          "key": "calendar",
+          "label": "calendar",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday!"
+      }
+    },
+    {
+      "id": "level-125-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "Today is Monday. Now write it!",
+        "audio": "voice/line-ba17aae9f341c1a9.m4a"
+      },
+      "card": {
+        "text": "Today is Monday.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "Today is Monday.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-125-r7",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every Sunday!",
+        "say": "Find every word Sunday!",
+        "audio": "voice/line-83588bfc94f973d3.m4a"
+      },
+      "card": {
+        "text": "Sunday",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "Sunday",
+        "grid": [
+          "Friday",
+          "Sunday",
+          "sun",
+          "Monday",
+          "Monday",
+          "Sunday",
+          "Sunday",
+          "Friday",
+          "sun"
+        ]
+      }
+    },
+    {
+      "id": "level-125-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-125-r8-o1",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-125-r8-o2",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-125-r8-o3",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

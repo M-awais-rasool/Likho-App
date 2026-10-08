@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../../schema/world.schema.json",
+  "id": "world-10",
+  "order": 10,
+  "name": "Question Island",
+  "skill": "Questions",
+  "icon": "help",
+  "themeId": "questionIsland",
+  "boss": {
+    "id": "turtle",
+    "name": "Sleepy Turtle"
+  }
+}

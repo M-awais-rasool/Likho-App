@@ -1,0 +1,318 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-115",
+  "number": 115,
+  "name": "Describing Words",
+  "skill": "Big, small, hot, cold",
+  "icon": "zoom_out_map",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "big",
+    "word": "elephant",
+    "say": "Big, small, hot, cold! Words that tell us more.",
+    "audio": "voice/line-d23c498b15fa003d.m4a",
+    "picture": {
+      "key": "elephant",
+      "label": "elephant",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-115-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is big?",
+        "say": "Read the word. Which picture is big?",
+        "audio": "voice/line-f100077e809c9ca8.m4a"
+      },
+      "card": {
+        "text": "big",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-115-r1-o1",
+            "label": "big",
+            "picture": {
+              "key": "elephant",
+              "label": "big",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-115-r1-o2",
+            "label": "sad",
+            "picture": {
+              "key": "sad",
+              "label": "sad",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-115-r1-o3",
+            "label": "hot",
+            "picture": {
+              "key": "hot",
+              "label": "hot",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "big"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-115-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Big! Build the word big.",
+        "audio": "voice/line-0b35fc7ac4030553.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "elephant",
+          "label": "big",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "b",
+          "i",
+          "g"
+        ],
+        "slot": "plank"
+      }
+    },
+    {
+      "id": "level-115-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word small.",
+        "audio": "voice/line-59b85c51de1e01e7.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-115-r3-o1",
+            "label": "small",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-115-r3-o2",
+            "label": "happy",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-115-r3-o3",
+            "label": "cold",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "small"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-115-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Small! Which letter is missing?",
+        "audio": "voice/line-8cd1bb08b25ccdef.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "mouse",
+          "label": "small",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "a",
+        "guide": "a",
+        "word": "small",
+        "missingIndex": 2,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-115-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every cold!",
+        "say": "Find every word cold!",
+        "audio": "voice/line-a1d7f10a7b7b02de.m4a"
+      },
+      "card": {
+        "text": "cold",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "cold",
+        "grid": [
+          "big",
+          "cold",
+          "cold",
+          "cold",
+          "small",
+          "hot",
+          "happy",
+          "sad",
+          "and"
+        ]
+      }
+    },
+    {
+      "id": "level-115-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "sad",
+          "label": "sad",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-115-r6-o1",
+            "label": "sad",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-115-r6-o2",
+            "label": "you",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-115-r6-o3",
+            "label": "happy",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "sad"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-115-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: big, small, hot, cold!",
+        "say": "Say them with me! big, small, hot, cold!",
+        "audio": "voice/line-3cc3e5dc2164407e.m4a"
+      },
+      "card": {
+        "text": "big, small, hot, cold!",
+        "picture": {
+          "key": "elephant",
+          "label": "big",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "big, small, hot, cold!"
+      }
+    },
+    {
+      "id": "level-115-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write hot",
+        "say": "Write the word hot.",
+        "audio": "voice/line-b745cd8e44fcd363.m4a"
+      },
+      "card": {
+        "text": "hot",
+        "picture": {
+          "key": "hot",
+          "label": "hot",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "hot",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}
