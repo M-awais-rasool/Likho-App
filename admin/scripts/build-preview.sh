@@ -18,12 +18,6 @@ flutter build web -t lib/preview/preview_main.dart --release \
 rm -rf "$out"
 cp -R build/web "$out"
 
-# picture keys for the editor's picture picker
-node -e '
-  const fs = require("fs");
-  const pictures = fs.readdirSync(process.argv[1]).filter((f) => f.endsWith(".png")).map((f) => f.slice(0, -4)).sort();
-  fs.writeFileSync(process.argv[2], JSON.stringify({ pictures }));
-  console.log(`${pictures.length} pictures listed`);
-' "$app/assets/illustrations" "$out/likho-assets.json"
+# (the pictures and recordings come from the API's media folder: /v1/media)
 
 echo "Phone preview built: $out"
