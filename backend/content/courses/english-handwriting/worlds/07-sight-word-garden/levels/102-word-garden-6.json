@@ -75,6 +75,44 @@
     },
     {
       "id": "level-102-r2",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "said",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "was",
+            "wrong": "mirror",
+            "at": 1
+          },
+          {
+            "text": "are",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "they",
+            "wrong": "mirror",
+            "at": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-102-r3",
       "type": "hunt",
       "prompt": {
         "text": "Find every said!",
@@ -102,7 +140,7 @@
       }
     },
     {
-      "id": "level-102-r3",
+      "id": "level-102-r4",
       "type": "write",
       "prompt": {
         "text": "Spell said",
@@ -125,7 +163,7 @@
       }
     },
     {
-      "id": "level-102-r4",
+      "id": "level-102-r5",
       "type": "pick",
       "prompt": {
         "text": "Which word fits?",
@@ -140,42 +178,42 @@
       "pick": {
         "options": [
           {
-            "id": "level-102-r4-o1",
+            "id": "level-102-r5-o1",
             "label": "said",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-102-r4-o2",
+            "id": "level-102-r5-o2",
             "label": "was",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-102-r4-o3",
+            "id": "level-102-r5-o3",
             "label": "they",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-102-r4-o4",
+            "id": "level-102-r5-o4",
             "label": "have",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-102-r4-o5",
+            "id": "level-102-r5-o5",
             "label": "are",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-102-r4-o6",
+            "id": "level-102-r5-o6",
             "label": "They",
             "picture": null,
             "color": null,
@@ -194,7 +232,30 @@
       }
     },
     {
-      "id": "level-102-r5",
+      "id": "level-102-r6",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a bus. True, or silly?",
+        "audio": "voice/line-6a9ebaa8a238af23.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a bus.",
+        "picture": {
+          "key": "ship",
+          "label": "ship",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-102-r7",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -221,7 +282,7 @@
       }
     },
     {
-      "id": "level-102-r6",
+      "id": "level-102-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: I have a red ball.",
@@ -242,7 +303,7 @@
       }
     },
     {
-      "id": "level-102-r7",
+      "id": "level-102-r9",
       "type": "write",
       "prompt": {
         "text": "Write they",
@@ -265,63 +326,78 @@
       }
     },
     {
-      "id": "level-102-r8",
-      "type": "pick",
+      "id": "level-102-r10",
+      "type": "sort",
       "prompt": {
-        "text": "I see a red car.",
-        "say": "I see a red car. Find the picture!",
-        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/h/|hʌ} or {/g/|ɡʌ}?",
+        "audio": "voice/line-c3057fb0f75d5614.m4a"
       },
       "card": {
-        "text": "I see a red car.",
+        "text": "h g",
         "picture": null,
         "listen": false
       },
-      "pick": {
-        "options": [
+      "sort": {
+        "bins": [
           {
-            "id": "level-102-r8-o1",
-            "label": "dog running",
-            "picture": {
-              "key": "dog_running",
-              "label": "dog running",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "label": "h",
+            "picture": null,
+            "bin": null
           },
           {
-            "id": "level-102-r8-o2",
-            "label": "red car",
-            "picture": {
-              "key": "red_car",
-              "label": "red car",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-102-r8-o3",
-            "label": "hot sun",
-            "picture": {
-              "key": "hot_sun",
-              "label": "hot sun",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "label": "g",
+            "picture": null,
+            "bin": null
           }
         ],
-        "answer": {
-          "kind": "label",
-          "value": "red car"
-        },
-        "shape": "planet",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "items": [
+          {
+            "label": "gift",
+            "picture": {
+              "key": "gift",
+              "label": "gift",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "hand",
+            "picture": {
+              "key": "hand",
+              "label": "hand",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "hut",
+            "picture": {
+              "key": "hut",
+              "label": "hut",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "goat",
+            "picture": {
+              "key": "goat",
+              "label": "goat",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
       }
     }
   ]

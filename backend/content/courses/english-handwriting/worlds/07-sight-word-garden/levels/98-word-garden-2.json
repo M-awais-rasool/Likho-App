@@ -75,6 +75,81 @@
     },
     {
       "id": "level-98-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/g/|ɡʌ} or {/h/|hʌ}?",
+        "audio": "voice/line-3a5448a6011a54ca.m4a"
+      },
+      "card": {
+        "text": "g h",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "g",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "h",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "gift",
+            "picture": {
+              "key": "gift",
+              "label": "gift",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "hut",
+            "picture": {
+              "key": "hut",
+              "label": "hut",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "goat",
+            "picture": {
+              "key": "goat",
+              "label": "goat",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "hen",
+            "picture": {
+              "key": "hen",
+              "label": "hen",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-98-r3",
       "type": "hunt",
       "prompt": {
         "text": "Find every and!",
@@ -102,7 +177,7 @@
       }
     },
     {
-      "id": "level-98-r3",
+      "id": "level-98-r4",
       "type": "write",
       "prompt": {
         "text": "Spell and",
@@ -125,7 +200,7 @@
       }
     },
     {
-      "id": "level-98-r4",
+      "id": "level-98-r5",
       "type": "pick",
       "prompt": {
         "text": "Which word fits?",
@@ -140,28 +215,28 @@
       "pick": {
         "options": [
           {
-            "id": "level-98-r4-o1",
+            "id": "level-98-r5-o1",
             "label": "see",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-98-r4-o2",
+            "id": "level-98-r5-o2",
             "label": "can",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-98-r4-o3",
+            "id": "level-98-r5-o3",
             "label": "to",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-98-r4-o4",
+            "id": "level-98-r5-o4",
             "label": "and",
             "picture": null,
             "color": null,
@@ -180,7 +255,30 @@
       }
     },
     {
-      "id": "level-98-r5",
+      "id": "level-98-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write to",
+        "say": "Look at the word to. Then write it from memory!",
+        "audio": "voice/line-42a9fdb03c605aad.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "to",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-98-r7",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -208,7 +306,7 @@
       }
     },
     {
-      "id": "level-98-r6",
+      "id": "level-98-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: A cat and a dog.",
@@ -229,7 +327,7 @@
       }
     },
     {
-      "id": "level-98-r7",
+      "id": "level-98-r9",
       "type": "write",
       "prompt": {
         "text": "Write can",
@@ -252,63 +350,26 @@
       }
     },
     {
-      "id": "level-98-r8",
-      "type": "pick",
+      "id": "level-98-r10",
+      "type": "pop",
       "prompt": {
-        "text": "I see a red car.",
-        "say": "I see a red car. Find the picture!",
-        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+        "text": "Pop every to!",
+        "say": "Pop every bubble that says to!",
+        "audio": "voice/line-57cee49c9fcf251b.m4a"
       },
       "card": {
-        "text": "I see a red car.",
+        "text": "to",
         "picture": null,
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-98-r8-o1",
-            "label": "red car",
-            "picture": {
-              "key": "red_car",
-              "label": "red car",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-98-r8-o2",
-            "label": "hot sun",
-            "picture": {
-              "key": "hot_sun",
-              "label": "hot sun",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-98-r8-o3",
-            "label": "dog running",
-            "picture": {
-              "key": "dog_running",
-              "label": "dog running",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
+      "pop": {
+        "target": "to",
+        "others": [
+          "the",
+          "and",
+          "bus"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "red car"
-        },
-        "shape": "planet",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 4
       }
     }
   ]

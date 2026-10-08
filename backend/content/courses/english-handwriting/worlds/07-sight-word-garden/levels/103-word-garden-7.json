@@ -75,6 +75,90 @@
     },
     {
       "id": "level-103-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/l/|lːː} or {/b/|bʌ}?",
+        "audio": "voice/line-9d0f05a15cfd7fdd.m4a"
+      },
+      "card": {
+        "text": "l b",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "l",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "b",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "lamp",
+            "picture": {
+              "key": "lamp",
+              "label": "lamp",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bat",
+            "picture": {
+              "key": "bat",
+              "label": "bat",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "book",
+            "picture": {
+              "key": "book",
+              "label": "book",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "bag",
+            "picture": {
+              "key": "bag",
+              "label": "bag",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "lion",
+            "picture": {
+              "key": "lion",
+              "label": "lion",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "lemon",
+            "picture": {
+              "key": "lemon",
+              "label": "lemon",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-103-r3",
       "type": "hunt",
       "prompt": {
         "text": "Find every like!",
@@ -102,7 +186,7 @@
       }
     },
     {
-      "id": "level-103-r3",
+      "id": "level-103-r4",
       "type": "write",
       "prompt": {
         "text": "Spell like",
@@ -125,7 +209,7 @@
       }
     },
     {
-      "id": "level-103-r4",
+      "id": "level-103-r5",
       "type": "pick",
       "prompt": {
         "text": "Which word fits?",
@@ -140,35 +224,35 @@
       "pick": {
         "options": [
           {
-            "id": "level-103-r4-o1",
+            "id": "level-103-r5-o1",
             "label": "like",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-103-r4-o2",
+            "id": "level-103-r5-o2",
             "label": "little",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-103-r4-o3",
+            "id": "level-103-r5-o3",
             "label": "this",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-103-r4-o4",
+            "id": "level-103-r5-o4",
             "label": "what",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-103-r4-o5",
+            "id": "level-103-r5-o5",
             "label": "big",
             "picture": null,
             "color": null,
@@ -187,7 +271,30 @@
       }
     },
     {
-      "id": "level-103-r5",
+      "id": "level-103-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write this",
+        "say": "Look at the word this. Then write it from memory!",
+        "audio": "voice/line-9747d64ee01aa102.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "this",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-103-r7",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -214,7 +321,7 @@
       }
     },
     {
-      "id": "level-103-r6",
+      "id": "level-103-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: What is this?",
@@ -235,7 +342,7 @@
       }
     },
     {
-      "id": "level-103-r7",
+      "id": "level-103-r9",
       "type": "write",
       "prompt": {
         "text": "Write this",
@@ -258,63 +365,26 @@
       }
     },
     {
-      "id": "level-103-r8",
-      "type": "pick",
+      "id": "level-103-r10",
+      "type": "pop",
       "prompt": {
-        "text": "I see a red car.",
-        "say": "I see a red car. Find the picture!",
-        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+        "text": "Pop every little!",
+        "say": "Pop every bubble that says little!",
+        "audio": "voice/line-4c43238c9ec19394.m4a"
       },
       "card": {
-        "text": "I see a red car.",
+        "text": "little",
         "picture": null,
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-103-r8-o1",
-            "label": "red car",
-            "picture": {
-              "key": "red_car",
-              "label": "red car",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-103-r8-o2",
-            "label": "dog running",
-            "picture": {
-              "key": "dog_running",
-              "label": "dog running",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-103-r8-o3",
-            "label": "hot sun",
-            "picture": {
-              "key": "hot_sun",
-              "label": "hot sun",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
+      "pop": {
+        "target": "little",
+        "others": [
+          "tiger",
+          "like",
+          "look"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "red car"
-        },
-        "shape": "planet",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 4
       }
     }
   ]
