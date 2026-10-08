@@ -288,6 +288,15 @@ sealed class Round {
       case 'fix':
         final f = r.object('fix');
         return FixRound(id: id, prompt: prompt, card: card, items: f.list('items', (x, q) => FixItem.fromJson(JsonReader(x, q))));
+      case 'sort':
+        final s = r.object('sort');
+        return SortRound(
+          id: id,
+          prompt: prompt,
+          card: card,
+          bins: s.list('bins', (x, q) => SortThing.fromJson(JsonReader(x, q))),
+          items: s.list('items', (x, q) => SortThing.fromJson(JsonReader(x, q))),
+        );
       case 'match':
         final m = r.object('match');
         return MatchRound(
@@ -462,6 +471,32 @@ class FixItem {
       at: r.optInt('at'),
     );
   }
+}
+
+/// Sorting: drag every item with a bin into it. One bin is the hungry
+/// monster (items without a bin are not food); two or more are baskets.
+final class SortRound extends Round {
+  const SortRound({required super.id, required super.prompt, super.card, required this.bins, required this.items});
+  final List<SortThing> bins, items;
+
+  bool get monster => bins.length == 1;
+
+  /// Items that go in a bin.
+  int get count => items.where((i) => i.bin != null).length;
+
+  @override
+  String get type => 'sort';
+}
+
+/// A bin (label and/or picture) or an item to sort ([bin] = where it goes).
+@immutable
+class SortThing {
+  const SortThing({required this.label, this.picture, this.bin});
+  final String label;
+  final Picture? picture;
+  final int? bin;
+
+  factory SortThing.fromJson(JsonReader r) => SortThing(label: r.string('label'), picture: r.optPicture('picture'), bin: r.optInt('bin'));
 }
 
 /// Memory: cards face down, find the [pairs] (A and a, a word and its picture).

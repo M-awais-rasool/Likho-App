@@ -116,7 +116,8 @@ class SessionState {
   // speak
   final bool listening;
 
-  // hunt: cells found so far
+  // hunt: cells found so far; fix: items fixed; sort: items in a bin;
+  // match: cards matched; pop: bubbles popped
   final Set<int> found;
 
   // match: cards turned up and not matched yet (at most two)
@@ -293,6 +294,22 @@ class LevelSession extends Notifier<SessionState> {
       state = state.copyWith(wrongOptions: {...state.wrongOptions, index});
       _wrong();
     }
+  }
+
+  // ------------------------------------------------------------ sort
+  /// Item [item] dropped on bin [bin]; true when it goes there (the view
+  /// sends a wrong one back).
+  bool sortItem(int item, int bin) {
+    final r = state.current;
+    if (r is! SortRound || _locked || state.found.contains(item)) return false;
+    if (r.items[item].bin == bin) {
+      final found = {...state.found, item};
+      state = state.copyWith(found: found);
+      if (found.length >= r.count) _after(GameTiming.orderSettle, _correct);
+      return true;
+    }
+    _wrong();
+    return false;
   }
 
   // ------------------------------------------------------------ match
