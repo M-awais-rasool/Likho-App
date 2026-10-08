@@ -9,10 +9,6 @@ export function pct(part: number, whole: number) {
   return `${v < 10 && v > 0 ? v.toFixed(1) : Math.round(v)}%`
 }
 
-export function compact(n: number) {
-  return new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 }).format(n)
-}
-
 const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' })
 
 export function ago(iso: string | null | undefined) {
