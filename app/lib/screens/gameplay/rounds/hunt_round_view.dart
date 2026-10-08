@@ -1,11 +1,11 @@
 import 'dart:math' as math;
 
 import 'package:flutter/widgets.dart';
-import 'package:material_symbols_icons/symbols.dart';
 
 import '../../../data/models/course_models.dart';
 import '../../../design/tokens.dart';
 import '../../../game/level_session.dart';
+import '../widgets/game_bits.dart';
 import 'pick_round_view.dart';
 
 /// "hunt" rounds: a grid of letter tiles; tap every one that is the target.
@@ -33,7 +33,7 @@ class HuntRoundView extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(14, 12, 14, 14),
         child: Column(
           children: [
-            _Counter(found: state.found.length, of: round.count),
+            FoundCounter(found: state.found.length, of: round.count),
             const SizedBox(height: 10),
             Expanded(
               child: LayoutBuilder(
@@ -73,33 +73,6 @@ class HuntRoundView extends StatelessWidget {
       ),
     );
   }
-}
-
-/// "2 of 4" with a dot per letter to find.
-class _Counter extends StatelessWidget {
-  const _Counter({required this.found, required this.of});
-  final int found, of;
-
-  @override
-  Widget build(BuildContext context) => Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      for (var i = 0; i < of; i++) ...[
-        if (i > 0) const SizedBox(width: 6),
-        AnimatedContainer(
-          duration: const Duration(milliseconds: 300),
-          curve: const Cubic(.34, 1.56, .64, 1),
-          width: i < found ? 22 : 16,
-          height: i < found ? 22 : 16,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: i < found ? LikhoColors.success : GameColors.ink14,
-          ),
-          child: i < found ? const Icon(Symbols.check_rounded, size: 15, weight: 700, color: LikhoColors.surface) : null,
-        ),
-      ],
-    ],
-  );
 }
 
 class _Tile extends StatefulWidget {
@@ -176,7 +149,7 @@ class _TileState extends State<_Tile> with SingleTickerProviderStateMixin {
                 valueListenable: widget.time,
                 builder: (context, t, _) {
                   final k = const Cubic(.42, 0, .58, 1).transform(1 - (2 * (t % 1.0) - 1).abs());
-                  return CustomPaint(painter: _HintRing(spread: 12 * k));
+                  return CustomPaint(painter: HintRing(spread: 12 * k));
                 },
               ),
             ),
@@ -210,36 +183,4 @@ class _TileState extends State<_Tile> with SingleTickerProviderStateMixin {
       ),
     );
   }
-}
-
-class _HintRing extends CustomPainter {
-  const _HintRing({required this.spread});
-  final double spread;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final c = size.center(Offset.zero);
-    final r = size.shortestSide / 2;
-    if (spread > 0) {
-      canvas.drawCircle(
-        c,
-        r + 4 + spread / 2,
-        Paint()
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = spread
-          ..color = LikhoColors.primary.withValues(alpha: .35),
-      );
-    }
-    canvas.drawCircle(
-      c,
-      r + 2,
-      Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 4
-        ..color = LikhoColors.hint,
-    );
-  }
-
-  @override
-  bool shouldRepaint(_HintRing old) => old.spread != spread;
 }

@@ -592,3 +592,64 @@ class _ConfettiPainter extends CustomPainter {
   @override
   bool shouldRepaint(_ConfettiPainter old) => true;
 }
+
+/// "2 of 4": a dot per thing to find (hunt, fix, pop), ticked when found.
+class FoundCounter extends StatelessWidget {
+  const FoundCounter({super.key, required this.found, required this.of});
+  final int found, of;
+
+  @override
+  Widget build(BuildContext context) => Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      for (var i = 0; i < of; i++) ...[
+        if (i > 0) const SizedBox(width: 6),
+        AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          curve: const Cubic(.34, 1.56, .64, 1),
+          width: i < found ? 22 : 16,
+          height: i < found ? 22 : 16,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: i < found ? LikhoColors.success : GameColors.ink14,
+          ),
+          child: i < found ? const Icon(Symbols.check_rounded, size: 15, weight: 700, color: LikhoColors.surface) : null,
+        ),
+      ],
+    ],
+  );
+}
+
+/// The hint around a round thing still to find: a coral ring with a
+/// pulsing yellow glow [spread] px wide.
+class HintRing extends CustomPainter {
+  const HintRing({required this.spread});
+  final double spread;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final c = size.center(Offset.zero);
+    final r = size.shortestSide / 2;
+    if (spread > 0) {
+      canvas.drawCircle(
+        c,
+        r + 4 + spread / 2,
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = spread
+          ..color = LikhoColors.primary.withValues(alpha: .35),
+      );
+    }
+    canvas.drawCircle(
+      c,
+      r + 2,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 4
+        ..color = LikhoColors.hint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(HintRing old) => old.spread != spread;
+}
