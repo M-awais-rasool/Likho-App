@@ -11,7 +11,9 @@ import '../data/models/course_models.dart';
 ///   [GameTiming.afterCorrect]; the last round finishes the level
 /// * a wrong answer counts a mistake, shows the hint, and clears the red
 ///   state after [GameTiming.afterWrong]
-/// * stars: 0 mistakes = 3, 1–2 = 2, more = 1
+/// * stars by the share of mistakes ([starsFor]): a 5-round level gives 3
+///   for none, 2 for 1–2, else 1; longer levels allow more
+/// * a level can go on from a saved round ([LevelSession.resumeAt])
 abstract final class GameTiming {
   static const afterCorrect = Duration(milliseconds: 1350);
   static const afterWrong = Duration(milliseconds: 1300);
@@ -21,7 +23,12 @@ abstract final class GameTiming {
 
 enum RoundFeedback { none, correct, wrong }
 
-int starsFor(int mistakes) => mistakes == 0 ? 3 : (mistakes <= 2 ? 2 : 1);
+/// Stars for [mistakes] in a level of [rounds] rounds: 3 for up to one
+/// mistake in 6 rounds, 2 for up to two in 5, else 1.
+int starsFor(int mistakes, {int rounds = 5}) => mistakes <= rounds ~/ 6 ? 3 : (mistakes <= rounds * 2 ~/ 5 ? 2 : 1);
+
+/// Long levels get a cheer halfway through ([SessionState.isHalfway]).
+const halfwayFrom = 8;
 
 /// Deterministic tile shuffle (the prototype's perm): same order every time
 /// for a given level and round, never the solved order.
@@ -56,6 +63,7 @@ class SessionState {
     this.choices = const {},
     this.paint,
     this.listening = false,
+    this.found = const {},
     this.finished = false,
   });
 
@@ -82,13 +90,19 @@ class SessionState {
   // speak
   final bool listening;
 
+  // hunt: cells found so far
+  final Set<int> found;
+
   final bool finished;
 
   Round get current => level.rounds[round];
   int get roundCount => level.rounds.length;
   bool get isLastRound => round == roundCount - 1;
   bool get correct => feedback == RoundFeedback.correct;
-  int get stars => starsFor(mistakes);
+  int get stars => starsFor(mistakes, rounds: roundCount);
+
+  /// The first round of the second half of a long level.
+  bool get isHalfway => roundCount >= halfwayFrom && round == roundCount ~/ 2;
 
   List<int> get tiles {
     final r = current;
@@ -109,6 +123,7 @@ class SessionState {
     String? paint,
     bool clearPaint = false,
     bool? listening,
+    Set<int>? found,
     bool? finished,
   }) =>
       SessionState(
@@ -124,6 +139,7 @@ class SessionState {
         choices: choices ?? this.choices,
         paint: clearPaint ? null : paint ?? this.paint,
         listening: listening ?? this.listening,
+        found: found ?? this.found,
         finished: finished ?? this.finished,
       );
 }
@@ -209,6 +225,31 @@ class LevelSession extends Notifier<SessionState> {
       state = state.copyWith(listening: false);
       _correct();
     });
+  }
+
+  // ------------------------------------------------------------ hunt
+  /// Cell [index] of the hunt grid tapped.
+  void tapCell(int index) {
+    final r = state.current;
+    if (r is! HuntRound || _locked || state.found.contains(index) || state.wrongOptions.contains(index)) return;
+    if (r.grid[index] == r.target) {
+      final found = {...state.found, index};
+      state = state.copyWith(found: found);
+      if (found.length >= r.count) _correct();
+    } else {
+      state = state.copyWith(wrongOptions: {...state.wrongOptions, index});
+      _wrong();
+    }
+  }
+
+  // ------------------------------------------------------------ resume
+  /// Goes on from round [round] with the [mistakes] and story [choices] of
+  /// an earlier try (the child left the level part way). Only before the
+  /// first answer, and only to a round this level has.
+  void resumeAt(int round, {int mistakes = 0, Map<String, String> choices = const {}}) {
+    if (state.round != 0 || state.feedback != RoundFeedback.none || state.mistakes > 0) return;
+    if (round <= 0 || round >= state.roundCount) return;
+    state = SessionState(level: level, round: round, mistakes: mistakes, choices: choices);
   }
 
   // ------------------------------------------------------------ flow
