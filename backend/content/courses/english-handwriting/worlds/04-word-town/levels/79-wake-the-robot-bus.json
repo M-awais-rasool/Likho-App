@@ -53,6 +53,29 @@
     },
     {
       "id": "level-79-r2",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a red. True, or silly?",
+        "audio": "voice/line-16a9e1a7a9528574.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a red.",
+        "picture": {
+          "key": "red",
+          "label": "red",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-79-r3",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -67,21 +90,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-79-r2-o1",
+            "id": "level-79-r3-o1",
             "label": "two",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-79-r2-o2",
+            "id": "level-79-r3-o2",
             "label": "pig",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-79-r2-o3",
+            "id": "level-79-r3-o3",
             "label": "dog",
             "picture": null,
             "color": null,
@@ -100,7 +123,7 @@
       }
     },
     {
-      "id": "level-79-r3",
+      "id": "level-79-r4",
       "type": "hunt",
       "prompt": {
         "text": "Find every cow!",
@@ -128,7 +151,91 @@
       }
     },
     {
-      "id": "level-79-r4",
+      "id": "level-79-r5",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/t/|tʌ} or {/c/|kʌ}?",
+        "audio": "voice/line-1a09855a677966ef.m4a"
+      },
+      "card": {
+        "text": "t c",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "t",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "c",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "tiger",
+            "picture": {
+              "key": "tiger",
+              "label": "tiger",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "tent",
+            "picture": {
+              "key": "tent",
+              "label": "tent",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "cake",
+            "picture": {
+              "key": "cake",
+              "label": "cake",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "turtle",
+            "picture": {
+              "key": "turtle",
+              "label": "turtle",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "cow",
+            "picture": {
+              "key": "cow",
+              "label": "cow",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-79-r6",
       "type": "pick",
       "prompt": {
         "text": "What is this?",
@@ -147,21 +254,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-79-r4-o1",
+            "id": "level-79-r6-o1",
             "label": "pig",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-79-r4-o2",
+            "id": "level-79-r6-o2",
             "label": "hand",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-79-r4-o3",
+            "id": "level-79-r6-o3",
             "label": "pink",
             "picture": null,
             "color": null,
@@ -180,7 +287,7 @@
       }
     },
     {
-      "id": "level-79-r5",
+      "id": "level-79-r7",
       "type": "write",
       "prompt": {
         "text": "Write milk",
@@ -207,7 +314,7 @@
       }
     },
     {
-      "id": "level-79-r6",
+      "id": "level-79-r8",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -234,67 +341,34 @@
       }
     },
     {
-      "id": "level-79-r7",
-      "type": "pick",
+      "id": "level-79-r9",
+      "type": "write",
       "prompt": {
-        "text": "I see a red car.",
-        "say": "I see a red car. Find the picture!",
-        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+        "text": "Look, then write red",
+        "say": "Look at the word red. Then write it from memory!",
+        "audio": "voice/line-42a5ea851deb06ac.m4a"
       },
       "card": {
-        "text": "I see a red car.",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "red",
+          "label": "red",
+          "url": null
+        },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-79-r7-o1",
-            "label": "hot sun",
-            "picture": {
-              "key": "hot_sun",
-              "label": "hot sun",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-79-r7-o2",
-            "label": "red car",
-            "picture": {
-              "key": "red_car",
-              "label": "red car",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-79-r7-o3",
-            "label": "dog running",
-            "picture": {
-              "key": "dog_running",
-              "label": "dog running",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "red car"
-        },
-        "shape": "planet",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+      "write": {
+        "mode": "flash",
+        "target": "red",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
       }
     },
     {
-      "id": "level-79-r8",
+      "id": "level-79-r10",
       "type": "speak",
       "prompt": {
         "text": "Say: red, two, cow, hand!",

@@ -75,6 +75,33 @@
     },
     {
       "id": "level-73-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write four",
+        "say": "Look at the word four. Then write it from memory!",
+        "audio": "voice/line-575bfe760fd30760.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "four",
+          "label": "four",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "four",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-73-r3",
       "type": "pick",
       "prompt": {
         "text": "Which picture is one?",
@@ -89,7 +116,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-73-r2-o1",
+            "id": "level-73-r3-o1",
             "label": "four",
             "picture": {
               "key": "four",
@@ -100,7 +127,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-73-r2-o2",
+            "id": "level-73-r3-o2",
             "label": "two",
             "picture": {
               "key": "two",
@@ -111,7 +138,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-73-r2-o3",
+            "id": "level-73-r3-o3",
             "label": "one",
             "picture": {
               "key": "one",
@@ -134,7 +161,7 @@
       }
     },
     {
-      "id": "level-73-r3",
+      "id": "level-73-r4",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -160,55 +187,30 @@
       }
     },
     {
-      "id": "level-73-r4",
-      "type": "pick",
+      "id": "level-73-r5",
+      "type": "pop",
       "prompt": {
-        "text": "Find the word you hear",
-        "say": "Listen! Find the word three.",
-        "audio": "voice/line-7e02018fdf758ae1.m4a"
+        "text": "Pop every one!",
+        "say": "Pop every bubble that says one!",
+        "audio": "voice/line-2d11c374dd11e495.m4a"
       },
       "card": {
-        "text": null,
+        "text": "one",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-73-r4-o1",
-            "label": "three",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-73-r4-o2",
-            "label": "pink",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-73-r4-o3",
-            "label": "six",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "one",
+        "others": [
+          "dog",
+          "log",
+          "pig"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "three"
-        },
-        "shape": "kite",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 4
       }
     },
     {
-      "id": "level-73-r5",
+      "id": "level-73-r6",
       "type": "write",
       "prompt": {
         "text": "Spell four",
@@ -235,7 +237,7 @@
       }
     },
     {
-      "id": "level-73-r6",
+      "id": "level-73-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every five!",
@@ -263,58 +265,6 @@
       }
     },
     {
-      "id": "level-73-r7",
-      "type": "pick",
-      "prompt": {
-        "text": "What is this?",
-        "say": "What is this? Find the word!",
-        "audio": "voice/line-69b2bf73b2b7783d.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "six",
-          "label": "six",
-          "url": null
-        },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-73-r7-o1",
-            "label": "six",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-73-r7-o2",
-            "label": "one",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-73-r7-o3",
-            "label": "pink",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "six"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
       "id": "level-73-r8",
       "type": "speak",
       "prompt": {
@@ -337,6 +287,66 @@
     },
     {
       "id": "level-73-r9",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "one",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "one",
+                "label": "one",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "two",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "two",
+                "label": "two",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "three",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "three",
+                "label": "three",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-73-r10",
       "type": "write",
       "prompt": {
         "text": "Write three",
