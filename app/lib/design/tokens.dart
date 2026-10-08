@@ -165,24 +165,28 @@ abstract final class LikhoWorlds {
   static const wordTown = WorldTheme(bg: Color(0xFFFBEDE3), accent: Color(0xFFDB7453), deep: Color(0xFFB4573A), soft: Color(0xFFF6D6C6));
   static const sentenceSky = WorldTheme(bg: Color(0xFFE3F0FC), accent: Color(0xFF3B89D2), deep: Color(0xFF2767A5), soft: Color(0xFFC8E1F7));
   static const storySpace = WorldTheme(bg: Color(0xFF252950), accent: Color(0xFFA08BF0), deep: Color(0xFF7A63D4), soft: Color(0xFF3A4077), dark: true);
-  static const all = [letterLand, smallLetterCove, phonicsForest, wordTown, sentenceSky, storySpace];
+  static const soundMountain = WorldTheme(bg: Color(0xFFEFEAF8), accent: Color(0xFF8A6FD1), deep: Color(0xFF6A51B0), soft: Color(0xFFDCD3F0));
+  static const blendBeach = WorldTheme(bg: Color(0xFFFFF2DE), accent: Color(0xFFEE9A32), deep: Color(0xFFC27A1A), soft: Color(0xFFFBE0B4));
+  static const sightGarden = WorldTheme(bg: Color(0xFFFCEAF2), accent: Color(0xFFDD5E8C), deep: Color(0xFFB4436D), soft: Color(0xFFF7CFE0));
+  static const actionJungle = WorldTheme(bg: Color(0xFFF1F5DA), accent: Color(0xFF86A321), deep: Color(0xFF657D14), soft: Color(0xFFE1EAB2));
+  static const questionIsland = WorldTheme(bg: Color(0xFFFFF7D9), accent: Color(0xFFD4A20A), deep: Color(0xFFA67C00), soft: Color(0xFFFBEAA6));
+  static const readingRiver = WorldTheme(bg: Color(0xFFE0F3F8), accent: Color(0xFF1897B9), deep: Color(0xFF0F7591), soft: Color(0xFFBDE5F0));
+  static const all = [
+    letterLand, smallLetterCove, phonicsForest, wordTown, sentenceSky, storySpace, //
+    soundMountain, blendBeach, sightGarden, actionJungle, questionIsland, readingRiver,
+  ];
 
-  static const ids = ['letterLand', 'smallLetterCove', 'phonicsForest', 'wordTown', 'sentenceSky', 'storySpace'];
+  static const ids = [
+    'letterLand', 'smallLetterCove', 'phonicsForest', 'wordTown', 'sentenceSky', 'storySpace', //
+    'soundMountain', 'blendBeach', 'sightGarden', 'actionJungle', 'questionIsland', 'readingRiver',
+  ];
 
   /// Position of a `themeId` in [all] (0 when unknown), e.g. for the map's
   /// decorations of a world.
   static int indexOf(String id) => ids.contains(id) ? ids.indexOf(id) : 0;
 
   /// Theme for a course world's `themeId`.
-  static WorldTheme byId(String id) => switch (id) {
-        'letterLand' => letterLand,
-        'smallLetterCove' => smallLetterCove,
-        'phonicsForest' => phonicsForest,
-        'wordTown' => wordTown,
-        'sentenceSky' => sentenceSky,
-        'storySpace' => storySpace,
-        _ => letterLand,
-      };
+  static WorldTheme byId(String id) => all[indexOf(id)];
 }
 
 /// World map colours (prototype "10 World map").
@@ -219,6 +223,18 @@ abstract final class MapColors {
   static const cloudWhite = Color(0xFFFFFFFF);
   static const kite = Color(0xFFFFC83D);
   static const cloudSoft = Color(0xE6FFFFFF); // .9
+  static const rock = Color(0xFFD9D1EA);
+  static const rockDark = Color(0xFFC4B8E0);
+  static const beachBall = Color(0xFFFFB86B);
+  static const sandWarm = Color(0xFFF6DDAE);
+  static const blossom = Color(0xFFF59BBE);
+  static const blossomBush = Color(0xFFF5C9DB);
+  static const jungleLeaf = Color(0xFFB5CF5E);
+  static const jungleLeafDark = Color(0xFF97B443);
+  static const palm = Color(0xFFE8CF6E);
+  static const ripple = Color(0xB3FFFFFF); // .7
+  static const lilyPad = Color(0xFF9CD39C);
+  static const riverStone = Color(0xFFCBE6EE);
   static const starDot = Color(0xFFFFE8A3);
   static const planet = Color(0xFF7A63D4);
   static const planetShade = Color(0x2E000000); // inset rgba(0,0,0,.18)
@@ -250,6 +266,20 @@ abstract final class BossColors {
   static const moonShine = Color(0x59FFFFFF); // .35
   static const cheek = Color(0x80FF8FA3); // .5
   static const face = Color(0xFF2B2D42);
+  static const goatBody = Color(0xFFF4F1EA);
+  static const goatHorn = Color(0xFFC9B79C);
+  static const goatEar = Color(0xFFE2DACB);
+  static const crabBody = Color(0xFFF2735B);
+  static const crabClaw = Color(0xFFE05A43);
+  static const ladybugBody = Color(0xFFE94B4B);
+  static const ladybugSpot = Color(0xFF3A3D5C);
+  static const monkeyBody = Color(0xFFA9774E);
+  static const monkeyFace = Color(0xFFF1D2AE);
+  static const turtleShell = Color(0xFF5EAA5A);
+  static const turtleShellLine = Color(0xFF3F8A3C);
+  static const turtleSkin = Color(0xFFA9D88C);
+  static const frogBody = Color(0xFF7CCB5B);
+  static const frogBelly = Color(0xFFC8EBA9);
   static const zzz = Color(0xFF7C7FA8);
   static const zzzSpace = Color(0xFFE6E0FF);
 }
@@ -325,20 +355,11 @@ abstract final class GameColors {
   static const lineTop = Color(0xFFBFD8F0);
   static const lineBase = Color(0xFF8FBCE6);
   static const lineDesc = Color(0xFFE6D9C8);
-  static const sand = Color(0xFFF3E2C2);
-  static const sandGrain = Color(0x2E9C7446); // .18
-  static const sandGuide = Color(0x479C7446); // .28
-  static const sandInk = Color(0xFF9C7446);
   static const guidePaper = Color(0xFFE7E2D8);
-  static const guideTrack = Color(0xFFD9B892);
-  static const guideRoad = Color(0xFFC9CDD3);
-  static const trackRail = Color(0xFF9A7652);
+  static const guideDashed = Color(0xFFC9CDD3); // the next stroke's path when writing without tracing
 
   // tracing lane: the area ink may go in (trace / dots rounds)
   static const lanePaper = Color(0x2EFFC83D); // primary .18
-  static const laneSand = Color(0x1F9C7446); // sand ink .12
-  static const laneTrack = Color(0x40D9B892); // track guide .25
-  static const laneRoad = Color(0x4DC9CDD3); // road guide .3
   static const laneDone = Color(0x383BB273); // success .22: a finished stroke
   static const stepArrow = Color(0xE64D9DE0); // secondary .9: direction chevrons
 
