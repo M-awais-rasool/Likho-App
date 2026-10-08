@@ -87,6 +87,66 @@
     },
     {
       "id": "level-90-r2",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "star",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "star",
+                "label": "star",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "stop",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "stop",
+                "label": "stop",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "snake",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "snake",
+                "label": "snake",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-90-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -113,7 +173,7 @@
       }
     },
     {
-      "id": "level-90-r3",
+      "id": "level-90-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -128,21 +188,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-90-r3-o1",
+            "id": "level-90-r4-o1",
             "label": "stop",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-90-r3-o2",
+            "id": "level-90-r4-o2",
             "label": "swim",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-90-r3-o3",
+            "id": "level-90-r4-o3",
             "label": "snail",
             "picture": null,
             "color": null,
@@ -161,7 +221,7 @@
       }
     },
     {
-      "id": "level-90-r4",
+      "id": "level-90-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
@@ -188,7 +248,45 @@
       }
     },
     {
-      "id": "level-90-r5",
+      "id": "level-90-r6",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "star",
+            "wrong": "mirror",
+            "at": 2
+          },
+          {
+            "text": "stop",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "snake",
+            "wrong": "mirror",
+            "at": 4
+          },
+          {
+            "text": "spoon",
+            "wrong": null,
+            "at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-90-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every spoon!",
@@ -216,59 +314,7 @@
       }
     },
     {
-      "id": "level-90-r6",
-      "type": "pick",
-      "prompt": {
-        "text": "What is this?",
-        "say": "What is this? Find the word!",
-        "audio": "voice/line-69b2bf73b2b7783d.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "snail",
-          "label": "snail",
-          "url": null
-        },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-90-r6-o1",
-            "label": "snail",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-90-r6-o2",
-            "label": "goat",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-90-r6-o3",
-            "label": "spoon",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "snail"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-90-r7",
+      "id": "level-90-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: star, stop, snake, spoon!",
@@ -289,7 +335,30 @@
       }
     },
     {
-      "id": "level-90-r8",
+      "id": "level-90-r9",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a pink. True, or silly?",
+        "audio": "voice/line-b98e1d6830fd0433.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a pink.",
+        "picture": {
+          "key": "four",
+          "label": "four",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-90-r10",
       "type": "write",
       "prompt": {
         "text": "Write snake",

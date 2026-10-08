@@ -87,6 +87,33 @@
     },
     {
       "id": "level-80-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write shop",
+        "say": "Look at the word shop. Then write it from memory!",
+        "audio": "voice/line-6b85d19b0179893a.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "shop",
+          "label": "shop",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "shop",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-80-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -112,7 +139,7 @@
       }
     },
     {
-      "id": "level-80-r3",
+      "id": "level-80-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -127,21 +154,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-80-r3-o1",
+            "id": "level-80-r4-o1",
             "label": "shell",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-80-r3-o2",
+            "id": "level-80-r4-o2",
             "label": "shop",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-80-r3-o3",
+            "id": "level-80-r4-o3",
             "label": "brush",
             "picture": null,
             "color": null,
@@ -160,7 +187,7 @@
       }
     },
     {
-      "id": "level-80-r4",
+      "id": "level-80-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
@@ -187,7 +214,30 @@
       }
     },
     {
-      "id": "level-80-r5",
+      "id": "level-80-r6",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every shop!",
+        "say": "Pop every bubble that says shop!",
+        "audio": "voice/line-23b2637b913b143b.m4a"
+      },
+      "card": {
+        "text": "shop",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "shop",
+        "others": [
+          "ship",
+          "fish",
+          "four"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-80-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every shell!",
@@ -215,59 +265,7 @@
       }
     },
     {
-      "id": "level-80-r6",
-      "type": "pick",
-      "prompt": {
-        "text": "What is this?",
-        "say": "What is this? Find the word!",
-        "audio": "voice/line-69b2bf73b2b7783d.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "brush",
-          "label": "brush",
-          "url": null
-        },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-80-r6-o1",
-            "label": "shell",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-80-r6-o2",
-            "label": "pink",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-80-r6-o3",
-            "label": "brush",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "brush"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-80-r7",
+      "id": "level-80-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: ship, shop, fish, shell!",
@@ -288,7 +286,67 @@
       }
     },
     {
-      "id": "level-80-r8",
+      "id": "level-80-r9",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "ship",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "ship",
+                "label": "ship",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "shop",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "shop",
+                "label": "shop",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "fish",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "fish",
+                "label": "fish",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-80-r10",
       "type": "write",
       "prompt": {
         "text": "Write fish",

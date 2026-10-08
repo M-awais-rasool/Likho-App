@@ -54,6 +54,90 @@
     },
     {
       "id": "level-89-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/r/|ɹːː} or {/m/|mːː}?",
+        "audio": "voice/line-9a989bdd2e2009e2.m4a"
+      },
+      "card": {
+        "text": "r m",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "r",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "m",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "robot",
+            "picture": {
+              "key": "robot",
+              "label": "robot",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "mouse",
+            "picture": {
+              "key": "mouse",
+              "label": "mouse",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "moon",
+            "picture": {
+              "key": "moon",
+              "label": "moon",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "monkey",
+            "picture": {
+              "key": "monkey",
+              "label": "monkey",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "rabbit",
+            "picture": {
+              "key": "rabbit",
+              "label": "rabbit",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "rain",
+            "picture": {
+              "key": "rain",
+              "label": "rain",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-89-r3",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -68,21 +152,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-89-r2-o1",
+            "id": "level-89-r3-o1",
             "label": "chick",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-89-r2-o2",
+            "id": "level-89-r3-o2",
             "label": "dog",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-89-r2-o3",
+            "id": "level-89-r3-o3",
             "label": "duck",
             "picture": null,
             "color": null,
@@ -101,7 +185,7 @@
       }
     },
     {
-      "id": "level-89-r3",
+      "id": "level-89-r4",
       "type": "hunt",
       "prompt": {
         "text": "Find every thumb!",
@@ -129,7 +213,34 @@
       }
     },
     {
-      "id": "level-89-r4",
+      "id": "level-89-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write ship",
+        "say": "Look at the word ship. Then write it from memory!",
+        "audio": "voice/line-c55703f2b84b212c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "ship",
+          "label": "ship",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "ship",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-89-r6",
       "type": "pick",
       "prompt": {
         "text": "What is this?",
@@ -148,21 +259,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-89-r4-o1",
+            "id": "level-89-r6-o1",
             "label": "thumb",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-89-r4-o2",
+            "id": "level-89-r6-o2",
             "label": "brother",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-89-r4-o3",
+            "id": "level-89-r6-o3",
             "label": "duck",
             "picture": null,
             "color": null,
@@ -181,7 +292,7 @@
       }
     },
     {
-      "id": "level-89-r5",
+      "id": "level-89-r7",
       "type": "write",
       "prompt": {
         "text": "Write ring",
@@ -208,7 +319,7 @@
       }
     },
     {
-      "id": "level-89-r6",
+      "id": "level-89-r8",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -235,67 +346,30 @@
       }
     },
     {
-      "id": "level-89-r7",
-      "type": "pick",
+      "id": "level-89-r9",
+      "type": "pop",
       "prompt": {
-        "text": "I see a red car.",
-        "say": "I see a red car. Find the picture!",
-        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+        "text": "Pop every ring!",
+        "say": "Pop every bubble that says ring!",
+        "audio": "voice/line-5e5106f3c360b442.m4a"
       },
       "card": {
-        "text": "I see a red car.",
+        "text": "ring",
         "picture": null,
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-89-r7-o1",
-            "label": "red car",
-            "picture": {
-              "key": "red_car",
-              "label": "red car",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-89-r7-o2",
-            "label": "dog running",
-            "picture": {
-              "key": "dog_running",
-              "label": "dog running",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-89-r7-o3",
-            "label": "hot sun",
-            "picture": {
-              "key": "hot_sun",
-              "label": "hot sun",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
+      "pop": {
+        "target": "ring",
+        "others": [
+          "duck",
+          "four",
+          "goat"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "red car"
-        },
-        "shape": "planet",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 4
       }
     },
     {
-      "id": "level-89-r8",
+      "id": "level-89-r10",
       "type": "speak",
       "prompt": {
         "text": "Say: ship, chick, thumb, duck!",

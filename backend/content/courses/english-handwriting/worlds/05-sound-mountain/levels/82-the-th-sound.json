@@ -87,6 +87,90 @@
     },
     {
       "id": "level-82-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/t/|tʌ} or {/b/|bʌ}?",
+        "audio": "voice/line-f3ad469c54c4f13e.m4a"
+      },
+      "card": {
+        "text": "t b",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "t",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "b",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "bug",
+            "picture": {
+              "key": "bug",
+              "label": "bug",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "book",
+            "picture": {
+              "key": "book",
+              "label": "book",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "tent",
+            "picture": {
+              "key": "tent",
+              "label": "tent",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "turtle",
+            "picture": {
+              "key": "turtle",
+              "label": "turtle",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "tiger",
+            "picture": {
+              "key": "tiger",
+              "label": "tiger",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bag",
+            "picture": {
+              "key": "bag",
+              "label": "bag",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-82-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -113,7 +197,7 @@
       }
     },
     {
-      "id": "level-82-r3",
+      "id": "level-82-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -128,21 +212,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-82-r3-o1",
+            "id": "level-82-r4-o1",
             "label": "thumb",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-82-r3-o2",
+            "id": "level-82-r4-o2",
             "label": "bath",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-82-r3-o3",
+            "id": "level-82-r4-o3",
             "label": "mouth",
             "picture": null,
             "color": null,
@@ -161,7 +245,7 @@
       }
     },
     {
-      "id": "level-82-r4",
+      "id": "level-82-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
@@ -188,7 +272,34 @@
       }
     },
     {
-      "id": "level-82-r5",
+      "id": "level-82-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write bath",
+        "say": "Look at the word bath. Then write it from memory!",
+        "audio": "voice/line-1d8eb69d0f3d7aef.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bath",
+          "label": "bath",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "bath",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-82-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every three!",
@@ -216,59 +327,7 @@
       }
     },
     {
-      "id": "level-82-r6",
-      "type": "pick",
-      "prompt": {
-        "text": "What is this?",
-        "say": "What is this? Find the word!",
-        "audio": "voice/line-69b2bf73b2b7783d.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "tooth",
-          "label": "teeth",
-          "url": null
-        },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-82-r6-o1",
-            "label": "tooth",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-82-r6-o2",
-            "label": "hand",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-82-r6-o3",
-            "label": "teeth",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "teeth"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-82-r7",
+      "id": "level-82-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: thumb, bath, tooth, three!",
@@ -289,7 +348,30 @@
       }
     },
     {
-      "id": "level-82-r8",
+      "id": "level-82-r9",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every three!",
+        "say": "Pop every bubble that says three!",
+        "audio": "voice/line-864a9b24a6efcc32.m4a"
+      },
+      "card": {
+        "text": "three",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "three",
+        "others": [
+          "teeth",
+          "thumb",
+          "tooth"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-82-r10",
       "type": "write",
       "prompt": {
         "text": "Write tooth",

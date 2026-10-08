@@ -87,6 +87,29 @@
     },
     {
       "id": "level-93-r2",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a lamp. True, or silly?",
+        "audio": "voice/line-ad270c8f58fe77fd.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a lamp.",
+        "picture": {
+          "key": "lamp",
+          "label": "lamp",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-93-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -113,7 +136,7 @@
       }
     },
     {
-      "id": "level-93-r3",
+      "id": "level-93-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -128,21 +151,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-93-r3-o1",
+            "id": "level-93-r4-o1",
             "label": "hand",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-93-r3-o2",
+            "id": "level-93-r4-o2",
             "label": "gift",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-93-r3-o3",
+            "id": "level-93-r4-o3",
             "label": "tent",
             "picture": null,
             "color": null,
@@ -161,7 +184,7 @@
       }
     },
     {
-      "id": "level-93-r4",
+      "id": "level-93-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
@@ -188,7 +211,82 @@
       }
     },
     {
-      "id": "level-93-r5",
+      "id": "level-93-r6",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/m/|mːː} or {/g/|ɡʌ}?",
+        "audio": "voice/line-8512138493f9a364.m4a"
+      },
+      "card": {
+        "text": "m g",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "m",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "g",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "goat",
+            "picture": {
+              "key": "goat",
+              "label": "goat",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "gift",
+            "picture": {
+              "key": "gift",
+              "label": "gift",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "monkey",
+            "picture": {
+              "key": "monkey",
+              "label": "monkey",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "moon",
+            "picture": {
+              "key": "moon",
+              "label": "moon",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "mouse",
+            "picture": {
+              "key": "mouse",
+              "label": "mouse",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-93-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every nest!",
@@ -216,59 +314,7 @@
       }
     },
     {
-      "id": "level-93-r6",
-      "type": "pick",
-      "prompt": {
-        "text": "What is this?",
-        "say": "What is this? Find the word!",
-        "audio": "voice/line-69b2bf73b2b7783d.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "gift",
-          "label": "gift",
-          "url": null
-        },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-93-r6-o1",
-            "label": "hand",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-93-r6-o2",
-            "label": "lamp",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-93-r6-o3",
-            "label": "gift",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "gift"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-93-r7",
+      "id": "level-93-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: hand, tent, lamp, nest!",
@@ -289,7 +335,34 @@
       }
     },
     {
-      "id": "level-93-r8",
+      "id": "level-93-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write lamp",
+        "say": "Look at the word lamp. Then write it from memory!",
+        "audio": "voice/line-784d1806fee5f83b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "lamp",
+          "label": "lamp",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "lamp",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-93-r10",
       "type": "write",
       "prompt": {
         "text": "Write lamp",

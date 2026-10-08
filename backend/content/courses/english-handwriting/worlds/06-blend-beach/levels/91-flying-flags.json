@@ -87,6 +87,90 @@
     },
     {
       "id": "level-91-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/f/|fːː} or {/c/|kʌ}?",
+        "audio": "voice/line-b932be9cb19c7efc.m4a"
+      },
+      "card": {
+        "text": "f c",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "f",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "c",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "cow",
+            "picture": {
+              "key": "cow",
+              "label": "cow",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "cup",
+            "picture": {
+              "key": "cup",
+              "label": "cup",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "four",
+            "picture": {
+              "key": "four",
+              "label": "four",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "corn",
+            "picture": {
+              "key": "corn",
+              "label": "corn",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "foot",
+            "picture": {
+              "key": "foot",
+              "label": "foot",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-91-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -113,7 +197,7 @@
       }
     },
     {
-      "id": "level-91-r3",
+      "id": "level-91-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -128,21 +212,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-91-r3-o1",
+            "id": "level-91-r4-o1",
             "label": "glove",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-91-r3-o2",
+            "id": "level-91-r4-o2",
             "label": "flag",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-91-r3-o3",
+            "id": "level-91-r4-o3",
             "label": "clock",
             "picture": null,
             "color": null,
@@ -161,7 +245,7 @@
       }
     },
     {
-      "id": "level-91-r4",
+      "id": "level-91-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
@@ -188,7 +272,34 @@
       }
     },
     {
-      "id": "level-91-r5",
+      "id": "level-91-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write flag",
+        "say": "Look at the word flag. Then write it from memory!",
+        "audio": "voice/line-a5b7ad26333d5d8f.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "flag",
+          "label": "flag",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "flag",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-91-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every flower!",
@@ -216,59 +327,7 @@
       }
     },
     {
-      "id": "level-91-r6",
-      "type": "pick",
-      "prompt": {
-        "text": "What is this?",
-        "say": "What is this? Find the word!",
-        "audio": "voice/line-69b2bf73b2b7783d.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "glove",
-          "label": "glove",
-          "url": null
-        },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-91-r6-o1",
-            "label": "hand",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-91-r6-o2",
-            "label": "glove",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-91-r6-o3",
-            "label": "clock",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "glove"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-91-r7",
+      "id": "level-91-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: flag, clock, plane, flower!",
@@ -289,7 +348,30 @@
       }
     },
     {
-      "id": "level-91-r8",
+      "id": "level-91-r9",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every flag!",
+        "say": "Pop every bubble that says flag!",
+        "audio": "voice/line-3fa41449f4217fa6.m4a"
+      },
+      "card": {
+        "text": "flag",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "flag",
+        "others": [
+          "four",
+          "goat",
+          "hand"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-91-r10",
       "type": "write",
       "prompt": {
         "text": "Write plane",

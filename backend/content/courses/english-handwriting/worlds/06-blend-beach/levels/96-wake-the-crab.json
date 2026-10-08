@@ -54,6 +54,90 @@
     },
     {
       "id": "level-96-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/p/|pʌ} or {/l/|lːː}?",
+        "audio": "voice/line-c9ad72c6fafa9726.m4a"
+      },
+      "card": {
+        "text": "p l",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "p",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "l",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "lamp",
+            "picture": {
+              "key": "lamp",
+              "label": "lamp",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "pot",
+            "picture": {
+              "key": "pot",
+              "label": "pot",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "pencil",
+            "picture": {
+              "key": "pencil",
+              "label": "pencil",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "lemon",
+            "picture": {
+              "key": "lemon",
+              "label": "lemon",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "lion",
+            "picture": {
+              "key": "lion",
+              "label": "lion",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "pig",
+            "picture": {
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-96-r3",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -68,21 +152,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-96-r2-o1",
+            "id": "level-96-r3-o1",
             "label": "flag",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-96-r2-o2",
+            "id": "level-96-r3-o2",
             "label": "frog",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-96-r2-o3",
+            "id": "level-96-r3-o3",
             "label": "tiger",
             "picture": null,
             "color": null,
@@ -101,7 +185,7 @@
       }
     },
     {
-      "id": "level-96-r3",
+      "id": "level-96-r4",
       "type": "hunt",
       "prompt": {
         "text": "Find every frog!",
@@ -129,7 +213,34 @@
       }
     },
     {
-      "id": "level-96-r4",
+      "id": "level-96-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write drum",
+        "say": "Look at the word drum. Then write it from memory!",
+        "audio": "voice/line-4ba89b6c436290ea.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "drum",
+          "label": "drum",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "drum",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-96-r6",
       "type": "pick",
       "prompt": {
         "text": "What is this?",
@@ -148,21 +259,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-96-r4-o1",
+            "id": "level-96-r6-o1",
             "label": "ship",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-96-r4-o2",
+            "id": "level-96-r6-o2",
             "label": "tent",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-96-r4-o3",
+            "id": "level-96-r6-o3",
             "label": "flag",
             "picture": null,
             "color": null,
@@ -181,7 +292,7 @@
       }
     },
     {
-      "id": "level-96-r5",
+      "id": "level-96-r7",
       "type": "write",
       "prompt": {
         "text": "Write hand",
@@ -208,7 +319,7 @@
       }
     },
     {
-      "id": "level-96-r6",
+      "id": "level-96-r8",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -235,67 +346,30 @@
       }
     },
     {
-      "id": "level-96-r7",
-      "type": "pick",
+      "id": "level-96-r9",
+      "type": "pop",
       "prompt": {
-        "text": "I see a red car.",
-        "say": "I see a red car. Find the picture!",
-        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+        "text": "Pop every drum!",
+        "say": "Pop every bubble that says drum!",
+        "audio": "voice/line-8a4572927dea8895.m4a"
       },
       "card": {
-        "text": "I see a red car.",
+        "text": "drum",
         "picture": null,
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-96-r7-o1",
-            "label": "dog running",
-            "picture": {
-              "key": "dog_running",
-              "label": "dog running",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-96-r7-o2",
-            "label": "hot sun",
-            "picture": {
-              "key": "hot_sun",
-              "label": "hot sun",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-96-r7-o3",
-            "label": "red car",
-            "picture": {
-              "key": "red_car",
-              "label": "red car",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
+      "pop": {
+        "target": "drum",
+        "others": [
+          "flag",
+          "four",
+          "frog"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "red car"
-        },
-        "shape": "planet",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 4
       }
     },
     {
-      "id": "level-96-r8",
+      "id": "level-96-r10",
       "type": "speak",
       "prompt": {
         "text": "Say: star, flag, frog, tent!",
