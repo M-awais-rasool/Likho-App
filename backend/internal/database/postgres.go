@@ -20,9 +20,11 @@ import (
 // Connect opens Postgres with settings chosen for speed:
 //   - PrepareStmt: every query is prepared once per connection and reused
 //   - SkipDefaultTransaction: single writes are not wrapped in a transaction
-//   - a connection pool sized for the CPU, idle connections recycled
+//   - a pool of at most [maxConns] connections (0 = by the number of CPUs,
+//     8 to 20, so the API shares the database server politely), idle
+//     connections recycled
 //   - only slow queries (> 200 ms) and errors are logged
-func Connect(ctx context.Context, url string, debug bool) (*gorm.DB, error) {
+func Connect(ctx context.Context, url string, debug bool, maxConns int) (*gorm.DB, error) {
 	level, out := logger.Warn, slogWriter{slog.LevelWarn}
 	if debug {
 		level, out = logger.Info, slogWriter{slog.LevelInfo} // every query, for development
@@ -46,8 +48,11 @@ func Connect(ctx context.Context, url string, debug bool) (*gorm.DB, error) {
 	if err != nil {
 		return nil, err
 	}
-	sqlDB.SetMaxOpenConns(max(8, runtime.NumCPU()*4))
-	sqlDB.SetMaxIdleConns(max(4, runtime.NumCPU()*2))
+	if maxConns <= 0 {
+		maxConns = min(20, max(8, runtime.NumCPU()*4))
+	}
+	sqlDB.SetMaxOpenConns(maxConns)
+	sqlDB.SetMaxIdleConns(max(2, maxConns/2))
 	sqlDB.SetConnMaxIdleTime(5 * time.Minute)
 	sqlDB.SetConnMaxLifetime(time.Hour)
 
