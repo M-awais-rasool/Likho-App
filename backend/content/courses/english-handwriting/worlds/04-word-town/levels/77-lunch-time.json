@@ -1,0 +1,318 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-77",
+  "number": 77,
+  "name": "Lunch Time",
+  "skill": "Food",
+  "icon": "restaurant",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "food",
+    "word": "bread",
+    "say": "Yum! Let's read the names of food.",
+    "audio": "voice/line-ab39707a65af4440.m4a",
+    "picture": {
+      "key": "bread",
+      "label": "bread",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-77-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is egg?",
+        "say": "Read the word. Which picture is egg?",
+        "audio": "voice/line-6aa6141ea57334c1.m4a"
+      },
+      "card": {
+        "text": "egg",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-77-r1-o1",
+            "label": "egg",
+            "picture": {
+              "key": "egg",
+              "label": "egg",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-77-r1-o2",
+            "label": "milk",
+            "picture": {
+              "key": "milk",
+              "label": "milk",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-77-r1-o3",
+            "label": "rice",
+            "picture": {
+              "key": "rice",
+              "label": "rice",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "egg"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-77-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Egg! Build the word egg.",
+        "audio": "voice/line-5f76ed514afd9e69.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "egg",
+          "label": "egg",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "e",
+          "g",
+          "g"
+        ],
+        "slot": "wagon"
+      }
+    },
+    {
+      "id": "level-77-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word milk.",
+        "audio": "voice/line-66d1a4f3431fc5de.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-77-r3-o1",
+            "label": "egg",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-77-r3-o2",
+            "label": "milk",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-77-r3-o3",
+            "label": "bread",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "milk"
+        },
+        "shape": "cloud",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-77-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Milk! Which letter is missing?",
+        "audio": "voice/line-4426f8d3605ea186.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "milk",
+          "label": "milk",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "i",
+        "guide": "i",
+        "word": "milk",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-77-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every cake!",
+        "say": "Find every word cake!",
+        "audio": "voice/line-5141f349ad04d42b.m4a"
+      },
+      "card": {
+        "text": "cake",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "cake",
+        "grid": [
+          "cake",
+          "rice",
+          "bread",
+          "milk",
+          "cake",
+          "dog",
+          "cake",
+          "apple",
+          "egg"
+        ]
+      }
+    },
+    {
+      "id": "level-77-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "apple",
+          "label": "apple",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-77-r6-o1",
+            "label": "four",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-77-r6-o2",
+            "label": "apple",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-77-r6-o3",
+            "label": "hand",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "apple"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-77-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: egg, milk, rice, cake!",
+        "say": "Say them with me! egg, milk, rice, cake!",
+        "audio": "voice/line-97b6a23a5f32604b.m4a"
+      },
+      "card": {
+        "text": "egg, milk, rice, cake!",
+        "picture": {
+          "key": "egg",
+          "label": "egg",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "egg, milk, rice, cake!"
+      }
+    },
+    {
+      "id": "level-77-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write rice",
+        "say": "Write the word rice.",
+        "audio": "voice/line-55b579e3a5676331.m4a"
+      },
+      "card": {
+        "text": "rice",
+        "picture": {
+          "key": "rice",
+          "label": "rice",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "rice",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

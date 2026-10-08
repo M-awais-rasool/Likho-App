@@ -1,0 +1,379 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-75",
+  "number": 75,
+  "name": "Doctor Pencil",
+  "skill": "Body parts",
+  "icon": "medical_services",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "nose",
+    "word": "doctor",
+    "say": "Doctor Pencil is here! Let's learn the parts of the body.",
+    "audio": "voice/line-9736f21aa2b0472c.m4a",
+    "picture": {
+      "key": "doctor",
+      "label": "doctor",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-75-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Touch the nose!",
+        "audio": "voice/line-d57913afb823fc5c.m4a"
+      },
+      "card": {
+        "text": "nose",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "label": "nose",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-75-r1-o1"
+          },
+          {
+            "label": "eye",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-75-r1-o2"
+          },
+          {
+            "label": "ear",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-75-r1-o3"
+          },
+          {
+            "label": "mouth",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-75-r1-o4"
+          },
+          {
+            "label": "hand",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-75-r1-o5"
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "nose"
+        },
+        "shape": null,
+        "layout": "patient",
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-75-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is nose?",
+        "say": "Read the word. Which picture is nose?",
+        "audio": "voice/line-730450b400081f3f.m4a"
+      },
+      "card": {
+        "text": "nose",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-75-r2-o1",
+            "label": "nose",
+            "picture": {
+              "key": "nose",
+              "label": "nose",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-75-r2-o2",
+            "label": "ear",
+            "picture": {
+              "key": "ear",
+              "label": "ear",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-75-r2-o3",
+            "label": "foot",
+            "picture": {
+              "key": "foot",
+              "label": "foot",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "nose"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-75-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Eye! Build the word eye.",
+        "audio": "voice/line-5072be2034bdef99.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "eye",
+          "label": "eye",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "e",
+          "y",
+          "e"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-75-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word ear.",
+        "audio": "voice/line-77cde2e5cd693b9d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-75-r4-o1",
+            "label": "ear",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-75-r4-o2",
+            "label": "four",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-75-r4-o3",
+            "label": "dog",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "ear"
+        },
+        "shape": "shell",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-75-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Spell hand",
+        "say": "Hand! Write it one letter at a time.",
+        "audio": "voice/line-d1c2848aa880fae2.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "hand",
+          "label": "hand",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "hand",
+        "guide": null,
+        "word": "hand",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-75-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every leg!",
+        "say": "Find every word leg!",
+        "audio": "voice/line-ef4d627f5ebddd19.m4a"
+      },
+      "card": {
+        "text": "leg",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "leg",
+        "grid": [
+          "nose",
+          "leg",
+          "leg",
+          "eye",
+          "pig",
+          "foot",
+          "leg",
+          "hand",
+          "ear"
+        ]
+      }
+    },
+    {
+      "id": "level-75-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "foot",
+          "label": "foot",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-75-r7-o1",
+            "label": "foot",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-75-r7-o2",
+            "label": "pink",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-75-r7-o3",
+            "label": "pig",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "foot"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-75-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: nose, eye, ear, hand!",
+        "say": "Say them with me! nose, eye, ear, hand!",
+        "audio": "voice/line-3555c5e2d48955c7.m4a"
+      },
+      "card": {
+        "text": "nose, eye, ear, hand!",
+        "picture": {
+          "key": "nose",
+          "label": "nose",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "nose, eye, ear, hand!"
+      }
+    },
+    {
+      "id": "level-75-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Write ear",
+        "say": "Write the word ear.",
+        "audio": "voice/line-5fd93b88da57dfd3.m4a"
+      },
+      "card": {
+        "text": "ear",
+        "picture": {
+          "key": "ear",
+          "label": "ear",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "ear",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}
