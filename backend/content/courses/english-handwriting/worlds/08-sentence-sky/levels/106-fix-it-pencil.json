@@ -81,6 +81,29 @@
     },
     {
       "id": "level-106-r2",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every look!",
+        "say": "Pop every bubble that says look!",
+        "audio": "voice/line-5f4f7927532f36b6.m4a"
+      },
+      "card": {
+        "text": "look",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "look",
+        "others": [
+          "like",
+          "said",
+          "ship"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-106-r3",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -103,7 +126,7 @@
       }
     },
     {
-      "id": "level-106-r3",
+      "id": "level-106-r4",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -130,7 +153,7 @@
       }
     },
     {
-      "id": "level-106-r4",
+      "id": "level-106-r5",
       "type": "pick",
       "prompt": {
         "text": "Which one is right?",
@@ -149,14 +172,14 @@
       "pick": {
         "options": [
           {
-            "id": "level-106-r4-o1",
+            "id": "level-106-r5-o1",
             "label": "The cat is big.",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-106-r4-o2",
+            "id": "level-106-r5-o2",
             "label": "the cat is big.",
             "picture": null,
             "color": null,
@@ -175,7 +198,67 @@
       }
     },
     {
-      "id": "level-106-r5",
+      "id": "level-106-r6",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "brother",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "family_brother",
+                "label": "brother",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "bus",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "bus",
+                "label": "bus",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "ship",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "ship",
+                "label": "ship",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-106-r7",
       "type": "speak",
       "prompt": {
         "text": "Say: A sentence starts with a capital letter.",
@@ -196,7 +279,7 @@
       }
     },
     {
-      "id": "level-106-r6",
+      "id": "level-106-r8",
       "type": "hunt",
       "prompt": {
         "text": "Find every tiger!",
@@ -224,7 +307,7 @@
       }
     },
     {
-      "id": "level-106-r7",
+      "id": "level-106-r9",
       "type": "write",
       "prompt": {
         "text": "Spell he",
@@ -247,63 +330,41 @@
       }
     },
     {
-      "id": "level-106-r8",
-      "type": "pick",
+      "id": "level-106-r10",
+      "type": "fix",
       "prompt": {
-        "text": "I see a red car.",
-        "say": "I see a red car. Find the picture!",
-        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
       },
       "card": {
-        "text": "I see a red car.",
+        "text": "Fix it!",
         "picture": null,
         "listen": false
       },
-      "pick": {
-        "options": [
+      "fix": {
+        "items": [
           {
-            "id": "level-106-r8-o1",
-            "label": "hot sun",
-            "picture": {
-              "key": "hot_sun",
-              "label": "hot sun",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "text": "bus",
+            "wrong": "mirror",
+            "at": 0
           },
           {
-            "id": "level-106-r8-o2",
-            "label": "dog running",
-            "picture": {
-              "key": "dog_running",
-              "label": "dog running",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "text": "ship",
+            "wrong": "mirror",
+            "at": 1
           },
           {
-            "id": "level-106-r8-o3",
-            "label": "red car",
-            "picture": {
-              "key": "red_car",
-              "label": "red car",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "text": "tiger",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "star",
+            "wrong": null,
+            "at": null
           }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "red car"
-        },
-        "shape": "planet",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        ]
       }
     }
   ]

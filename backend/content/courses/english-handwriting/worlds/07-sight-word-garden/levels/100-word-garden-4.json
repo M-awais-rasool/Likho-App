@@ -75,6 +75,29 @@
     },
     {
       "id": "level-100-r2",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a star. True, or silly?",
+        "audio": "voice/line-ef41122bac3f4f2c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a star.",
+        "picture": {
+          "key": "up",
+          "label": "up",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-100-r3",
       "type": "hunt",
       "prompt": {
         "text": "Find every you!",
@@ -102,7 +125,7 @@
       }
     },
     {
-      "id": "level-100-r3",
+      "id": "level-100-r4",
       "type": "write",
       "prompt": {
         "text": "Spell you",
@@ -125,7 +148,7 @@
       }
     },
     {
-      "id": "level-100-r4",
+      "id": "level-100-r5",
       "type": "pick",
       "prompt": {
         "text": "Which word fits?",
@@ -140,42 +163,42 @@
       "pick": {
         "options": [
           {
-            "id": "level-100-r4-o1",
+            "id": "level-100-r5-o1",
             "label": "on",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-100-r4-o2",
+            "id": "level-100-r5-o2",
             "label": "in",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-100-r4-o3",
+            "id": "level-100-r5-o3",
             "label": "it",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-100-r4-o4",
+            "id": "level-100-r5-o4",
             "label": "you",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-100-r4-o5",
+            "id": "level-100-r5-o5",
             "label": "up",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-100-r4-o6",
+            "id": "level-100-r5-o6",
             "label": "It",
             "picture": null,
             "color": null,
@@ -194,7 +217,82 @@
       }
     },
     {
-      "id": "level-100-r5",
+      "id": "level-100-r6",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/f/|fːː} or {/g/|ɡʌ}?",
+        "audio": "voice/line-50bc4e75f05dae0e.m4a"
+      },
+      "card": {
+        "text": "f g",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "f",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "g",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "foot",
+            "picture": {
+              "key": "foot",
+              "label": "foot",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "gift",
+            "picture": {
+              "key": "gift",
+              "label": "gift",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "four",
+            "picture": {
+              "key": "four",
+              "label": "four",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "goat",
+            "picture": {
+              "key": "goat",
+              "label": "goat",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-100-r7",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -222,7 +320,7 @@
       }
     },
     {
-      "id": "level-100-r6",
+      "id": "level-100-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: The cat is on the box.",
@@ -243,7 +341,7 @@
       }
     },
     {
-      "id": "level-100-r7",
+      "id": "level-100-r9",
       "type": "write",
       "prompt": {
         "text": "Write on",
@@ -266,63 +364,30 @@
       }
     },
     {
-      "id": "level-100-r8",
-      "type": "pick",
+      "id": "level-100-r10",
+      "type": "write",
       "prompt": {
-        "text": "I see a red car.",
-        "say": "I see a red car. Find the picture!",
-        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+        "text": "Look, then write up",
+        "say": "Look at the word up. Then write it from memory!",
+        "audio": "voice/line-27011a2c5b939e1c.m4a"
       },
       "card": {
-        "text": "I see a red car.",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "up",
+          "label": "up",
+          "url": null
+        },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-100-r8-o1",
-            "label": "red car",
-            "picture": {
-              "key": "red_car",
-              "label": "red car",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-100-r8-o2",
-            "label": "dog running",
-            "picture": {
-              "key": "dog_running",
-              "label": "dog running",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-100-r8-o3",
-            "label": "hot sun",
-            "picture": {
-              "key": "hot_sun",
-              "label": "hot sun",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "red car"
-        },
-        "shape": "planet",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+      "write": {
+        "mode": "flash",
+        "target": "up",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
       }
     }
   ]

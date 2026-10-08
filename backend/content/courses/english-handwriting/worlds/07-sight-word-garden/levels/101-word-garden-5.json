@@ -75,6 +75,29 @@
     },
     {
       "id": "level-101-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write look",
+        "say": "Look at the word look. Then write it from memory!",
+        "audio": "voice/line-c6c8f27c36221a71.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "look",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-101-r3",
       "type": "hunt",
       "prompt": {
         "text": "Find every look!",
@@ -102,7 +125,7 @@
       }
     },
     {
-      "id": "level-101-r3",
+      "id": "level-101-r4",
       "type": "write",
       "prompt": {
         "text": "Spell look",
@@ -125,7 +148,7 @@
       }
     },
     {
-      "id": "level-101-r4",
+      "id": "level-101-r5",
       "type": "pick",
       "prompt": {
         "text": "Which word fits?",
@@ -140,42 +163,42 @@
       "pick": {
         "options": [
           {
-            "id": "level-101-r4-o1",
+            "id": "level-101-r5-o1",
             "label": "look",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-101-r4-o2",
+            "id": "level-101-r5-o2",
             "label": "play",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-101-r4-o3",
+            "id": "level-101-r5-o3",
             "label": "Look",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-101-r4-o4",
+            "id": "level-101-r5-o4",
             "label": "come",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-101-r4-o5",
+            "id": "level-101-r5-o5",
             "label": "go",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-101-r4-o6",
+            "id": "level-101-r5-o6",
             "label": "here",
             "picture": null,
             "color": null,
@@ -194,7 +217,30 @@
       }
     },
     {
-      "id": "level-101-r5",
+      "id": "level-101-r6",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every look!",
+        "say": "Pop every bubble that says look!",
+        "audio": "voice/line-5f4f7927532f36b6.m4a"
+      },
+      "card": {
+        "text": "look",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "look",
+        "others": [
+          "come",
+          "four",
+          "goat"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-101-r7",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -221,7 +267,7 @@
       }
     },
     {
-      "id": "level-101-r6",
+      "id": "level-101-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: Come and play.",
@@ -242,7 +288,7 @@
       }
     },
     {
-      "id": "level-101-r7",
+      "id": "level-101-r9",
       "type": "write",
       "prompt": {
         "text": "Write play",
@@ -269,63 +315,51 @@
       }
     },
     {
-      "id": "level-101-r8",
-      "type": "pick",
+      "id": "level-101-r10",
+      "type": "match",
       "prompt": {
-        "text": "I see a red car.",
-        "say": "I see a red car. Find the picture!",
-        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to the same word with a capital letter.",
+        "audio": "voice/line-d82ba5aa00efefb3.m4a"
       },
       "card": {
-        "text": "I see a red car.",
+        "text": "the = The",
         "picture": null,
         "listen": false
       },
-      "pick": {
-        "options": [
+      "match": {
+        "pairs": [
           {
-            "id": "level-101-r8-o1",
-            "label": "hot sun",
-            "picture": {
-              "key": "hot_sun",
-              "label": "hot sun",
-              "url": null
+            "a": {
+              "text": "look",
+              "picture": null
             },
-            "color": null,
-            "hideLabel": true
+            "b": {
+              "text": "Look",
+              "picture": null
+            }
           },
           {
-            "id": "level-101-r8-o2",
-            "label": "dog running",
-            "picture": {
-              "key": "dog_running",
-              "label": "dog running",
-              "url": null
+            "a": {
+              "text": "go",
+              "picture": null
             },
-            "color": null,
-            "hideLabel": true
+            "b": {
+              "text": "Go",
+              "picture": null
+            }
           },
           {
-            "id": "level-101-r8-o3",
-            "label": "red car",
-            "picture": {
-              "key": "red_car",
-              "label": "red car",
-              "url": null
+            "a": {
+              "text": "come",
+              "picture": null
             },
-            "color": null,
-            "hideLabel": true
+            "b": {
+              "text": "Come",
+              "picture": null
+            }
           }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "red car"
-        },
-        "shape": "planet",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        ]
       }
     }
   ]

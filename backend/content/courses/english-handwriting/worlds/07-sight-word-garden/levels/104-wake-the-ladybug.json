@@ -50,6 +50,54 @@
     },
     {
       "id": "level-104-r2",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to the same word with a capital letter.",
+        "audio": "voice/line-d82ba5aa00efefb3.m4a"
+      },
+      "card": {
+        "text": "the = The",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "the",
+              "picture": null
+            },
+            "b": {
+              "text": "The",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "said",
+              "picture": null
+            },
+            "b": {
+              "text": "Said",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "was",
+              "picture": null
+            },
+            "b": {
+              "text": "Was",
+              "picture": null
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-104-r3",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -64,21 +112,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-104-r2-o1",
+            "id": "level-104-r3-o1",
             "label": "said",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-104-r2-o2",
+            "id": "level-104-r3-o2",
             "label": "was",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-104-r2-o3",
+            "id": "level-104-r3-o3",
             "label": "and",
             "picture": null,
             "color": null,
@@ -97,7 +145,7 @@
       }
     },
     {
-      "id": "level-104-r3",
+      "id": "level-104-r4",
       "type": "hunt",
       "prompt": {
         "text": "Find every was!",
@@ -125,7 +173,45 @@
       }
     },
     {
-      "id": "level-104-r4",
+      "id": "level-104-r5",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "the",
+            "wrong": "mirror",
+            "at": 2
+          },
+          {
+            "text": "said",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "was",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "they",
+            "wrong": "mirror",
+            "at": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-104-r6",
       "type": "pick",
       "prompt": {
         "text": "What is this?",
@@ -139,21 +225,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-104-r4-o1",
+            "id": "level-104-r6-o1",
             "label": "he",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-104-r4-o2",
+            "id": "level-104-r6-o2",
             "label": "said",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-104-r4-o3",
+            "id": "level-104-r6-o3",
             "label": "they",
             "picture": null,
             "color": null,
@@ -172,7 +258,7 @@
       }
     },
     {
-      "id": "level-104-r5",
+      "id": "level-104-r7",
       "type": "write",
       "prompt": {
         "text": "Write have",
@@ -195,7 +281,7 @@
       }
     },
     {
-      "id": "level-104-r6",
+      "id": "level-104-r8",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -218,67 +304,30 @@
       }
     },
     {
-      "id": "level-104-r7",
-      "type": "pick",
+      "id": "level-104-r9",
+      "type": "truth",
       "prompt": {
-        "text": "I see a red car.",
-        "say": "I see a red car. Find the picture!",
-        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+        "text": "True or silly?",
+        "say": "This is a tiger. True, or silly?",
+        "audio": "voice/line-41b38e15543df7ab.m4a"
       },
       "card": {
-        "text": "I see a red car.",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-104-r7-o1",
-            "label": "hot sun",
-            "picture": {
-              "key": "hot_sun",
-              "label": "hot sun",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-104-r7-o2",
-            "label": "red car",
-            "picture": {
-              "key": "red_car",
-              "label": "red car",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-104-r7-o3",
-            "label": "dog running",
-            "picture": {
-              "key": "dog_running",
-              "label": "dog running",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "red car"
+      "truth": {
+        "text": "This is a tiger.",
+        "picture": {
+          "key": "star",
+          "label": "star",
+          "url": null
         },
-        "shape": "planet",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "answer": false
       }
     },
     {
-      "id": "level-104-r8",
+      "id": "level-104-r10",
       "type": "speak",
       "prompt": {
         "text": "Say: the, said, was, they!",

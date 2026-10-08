@@ -49,6 +49,90 @@
     },
     {
       "id": "level-112-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/s/|sːː} or {/t/|tʌ}?",
+        "audio": "voice/line-780408637d318bc0.m4a"
+      },
+      "card": {
+        "text": "s t",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "s",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "t",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "seed",
+            "picture": {
+              "key": "seed",
+              "label": "seed",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "sock",
+            "picture": {
+              "key": "sock",
+              "label": "sock",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "tent",
+            "picture": {
+              "key": "tent",
+              "label": "tent",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "tooth",
+            "picture": {
+              "key": "tooth",
+              "label": "tooth",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "tiger",
+            "picture": {
+              "key": "tiger",
+              "label": "tiger",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-112-r3",
       "type": "pick",
       "prompt": {
         "text": "Fix it!",
@@ -63,21 +147,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-112-r2-o1",
+            "id": "level-112-r3-o1",
             "label": "run",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-112-r2-o2",
+            "id": "level-112-r3-o2",
             "label": "can",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-112-r2-o3",
+            "id": "level-112-r3-o3",
             "label": "ali",
             "picture": null,
             "color": null,
@@ -96,7 +180,7 @@
       }
     },
     {
-      "id": "level-112-r3",
+      "id": "level-112-r4",
       "type": "pick",
       "prompt": {
         "text": "Which mark ends it?",
@@ -111,21 +195,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-112-r3-o1",
+            "id": "level-112-r4-o1",
             "label": ".",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-112-r3-o2",
+            "id": "level-112-r4-o2",
             "label": "!",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-112-r3-o3",
+            "id": "level-112-r4-o3",
             "label": "?",
             "picture": null,
             "color": null,
@@ -144,7 +228,34 @@
       }
     },
     {
-      "id": "level-112-r4",
+      "id": "level-112-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write ship",
+        "say": "Look at the word ship. Then write it from memory!",
+        "audio": "voice/line-c55703f2b84b212c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "ship",
+          "label": "ship",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "ship",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-112-r6",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -171,7 +282,7 @@
       }
     },
     {
-      "id": "level-112-r5",
+      "id": "level-112-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every tiger!",
@@ -199,7 +310,7 @@
       }
     },
     {
-      "id": "level-112-r6",
+      "id": "level-112-r8",
       "type": "write",
       "prompt": {
         "text": "Spell he",
@@ -222,67 +333,30 @@
       }
     },
     {
-      "id": "level-112-r7",
-      "type": "pick",
+      "id": "level-112-r9",
+      "type": "pop",
       "prompt": {
-        "text": "I see a red car.",
-        "say": "I see a red car. Find the picture!",
-        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+        "text": "Pop every tiger!",
+        "say": "Pop every bubble that says tiger!",
+        "audio": "voice/line-cc8a41821360e925.m4a"
       },
       "card": {
-        "text": "I see a red car.",
+        "text": "tiger",
         "picture": null,
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-112-r7-o1",
-            "label": "red car",
-            "picture": {
-              "key": "red_car",
-              "label": "red car",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-112-r7-o2",
-            "label": "dog running",
-            "picture": {
-              "key": "dog_running",
-              "label": "dog running",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-112-r7-o3",
-            "label": "hot sun",
-            "picture": {
-              "key": "hot_sun",
-              "label": "hot sun",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
+      "pop": {
+        "target": "tiger",
+        "others": [
+          "like",
+          "look",
+          "said"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "red car"
-        },
-        "shape": "planet",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 4
       }
     },
     {
-      "id": "level-112-r8",
+      "id": "level-112-r10",
       "type": "speak",
       "prompt": {
         "text": "Say: I can write a sentence!",

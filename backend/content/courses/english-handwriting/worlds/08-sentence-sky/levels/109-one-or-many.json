@@ -54,6 +54,44 @@
     },
     {
       "id": "level-109-r2",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "bus",
+            "wrong": "mirror",
+            "at": 2
+          },
+          {
+            "text": "ship",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "tiger",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "star",
+            "wrong": "mirror",
+            "at": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-109-r3",
       "type": "pick",
       "prompt": {
         "text": "One cat, many...?",
@@ -72,14 +110,14 @@
       "pick": {
         "options": [
           {
-            "id": "level-109-r2-o1",
+            "id": "level-109-r3-o1",
             "label": "cats",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-109-r2-o2",
+            "id": "level-109-r3-o2",
             "label": "cat",
             "picture": null,
             "color": null,
@@ -98,7 +136,7 @@
       }
     },
     {
-      "id": "level-109-r3",
+      "id": "level-109-r4",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -125,7 +163,7 @@
       }
     },
     {
-      "id": "level-109-r4",
+      "id": "level-109-r5",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -148,7 +186,30 @@
       }
     },
     {
-      "id": "level-109-r5",
+      "id": "level-109-r6",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a tiger. True, or silly?",
+        "audio": "voice/line-41b38e15543df7ab.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a tiger.",
+        "picture": {
+          "key": "tiger",
+          "label": "tiger",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-109-r7",
       "type": "speak",
       "prompt": {
         "text": "Say: One cat, two cats, three cats!",
@@ -169,7 +230,7 @@
       }
     },
     {
-      "id": "level-109-r6",
+      "id": "level-109-r8",
       "type": "hunt",
       "prompt": {
         "text": "Find every tiger!",
@@ -197,7 +258,7 @@
       }
     },
     {
-      "id": "level-109-r7",
+      "id": "level-109-r9",
       "type": "pick",
       "prompt": {
         "text": "I see a red car.",
@@ -212,7 +273,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-109-r7-o1",
+            "id": "level-109-r9-o1",
             "label": "red car",
             "picture": {
               "key": "red_car",
@@ -223,7 +284,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-109-r7-o2",
+            "id": "level-109-r9-o2",
             "label": "dog running",
             "picture": {
               "key": "dog_running",
@@ -234,7 +295,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-109-r7-o3",
+            "id": "level-109-r9-o3",
             "label": "hot sun",
             "picture": {
               "key": "hot_sun",
@@ -257,51 +318,87 @@
       }
     },
     {
-      "id": "level-109-r8",
-      "type": "pick",
+      "id": "level-109-r10",
+      "type": "sort",
       "prompt": {
-        "text": "Find the word you hear",
-        "say": "Listen! Find the word like.",
-        "audio": "voice/line-0e49269b26f07822.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/h/|hʌ} or {/l/|lːː}?",
+        "audio": "voice/line-dfb3bb467ce2a295.m4a"
       },
       "card": {
-        "text": null,
+        "text": "h l",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "sort": {
+        "bins": [
           {
-            "id": "level-109-r8-o1",
-            "label": "ship",
+            "label": "h",
             "picture": null,
-            "color": null,
-            "hideLabel": false
+            "bin": null
           },
           {
-            "id": "level-109-r8-o2",
-            "label": "like",
+            "label": "l",
             "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-109-r8-o3",
-            "label": "brother",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
+            "bin": null
           }
         ],
-        "answer": {
-          "kind": "label",
-          "value": "like"
-        },
-        "shape": "kite",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "items": [
+          {
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "lemon",
+            "picture": {
+              "key": "lemon",
+              "label": "lemon",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "log",
+            "picture": {
+              "key": "log",
+              "label": "log",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "lion",
+            "picture": {
+              "key": "lion",
+              "label": "lion",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "hen",
+            "picture": {
+              "key": "hen",
+              "label": "hen",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "hand",
+            "picture": {
+              "key": "hand",
+              "label": "hand",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
       }
     }
   ]

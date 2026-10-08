@@ -53,6 +53,66 @@
     },
     {
       "id": "level-111-r2",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "brother",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "family_brother",
+                "label": "brother",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "bus",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "bus",
+                "label": "bus",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "ship",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "ship",
+                "label": "ship",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-111-r3",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -75,7 +135,7 @@
       }
     },
     {
-      "id": "level-111-r3",
+      "id": "level-111-r4",
       "type": "speak",
       "prompt": {
         "text": "Say: I can run.",
@@ -96,7 +156,7 @@
       }
     },
     {
-      "id": "level-111-r4",
+      "id": "level-111-r5",
       "type": "pick",
       "prompt": {
         "text": "I can run.",
@@ -111,7 +171,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-111-r4-o1",
+            "id": "level-111-r5-o1",
             "label": "run",
             "picture": {
               "key": "run",
@@ -122,7 +182,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-111-r4-o2",
+            "id": "level-111-r5-o2",
             "label": "dog",
             "picture": {
               "key": "dog",
@@ -133,7 +193,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-111-r4-o3",
+            "id": "level-111-r5-o3",
             "label": "cake",
             "picture": {
               "key": "cake",
@@ -156,7 +216,45 @@
       }
     },
     {
-      "id": "level-111-r5",
+      "id": "level-111-r6",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "bus",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "ship",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "tiger",
+            "wrong": "mirror",
+            "at": 3
+          },
+          {
+            "text": "star",
+            "wrong": "mirror",
+            "at": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-111-r7",
       "type": "pick",
       "prompt": {
         "text": "Which mark ends it?",
@@ -171,21 +269,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-111-r5-o1",
+            "id": "level-111-r7-o1",
             "label": "?",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-111-r5-o2",
+            "id": "level-111-r7-o2",
             "label": ".",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-111-r5-o3",
+            "id": "level-111-r7-o3",
             "label": "!",
             "picture": null,
             "color": null,
@@ -204,7 +302,7 @@
       }
     },
     {
-      "id": "level-111-r6",
+      "id": "level-111-r8",
       "type": "hunt",
       "prompt": {
         "text": "Find every tiger!",
@@ -232,7 +330,7 @@
       }
     },
     {
-      "id": "level-111-r7",
+      "id": "level-111-r9",
       "type": "write",
       "prompt": {
         "text": "Spell he",
@@ -255,51 +353,26 @@
       }
     },
     {
-      "id": "level-111-r8",
-      "type": "pick",
+      "id": "level-111-r10",
+      "type": "truth",
       "prompt": {
-        "text": "Find the word you hear",
-        "say": "Listen! Find the word like.",
-        "audio": "voice/line-0e49269b26f07822.m4a"
+        "text": "True or silly?",
+        "say": "Look at the picture. I like cake. True, or silly?",
+        "audio": "voice/line-0507ae37df633a46.m4a"
       },
       "card": {
         "text": null,
         "picture": null,
         "listen": true
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-111-r8-o1",
-            "label": "bus",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-111-r8-o2",
-            "label": "ship",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-111-r8-o3",
-            "label": "like",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "like"
+      "truth": {
+        "text": "I like cake.",
+        "picture": {
+          "key": "cake",
+          "label": "cake",
+          "url": null
         },
-        "shape": "shell",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "answer": true
       }
     }
   ]

@@ -53,6 +53,90 @@
     },
     {
       "id": "level-110-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/l/|lːː} or {/b/|bʌ}?",
+        "audio": "voice/line-9d0f05a15cfd7fdd.m4a"
+      },
+      "card": {
+        "text": "l b",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "l",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "b",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "log",
+            "picture": {
+              "key": "log",
+              "label": "log",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bus",
+            "picture": {
+              "key": "bus",
+              "label": "bus",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "lion",
+            "picture": {
+              "key": "lion",
+              "label": "lion",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "lamp",
+            "picture": {
+              "key": "lamp",
+              "label": "lamp",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "ball",
+            "picture": {
+              "key": "ball",
+              "label": "ball",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "boat",
+            "picture": {
+              "key": "boat",
+              "label": "boat",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-110-r3",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -75,7 +159,7 @@
       }
     },
     {
-      "id": "level-110-r3",
+      "id": "level-110-r4",
       "type": "speak",
       "prompt": {
         "text": "Say: The fish is in the sea.",
@@ -96,7 +180,7 @@
       }
     },
     {
-      "id": "level-110-r4",
+      "id": "level-110-r5",
       "type": "pick",
       "prompt": {
         "text": "The cat is on the box.",
@@ -111,7 +195,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-110-r4-o1",
+            "id": "level-110-r5-o1",
             "label": "cat in bed",
             "picture": {
               "key": "cat_in_bed",
@@ -122,7 +206,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-110-r4-o2",
+            "id": "level-110-r5-o2",
             "label": "cat on box",
             "picture": {
               "key": "cat_on_box",
@@ -133,7 +217,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-110-r4-o3",
+            "id": "level-110-r5-o3",
             "label": "dog on box",
             "picture": {
               "key": "dog_on_box",
@@ -156,7 +240,30 @@
       }
     },
     {
-      "id": "level-110-r5",
+      "id": "level-110-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write like",
+        "say": "Look at the word like. Then write it from memory!",
+        "audio": "voice/line-9a2f243b1f870b80.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "like",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-110-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every tiger!",
@@ -184,7 +291,7 @@
       }
     },
     {
-      "id": "level-110-r6",
+      "id": "level-110-r8",
       "type": "write",
       "prompt": {
         "text": "Spell he",
@@ -207,7 +314,7 @@
       }
     },
     {
-      "id": "level-110-r7",
+      "id": "level-110-r9",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -222,21 +329,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-110-r7-o1",
+            "id": "level-110-r9-o1",
             "label": "like",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-110-r7-o2",
+            "id": "level-110-r9-o2",
             "label": "bus",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-110-r7-o3",
+            "id": "level-110-r9-o3",
             "label": "brother",
             "picture": null,
             "color": null,
@@ -255,51 +362,26 @@
       }
     },
     {
-      "id": "level-110-r8",
-      "type": "pick",
+      "id": "level-110-r10",
+      "type": "pop",
       "prompt": {
-        "text": "Which mark ends it?",
-        "say": "The dog can run. Which mark goes at the end?",
-        "audio": "voice/line-f31c208fc8040d04.m4a"
+        "text": "Pop every bus!",
+        "say": "Pop every bubble that says bus!",
+        "audio": "voice/line-d8fa58b86a94481f.m4a"
       },
       "card": {
-        "text": "The dog can run ___",
+        "text": "bus",
         "picture": null,
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-110-r8-o1",
-            "label": "?",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-110-r8-o2",
-            "label": ".",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-110-r8-o3",
-            "label": "!",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "bus",
+        "others": [
+          "and",
+          "the",
+          "you"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "."
-        },
-        "shape": "mushroom",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 4
       }
     }
   ]

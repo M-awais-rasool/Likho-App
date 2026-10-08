@@ -72,6 +72,29 @@
     },
     {
       "id": "level-108-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write look",
+        "say": "Look at the word look. Then write it from memory!",
+        "audio": "voice/line-c6c8f27c36221a71.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "look",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-108-r3",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -98,7 +121,7 @@
       }
     },
     {
-      "id": "level-108-r3",
+      "id": "level-108-r4",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -121,7 +144,7 @@
       }
     },
     {
-      "id": "level-108-r4",
+      "id": "level-108-r5",
       "type": "speak",
       "prompt": {
         "text": "Say: An apple, a ball, an egg, a cat!",
@@ -142,7 +165,30 @@
       }
     },
     {
-      "id": "level-108-r5",
+      "id": "level-108-r6",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every like!",
+        "say": "Pop every bubble that says like!",
+        "audio": "voice/line-6952123e68839811.m4a"
+      },
+      "card": {
+        "text": "like",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "like",
+        "others": [
+          "look",
+          "said",
+          "ship"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-108-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every tiger!",
@@ -170,7 +216,7 @@
       }
     },
     {
-      "id": "level-108-r6",
+      "id": "level-108-r8",
       "type": "write",
       "prompt": {
         "text": "Spell he",
@@ -193,7 +239,7 @@
       }
     },
     {
-      "id": "level-108-r7",
+      "id": "level-108-r9",
       "type": "pick",
       "prompt": {
         "text": "I see a red car.",
@@ -208,7 +254,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-108-r7-o1",
+            "id": "level-108-r9-o1",
             "label": "red car",
             "picture": {
               "key": "red_car",
@@ -219,7 +265,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-108-r7-o2",
+            "id": "level-108-r9-o2",
             "label": "hot sun",
             "picture": {
               "key": "hot_sun",
@@ -230,7 +276,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-108-r7-o3",
+            "id": "level-108-r9-o3",
             "label": "dog running",
             "picture": {
               "key": "dog_running",
@@ -253,51 +299,63 @@
       }
     },
     {
-      "id": "level-108-r8",
-      "type": "pick",
+      "id": "level-108-r10",
+      "type": "match",
       "prompt": {
-        "text": "Find the word you hear",
-        "say": "Listen! Find the word like.",
-        "audio": "voice/line-0e49269b26f07822.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
       },
       "card": {
-        "text": null,
+        "text": "Find the pairs!",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "match": {
+        "pairs": [
           {
-            "id": "level-108-r8-o1",
-            "label": "like",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
+            "a": {
+              "text": "brother",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "family_brother",
+                "label": "brother",
+                "url": null
+              }
+            }
           },
           {
-            "id": "level-108-r8-o2",
-            "label": "star",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
+            "a": {
+              "text": "bus",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "bus",
+                "label": "bus",
+                "url": null
+              }
+            }
           },
           {
-            "id": "level-108-r8-o3",
-            "label": "tiger",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
+            "a": {
+              "text": "ship",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "ship",
+                "label": "ship",
+                "url": null
+              }
+            }
           }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "like"
-        },
-        "shape": "bubble",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        ]
       }
     }
   ]
