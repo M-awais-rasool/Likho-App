@@ -24,6 +24,7 @@ import (
 	"likho/backend/internal/config"
 	"likho/backend/internal/database"
 	"likho/backend/internal/geo"
+	"likho/backend/internal/media"
 	"likho/backend/internal/repository"
 	"likho/backend/internal/service"
 )
@@ -34,6 +35,7 @@ type Deps struct {
 	DB      *gorm.DB
 	Redis   *redis.Client
 	Catalog *catalog.Catalog // the content served at start (from ContentFS)
+	Media   *media.Library   // pictures and recordings (nil: none)
 	Google  service.GoogleVerifier
 	Tokens  service.Tokens
 
@@ -54,9 +56,6 @@ type Built struct {
 	Content *service.ContentService
 	Admins  *service.AdminAuthService
 }
-
-// Build returns the HTTP handler for [d].
-func Build(d Deps) http.Handler { return BuildApp(d).Handler }
 
 // BuildApp wires everything together. Levels published in the admin panel
 // are loaded from the database here (the start-up catalog is kept when
@@ -89,7 +88,12 @@ func BuildApp(d Deps) *Built {
 		Auth: admins, Admin: service.NewAdminService(repos, store, c, activity, account), Content: content,
 		Health: health, Info: d.System, Secure: d.Production,
 	}
-	router := api.NewRouter(handler.New(services, health), adminHandler, d.Tokens, c, api.Options{
+	handlers := handler.New(services, health)
+	if d.Media == nil {
+		d.Media, _ = media.Open("")
+	}
+	handlers.Media = &handler.MediaHandler{Library: d.Media}
+	router := api.NewRouter(handlers, adminHandler, d.Tokens, c, api.Options{
 		CountryHeader: d.CountryHeader, AdminDir: d.AdminDir, Seen: activity.Seen,
 	})
 	return &Built{Handler: router, Content: content, Admins: admins}
@@ -105,6 +109,23 @@ func LoadContent(cfg config.Config) (*catalog.Catalog, error) {
 		slog.Info("course loaded", "id", c.Summary.ID, "levels", c.Stats.Levels, "version", c.Summary.Version, "draft", c.Draft)
 	}
 	return cat, nil
+}
+
+// OpenMedia indexes the pictures and recordings in cfg.MediaDir and logs
+// the ones the content uses but the folder lacks (the app then shows a
+// placeholder or uses the device voice; `content media-check` fails on them).
+func OpenMedia(cfg config.Config, cat *catalog.Catalog) (*media.Library, error) {
+	lib, err := media.Open(cfg.MediaDir)
+	if err != nil {
+		return nil, err
+	}
+	slog.Info("media indexed", "dir", cfg.MediaDir, "files", lib.Len(), "megabytes", lib.Bytes>>20, "version", lib.ETag)
+	for _, c := range cat.Courses() {
+		if missing := lib.Missing(c.MediaPaths()); len(missing) > 0 {
+			slog.Warn("media missing", "course", c.Summary.ID, "count", len(missing), "first", missing[0])
+		}
+	}
+	return lib, nil
 }
 
 func contentFS(cfg config.Config) fs.FS {
@@ -124,7 +145,11 @@ func Run(ctx context.Context, cfg config.Config) error {
 	if err != nil {
 		return err
 	}
-	db, err := database.Connect(ctx, cfg.DatabaseURL, !cfg.Production())
+	lib, err := OpenMedia(cfg, cat)
+	if err != nil {
+		return err
+	}
+	db, err := database.Connect(ctx, cfg.DatabaseURL, !cfg.Production(), cfg.DBMaxConns)
 	if err != nil {
 		return err
 	}
@@ -148,7 +173,7 @@ func Run(ctx context.Context, cfg config.Config) error {
 	resolver := geo.Open(cfg.GeoIPDB)
 	defer resolver.Close()
 	built := BuildApp(Deps{
-		DB: db, Redis: rdb, Catalog: cat, Google: google, Tokens: tokens,
+		DB: db, Redis: rdb, Catalog: cat, Media: lib, Google: google, Tokens: tokens,
 		ContentFS: contentFS(cfg), ContentOptions: catalog.Options{IncludeDrafts: cfg.ContentDrafts},
 		Geo: resolver, CountryHeader: cfg.CountryHeader, AdminDir: cfg.AdminDir, Production: cfg.Production(),
 		System: handler.SystemInfo{Env: cfg.Env, StartedAt: time.Now(), GeoIP: resolver.Enabled(), CountryHeader: cfg.CountryHeader, DevLogin: cfg.DevLogin},
