@@ -1,6 +1,7 @@
+import 'dart:io';
 import 'dart:math' as math;
-import 'dart:typed_data';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 import 'mascot_pose.dart';
@@ -22,8 +23,22 @@ class LipSyncEnvelope {
 
   static final Map<String, Future<LipSyncEnvelope?>> _cache = {};
 
-  static Future<LipSyncEnvelope?> load(String asset, [AssetBundle? bundle]) {
+  /// The envelope of [asset] (an app asset), or read from [lipFile] (the
+  /// kept .lip file of a course recording on the phone). Recordings from a
+  /// URL or without a .lip file have none: the mouth moves at random.
+  static Future<LipSyncEnvelope?> load(String asset, {String? lipFile, AssetBundle? bundle}) {
+    if (lipFile != null) return _cache[lipFile] ??= _loadFile(lipFile);
+    if (!asset.startsWith('assets/')) return Future.value(null);
     return _cache[asset] ??= _load(asset, bundle ?? rootBundle);
+  }
+
+  static Future<LipSyncEnvelope?> _loadFile(String lipFile) async {
+    if (kIsWeb) return null;
+    try {
+      return fromBytes(ByteData.sublistView(await File(lipFile).readAsBytes()));
+    } catch (_) {
+      return null;
+    }
   }
 
   static Future<LipSyncEnvelope?> _load(String asset, AssetBundle bundle) async {

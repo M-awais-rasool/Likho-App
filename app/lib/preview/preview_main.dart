@@ -16,7 +16,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:web/web.dart' as web;
 
 import '../data/course_providers.dart';
+import '../data/api/likho_api.dart';
 import '../data/family.dart';
+import '../data/media.dart';
 import '../data/models/course_models.dart';
 import '../data/repositories/course_repository.dart';
 import '../design/tokens.dart';
@@ -112,12 +114,15 @@ class _PreviewAppState extends State<PreviewApp> {
       );
     }
     // a fresh app per request: nothing carries over from the last preview
+    // (the media manifest does: it is the same for every preview)
     return ProviderScope(
       key: ValueKey(r.nonce),
       overrides: [
         courseRepositoryProvider.overrideWithValue(_FixedCourse(r.course)),
         soundEngineProvider.overrideWithValue(widget.sound),
         familyProvider.overrideWith(() => DemoFamilyNotifier(_previewFamily(r.level))),
+        // pictures and recordings from the API that serves the admin panel
+        mediaProvider.overrideWithValue(_media),
       ],
       child: MaterialApp(
         title: 'Likho preview',
@@ -190,3 +195,6 @@ class _LevelRunState extends ConsumerState<_LevelRun> {
     return KeyedSubtree(key: ValueKey(_run), child: screen);
   }
 }
+
+/// The media of the API this preview is served from (same origin).
+final _media = MediaStore(baseUrl: Uri.base.origin, files: const LocalFiles());

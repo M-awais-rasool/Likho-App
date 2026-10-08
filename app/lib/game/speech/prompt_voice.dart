@@ -4,18 +4,23 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
+import '../../data/media.dart';
 import '../../data/models/course_models.dart';
 import '../../mascot/mascot.dart';
 
 /// Speaks round prompts through the mascot.
 ///
-/// * prompt with `audio` (a recording): played by [MascotController.say]
-///   with lip-sync from the recording
+/// * prompt with `audio` (a recording on the server, kept on the phone by
+///   [MediaStore]): played by [MascotController.say] with lip-sync from the
+///   recording
 /// * text only: the device's offline text-to-speech voice (like the
 ///   prototype's speechSynthesis: slower, higher pitch) while the mascot
-///   talks with random mouth shapes
+///   talks with random mouth shapes; also when the recording cannot be had
+///   in time (offline and not kept yet)
 class PromptVoice {
-  PromptVoice();
+  PromptVoice(this.media);
+
+  final MediaStore media;
 
   FlutterTts? _tts;
   bool _ready = false;
@@ -41,8 +46,10 @@ class PromptVoice {
     final session = ++_session;
     await stop();
     final audio = prompt.audio;
-    if (audio != null) {
-      await mascot.say(audio);
+    final voice = audio == null ? null : await media.voice(audio);
+    if (session != _session) return;
+    if (voice != null) {
+      await mascot.say(voice.$1, lipFile: voice.$2);
     } else {
       await _init();
       final tts = _tts;
@@ -68,7 +75,7 @@ class PromptVoice {
 }
 
 final promptVoiceProvider = Provider<PromptVoice>((ref) {
-  final v = PromptVoice();
+  final v = PromptVoice(ref.watch(mediaProvider));
   ref.onDispose(v.stop);
   return v;
 });

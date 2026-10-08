@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/course_providers.dart';
+import '../../data/media.dart';
 import '../../data/models/course_models.dart';
 import '../../data/progress.dart';
 import '../../design/tokens.dart';
@@ -59,7 +60,9 @@ class _LevelIntroScreenState extends ConsumerState<LevelIntroScreen> with Ticker
 
   Future<void> _speak(String audio) async {
     if (!mounted) return;
-    await _mascot.say(audio);
+    final voice = await ref.read(mediaProvider).voice(audio);
+    if (!mounted) return;
+    if (voice != null) await _mascot.say(voice.$1, lipFile: voice.$2);
     _saidIt();
   }
 

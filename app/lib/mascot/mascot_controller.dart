@@ -67,17 +67,25 @@ class MascotController extends ChangeNotifier {
     _switchTo(state);
   }
 
-  /// Plays [audioAsset] with lip-sync and returns when it finishes.
-  Future<void> say(String audioAsset) async {
+  /// Plays [audio] with lip-sync and returns when it finishes: an app
+  /// asset ("assets/…"), a file on the phone (a kept course recording, see
+  /// MediaStore, with its mouth movement in [lipFile]) or a URL.
+  Future<void> say(String audio, {String? lipFile}) async {
     final session = ++_sayId;
     _stopAudio();
     final player = _player ??= AudioPlayer();
-    _envelope = await LipSyncEnvelope.load(audioAsset);
+    _envelope = await LipSyncEnvelope.load(audio, lipFile: lipFile);
     if (session != _sayId) return;
     try {
-      await player.setAsset(audioAsset);
+      if (audio.startsWith('assets/')) {
+        await player.setAsset(audio);
+      } else if (audio.startsWith('http')) {
+        await player.setUrl(audio);
+      } else {
+        await player.setFilePath(audio);
+      }
     } catch (e) {
-      debugPrint('PencilMascot.say: cannot load $audioAsset: $e');
+      debugPrint('PencilMascot.say: cannot load $audio: $e');
       return;
     }
     if (session != _sayId) return;
