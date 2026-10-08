@@ -266,6 +266,22 @@ class LevelSession extends Notifier<SessionState> {
     }
   }
 
+  // ------------------------------------------------------------ fix
+  /// Item [index] of Pencil's notebook tapped: a wrong one is fixed, a right
+  /// one is a mistake.
+  void fixItem(int index) {
+    final r = state.current;
+    if (r is! FixRound || _locked || state.found.contains(index) || state.wrongOptions.contains(index)) return;
+    if (r.items[index].wrong != null) {
+      final found = {...state.found, index};
+      state = state.copyWith(found: found);
+      if (found.length >= r.count) _correct();
+    } else {
+      state = state.copyWith(wrongOptions: {...state.wrongOptions, index});
+      _wrong();
+    }
+  }
+
   // ------------------------------------------------------------ pop
   /// Bubble [index] popped (see [popLabel]).
   void popBubble(int index) {
