@@ -138,6 +138,25 @@ func TestHuntRoundsLoad(t *testing.T) {
 	}
 }
 
+func TestNewGamesLoad(t *testing.T) {
+	for _, round := range []string{
+		`"type":"fix","prompt":{"text":"Fix it"},"fix":{"items":[{"text":"b","wrong":null,"at":null},{"text":"b","wrong":"mirror","at":null},{"text":"bed","wrong":"upside","at":0}]}`,
+		`"type":"sort","prompt":{"text":"Feed it"},"sort":{"bins":[{"label":"b","picture":null,"bin":null}],"items":[{"label":"ball","picture":{"key":"ball","label":"ball","url":null},"bin":0},{"label":"sun","picture":null,"bin":null}]}`,
+		`"type":"sort","prompt":{"text":"Sort"},"sort":{"bins":[{"label":"A"},{"label":"a"}],"items":[{"label":"A","bin":0},{"label":"a","bin":1}]}`,
+		`"type":"match","prompt":{"text":"Pairs"},"match":{"pairs":[{"a":{"text":"A"},"b":{"text":"a"}},{"a":{"text":"cat"},"b":{"picture":{"key":"cat","label":"cat","url":null}}}]}`,
+		`"type":"pop","prompt":{"text":"Pop b"},"pop":{"target":"b","others":["d","p"],"count":5}`,
+		`"type":"truth","prompt":{"text":"True or silly?"},"truth":{"text":"The cat can fly.","picture":null,"answer":false}`,
+		`"type":"write","prompt":{"text":"Look, then write"},"write":{"mode":"flash","guide":"A"}`,
+	} {
+		fs := course()
+		f := fs["courses/demo/worlds/01-one/levels/01-a.json"]
+		f.Data = bytes.Replace(f.Data, []byte(`"type":"pick","prompt":{"text":"Find A"},"pick":{"options":[{"id":"o1","label":"A"},{"id":"o2","label":"B"}],"answer":{"kind":"label","value":"A"}}`), []byte(round), 1)
+		if _, err := Load(fs, Options{}); err != nil {
+			t.Errorf("%s: %v", round, err)
+		}
+	}
+}
+
 func TestASmallCourseLoads(t *testing.T) {
 	cat, err := Load(course(), Options{})
 	if err != nil {
@@ -196,6 +215,26 @@ func TestContentProblemsAreReportedWithTheirFile(t *testing.T) {
 			f.Data = bytes.Replace(f.Data, []byte(`"type":"write","prompt":{"text":"Trace A"},"write":{"mode":"trace","guide":"A"}`),
 				[]byte(`"type":"hunt","prompt":{"text":"Find every A"},"hunt":{"target":"A","grid":["B","C","D","E"]}`), 1)
 		}, []string{"01-a.json rounds[0]", "hunt.grid needs the target and at least one other cell"}},
+		{"a fix with nothing to fix", func(fs fstest.MapFS) {
+			f := fs["courses/demo/worlds/01-one/levels/01-a.json"]
+			f.Data = bytes.Replace(f.Data, []byte(`"type":"write","prompt":{"text":"Trace A"},"write":{"mode":"trace","guide":"A"}`),
+				[]byte(`"type":"fix","prompt":{"text":"Fix"},"fix":{"items":[{"text":"b"},{"text":"b"},{"text":"b","wrong":"sideways","at":3}]}`), 1)
+		}, []string{`fix.items[2].wrong "sideways" is not one of`, `fix.items[2].at 3 is not a letter of "b"`}},
+		{"baskets with an item that has no basket", func(fs fstest.MapFS) {
+			f := fs["courses/demo/worlds/01-one/levels/01-a.json"]
+			f.Data = bytes.Replace(f.Data, []byte(`"type":"write","prompt":{"text":"Trace A"},"write":{"mode":"trace","guide":"A"}`),
+				[]byte(`"type":"sort","prompt":{"text":"Sort"},"sort":{"bins":[{"label":"A"},{"label":"a"}],"items":[{"label":"A","bin":0},{"label":"x"}]}`), 1)
+		}, []string{"sort.items[1] needs a bin", "every bin needs at least one item"}},
+		{"pop with the target among the others", func(fs fstest.MapFS) {
+			f := fs["courses/demo/worlds/01-one/levels/01-a.json"]
+			f.Data = bytes.Replace(f.Data, []byte(`"type":"write","prompt":{"text":"Trace A"},"write":{"mode":"trace","guide":"A"}`),
+				[]byte(`"type":"pop","prompt":{"text":"Pop"},"pop":{"target":"b","others":["b"],"count":3}`), 1)
+		}, []string{"pop.others must be labels other than the target"}},
+		{"truth without an answer", func(fs fstest.MapFS) {
+			f := fs["courses/demo/worlds/01-one/levels/01-a.json"]
+			f.Data = bytes.Replace(f.Data, []byte(`"type":"write","prompt":{"text":"Trace A"},"write":{"mode":"trace","guide":"A"}`),
+				[]byte(`"type":"truth","prompt":{"text":"Hm"},"truth":{"text":"The sun is cold."}`), 1)
+		}, []string{"truth needs a text and an answer"}},
 		{"writing pads are gone: there is only the paper", func(fs fstest.MapFS) {
 			f := fs["courses/demo/worlds/01-one/levels/01-a.json"]
 			f.Data = bytes.Replace(f.Data, []byte(`"mode":"trace","guide":"A"`), []byte(`"mode":"trace","guide":"A","pad":"sand"`), 1)
