@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Builds the course illustrations: app/assets/illustrations/<key>.png.
+"""Builds the course illustrations: media/pictures/<key>.png (served by the API at /media/).
 
 Every picture in the course content (`picture.key` in backend/content) gets an
 image here. The art is Microsoft's Fluent Emoji, 3D style (MIT licence, see
@@ -28,7 +28,7 @@ import urllib.parse
 import urllib.request
 
 import numpy as np
-from PIL import Image, ImageDraw, ImageFilter
+from PIL import Image, ImageDraw
 
 FLUENT_COMMIT = "1ffb34c752ecf5d402f04cfb4b392c77f57c54bc"  # microsoft/fluentui-emoji, 2026-08-24
 FLUENT_RAW = f"https://raw.githubusercontent.com/microsoft/fluentui-emoji/{FLUENT_COMMIT}/assets/"
@@ -38,40 +38,31 @@ TONE = "Medium"  # skin tone for people
 
 HERE = pathlib.Path(__file__).resolve().parent
 ROOT = HERE.parent.parent  # the repository
-OUT = ROOT / "app" / "assets" / "illustrations"
+OUT = ROOT / "media" / "pictures"  # served by the API at /media/pictures/ (MEDIA_DIR); not in git
 CACHE = HERE / ".cache"
 
 # key -> Fluent emoji folder name, or (name, skin tone) for people
 SINGLE = {
     "alien": "Alien",
-    "ant": "Ant",
     "apple": "Red apple",
     "ball": "Soccer ball",
-    "balloon": "Balloon",
     "banana": "Banana",
-    "bear": "Bear",
     "bed": "Bed",
     "bee": "Honeybee",
     "bread": "Bread",
-    "blue_car": "Sport utility vehicle",
     "box": "Package",
-    "bubble": "Bubbles",
     "bun": "Bread",
     "bus": "Bus",
-    "butterfly": "Butterfly",
     "cake": "Birthday cake",
     "car": "Automobile",
     "cat": "Cat",
     "chick": "Baby chick",
     "cloud": "Cloud",
-    "crack": "Hatching chick",
     "cow": "Cow face",
-    "crab": "Crab",
     "cup": "Hot beverage",
     "cupcake": "Cupcake",
     "doctor": ("Health worker", TONE),
     "dog": "Dog face",
-    "dough": "Bowl with spoon",
     "dragon": "Dragon",
     "duck": "Duck",
     "eat": "Fork and knife with plate",
@@ -87,27 +78,25 @@ SINGLE = {
     "goat": "Goat",
     "hat": "Top hat",
     "hen": "Chicken",
+    "insect": "Lady beetle",
     "kite": "Kite",
     "lion": "Lion",
     "log": "Wood",
     "moon": "Crescent moon",
-    "orange": "Tangerine",
-    "oven": "Fire",
+    "nest": "Nest with eggs",
+    "octopus": "Octopus",
     "owl": "Owl",
     "paint": "Artist palette",
     "pencil": "Pencil",
     "pig": "Pig face",
-    "planet": "Ringed planet",
+    "queen": ("Princess", TONE),
     "play": "Playground slide",
     "rain": "Cloud with rain",
-    "rain_cloud": "Cloud with rain",
     "rainbow": "Rainbow",
     "red_car": "Automobile",
     "robot": "Robot",
     "run": ("Person running", TONE),
-    "sand": "Beach with umbrella",
     "school": "School",
-    "sea": "Water wave",
     "seed": "Beans",
     "shell": "Spiral shell",
     "snail": "Snail",
@@ -120,8 +109,91 @@ SINGLE = {
     "train": "Locomotive",
     "tree": "Deciduous tree",
     "umbrella": "Umbrella",
+    "violin": "Violin",
     "wake_up": "Alarm clock",
     "warm-up": ("Writing hand", TONE),
+    "whale": "Spouting whale",
+    "yoyo": "Yo-yo",
+    "zebra": "Zebra",
+    # words of worlds 3-12 (tools/curriculum/later_worlds.py)
+    "bag": "Backpack",
+    "bat": "Bat",
+    "bath": "Bathtub",
+    "bin": "Wastebasket",
+    "black": "Black heart",
+    "blue": "Blue heart",
+    "boat": "Sailboat",
+    "book": "Closed book",
+    "boot": "Hiking boot",
+    "brush": "Toothbrush",
+    "bug": "Bug",
+    "calendar": "Spiral calendar",
+    "chain": "Chains",
+    "chair": "Chair",
+    "cheese": "Cheese wedge",
+    "clock": "Mantelpiece clock",
+    "corn": "Ear of corn",
+    "crayon": "Crayon",
+    "dance": ("Woman dancing", TONE),
+    "down": "Down arrow",
+    "drum": "Drum",
+    "ear": ("Ear", TONE),
+    "elephant": "Elephant",
+    "eye": "Eye",
+    "flag": "Triangular flag",
+    "food": "Pot of food",
+    "foot": ("Foot", TONE),
+    "four": "Keycap 4",
+    "gift": "Wrapped gift",
+    "glove": "Gloves",
+    "green": "Green heart",
+    "hand": ("Hand with fingers splayed", TONE),
+    "hut": "Hut",
+    "jump": "Kangaroo",
+    "king": ("Prince", TONE),
+    "lamp": "Diya lamp",
+    "leg": ("Leg", TONE),
+    "lemon": "Lemon",
+    "milk": "Glass of milk",
+    "monkey": "Monkey face",
+    "mouse": "Mouse face",
+    "mouth": "Mouth",
+    "nail": "Nail polish",
+    "nose": ("Nose", TONE),
+    "nut": "Chestnut",
+    "one": "Keycap 1",
+    "pen": "Pen",
+    "pin": "Pushpin",
+    "pink": "Pink heart",
+    "plane": "Airplane",
+    "pot": "Teapot",
+    "question": "Red question mark",
+    "rabbit": "Rabbit face",
+    "rice": "Cooked rice",
+    "ring": "Ring",
+    "sad": "Crying face",
+    "sheep": "Ewe",
+    "ship": "Ship",
+    "shop": "Convenience store",
+    "sing": "Microphone",
+    "six": "Keycap 6",
+    "sleep": "Sleeping face",
+    "snake": "Snake",
+    "sock": "Socks",
+    "spoon": "Spoon",
+    "stop": "Stop sign",
+    "swim": ("Person swimming", TONE),
+    "tent": "Tent",
+    "three": "Keycap 3",
+    "thumb": ("Thumbs up", TONE),
+    "tooth": "Tooth",
+    "truck": "Delivery truck",
+    "turtle": "Turtle",
+    "two": "Keycap 2",
+    "up": "Up arrow",
+    "watch": "Watch",
+    "web": "Spider web",
+    "wing": "Wing",
 }
 
 
@@ -232,19 +304,6 @@ def mirrored(im):
     return im.transpose(Image.FLIP_LEFT_RIGHT)
 
 
-def glow(base, cx, cy, radius, color):
-    """A soft round light behind what comes next. The layer is the light's
-    colour everywhere (only alpha changes), so blurring it cannot mix in
-    black at the edges."""
-    layer = Image.new("RGBA", base.size, color[:3] + (0,))
-    d = ImageDraw.Draw(layer)
-    x, y, r = cx * base.width, cy * base.height, radius * base.width
-    d.ellipse((x - r, y - r, x + r, y + r), fill=color)
-    return Image.alpha_composite(base, layer.filter(ImageFilter.GaussianBlur(r * 0.45)))
-
-
-# ---------------------------------------------------------------- scenes
-
 def three(name, tone=None, h=0.46):
     """Many of one thing: two at the back, one in front."""
     one = scaled(emoji(name, tone), height=round(SIZE * h))
@@ -266,7 +325,7 @@ def running(animal):
     return put(im, scaled(emoji(animal), height=round(SIZE * 0.6)), 0.42, 0.5)
 
 
-def in_bed(animal, face, zzz=False):
+def in_bed(animal, face):
     """Tucked in: the head on the pillow, the blanket over the rest."""
     bed = scaled(emoji("Bed"), width=round(SIZE * 0.9))
     im = put(canvas(), bed, 0.5, 0.62)
@@ -277,10 +336,7 @@ def in_bed(animal, face, zzz=False):
     r, g, b = a[..., 0].astype(int), a[..., 1].astype(int), a[..., 2].astype(int)
     keep = (b > r + 40) & (b > g + 20) & (np.arange(a.shape[0])[:, None] > a.shape[0] * 0.30)
     a[..., 3] = np.where(keep, a[..., 3], 0)
-    im = put(im, Image.fromarray(a), 0.5, 0.62)
-    if zzz:
-        im = put(im, scaled(emoji("Zzz"), height=round(SIZE * 0.24)), 0.80, 0.22)
-    return im
+    return put(im, Image.fromarray(a), 0.5, 0.62)
 
 
 def jar(fill=None, strength=0.55):
@@ -305,40 +361,10 @@ def message_in_bottle():
     return put(im, scroll, 0.5, 0.60, alpha=0.92)
 
 
-def fish_in_bowl():
-    j = scaled(jar(fill=(120, 190, 240)), height=round(SIZE * 0.86))
-    im = put(canvas(), j, 0.5, 0.5)
-    return put(im, scaled(emoji("Tropical fish"), width=round(SIZE * 0.40)), 0.5, 0.60, alpha=0.95)
-
-
 def jam():
     j = scaled(jar(fill=(196, 18, 48), strength=0.78), height=round(SIZE * 0.82))
     im = put(canvas(), j, 0.44, 0.48)
     return put(im, scaled(emoji("Strawberry"), height=round(SIZE * 0.36)), 0.74, 0.74)
-
-
-def puddle():
-    """Flat water on the ground with drops falling in (no emoji for it)."""
-    w, h = round(SIZE * 0.86), round(SIZE * 0.34)
-    pool = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-    a = np.zeros((h, w, 4), np.float32)
-    yy, xx = np.mgrid[0:h, 0:w]
-    nx, ny = (xx - w / 2) / (w / 2), (yy - h / 2) / (h / 2)
-    r = np.sqrt(nx ** 2 + ny ** 2)
-    inside = r <= 1
-    # water: light at the far edge, deeper towards the front, like the wave emoji
-    top, front = np.array([150, 205, 255], np.float32), np.array([45, 120, 235], np.float32)
-    t = np.clip((ny + 1) / 2, 0, 1)[..., None]
-    a[..., :3] = top * (1 - t) + front * t
-    a[..., 3] = np.clip((1 - r) * 18, 0, 1) * 255 * inside
-    pool = Image.fromarray(a.round().astype(np.uint8))
-    shine = Image.new("RGBA", (w, h), (255, 255, 255, 0))
-    ImageDraw.Draw(shine).ellipse((w * 0.18, h * 0.22, w * 0.58, h * 0.48), fill=(255, 255, 255, 120))
-    pool = Image.alpha_composite(pool, shine.filter(ImageFilter.GaussianBlur(h * 0.08)))
-    im = put(canvas(), pool, 0.5, 0.72)
-    drop = emoji("Droplet")
-    im = put(im, scaled(drop, height=round(SIZE * 0.30)), 0.36, 0.30)
-    return put(im, scaled(drop, height=round(SIZE * 0.22)), 0.66, 0.40)
 
 
 def fish_in_sea():
@@ -364,18 +390,6 @@ def family():
     return put(im, scaled(emoji("Girl", TONE), height=round(SIZE * 0.44)), 0.50, 0.70)
 
 
-def firefly():
-    """A beetle whose tail glows. The light is added after the drawing is
-    sized (so its soft edge is not part of the drawing's box)."""
-    beetle = scaled(emoji("Beetle"), height=round(SIZE * 0.62)).rotate(-28, expand=True, resample=Image.BICUBIC)
-    im = put(canvas(), beetle, 0.50, 0.50)
-    im = put(im, scaled(emoji("Sparkles"), height=round(SIZE * 0.26)), 0.82, 0.20)
-    im = finish(put(im, scaled(emoji("Sparkles"), height=round(SIZE * 0.18)), 0.16, 0.80, alpha=0.9))
-    light = glow(canvas(), 0.60, 0.64, 0.20, (255, 222, 70, 210))
-    light = glow(light, 0.61, 0.65, 0.10, (255, 248, 190, 255))
-    return Image.alpha_composite(light, im)
-
-
 def forest():
     im = canvas()
     im = put(im, scaled(emoji("Evergreen tree"), height=round(SIZE * 0.62)), 0.24, 0.42)
@@ -396,25 +410,21 @@ def zoo_bus():
     return put(im, scaled(emoji("Bus"), width=round(SIZE * 0.78)), 0.42, 0.66)
 
 
-def robot_bus():
-    im = put(canvas(), scaled(emoji("Bus"), width=round(SIZE * 0.86)), 0.5, 0.64)
-    return put(im, scaled(emoji("Robot"), height=round(SIZE * 0.42)), 0.5, 0.26)
+def under_chair(animal):
+    """An animal under a chair: the animal sits between the chair's legs, big enough to tell apart."""
+    im = put(canvas(), scaled(emoji("Chair"), height=round(SIZE * 0.96)), 0.5, 0.48)
+    return put(im, scaled(emoji(animal), height=round(SIZE * 0.46)), 0.5, 0.76)
 
 
 SCENES = {
-    "birds": lambda: three("Bird"),
     "bird_in_sky": bird_in_sky,
-    "bottle": message_in_bottle,
     "bottle_message": message_in_bottle,
     "cat_in_bed": lambda: in_bed("Cat", "Cat face"),
     "cat_on_box": lambda: on_box("Cat"),
-    "cat_running": lambda: running("Cat"),
-    "dog_asleep": lambda: in_bed("Dog", "Dog face", zzz=True),
+    "cat_under_chair": lambda: under_chair("Cat"),
     "dog_on_box": lambda: on_box("Dog"),
     "dog_running": lambda: running("Dog"),
     "family": family,
-    "firefly": firefly,
-    "fish_in_bowl": fish_in_bowl,
     "fish_in_sea": fish_in_sea,
     "forest": forest,
     "hot": hot_sun,
@@ -422,25 +432,16 @@ SCENES = {
     "jam": jam,
     "many_birds": lambda: three("Bird"),
     "many_cats": lambda: three("Cat"),
-    "many_cups": lambda: three("Hot beverage", h=0.40),
-    "many_dogs": lambda: three("Dog face", h=0.42),
     "many_hats": lambda: three("Top hat", h=0.40),
-    "puddle": puddle,
     "red": red_crayon,
     "red_bus": red_bus,
-    "robot-bus": robot_bus,
     "zoo_bus": zoo_bus,
 }
 
 
-# scenes that size themselves (finish() inside)
-SIZED = {"firefly"}
-
-
 def build(key):
     if key in SCENES:
-        im = SCENES[key]()
-        return im if key in SIZED else finish(im)
+        return finish(SCENES[key]())
     spec = SINGLE[key]
     name, tone = spec if isinstance(spec, tuple) else (spec, None)
     return finish(emoji(name, tone))
