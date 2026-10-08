@@ -1,0 +1,324 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-63",
+  "number": 63,
+  "name": "First Sounds",
+  "skill": "Sounds at the start",
+  "icon": "phishing",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "a",
+    "word": "apple",
+    "say": "Apple starts with {a|æ}! Let's hear the first sounds.",
+    "audio": "voice/line-3219261f4c3ae6c8.m4a",
+    "picture": {
+      "key": "apple",
+      "label": "apple",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-63-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "apple",
+        "audio": "voice/line-b786b133a1bf00fa.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "apple",
+          "label": "apple",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "label": "a",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-63-r1-o1"
+          },
+          {
+            "label": "m",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-63-r1-o2"
+          },
+          {
+            "label": "s",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-63-r1-o3"
+          },
+          {
+            "label": "t",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-63-r1-o4"
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "a"
+        },
+        "shape": "mushroom",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-63-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is cat?",
+        "say": "Read the word. Which picture is cat?",
+        "audio": "voice/line-29fcb02d5840a5f5.m4a"
+      },
+      "card": {
+        "text": "cat",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-63-r2-o1",
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-63-r2-o2",
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-63-r2-o3",
+            "label": "hen",
+            "picture": {
+              "key": "hen",
+              "label": "hen",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "cat"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-63-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Dog! Build the word dog.",
+        "audio": "voice/line-d6928e21afe8e37c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "d",
+          "o",
+          "g"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-63-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word sun.",
+        "audio": "voice/line-352b9ba244ea122c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-63-r4-o1",
+            "label": "pig",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-63-r4-o2",
+            "label": "dog",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-63-r4-o3",
+            "label": "sun",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "sun"
+        },
+        "shape": "cloud",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-63-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Spell pig",
+        "say": "Pig! Write it one letter at a time.",
+        "audio": "voice/line-a9b8189d387e5397.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "pig",
+          "label": "pig",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "pig",
+        "guide": null,
+        "word": "pig",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-63-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every hen!",
+        "say": "Find every word hen!",
+        "audio": "voice/line-eafce1e629eb297d.m4a"
+      },
+      "card": {
+        "text": "hen",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "hen",
+        "grid": [
+          "sun",
+          "hen",
+          "dog",
+          "cat",
+          "cat",
+          "pig",
+          "dog",
+          "hen",
+          "hen"
+        ]
+      }
+    },
+    {
+      "id": "level-63-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: cat, dog, sun, pig!",
+        "say": "Say them with me! cat, dog, sun, pig!",
+        "audio": "voice/line-10951414ca5be201.m4a"
+      },
+      "card": {
+        "text": "cat, dog, sun, pig!",
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "cat, dog, sun, pig!"
+      }
+    },
+    {
+      "id": "level-63-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write sun",
+        "say": "Write the word sun.",
+        "audio": "voice/line-4f914394bcb40812.m4a"
+      },
+      "card": {
+        "text": "sun",
+        "picture": {
+          "key": "sun",
+          "label": "sun",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "sun",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

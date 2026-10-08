@@ -1,0 +1,318 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-70",
+  "number": 70,
+  "name": "Vowel Owl",
+  "skill": "a e i o u",
+  "icon": "visibility",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "a e i o u",
+    "word": "owl",
+    "say": "{A|ˈeɪ}, {E|ˈiː}, {I|ˈaɪ}, {O|ˈoʊ}, {U|jˈuː}! The owl loves vowels.",
+    "audio": "voice/line-86c67ec9c63115bc.m4a",
+    "picture": {
+      "key": "owl",
+      "label": "owl",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-70-r1",
+      "type": "write",
+      "prompt": {
+        "text": "c _ t",
+        "say": "Cat! Which letter is missing?",
+        "audio": "voice/line-b8479d84a8f9a4f6.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "a",
+        "guide": "a",
+        "word": "cat",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-70-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is cat?",
+        "say": "Read the word. Which picture is cat?",
+        "audio": "voice/line-29fcb02d5840a5f5.m4a"
+      },
+      "card": {
+        "text": "cat",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-70-r2-o1",
+            "label": "bed",
+            "picture": {
+              "key": "bed",
+              "label": "bed",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-70-r2-o2",
+            "label": "hen",
+            "picture": {
+              "key": "hen",
+              "label": "hen",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-70-r2-o3",
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "cat"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-70-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Bed! Build the word bed.",
+        "audio": "voice/line-bb2597964f74dbe9.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bed",
+          "label": "bed",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "b",
+          "e",
+          "d"
+        ],
+        "slot": "plank"
+      }
+    },
+    {
+      "id": "level-70-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word pig.",
+        "audio": "voice/line-aa775530fa331b44.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-70-r4-o1",
+            "label": "dog",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-70-r4-o2",
+            "label": "pig",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-70-r4-o3",
+            "label": "bed",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "pig"
+        },
+        "shape": "cloud",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-70-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every cup!",
+        "say": "Find every word cup!",
+        "audio": "voice/line-08fef038df575602.m4a"
+      },
+      "card": {
+        "text": "cup",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "cup",
+        "grid": [
+          "hen",
+          "cup",
+          "bed",
+          "cup",
+          "dog",
+          "log",
+          "pig",
+          "cat",
+          "cup"
+        ]
+      }
+    },
+    {
+      "id": "level-70-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "hen",
+          "label": "hen",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-70-r6-o1",
+            "label": "cat",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-70-r6-o2",
+            "label": "bed",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-70-r6-o3",
+            "label": "hen",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "hen"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-70-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: cat, bed, pig, dog!",
+        "say": "Say them with me! cat, bed, pig, dog!",
+        "audio": "voice/line-2af527372d1ba387.m4a"
+      },
+      "card": {
+        "text": "cat, bed, pig, dog!",
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "cat, bed, pig, dog!"
+      }
+    },
+    {
+      "id": "level-70-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write pig",
+        "say": "Write the word pig.",
+        "audio": "voice/line-26ac3bfd0ab11830.m4a"
+      },
+      "card": {
+        "text": "pig",
+        "picture": {
+          "key": "pig",
+          "label": "pig",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "pig",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

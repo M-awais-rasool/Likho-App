@@ -1,0 +1,317 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-71",
+  "number": 71,
+  "name": "Wake the Bear",
+  "skill": "Boss · words",
+  "icon": "bedtime",
+  "isBoss": true,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "cat hen pig",
+    "word": "star",
+    "say": "The bear is fast asleep. Let's spell words to wake it up!",
+    "audio": "voice/line-fda0387a011241c7.m4a",
+    "picture": {
+      "key": "star",
+      "label": "star",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-71-r1",
+      "type": "write",
+      "prompt": {
+        "text": "dog",
+        "audio": "voice/line-42026bb5f45a08b4.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": true
+      },
+      "write": {
+        "mode": "spell",
+        "target": "dog",
+        "guide": null,
+        "word": "dog",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-71-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word hen.",
+        "audio": "voice/line-742df880d6820e77.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-71-r2-o1",
+            "label": "jam",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-71-r2-o2",
+            "label": "hen",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-71-r2-o3",
+            "label": "dog",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "hen"
+        },
+        "shape": "bubble",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-71-r3",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every pig!",
+        "say": "Find every word pig!",
+        "audio": "voice/line-64736420c6b7bf64.m4a"
+      },
+      "card": {
+        "text": "pig",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "pig",
+        "grid": [
+          "pig",
+          "pig",
+          "jam",
+          "cat",
+          "log",
+          "dog",
+          "bus",
+          "hen",
+          "pig"
+        ]
+      }
+    },
+    {
+      "id": "level-71-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-71-r4-o1",
+            "label": "jam",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-71-r4-o2",
+            "label": "dog",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-71-r4-o3",
+            "label": "log",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "dog"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-71-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Write bus",
+        "say": "Write the word bus.",
+        "audio": "voice/line-add96f8ec432b3fc.m4a"
+      },
+      "card": {
+        "text": "bus",
+        "picture": {
+          "key": "bus",
+          "label": "bus",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "bus",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-71-r6",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Jam! Build the word jam.",
+        "audio": "voice/line-2d7ff2649b4fb6d0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "jam",
+          "label": "jam",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "j",
+          "a",
+          "m"
+        ],
+        "slot": "wagon"
+      }
+    },
+    {
+      "id": "level-71-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-71-r7-o1",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-71-r7-o2",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-71-r7-o3",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-71-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: cat, hen, pig, dog!",
+        "say": "Say them with me! cat, hen, pig, dog!",
+        "audio": "voice/line-bf6b9213c4c69f0d.m4a"
+      },
+      "card": {
+        "text": "cat, hen, pig, dog!",
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "cat, hen, pig, dog!"
+      }
+    }
+  ]
+}

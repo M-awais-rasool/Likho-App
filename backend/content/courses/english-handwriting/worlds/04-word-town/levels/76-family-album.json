@@ -1,0 +1,320 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-76",
+  "number": 76,
+  "name": "Family Album",
+  "skill": "Family",
+  "icon": "photo_library",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "family",
+    "word": "family",
+    "say": "Mother, father, sister, brother! Let's look at the family album.",
+    "audio": "voice/line-6764aa6cd393c954.m4a",
+    "picture": {
+      "key": "family",
+      "label": "family",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-76-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Who is this?",
+        "audio": "voice/line-272c6a9c9b337798.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "family_mother",
+          "label": "mother",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "label": "mother",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-76-r1-o1"
+          },
+          {
+            "label": "father",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-76-r1-o2"
+          },
+          {
+            "label": "baby",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-76-r1-o3"
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "mother"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-76-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is mother?",
+        "say": "Read the word. Which picture is mother?",
+        "audio": "voice/line-83fb0a316c0a593a.m4a"
+      },
+      "card": {
+        "text": "mother",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-76-r2-o1",
+            "label": "baby",
+            "picture": {
+              "key": "family_baby",
+              "label": "baby",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-76-r2-o2",
+            "label": "mother",
+            "picture": {
+              "key": "family_mother",
+              "label": "mother",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-76-r2-o3",
+            "label": "family",
+            "picture": {
+              "key": "family",
+              "label": "family",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "mother"
+        },
+        "shape": "bucket",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-76-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Father! Build the word father.",
+        "audio": "voice/line-21b844955c6085d1.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "family_father",
+          "label": "father",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "f",
+          "a",
+          "t",
+          "h",
+          "e",
+          "r"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-76-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word sister.",
+        "audio": "voice/line-8716d82da38b14c6.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-76-r4-o1",
+            "label": "sister",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-76-r4-o2",
+            "label": "goat",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-76-r4-o3",
+            "label": "hand",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "sister"
+        },
+        "shape": "mushroom",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-76-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Spell brother",
+        "say": "Brother! Write it one letter at a time.",
+        "audio": "voice/line-cd9cff70f11c1337.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "family_brother",
+          "label": "brother",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "brother",
+        "guide": null,
+        "word": "brother",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-76-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every baby!",
+        "say": "Find every word baby!",
+        "audio": "voice/line-4ff5f5640689c1b5.m4a"
+      },
+      "card": {
+        "text": "baby",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "baby",
+        "grid": [
+          "mother",
+          "sister",
+          "baby",
+          "family",
+          "baby",
+          "father",
+          "baby",
+          "brother",
+          "log"
+        ]
+      }
+    },
+    {
+      "id": "level-76-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: mother, father, sister, brother!",
+        "say": "Say them with me! mother, father, sister, brother!",
+        "audio": "voice/line-43af18f389d6519c.m4a"
+      },
+      "card": {
+        "text": "mother, father, sister, brother!",
+        "picture": {
+          "key": "family_mother",
+          "label": "mother",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "mother, father, sister, brother!"
+      }
+    },
+    {
+      "id": "level-76-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write sister",
+        "say": "Write the word sister.",
+        "audio": "voice/line-712dbf66482e1fb1.m4a"
+      },
+      "card": {
+        "text": "sister",
+        "picture": {
+          "key": "family_sister",
+          "label": "sister",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "sister",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

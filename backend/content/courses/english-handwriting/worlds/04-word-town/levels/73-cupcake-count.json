@@ -1,0 +1,366 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-73",
+  "number": 73,
+  "name": "Cupcake Count",
+  "skill": "Numbers",
+  "icon": "cake",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "1 2 3",
+    "word": "cupcake",
+    "say": "One, two, three! Let's count the cupcakes.",
+    "audio": "voice/line-03169e197503fcae.m4a",
+    "picture": {
+      "key": "cupcake",
+      "label": "cupcake",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-73-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "How many?",
+        "audio": "voice/line-3485813957f8a16f.m4a"
+      },
+      "card": {
+        "text": "How many?",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "label": "two",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-73-r1-o1"
+          },
+          {
+            "label": "three",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-73-r1-o2"
+          },
+          {
+            "label": "five",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-73-r1-o3"
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "three"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": 3,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "count"
+      }
+    },
+    {
+      "id": "level-73-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is one?",
+        "say": "Read the word. Which picture is one?",
+        "audio": "voice/line-3d571318ae439ad1.m4a"
+      },
+      "card": {
+        "text": "one",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-73-r2-o1",
+            "label": "four",
+            "picture": {
+              "key": "four",
+              "label": "four",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-73-r2-o2",
+            "label": "two",
+            "picture": {
+              "key": "two",
+              "label": "two",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-73-r2-o3",
+            "label": "one",
+            "picture": {
+              "key": "one",
+              "label": "one",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "one"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-73-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Two! Build the word two.",
+        "audio": "voice/line-0c13e3488df6d7b3.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "two",
+          "label": "two",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "t",
+          "w",
+          "o"
+        ],
+        "slot": "plank"
+      }
+    },
+    {
+      "id": "level-73-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word three.",
+        "audio": "voice/line-7e02018fdf758ae1.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-73-r4-o1",
+            "label": "three",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-73-r4-o2",
+            "label": "pink",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-73-r4-o3",
+            "label": "six",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "three"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-73-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Spell four",
+        "say": "Four! Write it one letter at a time.",
+        "audio": "voice/line-09e294cdfb6a09d6.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "four",
+          "label": "four",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "four",
+        "guide": null,
+        "word": "four",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-73-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every five!",
+        "say": "Find every word five!",
+        "audio": "voice/line-133540123b0ea6ae.m4a"
+      },
+      "card": {
+        "text": "five",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "five",
+        "grid": [
+          "two",
+          "four",
+          "pig",
+          "one",
+          "three",
+          "five",
+          "five",
+          "five",
+          "six"
+        ]
+      }
+    },
+    {
+      "id": "level-73-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "six",
+          "label": "six",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-73-r7-o1",
+            "label": "six",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-73-r7-o2",
+            "label": "one",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-73-r7-o3",
+            "label": "pink",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "six"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-73-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: one, two, three, four!",
+        "say": "Say them with me! one, two, three, four!",
+        "audio": "voice/line-f9d94c61e19d4929.m4a"
+      },
+      "card": {
+        "text": "one, two, three, four!",
+        "picture": {
+          "key": "one",
+          "label": "one",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "one, two, three, four!"
+      }
+    },
+    {
+      "id": "level-73-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Write three",
+        "say": "Write the word three.",
+        "audio": "voice/line-fbe3ab45d2e31d0a.m4a"
+      },
+      "card": {
+        "text": "three",
+        "picture": {
+          "key": "three",
+          "label": "three",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "three",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,318 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-79",
+  "number": 79,
+  "name": "Wake the Robot-Bus",
+  "skill": "Boss · words",
+  "icon": "bedtime",
+  "isBoss": true,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "red two cow",
+    "word": "star",
+    "say": "The robot bus is sleeping. Let's write words to wake it up!",
+    "audio": "voice/line-9147dfa5aff4f5b3.m4a",
+    "picture": {
+      "key": "star",
+      "label": "star",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-79-r1",
+      "type": "write",
+      "prompt": {
+        "text": "bus",
+        "audio": "voice/line-e4da92f3d6637990.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bus",
+          "label": "bus",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "bus",
+        "guide": null,
+        "word": "bus",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-79-r2",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word two.",
+        "audio": "voice/line-f2a0167d8787f369.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-79-r2-o1",
+            "label": "two",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-79-r2-o2",
+            "label": "pig",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-79-r2-o3",
+            "label": "dog",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "two"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-79-r3",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every cow!",
+        "say": "Find every word cow!",
+        "audio": "voice/line-c4655e3cade7e00d.m4a"
+      },
+      "card": {
+        "text": "cow",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "cow",
+        "grid": [
+          "red",
+          "cow",
+          "cow",
+          "hand",
+          "cow",
+          "book",
+          "milk",
+          "two",
+          "pig"
+        ]
+      }
+    },
+    {
+      "id": "level-79-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "hand",
+          "label": "hand",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-79-r4-o1",
+            "label": "pig",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-79-r4-o2",
+            "label": "hand",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-79-r4-o3",
+            "label": "pink",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "hand"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-79-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Write milk",
+        "say": "Write the word milk.",
+        "audio": "voice/line-9ddc6fe5f6d39696.m4a"
+      },
+      "card": {
+        "text": "milk",
+        "picture": {
+          "key": "milk",
+          "label": "milk",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "milk",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-79-r6",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Book! Build the word book.",
+        "audio": "voice/line-240aac1396254588.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "book",
+          "label": "book",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "b",
+          "o",
+          "o",
+          "k"
+        ],
+        "slot": "plank"
+      }
+    },
+    {
+      "id": "level-79-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-79-r7-o1",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-79-r7-o2",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-79-r7-o3",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-79-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: red, two, cow, hand!",
+        "say": "Say them with me! red, two, cow, hand!",
+        "audio": "voice/line-133fd208b8a1da00.m4a"
+      },
+      "card": {
+        "text": "red, two, cow, hand!",
+        "picture": {
+          "key": "red",
+          "label": "red",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "red, two, cow, hand!"
+      }
+    }
+  ]
+}

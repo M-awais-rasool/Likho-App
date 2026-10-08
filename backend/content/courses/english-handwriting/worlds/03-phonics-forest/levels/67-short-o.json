@@ -1,0 +1,318 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-67",
+  "number": 67,
+  "name": "Short o",
+  "skill": "d-o-g words",
+  "icon": "pets",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "dog",
+    "word": "dog",
+    "say": "{d|dʌ}, {o|ɑ}, {g|ɡʌ}... dog! Words with {o|ɑ}.",
+    "audio": "voice/line-602368c6bc577fa0.m4a",
+    "picture": {
+      "key": "dog",
+      "label": "dog",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-67-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is dog?",
+        "say": "Read the word. Which picture is dog?",
+        "audio": "voice/line-5fd0e66de3b85c37.m4a"
+      },
+      "card": {
+        "text": "dog",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-67-r1-o1",
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-67-r1-o2",
+            "label": "pot",
+            "picture": {
+              "key": "pot",
+              "label": "pot",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-67-r1-o3",
+            "label": "log",
+            "picture": {
+              "key": "log",
+              "label": "log",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "dog"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-67-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Dog! Build the word dog.",
+        "audio": "voice/line-d6928e21afe8e37c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "d",
+          "o",
+          "g"
+        ],
+        "slot": "plank"
+      }
+    },
+    {
+      "id": "level-67-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word box.",
+        "audio": "voice/line-bba7ba929721933d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-67-r3-o1",
+            "label": "fox",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-67-r3-o2",
+            "label": "pot",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-67-r3-o3",
+            "label": "box",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "box"
+        },
+        "shape": "fish",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-67-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Box! Which letter is missing?",
+        "audio": "voice/line-885fbb489e69d07f.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "box",
+          "label": "box",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "o",
+        "guide": "o",
+        "word": "box",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-67-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every fox!",
+        "say": "Find every word fox!",
+        "audio": "voice/line-c70894259015e19e.m4a"
+      },
+      "card": {
+        "text": "fox",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "fox",
+        "grid": [
+          "dog",
+          "log",
+          "pig",
+          "box",
+          "dog",
+          "pot",
+          "fox",
+          "fox",
+          "fox"
+        ]
+      }
+    },
+    {
+      "id": "level-67-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-67-r6-o1",
+            "label": "fox",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-67-r6-o2",
+            "label": "pig",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-67-r6-o3",
+            "label": "dog",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "dog"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-67-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: dog, box, pot, fox!",
+        "say": "Say them with me! dog, box, pot, fox!",
+        "audio": "voice/line-0e337c9f9452f73d.m4a"
+      },
+      "card": {
+        "text": "dog, box, pot, fox!",
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "dog, box, pot, fox!"
+      }
+    },
+    {
+      "id": "level-67-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write pot",
+        "say": "Write the word pot.",
+        "audio": "voice/line-9af47c7fd9bf17cc.m4a"
+      },
+      "card": {
+        "text": "pot",
+        "picture": {
+          "key": "pot",
+          "label": "pot",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "pot",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

@@ -3,7 +3,7 @@
   "id": "world-4",
   "order": 4,
   "name": "Word Town",
-  "skill": "Vocabulary",
+  "skill": "First words",
   "icon": "location_city",
   "themeId": "wordTown",
   "boss": {

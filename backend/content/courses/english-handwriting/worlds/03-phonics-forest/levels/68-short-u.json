@@ -1,0 +1,318 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-68",
+  "number": 68,
+  "name": "Short u",
+  "skill": "b-u-s words",
+  "icon": "directions_bus",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "bus",
+    "word": "bus",
+    "say": "{b|bʌ}, {u|ʌ}, {s|sːː}... bus! Words with {u|ʌ}.",
+    "audio": "voice/line-4f143034dea916e3.m4a",
+    "picture": {
+      "key": "bus",
+      "label": "bus",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-68-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is bus?",
+        "say": "Read the word. Which picture is bus?",
+        "audio": "voice/line-62b5ce04eb3b2b4e.m4a"
+      },
+      "card": {
+        "text": "bus",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-68-r1-o1",
+            "label": "hut",
+            "picture": {
+              "key": "hut",
+              "label": "hut",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-68-r1-o2",
+            "label": "bus",
+            "picture": {
+              "key": "bus",
+              "label": "bus",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-68-r1-o3",
+            "label": "bug",
+            "picture": {
+              "key": "bug",
+              "label": "bug",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "bus"
+        },
+        "shape": "bucket",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-68-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Bus! Build the word bus.",
+        "audio": "voice/line-d54178d0bc8c77ad.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bus",
+          "label": "bus",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "b",
+          "u",
+          "s"
+        ],
+        "slot": "wagon"
+      }
+    },
+    {
+      "id": "level-68-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word sun.",
+        "audio": "voice/line-352b9ba244ea122c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-68-r3-o1",
+            "label": "sun",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-68-r3-o2",
+            "label": "hut",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-68-r3-o3",
+            "label": "bug",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "sun"
+        },
+        "shape": "shell",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-68-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Sun! Which letter is missing?",
+        "audio": "voice/line-5c987ecdcd48ff66.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "sun",
+          "label": "sun",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "u",
+        "guide": "u",
+        "word": "sun",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-68-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every bug!",
+        "say": "Find every word bug!",
+        "audio": "voice/line-b961d3d9c906e543.m4a"
+      },
+      "card": {
+        "text": "bug",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "bug",
+        "grid": [
+          "nut",
+          "pig",
+          "bus",
+          "bug",
+          "sun",
+          "bug",
+          "cup",
+          "hut",
+          "bug"
+        ]
+      }
+    },
+    {
+      "id": "level-68-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "nut",
+          "label": "nut",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-68-r6-o1",
+            "label": "bug",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-68-r6-o2",
+            "label": "nut",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-68-r6-o3",
+            "label": "hut",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "nut"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-68-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: bus, sun, cup, bug!",
+        "say": "Say them with me! bus, sun, cup, bug!",
+        "audio": "voice/line-773ccec2e6bd94b9.m4a"
+      },
+      "card": {
+        "text": "bus, sun, cup, bug!",
+        "picture": {
+          "key": "bus",
+          "label": "bus",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "bus, sun, cup, bug!"
+      }
+    },
+    {
+      "id": "level-68-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write cup",
+        "say": "Write the word cup.",
+        "audio": "voice/line-271b9605c86a755e.m4a"
+      },
+      "card": {
+        "text": "cup",
+        "picture": {
+          "key": "cup",
+          "label": "cup",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "cup",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

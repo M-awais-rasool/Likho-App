@@ -1,0 +1,319 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-78",
+  "number": 78,
+  "name": "School Bag",
+  "skill": "School things",
+  "icon": "backpack",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "school",
+    "word": "school",
+    "say": "Let's pack the school bag!",
+    "audio": "voice/line-7f4b303e8d39bc7f.m4a",
+    "picture": {
+      "key": "school",
+      "label": "school",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-78-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is book?",
+        "say": "Read the word. Which picture is book?",
+        "audio": "voice/line-42e045e621a6ffa7.m4a"
+      },
+      "card": {
+        "text": "book",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-78-r1-o1",
+            "label": "crayon",
+            "picture": {
+              "key": "crayon",
+              "label": "crayon",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-78-r1-o2",
+            "label": "bag",
+            "picture": {
+              "key": "bag",
+              "label": "bag",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-78-r1-o3",
+            "label": "book",
+            "picture": {
+              "key": "book",
+              "label": "book",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "book"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-78-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Book! Build the word book.",
+        "audio": "voice/line-240aac1396254588.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "book",
+          "label": "book",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "b",
+          "o",
+          "o",
+          "k"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-78-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word bag.",
+        "audio": "voice/line-032cb5db953b7791.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-78-r3-o1",
+            "label": "bag",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-78-r3-o2",
+            "label": "pencil",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-78-r3-o3",
+            "label": "book",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "bag"
+        },
+        "shape": "balloon",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-78-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Bag! Which letter is missing?",
+        "audio": "voice/line-0385024fde430a01.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bag",
+          "label": "bag",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "a",
+        "guide": "a",
+        "word": "bag",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-78-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every pencil!",
+        "say": "Find every word pencil!",
+        "audio": "voice/line-a04168b49c390b8b.m4a"
+      },
+      "card": {
+        "text": "pencil",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "pencil",
+        "grid": [
+          "bag",
+          "book",
+          "pencil",
+          "crayon",
+          "school",
+          "dog",
+          "pen",
+          "pencil",
+          "pencil"
+        ]
+      }
+    },
+    {
+      "id": "level-78-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "school",
+          "label": "school",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-78-r6-o1",
+            "label": "hand",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-78-r6-o2",
+            "label": "school",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-78-r6-o3",
+            "label": "dog",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "school"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-78-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: book, bag, pen, pencil!",
+        "say": "Say them with me! book, bag, pen, pencil!",
+        "audio": "voice/line-fb51ce14fad40a8a.m4a"
+      },
+      "card": {
+        "text": "book, bag, pen, pencil!",
+        "picture": {
+          "key": "book",
+          "label": "book",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "book, bag, pen, pencil!"
+      }
+    },
+    {
+      "id": "level-78-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write pen",
+        "say": "Write the word pen.",
+        "audio": "voice/line-5440def90286d910.m4a"
+      },
+      "card": {
+        "text": "pen",
+        "picture": {
+          "key": "pen",
+          "label": "pen",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "pen",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

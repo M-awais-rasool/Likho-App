@@ -1,0 +1,318 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-66",
+  "number": 66,
+  "name": "Short i",
+  "skill": "p-i-g words",
+  "icon": "pets",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "pig",
+    "word": "pig",
+    "say": "{p|pʌ}, {i|ɪ}, {g|ɡʌ}... pig! Words with {i|ɪ}.",
+    "audio": "voice/line-31eb69c62f6abfb2.m4a",
+    "picture": {
+      "key": "pig",
+      "label": "pig",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-66-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is pig?",
+        "say": "Read the word. Which picture is pig?",
+        "audio": "voice/line-d843dd8f670c6f11.m4a"
+      },
+      "card": {
+        "text": "pig",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-66-r1-o1",
+            "label": "pin",
+            "picture": {
+              "key": "pin",
+              "label": "pin",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-66-r1-o2",
+            "label": "six",
+            "picture": {
+              "key": "six",
+              "label": "six",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-66-r1-o3",
+            "label": "pig",
+            "picture": {
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "pig"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-66-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Pig! Build the word pig.",
+        "audio": "voice/line-1482d7a37e921024.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "pig",
+          "label": "pig",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "p",
+          "i",
+          "g"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-66-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word pin.",
+        "audio": "voice/line-c085205bcf85be38.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-66-r3-o1",
+            "label": "bin",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-66-r3-o2",
+            "label": "lip",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-66-r3-o3",
+            "label": "pin",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "pin"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-66-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Pin! Which letter is missing?",
+        "audio": "voice/line-4b2e246a69dafe34.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "pin",
+          "label": "pin",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "i",
+        "guide": "i",
+        "word": "pin",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-66-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every lip!",
+        "say": "Find every word lip!",
+        "audio": "voice/line-b846ab72fc2aebf0.m4a"
+      },
+      "card": {
+        "text": "lip",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "lip",
+        "grid": [
+          "six",
+          "lip",
+          "bin",
+          "pin",
+          "lip",
+          "lip",
+          "pig",
+          "pig",
+          "pin"
+        ]
+      }
+    },
+    {
+      "id": "level-66-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "pig",
+          "label": "pig",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-66-r6-o1",
+            "label": "six",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-66-r6-o2",
+            "label": "lip",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-66-r6-o3",
+            "label": "pig",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "pig"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-66-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: pig, pin, bin, lip!",
+        "say": "Say them with me! pig, pin, bin, lip!",
+        "audio": "voice/line-86128476eae4cc84.m4a"
+      },
+      "card": {
+        "text": "pig, pin, bin, lip!",
+        "picture": {
+          "key": "pig",
+          "label": "pig",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "pig, pin, bin, lip!"
+      }
+    },
+    {
+      "id": "level-66-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write bin",
+        "say": "Write the word bin.",
+        "audio": "voice/line-2ff1a065f38c7ffe.m4a"
+      },
+      "card": {
+        "text": "bin",
+        "picture": {
+          "key": "bin",
+          "label": "bin",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "bin",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}
