@@ -164,6 +164,44 @@ type roundDoc struct {
 		Target string   `json:"target"`
 		Grid   []string `json:"grid"`
 	} `json:"hunt"`
+	Fix *struct {
+		Items []struct {
+			Text  string  `json:"text"`
+			Wrong *string `json:"wrong"`
+			At    *int    `json:"at"`
+		} `json:"items"`
+	} `json:"fix"`
+	Sort *struct {
+		Bins  []sortThing `json:"bins"`
+		Items []sortThing `json:"items"`
+	} `json:"sort"`
+	Match *struct {
+		Pairs []struct {
+			A *matchSide `json:"a"`
+			B *matchSide `json:"b"`
+		} `json:"pairs"`
+	} `json:"match"`
+	Pop *struct {
+		Target string   `json:"target"`
+		Others []string `json:"others"`
+		Count  int      `json:"count"`
+	} `json:"pop"`
+	Truth *struct {
+		Text    string      `json:"text"`
+		Picture *pictureDoc `json:"picture"`
+		Answer  *bool       `json:"answer"`
+	} `json:"truth"`
+}
+
+type sortThing struct {
+	Label   string      `json:"label"`
+	Picture *pictureDoc `json:"picture"`
+	Bin     *int        `json:"bin"`
+}
+
+type matchSide struct {
+	Text    *string     `json:"text"`
+	Picture *pictureDoc `json:"picture"`
 }
 
 type pickDoc struct {
@@ -271,10 +309,13 @@ func (c *checker) round(file string, i int, r *roundDoc) {
 		c.speech(at+" prompt", r.Prompt.Say, r.Prompt.Audio)
 	}
 	if !roundTypes[r.Type] {
-		c.p.add(at, "type %q is not one of pick, write, order, speak, hunt", r.Type)
+		c.p.add(at, "type %q is not one of pick, write, order, speak, hunt, fix, sort, match, pop, truth", r.Type)
 		return
 	}
-	payloads := map[string]bool{"pick": r.Pick != nil, "write": r.Write != nil, "order": r.Order != nil, "speak": r.Speak != nil, "hunt": r.Hunt != nil}
+	payloads := map[string]bool{
+		"pick": r.Pick != nil, "write": r.Write != nil, "order": r.Order != nil, "speak": r.Speak != nil, "hunt": r.Hunt != nil,
+		"fix": r.Fix != nil, "sort": r.Sort != nil, "match": r.Match != nil, "pop": r.Pop != nil, "truth": r.Truth != nil,
+	}
 	for name, present := range payloads {
 		if name == r.Type && !present {
 			c.p.add(at, "a %q round needs a %q object", r.Type, r.Type)
@@ -288,7 +329,7 @@ func (c *checker) round(file string, i int, r *roundDoc) {
 		c.pick(at, r.Pick)
 	case r.Write != nil:
 		if !writeModes[r.Write.Mode] {
-			c.p.add(at, "write.mode %q is not one of trace, dots, free, missing, spell", r.Write.Mode)
+			c.p.add(at, "write.mode %q is not one of trace, dots, free, flash, missing, spell", r.Write.Mode)
 		}
 		if g := r.Write.Guide; g != nil {
 			if _, ok := c.glyphs[*g]; !ok {
@@ -304,6 +345,106 @@ func (c *checker) round(file string, i int, r *roundDoc) {
 		}
 	case r.Hunt != nil:
 		c.hunt(at, r.Hunt.Target, r.Hunt.Grid)
+	case r.Fix != nil:
+		c.fix(at, r)
+	case r.Sort != nil:
+		c.sort(at, r.Sort.Bins, r.Sort.Items)
+	case r.Match != nil:
+		if n := len(r.Match.Pairs); n < 2 || n > 6 {
+			c.p.add(at, "match.pairs needs 2 to 6 pairs")
+		}
+		for i, p := range r.Match.Pairs {
+			for _, side := range []*matchSide{p.A, p.B} {
+				if side == nil || ((side.Text == nil || *side.Text == "") && side.Picture == nil) {
+					c.p.add(at, "match.pairs[%d]: each side (a, b) needs a text or a picture", i)
+					break
+				}
+			}
+		}
+	case r.Pop != nil:
+		c.pop(at, r.Pop.Target, r.Pop.Others, r.Pop.Count)
+	case r.Truth != nil:
+		if r.Truth.Text == "" || r.Truth.Answer == nil {
+			c.p.add(at, "truth needs a text and an answer (true or false)")
+		}
+	}
+}
+
+// fix: 3 to 12 items, at least one written wrong (mirror or upside, the
+// whole item or the letter at "at") and one written right.
+func (c *checker) fix(at string, r *roundDoc) {
+	wrong, right := 0, 0
+	for i, it := range r.Fix.Items {
+		switch {
+		case it.Text == "":
+			c.p.add(at, "fix.items[%d].text is required", i)
+		case it.Wrong == nil:
+			right++
+		case !fixWrongs[*it.Wrong]:
+			c.p.add(at, "fix.items[%d].wrong %q is not one of mirror, upside (or null)", i, *it.Wrong)
+		default:
+			wrong++
+		}
+		if it.At != nil && (*it.At < 0 || *it.At >= len([]rune(it.Text))) {
+			c.p.add(at, "fix.items[%d].at %d is not a letter of %q", i, *it.At, it.Text)
+		}
+	}
+	if n := len(r.Fix.Items); n < 3 || n > 12 {
+		c.p.add(at, "fix.items needs 3 to 12 items")
+	} else if wrong == 0 || right == 0 {
+		c.p.add(at, "fix.items needs items written wrong and items written right")
+	}
+}
+
+// sort: one bin (the monster; items without a bin are not its food) or two
+// or three baskets (every item has one, every basket gets something).
+func (c *checker) sort(at string, bins, items []sortThing) {
+	if len(bins) < 1 || len(bins) > 3 {
+		c.p.add(at, "sort.bins needs 1 to 3 bins")
+		return
+	}
+	for i, b := range bins {
+		if b.Label == "" {
+			c.p.add(at, "sort.bins[%d].label is required", i)
+		}
+	}
+	if len(items) < 2 || len(items) > 10 {
+		c.p.add(at, "sort.items needs 2 to 10 items")
+	}
+	used := map[int]bool{}
+	for i, it := range items {
+		switch {
+		case it.Label == "":
+			c.p.add(at, "sort.items[%d].label is required", i)
+		case it.Bin == nil && len(bins) > 1:
+			c.p.add(at, "sort.items[%d] needs a bin (only the monster leaves food out)", i)
+		case it.Bin != nil && (*it.Bin < 0 || *it.Bin >= len(bins)):
+			c.p.add(at, "sort.items[%d].bin %d is not a bin", i, *it.Bin)
+		case it.Bin != nil:
+			used[*it.Bin] = true
+		}
+	}
+	if len(used) < len(bins) {
+		c.p.add(at, "sort: every bin needs at least one item")
+	}
+}
+
+// pop: the target, at least one other label (never the target) and how
+// many targets to pop (1 to 10).
+func (c *checker) pop(at, target string, others []string, count int) {
+	switch {
+	case target == "":
+		c.p.add(at, "pop.target is required")
+	case len(others) == 0:
+		c.p.add(at, "pop.others needs at least one label")
+	case count < 1 || count > 10:
+		c.p.add(at, "pop.count must be 1 to 10")
+	}
+	for _, o := range others {
+		if o == target || o == "" {
+			c.p.add(at, "pop.others must be labels other than the target")
+			break
+		}
 	}
 }
 

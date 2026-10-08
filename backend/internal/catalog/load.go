@@ -26,10 +26,11 @@ const coursesDir = "courses"
 
 var (
 	slugRe     = regexp.MustCompile(`^[a-z0-9]+(-[a-z0-9]+)*$`)
-	roundTypes = map[string]bool{"pick": true, "write": true, "order": true, "speak": true, "hunt": true}
+	roundTypes = map[string]bool{"pick": true, "write": true, "order": true, "speak": true, "hunt": true, "fix": true, "sort": true, "match": true, "pop": true, "truth": true}
 	slots      = map[string]bool{"wagon": true, "plank": true, "stripe": true, "panel": true}
 	stages     = map[string]bool{"house": true, "count": true, "stars": true}
-	writeModes = map[string]bool{"trace": true, "dots": true, "free": true, "missing": true, "spell": true}
+	writeModes = map[string]bool{"trace": true, "dots": true, "free": true, "flash": true, "missing": true, "spell": true}
+	fixWrongs  = map[string]bool{"mirror": true, "upside": true}
 	colors     = map[string]bool{"red": true, "blue": true, "yellow": true, "green": true, "purple": true}
 )
 
