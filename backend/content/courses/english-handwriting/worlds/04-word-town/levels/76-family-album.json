@@ -78,6 +78,66 @@
     },
     {
       "id": "level-76-r2",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "mother",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "family_mother",
+                "label": "mother",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "father",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "family_father",
+                "label": "father",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "sister",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "family_sister",
+                "label": "sister",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-76-r3",
       "type": "pick",
       "prompt": {
         "text": "Which picture is mother?",
@@ -92,7 +152,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-76-r2-o1",
+            "id": "level-76-r3-o1",
             "label": "baby",
             "picture": {
               "key": "family_baby",
@@ -103,7 +163,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-76-r2-o2",
+            "id": "level-76-r3-o2",
             "label": "mother",
             "picture": {
               "key": "family_mother",
@@ -114,7 +174,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-76-r2-o3",
+            "id": "level-76-r3-o3",
             "label": "family",
             "picture": {
               "key": "family",
@@ -137,7 +197,7 @@
       }
     },
     {
-      "id": "level-76-r3",
+      "id": "level-76-r4",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -166,55 +226,45 @@
       }
     },
     {
-      "id": "level-76-r4",
-      "type": "pick",
+      "id": "level-76-r5",
+      "type": "fix",
       "prompt": {
-        "text": "Find the word you hear",
-        "say": "Listen! Find the word sister.",
-        "audio": "voice/line-8716d82da38b14c6.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
       },
       "card": {
-        "text": null,
+        "text": "Fix it!",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "fix": {
+        "items": [
           {
-            "id": "level-76-r4-o1",
-            "label": "sister",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
+            "text": "mother",
+            "wrong": null,
+            "at": null
           },
           {
-            "id": "level-76-r4-o2",
-            "label": "goat",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
+            "text": "father",
+            "wrong": null,
+            "at": null
           },
           {
-            "id": "level-76-r4-o3",
-            "label": "hand",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
+            "text": "sister",
+            "wrong": "mirror",
+            "at": 4
+          },
+          {
+            "text": "baby",
+            "wrong": "mirror",
+            "at": 3
           }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "sister"
-        },
-        "shape": "mushroom",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        ]
       }
     },
     {
-      "id": "level-76-r5",
+      "id": "level-76-r6",
       "type": "write",
       "prompt": {
         "text": "Spell brother",
@@ -241,7 +291,7 @@
       }
     },
     {
-      "id": "level-76-r6",
+      "id": "level-76-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every baby!",
@@ -269,7 +319,7 @@
       }
     },
     {
-      "id": "level-76-r7",
+      "id": "level-76-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: mother, father, sister, brother!",
@@ -290,7 +340,30 @@
       }
     },
     {
-      "id": "level-76-r8",
+      "id": "level-76-r9",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a four. True, or silly?",
+        "audio": "voice/line-3f3ac2923b45b250.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a four.",
+        "picture": {
+          "key": "goat",
+          "label": "goat",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-76-r10",
       "type": "write",
       "prompt": {
         "text": "Write sister",

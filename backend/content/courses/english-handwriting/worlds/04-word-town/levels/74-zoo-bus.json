@@ -86,6 +86,44 @@
     },
     {
       "id": "level-74-r2",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "cow",
+            "wrong": "mirror",
+            "at": 0
+          },
+          {
+            "text": "duck",
+            "wrong": "mirror",
+            "at": 2
+          },
+          {
+            "text": "lion",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "goat",
+            "wrong": null,
+            "at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-74-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -112,7 +150,7 @@
       }
     },
     {
-      "id": "level-74-r3",
+      "id": "level-74-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -127,21 +165,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-74-r3-o1",
+            "id": "level-74-r4-o1",
             "label": "cow",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-74-r3-o2",
+            "id": "level-74-r4-o2",
             "label": "lion",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-74-r3-o3",
+            "id": "level-74-r4-o3",
             "label": "four",
             "picture": null,
             "color": null,
@@ -160,7 +198,7 @@
       }
     },
     {
-      "id": "level-74-r4",
+      "id": "level-74-r5",
       "type": "write",
       "prompt": {
         "text": "Spell goat",
@@ -187,7 +225,30 @@
       }
     },
     {
-      "id": "level-74-r5",
+      "id": "level-74-r6",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a goat. True, or silly?",
+        "audio": "voice/line-eb0d94a1fc125b55.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a goat.",
+        "picture": {
+          "key": "frog",
+          "label": "frog",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-74-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every horse!",
@@ -215,59 +276,7 @@
       }
     },
     {
-      "id": "level-74-r6",
-      "type": "pick",
-      "prompt": {
-        "text": "What is this?",
-        "say": "What is this? Find the word!",
-        "audio": "voice/line-69b2bf73b2b7783d.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "frog",
-          "label": "frog",
-          "url": null
-        },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-74-r6-o1",
-            "label": "pig",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-74-r6-o2",
-            "label": "log",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-74-r6-o3",
-            "label": "frog",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "frog"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-74-r7",
+      "id": "level-74-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: cow, duck, lion, goat!",
@@ -288,7 +297,82 @@
       }
     },
     {
-      "id": "level-74-r8",
+      "id": "level-74-r9",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/g/|ɡʌ} or {/h/|hʌ}?",
+        "audio": "voice/line-3a5448a6011a54ca.m4a"
+      },
+      "card": {
+        "text": "g h",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "g",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "h",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "hut",
+            "picture": {
+              "key": "hut",
+              "label": "hut",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "goat",
+            "picture": {
+              "key": "goat",
+              "label": "goat",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "gift",
+            "picture": {
+              "key": "gift",
+              "label": "gift",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "hen",
+            "picture": {
+              "key": "hen",
+              "label": "hen",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-74-r10",
       "type": "write",
       "prompt": {
         "text": "Write lion",

@@ -54,6 +54,90 @@
     },
     {
       "id": "level-70-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/h/|hʌ}?",
+        "audio": "voice/line-c7ac37372e7b32ac.m4a"
+      },
+      "card": {
+        "text": "d h",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "d",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "h",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "hand",
+            "picture": {
+              "key": "hand",
+              "label": "hand",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "hut",
+            "picture": {
+              "key": "hut",
+              "label": "hut",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-70-r3",
       "type": "pick",
       "prompt": {
         "text": "Which picture is cat?",
@@ -68,7 +152,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-70-r2-o1",
+            "id": "level-70-r3-o1",
             "label": "bed",
             "picture": {
               "key": "bed",
@@ -79,7 +163,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-70-r2-o2",
+            "id": "level-70-r3-o2",
             "label": "hen",
             "picture": {
               "key": "hen",
@@ -90,7 +174,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-70-r2-o3",
+            "id": "level-70-r3-o3",
             "label": "cat",
             "picture": {
               "key": "cat",
@@ -113,7 +197,7 @@
       }
     },
     {
-      "id": "level-70-r3",
+      "id": "level-70-r4",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -139,7 +223,7 @@
       }
     },
     {
-      "id": "level-70-r4",
+      "id": "level-70-r5",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -154,21 +238,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-70-r4-o1",
+            "id": "level-70-r5-o1",
             "label": "dog",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-70-r4-o2",
+            "id": "level-70-r5-o2",
             "label": "pig",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-70-r4-o3",
+            "id": "level-70-r5-o3",
             "label": "bed",
             "picture": null,
             "color": null,
@@ -187,7 +271,34 @@
       }
     },
     {
-      "id": "level-70-r5",
+      "id": "level-70-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write dog",
+        "say": "Look at the word dog. Then write it from memory!",
+        "audio": "voice/line-cea7cf2d92dba27b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "dog",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-70-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every cup!",
@@ -215,59 +326,7 @@
       }
     },
     {
-      "id": "level-70-r6",
-      "type": "pick",
-      "prompt": {
-        "text": "What is this?",
-        "say": "What is this? Find the word!",
-        "audio": "voice/line-69b2bf73b2b7783d.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "hen",
-          "label": "hen",
-          "url": null
-        },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-70-r6-o1",
-            "label": "cat",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-70-r6-o2",
-            "label": "bed",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-70-r6-o3",
-            "label": "hen",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "hen"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-70-r7",
+      "id": "level-70-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: cat, bed, pig, dog!",
@@ -288,7 +347,30 @@
       }
     },
     {
-      "id": "level-70-r8",
+      "id": "level-70-r9",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every dog!",
+        "say": "Pop every bubble that says dog!",
+        "audio": "voice/line-dcf798d03713a778.m4a"
+      },
+      "card": {
+        "text": "dog",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "dog",
+        "others": [
+          "bed",
+          "cat",
+          "cup"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-70-r10",
       "type": "write",
       "prompt": {
         "text": "Write pig",

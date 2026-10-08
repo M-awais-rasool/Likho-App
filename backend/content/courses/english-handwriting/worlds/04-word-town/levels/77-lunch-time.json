@@ -87,6 +87,81 @@
     },
     {
       "id": "level-77-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/h/|hʌ} or {/e/|ɛ}?",
+        "audio": "voice/line-621af20737131615.m4a"
+      },
+      "card": {
+        "text": "h e",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "h",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "e",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "hut",
+            "picture": {
+              "key": "hut",
+              "label": "hut",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "elephant",
+            "picture": {
+              "key": "elephant",
+              "label": "elephant",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "egg",
+            "picture": {
+              "key": "egg",
+              "label": "egg",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "hen",
+            "picture": {
+              "key": "hen",
+              "label": "hen",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-77-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -112,7 +187,7 @@
       }
     },
     {
-      "id": "level-77-r3",
+      "id": "level-77-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -127,21 +202,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-77-r3-o1",
+            "id": "level-77-r4-o1",
             "label": "egg",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-77-r3-o2",
+            "id": "level-77-r4-o2",
             "label": "milk",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-77-r3-o3",
+            "id": "level-77-r4-o3",
             "label": "bread",
             "picture": null,
             "color": null,
@@ -160,7 +235,7 @@
       }
     },
     {
-      "id": "level-77-r4",
+      "id": "level-77-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
@@ -187,7 +262,34 @@
       }
     },
     {
-      "id": "level-77-r5",
+      "id": "level-77-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write egg",
+        "say": "Look at the word egg. Then write it from memory!",
+        "audio": "voice/line-19b43e650dca4732.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "egg",
+          "label": "egg",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "egg",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-77-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every cake!",
@@ -215,59 +317,7 @@
       }
     },
     {
-      "id": "level-77-r6",
-      "type": "pick",
-      "prompt": {
-        "text": "What is this?",
-        "say": "What is this? Find the word!",
-        "audio": "voice/line-69b2bf73b2b7783d.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "apple",
-          "label": "apple",
-          "url": null
-        },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-77-r6-o1",
-            "label": "four",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-77-r6-o2",
-            "label": "apple",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-77-r6-o3",
-            "label": "hand",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "apple"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-77-r7",
+      "id": "level-77-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: egg, milk, rice, cake!",
@@ -288,7 +338,30 @@
       }
     },
     {
-      "id": "level-77-r8",
+      "id": "level-77-r9",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every bread!",
+        "say": "Pop every bubble that says bread!",
+        "audio": "voice/line-97880fba867a308e.m4a"
+      },
+      "card": {
+        "text": "bread",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "bread",
+        "others": [
+          "apple",
+          "cake",
+          "four"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-77-r10",
       "type": "write",
       "prompt": {
         "text": "Write rice",

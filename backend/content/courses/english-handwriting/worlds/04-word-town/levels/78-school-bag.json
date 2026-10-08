@@ -87,6 +87,29 @@
     },
     {
       "id": "level-78-r2",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every school!",
+        "say": "Pop every bubble that says school!",
+        "audio": "voice/line-5f4dc2637fd023b4.m4a"
+      },
+      "card": {
+        "text": "school",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "school",
+        "others": [
+          "book",
+          "four",
+          "goat"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-78-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -113,7 +136,7 @@
       }
     },
     {
-      "id": "level-78-r3",
+      "id": "level-78-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -128,21 +151,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-78-r3-o1",
+            "id": "level-78-r4-o1",
             "label": "bag",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-78-r3-o2",
+            "id": "level-78-r4-o2",
             "label": "pencil",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-78-r3-o3",
+            "id": "level-78-r4-o3",
             "label": "book",
             "picture": null,
             "color": null,
@@ -161,7 +184,7 @@
       }
     },
     {
-      "id": "level-78-r4",
+      "id": "level-78-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
@@ -188,7 +211,67 @@
       }
     },
     {
-      "id": "level-78-r5",
+      "id": "level-78-r6",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "book",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "book",
+                "label": "book",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "bag",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "bag",
+                "label": "bag",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "pen",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "pen",
+                "label": "pen",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-78-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every pencil!",
@@ -216,59 +299,7 @@
       }
     },
     {
-      "id": "level-78-r6",
-      "type": "pick",
-      "prompt": {
-        "text": "What is this?",
-        "say": "What is this? Find the word!",
-        "audio": "voice/line-69b2bf73b2b7783d.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "school",
-          "label": "school",
-          "url": null
-        },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-78-r6-o1",
-            "label": "hand",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-78-r6-o2",
-            "label": "school",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-78-r6-o3",
-            "label": "dog",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "school"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-78-r7",
+      "id": "level-78-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: book, bag, pen, pencil!",
@@ -289,7 +320,45 @@
       }
     },
     {
-      "id": "level-78-r8",
+      "id": "level-78-r9",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "book",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "bag",
+            "wrong": "mirror",
+            "at": 2
+          },
+          {
+            "text": "pen",
+            "wrong": "mirror",
+            "at": 1
+          },
+          {
+            "text": "pencil",
+            "wrong": null,
+            "at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-78-r10",
       "type": "write",
       "prompt": {
         "text": "Write pen",

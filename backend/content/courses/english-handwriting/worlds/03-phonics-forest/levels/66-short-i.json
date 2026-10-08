@@ -87,6 +87,33 @@
     },
     {
       "id": "level-66-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write pig",
+        "say": "Look at the word pig. Then write it from memory!",
+        "audio": "voice/line-a132d4699f254e7b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "pig",
+          "label": "pig",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "pig",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-66-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -112,7 +139,7 @@
       }
     },
     {
-      "id": "level-66-r3",
+      "id": "level-66-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -127,21 +154,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-66-r3-o1",
+            "id": "level-66-r4-o1",
             "label": "bin",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-66-r3-o2",
+            "id": "level-66-r4-o2",
             "label": "lip",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-66-r3-o3",
+            "id": "level-66-r4-o3",
             "label": "pin",
             "picture": null,
             "color": null,
@@ -160,7 +187,7 @@
       }
     },
     {
-      "id": "level-66-r4",
+      "id": "level-66-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
@@ -187,7 +214,30 @@
       }
     },
     {
-      "id": "level-66-r5",
+      "id": "level-66-r6",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every pig!",
+        "say": "Pop every bubble that says pig!",
+        "audio": "voice/line-496b9838463285bc.m4a"
+      },
+      "card": {
+        "text": "pig",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "pig",
+        "others": [
+          "pin",
+          "bin",
+          "lip"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-66-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every lip!",
@@ -215,59 +265,7 @@
       }
     },
     {
-      "id": "level-66-r6",
-      "type": "pick",
-      "prompt": {
-        "text": "What is this?",
-        "say": "What is this? Find the word!",
-        "audio": "voice/line-69b2bf73b2b7783d.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "pig",
-          "label": "pig",
-          "url": null
-        },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-66-r6-o1",
-            "label": "six",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-66-r6-o2",
-            "label": "lip",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-66-r6-o3",
-            "label": "pig",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "pig"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-66-r7",
+      "id": "level-66-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: pig, pin, bin, lip!",
@@ -288,7 +286,67 @@
       }
     },
     {
-      "id": "level-66-r8",
+      "id": "level-66-r9",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "pig",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "pig",
+                "label": "pig",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "pin",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "pin",
+                "label": "pin",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "bin",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "bin",
+                "label": "bin",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-66-r10",
       "type": "write",
       "prompt": {
         "text": "Write bin",

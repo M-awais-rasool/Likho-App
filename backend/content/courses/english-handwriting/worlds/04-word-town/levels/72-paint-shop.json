@@ -75,6 +75,29 @@
     },
     {
       "id": "level-72-r2",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a dog. True, or silly?",
+        "audio": "voice/line-628f15a0140f7b75.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a dog.",
+        "picture": {
+          "key": "red",
+          "label": "red",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-72-r3",
       "type": "pick",
       "prompt": {
         "text": "Which picture is red?",
@@ -89,7 +112,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-72-r2-o1",
+            "id": "level-72-r3-o1",
             "label": "green",
             "picture": {
               "key": "green",
@@ -100,7 +123,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-72-r2-o2",
+            "id": "level-72-r3-o2",
             "label": "blue",
             "picture": {
               "key": "blue",
@@ -111,7 +134,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-72-r2-o3",
+            "id": "level-72-r3-o3",
             "label": "red",
             "picture": {
               "key": "red",
@@ -134,7 +157,7 @@
       }
     },
     {
-      "id": "level-72-r3",
+      "id": "level-72-r4",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -161,55 +184,91 @@
       }
     },
     {
-      "id": "level-72-r4",
-      "type": "pick",
+      "id": "level-72-r5",
+      "type": "sort",
       "prompt": {
-        "text": "Find the word you hear",
-        "say": "Listen! Find the word green.",
-        "audio": "voice/line-60d6c6e9f4228b68.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/r/|ɹːː}?",
+        "audio": "voice/line-04f9314055a54d5b.m4a"
       },
       "card": {
-        "text": null,
+        "text": "d r",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "sort": {
+        "bins": [
           {
-            "id": "level-72-r4-o1",
-            "label": "green",
+            "label": "d",
             "picture": null,
-            "color": null,
-            "hideLabel": false
+            "bin": null
           },
           {
-            "id": "level-72-r4-o2",
-            "label": "pink",
+            "label": "r",
             "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-72-r4-o3",
-            "label": "blue",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
+            "bin": null
           }
         ],
-        "answer": {
-          "kind": "label",
-          "value": "green"
-        },
-        "shape": "bubble",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "items": [
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "rabbit",
+            "picture": {
+              "key": "rabbit",
+              "label": "rabbit",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "rain",
+            "picture": {
+              "key": "rain",
+              "label": "rain",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "robot",
+            "picture": {
+              "key": "robot",
+              "label": "robot",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
       }
     },
     {
-      "id": "level-72-r5",
+      "id": "level-72-r6",
       "type": "write",
       "prompt": {
         "text": "Spell pink",
@@ -236,7 +295,7 @@
       }
     },
     {
-      "id": "level-72-r6",
+      "id": "level-72-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every yellow!",
@@ -264,58 +323,6 @@
       }
     },
     {
-      "id": "level-72-r7",
-      "type": "pick",
-      "prompt": {
-        "text": "What is this?",
-        "say": "What is this? Find the word!",
-        "audio": "voice/line-69b2bf73b2b7783d.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "black",
-          "label": "black",
-          "url": null
-        },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-72-r7-o1",
-            "label": "log",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-72-r7-o2",
-            "label": "yellow",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-72-r7-o3",
-            "label": "black",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "black"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
       "id": "level-72-r8",
       "type": "speak",
       "prompt": {
@@ -338,6 +345,33 @@
     },
     {
       "id": "level-72-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write pink",
+        "say": "Look at the word pink. Then write it from memory!",
+        "audio": "voice/line-f145c7d52270d0d3.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "pink",
+          "label": "pink",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "pink",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-72-r10",
       "type": "write",
       "prompt": {
         "text": "Write green",
