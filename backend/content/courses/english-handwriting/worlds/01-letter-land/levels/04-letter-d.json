@@ -27,11 +27,11 @@
   "rounds": [
     {
       "id": "level-04-r1",
-      "type": "pick",
+      "type": "pop",
       "prompt": {
-        "text": "Find D!",
-        "say": "Find {D|dˈiː}!",
-        "audio": "voice/line-6a1937307b5b2c50.m4a"
+        "text": "Pop every D!",
+        "say": "Pop every {D|dˈiː} bubble!",
+        "audio": "voice/line-43147c4040c29239.m4a"
       },
       "card": {
         "text": "D",
@@ -42,46 +42,14 @@
         },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-04-r1-o1",
-            "label": "D",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-04-r1-o2",
-            "label": "P",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-04-r1-o3",
-            "label": "B",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-04-r1-o4",
-            "label": "O",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "D",
+        "others": [
+          "O",
+          "P",
+          "B"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "D"
-        },
-        "shape": "fish",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 5
       }
     },
     {
@@ -113,62 +81,50 @@
     },
     {
       "id": "level-04-r3",
-      "type": "pick",
+      "type": "fix",
       "prompt": {
-        "text": "What starts with /d/?",
-        "say": "{D|dˈiː} says {/d/|dʌ}. Which one starts with {/d/|dʌ}?",
-        "audio": "voice/line-b0a6cb3ca9733855.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote some {D|dˈiː} the wrong way. Tap them to fix them!",
+        "audio": "voice/line-76da12763536461f.m4a"
       },
       "card": {
         "text": "D",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "fix": {
+        "items": [
           {
-            "id": "level-04-r3-o1",
-            "label": "dog",
-            "picture": {
-              "key": "dog",
-              "label": "dog",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "text": "D",
+            "wrong": null,
+            "at": null
           },
           {
-            "id": "level-04-r3-o2",
-            "label": "robot",
-            "picture": {
-              "key": "robot",
-              "label": "robot",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "text": "D",
+            "wrong": "mirror",
+            "at": null
           },
           {
-            "id": "level-04-r3-o3",
-            "label": "box",
-            "picture": {
-              "key": "box",
-              "label": "box",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "text": "D",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "D",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "D",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "D",
+            "wrong": "mirror",
+            "at": null
           }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "dog"
-        },
-        "shape": "bucket",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        ]
       }
     },
     {
@@ -196,33 +152,62 @@
     },
     {
       "id": "level-04-r5",
-      "type": "hunt",
+      "type": "pick",
       "prompt": {
-        "text": "Find every D!",
-        "say": "Find every {D|dˈiː}!",
-        "audio": "voice/line-2dc0cc2da72605a0.m4a"
+        "text": "What starts with /d/?",
+        "say": "{D|dˈiː} says {/d/|dʌ}. Which one starts with {/d/|dʌ}?",
+        "audio": "voice/line-b0a6cb3ca9733855.m4a"
       },
       "card": {
         "text": "D",
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "hunt": {
-        "target": "D",
-        "grid": [
-          "D",
-          "D",
-          "O",
-          "B",
-          "D",
-          "O",
-          "P",
-          "P",
-          "B",
-          "O",
-          "D",
-          "P"
-        ]
+      "pick": {
+        "options": [
+          {
+            "id": "level-04-r5-o1",
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-04-r5-o2",
+            "label": "whale",
+            "picture": {
+              "key": "whale",
+              "label": "whale",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-04-r5-o3",
+            "label": "moon",
+            "picture": {
+              "key": "moon",
+              "label": "moon",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "dog"
+        },
+        "shape": "bucket",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
       }
     },
     {
@@ -294,31 +279,6 @@
       },
       "speak": {
         "expected": "D is for dog!"
-      }
-    },
-    {
-      "id": "level-04-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "C",
-          "D",
-          "E"
-        ]
       }
     }
   ]

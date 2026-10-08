@@ -27,11 +27,11 @@
   "rounds": [
     {
       "id": "level-08-r1",
-      "type": "pick",
+      "type": "pop",
       "prompt": {
-        "text": "Find G!",
-        "say": "Find {G|ʤˈiː}!",
-        "audio": "voice/line-e773d8696699a1a4.m4a"
+        "text": "Pop every G!",
+        "say": "Pop every {G|ʤˈiː} bubble!",
+        "audio": "voice/line-875df5715763e66a.m4a"
       },
       "card": {
         "text": "G",
@@ -42,46 +42,14 @@
         },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-08-r1-o1",
-            "label": "Q",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-08-r1-o2",
-            "label": "C",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-08-r1-o3",
-            "label": "O",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-08-r1-o4",
-            "label": "G",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "G",
+        "others": [
+          "C",
+          "O",
+          "Q"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "G"
-        },
-        "shape": "balloon",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 5
       }
     },
     {
@@ -113,62 +81,33 @@
     },
     {
       "id": "level-08-r3",
-      "type": "pick",
+      "type": "hunt",
       "prompt": {
-        "text": "What starts with /g/?",
-        "say": "{G|ʤˈiː} says {/g/|ɡʌ}. Which one starts with {/g/|ɡʌ}?",
-        "audio": "voice/line-d3c6f0bf09f82142.m4a"
+        "text": "Find every G!",
+        "say": "Find every {G|ʤˈiː}!",
+        "audio": "voice/line-653e7684d4433be9.m4a"
       },
       "card": {
         "text": "G",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-08-r3-o1",
-            "label": "goat",
-            "picture": {
-              "key": "goat",
-              "label": "goat",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-08-r3-o2",
-            "label": "tiger",
-            "picture": {
-              "key": "tiger",
-              "label": "tiger",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-08-r3-o3",
-            "label": "box",
-            "picture": {
-              "key": "box",
-              "label": "box",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "goat"
-        },
-        "shape": "bucket",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+      "hunt": {
+        "target": "G",
+        "grid": [
+          "O",
+          "C",
+          "C",
+          "G",
+          "G",
+          "O",
+          "Q",
+          "G",
+          "C",
+          "Q",
+          "O",
+          "G"
+        ]
       }
     },
     {
@@ -196,33 +135,25 @@
     },
     {
       "id": "level-08-r5",
-      "type": "hunt",
+      "type": "truth",
       "prompt": {
-        "text": "Find every G!",
-        "say": "Find every {G|ʤˈiː}!",
-        "audio": "voice/line-653e7684d4433be9.m4a"
+        "text": "True or silly?",
+        "say": "Umbrella starts with {G|ʤˈiː}. True, or silly?",
+        "audio": "voice/line-49314f7e1b548022.m4a"
       },
       "card": {
-        "text": "G",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "hunt": {
-        "target": "G",
-        "grid": [
-          "G",
-          "G",
-          "Q",
-          "G",
-          "O",
-          "C",
-          "C",
-          "Q",
-          "C",
-          "O",
-          "O",
-          "G"
-        ]
+      "truth": {
+        "text": "Umbrella starts with G.",
+        "picture": {
+          "key": "umbrella",
+          "label": "umbrella",
+          "url": null
+        },
+        "answer": false
       }
     },
     {
@@ -294,31 +225,6 @@
       },
       "speak": {
         "expected": "G is for goat!"
-      }
-    },
-    {
-      "id": "level-08-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "F",
-          "G",
-          "H"
-        ]
       }
     }
   ]

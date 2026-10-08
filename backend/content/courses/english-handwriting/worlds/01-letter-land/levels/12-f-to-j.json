@@ -109,62 +109,77 @@
     },
     {
       "id": "level-12-r3",
-      "type": "pick",
+      "type": "sort",
       "prompt": {
-        "text": "What starts with /h/?",
-        "say": "Which one starts with {/h/|hʌ}?",
-        "audio": "voice/line-3ca1c5cda30a7224.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/f/|fːː} or {/g/|ɡʌ}?",
+        "audio": "voice/line-50bc4e75f05dae0e.m4a"
       },
       "card": {
-        "text": null,
+        "text": "F G",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "sort": {
+        "bins": [
           {
-            "id": "level-12-r3-o1",
+            "label": "F",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "G",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "gift",
+            "picture": {
+              "key": "gift",
+              "label": "gift",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "foot",
+            "picture": {
+              "key": "foot",
+              "label": "foot",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
             "label": "goat",
             "picture": {
               "key": "goat",
               "label": "goat",
               "url": null
             },
-            "color": null,
-            "hideLabel": true
+            "bin": 1
           },
           {
-            "id": "level-12-r3-o2",
-            "label": "hat",
+            "label": "four",
             "picture": {
-              "key": "hat",
-              "label": "hat",
+              "key": "four",
+              "label": "four",
               "url": null
             },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-12-r3-o3",
-            "label": "ball",
-            "picture": {
-              "key": "ball",
-              "label": "ball",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "bin": 0
           }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "hat"
-        },
-        "shape": "bucket",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        ]
       }
     },
     {
@@ -206,17 +221,17 @@
       "hunt": {
         "target": "F",
         "grid": [
+          "F",
+          "J",
           "G",
           "I",
+          "G",
+          "H",
+          "E",
+          "T",
           "P",
           "F",
           "F",
-          "F",
-          "G",
-          "E",
-          "J",
-          "T",
-          "H",
           "F"
         ]
       }
@@ -225,17 +240,21 @@
       "id": "level-12-r6",
       "type": "write",
       "prompt": {
-        "text": "Write the letter you hear",
-        "say": "Listen, then write it! {J|ʤˈeɪ}.",
-        "audio": "voice/line-82c96bdd0e9f515b.m4a"
+        "text": "Look, then write J",
+        "say": "Look at {J|ʤˈeɪ}. Then write it from memory!",
+        "audio": "voice/line-8574db380bd3d7cc.m4a"
       },
       "card": {
         "text": null,
-        "picture": null,
-        "listen": true
+        "picture": {
+          "key": "jam",
+          "label": "jam",
+          "url": null
+        },
+        "listen": false
       },
       "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "J",
         "guide": "J",
         "word": null,

@@ -196,77 +196,147 @@
     },
     {
       "id": "level-25-r5",
-      "type": "hunt",
+      "type": "match",
       "prompt": {
-        "text": "Find every U!",
-        "say": "Find every {U|jˈuː}!",
-        "audio": "voice/line-b4b35e2d31a7d6dc.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each letter to its picture.",
+        "audio": "voice/line-5bbaa5b0c4fb6512.m4a"
       },
       "card": {
         "text": "U",
-        "picture": null,
+        "picture": {
+          "key": "umbrella",
+          "label": "umbrella",
+          "url": null
+        },
         "listen": false
       },
-      "hunt": {
-        "target": "U",
-        "grid": [
-          "J",
-          "O",
-          "U",
-          "U",
-          "U",
-          "V",
-          "J",
-          "U",
-          "J",
-          "V",
-          "V",
-          "O"
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "T",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "tiger",
+                "label": "tiger",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "U",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "umbrella",
+                "label": "umbrella",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "V",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "violin",
+                "label": "violin",
+                "url": null
+              }
+            }
+          }
         ]
       }
     },
     {
       "id": "level-25-r6",
-      "type": "write",
+      "type": "sort",
       "prompt": {
-        "text": "Which letter is missing?",
-        "say": "{T|tˈiː}, ..., {V|vˈiː}! Which letter is missing?",
-        "audio": "voice/line-da4fc902ec31fcdf.m4a"
+        "text": "Sort the letters!",
+        "say": "Put each letter in its basket: {U|jˈuː} or {V|vˈiː}!",
+        "audio": "voice/line-2ef18279f834a06a.m4a"
       },
       "card": {
-        "text": null,
-        "picture": {
-          "key": "bottle_message",
-          "label": "bottle message",
-          "url": null
-        },
+        "text": "U V",
+        "picture": null,
         "listen": false
       },
-      "write": {
-        "mode": "missing",
-        "target": "U",
-        "guide": "U",
-        "word": "TUV",
-        "missingIndex": 1,
-        "sentence": false,
-        "story": false
+      "sort": {
+        "bins": [
+          {
+            "label": "U",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "V",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "U",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "U",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "V",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "V",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "U",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "V",
+            "picture": null,
+            "bin": 1
+          }
+        ]
       }
     },
     {
       "id": "level-25-r7",
       "type": "write",
       "prompt": {
-        "text": "Write U by yourself",
-        "say": "Now write {U|jˈuː} all by yourself!",
-        "audio": "voice/line-7f6c800bf5f67d41.m4a"
+        "text": "Look, then write U",
+        "say": "Look at {U|jˈuː}. Then write it from memory!",
+        "audio": "voice/line-f342103055566cf7.m4a"
       },
       "card": {
-        "text": "U",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "umbrella",
+          "label": "umbrella",
+          "url": null
+        },
         "listen": false
       },
       "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "U",
         "guide": "U",
         "word": null,
@@ -294,31 +364,6 @@
       },
       "speak": {
         "expected": "U is for umbrella!"
-      }
-    },
-    {
-      "id": "level-25-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "T",
-          "U",
-          "V"
-        ]
       }
     }
   ]

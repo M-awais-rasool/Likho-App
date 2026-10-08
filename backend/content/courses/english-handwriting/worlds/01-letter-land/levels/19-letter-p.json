@@ -196,32 +196,49 @@
     },
     {
       "id": "level-19-r5",
-      "type": "hunt",
+      "type": "fix",
       "prompt": {
-        "text": "Find every P!",
-        "say": "Find every {P|pˈiː}!",
-        "audio": "voice/line-925ad0c9b535f1c0.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote some {P|pˈiː} the wrong way. Tap them to fix them!",
+        "audio": "voice/line-e74d65e356dd8c89.m4a"
       },
       "card": {
         "text": "P",
         "picture": null,
         "listen": false
       },
-      "hunt": {
-        "target": "P",
-        "grid": [
-          "P",
-          "R",
-          "P",
-          "D",
-          "B",
-          "P",
-          "R",
-          "P",
-          "D",
-          "B",
-          "R",
-          "B"
+      "fix": {
+        "items": [
+          {
+            "text": "P",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "P",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "P",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "P",
+            "wrong": "mirror",
+            "at": null
+          },
+          {
+            "text": "P",
+            "wrong": "mirror",
+            "at": null
+          },
+          {
+            "text": "P",
+            "wrong": null,
+            "at": null
+          }
         ]
       }
     },
@@ -256,17 +273,21 @@
       "id": "level-19-r7",
       "type": "write",
       "prompt": {
-        "text": "Write P by yourself",
-        "say": "Now write {P|pˈiː} all by yourself!",
-        "audio": "voice/line-7a01fb71d546441a.m4a"
+        "text": "Look, then write P",
+        "say": "Look at {P|pˈiː}. Then write it from memory!",
+        "audio": "voice/line-956ba9d946db1d84.m4a"
       },
       "card": {
-        "text": "P",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "pig",
+          "label": "pig",
+          "url": null
+        },
         "listen": false
       },
       "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "P",
         "guide": "P",
         "word": null,
@@ -294,31 +315,6 @@
       },
       "speak": {
         "expected": "P is for pig!"
-      }
-    },
-    {
-      "id": "level-19-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "O",
-          "P",
-          "Q"
-        ]
       }
     }
   ]

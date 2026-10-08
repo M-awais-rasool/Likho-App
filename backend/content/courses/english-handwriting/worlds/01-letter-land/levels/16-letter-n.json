@@ -27,11 +27,11 @@
   "rounds": [
     {
       "id": "level-16-r1",
-      "type": "pick",
+      "type": "pop",
       "prompt": {
-        "text": "Find N!",
-        "say": "Find {N|ˈɛn}!",
-        "audio": "voice/line-e6651c951108dac6.m4a"
+        "text": "Pop every N!",
+        "say": "Pop every {N|ˈɛn} bubble!",
+        "audio": "voice/line-44faf80f743bc311.m4a"
       },
       "card": {
         "text": "N",
@@ -42,46 +42,14 @@
         },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-16-r1-o1",
-            "label": "H",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-16-r1-o2",
-            "label": "N",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-16-r1-o3",
-            "label": "Z",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-16-r1-o4",
-            "label": "M",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "N",
+        "others": [
+          "M",
+          "Z",
+          "H"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "N"
-        },
-        "shape": "bubble",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 5
       }
     },
     {
@@ -113,62 +81,33 @@
     },
     {
       "id": "level-16-r3",
-      "type": "pick",
+      "type": "hunt",
       "prompt": {
-        "text": "What starts with /n/?",
-        "say": "{N|ˈɛn} says {/n/|nːː}. Which one starts with {/n/|nːː}?",
-        "audio": "voice/line-8e92a0ef2b98184d.m4a"
+        "text": "Find every N!",
+        "say": "Find every {N|ˈɛn}!",
+        "audio": "voice/line-10aaff5e14648265.m4a"
       },
       "card": {
         "text": "N",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-16-r3-o1",
-            "label": "dog",
-            "picture": {
-              "key": "dog",
-              "label": "dog",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-16-r3-o2",
-            "label": "insect",
-            "picture": {
-              "key": "insect",
-              "label": "insect",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-16-r3-o3",
-            "label": "nest",
-            "picture": {
-              "key": "nest",
-              "label": "nest",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "nest"
-        },
-        "shape": "bucket",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+      "hunt": {
+        "target": "N",
+        "grid": [
+          "M",
+          "M",
+          "H",
+          "Z",
+          "N",
+          "M",
+          "Z",
+          "N",
+          "N",
+          "H",
+          "N",
+          "Z"
+        ]
       }
     },
     {
@@ -196,60 +135,106 @@
     },
     {
       "id": "level-16-r5",
-      "type": "hunt",
+      "type": "sort",
       "prompt": {
-        "text": "Find every N!",
-        "say": "Find every {N|ˈɛn}!",
-        "audio": "voice/line-10aaff5e14648265.m4a"
+        "text": "Feed it /n/!",
+        "say": "This monster only eats things that start with {/n/|nːː}. Feed it!",
+        "audio": "voice/line-ae673e18c58442de.m4a"
       },
       "card": {
         "text": "N",
         "picture": null,
         "listen": false
       },
-      "hunt": {
-        "target": "N",
-        "grid": [
-          "Z",
-          "N",
-          "M",
-          "H",
-          "M",
-          "Z",
-          "N",
-          "N",
-          "H",
-          "N",
-          "M",
-          "Z"
+      "sort": {
+        "bins": [
+          {
+            "label": "N",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "moon",
+            "picture": {
+              "key": "moon",
+              "label": "moon",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "yo-yo",
+            "picture": {
+              "key": "yoyo",
+              "label": "yo-yo",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "nail",
+            "picture": {
+              "key": "nail",
+              "label": "nail",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "nut",
+            "picture": {
+              "key": "nut",
+              "label": "nut",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "nest",
+            "picture": {
+              "key": "nest",
+              "label": "nest",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "whale",
+            "picture": {
+              "key": "whale",
+              "label": "whale",
+              "url": null
+            },
+            "bin": null
+          }
         ]
       }
     },
     {
       "id": "level-16-r6",
-      "type": "write",
+      "type": "order",
       "prompt": {
-        "text": "Which letter is missing?",
-        "say": "{M|ˈɛm}, ..., {O|ˈoʊ}! Which letter is missing?",
-        "audio": "voice/line-9cc7884f890118d6.m4a"
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "bottle_message",
-          "label": "bottle message",
+          "key": "train",
+          "label": "train",
           "url": null
         },
         "listen": false
       },
-      "write": {
-        "mode": "missing",
-        "target": "N",
-        "guide": "N",
-        "word": "MNO",
-        "missingIndex": 1,
-        "sentence": false,
-        "story": false
+      "order": {
+        "tiles": [
+          "M",
+          "N",
+          "O"
+        ]
       }
     },
     {
@@ -294,31 +279,6 @@
       },
       "speak": {
         "expected": "N is for nest!"
-      }
-    },
-    {
-      "id": "level-16-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "M",
-          "N",
-          "O"
-        ]
       }
     }
   ]

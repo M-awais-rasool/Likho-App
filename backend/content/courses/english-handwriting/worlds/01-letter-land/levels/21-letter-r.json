@@ -113,62 +113,25 @@
     },
     {
       "id": "level-21-r3",
-      "type": "pick",
+      "type": "truth",
       "prompt": {
-        "text": "What starts with /r/?",
-        "say": "{R|ˈɑːɹ} says {/r/|ɹːː}. Which one starts with {/r/|ɹːː}?",
-        "audio": "voice/line-2d348b76bd6bd3eb.m4a"
+        "text": "True or silly?",
+        "say": "Robot starts with {R|ˈɑːɹ}. True, or silly?",
+        "audio": "voice/line-5d1ad054893fb42b.m4a"
       },
       "card": {
-        "text": "R",
+        "text": null,
         "picture": null,
         "listen": true
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-21-r3-o1",
-            "label": "robot",
-            "picture": {
-              "key": "robot",
-              "label": "robot",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-21-r3-o2",
-            "label": "kite",
-            "picture": {
-              "key": "kite",
-              "label": "kite",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-21-r3-o3",
-            "label": "goat",
-            "picture": {
-              "key": "goat",
-              "label": "goat",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "robot"
+      "truth": {
+        "text": "Robot starts with R.",
+        "picture": {
+          "key": "robot",
+          "label": "robot",
+          "url": null
         },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "answer": true
       }
     },
     {
@@ -210,63 +173,115 @@
       "hunt": {
         "target": "R",
         "grid": [
-          "R",
           "B",
-          "B",
-          "P",
           "R",
           "K",
           "P",
           "R",
+          "R",
           "K",
           "B",
           "P",
-          "R"
+          "R",
+          "B",
+          "P"
         ]
       }
     },
     {
       "id": "level-21-r6",
-      "type": "write",
+      "type": "sort",
       "prompt": {
-        "text": "Which letter is missing?",
-        "say": "{Q|kjˈuː}, ..., {S|ˈɛs}! Which letter is missing?",
-        "audio": "voice/line-8bdcc19742480c5d.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/r/|ɹːː} or {/s/|sːː}?",
+        "audio": "voice/line-aa79ce459328a0fe.m4a"
       },
       "card": {
-        "text": null,
-        "picture": {
-          "key": "bottle_message",
-          "label": "bottle message",
-          "url": null
-        },
+        "text": "R S",
+        "picture": null,
         "listen": false
       },
-      "write": {
-        "mode": "missing",
-        "target": "R",
-        "guide": "R",
-        "word": "QRS",
-        "missingIndex": 1,
-        "sentence": false,
-        "story": false
+      "sort": {
+        "bins": [
+          {
+            "label": "R",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "S",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "rain",
+            "picture": {
+              "key": "rain",
+              "label": "rain",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "ring",
+            "picture": {
+              "key": "ring",
+              "label": "ring",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "six",
+            "picture": {
+              "key": "six",
+              "label": "six",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "robot",
+            "picture": {
+              "key": "robot",
+              "label": "robot",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
       }
     },
     {
       "id": "level-21-r7",
       "type": "write",
       "prompt": {
-        "text": "Write R by yourself",
-        "say": "Now write {R|ˈɑːɹ} all by yourself!",
-        "audio": "voice/line-1aeadc51e31d68d3.m4a"
+        "text": "Look, then write R",
+        "say": "Look at {R|ˈɑːɹ}. Then write it from memory!",
+        "audio": "voice/line-c98336618c5af177.m4a"
       },
       "card": {
-        "text": "R",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "robot",
+          "label": "robot",
+          "url": null
+        },
         "listen": false
       },
       "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "R",
         "guide": "R",
         "word": null,
@@ -294,31 +309,6 @@
       },
       "speak": {
         "expected": "R is for robot!"
-      }
-    },
-    {
-      "id": "level-21-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "Q",
-          "R",
-          "S"
-        ]
       }
     }
   ]

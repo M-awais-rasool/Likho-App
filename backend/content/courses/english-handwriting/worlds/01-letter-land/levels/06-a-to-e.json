@@ -109,62 +109,86 @@
     },
     {
       "id": "level-06-r3",
-      "type": "pick",
+      "type": "sort",
       "prompt": {
-        "text": "What starts with /c/?",
-        "say": "Which one starts with {/c/|kʌ}?",
-        "audio": "voice/line-4702238bcd858d09.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/b/|bʌ} or {/c/|kʌ}?",
+        "audio": "voice/line-5eb8aa7012d026dc.m4a"
       },
       "card": {
-        "text": null,
+        "text": "B C",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "sort": {
+        "bins": [
           {
-            "id": "level-06-r3-o1",
-            "label": "tiger",
-            "picture": {
-              "key": "tiger",
-              "label": "tiger",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "label": "B",
+            "picture": null,
+            "bin": null
           },
           {
-            "id": "level-06-r3-o2",
-            "label": "cat",
-            "picture": {
-              "key": "cat",
-              "label": "cat",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-06-r3-o3",
-            "label": "box",
-            "picture": {
-              "key": "box",
-              "label": "box",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "label": "C",
+            "picture": null,
+            "bin": null
           }
         ],
-        "answer": {
-          "kind": "label",
-          "value": "cat"
-        },
-        "shape": "planet",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "items": [
+          {
+            "label": "boat",
+            "picture": {
+              "key": "boat",
+              "label": "boat",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "cup",
+            "picture": {
+              "key": "cup",
+              "label": "cup",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "ball",
+            "picture": {
+              "key": "ball",
+              "label": "ball",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "cake",
+            "picture": {
+              "key": "cake",
+              "label": "cake",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "cow",
+            "picture": {
+              "key": "cow",
+              "label": "cow",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "bug",
+            "picture": {
+              "key": "bug",
+              "label": "bug",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
       }
     },
     {
@@ -192,32 +216,44 @@
     },
     {
       "id": "level-06-r5",
-      "type": "hunt",
+      "type": "fix",
       "prompt": {
-        "text": "Find every A!",
-        "say": "Find every {A|ˈeɪ}!",
-        "audio": "voice/line-37f4d3499c331930.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote some letters the wrong way. Tap them to fix them!",
+        "audio": "voice/line-5b61022a0ee7b93d.m4a"
       },
       "card": {
-        "text": "A",
+        "text": "A B C D E",
         "picture": null,
         "listen": false
       },
-      "hunt": {
-        "target": "A",
-        "grid": [
-          "C",
-          "A",
-          "H",
-          "A",
-          "A",
-          "A",
-          "N",
-          "E",
-          "B",
-          "B",
-          "D",
-          "R"
+      "fix": {
+        "items": [
+          {
+            "text": "A",
+            "wrong": "upside",
+            "at": null
+          },
+          {
+            "text": "B",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "C",
+            "wrong": "mirror",
+            "at": null
+          },
+          {
+            "text": "D",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "E",
+            "wrong": null,
+            "at": null
+          }
         ]
       }
     },
@@ -225,17 +261,21 @@
       "id": "level-06-r6",
       "type": "write",
       "prompt": {
-        "text": "Write the letter you hear",
-        "say": "Listen, then write it! {E|ˈiː}.",
-        "audio": "voice/line-d084050ecd414970.m4a"
+        "text": "Look, then write E",
+        "say": "Look at {E|ˈiː}. Then write it from memory!",
+        "audio": "voice/line-20e933cbcbfc706f.m4a"
       },
       "card": {
         "text": null,
-        "picture": null,
-        "listen": true
+        "picture": {
+          "key": "egg",
+          "label": "egg",
+          "url": null
+        },
+        "listen": false
       },
       "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "E",
         "guide": "E",
         "word": null,

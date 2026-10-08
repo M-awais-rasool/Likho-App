@@ -113,62 +113,81 @@
     },
     {
       "id": "level-09-r3",
-      "type": "pick",
+      "type": "sort",
       "prompt": {
-        "text": "What starts with /h/?",
-        "say": "{H|ˈeɪʧ} says {/h/|hʌ}. Which one starts with {/h/|hʌ}?",
-        "audio": "voice/line-85fc64b9bfbea17a.m4a"
+        "text": "Feed it /h/!",
+        "say": "This monster only eats things that start with {/h/|hʌ}. Feed it!",
+        "audio": "voice/line-5ee181652f351087.m4a"
       },
       "card": {
         "text": "H",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "sort": {
+        "bins": [
           {
-            "id": "level-09-r3-o1",
-            "label": "tiger",
-            "picture": {
-              "key": "tiger",
-              "label": "tiger",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-09-r3-o2",
-            "label": "hat",
-            "picture": {
-              "key": "hat",
-              "label": "hat",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-09-r3-o3",
-            "label": "box",
-            "picture": {
-              "key": "box",
-              "label": "box",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "label": "H",
+            "picture": null,
+            "bin": null
           }
         ],
-        "answer": {
-          "kind": "label",
-          "value": "hat"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "items": [
+          {
+            "label": "hut",
+            "picture": {
+              "key": "hut",
+              "label": "hut",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "lion",
+            "picture": {
+              "key": "lion",
+              "label": "lion",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "zebra",
+            "picture": {
+              "key": "zebra",
+              "label": "zebra",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "hand",
+            "picture": {
+              "key": "hand",
+              "label": "hand",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "hen",
+            "picture": {
+              "key": "hen",
+              "label": "hen",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "yo-yo",
+            "picture": {
+              "key": "yoyo",
+              "label": "yo-yo",
+              "url": null
+            },
+            "bin": null
+          }
+        ]
       }
     },
     {
@@ -210,63 +229,65 @@
       "hunt": {
         "target": "H",
         "grid": [
-          "N",
-          "I",
-          "H",
-          "H",
           "E",
-          "E",
-          "I",
-          "I",
           "N",
           "H",
           "H",
-          "N"
+          "I",
+          "I",
+          "N",
+          "N",
+          "H",
+          "I",
+          "H",
+          "E"
         ]
       }
     },
     {
       "id": "level-09-r6",
-      "type": "write",
+      "type": "order",
       "prompt": {
-        "text": "Which letter is missing?",
-        "say": "{G|ʤˈiː}, ..., {I|ˈaɪ}! Which letter is missing?",
-        "audio": "voice/line-e0af0e132135e7a7.m4a"
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "bottle_message",
-          "label": "bottle message",
+          "key": "train",
+          "label": "train",
           "url": null
         },
         "listen": false
       },
-      "write": {
-        "mode": "missing",
-        "target": "H",
-        "guide": "H",
-        "word": "GHI",
-        "missingIndex": 1,
-        "sentence": false,
-        "story": false
+      "order": {
+        "tiles": [
+          "G",
+          "H",
+          "I"
+        ]
       }
     },
     {
       "id": "level-09-r7",
       "type": "write",
       "prompt": {
-        "text": "Write H by yourself",
-        "say": "Now write {H|ˈeɪʧ} all by yourself!",
-        "audio": "voice/line-e63aa189f7ed10d1.m4a"
+        "text": "Look, then write H",
+        "say": "Look at {H|ˈeɪʧ}. Then write it from memory!",
+        "audio": "voice/line-a0db1c1c7d7e79d4.m4a"
       },
       "card": {
-        "text": "H",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "hat",
+          "label": "hat",
+          "url": null
+        },
         "listen": false
       },
       "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "H",
         "guide": "H",
         "word": null,
@@ -294,31 +315,6 @@
       },
       "speak": {
         "expected": "H is for hat!"
-      }
-    },
-    {
-      "id": "level-09-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "G",
-          "H",
-          "I"
-        ]
       }
     }
   ]

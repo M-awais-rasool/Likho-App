@@ -113,62 +113,72 @@
     },
     {
       "id": "level-05-r3",
-      "type": "pick",
+      "type": "sort",
       "prompt": {
-        "text": "What starts with /e/?",
-        "say": "{E|ˈiː} says {/e/|ɛ}. Which one starts with {/e/|ɛ}?",
-        "audio": "voice/line-4289f5986f2cbdd5.m4a"
+        "text": "Feed it /e/!",
+        "say": "This monster only eats things that start with {/e/|ɛ}. Feed it!",
+        "audio": "voice/line-31053af8c2b0a3fd.m4a"
       },
       "card": {
         "text": "E",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "sort": {
+        "bins": [
           {
-            "id": "level-05-r3-o1",
-            "label": "ball",
-            "picture": {
-              "key": "ball",
-              "label": "ball",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
+            "label": "E",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
           {
-            "id": "level-05-r3-o2",
-            "label": "egg",
-            "picture": {
-              "key": "egg",
-              "label": "egg",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-05-r3-o3",
             "label": "sun",
             "picture": {
               "key": "sun",
               "label": "sun",
               "url": null
             },
-            "color": null,
-            "hideLabel": true
+            "bin": null
+          },
+          {
+            "label": "tiger",
+            "picture": {
+              "key": "tiger",
+              "label": "tiger",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "egg",
+            "picture": {
+              "key": "egg",
+              "label": "egg",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "elephant",
+            "picture": {
+              "key": "elephant",
+              "label": "elephant",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "ball",
+            "picture": {
+              "key": "ball",
+              "label": "ball",
+              "url": null
+            },
+            "bin": null
           }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "egg"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        ]
       }
     },
     {
@@ -196,77 +206,112 @@
     },
     {
       "id": "level-05-r5",
-      "type": "hunt",
+      "type": "match",
       "prompt": {
-        "text": "Find every E!",
-        "say": "Find every {E|ˈiː}!",
-        "audio": "voice/line-7608439d4aeaa7aa.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each letter to its picture.",
+        "audio": "voice/line-5bbaa5b0c4fb6512.m4a"
       },
       "card": {
         "text": "E",
-        "picture": null,
+        "picture": {
+          "key": "egg",
+          "label": "egg",
+          "url": null
+        },
         "listen": false
       },
-      "hunt": {
-        "target": "E",
-        "grid": [
-          "H",
-          "L",
-          "E",
-          "H",
-          "L",
-          "L",
-          "F",
-          "F",
-          "E",
-          "E",
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "D",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "dog",
+                "label": "dog",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "E",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "egg",
+                "label": "egg",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "F",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "fish",
+                "label": "fish",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-05-r6",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "D",
           "E",
           "F"
         ]
       }
     },
     {
-      "id": "level-05-r6",
+      "id": "level-05-r7",
       "type": "write",
       "prompt": {
-        "text": "Which letter is missing?",
-        "say": "{D|dˈiː}, ..., {F|ˈɛf}! Which letter is missing?",
-        "audio": "voice/line-4bd944c4637a4e19.m4a"
+        "text": "Look, then write E",
+        "say": "Look at {E|ˈiː}. Then write it from memory!",
+        "audio": "voice/line-20e933cbcbfc706f.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "bottle_message",
-          "label": "bottle message",
+          "key": "egg",
+          "label": "egg",
           "url": null
         },
         "listen": false
       },
       "write": {
-        "mode": "missing",
-        "target": "E",
-        "guide": "E",
-        "word": "DEF",
-        "missingIndex": 1,
-        "sentence": false,
-        "story": false
-      }
-    },
-    {
-      "id": "level-05-r7",
-      "type": "write",
-      "prompt": {
-        "text": "Write E by yourself",
-        "say": "Now write {E|ˈiː} all by yourself!",
-        "audio": "voice/line-dc9adc51a1286954.m4a"
-      },
-      "card": {
-        "text": "E",
-        "picture": null,
-        "listen": false
-      },
-      "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "E",
         "guide": "E",
         "word": null,
@@ -294,31 +339,6 @@
       },
       "speak": {
         "expected": "E is for egg!"
-      }
-    },
-    {
-      "id": "level-05-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "D",
-          "E",
-          "F"
-        ]
       }
     }
   ]

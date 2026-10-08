@@ -27,11 +27,11 @@
   "rounds": [
     {
       "id": "level-10-r1",
-      "type": "pick",
+      "type": "pop",
       "prompt": {
-        "text": "Find I!",
-        "say": "Find {I|ˈaɪ}!",
-        "audio": "voice/line-00d04d57008a1555.m4a"
+        "text": "Pop every I!",
+        "say": "Pop every {I|ˈaɪ} bubble!",
+        "audio": "voice/line-fae5441c26241878.m4a"
       },
       "card": {
         "text": "I",
@@ -42,46 +42,14 @@
         },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-10-r1-o1",
-            "label": "H",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-10-r1-o2",
-            "label": "L",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-10-r1-o3",
-            "label": "I",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-10-r1-o4",
-            "label": "T",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "I",
+        "others": [
+          "L",
+          "T",
+          "H"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "I"
-        },
-        "shape": "kite",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 5
       }
     },
     {
@@ -113,62 +81,66 @@
     },
     {
       "id": "level-10-r3",
-      "type": "pick",
+      "type": "match",
       "prompt": {
-        "text": "What starts with /i/?",
-        "say": "{I|ˈaɪ} says {/i/|ɪ}. Which one starts with {/i/|ɪ}?",
-        "audio": "voice/line-2b6f83c885258bec.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each letter to its picture.",
+        "audio": "voice/line-5bbaa5b0c4fb6512.m4a"
       },
       "card": {
         "text": "I",
-        "picture": null,
-        "listen": true
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-10-r3-o1",
-            "label": "goat",
-            "picture": {
-              "key": "goat",
-              "label": "goat",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-10-r3-o2",
-            "label": "insect",
-            "picture": {
-              "key": "insect",
-              "label": "insect",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-10-r3-o3",
-            "label": "egg",
-            "picture": {
-              "key": "egg",
-              "label": "egg",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "insect"
+        "picture": {
+          "key": "insect",
+          "label": "insect",
+          "url": null
         },
-        "shape": "planet",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "H",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "hat",
+                "label": "hat",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "I",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "insect",
+                "label": "insect",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "J",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "jam",
+                "label": "jam",
+                "url": null
+              }
+            }
+          }
+        ]
       }
     },
     {
@@ -196,60 +168,85 @@
     },
     {
       "id": "level-10-r5",
-      "type": "hunt",
+      "type": "truth",
       "prompt": {
-        "text": "Find every I!",
-        "say": "Find every {I|ˈaɪ}!",
-        "audio": "voice/line-907ca448747ffe91.m4a"
+        "text": "True or silly?",
+        "say": "Kite starts with {I|ˈaɪ}. True, or silly?",
+        "audio": "voice/line-e3a308d9ef1a8104.m4a"
       },
       "card": {
-        "text": "I",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "hunt": {
-        "target": "I",
-        "grid": [
-          "T",
-          "I",
-          "H",
-          "L",
-          "L",
-          "H",
-          "I",
-          "T",
-          "L",
-          "I",
-          "I",
-          "T"
-        ]
+      "truth": {
+        "text": "Kite starts with I.",
+        "picture": {
+          "key": "kite",
+          "label": "kite",
+          "url": null
+        },
+        "answer": false
       }
     },
     {
       "id": "level-10-r6",
-      "type": "write",
+      "type": "sort",
       "prompt": {
-        "text": "Which letter is missing?",
-        "say": "{H|ˈeɪʧ}, ..., {J|ʤˈeɪ}! Which letter is missing?",
-        "audio": "voice/line-1e0d629240b9da4a.m4a"
+        "text": "Sort the letters!",
+        "say": "Put each letter in its basket: {I|ˈaɪ} or {L|ˈɛl}!",
+        "audio": "voice/line-f36110e21f9135a0.m4a"
       },
       "card": {
-        "text": null,
-        "picture": {
-          "key": "bottle_message",
-          "label": "bottle message",
-          "url": null
-        },
+        "text": "I L",
+        "picture": null,
         "listen": false
       },
-      "write": {
-        "mode": "missing",
-        "target": "I",
-        "guide": "I",
-        "word": "HIJ",
-        "missingIndex": 1,
-        "sentence": false,
-        "story": false
+      "sort": {
+        "bins": [
+          {
+            "label": "I",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "L",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "L",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "I",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "I",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "L",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "L",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "I",
+            "picture": null,
+            "bin": 0
+          }
+        ]
       }
     },
     {
@@ -294,31 +291,6 @@
       },
       "speak": {
         "expected": "I is for insect!"
-      }
-    },
-    {
-      "id": "level-10-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "H",
-          "I",
-          "J"
-        ]
       }
     }
   ]
