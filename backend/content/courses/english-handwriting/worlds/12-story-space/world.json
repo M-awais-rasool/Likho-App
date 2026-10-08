@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../../schema/world.schema.json",
+  "id": "world-12",
+  "order": 12,
+  "name": "Story Space",
+  "skill": "Stories",
+  "icon": "rocket_launch",
+  "themeId": "storySpace",
+  "boss": {
+    "id": "moon",
+    "name": "Sleepy Moon"
+  }
+}

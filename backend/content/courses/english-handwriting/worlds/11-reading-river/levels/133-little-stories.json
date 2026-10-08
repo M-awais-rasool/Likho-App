@@ -1,0 +1,310 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-133",
+  "number": 133,
+  "name": "Little Stories",
+  "skill": "Reading stories",
+  "icon": "auto_stories",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Sam",
+    "word": "story",
+    "say": "Let's read little stories and answer questions!",
+    "audio": "voice/line-4643de348a0c202e.m4a",
+    "picture": {
+      "key": "story",
+      "label": "story",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-133-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Where does Sara go?",
+        "say": "Sara goes to school. She has a big bag. In the bag is a red book. Where does Sara go?",
+        "audio": "voice/line-86d1b45387695077.m4a"
+      },
+      "card": {
+        "text": "Sara goes to school. She has a big bag. In the bag is a red book.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-133-r1-o1",
+            "label": "to school",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-133-r1-o2",
+            "label": "to the zoo",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-133-r1-o3",
+            "label": "to the park",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "to school"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-133-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "Sara goes to school. Now write it!",
+        "audio": "voice/line-597a7664b6bf552d.m4a"
+      },
+      "card": {
+        "text": "Sara goes to school.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "Sara goes to school.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-133-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "She has a big bag. Put the words in order.",
+        "audio": "voice/line-72656bcbf1a6970b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "school",
+          "label": "school",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "She",
+          "has",
+          "a",
+          "big",
+          "bag"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-133-r4",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: It is hot.",
+        "say": "It is hot. Now you say it!",
+        "audio": "voice/line-89d639c51c228d4d.m4a"
+      },
+      "card": {
+        "text": "It is hot.",
+        "picture": {
+          "key": "fish_in_sea",
+          "label": "fish in sea",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "It is hot."
+      }
+    },
+    {
+      "id": "level-133-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "Yes or no?",
+        "say": "Look at the picture. Sara goes to school. Yes or no?",
+        "audio": "voice/line-738a426e81ddf9d6.m4a"
+      },
+      "card": {
+        "text": "Sara goes to school.",
+        "picture": {
+          "key": "school",
+          "label": "school",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-133-r5-o1",
+            "label": "Yes",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-133-r5-o2",
+            "label": "No",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Yes"
+        },
+        "shape": "cloud",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-133-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "The cat is on the bed.",
+        "say": "The cat is on the bed. Find the picture!",
+        "audio": "voice/line-817cde14e53d9d7b.m4a"
+      },
+      "card": {
+        "text": "The cat is on the bed.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-133-r6-o1",
+            "label": "cat on box",
+            "picture": {
+              "key": "cat_on_box",
+              "label": "cat on box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-133-r6-o2",
+            "label": "dog on box",
+            "picture": {
+              "key": "dog_on_box",
+              "label": "dog on box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-133-r6-o3",
+            "label": "cat in bed",
+            "picture": {
+              "key": "cat_in_bed",
+              "label": "cat in bed",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "cat in bed"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-133-r7",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every like!",
+        "say": "Find every word like!",
+        "audio": "voice/line-ef09687e3c13ecc5.m4a"
+      },
+      "card": {
+        "text": "like",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "like",
+        "grid": [
+          "look",
+          "under",
+          "down",
+          "like",
+          "jumping",
+          "like",
+          "like",
+          "said",
+          "you"
+        ]
+      }
+    },
+    {
+      "id": "level-133-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Spell jump",
+        "say": "Jump! Write it one letter at a time.",
+        "audio": "voice/line-cc81fb1811517725.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "jump",
+          "label": "jump",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "jump",
+        "guide": null,
+        "word": "jump",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

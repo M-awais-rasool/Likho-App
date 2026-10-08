@@ -1,0 +1,305 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-137",
+  "number": 137,
+  "name": "Story Order",
+  "skill": "Sequencing",
+  "icon": "view_carousel",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "1 2 3",
+    "word": "storybook",
+    "say": "First, next, last! Let's put the story in order.",
+    "audio": "voice/line-d002cb8441132aa4.m4a",
+    "picture": {
+      "key": "storybook",
+      "label": "storybook",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-137-r1",
+      "type": "order",
+      "prompt": {
+        "text": "Put in order",
+        "audio": "voice/line-292a8b7a827e169a.m4a"
+      },
+      "card": {
+        "text": "1 · 2 · 3",
+        "picture": null,
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "seed",
+          "sprout",
+          "flower"
+        ],
+        "slot": "panel"
+      }
+    },
+    {
+      "id": "level-137-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "The egg cracks. Now write it!",
+        "audio": "voice/line-33ee5643e0632c84.m4a"
+      },
+      "card": {
+        "text": "The egg cracks.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "The egg cracks.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-137-r3",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: First, next, last!",
+        "say": "First, next, last! Now you say it!",
+        "audio": "voice/line-2dc1b654a9513c16.m4a"
+      },
+      "card": {
+        "text": "First, next, last!",
+        "picture": {
+          "key": "chick",
+          "label": "chick",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "First, next, last!"
+      }
+    },
+    {
+      "id": "level-137-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "First the egg, then the what. Which word fits?",
+        "audio": "voice/line-fabd24c7ad56cddf.m4a"
+      },
+      "card": {
+        "text": "First the egg, then the ___.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-137-r4-o1",
+            "label": "bus",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-137-r4-o2",
+            "label": "cake",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-137-r4-o3",
+            "label": "chick",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "chick"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-137-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every like!",
+        "say": "Find every word like!",
+        "audio": "voice/line-ef09687e3c13ecc5.m4a"
+      },
+      "card": {
+        "text": "like",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "like",
+        "grid": [
+          "jumping",
+          "said",
+          "like",
+          "look",
+          "you",
+          "under",
+          "like",
+          "like",
+          "down"
+        ]
+      }
+    },
+    {
+      "id": "level-137-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Spell jump",
+        "say": "Jump! Write it one letter at a time.",
+        "audio": "voice/line-cc81fb1811517725.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "jump",
+          "label": "jump",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "jump",
+        "guide": null,
+        "word": "jump",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-137-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-137-r7-o1",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-137-r7-o2",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-137-r7-o3",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-137-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word Monday.",
+        "audio": "voice/line-c8ffde019149633c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-137-r8-o1",
+            "label": "Monday",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-137-r8-o2",
+            "label": "look",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-137-r8-o3",
+            "label": "under",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Monday"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

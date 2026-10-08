@@ -1,0 +1,306 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-140",
+  "number": 140,
+  "name": "All About Me",
+  "skill": "Writing about me",
+  "icon": "face",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "I am",
+    "word": "warm-up",
+    "say": "Let's write about you!",
+    "audio": "voice/line-1e0ab3e3744681d8.m4a",
+    "picture": {
+      "key": "warm-up",
+      "label": "warm-up",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-140-r1",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "My name is Sara. Now write it!",
+        "audio": "voice/line-82d7484fc99cf505.m4a"
+      },
+      "card": {
+        "text": "My name is Sara.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "My name is Sara.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-140-r2",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "I am six. Put the words in order.",
+        "audio": "voice/line-00822afab3d3d755.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cake",
+          "label": "cake",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "I",
+          "am",
+          "six"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-140-r3",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: I am six.",
+        "say": "I am six. Now you say it!",
+        "audio": "voice/line-4584eb075764d523.m4a"
+      },
+      "card": {
+        "text": "I am six.",
+        "picture": {
+          "key": "cake",
+          "label": "cake",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "I am six."
+      }
+    },
+    {
+      "id": "level-140-r4",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every under!",
+        "say": "Find every word under!",
+        "audio": "voice/line-66aed6e407dccf1e.m4a"
+      },
+      "card": {
+        "text": "under",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "under",
+        "grid": [
+          "said",
+          "under",
+          "down",
+          "jump",
+          "jumping",
+          "under",
+          "who",
+          "like",
+          "under"
+        ]
+      }
+    },
+    {
+      "id": "level-140-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Spell what",
+        "say": "What! Write it one letter at a time.",
+        "audio": "voice/line-93fc4e40497990fc.m4a"
+      },
+      "card": {
+        "text": "what",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "what",
+        "guide": null,
+        "word": "what",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-140-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-140-r6-o1",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-140-r6-o2",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-140-r6-o3",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-140-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word forest.",
+        "audio": "voice/line-db23ac20f1b403d0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-140-r7-o1",
+            "label": "forest",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-140-r7-o2",
+            "label": "Monday",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-140-r7-o3",
+            "label": "jump",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "forest"
+        },
+        "shape": "mushroom",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-140-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "Which mark ends it?",
+        "say": "The dog can run. Which mark goes at the end?",
+        "audio": "voice/line-f31c208fc8040d04.m4a"
+      },
+      "card": {
+        "text": "The dog can run ___",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-140-r8-o1",
+            "label": "?",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-140-r8-o2",
+            "label": ".",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-140-r8-o3",
+            "label": "!",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "."
+        },
+        "shape": "balloon",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

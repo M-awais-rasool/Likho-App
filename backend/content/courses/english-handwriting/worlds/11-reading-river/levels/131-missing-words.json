@@ -1,0 +1,312 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-131",
+  "number": 131,
+  "name": "Missing Words",
+  "skill": "Words that fit",
+  "icon": "edit",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "___",
+    "word": "storybook",
+    "say": "One word is missing. Which word fits?",
+    "audio": "voice/line-c7288993bf8ec460.m4a",
+    "picture": {
+      "key": "storybook",
+      "label": "storybook",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-131-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "The cat is what the box. Which word fits?",
+        "audio": "voice/line-847474e981e12df6.m4a"
+      },
+      "card": {
+        "text": "The cat is ___ the box.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-131-r1-o1",
+            "label": "up",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-131-r1-o2",
+            "label": "on",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-131-r1-o3",
+            "label": "in",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "on"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-131-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "The fish can swim. Now write it!",
+        "audio": "voice/line-acfd51cea1282265.m4a"
+      },
+      "card": {
+        "text": "The fish can swim.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "The fish can swim.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-131-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "I can see the moon. Put the words in order.",
+        "audio": "voice/line-2300b8f845e026e4.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "moon",
+          "label": "moon",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "I",
+          "can",
+          "see",
+          "the",
+          "moon"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-131-r4",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: A bird can fly.",
+        "say": "A bird can fly. Now you say it!",
+        "audio": "voice/line-1d531ff1e39a36ae.m4a"
+      },
+      "card": {
+        "text": "A bird can fly.",
+        "picture": {
+          "key": "bird_in_sky",
+          "label": "bird in sky",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "A bird can fly."
+      }
+    },
+    {
+      "id": "level-131-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every like!",
+        "say": "Find every word like!",
+        "audio": "voice/line-ef09687e3c13ecc5.m4a"
+      },
+      "card": {
+        "text": "like",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "like",
+        "grid": [
+          "said",
+          "jumping",
+          "like",
+          "down",
+          "you",
+          "like",
+          "under",
+          "like",
+          "look"
+        ]
+      }
+    },
+    {
+      "id": "level-131-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Spell jump",
+        "say": "Jump! Write it one letter at a time.",
+        "audio": "voice/line-cc81fb1811517725.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "jump",
+          "label": "jump",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "jump",
+        "guide": null,
+        "word": "jump",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-131-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-131-r7-o1",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-131-r7-o2",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-131-r7-o3",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-131-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word Monday.",
+        "audio": "voice/line-c8ffde019149633c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-131-r8-o1",
+            "label": "Monday",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-131-r8-o2",
+            "label": "jumping",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-131-r8-o3",
+            "label": "like",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Monday"
+        },
+        "shape": "fish",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

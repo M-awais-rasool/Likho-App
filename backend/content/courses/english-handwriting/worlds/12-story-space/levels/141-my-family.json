@@ -1,0 +1,307 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-141",
+  "number": 141,
+  "name": "My Family",
+  "skill": "Writing about family",
+  "icon": "family_restroom",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "My family",
+    "word": "family",
+    "say": "Let's write about your family!",
+    "audio": "voice/line-82da6fc593de8132.m4a",
+    "picture": {
+      "key": "family",
+      "label": "family",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-141-r1",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "This is my mother. Put the words in order.",
+        "audio": "voice/line-dbf1022097bd5ce7.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "family_mother",
+          "label": "family mother",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "This",
+          "is",
+          "my",
+          "mother"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-141-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "This is my mother. Now write it!",
+        "audio": "voice/line-2fcceb794ee9736f.m4a"
+      },
+      "card": {
+        "text": "This is my mother.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "This is my mother.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-141-r3",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: This is my mother.",
+        "say": "This is my mother. Now you say it!",
+        "audio": "voice/line-293cf15ad9243df9.m4a"
+      },
+      "card": {
+        "text": "This is my mother.",
+        "picture": {
+          "key": "family_mother",
+          "label": "family mother",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "This is my mother."
+      }
+    },
+    {
+      "id": "level-141-r4",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every under!",
+        "say": "Find every word under!",
+        "audio": "voice/line-66aed6e407dccf1e.m4a"
+      },
+      "card": {
+        "text": "under",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "under",
+        "grid": [
+          "under",
+          "under",
+          "like",
+          "under",
+          "down",
+          "said",
+          "who",
+          "jump",
+          "jumping"
+        ]
+      }
+    },
+    {
+      "id": "level-141-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Spell what",
+        "say": "What! Write it one letter at a time.",
+        "audio": "voice/line-93fc4e40497990fc.m4a"
+      },
+      "card": {
+        "text": "what",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "what",
+        "guide": null,
+        "word": "what",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-141-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-141-r6-o1",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-141-r6-o2",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-141-r6-o3",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-141-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word forest.",
+        "audio": "voice/line-db23ac20f1b403d0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-141-r7-o1",
+            "label": "Monday",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-141-r7-o2",
+            "label": "forest",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-141-r7-o3",
+            "label": "down",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "forest"
+        },
+        "shape": "cloud",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-141-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "Which mark ends it?",
+        "say": "The dog can run. Which mark goes at the end?",
+        "audio": "voice/line-f31c208fc8040d04.m4a"
+      },
+      "card": {
+        "text": "The dog can run ___",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-141-r8-o1",
+            "label": "?",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-141-r8-o2",
+            "label": "!",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-141-r8-o3",
+            "label": ".",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "."
+        },
+        "shape": "bubble",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}

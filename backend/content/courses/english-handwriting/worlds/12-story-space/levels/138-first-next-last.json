@@ -1,0 +1,308 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-138",
+  "number": 138,
+  "name": "First, Next, Last",
+  "skill": "Story words",
+  "icon": "format_list_numbered",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "First",
+    "word": "sprout",
+    "say": "First, next, last! Words that tell a story.",
+    "audio": "voice/line-785ea15c37b7ddf8.m4a",
+    "picture": {
+      "key": "sprout",
+      "label": "sprout",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-138-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "what, I wake up. Which word fits?",
+        "audio": "voice/line-1a63b9e9644e198b.m4a"
+      },
+      "card": {
+        "text": "___, I wake up.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-138-r1-o1",
+            "label": "Last",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-138-r1-o2",
+            "label": "Next",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-138-r1-o3",
+            "label": "First",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "First"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-138-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Spell first",
+        "say": "First! Write it one letter at a time.",
+        "audio": "voice/line-f73836d9a4557c3d.m4a"
+      },
+      "card": {
+        "text": "first",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "first",
+        "guide": null,
+        "word": "first",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-138-r3",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "First, I wake up. Now write it!",
+        "audio": "voice/line-0afe304cd64c8bc7.m4a"
+      },
+      "card": {
+        "text": "First, I wake up.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "First, I wake up.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-138-r4",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "Next, I go to school. Put the words in order.",
+        "audio": "voice/line-e19710b44f72d0bc.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "school",
+          "label": "school",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "Next,",
+          "I",
+          "go",
+          "to",
+          "school"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-138-r5",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: First, next, last!",
+        "say": "First, next, last! Now you say it!",
+        "audio": "voice/line-2dc1b654a9513c16.m4a"
+      },
+      "card": {
+        "text": "First, next, last!",
+        "picture": {
+          "key": "seed",
+          "label": "seed",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "First, next, last!"
+      }
+    },
+    {
+      "id": "level-138-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every like!",
+        "say": "Find every word like!",
+        "audio": "voice/line-ef09687e3c13ecc5.m4a"
+      },
+      "card": {
+        "text": "like",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "like",
+        "grid": [
+          "down",
+          "look",
+          "under",
+          "like",
+          "like",
+          "you",
+          "jumping",
+          "said",
+          "like"
+        ]
+      }
+    },
+    {
+      "id": "level-138-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-138-r7-o1",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-138-r7-o2",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-138-r7-o3",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-138-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word Monday.",
+        "audio": "voice/line-c8ffde019149633c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-138-r8-o1",
+            "label": "like",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-138-r8-o2",
+            "label": "you",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-138-r8-o3",
+            "label": "Monday",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Monday"
+        },
+        "shape": "fish",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    }
+  ]
+}
