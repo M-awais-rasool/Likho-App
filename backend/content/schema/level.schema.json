@@ -66,7 +66,7 @@
       "required": ["id", "type", "prompt"],
       "properties": {
         "id": { "type": "string" },
-        "type": { "enum": ["pick", "write", "order", "speak", "hunt"], "description": "The payload object has the same name." },
+        "type": { "enum": ["pick", "write", "order", "speak", "hunt", "fix", "sort", "match", "pop", "truth"], "description": "The payload object has the same name." },
         "prompt": {
           "type": "object",
           "required": ["text"],
@@ -86,14 +86,24 @@
         "write": { "$ref": "#/$defs/write" },
         "order": { "$ref": "#/$defs/order" },
         "speak": { "$ref": "#/$defs/speak" },
-        "hunt": { "$ref": "#/$defs/hunt" }
+        "hunt": { "$ref": "#/$defs/hunt" },
+        "fix": { "$ref": "#/$defs/fix" },
+        "sort": { "$ref": "#/$defs/sort" },
+        "match": { "$ref": "#/$defs/match" },
+        "pop": { "$ref": "#/$defs/pop" },
+        "truth": { "$ref": "#/$defs/truth" }
       },
       "allOf": [
         { "if": { "properties": { "type": { "const": "pick" } } }, "then": { "required": ["pick"] } },
         { "if": { "properties": { "type": { "const": "write" } } }, "then": { "required": ["write"] } },
         { "if": { "properties": { "type": { "const": "order" } } }, "then": { "required": ["order"] } },
         { "if": { "properties": { "type": { "const": "speak" } } }, "then": { "required": ["speak"] } },
-        { "if": { "properties": { "type": { "const": "hunt" } } }, "then": { "required": ["hunt"] } }
+        { "if": { "properties": { "type": { "const": "hunt" } } }, "then": { "required": ["hunt"] } },
+        { "if": { "properties": { "type": { "const": "fix" } } }, "then": { "required": ["fix"] } },
+        { "if": { "properties": { "type": { "const": "sort" } } }, "then": { "required": ["sort"] } },
+        { "if": { "properties": { "type": { "const": "match" } } }, "then": { "required": ["match"] } },
+        { "if": { "properties": { "type": { "const": "pop" } } }, "then": { "required": ["pop"] } },
+        { "if": { "properties": { "type": { "const": "truth" } } }, "then": { "required": ["truth"] } }
       ]
     },
     "pick": {
@@ -132,7 +142,7 @@
       "type": "object",
       "required": ["mode"],
       "properties": {
-        "mode": { "enum": ["trace", "dots", "free", "missing", "spell"] },
+        "mode": { "enum": ["trace", "dots", "free", "flash", "missing", "spell"], "description": "flash: the letter (or word) shows for a moment, then is written from memory." },
         "target": { "type": ["string", "null"] },
         "guide": { "type": ["string", "null"], "description": "Key in glyphs.json." },
         "word": { "type": ["string", "null"] },
@@ -160,6 +170,93 @@
       "properties": {
         "target": { "type": "string", "minLength": 1 },
         "grid": { "type": "array", "minItems": 4, "maxItems": 16, "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "fix": {
+      "type": "object",
+      "description": "Fix Pencil's mistakes: tap every item written wrong (backwards or upside down); tapping a right one is a mistake.",
+      "required": ["items"],
+      "properties": {
+        "items": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "required": ["text"],
+            "additionalProperties": false,
+            "properties": {
+              "text": { "type": "string", "minLength": 1 },
+              "wrong": { "enum": ["mirror", "upside", null], "description": "null = written right." },
+              "at": { "type": ["integer", "null"], "description": "The one letter of text that is wrong; null = all of it." }
+            }
+          }
+        }
+      }
+    },
+    "sort": {
+      "type": "object",
+      "description": "Drag things into bins. One bin = the hungry monster (items without a bin are not its food); two or three = baskets (every item has one).",
+      "required": ["bins", "items"],
+      "properties": {
+        "bins": { "type": "array", "minItems": 1, "maxItems": 3, "items": { "$ref": "#/$defs/sortThing" } },
+        "items": { "type": "array", "minItems": 2, "maxItems": 10, "items": { "$ref": "#/$defs/sortThing" } }
+      }
+    },
+    "sortThing": {
+      "type": "object",
+      "required": ["label"],
+      "additionalProperties": false,
+      "properties": {
+        "label": { "type": "string", "minLength": 1 },
+        "picture": { "$ref": "#/$defs/picture", "description": "Shown instead of the label." },
+        "bin": { "type": ["integer", "null"], "description": "Items: index of the bin it goes in." }
+      }
+    },
+    "match": {
+      "type": "object",
+      "description": "Memory game: cards face down, find the pairs (A and a, a word and its picture). Turning two that are not a pair is not a mistake.",
+      "required": ["pairs"],
+      "properties": {
+        "pairs": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "required": ["a", "b"],
+            "additionalProperties": false,
+            "properties": { "a": { "$ref": "#/$defs/matchSide" }, "b": { "$ref": "#/$defs/matchSide" } }
+          }
+        }
+      }
+    },
+    "matchSide": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": { "type": ["string", "null"] },
+        "picture": { "$ref": "#/$defs/picture" }
+      }
+    },
+    "pop": {
+      "type": "object",
+      "description": "Bubble pop: bubbles float up saying the target or one of the others; pop count targets (popping another is a mistake).",
+      "required": ["target", "others", "count"],
+      "properties": {
+        "target": { "type": "string", "minLength": 1 },
+        "others": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+        "count": { "type": "integer", "minimum": 1, "maximum": 10 }
+      }
+    },
+    "truth": {
+      "type": "object",
+      "description": "True or silly: a picture and a sentence; tap True or Silly.",
+      "required": ["text", "answer"],
+      "properties": {
+        "text": { "type": "string", "minLength": 1 },
+        "picture": { "$ref": "#/$defs/picture" },
+        "answer": { "type": "boolean" }
       }
     }
   }
