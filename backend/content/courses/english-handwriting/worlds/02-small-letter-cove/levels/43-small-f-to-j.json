@@ -1,0 +1,316 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-43",
+  "number": 43,
+  "name": "Small f to j",
+  "skill": "Review",
+  "icon": "auto_awesome",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "f g h i j",
+    "word": "star",
+    "say": "f to j! Let's play with small {f|ˈɛf}, small {g|ʤˈiː}, small {h|ˈeɪʧ}, small {i|ˈaɪ}, small {j|ʤˈeɪ}.",
+    "audio": "voice/line-02b3792402242fe1.m4a",
+    "picture": {
+      "key": "star",
+      "label": "star",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-43-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which letter do you hear?",
+        "say": "Listen! Find small {j|ʤˈeɪ}.",
+        "audio": "voice/line-969aaf309e7b35c7.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-43-r1-o1",
+            "label": "g",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-43-r1-o2",
+            "label": "f",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-43-r1-o3",
+            "label": "j",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-43-r1-o4",
+            "label": "h",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "j"
+        },
+        "shape": "shell",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-43-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace small g",
+        "say": "Trace small {g|ʤˈiː}.",
+        "audio": "voice/line-61397de5c6ac8728.m4a"
+      },
+      "card": {
+        "text": "g",
+        "picture": {
+          "key": "goat",
+          "label": "goat",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "g",
+        "guide": "g",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-43-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /h/?",
+        "say": "Which one starts with {/h/|hʌ}?",
+        "audio": "voice/line-3ca1c5cda30a7224.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-43-r3-o1",
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-43-r3-o2",
+            "label": "robot",
+            "picture": {
+              "key": "robot",
+              "label": "robot",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-43-r3-o3",
+            "label": "octopus",
+            "picture": {
+              "key": "octopus",
+              "label": "octopus",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "hat"
+        },
+        "shape": "bucket",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-43-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make small i",
+        "say": "Join the dots to make small {i|ˈaɪ}.",
+        "audio": "voice/line-981ce3ba0d7cab70.m4a"
+      },
+      "card": {
+        "text": "i",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "i",
+        "guide": "i",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-43-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every small f!",
+        "say": "Find every small {f|ˈɛf}!",
+        "audio": "voice/line-3e4ed3fe66d95cc4.m4a"
+      },
+      "card": {
+        "text": "f",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "f",
+        "grid": [
+          "g",
+          "t",
+          "j",
+          "l",
+          "f",
+          "i",
+          "f",
+          "g",
+          "f",
+          "f",
+          "h",
+          "j"
+        ]
+      }
+    },
+    {
+      "id": "level-43-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Write the letter you hear",
+        "say": "Listen, then write it! small {j|ʤˈeɪ}.",
+        "audio": "voice/line-0eb423aaa5673b82.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "free",
+        "target": "j",
+        "guide": "j",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-43-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "f",
+          "g",
+          "h"
+        ]
+      }
+    },
+    {
+      "id": "level-43-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: f, g, h, i, j!",
+        "say": "Say all the letters with me! {f|ˈɛf}, {g|ʤˈiː}, {h|ˈeɪʧ}, {i|ˈaɪ}, {j|ʤˈeɪ}!",
+        "audio": "voice/line-f301712eb3bf8fac.m4a"
+      },
+      "card": {
+        "text": "f, g, h, i, j!",
+        "picture": null,
+        "listen": true
+      },
+      "speak": {
+        "expected": "f, g, h, i, j!"
+      }
+    },
+    {
+      "id": "level-43-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "audio": "voice/line-ab7242535fe9991a.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bottle_message",
+          "label": "bottle message",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "g",
+        "guide": "g",
+        "word": "fgh",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

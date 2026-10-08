@@ -1,0 +1,316 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-37",
+  "number": 37,
+  "name": "Small a to e",
+  "skill": "Review",
+  "icon": "auto_awesome",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "a b c d e",
+    "word": "star",
+    "say": "a to e! Let's play with small {a|ˈeɪ}, small {b|bˈiː}, small {c|sˈiː}, small {d|dˈiː}, small {e|ˈiː}.",
+    "audio": "voice/line-aa4a7ea18fb57586.m4a",
+    "picture": {
+      "key": "star",
+      "label": "star",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-37-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which letter do you hear?",
+        "say": "Listen! Find small {e|ˈiː}.",
+        "audio": "voice/line-f9407b91a77707ba.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-37-r1-o1",
+            "label": "a",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-37-r1-o2",
+            "label": "c",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-37-r1-o3",
+            "label": "b",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-37-r1-o4",
+            "label": "e",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "e"
+        },
+        "shape": "mushroom",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-37-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace small b",
+        "say": "Trace small {b|bˈiː}.",
+        "audio": "voice/line-94a7b65ea666b15a.m4a"
+      },
+      "card": {
+        "text": "b",
+        "picture": {
+          "key": "ball",
+          "label": "ball",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "b",
+        "guide": "b",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-37-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /c/?",
+        "say": "Which one starts with {/c/|kʌ}?",
+        "audio": "voice/line-4702238bcd858d09.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-37-r3-o1",
+            "label": "moon",
+            "picture": {
+              "key": "moon",
+              "label": "moon",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-37-r3-o2",
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-37-r3-o3",
+            "label": "tiger",
+            "picture": {
+              "key": "tiger",
+              "label": "tiger",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "cat"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-37-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make small d",
+        "say": "Join the dots to make small {d|dˈiː}.",
+        "audio": "voice/line-22b586edf4de97db.m4a"
+      },
+      "card": {
+        "text": "d",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "d",
+        "guide": "d",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-37-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every small a!",
+        "say": "Find every small {a|ˈeɪ}!",
+        "audio": "voice/line-d87aa5bc6ae6b4b0.m4a"
+      },
+      "card": {
+        "text": "a",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "a",
+        "grid": [
+          "b",
+          "a",
+          "e",
+          "a",
+          "c",
+          "e",
+          "a",
+          "b",
+          "a",
+          "d",
+          "o",
+          "d"
+        ]
+      }
+    },
+    {
+      "id": "level-37-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Write the letter you hear",
+        "say": "Listen, then write it! small {e|ˈiː}.",
+        "audio": "voice/line-699973ff76be461f.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "free",
+        "target": "e",
+        "guide": "e",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-37-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "a",
+          "b",
+          "c"
+        ]
+      }
+    },
+    {
+      "id": "level-37-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: a, b, c, d, e!",
+        "say": "Say all the letters with me! {a|ˈeɪ}, {b|bˈiː}, {c|sˈiː}, {d|dˈiː}, {e|ˈiː}!",
+        "audio": "voice/line-c08c3ca64072cf34.m4a"
+      },
+      "card": {
+        "text": "a, b, c, d, e!",
+        "picture": null,
+        "listen": true
+      },
+      "speak": {
+        "expected": "a, b, c, d, e!"
+      }
+    },
+    {
+      "id": "level-37-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "audio": "voice/line-ab7242535fe9991a.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bottle_message",
+          "label": "bottle message",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "b",
+        "guide": "b",
+        "word": "abc",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

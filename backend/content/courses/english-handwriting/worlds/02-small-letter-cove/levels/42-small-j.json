@@ -1,0 +1,325 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-42",
+  "number": 42,
+  "name": "Small j",
+  "skill": "Small j and its sound",
+  "icon": "spa",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Jj",
+    "word": "jam",
+    "say": "Big {J|ʤˈeɪ}, small {j|ʤˈeɪ}! Small {j|ʤˈeɪ} says {/j/|ʤʌ}, like jam.",
+    "audio": "voice/line-141fdb87bfa23eb3.m4a",
+    "picture": {
+      "key": "jam",
+      "label": "jam",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-42-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find small j!",
+        "say": "Big {J|ʤˈeɪ}, small {j|ʤˈeɪ}! Find small {j|ʤˈeɪ}.",
+        "audio": "voice/line-6da87b829f11017c.m4a"
+      },
+      "card": {
+        "text": "J",
+        "picture": {
+          "key": "jam",
+          "label": "jam",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-42-r1-o1",
+            "label": "g",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-42-r1-o2",
+            "label": "j",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-42-r1-o3",
+            "label": "i",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-42-r1-o4",
+            "label": "y",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "j"
+        },
+        "shape": "fish",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-42-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace small j",
+        "say": "Trace small {j|ʤˈeɪ}.",
+        "audio": "voice/line-dc77ef2f80d1d097.m4a"
+      },
+      "card": {
+        "text": "j",
+        "picture": {
+          "key": "jam",
+          "label": "jam",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "j",
+        "guide": "j",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-42-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /j/?",
+        "say": "{j|ʤˈeɪ} says {/j/|ʤʌ}. Which one starts with {/j/|ʤʌ}?",
+        "audio": "voice/line-24770a447035cd96.m4a"
+      },
+      "card": {
+        "text": "j",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-42-r3-o1",
+            "label": "jam",
+            "picture": {
+              "key": "jam",
+              "label": "jam",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-42-r3-o2",
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-42-r3-o3",
+            "label": "egg",
+            "picture": {
+              "key": "egg",
+              "label": "egg",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "jam"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-42-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make small j",
+        "say": "Join the dots to make small {j|ʤˈeɪ}.",
+        "audio": "voice/line-ae5ef6ef32eca2cc.m4a"
+      },
+      "card": {
+        "text": "j",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "j",
+        "guide": "j",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-42-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every small j!",
+        "say": "Find every small {j|ʤˈeɪ}!",
+        "audio": "voice/line-ae3ea9cc950d624e.m4a"
+      },
+      "card": {
+        "text": "j",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "j",
+        "grid": [
+          "j",
+          "g",
+          "y",
+          "i",
+          "i",
+          "j",
+          "y",
+          "j",
+          "g",
+          "g",
+          "i",
+          "j"
+        ]
+      }
+    },
+    {
+      "id": "level-42-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Finish the word!",
+        "say": "Jam! Write the missing letter.",
+        "audio": "voice/line-3ba8e514f7ab11a4.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "jam",
+          "label": "jam",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "j",
+        "guide": "j",
+        "word": "jam",
+        "missingIndex": 0,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-42-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write small j by yourself",
+        "say": "Now write small {j|ʤˈeɪ} all by yourself!",
+        "audio": "voice/line-a4e19afd47118ba1.m4a"
+      },
+      "card": {
+        "text": "j",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "j",
+        "guide": "j",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-42-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: j says /j/ like jam!",
+        "say": "{j|ʤˈeɪ} says {/j/|ʤʌ}, like jam! Now you say it.",
+        "audio": "voice/line-a56a8e88b1f68486.m4a"
+      },
+      "card": {
+        "text": "j says /j/ like jam!",
+        "picture": {
+          "key": "jam",
+          "label": "jam",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "j says /j/ like jam!"
+      }
+    },
+    {
+      "id": "level-42-r9",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "i",
+          "j",
+          "k"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,325 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-38",
+  "number": 38,
+  "name": "Small f",
+  "skill": "Small f and its sound",
+  "icon": "spa",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Ff",
+    "word": "fish",
+    "say": "Big {F|ˈɛf}, small {f|ˈɛf}! Small {f|ˈɛf} says {/f/|fːː}, like fish.",
+    "audio": "voice/line-cd4f8fd3adc2947a.m4a",
+    "picture": {
+      "key": "fish",
+      "label": "fish",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-38-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find small f!",
+        "say": "Big {F|ˈɛf}, small {f|ˈɛf}! Find small {f|ˈɛf}.",
+        "audio": "voice/line-eee2a98848b0e3d7.m4a"
+      },
+      "card": {
+        "text": "F",
+        "picture": {
+          "key": "fish",
+          "label": "fish",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-38-r1-o1",
+            "label": "l",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-38-r1-o2",
+            "label": "f",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-38-r1-o3",
+            "label": "t",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-38-r1-o4",
+            "label": "j",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "f"
+        },
+        "shape": "cloud",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-38-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace small f",
+        "say": "Trace small {f|ˈɛf}.",
+        "audio": "voice/line-7ebac3654999016e.m4a"
+      },
+      "card": {
+        "text": "f",
+        "picture": {
+          "key": "fish",
+          "label": "fish",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "f",
+        "guide": "f",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-38-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /f/?",
+        "say": "{f|ˈɛf} says {/f/|fːː}. Which one starts with {/f/|fːː}?",
+        "audio": "voice/line-f681ec338b02bd2c.m4a"
+      },
+      "card": {
+        "text": "f",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-38-r3-o1",
+            "label": "pig",
+            "picture": {
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-38-r3-o2",
+            "label": "yo-yo",
+            "picture": {
+              "key": "yoyo",
+              "label": "yo-yo",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-38-r3-o3",
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "fish"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-38-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make small f",
+        "say": "Join the dots to make small {f|ˈɛf}.",
+        "audio": "voice/line-daf8442e69934bca.m4a"
+      },
+      "card": {
+        "text": "f",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "f",
+        "guide": "f",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-38-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every small f!",
+        "say": "Find every small {f|ˈɛf}!",
+        "audio": "voice/line-3e4ed3fe66d95cc4.m4a"
+      },
+      "card": {
+        "text": "f",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "f",
+        "grid": [
+          "t",
+          "f",
+          "l",
+          "t",
+          "j",
+          "f",
+          "l",
+          "l",
+          "f",
+          "t",
+          "j",
+          "f"
+        ]
+      }
+    },
+    {
+      "id": "level-38-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Finish the word!",
+        "say": "Fish! Write the missing letter.",
+        "audio": "voice/line-0de258971fa88a20.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "fish",
+          "label": "fish",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "f",
+        "guide": "f",
+        "word": "fish",
+        "missingIndex": 0,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-38-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write small f by yourself",
+        "say": "Now write small {f|ˈɛf} all by yourself!",
+        "audio": "voice/line-1da585c75d966b62.m4a"
+      },
+      "card": {
+        "text": "f",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "f",
+        "guide": "f",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-38-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: f says /f/ like fish!",
+        "say": "{f|ˈɛf} says {/f/|fːː}, like fish! Now you say it.",
+        "audio": "voice/line-504a01d8f890d2e5.m4a"
+      },
+      "card": {
+        "text": "f says /f/ like fish!",
+        "picture": {
+          "key": "fish",
+          "label": "fish",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "f says /f/ like fish!"
+      }
+    },
+    {
+      "id": "level-38-r9",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "e",
+          "f",
+          "g"
+        ]
+      }
+    }
+  ]
+}

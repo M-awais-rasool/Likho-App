@@ -1,0 +1,325 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-46",
+  "number": 46,
+  "name": "Small m",
+  "skill": "Small m and its sound",
+  "icon": "spa",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Mm",
+    "word": "moon",
+    "say": "Big {M|ˈɛm}, small {m|ˈɛm}! Small {m|ˈɛm} says {/m/|mːː}, like moon.",
+    "audio": "voice/line-2d2bce7ea397eff4.m4a",
+    "picture": {
+      "key": "moon",
+      "label": "moon",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-46-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find small m!",
+        "say": "Big {M|ˈɛm}, small {m|ˈɛm}! Find small {m|ˈɛm}.",
+        "audio": "voice/line-b34c1f2d7fd9e2a8.m4a"
+      },
+      "card": {
+        "text": "M",
+        "picture": {
+          "key": "moon",
+          "label": "moon",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-46-r1-o1",
+            "label": "m",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-46-r1-o2",
+            "label": "w",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-46-r1-o3",
+            "label": "h",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-46-r1-o4",
+            "label": "n",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "m"
+        },
+        "shape": "balloon",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-46-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace small m",
+        "say": "Trace small {m|ˈɛm}.",
+        "audio": "voice/line-3c056c6bb5791306.m4a"
+      },
+      "card": {
+        "text": "m",
+        "picture": {
+          "key": "moon",
+          "label": "moon",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "m",
+        "guide": "m",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-46-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /m/?",
+        "say": "{m|ˈɛm} says {/m/|mːː}. Which one starts with {/m/|mːː}?",
+        "audio": "voice/line-e292aa834e3625e7.m4a"
+      },
+      "card": {
+        "text": "m",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-46-r3-o1",
+            "label": "moon",
+            "picture": {
+              "key": "moon",
+              "label": "moon",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-46-r3-o2",
+            "label": "jam",
+            "picture": {
+              "key": "jam",
+              "label": "jam",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-46-r3-o3",
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "moon"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-46-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make small m",
+        "say": "Join the dots to make small {m|ˈɛm}.",
+        "audio": "voice/line-5e19b09897a41f4d.m4a"
+      },
+      "card": {
+        "text": "m",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "m",
+        "guide": "m",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-46-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every small m!",
+        "say": "Find every small {m|ˈɛm}!",
+        "audio": "voice/line-311b3aa4065b9c93.m4a"
+      },
+      "card": {
+        "text": "m",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "m",
+        "grid": [
+          "m",
+          "h",
+          "m",
+          "h",
+          "m",
+          "m",
+          "n",
+          "n",
+          "n",
+          "w",
+          "w",
+          "w"
+        ]
+      }
+    },
+    {
+      "id": "level-46-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Finish the word!",
+        "say": "Moon! Write the missing letter.",
+        "audio": "voice/line-db313b0bbf6ece55.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "moon",
+          "label": "moon",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "m",
+        "guide": "m",
+        "word": "moon",
+        "missingIndex": 0,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-46-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write small m by yourself",
+        "say": "Now write small {m|ˈɛm} all by yourself!",
+        "audio": "voice/line-4ad8da9a04cdf8e2.m4a"
+      },
+      "card": {
+        "text": "m",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "m",
+        "guide": "m",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-46-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: m says /m/ like moon!",
+        "say": "{m|ˈɛm} says {/m/|mːː}, like moon! Now you say it.",
+        "audio": "voice/line-3a9da35def51dbcc.m4a"
+      },
+      "card": {
+        "text": "m says /m/ like moon!",
+        "picture": {
+          "key": "moon",
+          "label": "moon",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "m says /m/ like moon!"
+      }
+    },
+    {
+      "id": "level-46-r9",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "l",
+          "m",
+          "n"
+        ]
+      }
+    }
+  ]
+}

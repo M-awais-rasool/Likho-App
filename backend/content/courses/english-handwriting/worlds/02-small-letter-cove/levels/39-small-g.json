@@ -1,0 +1,325 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-39",
+  "number": 39,
+  "name": "Small g",
+  "skill": "Small g and its sound",
+  "icon": "spa",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Gg",
+    "word": "goat",
+    "say": "Big {G|ʤˈiː}, small {g|ʤˈiː}! Small {g|ʤˈiː} says {/g/|ɡʌ}, like goat.",
+    "audio": "voice/line-2942389a2a30a6dd.m4a",
+    "picture": {
+      "key": "goat",
+      "label": "goat",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-39-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find small g!",
+        "say": "Big {G|ʤˈiː}, small {g|ʤˈiː}! Find small {g|ʤˈiː}.",
+        "audio": "voice/line-e663d5b5488fce91.m4a"
+      },
+      "card": {
+        "text": "G",
+        "picture": {
+          "key": "goat",
+          "label": "goat",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-39-r1-o1",
+            "label": "g",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-39-r1-o2",
+            "label": "q",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-39-r1-o3",
+            "label": "y",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-39-r1-o4",
+            "label": "p",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "g"
+        },
+        "shape": "balloon",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-39-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace small g",
+        "say": "Trace small {g|ʤˈiː}.",
+        "audio": "voice/line-61397de5c6ac8728.m4a"
+      },
+      "card": {
+        "text": "g",
+        "picture": {
+          "key": "goat",
+          "label": "goat",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "g",
+        "guide": "g",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-39-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /g/?",
+        "say": "{g|ʤˈiː} says {/g/|ɡʌ}. Which one starts with {/g/|ɡʌ}?",
+        "audio": "voice/line-d3c6f0bf09f82142.m4a"
+      },
+      "card": {
+        "text": "g",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-39-r3-o1",
+            "label": "goat",
+            "picture": {
+              "key": "goat",
+              "label": "goat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-39-r3-o2",
+            "label": "pig",
+            "picture": {
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-39-r3-o3",
+            "label": "egg",
+            "picture": {
+              "key": "egg",
+              "label": "egg",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "goat"
+        },
+        "shape": "bucket",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-39-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make small g",
+        "say": "Join the dots to make small {g|ʤˈiː}.",
+        "audio": "voice/line-308e656324cee821.m4a"
+      },
+      "card": {
+        "text": "g",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "g",
+        "guide": "g",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-39-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every small g!",
+        "say": "Find every small {g|ʤˈiː}!",
+        "audio": "voice/line-8824cab9243b0ea5.m4a"
+      },
+      "card": {
+        "text": "g",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "g",
+        "grid": [
+          "p",
+          "y",
+          "g",
+          "q",
+          "q",
+          "p",
+          "g",
+          "y",
+          "g",
+          "q",
+          "p",
+          "g"
+        ]
+      }
+    },
+    {
+      "id": "level-39-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Finish the word!",
+        "say": "Goat! Write the missing letter.",
+        "audio": "voice/line-7383836902939bf6.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "goat",
+          "label": "goat",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "g",
+        "guide": "g",
+        "word": "goat",
+        "missingIndex": 0,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-39-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write small g by yourself",
+        "say": "Now write small {g|ʤˈiː} all by yourself!",
+        "audio": "voice/line-627b193d961ad65d.m4a"
+      },
+      "card": {
+        "text": "g",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "g",
+        "guide": "g",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-39-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: g says /g/ like goat!",
+        "say": "{g|ʤˈiː} says {/g/|ɡʌ}, like goat! Now you say it.",
+        "audio": "voice/line-4b4a1287493f6964.m4a"
+      },
+      "card": {
+        "text": "g says /g/ like goat!",
+        "picture": {
+          "key": "goat",
+          "label": "goat",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "g says /g/ like goat!"
+      }
+    },
+    {
+      "id": "level-39-r9",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "f",
+          "g",
+          "h"
+        ]
+      }
+    }
+  ]
+}

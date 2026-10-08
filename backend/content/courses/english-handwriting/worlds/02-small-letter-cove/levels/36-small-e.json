@@ -1,0 +1,325 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-36",
+  "number": 36,
+  "name": "Small e",
+  "skill": "Small e and its sound",
+  "icon": "spa",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Ee",
+    "word": "egg",
+    "say": "Big {E|ˈiː}, small {e|ˈiː}! Small {e|ˈiː} says {/e/|ɛ}, like egg.",
+    "audio": "voice/line-a5d59b98757ac5b4.m4a",
+    "picture": {
+      "key": "egg",
+      "label": "egg",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-36-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find small e!",
+        "say": "Big {E|ˈiː}, small {e|ˈiː}! Find small {e|ˈiː}.",
+        "audio": "voice/line-a4ee99493d477a91.m4a"
+      },
+      "card": {
+        "text": "E",
+        "picture": {
+          "key": "egg",
+          "label": "egg",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-36-r1-o1",
+            "label": "c",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-36-r1-o2",
+            "label": "o",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-36-r1-o3",
+            "label": "e",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-36-r1-o4",
+            "label": "a",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "e"
+        },
+        "shape": "shell",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-36-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace small e",
+        "say": "Trace small {e|ˈiː}.",
+        "audio": "voice/line-d89c16d912cc67be.m4a"
+      },
+      "card": {
+        "text": "e",
+        "picture": {
+          "key": "egg",
+          "label": "egg",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "e",
+        "guide": "e",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-36-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /e/?",
+        "say": "{e|ˈiː} says {/e/|ɛ}. Which one starts with {/e/|ɛ}?",
+        "audio": "voice/line-4289f5986f2cbdd5.m4a"
+      },
+      "card": {
+        "text": "e",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-36-r3-o1",
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-36-r3-o2",
+            "label": "apple",
+            "picture": {
+              "key": "apple",
+              "label": "apple",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-36-r3-o3",
+            "label": "egg",
+            "picture": {
+              "key": "egg",
+              "label": "egg",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "egg"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-36-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make small e",
+        "say": "Join the dots to make small {e|ˈiː}.",
+        "audio": "voice/line-6132a2261702e073.m4a"
+      },
+      "card": {
+        "text": "e",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "e",
+        "guide": "e",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-36-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every small e!",
+        "say": "Find every small {e|ˈiː}!",
+        "audio": "voice/line-57e7d7d77341144a.m4a"
+      },
+      "card": {
+        "text": "e",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "e",
+        "grid": [
+          "e",
+          "e",
+          "o",
+          "o",
+          "a",
+          "c",
+          "a",
+          "c",
+          "c",
+          "a",
+          "e",
+          "e"
+        ]
+      }
+    },
+    {
+      "id": "level-36-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Finish the word!",
+        "say": "Egg! Write the missing letter.",
+        "audio": "voice/line-229d47679e5e83b3.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "egg",
+          "label": "egg",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "e",
+        "guide": "e",
+        "word": "egg",
+        "missingIndex": 0,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-36-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write small e by yourself",
+        "say": "Now write small {e|ˈiː} all by yourself!",
+        "audio": "voice/line-1aab3a54c1084ebc.m4a"
+      },
+      "card": {
+        "text": "e",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "e",
+        "guide": "e",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-36-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: e says /e/ like egg!",
+        "say": "{e|ˈiː} says {/e/|ɛ}, like egg! Now you say it.",
+        "audio": "voice/line-b888d276ba3450f5.m4a"
+      },
+      "card": {
+        "text": "e says /e/ like egg!",
+        "picture": {
+          "key": "egg",
+          "label": "egg",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "e says /e/ like egg!"
+      }
+    },
+    {
+      "id": "level-36-r9",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "d",
+          "e",
+          "f"
+        ]
+      }
+    }
+  ]
+}

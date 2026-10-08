@@ -1,0 +1,325 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-50",
+  "number": 50,
+  "name": "Small p",
+  "skill": "Small p and its sound",
+  "icon": "spa",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Pp",
+    "word": "pig",
+    "say": "Big {P|pˈiː}, small {p|pˈiː}! Small {p|pˈiː} says {/p/|pʌ}, like pig.",
+    "audio": "voice/line-62646ba321f4ccc7.m4a",
+    "picture": {
+      "key": "pig",
+      "label": "pig",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-50-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find small p!",
+        "say": "Big {P|pˈiː}, small {p|pˈiː}! Find small {p|pˈiː}.",
+        "audio": "voice/line-bdd7b958972b47f0.m4a"
+      },
+      "card": {
+        "text": "P",
+        "picture": {
+          "key": "pig",
+          "label": "pig",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-50-r1-o1",
+            "label": "p",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-50-r1-o2",
+            "label": "d",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-50-r1-o3",
+            "label": "b",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-50-r1-o4",
+            "label": "q",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "p"
+        },
+        "shape": "shell",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-50-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace small p",
+        "say": "Trace small {p|pˈiː}.",
+        "audio": "voice/line-31b4b55bf104edbe.m4a"
+      },
+      "card": {
+        "text": "p",
+        "picture": {
+          "key": "pig",
+          "label": "pig",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "p",
+        "guide": "p",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-50-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /p/?",
+        "say": "{p|pˈiː} says {/p/|pʌ}. Which one starts with {/p/|pʌ}?",
+        "audio": "voice/line-3f4758ddb5061779.m4a"
+      },
+      "card": {
+        "text": "p",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-50-r3-o1",
+            "label": "moon",
+            "picture": {
+              "key": "moon",
+              "label": "moon",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-50-r3-o2",
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-50-r3-o3",
+            "label": "pig",
+            "picture": {
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "pig"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-50-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make small p",
+        "say": "Join the dots to make small {p|pˈiː}.",
+        "audio": "voice/line-e4e62fc427aba5a1.m4a"
+      },
+      "card": {
+        "text": "p",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "p",
+        "guide": "p",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-50-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every small p!",
+        "say": "Find every small {p|pˈiː}!",
+        "audio": "voice/line-36ae70b022c4ca1f.m4a"
+      },
+      "card": {
+        "text": "p",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "p",
+        "grid": [
+          "p",
+          "p",
+          "d",
+          "d",
+          "q",
+          "q",
+          "q",
+          "b",
+          "p",
+          "b",
+          "p",
+          "b"
+        ]
+      }
+    },
+    {
+      "id": "level-50-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Finish the word!",
+        "say": "Pig! Write the missing letter.",
+        "audio": "voice/line-c031acb1c5729cfd.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "pig",
+          "label": "pig",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "p",
+        "guide": "p",
+        "word": "pig",
+        "missingIndex": 0,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-50-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write small p by yourself",
+        "say": "Now write small {p|pˈiː} all by yourself!",
+        "audio": "voice/line-d55e540006c7672c.m4a"
+      },
+      "card": {
+        "text": "p",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "p",
+        "guide": "p",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-50-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: p says /p/ like pig!",
+        "say": "{p|pˈiː} says {/p/|pʌ}, like pig! Now you say it.",
+        "audio": "voice/line-6fb28eec69925fbf.m4a"
+      },
+      "card": {
+        "text": "p says /p/ like pig!",
+        "picture": {
+          "key": "pig",
+          "label": "pig",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "p says /p/ like pig!"
+      }
+    },
+    {
+      "id": "level-50-r9",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "o",
+          "p",
+          "q"
+        ]
+      }
+    }
+  ]
+}

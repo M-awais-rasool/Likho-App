@@ -1,0 +1,325 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-52",
+  "number": 52,
+  "name": "Small r",
+  "skill": "Small r and its sound",
+  "icon": "spa",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Rr",
+    "word": "robot",
+    "say": "Big {R|ˈɑːɹ}, small {r|ˈɑːɹ}! Small {r|ˈɑːɹ} says {/r/|ɹːː}, like robot.",
+    "audio": "voice/line-e988dffc8d4118ed.m4a",
+    "picture": {
+      "key": "robot",
+      "label": "robot",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-52-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find small r!",
+        "say": "Big {R|ˈɑːɹ}, small {r|ˈɑːɹ}! Find small {r|ˈɑːɹ}.",
+        "audio": "voice/line-b24c208f44e30e7e.m4a"
+      },
+      "card": {
+        "text": "R",
+        "picture": {
+          "key": "robot",
+          "label": "robot",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-52-r1-o1",
+            "label": "m",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-52-r1-o2",
+            "label": "r",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-52-r1-o3",
+            "label": "n",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-52-r1-o4",
+            "label": "v",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "r"
+        },
+        "shape": "cloud",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-52-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace small r",
+        "say": "Trace small {r|ˈɑːɹ}.",
+        "audio": "voice/line-0b0f80a6fcd30e8a.m4a"
+      },
+      "card": {
+        "text": "r",
+        "picture": {
+          "key": "robot",
+          "label": "robot",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "r",
+        "guide": "r",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-52-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /r/?",
+        "say": "{r|ˈɑːɹ} says {/r/|ɹːː}. Which one starts with {/r/|ɹːː}?",
+        "audio": "voice/line-2d348b76bd6bd3eb.m4a"
+      },
+      "card": {
+        "text": "r",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-52-r3-o1",
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-52-r3-o2",
+            "label": "robot",
+            "picture": {
+              "key": "robot",
+              "label": "robot",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-52-r3-o3",
+            "label": "insect",
+            "picture": {
+              "key": "insect",
+              "label": "insect",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "robot"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-52-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make small r",
+        "say": "Join the dots to make small {r|ˈɑːɹ}.",
+        "audio": "voice/line-299457088d250840.m4a"
+      },
+      "card": {
+        "text": "r",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "r",
+        "guide": "r",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-52-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every small r!",
+        "say": "Find every small {r|ˈɑːɹ}!",
+        "audio": "voice/line-0777979ac8252da3.m4a"
+      },
+      "card": {
+        "text": "r",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "r",
+        "grid": [
+          "m",
+          "v",
+          "v",
+          "r",
+          "r",
+          "n",
+          "v",
+          "r",
+          "m",
+          "n",
+          "r",
+          "n"
+        ]
+      }
+    },
+    {
+      "id": "level-52-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Finish the word!",
+        "say": "Robot! Write the missing letter.",
+        "audio": "voice/line-907e3e7c896ba07f.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "robot",
+          "label": "robot",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "r",
+        "guide": "r",
+        "word": "robot",
+        "missingIndex": 0,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-52-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write small r by yourself",
+        "say": "Now write small {r|ˈɑːɹ} all by yourself!",
+        "audio": "voice/line-04ea2ec42e415e61.m4a"
+      },
+      "card": {
+        "text": "r",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "r",
+        "guide": "r",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-52-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: r says /r/ like robot!",
+        "say": "{r|ˈɑːɹ} says {/r/|ɹːː}, like robot! Now you say it.",
+        "audio": "voice/line-5f2ebe7c32d832b0.m4a"
+      },
+      "card": {
+        "text": "r says /r/ like robot!",
+        "picture": {
+          "key": "robot",
+          "label": "robot",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "r says /r/ like robot!"
+      }
+    },
+    {
+      "id": "level-52-r9",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "q",
+          "r",
+          "s"
+        ]
+      }
+    }
+  ]
+}
