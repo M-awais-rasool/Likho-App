@@ -14,7 +14,9 @@ import 'app_feedback.dart';
 ///   (resets after a mistake), + a pop on balloon levels
 /// * wrong answer: the friendly "not yet"
 /// * each tile placed / letter spelled: a kalimba step, rising
-/// * mic opens: a "ready" blip; next round: a paper swish
+/// * each letter found in a hunt: a kalimba step, rising
+/// * mic opens: a "ready" blip; next round: a paper swish (halfway through
+///   a long level: the milestone fanfare)
 /// * the boss wakes after the last round of a boss level
 /// * writing: a soft pencil-on-paper texture while the finger moves
 class GameFeedback extends ConsumerStatefulWidget {
@@ -44,7 +46,7 @@ class _GameFeedbackState extends ConsumerState<GameFeedback> {
   void _onSession(SessionState? prev, SessionState next) {
     if (prev == null) return;
     if (next.round != prev.round) {
-      _fb.roundNext();
+      next.isHalfway ? _fb.milestone() : _fb.roundNext();
       return;
     }
     if (next.mistakes > prev.mistakes) {
@@ -52,12 +54,13 @@ class _GameFeedbackState extends ConsumerState<GameFeedback> {
       _fb.wrong();
     }
     if (next.placed.length > prev.placed.length) _fb.step(next.placed.length);
+    if (next.found.length > prev.found.length && !next.correct) _fb.step(next.found.length);
     if (next.spellFilled > prev.spellFilled && !next.correct) _fb.step(next.spellFilled);
     if (next.listening && !prev.listening) _fb.listen();
     if (next.correct && !prev.correct) {
       _streak++;
       final r = next.current;
-      _fb.correct(streak: _streak, balloon: r is PickRound && widget.level.presentation.shape == 'balloon');
+      _fb.correct(streak: _streak, balloon: r is PickRound && (r.shape ?? widget.level.presentation.shape) == 'balloon');
       if (widget.level.isBoss && next.isLastRound) {
         _boss = Timer(const Duration(milliseconds: 280), _fb.bossWake);
       }
