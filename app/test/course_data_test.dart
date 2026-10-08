@@ -47,11 +47,20 @@ void main() {
       }
     });
 
-    test('a letter level plays its letter in many different games', () {
-      final l = course.levels.firstWhere((l) => l.name == 'Letter A');
-      expect(l.rounds.map((r) => r.type).toSet(), {'pick', 'write', 'order', 'speak', 'hunt'});
-      final modes = l.rounds.whereType<WriteRound>().map((r) => r.mode).toSet();
-      expect(modes, containsAll([WriteMode.trace, WriteMode.dots, WriteMode.free, WriteMode.missing]));
+    test('a letter level plays its letter in many different games, never like the letter before', () {
+      final letters = course.levels.where((l) => l.name.startsWith('Letter ') || l.name.startsWith('Small ')).toList();
+      String recipe(CourseLevel l) => [for (final r in l.rounds) r is WriteRound ? 'write ${r.mode.name}' : r.type].join(', ');
+      for (final (i, l) in letters.indexed) {
+        final modes = l.rounds.whereType<WriteRound>().map((r) => r.mode).toSet();
+        expect(modes, containsAll([WriteMode.trace, WriteMode.dots]), reason: l.name);
+        expect({for (final r in l.rounds) r is WriteRound ? r.mode : r.type}.length, greaterThanOrEqualTo(6), reason: l.name);
+        const newer = {'pop', 'fix', 'sort', 'match', 'truth'};
+        final fresh = l.rounds.where((r) => newer.contains(r.type) || (r is WriteRound && r.mode == WriteMode.flash)).length;
+        expect(fresh, greaterThanOrEqualTo(2), reason: '${l.name}: ${recipe(l)}');
+        if (i > 0) expect(recipe(l), isNot(recipe(letters[i - 1])), reason: '${l.name} plays like ${letters[i - 1].name}');
+      }
+      // every new game is somewhere in the letter worlds
+      expect({for (final l in letters) ...l.rounds.map((r) => r.type)}, containsAll(['pop', 'fix', 'sort', 'match', 'truth']));
     });
 
     test('parents see each letter from its own levels', () {
@@ -165,6 +174,7 @@ void main() {
     test('every single letter of the course has strokes to follow', () {
       for (final r in rounds) {
         if (r.sentence || r.story) continue;
+        if (r.mode == WriteMode.flash && (r.target?.length ?? 0) > 1) continue; // a word from memory: written freely
         final letters = r.mode == WriteMode.spell ? r.word!.length : 1;
         for (var i = 0; i < letters; i++) {
           expect(WritePadController.guideKey(r, course.glyphs, letter: i), isNotNull, reason: '${r.id} letter $i');

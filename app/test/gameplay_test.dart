@@ -57,7 +57,7 @@ void main() {
     tester.view.physicalSize = const Size(390, 844);
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.reset);
-    final level = onlyRounds(testCourse.level(5), (r) => r is HuntRound);
+    final level = onlyRounds(levelWith((r) => r is HuntRound), (r) => r is HuntRound);
     final r = level.rounds.single as HuntRound;
     LevelResult? result;
     await tester.pumpWidget(ProviderScope(

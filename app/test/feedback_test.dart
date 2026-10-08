@@ -95,8 +95,8 @@ void main() {
 
   testWidgets('gameplay: the chime climbs with each right answer in a row and resets after a mistake', (t) async {
     final (c, sound, haptics) = _container();
-    // the picks of the letters A and B, the first on balloons
-    final picks = [for (final n in [1, 2]) ...testCourse.level(n).rounds.whereType<PickRound>()];
+    // four picks of the first letters, the first on balloons
+    final picks = [for (final n in [1, 2, 3, 4, 5]) ...testCourse.level(n).rounds.whereType<PickRound>()].take(4).toList();
     final level = levelWithRounds(testCourse.level(1), picks);
     await t.pumpWidget(
       UncontrolledProviderScope(
