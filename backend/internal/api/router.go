@@ -52,9 +52,14 @@ func NewRouter(h *handler.Handlers, admin *handler.AdminHandler, tokens service.
 
 	v1 := r.Group("/v1")
 
-	// public: the learning content and signing in
+	// public: the learning content, its pictures and recordings, and signing in
 	v1.GET("/courses", h.Courses.List)
 	v1.GET("/courses/:courseId", h.Courses.Get)
+	if h.Media != nil {
+		v1.GET("/media", h.Media.Manifest)
+		r.GET("/media/*path", h.Media.File)
+		r.HEAD("/media/*path", h.Media.File)
+	}
 
 	auth := v1.Group("/auth", middleware.RateLimit(c, "auth", authPerMinute, time.Minute))
 	auth.POST("/google", h.Auth.GoogleSignIn) // the only way in: sign in = sign up
