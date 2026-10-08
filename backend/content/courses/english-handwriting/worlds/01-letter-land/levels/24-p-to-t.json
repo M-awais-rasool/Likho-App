@@ -1,0 +1,316 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-24",
+  "number": 24,
+  "name": "P to T",
+  "skill": "Review",
+  "icon": "auto_awesome",
+  "isBoss": false,
+  "requiresSubscription": false,
+  "intro": {
+    "text": "P Q R S T",
+    "word": "star",
+    "say": "P to T! Let's play with {P|pˈiː}, {Q|kjˈuː}, {R|ˈɑːɹ}, {S|ˈɛs}, {T|tˈiː}.",
+    "audio": "voice/line-ff36b165aa1b3d23.m4a",
+    "picture": {
+      "key": "star",
+      "label": "star",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-24-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which letter do you hear?",
+        "say": "Listen! Find {T|tˈiː}.",
+        "audio": "voice/line-3a92ca373c45a67c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-24-r1-o1",
+            "label": "R",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-24-r1-o2",
+            "label": "T",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-24-r1-o3",
+            "label": "Q",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-24-r1-o4",
+            "label": "P",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "T"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-24-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace Q",
+        "say": "Trace {Q|kjˈuː}.",
+        "audio": "voice/line-7ec629db633296bc.m4a"
+      },
+      "card": {
+        "text": "Q",
+        "picture": {
+          "key": "queen",
+          "label": "queen",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "Q",
+        "guide": "Q",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-24-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /r/?",
+        "say": "Which one starts with {/r/|ɹːː}?",
+        "audio": "voice/line-a095229e9b8af86f.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-24-r3-o1",
+            "label": "robot",
+            "picture": {
+              "key": "robot",
+              "label": "robot",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-24-r3-o2",
+            "label": "pig",
+            "picture": {
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-24-r3-o3",
+            "label": "box",
+            "picture": {
+              "key": "box",
+              "label": "box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "robot"
+        },
+        "shape": "bucket",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-24-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make S",
+        "say": "Join the dots to make {S|ˈɛs}.",
+        "audio": "voice/line-fd870b687f98f97c.m4a"
+      },
+      "card": {
+        "text": "S",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "S",
+        "guide": "S",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-24-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every P!",
+        "say": "Find every {P|pˈiː}!",
+        "audio": "voice/line-925ad0c9b535f1c0.m4a"
+      },
+      "card": {
+        "text": "P",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "P",
+        "grid": [
+          "B",
+          "D",
+          "R",
+          "P",
+          "S",
+          "P",
+          "P",
+          "Q",
+          "P",
+          "Q",
+          "T",
+          "R"
+        ]
+      }
+    },
+    {
+      "id": "level-24-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Write the letter you hear",
+        "say": "Listen, then write it! {T|tˈiː}.",
+        "audio": "voice/line-e479f0205f664dcd.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "free",
+        "target": "T",
+        "guide": "T",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-24-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "P",
+          "Q",
+          "R"
+        ]
+      }
+    },
+    {
+      "id": "level-24-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: P, Q, R, S, T!",
+        "say": "Say all the letters with me! {P|pˈiː}, {Q|kjˈuː}, {R|ˈɑːɹ}, {S|ˈɛs}, {T|tˈiː}!",
+        "audio": "voice/line-3b7e8e12691e5b3b.m4a"
+      },
+      "card": {
+        "text": "P, Q, R, S, T!",
+        "picture": null,
+        "listen": true
+      },
+      "speak": {
+        "expected": "P, Q, R, S, T!"
+      }
+    },
+    {
+      "id": "level-24-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "audio": "voice/line-ab7242535fe9991a.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bottle_message",
+          "label": "bottle message",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "Q",
+        "guide": "Q",
+        "word": "PQR",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

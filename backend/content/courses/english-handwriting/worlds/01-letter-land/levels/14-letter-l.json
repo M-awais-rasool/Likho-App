@@ -1,0 +1,325 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-14",
+  "number": 14,
+  "name": "Letter L",
+  "skill": "Capital L",
+  "icon": "edit",
+  "isBoss": false,
+  "requiresSubscription": false,
+  "intro": {
+    "text": "L",
+    "word": "lion",
+    "say": "{L|ˈɛl}! {L|ˈɛl} is for lion. Let's learn {L|ˈɛl}!",
+    "audio": "voice/line-df09e275fe4bb99f.m4a",
+    "picture": {
+      "key": "lion",
+      "label": "lion",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-14-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find L!",
+        "say": "Find {L|ˈɛl}!",
+        "audio": "voice/line-14f7e91621126d72.m4a"
+      },
+      "card": {
+        "text": "L",
+        "picture": {
+          "key": "lion",
+          "label": "lion",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-14-r1-o1",
+            "label": "I",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-14-r1-o2",
+            "label": "E",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-14-r1-o3",
+            "label": "L",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-14-r1-o4",
+            "label": "T",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "L"
+        },
+        "shape": "cloud",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-14-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace L",
+        "say": "Trace {L|ˈɛl}.",
+        "audio": "voice/line-2a8255fb782d36f0.m4a"
+      },
+      "card": {
+        "text": "L",
+        "picture": {
+          "key": "lion",
+          "label": "lion",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "L",
+        "guide": "L",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-14-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /l/?",
+        "say": "{L|ˈɛl} says {/l/|lːː}. Which one starts with {/l/|lːː}?",
+        "audio": "voice/line-f6fc9f69104d289c.m4a"
+      },
+      "card": {
+        "text": "L",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-14-r3-o1",
+            "label": "moon",
+            "picture": {
+              "key": "moon",
+              "label": "moon",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-14-r3-o2",
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-14-r3-o3",
+            "label": "lion",
+            "picture": {
+              "key": "lion",
+              "label": "lion",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "lion"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-14-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make L",
+        "say": "Join the dots to make {L|ˈɛl}.",
+        "audio": "voice/line-70032248f64a71e7.m4a"
+      },
+      "card": {
+        "text": "L",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "L",
+        "guide": "L",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-14-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every L!",
+        "say": "Find every {L|ˈɛl}!",
+        "audio": "voice/line-da6b7e02cab888a0.m4a"
+      },
+      "card": {
+        "text": "L",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "L",
+        "grid": [
+          "I",
+          "L",
+          "L",
+          "T",
+          "L",
+          "E",
+          "I",
+          "L",
+          "T",
+          "E",
+          "I",
+          "T"
+        ]
+      }
+    },
+    {
+      "id": "level-14-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "{K|kˈeɪ}, ..., {M|ˈɛm}! Which letter is missing?",
+        "audio": "voice/line-9a459bf980ee1ac5.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bottle_message",
+          "label": "bottle message",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "L",
+        "guide": "L",
+        "word": "KLM",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-14-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write L by yourself",
+        "say": "Now write {L|ˈɛl} all by yourself!",
+        "audio": "voice/line-4801445464d046c2.m4a"
+      },
+      "card": {
+        "text": "L",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "L",
+        "guide": "L",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-14-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: L is for lion!",
+        "say": "{L|ˈɛl} is for lion! Now you say it.",
+        "audio": "voice/line-4bf8e272e2a69cfe.m4a"
+      },
+      "card": {
+        "text": "L is for lion!",
+        "picture": {
+          "key": "lion",
+          "label": "lion",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "L is for lion!"
+      }
+    },
+    {
+      "id": "level-14-r9",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "K",
+          "L",
+          "M"
+        ]
+      }
+    }
+  ]
+}

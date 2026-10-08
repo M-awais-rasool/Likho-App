@@ -1,0 +1,317 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-31",
+  "number": 31,
+  "name": "Wake the Snail",
+  "skill": "Boss · capitals",
+  "icon": "bedtime",
+  "isBoss": true,
+  "requiresSubscription": false,
+  "intro": {
+    "text": "A B C",
+    "word": "snail",
+    "say": "{Shh|ʃːː}, the snail is sleeping. Let's wake it up with our capital letters!",
+    "audio": "voice/line-cdffaf1f3015d268.m4a",
+    "picture": {
+      "key": "snail",
+      "label": "snail",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-31-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which letter do you hear?",
+        "say": "Listen! Find {Z|zˈiː}.",
+        "audio": "voice/line-05d8cbcbccfd4e06.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-31-r1-o1",
+            "label": "Z",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-31-r1-o2",
+            "label": "U",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-31-r1-o3",
+            "label": "W",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-31-r1-o4",
+            "label": "V",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Z"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-31-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace V",
+        "say": "Trace {V|vˈiː}.",
+        "audio": "voice/line-d2fca6ac9fca853a.m4a"
+      },
+      "card": {
+        "text": "V",
+        "picture": {
+          "key": "violin",
+          "label": "violin",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "V",
+        "guide": "V",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-31-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /w/?",
+        "say": "Which one starts with {/w/|wʌ}?",
+        "audio": "voice/line-a152a50f4b5f0f7f.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-31-r3-o1",
+            "label": "whale",
+            "picture": {
+              "key": "whale",
+              "label": "whale",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-31-r3-o2",
+            "label": "lion",
+            "picture": {
+              "key": "lion",
+              "label": "lion",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-31-r3-o3",
+            "label": "egg",
+            "picture": {
+              "key": "egg",
+              "label": "egg",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "whale"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-31-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make X",
+        "say": "Join the dots to make {X|ˈɛks}.",
+        "audio": "voice/line-ddd872d0efd1cf56.m4a"
+      },
+      "card": {
+        "text": "X",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "X",
+        "guide": "X",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-31-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every U!",
+        "say": "Find every {U|jˈuː}!",
+        "audio": "voice/line-b4b35e2d31a7d6dc.m4a"
+      },
+      "card": {
+        "text": "U",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "U",
+        "grid": [
+          "U",
+          "U",
+          "X",
+          "O",
+          "Y",
+          "U",
+          "U",
+          "V",
+          "J",
+          "Z",
+          "W",
+          "V"
+        ]
+      }
+    },
+    {
+      "id": "level-31-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Write the letter you hear",
+        "say": "Listen, then write it! {Y|wˈaɪ}.",
+        "audio": "voice/line-3407e3569bf0bd5a.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "free",
+        "target": "Y",
+        "guide": "Y",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-31-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "U",
+          "V",
+          "W"
+        ]
+      }
+    },
+    {
+      "id": "level-31-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: U, V, W, X, Y, Z!",
+        "say": "Say all the letters with me! {U|jˈuː}, {V|vˈiː}, {W|dˈʌbəljuː}, {X|ˈɛks}, {Y|wˈaɪ}, {Z|zˈiː}!",
+        "audio": "voice/line-06adeab1004cbac3.m4a"
+      },
+      "card": {
+        "text": "U, V, W, X, Y, Z!",
+        "picture": null,
+        "listen": true
+      },
+      "speak": {
+        "expected": "U, V, W, X, Y, Z!"
+      }
+    },
+    {
+      "id": "level-31-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Finish the word!",
+        "say": "Cat! Write the missing letter to wake it up!",
+        "audio": "voice/line-6acd3d2d51947077.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "C",
+        "guide": "C",
+        "word": "CAT",
+        "missingIndex": 0,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,325 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-10",
+  "number": 10,
+  "name": "Letter I",
+  "skill": "Capital I",
+  "icon": "edit",
+  "isBoss": false,
+  "requiresSubscription": false,
+  "intro": {
+    "text": "I",
+    "word": "insect",
+    "say": "{I|ˈaɪ}! {I|ˈaɪ} is for insect. Let's learn {I|ˈaɪ}!",
+    "audio": "voice/line-4e030bd7f4fb45ae.m4a",
+    "picture": {
+      "key": "insect",
+      "label": "insect",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-10-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find I!",
+        "say": "Find {I|ˈaɪ}!",
+        "audio": "voice/line-00d04d57008a1555.m4a"
+      },
+      "card": {
+        "text": "I",
+        "picture": {
+          "key": "insect",
+          "label": "insect",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-10-r1-o1",
+            "label": "H",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-10-r1-o2",
+            "label": "L",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-10-r1-o3",
+            "label": "I",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-10-r1-o4",
+            "label": "T",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "I"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-10-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace I",
+        "say": "Trace {I|ˈaɪ}.",
+        "audio": "voice/line-f9a86c5abfebb94f.m4a"
+      },
+      "card": {
+        "text": "I",
+        "picture": {
+          "key": "insect",
+          "label": "insect",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "I",
+        "guide": "I",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-10-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /i/?",
+        "say": "{I|ˈaɪ} says {/i/|ɪ}. Which one starts with {/i/|ɪ}?",
+        "audio": "voice/line-2b6f83c885258bec.m4a"
+      },
+      "card": {
+        "text": "I",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-10-r3-o1",
+            "label": "goat",
+            "picture": {
+              "key": "goat",
+              "label": "goat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-10-r3-o2",
+            "label": "insect",
+            "picture": {
+              "key": "insect",
+              "label": "insect",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-10-r3-o3",
+            "label": "egg",
+            "picture": {
+              "key": "egg",
+              "label": "egg",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "insect"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-10-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make I",
+        "say": "Join the dots to make {I|ˈaɪ}.",
+        "audio": "voice/line-d0433987a5cacbfa.m4a"
+      },
+      "card": {
+        "text": "I",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "I",
+        "guide": "I",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-10-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every I!",
+        "say": "Find every {I|ˈaɪ}!",
+        "audio": "voice/line-907ca448747ffe91.m4a"
+      },
+      "card": {
+        "text": "I",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "I",
+        "grid": [
+          "T",
+          "I",
+          "H",
+          "L",
+          "L",
+          "H",
+          "I",
+          "T",
+          "L",
+          "I",
+          "I",
+          "T"
+        ]
+      }
+    },
+    {
+      "id": "level-10-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "{H|ˈeɪʧ}, ..., {J|ʤˈeɪ}! Which letter is missing?",
+        "audio": "voice/line-1e0d629240b9da4a.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bottle_message",
+          "label": "bottle message",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "I",
+        "guide": "I",
+        "word": "HIJ",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-10-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write I by yourself",
+        "say": "Now write {I|ˈaɪ} all by yourself!",
+        "audio": "voice/line-3ace6da0d8dd4b40.m4a"
+      },
+      "card": {
+        "text": "I",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I",
+        "guide": "I",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-10-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: I is for insect!",
+        "say": "{I|ˈaɪ} is for insect! Now you say it.",
+        "audio": "voice/line-c90980253fc81b8d.m4a"
+      },
+      "card": {
+        "text": "I is for insect!",
+        "picture": {
+          "key": "insect",
+          "label": "insect",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "I is for insect!"
+      }
+    },
+    {
+      "id": "level-10-r9",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "H",
+          "I",
+          "J"
+        ]
+      }
+    }
+  ]
+}

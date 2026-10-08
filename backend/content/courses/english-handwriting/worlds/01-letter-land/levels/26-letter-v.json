@@ -1,0 +1,325 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-26",
+  "number": 26,
+  "name": "Letter V",
+  "skill": "Capital V",
+  "icon": "edit",
+  "isBoss": false,
+  "requiresSubscription": false,
+  "intro": {
+    "text": "V",
+    "word": "violin",
+    "say": "{V|vˈiː}! {V|vˈiː} is for violin. Let's learn {V|vˈiː}!",
+    "audio": "voice/line-a2ad0a2189b1f169.m4a",
+    "picture": {
+      "key": "violin",
+      "label": "violin",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-26-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find V!",
+        "say": "Find {V|vˈiː}!",
+        "audio": "voice/line-cd8d47d4643d6db1.m4a"
+      },
+      "card": {
+        "text": "V",
+        "picture": {
+          "key": "violin",
+          "label": "violin",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-26-r1-o1",
+            "label": "Y",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-26-r1-o2",
+            "label": "W",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-26-r1-o3",
+            "label": "V",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-26-r1-o4",
+            "label": "U",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "V"
+        },
+        "shape": "shell",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-26-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace V",
+        "say": "Trace {V|vˈiː}.",
+        "audio": "voice/line-d2fca6ac9fca853a.m4a"
+      },
+      "card": {
+        "text": "V",
+        "picture": {
+          "key": "violin",
+          "label": "violin",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "V",
+        "guide": "V",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-26-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /v/?",
+        "say": "{V|vˈiː} says {/v/|vːː}. Which one starts with {/v/|vːː}?",
+        "audio": "voice/line-1fa631ef270a2086.m4a"
+      },
+      "card": {
+        "text": "V",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-26-r3-o1",
+            "label": "goat",
+            "picture": {
+              "key": "goat",
+              "label": "goat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-26-r3-o2",
+            "label": "violin",
+            "picture": {
+              "key": "violin",
+              "label": "violin",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-26-r3-o3",
+            "label": "pig",
+            "picture": {
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "violin"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-26-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make V",
+        "say": "Join the dots to make {V|vˈiː}.",
+        "audio": "voice/line-9528676938f2e478.m4a"
+      },
+      "card": {
+        "text": "V",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "V",
+        "guide": "V",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-26-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every V!",
+        "say": "Find every {V|vˈiː}!",
+        "audio": "voice/line-cf714231fb9ca570.m4a"
+      },
+      "card": {
+        "text": "V",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "V",
+        "grid": [
+          "V",
+          "U",
+          "Y",
+          "U",
+          "Y",
+          "V",
+          "Y",
+          "W",
+          "W",
+          "V",
+          "W",
+          "V"
+        ]
+      }
+    },
+    {
+      "id": "level-26-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "{U|jˈuː}, ..., {W|dˈʌbəljuː}! Which letter is missing?",
+        "audio": "voice/line-8ce200b56d5e604e.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bottle_message",
+          "label": "bottle message",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "V",
+        "guide": "V",
+        "word": "UVW",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-26-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write V by yourself",
+        "say": "Now write {V|vˈiː} all by yourself!",
+        "audio": "voice/line-361ebc78f88da482.m4a"
+      },
+      "card": {
+        "text": "V",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "V",
+        "guide": "V",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-26-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: V is for violin!",
+        "say": "{V|vˈiː} is for violin! Now you say it.",
+        "audio": "voice/line-72f08a24f323a74d.m4a"
+      },
+      "card": {
+        "text": "V is for violin!",
+        "picture": {
+          "key": "violin",
+          "label": "violin",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "V is for violin!"
+      }
+    },
+    {
+      "id": "level-26-r9",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "U",
+          "V",
+          "W"
+        ]
+      }
+    }
+  ]
+}
