@@ -76,6 +76,81 @@
     },
     {
       "id": "level-133-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/j/|ʤʌ}?",
+        "audio": "voice/line-ad0f5467c4b713b8.m4a"
+      },
+      "card": {
+        "text": "d j",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "d",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "j",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "jump",
+            "picture": {
+              "key": "jump",
+              "label": "jump",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "jam",
+            "picture": {
+              "key": "jam",
+              "label": "jam",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-133-r3",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -98,7 +173,7 @@
       }
     },
     {
-      "id": "level-133-r3",
+      "id": "level-133-r4",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -126,7 +201,7 @@
       }
     },
     {
-      "id": "level-133-r4",
+      "id": "level-133-r5",
       "type": "speak",
       "prompt": {
         "text": "Say: It is hot.",
@@ -147,52 +222,57 @@
       }
     },
     {
-      "id": "level-133-r5",
-      "type": "pick",
+      "id": "level-133-r6",
+      "type": "write",
       "prompt": {
-        "text": "Yes or no?",
-        "say": "Look at the picture. Sara goes to school. Yes or no?",
-        "audio": "voice/line-738a426e81ddf9d6.m4a"
+        "text": "Look, then write down",
+        "say": "Look at the word down. Then write it from memory!",
+        "audio": "voice/line-7a7e40edfc29c9cb.m4a"
       },
       "card": {
+        "text": null,
+        "picture": {
+          "key": "down",
+          "label": "down",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "down",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-133-r7",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. Sara goes to school. True, or silly?",
+        "audio": "voice/line-640228c41fca8eb2.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
         "text": "Sara goes to school.",
         "picture": {
           "key": "school",
           "label": "school",
           "url": null
         },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-133-r5-o1",
-            "label": "Yes",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-133-r5-o2",
-            "label": "No",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "Yes"
-        },
-        "shape": "cloud",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "answer": true
       }
     },
     {
-      "id": "level-133-r6",
+      "id": "level-133-r8",
       "type": "pick",
       "prompt": {
         "text": "The cat is on the bed.",
@@ -207,7 +287,18 @@
       "pick": {
         "options": [
           {
-            "id": "level-133-r6-o1",
+            "id": "level-133-r8-o1",
+            "label": "cat in bed",
+            "picture": {
+              "key": "cat_in_bed",
+              "label": "cat in bed",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-133-r8-o2",
             "label": "cat on box",
             "picture": {
               "key": "cat_on_box",
@@ -218,22 +309,11 @@
             "hideLabel": true
           },
           {
-            "id": "level-133-r6-o2",
+            "id": "level-133-r8-o3",
             "label": "dog on box",
             "picture": {
               "key": "dog_on_box",
               "label": "dog on box",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-133-r6-o3",
-            "label": "cat in bed",
-            "picture": {
-              "key": "cat_in_bed",
-              "label": "cat in bed",
               "url": null
             },
             "color": null,
@@ -252,7 +332,30 @@
       }
     },
     {
-      "id": "level-133-r7",
+      "id": "level-133-r9",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every you!",
+        "say": "Pop every bubble that says you!",
+        "audio": "voice/line-c98e4b698661b0ee.m4a"
+      },
+      "card": {
+        "text": "you",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "you",
+        "others": [
+          "who",
+          "down",
+          "jump"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-133-r10",
       "type": "hunt",
       "prompt": {
         "text": "Find every like!",
@@ -267,43 +370,16 @@
       "hunt": {
         "target": "like",
         "grid": [
-          "look",
-          "under",
+          "you",
           "down",
           "like",
+          "look",
+          "under",
           "jumping",
           "like",
           "like",
-          "said",
-          "you"
+          "said"
         ]
-      }
-    },
-    {
-      "id": "level-133-r8",
-      "type": "write",
-      "prompt": {
-        "text": "Spell jump",
-        "say": "Jump! Write it one letter at a time.",
-        "audio": "voice/line-cc81fb1811517725.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "jump",
-          "label": "jump",
-          "url": null
-        },
-        "listen": false
-      },
-      "write": {
-        "mode": "spell",
-        "target": "jump",
-        "guide": null,
-        "word": "jump",
-        "missingIndex": null,
-        "sentence": false,
-        "story": false
       }
     }
   ]

@@ -78,6 +78,29 @@
       "id": "level-136-r2",
       "type": "write",
       "prompt": {
+        "text": "Look, then write what",
+        "say": "Look at the word what. Then write it from memory!",
+        "audio": "voice/line-6468b14d1ebfca5e.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "what",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-136-r3",
+      "type": "write",
+      "prompt": {
         "text": "Write the sentence",
         "say": "The frog sits on a log. Now write it!",
         "audio": "voice/line-6ded6c74c984bbe2.m4a"
@@ -98,7 +121,7 @@
       }
     },
     {
-      "id": "level-136-r3",
+      "id": "level-136-r4",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -125,52 +148,53 @@
       }
     },
     {
-      "id": "level-136-r4",
-      "type": "pick",
+      "id": "level-136-r5",
+      "type": "pop",
       "prompt": {
-        "text": "Yes or no?",
-        "say": "Look at the picture. The frog sits on a log. Yes or no?",
-        "audio": "voice/line-bd68d1fa77475417.m4a"
+        "text": "Pop every like!",
+        "say": "Pop every bubble that says like!",
+        "audio": "voice/line-6952123e68839811.m4a"
       },
       "card": {
+        "text": "like",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "like",
+        "others": [
+          "look",
+          "down",
+          "jump"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-136-r6",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. The frog sits on a log. True, or silly?",
+        "audio": "voice/line-a75cd016defa13c1.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
         "text": "The frog sits on a log.",
         "picture": {
           "key": "frog",
           "label": "frog",
           "url": null
         },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-136-r4-o1",
-            "label": "Yes",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-136-r4-o2",
-            "label": "No",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "Yes"
-        },
-        "shape": "cloud",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "answer": true
       }
     },
     {
-      "id": "level-136-r5",
+      "id": "level-136-r7",
       "type": "pick",
       "prompt": {
         "text": "The cat is on the bed.",
@@ -185,18 +209,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-136-r5-o1",
-            "label": "cat on box",
-            "picture": {
-              "key": "cat_on_box",
-              "label": "cat on box",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-136-r5-o2",
+            "id": "level-136-r7-o1",
             "label": "cat in bed",
             "picture": {
               "key": "cat_in_bed",
@@ -207,7 +220,18 @@
             "hideLabel": true
           },
           {
-            "id": "level-136-r5-o3",
+            "id": "level-136-r7-o2",
+            "label": "cat on box",
+            "picture": {
+              "key": "cat_on_box",
+              "label": "cat on box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-136-r7-o3",
             "label": "dog on box",
             "picture": {
               "key": "dog_on_box",
@@ -230,7 +254,55 @@
       }
     },
     {
-      "id": "level-136-r6",
+      "id": "level-136-r8",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to the same word with a capital letter.",
+        "audio": "voice/line-d82ba5aa00efefb3.m4a"
+      },
+      "card": {
+        "text": "the = The",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "you",
+              "picture": null
+            },
+            "b": {
+              "text": "You",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "look",
+              "picture": null
+            },
+            "b": {
+              "text": "Look",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "said",
+              "picture": null
+            },
+            "b": {
+              "text": "Said",
+              "picture": null
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-136-r9",
       "type": "hunt",
       "prompt": {
         "text": "Find every like!",
@@ -245,47 +317,20 @@
       "hunt": {
         "target": "like",
         "grid": [
-          "look",
-          "down",
-          "like",
-          "like",
-          "you",
           "jumping",
+          "you",
           "under",
           "like",
-          "said"
+          "look",
+          "said",
+          "down",
+          "like",
+          "like"
         ]
       }
     },
     {
-      "id": "level-136-r7",
-      "type": "write",
-      "prompt": {
-        "text": "Spell jump",
-        "say": "Jump! Write it one letter at a time.",
-        "audio": "voice/line-cc81fb1811517725.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "jump",
-          "label": "jump",
-          "url": null
-        },
-        "listen": false
-      },
-      "write": {
-        "mode": "spell",
-        "target": "jump",
-        "guide": null,
-        "word": "jump",
-        "missingIndex": null,
-        "sentence": false,
-        "story": false
-      }
-    },
-    {
-      "id": "level-136-r8",
+      "id": "level-136-r10",
       "type": "speak",
       "prompt": {
         "text": "Say: I can read a story!",

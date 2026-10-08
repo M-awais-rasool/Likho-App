@@ -56,6 +56,29 @@
     },
     {
       "id": "level-135-r2",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. I see a red car. True, or silly?",
+        "audio": "voice/line-2c187fa2803a599d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "I see a red car.",
+        "picture": {
+          "key": "red_car",
+          "label": "red car",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-135-r3",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -78,7 +101,7 @@
       }
     },
     {
-      "id": "level-135-r3",
+      "id": "level-135-r4",
       "type": "speak",
       "prompt": {
         "text": "Say: The fish is in the sea.",
@@ -99,7 +122,7 @@
       }
     },
     {
-      "id": "level-135-r4",
+      "id": "level-135-r5",
       "type": "pick",
       "prompt": {
         "text": "The fish is in the sea.",
@@ -114,7 +137,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-135-r4-o1",
+            "id": "level-135-r5-o1",
             "label": "fish in sea",
             "picture": {
               "key": "fish_in_sea",
@@ -125,7 +148,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-135-r4-o2",
+            "id": "level-135-r5-o2",
             "label": "red car",
             "picture": {
               "key": "red_car",
@@ -136,7 +159,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-135-r4-o3",
+            "id": "level-135-r5-o3",
             "label": "cat on box",
             "picture": {
               "key": "cat_on_box",
@@ -159,7 +182,91 @@
       }
     },
     {
-      "id": "level-135-r5",
+      "id": "level-135-r6",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/w/|wʌ} or {/l/|lːː}?",
+        "audio": "voice/line-1b1c51ab935d596c.m4a"
+      },
+      "card": {
+        "text": "w l",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "w",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "l",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "lamp",
+            "picture": {
+              "key": "lamp",
+              "label": "lamp",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "watch",
+            "picture": {
+              "key": "watch",
+              "label": "watch",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "log",
+            "picture": {
+              "key": "log",
+              "label": "log",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "leg",
+            "picture": {
+              "key": "leg",
+              "label": "leg",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "whale",
+            "picture": {
+              "key": "whale",
+              "label": "whale",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "web",
+            "picture": {
+              "key": "web",
+              "label": "web",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-135-r7",
       "type": "pick",
       "prompt": {
         "text": "Which mark ends it?",
@@ -174,21 +281,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-135-r5-o1",
+            "id": "level-135-r7-o1",
             "label": "?",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-135-r5-o2",
+            "id": "level-135-r7-o2",
             "label": ".",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-135-r5-o3",
+            "id": "level-135-r7-o3",
             "label": "!",
             "picture": null,
             "color": null,
@@ -207,7 +314,7 @@
       }
     },
     {
-      "id": "level-135-r6",
+      "id": "level-135-r8",
       "type": "hunt",
       "prompt": {
         "text": "Find every like!",
@@ -235,7 +342,7 @@
       }
     },
     {
-      "id": "level-135-r7",
+      "id": "level-135-r9",
       "type": "write",
       "prompt": {
         "text": "Spell jump",
@@ -262,51 +369,26 @@
       }
     },
     {
-      "id": "level-135-r8",
-      "type": "pick",
+      "id": "level-135-r10",
+      "type": "write",
       "prompt": {
-        "text": "Find the word you hear",
-        "say": "Listen! Find the word Monday.",
-        "audio": "voice/line-c8ffde019149633c.m4a"
+        "text": "Look, then write who",
+        "say": "Look at the word who. Then write it from memory!",
+        "audio": "voice/line-4563f325ff6fe97c.m4a"
       },
       "card": {
         "text": null,
         "picture": null,
         "listen": true
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-135-r8-o1",
-            "label": "said",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-135-r8-o2",
-            "label": "Monday",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-135-r8-o3",
-            "label": "under",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "Monday"
-        },
-        "shape": "balloon",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+      "write": {
+        "mode": "flash",
+        "target": "who",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
       }
     }
   ]

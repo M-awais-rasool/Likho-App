@@ -75,6 +75,54 @@
     },
     {
       "id": "level-132-r2",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to the same word with a capital letter.",
+        "audio": "voice/line-d82ba5aa00efefb3.m4a"
+      },
+      "card": {
+        "text": "the = The",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "you",
+              "picture": null
+            },
+            "b": {
+              "text": "You",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "look",
+              "picture": null
+            },
+            "b": {
+              "text": "Look",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "said",
+              "picture": null
+            },
+            "b": {
+              "text": "Said",
+              "picture": null
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-132-r3",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -97,7 +145,7 @@
       }
     },
     {
-      "id": "level-132-r3",
+      "id": "level-132-r4",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -124,7 +172,7 @@
       }
     },
     {
-      "id": "level-132-r4",
+      "id": "level-132-r5",
       "type": "speak",
       "prompt": {
         "text": "Say: Sam can swim.",
@@ -145,52 +193,68 @@
       }
     },
     {
-      "id": "level-132-r5",
-      "type": "pick",
+      "id": "level-132-r6",
+      "type": "fix",
       "prompt": {
-        "text": "Yes or no?",
-        "say": "Look at the picture. Ali has a kite. Yes or no?",
-        "audio": "voice/line-642398fb86bcb181.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
       },
       "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "you",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "look",
+            "wrong": "mirror",
+            "at": 3
+          },
+          {
+            "text": "said",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "like",
+            "wrong": "mirror",
+            "at": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-132-r7",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. Ali has a kite. True, or silly?",
+        "audio": "voice/line-f8928145aace98c2.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
         "text": "Ali has a kite.",
         "picture": {
           "key": "kite",
           "label": "kite",
           "url": null
         },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-132-r5-o1",
-            "label": "No",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-132-r5-o2",
-            "label": "Yes",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "Yes"
-        },
-        "shape": "cloud",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "answer": true
       }
     },
     {
-      "id": "level-132-r6",
+      "id": "level-132-r8",
       "type": "pick",
       "prompt": {
         "text": "The cat is on the bed.",
@@ -205,7 +269,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-132-r6-o1",
+            "id": "level-132-r8-o1",
             "label": "cat on box",
             "picture": {
               "key": "cat_on_box",
@@ -216,22 +280,22 @@
             "hideLabel": true
           },
           {
-            "id": "level-132-r6-o2",
-            "label": "cat in bed",
+            "id": "level-132-r8-o2",
+            "label": "dog on box",
             "picture": {
-              "key": "cat_in_bed",
-              "label": "cat in bed",
+              "key": "dog_on_box",
+              "label": "dog on box",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-132-r6-o3",
-            "label": "dog on box",
+            "id": "level-132-r8-o3",
+            "label": "cat in bed",
             "picture": {
-              "key": "dog_on_box",
-              "label": "dog on box",
+              "key": "cat_in_bed",
+              "label": "cat in bed",
               "url": null
             },
             "color": null,
@@ -250,7 +314,91 @@
       }
     },
     {
-      "id": "level-132-r7",
+      "id": "level-132-r9",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/s/|sːː} or {/d/|dʌ}?",
+        "audio": "voice/line-b506d5a2b1764767.m4a"
+      },
+      "card": {
+        "text": "s d",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "s",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "d",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "seed",
+            "picture": {
+              "key": "seed",
+              "label": "seed",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "sock",
+            "picture": {
+              "key": "sock",
+              "label": "sock",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-132-r10",
       "type": "hunt",
       "prompt": {
         "text": "Find every like!",
@@ -275,33 +423,6 @@
           "look",
           "like"
         ]
-      }
-    },
-    {
-      "id": "level-132-r8",
-      "type": "write",
-      "prompt": {
-        "text": "Spell jump",
-        "say": "Jump! Write it one letter at a time.",
-        "audio": "voice/line-cc81fb1811517725.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "jump",
-          "label": "jump",
-          "url": null
-        },
-        "listen": false
-      },
-      "write": {
-        "mode": "spell",
-        "target": "jump",
-        "guide": null,
-        "word": "jump",
-        "missingIndex": null,
-        "sentence": false,
-        "story": false
       }
     }
   ]

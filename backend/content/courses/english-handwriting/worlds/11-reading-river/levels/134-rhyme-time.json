@@ -91,6 +91,29 @@
     },
     {
       "id": "level-134-r2",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every look!",
+        "say": "Pop every bubble that says look!",
+        "audio": "voice/line-5f4f7927532f36b6.m4a"
+      },
+      "card": {
+        "text": "look",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "look",
+        "others": [
+          "like",
+          "down",
+          "jump"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-134-r3",
       "type": "pick",
       "prompt": {
         "text": "Which word fits?",
@@ -105,21 +128,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-134-r2-o1",
+            "id": "level-134-r3-o1",
             "label": "sun",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-134-r2-o2",
+            "id": "level-134-r3-o2",
             "label": "hat",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-134-r2-o3",
+            "id": "level-134-r3-o3",
             "label": "dog",
             "picture": null,
             "color": null,
@@ -138,7 +161,7 @@
       }
     },
     {
-      "id": "level-134-r3",
+      "id": "level-134-r4",
       "type": "speak",
       "prompt": {
         "text": "Say: Twinkle, twinkle, little star!",
@@ -159,7 +182,7 @@
       }
     },
     {
-      "id": "level-134-r4",
+      "id": "level-134-r5",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -188,7 +211,55 @@
       }
     },
     {
-      "id": "level-134-r5",
+      "id": "level-134-r6",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to the same word with a capital letter.",
+        "audio": "voice/line-d82ba5aa00efefb3.m4a"
+      },
+      "card": {
+        "text": "the = The",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "you",
+              "picture": null
+            },
+            "b": {
+              "text": "You",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "look",
+              "picture": null
+            },
+            "b": {
+              "text": "Look",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "said",
+              "picture": null
+            },
+            "b": {
+              "text": "Said",
+              "picture": null
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-134-r7",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -211,7 +282,7 @@
       }
     },
     {
-      "id": "level-134-r6",
+      "id": "level-134-r8",
       "type": "hunt",
       "prompt": {
         "text": "Find every at!",
@@ -239,7 +310,7 @@
       }
     },
     {
-      "id": "level-134-r7",
+      "id": "level-134-r9",
       "type": "write",
       "prompt": {
         "text": "Spell jump",
@@ -266,51 +337,41 @@
       }
     },
     {
-      "id": "level-134-r8",
-      "type": "pick",
+      "id": "level-134-r10",
+      "type": "fix",
       "prompt": {
-        "text": "Find the word you hear",
-        "say": "Listen! Find the word Monday.",
-        "audio": "voice/line-c8ffde019149633c.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
       },
       "card": {
-        "text": null,
+        "text": "Fix it!",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "fix": {
+        "items": [
           {
-            "id": "level-134-r8-o1",
-            "label": "like",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
+            "text": "you",
+            "wrong": null,
+            "at": null
           },
           {
-            "id": "level-134-r8-o2",
-            "label": "Monday",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
+            "text": "look",
+            "wrong": "mirror",
+            "at": 3
           },
           {
-            "id": "level-134-r8-o3",
-            "label": "down",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
+            "text": "said",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "like",
+            "wrong": "mirror",
+            "at": 3
           }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "Monday"
-        },
-        "shape": "cloud",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        ]
       }
     }
   ]

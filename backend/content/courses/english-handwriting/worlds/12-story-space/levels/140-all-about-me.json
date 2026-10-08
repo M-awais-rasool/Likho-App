@@ -50,6 +50,90 @@
     },
     {
       "id": "level-140-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/l/|lːː} or {/d/|dʌ}?",
+        "audio": "voice/line-5f8f3ed64cb22854.m4a"
+      },
+      "card": {
+        "text": "l d",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "l",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "d",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "log",
+            "picture": {
+              "key": "log",
+              "label": "log",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "lemon",
+            "picture": {
+              "key": "lemon",
+              "label": "lemon",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "lamp",
+            "picture": {
+              "key": "lamp",
+              "label": "lamp",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-140-r3",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -75,7 +159,7 @@
       }
     },
     {
-      "id": "level-140-r3",
+      "id": "level-140-r4",
       "type": "speak",
       "prompt": {
         "text": "Say: I am six.",
@@ -96,7 +180,7 @@
       }
     },
     {
-      "id": "level-140-r4",
+      "id": "level-140-r5",
       "type": "hunt",
       "prompt": {
         "text": "Find every under!",
@@ -124,7 +208,30 @@
       }
     },
     {
-      "id": "level-140-r5",
+      "id": "level-140-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write like",
+        "say": "Look at the word like. Then write it from memory!",
+        "audio": "voice/line-9a2f243b1f870b80.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "like",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-140-r7",
       "type": "write",
       "prompt": {
         "text": "Spell what",
@@ -147,7 +254,7 @@
       }
     },
     {
-      "id": "level-140-r6",
+      "id": "level-140-r8",
       "type": "pick",
       "prompt": {
         "text": "I see a red car.",
@@ -162,7 +269,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-140-r6-o1",
+            "id": "level-140-r8-o1",
             "label": "hot sun",
             "picture": {
               "key": "hot_sun",
@@ -173,7 +280,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-140-r6-o2",
+            "id": "level-140-r8-o2",
             "label": "dog running",
             "picture": {
               "key": "dog_running",
@@ -184,7 +291,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-140-r6-o3",
+            "id": "level-140-r8-o3",
             "label": "red car",
             "picture": {
               "key": "red_car",
@@ -207,7 +314,7 @@
       }
     },
     {
-      "id": "level-140-r7",
+      "id": "level-140-r9",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -222,21 +329,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-140-r7-o1",
+            "id": "level-140-r9-o1",
             "label": "forest",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-140-r7-o2",
+            "id": "level-140-r9-o2",
             "label": "Monday",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-140-r7-o3",
+            "id": "level-140-r9-o3",
             "label": "jump",
             "picture": null,
             "color": null,
@@ -255,51 +362,26 @@
       }
     },
     {
-      "id": "level-140-r8",
-      "type": "pick",
+      "id": "level-140-r10",
+      "type": "pop",
       "prompt": {
-        "text": "Which mark ends it?",
-        "say": "The dog can run. Which mark goes at the end?",
-        "audio": "voice/line-f31c208fc8040d04.m4a"
+        "text": "Pop every what!",
+        "say": "Pop every bubble that says what!",
+        "audio": "voice/line-dd1707dfc8e91f61.m4a"
       },
       "card": {
-        "text": "The dog can run ___",
+        "text": "what",
         "picture": null,
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-140-r8-o1",
-            "label": "?",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-140-r8-o2",
-            "label": ".",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-140-r8-o3",
-            "label": "!",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "what",
+        "others": [
+          "down",
+          "jump",
+          "like"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "."
-        },
-        "shape": "balloon",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 4
       }
     }
   ]

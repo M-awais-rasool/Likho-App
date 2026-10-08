@@ -75,6 +75,81 @@
     },
     {
       "id": "level-138-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/j/|ʤʌ}?",
+        "audio": "voice/line-ad0f5467c4b713b8.m4a"
+      },
+      "card": {
+        "text": "d j",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "d",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "j",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "jump",
+            "picture": {
+              "key": "jump",
+              "label": "jump",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "jam",
+            "picture": {
+              "key": "jam",
+              "label": "jam",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-138-r3",
       "type": "write",
       "prompt": {
         "text": "Spell first",
@@ -97,7 +172,7 @@
       }
     },
     {
-      "id": "level-138-r3",
+      "id": "level-138-r4",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -120,7 +195,7 @@
       }
     },
     {
-      "id": "level-138-r4",
+      "id": "level-138-r5",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -148,7 +223,30 @@
       }
     },
     {
-      "id": "level-138-r5",
+      "id": "level-138-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write look",
+        "say": "Look at the word look. Then write it from memory!",
+        "audio": "voice/line-c6c8f27c36221a71.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "look",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-138-r7",
       "type": "speak",
       "prompt": {
         "text": "Say: First, next, last!",
@@ -169,7 +267,7 @@
       }
     },
     {
-      "id": "level-138-r6",
+      "id": "level-138-r8",
       "type": "hunt",
       "prompt": {
         "text": "Find every like!",
@@ -197,7 +295,7 @@
       }
     },
     {
-      "id": "level-138-r7",
+      "id": "level-138-r9",
       "type": "pick",
       "prompt": {
         "text": "I see a red car.",
@@ -212,7 +310,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-138-r7-o1",
+            "id": "level-138-r9-o1",
             "label": "red car",
             "picture": {
               "key": "red_car",
@@ -223,7 +321,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-138-r7-o2",
+            "id": "level-138-r9-o2",
             "label": "hot sun",
             "picture": {
               "key": "hot_sun",
@@ -234,7 +332,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-138-r7-o3",
+            "id": "level-138-r9-o3",
             "label": "dog running",
             "picture": {
               "key": "dog_running",
@@ -257,51 +355,26 @@
       }
     },
     {
-      "id": "level-138-r8",
-      "type": "pick",
+      "id": "level-138-r10",
+      "type": "pop",
       "prompt": {
-        "text": "Find the word you hear",
-        "say": "Listen! Find the word Monday.",
-        "audio": "voice/line-c8ffde019149633c.m4a"
+        "text": "Pop every under!",
+        "say": "Pop every bubble that says under!",
+        "audio": "voice/line-06c2f94d5d1fdada.m4a"
       },
       "card": {
-        "text": null,
+        "text": "under",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-138-r8-o1",
-            "label": "like",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-138-r8-o2",
-            "label": "you",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-138-r8-o3",
-            "label": "Monday",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "under",
+        "others": [
+          "where",
+          "down",
+          "jump"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "Monday"
-        },
-        "shape": "fish",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 4
       }
     }
   ]

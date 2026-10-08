@@ -54,6 +54,29 @@
     },
     {
       "id": "level-141-r2",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every where!",
+        "say": "Pop every bubble that says where!",
+        "audio": "voice/line-454bdc114d0d625d.m4a"
+      },
+      "card": {
+        "text": "where",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "where",
+        "others": [
+          "first",
+          "under",
+          "what"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-141-r3",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -76,7 +99,7 @@
       }
     },
     {
-      "id": "level-141-r3",
+      "id": "level-141-r4",
       "type": "speak",
       "prompt": {
         "text": "Say: This is my mother.",
@@ -97,7 +120,7 @@
       }
     },
     {
-      "id": "level-141-r4",
+      "id": "level-141-r5",
       "type": "hunt",
       "prompt": {
         "text": "Find every under!",
@@ -125,7 +148,67 @@
       }
     },
     {
-      "id": "level-141-r5",
+      "id": "level-141-r6",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "down",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "down",
+                "label": "down",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "jump",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "jump",
+                "label": "jump",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "forest",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "forest",
+                "label": "forest",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-141-r7",
       "type": "write",
       "prompt": {
         "text": "Spell what",
@@ -148,7 +231,7 @@
       }
     },
     {
-      "id": "level-141-r6",
+      "id": "level-141-r8",
       "type": "pick",
       "prompt": {
         "text": "I see a red car.",
@@ -163,7 +246,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-141-r6-o1",
+            "id": "level-141-r8-o1",
             "label": "red car",
             "picture": {
               "key": "red_car",
@@ -174,7 +257,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-141-r6-o2",
+            "id": "level-141-r8-o2",
             "label": "hot sun",
             "picture": {
               "key": "hot_sun",
@@ -185,7 +268,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-141-r6-o3",
+            "id": "level-141-r8-o3",
             "label": "dog running",
             "picture": {
               "key": "dog_running",
@@ -208,7 +291,7 @@
       }
     },
     {
-      "id": "level-141-r7",
+      "id": "level-141-r9",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -223,21 +306,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-141-r7-o1",
+            "id": "level-141-r9-o1",
             "label": "Monday",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-141-r7-o2",
+            "id": "level-141-r9-o2",
             "label": "forest",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-141-r7-o3",
+            "id": "level-141-r9-o3",
             "label": "down",
             "picture": null,
             "color": null,
@@ -256,51 +339,41 @@
       }
     },
     {
-      "id": "level-141-r8",
-      "type": "pick",
+      "id": "level-141-r10",
+      "type": "fix",
       "prompt": {
-        "text": "Which mark ends it?",
-        "say": "The dog can run. Which mark goes at the end?",
-        "audio": "voice/line-f31c208fc8040d04.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
       },
       "card": {
-        "text": "The dog can run ___",
+        "text": "Fix it!",
         "picture": null,
         "listen": false
       },
-      "pick": {
-        "options": [
+      "fix": {
+        "items": [
           {
-            "id": "level-141-r8-o1",
-            "label": "?",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
+            "text": "said",
+            "wrong": "mirror",
+            "at": 1
           },
           {
-            "id": "level-141-r8-o2",
-            "label": "!",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
+            "text": "like",
+            "wrong": null,
+            "at": null
           },
           {
-            "id": "level-141-r8-o3",
-            "label": ".",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
+            "text": "down",
+            "wrong": "mirror",
+            "at": 0
+          },
+          {
+            "text": "under",
+            "wrong": null,
+            "at": null
           }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "."
-        },
-        "shape": "bubble",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        ]
       }
     }
   ]
