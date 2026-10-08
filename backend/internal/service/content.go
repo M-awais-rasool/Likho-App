@@ -224,8 +224,9 @@ func (s *ContentService) Revision() int64 {
 
 // Known values the app understands (see the app's LikhoWorlds, BossFigure).
 var (
-	WorldThemes = []string{"letterLand", "smallLetterCove", "phonicsForest", "wordTown", "sentenceSky", "storySpace"}
-	WorldBosses = []string{"snail", "fish", "bear", "robotBus", "cloud", "moon"}
+	WorldThemes = []string{"letterLand", "smallLetterCove", "phonicsForest", "wordTown", "sentenceSky", "storySpace",
+		"soundMountain", "blendBeach", "sightGarden", "actionJungle", "questionIsland", "readingRiver"}
+	WorldBosses = []string{"snail", "fish", "bear", "robotBus", "cloud", "moon", "goat", "crab", "ladybug", "monkey", "turtle", "frog"}
 )
 
 type ContentCourse struct {
