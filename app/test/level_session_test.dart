@@ -100,7 +100,7 @@ void main() {
 
   test('hunt: every matching letter must be found, a wrong one is a mistake', () {
     fakeAsync((clock) {
-      final level = onlyRounds(testCourse.level(5), (r) => r is HuntRound);
+      final level = onlyRounds(levelWith((r) => r is HuntRound), (r) => r is HuntRound);
       final c = ProviderContainer();
       addTearDown(c.dispose);
       final sub = c.listen(levelSessionProvider(level), (_, _) {});
