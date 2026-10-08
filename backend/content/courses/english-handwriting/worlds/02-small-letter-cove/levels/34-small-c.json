@@ -113,62 +113,25 @@
     },
     {
       "id": "level-34-r3",
-      "type": "pick",
+      "type": "truth",
       "prompt": {
-        "text": "What starts with /c/?",
-        "say": "{c|sˈiː} says {/c/|kʌ}. Which one starts with {/c/|kʌ}?",
-        "audio": "voice/line-c566afa798262705.m4a"
+        "text": "True or silly?",
+        "say": "Cat starts with small {c|sˈiː}. True, or silly?",
+        "audio": "voice/line-7f41084e134769fa.m4a"
       },
       "card": {
-        "text": "c",
+        "text": null,
         "picture": null,
         "listen": true
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-34-r3-o1",
-            "label": "cat",
-            "picture": {
-              "key": "cat",
-              "label": "cat",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-34-r3-o2",
-            "label": "nest",
-            "picture": {
-              "key": "nest",
-              "label": "nest",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-34-r3-o3",
-            "label": "jam",
-            "picture": {
-              "key": "jam",
-              "label": "jam",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "cat"
+      "truth": {
+        "text": "Cat starts with c.",
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
         },
-        "shape": "jar",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "answer": true
       }
     },
     {
@@ -210,28 +173,103 @@
       "hunt": {
         "target": "c",
         "grid": [
-          "a",
+          "o",
+          "c",
+          "c",
+          "c",
           "e",
           "o",
           "c",
-          "c",
-          "o",
-          "c",
-          "o",
           "e",
           "a",
-          "c",
-          "e"
+          "e",
+          "a",
+          "o"
         ]
       }
     },
     {
       "id": "level-34-r6",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/c/|kʌ} or {/b/|bʌ}?",
+        "audio": "voice/line-762e4a4c7adc5164.m4a"
+      },
+      "card": {
+        "text": "c b",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "c",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "b",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "cup",
+            "picture": {
+              "key": "cup",
+              "label": "cup",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "cow",
+            "picture": {
+              "key": "cow",
+              "label": "cow",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bag",
+            "picture": {
+              "key": "bag",
+              "label": "bag",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bug",
+            "picture": {
+              "key": "bug",
+              "label": "bug",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-34-r7",
       "type": "write",
       "prompt": {
-        "text": "Finish the word!",
-        "say": "Cat! Write the missing letter.",
-        "audio": "voice/line-5799925b6c277c78.m4a"
+        "text": "Look, then write small c",
+        "say": "Look at small {c|sˈiː}. Then write it from memory!",
+        "audio": "voice/line-c77023c0cce54bc0.m4a"
       },
       "card": {
         "text": null,
@@ -243,30 +281,7 @@
         "listen": false
       },
       "write": {
-        "mode": "missing",
-        "target": "c",
-        "guide": "c",
-        "word": "cat",
-        "missingIndex": 0,
-        "sentence": false,
-        "story": false
-      }
-    },
-    {
-      "id": "level-34-r7",
-      "type": "write",
-      "prompt": {
-        "text": "Write small c by yourself",
-        "say": "Now write small {c|sˈiː} all by yourself!",
-        "audio": "voice/line-06da6e2f22907514.m4a"
-      },
-      "card": {
-        "text": "c",
-        "picture": null,
-        "listen": false
-      },
-      "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "c",
         "guide": "c",
         "word": null,
@@ -294,31 +309,6 @@
       },
       "speak": {
         "expected": "c says /c/ like cat!"
-      }
-    },
-    {
-      "id": "level-34-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "b",
-          "c",
-          "d"
-        ]
       }
     }
   ]

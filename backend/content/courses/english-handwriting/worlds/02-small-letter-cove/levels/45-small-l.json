@@ -27,14 +27,14 @@
   "rounds": [
     {
       "id": "level-45-r1",
-      "type": "pick",
+      "type": "pop",
       "prompt": {
-        "text": "Find small l!",
-        "say": "Big {L|ˈɛl}, small {l|ˈɛl}! Find small {l|ˈɛl}.",
-        "audio": "voice/line-f1cfbb329bcaeaf9.m4a"
+        "text": "Pop every small l!",
+        "say": "Pop every small {l|ˈɛl} bubble!",
+        "audio": "voice/line-6b9e878107dfce87.m4a"
       },
       "card": {
-        "text": "L",
+        "text": "l",
         "picture": {
           "key": "lion",
           "label": "lion",
@@ -42,46 +42,14 @@
         },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-45-r1-o1",
-            "label": "k",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-45-r1-o2",
-            "label": "t",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-45-r1-o3",
-            "label": "i",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-45-r1-o4",
-            "label": "l",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "l",
+        "others": [
+          "i",
+          "t",
+          "k"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "l"
-        },
-        "shape": "cloud",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 5
       }
     },
     {
@@ -113,62 +81,33 @@
     },
     {
       "id": "level-45-r3",
-      "type": "pick",
+      "type": "hunt",
       "prompt": {
-        "text": "What starts with /l/?",
-        "say": "{l|ˈɛl} says {/l/|lːː}. Which one starts with {/l/|lːː}?",
-        "audio": "voice/line-f6fc9f69104d289c.m4a"
+        "text": "Find every small l!",
+        "say": "Find every small {l|ˈɛl}!",
+        "audio": "voice/line-c15b3a01c3d72c00.m4a"
       },
       "card": {
         "text": "l",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-45-r3-o1",
-            "label": "lion",
-            "picture": {
-              "key": "lion",
-              "label": "lion",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-45-r3-o2",
-            "label": "fish",
-            "picture": {
-              "key": "fish",
-              "label": "fish",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-45-r3-o3",
-            "label": "apple",
-            "picture": {
-              "key": "apple",
-              "label": "apple",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "lion"
-        },
-        "shape": "planet",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+      "hunt": {
+        "target": "l",
+        "grid": [
+          "t",
+          "k",
+          "l",
+          "k",
+          "l",
+          "t",
+          "l",
+          "i",
+          "t",
+          "i",
+          "i",
+          "l"
+        ]
       }
     },
     {
@@ -196,60 +135,100 @@
     },
     {
       "id": "level-45-r5",
-      "type": "hunt",
+      "type": "truth",
       "prompt": {
-        "text": "Find every small l!",
-        "say": "Find every small {l|ˈɛl}!",
-        "audio": "voice/line-c15b3a01c3d72c00.m4a"
+        "text": "True or silly?",
+        "say": "Apple starts with small {l|ˈɛl}. True, or silly?",
+        "audio": "voice/line-c11e5f418e73dcdd.m4a"
       },
       "card": {
-        "text": "l",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "hunt": {
-        "target": "l",
-        "grid": [
-          "i",
-          "l",
-          "l",
-          "l",
-          "k",
-          "t",
-          "k",
-          "l",
-          "t",
-          "t",
-          "i",
-          "i"
-        ]
+      "truth": {
+        "text": "Apple starts with l.",
+        "picture": {
+          "key": "apple",
+          "label": "apple",
+          "url": null
+        },
+        "answer": false
       }
     },
     {
       "id": "level-45-r6",
-      "type": "write",
+      "type": "sort",
       "prompt": {
-        "text": "Finish the word!",
-        "say": "Lion! Write the missing letter.",
-        "audio": "voice/line-0bc6d88bb384cbed.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/l/|lːː} or {/k/|kʌ}?",
+        "audio": "voice/line-dd8583dbbe71adcd.m4a"
       },
       "card": {
-        "text": null,
-        "picture": {
-          "key": "lion",
-          "label": "lion",
-          "url": null
-        },
+        "text": "l k",
+        "picture": null,
         "listen": false
       },
-      "write": {
-        "mode": "missing",
-        "target": "l",
-        "guide": "l",
-        "word": "lion",
-        "missingIndex": 0,
-        "sentence": false,
-        "story": false
+      "sort": {
+        "bins": [
+          {
+            "label": "l",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "k",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "king",
+            "picture": {
+              "key": "king",
+              "label": "king",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "lamp",
+            "picture": {
+              "key": "lamp",
+              "label": "lamp",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "kite",
+            "picture": {
+              "key": "kite",
+              "label": "kite",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "lemon",
+            "picture": {
+              "key": "lemon",
+              "label": "lemon",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "lion",
+            "picture": {
+              "key": "lion",
+              "label": "lion",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
       }
     },
     {
@@ -294,31 +273,6 @@
       },
       "speak": {
         "expected": "l says /l/ like lion!"
-      }
-    },
-    {
-      "id": "level-45-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "k",
-          "l",
-          "m"
-        ]
       }
     }
   ]

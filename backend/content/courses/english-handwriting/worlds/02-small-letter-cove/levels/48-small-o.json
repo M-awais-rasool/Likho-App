@@ -196,77 +196,131 @@
     },
     {
       "id": "level-48-r5",
-      "type": "hunt",
+      "type": "match",
       "prompt": {
-        "text": "Find every small o!",
-        "say": "Find every small {o|ˈoʊ}!",
-        "audio": "voice/line-1f51258026481182.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each big letter to its small letter.",
+        "audio": "voice/line-4140f52a5074e7c8.m4a"
       },
       "card": {
-        "text": "o",
+        "text": "Oo",
         "picture": null,
         "listen": false
       },
-      "hunt": {
-        "target": "o",
-        "grid": [
-          "c",
-          "c",
-          "e",
-          "o",
-          "o",
-          "o",
-          "c",
-          "a",
-          "a",
-          "o",
-          "a",
-          "e"
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "N",
+              "picture": null
+            },
+            "b": {
+              "text": "n",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "O",
+              "picture": null
+            },
+            "b": {
+              "text": "o",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "P",
+              "picture": null
+            },
+            "b": {
+              "text": "p",
+              "picture": null
+            }
+          }
         ]
       }
     },
     {
       "id": "level-48-r6",
-      "type": "write",
+      "type": "sort",
       "prompt": {
-        "text": "Finish the word!",
-        "say": "Dog! Write the missing letter.",
-        "audio": "voice/line-cca5a7c6e253ca57.m4a"
+        "text": "Sort the letters!",
+        "say": "Put each letter in its basket: small {o|ˈoʊ} or {a|ˈeɪ}!",
+        "audio": "voice/line-face5765e7aa9bce.m4a"
       },
       "card": {
-        "text": null,
-        "picture": {
-          "key": "dog",
-          "label": "dog",
-          "url": null
-        },
+        "text": "o a",
+        "picture": null,
         "listen": false
       },
-      "write": {
-        "mode": "missing",
-        "target": "o",
-        "guide": "o",
-        "word": "dog",
-        "missingIndex": 1,
-        "sentence": false,
-        "story": false
+      "sort": {
+        "bins": [
+          {
+            "label": "o",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "a",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "o",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "o",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "a",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "a",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "o",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "a",
+            "picture": null,
+            "bin": 1
+          }
+        ]
       }
     },
     {
       "id": "level-48-r7",
       "type": "write",
       "prompt": {
-        "text": "Write small o by yourself",
-        "say": "Now write small {o|ˈoʊ} all by yourself!",
-        "audio": "voice/line-2cac53d97934d16e.m4a"
+        "text": "Look, then write small o",
+        "say": "Look at small {o|ˈoʊ}. Then write it from memory!",
+        "audio": "voice/line-d4fd529667275275.m4a"
       },
       "card": {
-        "text": "o",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "octopus",
+          "label": "octopus",
+          "url": null
+        },
         "listen": false
       },
       "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "o",
         "guide": "o",
         "word": null,
@@ -294,31 +348,6 @@
       },
       "speak": {
         "expected": "o says /o/ like octopus!"
-      }
-    },
-    {
-      "id": "level-48-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "n",
-          "o",
-          "p"
-        ]
       }
     }
   ]

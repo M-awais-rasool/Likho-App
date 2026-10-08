@@ -113,62 +113,81 @@
     },
     {
       "id": "level-54-r3",
-      "type": "pick",
+      "type": "sort",
       "prompt": {
-        "text": "What starts with /t/?",
-        "say": "{t|tˈiː} says {/t/|tʌ}. Which one starts with {/t/|tʌ}?",
-        "audio": "voice/line-9335f1ac7a21afb4.m4a"
+        "text": "Feed it /t/!",
+        "say": "This monster only eats things that start with {/t/|tʌ}. Feed it!",
+        "audio": "voice/line-478f074a564411a9.m4a"
       },
       "card": {
         "text": "t",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "sort": {
+        "bins": [
           {
-            "id": "level-54-r3-o1",
-            "label": "hat",
-            "picture": {
-              "key": "hat",
-              "label": "hat",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
+            "label": "t",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
           {
-            "id": "level-54-r3-o2",
-            "label": "tiger",
-            "picture": {
-              "key": "tiger",
-              "label": "tiger",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-54-r3-o3",
             "label": "umbrella",
             "picture": {
               "key": "umbrella",
               "label": "umbrella",
               "url": null
             },
-            "color": null,
-            "hideLabel": true
+            "bin": null
+          },
+          {
+            "label": "tent",
+            "picture": {
+              "key": "tent",
+              "label": "tent",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "turtle",
+            "picture": {
+              "key": "turtle",
+              "label": "turtle",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "insect",
+            "picture": {
+              "key": "insect",
+              "label": "insect",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "tiger",
+            "picture": {
+              "key": "tiger",
+              "label": "tiger",
+              "url": null
+            },
+            "bin": 0
           }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "tiger"
-        },
-        "shape": "jar",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        ]
       }
     },
     {
@@ -196,42 +215,84 @@
     },
     {
       "id": "level-54-r5",
-      "type": "hunt",
+      "type": "match",
       "prompt": {
-        "text": "Find every small t!",
-        "say": "Find every small {t|tˈiː}!",
-        "audio": "voice/line-b95bee71c5b74dba.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each big letter to its small letter.",
+        "audio": "voice/line-4140f52a5074e7c8.m4a"
       },
       "card": {
-        "text": "t",
+        "text": "Tt",
         "picture": null,
         "listen": false
       },
-      "hunt": {
-        "target": "t",
-        "grid": [
-          "t",
-          "l",
-          "f",
-          "t",
-          "t",
-          "l",
-          "t",
-          "i",
-          "l",
-          "f",
-          "f",
-          "i"
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "S",
+              "picture": null
+            },
+            "b": {
+              "text": "s",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "T",
+              "picture": null
+            },
+            "b": {
+              "text": "t",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "U",
+              "picture": null
+            },
+            "b": {
+              "text": "u",
+              "picture": null
+            }
+          }
         ]
       }
     },
     {
       "id": "level-54-r6",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "s",
+          "t",
+          "u"
+        ]
+      }
+    },
+    {
+      "id": "level-54-r7",
       "type": "write",
       "prompt": {
-        "text": "Finish the word!",
-        "say": "Tiger! Write the missing letter.",
-        "audio": "voice/line-f86838b9cc957fa8.m4a"
+        "text": "Look, then write small t",
+        "say": "Look at small {t|tˈiː}. Then write it from memory!",
+        "audio": "voice/line-9048bfbfd7d10617.m4a"
       },
       "card": {
         "text": null,
@@ -243,30 +304,7 @@
         "listen": false
       },
       "write": {
-        "mode": "missing",
-        "target": "t",
-        "guide": "t",
-        "word": "tiger",
-        "missingIndex": 0,
-        "sentence": false,
-        "story": false
-      }
-    },
-    {
-      "id": "level-54-r7",
-      "type": "write",
-      "prompt": {
-        "text": "Write small t by yourself",
-        "say": "Now write small {t|tˈiː} all by yourself!",
-        "audio": "voice/line-2fe3c82143281f6e.m4a"
-      },
-      "card": {
-        "text": "t",
-        "picture": null,
-        "listen": false
-      },
-      "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "t",
         "guide": "t",
         "word": null,
@@ -294,31 +332,6 @@
       },
       "speak": {
         "expected": "t says /t/ like tiger!"
-      }
-    },
-    {
-      "id": "level-54-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "s",
-          "t",
-          "u"
-        ]
       }
     }
   ]

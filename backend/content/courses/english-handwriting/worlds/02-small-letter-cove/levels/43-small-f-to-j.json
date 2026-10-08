@@ -109,62 +109,77 @@
     },
     {
       "id": "level-43-r3",
-      "type": "pick",
+      "type": "sort",
       "prompt": {
-        "text": "What starts with /h/?",
-        "say": "Which one starts with {/h/|hʌ}?",
-        "audio": "voice/line-3ca1c5cda30a7224.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/f/|fːː} or {/g/|ɡʌ}?",
+        "audio": "voice/line-50bc4e75f05dae0e.m4a"
       },
       "card": {
-        "text": null,
+        "text": "f g",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "sort": {
+        "bins": [
           {
-            "id": "level-43-r3-o1",
-            "label": "hat",
-            "picture": {
-              "key": "hat",
-              "label": "hat",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "label": "f",
+            "picture": null,
+            "bin": null
           },
           {
-            "id": "level-43-r3-o2",
-            "label": "robot",
-            "picture": {
-              "key": "robot",
-              "label": "robot",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-43-r3-o3",
-            "label": "octopus",
-            "picture": {
-              "key": "octopus",
-              "label": "octopus",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "label": "g",
+            "picture": null,
+            "bin": null
           }
         ],
-        "answer": {
-          "kind": "label",
-          "value": "hat"
-        },
-        "shape": "bucket",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "items": [
+          {
+            "label": "four",
+            "picture": {
+              "key": "four",
+              "label": "four",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "goat",
+            "picture": {
+              "key": "goat",
+              "label": "goat",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "gift",
+            "picture": {
+              "key": "gift",
+              "label": "gift",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "foot",
+            "picture": {
+              "key": "foot",
+              "label": "foot",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
       }
     },
     {
@@ -206,15 +221,15 @@
       "hunt": {
         "target": "f",
         "grid": [
-          "g",
-          "t",
-          "j",
           "l",
           "f",
-          "i",
           "f",
+          "t",
+          "j",
           "g",
           "f",
+          "g",
+          "i",
           "f",
           "h",
           "j"
@@ -225,17 +240,21 @@
       "id": "level-43-r6",
       "type": "write",
       "prompt": {
-        "text": "Write the letter you hear",
-        "say": "Listen, then write it! small {j|ʤˈeɪ}.",
-        "audio": "voice/line-0eb423aaa5673b82.m4a"
+        "text": "Look, then write small j",
+        "say": "Look at small {j|ʤˈeɪ}. Then write it from memory!",
+        "audio": "voice/line-701d02930ef12ca0.m4a"
       },
       "card": {
         "text": null,
-        "picture": null,
-        "listen": true
+        "picture": {
+          "key": "jam",
+          "label": "jam",
+          "url": null
+        },
+        "listen": false
       },
       "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "j",
         "guide": "j",
         "word": null,

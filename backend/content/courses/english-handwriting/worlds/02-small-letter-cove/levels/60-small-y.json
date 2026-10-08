@@ -27,14 +27,14 @@
   "rounds": [
     {
       "id": "level-60-r1",
-      "type": "pick",
+      "type": "pop",
       "prompt": {
-        "text": "Find small y!",
-        "say": "Big {Y|wˈaɪ}, small {y|wˈaɪ}! Find small {y|wˈaɪ}.",
-        "audio": "voice/line-e7098e82f9b2c616.m4a"
+        "text": "Pop every small y!",
+        "say": "Pop every small {y|wˈaɪ} bubble!",
+        "audio": "voice/line-b8f401990fd6e506.m4a"
       },
       "card": {
-        "text": "Y",
+        "text": "y",
         "picture": {
           "key": "yoyo",
           "label": "yo-yo",
@@ -42,46 +42,14 @@
         },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-60-r1-o1",
-            "label": "g",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-60-r1-o2",
-            "label": "y",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-60-r1-o3",
-            "label": "v",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-60-r1-o4",
-            "label": "j",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "y",
+        "others": [
+          "g",
+          "v",
+          "j"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "y"
-        },
-        "shape": "balloon",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 5
       }
     },
     {
@@ -128,17 +96,6 @@
         "options": [
           {
             "id": "level-60-r3-o1",
-            "label": "robot",
-            "picture": {
-              "key": "robot",
-              "label": "robot",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-60-r3-o2",
             "label": "yo-yo",
             "picture": {
               "key": "yoyo",
@@ -149,11 +106,22 @@
             "hideLabel": true
           },
           {
-            "id": "level-60-r3-o3",
-            "label": "zebra",
+            "id": "level-60-r3-o2",
+            "label": "umbrella",
             "picture": {
-              "key": "zebra",
-              "label": "zebra",
+              "key": "umbrella",
+              "label": "umbrella",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-60-r3-o3",
+            "label": "lion",
+            "picture": {
+              "key": "lion",
+              "label": "lion",
               "url": null
             },
             "color": null,
@@ -210,18 +178,18 @@
       "hunt": {
         "target": "y",
         "grid": [
-          "g",
-          "v",
           "y",
           "v",
           "y",
           "j",
-          "g",
-          "g",
-          "y",
-          "y",
+          "v",
           "j",
-          "v"
+          "y",
+          "g",
+          "v",
+          "y",
+          "g",
+          "g"
         ]
       }
     },
@@ -256,17 +224,21 @@
       "id": "level-60-r7",
       "type": "write",
       "prompt": {
-        "text": "Write small y by yourself",
-        "say": "Now write small {y|wˈaɪ} all by yourself!",
-        "audio": "voice/line-bcee20a3765ef87c.m4a"
+        "text": "Look, then write small y",
+        "say": "Look at small {y|wˈaɪ}. Then write it from memory!",
+        "audio": "voice/line-eda2fb7f873518f2.m4a"
       },
       "card": {
-        "text": "y",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "yoyo",
+          "label": "yo-yo",
+          "url": null
+        },
         "listen": false
       },
       "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "y",
         "guide": "y",
         "word": null,
@@ -294,31 +266,6 @@
       },
       "speak": {
         "expected": "y says /y/ like yo-yo!"
-      }
-    },
-    {
-      "id": "level-60-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "x",
-          "y",
-          "z"
-        ]
       }
     }
   ]

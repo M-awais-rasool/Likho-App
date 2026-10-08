@@ -109,62 +109,77 @@
     },
     {
       "id": "level-49-r3",
-      "type": "pick",
+      "type": "sort",
       "prompt": {
-        "text": "What starts with /m/?",
-        "say": "Which one starts with {/m/|mːː}?",
-        "audio": "voice/line-bec70d9e96ee43dc.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/k/|kʌ} or {/l/|lːː}?",
+        "audio": "voice/line-922d7288436ce731.m4a"
       },
       "card": {
-        "text": null,
+        "text": "k l",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "sort": {
+        "bins": [
           {
-            "id": "level-49-r3-o1",
-            "label": "moon",
-            "picture": {
-              "key": "moon",
-              "label": "moon",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "label": "k",
+            "picture": null,
+            "bin": null
           },
           {
-            "id": "level-49-r3-o2",
-            "label": "queen",
-            "picture": {
-              "key": "queen",
-              "label": "queen",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-49-r3-o3",
-            "label": "whale",
-            "picture": {
-              "key": "whale",
-              "label": "whale",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "label": "l",
+            "picture": null,
+            "bin": null
           }
         ],
-        "answer": {
-          "kind": "label",
-          "value": "moon"
-        },
-        "shape": "planet",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "items": [
+          {
+            "label": "king",
+            "picture": {
+              "key": "king",
+              "label": "king",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "lemon",
+            "picture": {
+              "key": "lemon",
+              "label": "lemon",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "kite",
+            "picture": {
+              "key": "kite",
+              "label": "kite",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "log",
+            "picture": {
+              "key": "log",
+              "label": "log",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "lion",
+            "picture": {
+              "key": "lion",
+              "label": "lion",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
       }
     },
     {
@@ -192,32 +207,59 @@
     },
     {
       "id": "level-49-r5",
-      "type": "hunt",
+      "type": "match",
       "prompt": {
-        "text": "Find every small k!",
-        "say": "Find every small {k|kˈeɪ}!",
-        "audio": "voice/line-554aa446cbc4f4bc.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each big letter to its small letter.",
+        "audio": "voice/line-4140f52a5074e7c8.m4a"
       },
       "card": {
-        "text": "k",
+        "text": "k l m n",
         "picture": null,
         "listen": false
       },
-      "hunt": {
-        "target": "k",
-        "grid": [
-          "k",
-          "l",
-          "m",
-          "l",
-          "k",
-          "x",
-          "k",
-          "k",
-          "l",
-          "o",
-          "n",
-          "h"
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "K",
+              "picture": null
+            },
+            "b": {
+              "text": "k",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "L",
+              "picture": null
+            },
+            "b": {
+              "text": "l",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "M",
+              "picture": null
+            },
+            "b": {
+              "text": "m",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "N",
+              "picture": null
+            },
+            "b": {
+              "text": "n",
+              "picture": null
+            }
+          }
         ]
       }
     },
@@ -225,17 +267,21 @@
       "id": "level-49-r6",
       "type": "write",
       "prompt": {
-        "text": "Write the letter you hear",
-        "say": "Listen, then write it! small {o|ˈoʊ}.",
-        "audio": "voice/line-501cbd329b41db64.m4a"
+        "text": "Look, then write small o",
+        "say": "Look at small {o|ˈoʊ}. Then write it from memory!",
+        "audio": "voice/line-d4fd529667275275.m4a"
       },
       "card": {
         "text": null,
-        "picture": null,
-        "listen": true
+        "picture": {
+          "key": "octopus",
+          "label": "octopus",
+          "url": null
+        },
+        "listen": false
       },
       "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "o",
         "guide": "o",
         "word": null,

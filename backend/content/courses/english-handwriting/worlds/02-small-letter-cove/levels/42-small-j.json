@@ -27,14 +27,14 @@
   "rounds": [
     {
       "id": "level-42-r1",
-      "type": "pick",
+      "type": "pop",
       "prompt": {
-        "text": "Find small j!",
-        "say": "Big {J|ʤˈeɪ}, small {j|ʤˈeɪ}! Find small {j|ʤˈeɪ}.",
-        "audio": "voice/line-6da87b829f11017c.m4a"
+        "text": "Pop every small j!",
+        "say": "Pop every small {j|ʤˈeɪ} bubble!",
+        "audio": "voice/line-717bed6920e58ff5.m4a"
       },
       "card": {
-        "text": "J",
+        "text": "j",
         "picture": {
           "key": "jam",
           "label": "jam",
@@ -42,46 +42,14 @@
         },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-42-r1-o1",
-            "label": "g",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-42-r1-o2",
-            "label": "j",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-42-r1-o3",
-            "label": "i",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-42-r1-o4",
-            "label": "y",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "j",
+        "others": [
+          "i",
+          "g",
+          "y"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "j"
-        },
-        "shape": "fish",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 5
       }
     },
     {
@@ -128,6 +96,17 @@
         "options": [
           {
             "id": "level-42-r3-o1",
+            "label": "violin",
+            "picture": {
+              "key": "violin",
+              "label": "violin",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-42-r3-o2",
             "label": "jam",
             "picture": {
               "key": "jam",
@@ -138,22 +117,11 @@
             "hideLabel": true
           },
           {
-            "id": "level-42-r3-o2",
-            "label": "fish",
-            "picture": {
-              "key": "fish",
-              "label": "fish",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
             "id": "level-42-r3-o3",
-            "label": "egg",
+            "label": "lion",
             "picture": {
-              "key": "egg",
-              "label": "egg",
+              "key": "lion",
+              "label": "lion",
               "url": null
             },
             "color": null,
@@ -211,16 +179,16 @@
         "target": "j",
         "grid": [
           "j",
-          "g",
-          "y",
-          "i",
-          "i",
-          "j",
-          "y",
           "j",
           "g",
-          "g",
           "i",
+          "i",
+          "i",
+          "y",
+          "j",
+          "y",
+          "g",
+          "g",
           "j"
         ]
       }
@@ -256,17 +224,21 @@
       "id": "level-42-r7",
       "type": "write",
       "prompt": {
-        "text": "Write small j by yourself",
-        "say": "Now write small {j|ʤˈeɪ} all by yourself!",
-        "audio": "voice/line-a4e19afd47118ba1.m4a"
+        "text": "Look, then write small j",
+        "say": "Look at small {j|ʤˈeɪ}. Then write it from memory!",
+        "audio": "voice/line-701d02930ef12ca0.m4a"
       },
       "card": {
-        "text": "j",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "jam",
+          "label": "jam",
+          "url": null
+        },
         "listen": false
       },
       "write": {
-        "mode": "free",
+        "mode": "flash",
         "target": "j",
         "guide": "j",
         "word": null,
@@ -294,31 +266,6 @@
       },
       "speak": {
         "expected": "j says /j/ like jam!"
-      }
-    },
-    {
-      "id": "level-42-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "i",
-          "j",
-          "k"
-        ]
       }
     }
   ]

@@ -27,14 +27,14 @@
   "rounds": [
     {
       "id": "level-39-r1",
-      "type": "pick",
+      "type": "pop",
       "prompt": {
-        "text": "Find small g!",
-        "say": "Big {G|ʤˈiː}, small {g|ʤˈiː}! Find small {g|ʤˈiː}.",
-        "audio": "voice/line-e663d5b5488fce91.m4a"
+        "text": "Pop every small g!",
+        "say": "Pop every small {g|ʤˈiː} bubble!",
+        "audio": "voice/line-3e6fe8058fc3a019.m4a"
       },
       "card": {
-        "text": "G",
+        "text": "g",
         "picture": {
           "key": "goat",
           "label": "goat",
@@ -42,46 +42,14 @@
         },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-39-r1-o1",
-            "label": "g",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-39-r1-o2",
-            "label": "q",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-39-r1-o3",
-            "label": "y",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-39-r1-o4",
-            "label": "p",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "g",
+        "others": [
+          "q",
+          "p",
+          "y"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "g"
-        },
-        "shape": "balloon",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 5
       }
     },
     {
@@ -113,62 +81,33 @@
     },
     {
       "id": "level-39-r3",
-      "type": "pick",
+      "type": "hunt",
       "prompt": {
-        "text": "What starts with /g/?",
-        "say": "{g|ʤˈiː} says {/g/|ɡʌ}. Which one starts with {/g/|ɡʌ}?",
-        "audio": "voice/line-d3c6f0bf09f82142.m4a"
+        "text": "Find every small g!",
+        "say": "Find every small {g|ʤˈiː}!",
+        "audio": "voice/line-8824cab9243b0ea5.m4a"
       },
       "card": {
         "text": "g",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-39-r3-o1",
-            "label": "goat",
-            "picture": {
-              "key": "goat",
-              "label": "goat",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-39-r3-o2",
-            "label": "pig",
-            "picture": {
-              "key": "pig",
-              "label": "pig",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-39-r3-o3",
-            "label": "egg",
-            "picture": {
-              "key": "egg",
-              "label": "egg",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "goat"
-        },
-        "shape": "bucket",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+      "hunt": {
+        "target": "g",
+        "grid": [
+          "g",
+          "g",
+          "g",
+          "q",
+          "g",
+          "y",
+          "y",
+          "p",
+          "p",
+          "p",
+          "q",
+          "q"
+        ]
       }
     },
     {
@@ -196,33 +135,25 @@
     },
     {
       "id": "level-39-r5",
-      "type": "hunt",
+      "type": "truth",
       "prompt": {
-        "text": "Find every small g!",
-        "say": "Find every small {g|ʤˈiː}!",
-        "audio": "voice/line-8824cab9243b0ea5.m4a"
+        "text": "True or silly?",
+        "say": "Jam starts with small {g|ʤˈiː}. True, or silly?",
+        "audio": "voice/line-a032e01f279f85cc.m4a"
       },
       "card": {
-        "text": "g",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "hunt": {
-        "target": "g",
-        "grid": [
-          "p",
-          "y",
-          "g",
-          "q",
-          "q",
-          "p",
-          "g",
-          "y",
-          "g",
-          "q",
-          "p",
-          "g"
-        ]
+      "truth": {
+        "text": "Jam starts with g.",
+        "picture": {
+          "key": "jam",
+          "label": "jam",
+          "url": null
+        },
+        "answer": false
       }
     },
     {
@@ -294,31 +225,6 @@
       },
       "speak": {
         "expected": "g says /g/ like goat!"
-      }
-    },
-    {
-      "id": "level-39-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "f",
-          "g",
-          "h"
-        ]
       }
     }
   ]

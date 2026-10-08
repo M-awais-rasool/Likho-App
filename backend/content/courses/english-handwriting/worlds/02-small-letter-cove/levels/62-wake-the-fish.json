@@ -27,57 +27,25 @@
   "rounds": [
     {
       "id": "level-62-r1",
-      "type": "pick",
+      "type": "pop",
       "prompt": {
-        "text": "Which letter do you hear?",
-        "say": "Listen! Find small {z|zˈiː}.",
-        "audio": "voice/line-5a5c0160eb5ddfab.m4a"
+        "text": "Pop every small z!",
+        "say": "Listen! Pop every small {z|zˈiː} bubble!",
+        "audio": "voice/line-f65d8deff1239875.m4a"
       },
       "card": {
         "text": null,
         "picture": null,
         "listen": true
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-62-r1-o1",
-            "label": "z",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-62-r1-o2",
-            "label": "v",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-62-r1-o3",
-            "label": "w",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-62-r1-o4",
-            "label": "u",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "z",
+        "others": [
+          "u",
+          "v",
+          "w"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "z"
-        },
-        "shape": "kite",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 5
       }
     },
     {
@@ -124,10 +92,10 @@
         "options": [
           {
             "id": "level-62-r3-o1",
-            "label": "kite",
+            "label": "whale",
             "picture": {
-              "key": "kite",
-              "label": "kite",
+              "key": "whale",
+              "label": "whale",
               "url": null
             },
             "color": null,
@@ -135,10 +103,10 @@
           },
           {
             "id": "level-62-r3-o2",
-            "label": "robot",
+            "label": "sun",
             "picture": {
-              "key": "robot",
-              "label": "robot",
+              "key": "sun",
+              "label": "sun",
               "url": null
             },
             "color": null,
@@ -146,10 +114,10 @@
           },
           {
             "id": "level-62-r3-o3",
-            "label": "whale",
+            "label": "insect",
             "picture": {
-              "key": "whale",
-              "label": "whale",
+              "key": "insect",
+              "label": "insect",
               "url": null
             },
             "color": null,
@@ -192,32 +160,49 @@
     },
     {
       "id": "level-62-r5",
-      "type": "hunt",
+      "type": "fix",
       "prompt": {
-        "text": "Find every small u!",
-        "say": "Find every small {u|jˈuː}!",
-        "audio": "voice/line-ad5c7e232c10de49.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote some letters the wrong way. Tap them to fix them!",
+        "audio": "voice/line-5b61022a0ee7b93d.m4a"
       },
       "card": {
-        "text": "u",
+        "text": "u v w x y z",
         "picture": null,
         "listen": false
       },
-      "hunt": {
-        "target": "u",
-        "grid": [
-          "y",
-          "y",
-          "v",
-          "u",
-          "u",
-          "w",
-          "u",
-          "z",
-          "x",
-          "v",
-          "u",
-          "n"
+      "fix": {
+        "items": [
+          {
+            "text": "u",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "v",
+            "wrong": "upside",
+            "at": null
+          },
+          {
+            "text": "w",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "x",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "y",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "z",
+            "wrong": "mirror",
+            "at": null
+          }
         ]
       }
     },

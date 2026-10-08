@@ -27,14 +27,14 @@
   "rounds": [
     {
       "id": "level-53-r1",
-      "type": "pick",
+      "type": "pop",
       "prompt": {
-        "text": "Find small s!",
-        "say": "Big {S|ˈɛs}, small {s|ˈɛs}! Find small {s|ˈɛs}.",
-        "audio": "voice/line-6a297cb80b678a85.m4a"
+        "text": "Pop every small s!",
+        "say": "Pop every small {s|ˈɛs} bubble!",
+        "audio": "voice/line-a1f6267ce37085c7.m4a"
       },
       "card": {
-        "text": "S",
+        "text": "s",
         "picture": {
           "key": "sun",
           "label": "sun",
@@ -42,46 +42,14 @@
         },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-53-r1-o1",
-            "label": "c",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-53-r1-o2",
-            "label": "z",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-53-r1-o3",
-            "label": "s",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-53-r1-o4",
-            "label": "e",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "s",
+        "others": [
+          "z",
+          "c",
+          "e"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "s"
-        },
-        "shape": "balloon",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 5
       }
     },
     {
@@ -113,62 +81,50 @@
     },
     {
       "id": "level-53-r3",
-      "type": "pick",
+      "type": "fix",
       "prompt": {
-        "text": "What starts with /s/?",
-        "say": "{s|ˈɛs} says {/s/|sːː}. Which one starts with {/s/|sːː}?",
-        "audio": "voice/line-9374f15561604097.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote some small {s|ˈɛs} the wrong way. Tap them to fix them!",
+        "audio": "voice/line-5d0ee0fcb909fc75.m4a"
       },
       "card": {
         "text": "s",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "pick": {
-        "options": [
+      "fix": {
+        "items": [
           {
-            "id": "level-53-r3-o1",
-            "label": "octopus",
-            "picture": {
-              "key": "octopus",
-              "label": "octopus",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "text": "s",
+            "wrong": "mirror",
+            "at": null
           },
           {
-            "id": "level-53-r3-o2",
-            "label": "lion",
-            "picture": {
-              "key": "lion",
-              "label": "lion",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "text": "s",
+            "wrong": null,
+            "at": null
           },
           {
-            "id": "level-53-r3-o3",
-            "label": "sun",
-            "picture": {
-              "key": "sun",
-              "label": "sun",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
+            "text": "s",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "s",
+            "wrong": "mirror",
+            "at": null
+          },
+          {
+            "text": "s",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "s",
+            "wrong": null,
+            "at": null
           }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "sun"
-        },
-        "shape": "planet",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        ]
       }
     },
     {
@@ -196,33 +152,62 @@
     },
     {
       "id": "level-53-r5",
-      "type": "hunt",
+      "type": "pick",
       "prompt": {
-        "text": "Find every small s!",
-        "say": "Find every small {s|ˈɛs}!",
-        "audio": "voice/line-a086c46324a2691f.m4a"
+        "text": "What starts with /s/?",
+        "say": "{s|ˈɛs} says {/s/|sːː}. Which one starts with {/s/|sːː}?",
+        "audio": "voice/line-9374f15561604097.m4a"
       },
       "card": {
         "text": "s",
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "hunt": {
-        "target": "s",
-        "grid": [
-          "e",
-          "c",
-          "c",
-          "c",
-          "s",
-          "z",
-          "s",
-          "e",
-          "s",
-          "s",
-          "z",
-          "z"
-        ]
+      "pick": {
+        "options": [
+          {
+            "id": "level-53-r5-o1",
+            "label": "octopus",
+            "picture": {
+              "key": "octopus",
+              "label": "octopus",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-53-r5-o2",
+            "label": "lion",
+            "picture": {
+              "key": "lion",
+              "label": "lion",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-53-r5-o3",
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "sun"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
       }
     },
     {
@@ -294,31 +279,6 @@
       },
       "speak": {
         "expected": "s says /s/ like sun!"
-      }
-    },
-    {
-      "id": "level-53-r9",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "r",
-          "s",
-          "t"
-        ]
       }
     }
   ]
