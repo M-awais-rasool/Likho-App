@@ -17,6 +17,7 @@ import '../../game/level_session.dart';
 import '../../game/speech/prompt_voice.dart';
 import '../../game/writing/stroke_guide.dart';
 import '../../mascot/mascot.dart';
+import 'rounds/fix_round_view.dart';
 import 'rounds/hunt_round_view.dart';
 import 'rounds/order_round_view.dart';
 import 'rounds/pick_round_view.dart';
@@ -468,6 +469,7 @@ class _RoundArea extends ConsumerWidget {
             : WritePad(key: ValueKey(r.id), controller: pad!, state: state, round: r, glyphs: glyphs, time: time, onPen: onPen),
       SpeakRound() => SpeakRoundView(key: ValueKey(state.current.id), state: state, onMic: session.listen, time: time),
       final HuntRound r => HuntRoundView(key: ValueKey(r.id), state: state, round: r, onTap: session.tapCell, time: time),
+      final FixRound r => FixRoundView(key: ValueKey(r.id), state: state, round: r, onTap: session.fixItem, time: time),
       final PopRound r => PopRoundView(key: ValueKey(r.id), state: state, round: r, onPop: session.popBubble, time: time),
       final TruthRound r => TruthRoundView(key: ValueKey(r.id), state: state, round: r, onAnswer: session.answerTruth, time: time),
       UnknownRound() => const SizedBox.shrink(),

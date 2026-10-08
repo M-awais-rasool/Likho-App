@@ -285,6 +285,9 @@ sealed class Round {
       case 'hunt':
         final h = r.object('hunt');
         return HuntRound(id: id, prompt: prompt, card: card, target: h.string('target'), grid: h.strings('grid'));
+      case 'fix':
+        final f = r.object('fix');
+        return FixRound(id: id, prompt: prompt, card: card, items: f.list('items', (x, q) => FixItem.fromJson(JsonReader(x, q))));
       case 'pop':
         final p = r.object('pop');
         return PopRound(id: id, prompt: prompt, card: card, target: p.string('target'), others: p.strings('others'), count: p.integer('count'));
@@ -411,6 +414,43 @@ final class HuntRound extends Round {
 
   @override
   String get type => 'hunt';
+}
+
+/// Fix Pencil's mistakes: his notebook shows [items], some written
+/// backwards or upside down; tap each wrong one to fix it.
+final class FixRound extends Round {
+  const FixRound({required super.id, required super.prompt, super.card, required this.items});
+  final List<FixItem> items;
+
+  /// Items to fix.
+  int get count => items.where((i) => i.wrong != null).length;
+
+  @override
+  String get type => 'fix';
+}
+
+/// How Pencil got an item wrong.
+enum FixWrong { mirror, upside }
+
+@immutable
+class FixItem {
+  const FixItem({required this.text, this.wrong, this.at});
+  final String text;
+
+  /// null = written right.
+  final FixWrong? wrong;
+
+  /// The one letter of [text] that is wrong; null = all of it.
+  final int? at;
+
+  factory FixItem.fromJson(JsonReader r) {
+    final w = r.optString('wrong');
+    return FixItem(
+      text: r.string('text'),
+      wrong: w == null ? null : FixWrong.values.firstWhere((v) => v.name == w, orElse: () => throw FormatException('Unknown fix.wrong "$w" at ${r.path}')),
+      at: r.optInt('at'),
+    );
+  }
 }
 
 /// Bubble pop: bubbles float up, pop [count] that say [target] (the rest
