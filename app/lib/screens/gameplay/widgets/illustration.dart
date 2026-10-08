@@ -1,28 +1,20 @@
+import 'dart:io';
 import 'dart:math' as math;
 
-import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../data/media.dart';
 import '../../../data/models/course_models.dart';
 import '../../../design/tokens.dart';
 
-/// Bundled illustrations (`assets/illustrations/<key>.png`, built by
-/// tools/illustrations/build_illustrations.py at the repository root), read once from the asset
-/// manifest.
-final illustrationAssetsProvider = FutureProvider<Set<String>>((ref) async {
-  try {
-    final m = await AssetManifest.loadFromAssetBundle(rootBundle);
-    return m.listAssets().where((a) => a.startsWith('assets/illustrations/')).toSet();
-  } catch (_) {
-    return const {};
-  }
-});
-
-/// A picture from course content: the real image when it exists (bundled
-/// by key, or by URL), otherwise the prototype's placeholder — a striped
-/// card with the picture's name in small monospace text. The images have a
-/// transparent background, so they sit on whatever card or shape holds them.
+/// A picture from course content: the real image when there is one (from
+/// the server's media folder by key, kept on the phone, see [MediaStore];
+/// or by URL), otherwise the prototype's placeholder — a striped card with
+/// the picture's name in small monospace text. The images have a
+/// transparent background, so they sit on whatever card or shape holds
+/// them. They are decoded at the size they are shown (less memory, faster).
 class Illustration extends ConsumerWidget {
   const Illustration({
     super.key,
@@ -40,21 +32,42 @@ class Illustration extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final assets = ref.watch(illustrationAssetsProvider).value ?? const {};
-    final asset = 'assets/illustrations/${picture.key}.png';
+    final media = ref.watch(mediaProvider);
+    final path = MediaStore.picturePath(picture.key);
+    final cache = (math.max(width, height) * MediaQuery.devicePixelRatioOf(context)).round();
     final Widget child;
-    if (assets.contains(asset)) {
-      child = Image.asset(asset, fit: BoxFit.contain, filterQuality: FilterQuality.high, semanticLabel: picture.label);
-    } else if (picture.url != null) {
+    if (picture.url != null) {
       child = Image.network(picture.url!, fit: BoxFit.contain, filterQuality: FilterQuality.high, errorBuilder: (_, _, _) => _placeholder());
-    } else {
+    } else if (media.hashOf(path) == null) {
       child = _placeholder();
+    } else if (kIsWeb) {
+      child = Image.network(media.url(path), fit: BoxFit.contain, filterQuality: FilterQuality.high, errorBuilder: (_, _, _) => _placeholder());
+    } else if (media.keptFile(path) case final kept?) {
+      child = _file(kept, cache);
+    } else {
+      // first time: download it (the levels ahead are usually fetched already)
+      child = FutureBuilder<String?>(
+        future: media.local(path),
+        builder: (context, snap) => switch (snap) {
+          AsyncSnapshot(:final data?) => _file(data, cache, fadeIn: true),
+          AsyncSnapshot(connectionState: ConnectionState.done) => _placeholder(),
+          _ => const SizedBox.shrink(),
+        },
+      );
     }
     return SizedBox(
       width: width,
       height: height,
       child: ClipRRect(borderRadius: BorderRadius.circular(radius), child: child),
     );
+  }
+
+  Widget _file(String file, int cacheSize, {bool fadeIn = false}) {
+    final image = Image.file(File(file), fit: BoxFit.contain, filterQuality: FilterQuality.high, cacheWidth: cacheSize, semanticLabel: picture.label,
+        errorBuilder: (_, _, _) => _placeholder());
+    return fadeIn
+        ? TweenAnimationBuilder<double>(tween: Tween(begin: 0, end: 1), duration: const Duration(milliseconds: 200), builder: (_, t, c) => Opacity(opacity: t, child: c), child: image)
+        : image;
   }
 
   Widget _placeholder() => CustomPaint(
