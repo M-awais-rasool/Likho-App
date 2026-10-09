@@ -1,0 +1,6 @@
+# state holds the server's root password: keep it on this computer (and a backup), never in git
+*.tfstate
+*.tfstate.*
+.terraform/
+terraform.tfvars
+crash.log
