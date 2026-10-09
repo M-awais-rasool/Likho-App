@@ -35,6 +35,9 @@ type Options struct {
 	CountryHeader string // the CDN's country header (see middleware.ClientInfo)
 	AdminDir      string // the admin panel's build, served at /admin/ ("" = not served)
 
+	// TrustedProxies may set X-Forwarded-For (nginx); nobody else can.
+	TrustedProxies []string
+
 	// Seen is told about every signed-in request (activity tracking).
 	Seen func(ctx context.Context, parentID string, info model.ClientInfo, force bool)
 }
@@ -44,6 +47,11 @@ type Options struct {
 func NewRouter(h *handler.Handlers, admin *handler.AdminHandler, tokens service.Tokens, c *cache.Cache, opt Options) *gin.Engine {
 	r := gin.New()
 	r.HandleMethodNotAllowed = true
+	// Gin believes every X-Forwarded-For by default: a client could send a
+	// new fake IP with each request and never hit the per-IP limits
+	if err := r.SetTrustedProxies(opt.TrustedProxies); err != nil {
+		panic("TRUSTED_PROXIES: " + err.Error())
+	}
 	r.Use(middleware.Recovery(), middleware.RequestLog(), middleware.SecureHeaders(), middleware.BodyLimit(maxBodyBytes),
 		middleware.ClientInfo(opt.CountryHeader))
 
