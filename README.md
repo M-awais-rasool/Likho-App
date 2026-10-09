@@ -153,7 +153,7 @@ It fails if Pencil leaves Android's safe zone (the 66 dp circle no launcher mask
 | `ios/Runner/Assets.xcassets/AppIcon.appiconset/` | 1024 px icons for the light, dark and tinted (iOS 18+) home screens, without an alpha channel. Xcode makes the other sizes. |
 | `android/app/src/main/res/mipmap-*/` | adaptive layers `ic_launcher_background`, `_foreground`, `_monochrome` (Android 13 themed icons), plus `ic_launcher` and `ic_launcher_round` for Android 7 and older, in all five densities |
 | `android/app/src/main/res/mipmap-anydpi-v26/` | `ic_launcher.xml`, `ic_launcher_round.xml` (stack the layers) |
-| `design/app-icon/` | `google-play-512.png` for the Play listing, `likho-icon-1024.png` for anything else |
+| `design/app-icon/` | `google-play-512.png` for the Play listing, `likho-icon-1024.png` for anything else, `likho-icon-4096.png` and `likho-icon-dark-4096.png` as 4K masters |
 
 To change it, edit the constants at the top of the script (`_day`/`_night` sky colours,
 `_height`/`_centre`/`_tilt` place Pencil, `_wave` his pose, `_sparkles`) and run it again.
