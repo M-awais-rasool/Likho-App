@@ -1,19 +1,17 @@
-# Likho in production on one server shared with other projects.
-#
-#   cp .env.example .env    # fill it in once
-#   docker compose up -d --build
+# Likho in production (deploy.sh runs it on the server; see README.md).
 #
 # Nothing listens on a public port: the API is on 127.0.0.1:${LIKHO_PORT}
 # behind the server's nginx (nginx/likho.conf), and Postgres and Redis are
-# only on this project's own network. Every service has a memory and CPU cap
-# so Likho never starves the other projects, restarts by itself, and keeps
-# at most 30 MB of logs.
+# only on this project's own network. Every service has a memory and CPU cap,
+# restarts by itself, keeps at most 30 MB of logs, and cannot gain
+# privileges.
 name: likho
 
 x-logs: &logs
   logging:
     driver: json-file
     options: { max-size: "10m", max-file: "3" }
+  security_opt: ["no-new-privileges:true"]
 
 services:
   postgres:
@@ -55,11 +53,18 @@ services:
     <<: *logs
 
   # a cache only (signed-in /me, rate limits, idempotency): no disk, the
-  # oldest keys go when it is full
+  # oldest keys go when it is full; a password even on the private network
   redis:
     image: redis:7-alpine
     restart: unless-stopped
-    command: ["redis-server", "--save", "", "--appendonly", "no", "--maxmemory", "96mb", "--maxmemory-policy", "allkeys-lru"]
+    command: ["redis-server", "--save", "", "--appendonly", "no", "--maxmemory", "96mb", "--maxmemory-policy", "allkeys-lru",
+              "--requirepass", "${REDIS_PASSWORD:?set REDIS_PASSWORD in .env}", "--rename-command", "CONFIG", "", "--rename-command", "DEBUG", ""]
+    user: redis
+    read_only: true
+    tmpfs: [/data]
+    cap_drop: [ALL]
+    environment:
+      REDISCLI_AUTH: ${REDIS_PASSWORD}
     networks: [likho]
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
@@ -79,16 +84,22 @@ services:
       APP_ENV: production
       PORT: "8080"
       DATABASE_URL: postgres://likho:${POSTGRES_PASSWORD}@postgres:5432/likho?sslmode=disable
-      REDIS_URL: redis://redis:6379/0
+      REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379/0
       DB_MAX_CONNS: "16"
       MEDIA_DIR: /media
       ADMIN_DIR: /admin
+      GEOIP_DB: /geoip/country.mmdb # families' countries in the admin panel
+      # nginx reaches the API through this network's gateway (Docker's port
+      # proxy): only it may say who the client is (X-Forwarded-For)
+      TRUSTED_PROXIES: 172.30.42.1
       GOMEMLIMIT: 300MiB # the Go heap stays well under the cap
     volumes:
       - ${LIKHO_DIR:-/srv/likho}/media:/media:ro # pictures and recordings (deploy.sh copies them)
       - ${LIKHO_DIR:-/srv/likho}/admin:/admin:ro # the admin panel's build
+      - ${LIKHO_DIR:-/srv/likho}/geoip:/geoip:ro
     ports: ["127.0.0.1:${LIKHO_PORT:-8080}:8080"]
     read_only: true
+    cap_drop: [ALL]
     networks: [likho]
     depends_on:
       postgres: { condition: service_healthy }
@@ -109,3 +120,5 @@ volumes:
 
 networks:
   likho:
+    ipam:
+      config: [{ subnet: 172.30.42.0/24, gateway: 172.30.42.1 }]
