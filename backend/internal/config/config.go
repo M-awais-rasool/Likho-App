@@ -50,6 +50,11 @@ type Config struct {
 	// (e.g. CF-IPCountry) and/or a GeoIP country database (.mmdb).
 	CountryHeader string
 	GeoIPDB       string
+
+	// Proxies whose X-Forwarded-For is believed (IPs or CIDRs, e.g. the
+	// Docker network nginx comes in from). Empty = none: the client's IP
+	// is the connection's, so nobody can fake it to dodge the rate limits.
+	TrustedProxies []string
 }
 
 func (c Config) Production() bool { return c.Env == "production" }
@@ -74,6 +79,7 @@ func Load() (Config, error) {
 		AdminBootstrapPassword: os.Getenv("ADMIN_BOOTSTRAP_PASSWORD"),
 		CountryHeader:          strings.TrimSpace(os.Getenv("COUNTRY_HEADER")),
 		GeoIPDB:                os.Getenv("GEOIP_DB"),
+		TrustedProxies:         list(os.Getenv("TRUSTED_PROXIES")),
 	}
 	c.ContentDrafts = boolean("CONTENT_DRAFTS", !c.Production())
 
