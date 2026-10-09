@@ -1,0 +1,247 @@
+<!doctype html>
+<!--
+  Likho store screenshots: frames the real app screens (screens/, from
+  app/tool/store_screenshots/render_screens.dart) and Pencil (mascot/, from
+  render_mascot.dart). Open compose.html?s=1 … ?s=8 for one 1080 x 1920
+  screenshot, ?s=feature for the 1024 x 500 feature graphic. build.sh
+  saves them all as PNGs with headless Chrome.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Likho Store Screenshots</title>
+<style>
+  @font-face { font-family: Baloo; font-weight: 800; src: url(../../app/tool/store_screenshots/.fonts/Baloo2_800.ttf); }
+  @font-face { font-family: Baloo; font-weight: 700; src: url(../../app/tool/store_screenshots/.fonts/Baloo2_700.ttf); }
+  @font-face { font-family: Nunito; font-weight: 800; src: url(../../app/tool/store_screenshots/.fonts/Nunito_800.ttf); }
+  @font-face { font-family: Nunito; font-weight: 900; src: url(../../app/tool/store_screenshots/.fonts/Nunito_900.ttf); }
+  @font-face { font-family: Nunito; font-weight: 700; src: url(../../app/tool/store_screenshots/.fonts/Nunito_700.ttf); }
+
+  :root { --ink: #2B2D42; --sun: #FFC83D; --sunDeep: #E0A21A; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+  body.feature { width: 1024px; height: 500px; }
+
+  .slide { position: absolute; inset: 0; overflow: hidden; }
+  .bg { position: absolute; inset: 0; }
+  .lines, .trail, .deco { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  /* headline */
+  .head { position: absolute; left: 70px; right: 70px; top: 112px; text-align: center; color: #fff; z-index: 5; }
+  .head h1 { font: 800 112px/1.0 Baloo; letter-spacing: -1px; text-shadow: 0 6px 0 rgba(0,0,0,.12); }
+  .hi { position: relative; color: var(--hi, var(--sun)); white-space: nowrap; display: inline-block; }
+  .hi svg { position: absolute; left: -4%; width: 108%; bottom: -14px; height: 34px; overflow: visible; }
+  .head p { margin-top: 30px; font: 800 46px/1.2 Nunito; opacity: .95; }
+
+  /* phone */
+  .phone { position: absolute; z-index: 3; background: linear-gradient(145deg, #2c2840, #0f0d18 60%); border-radius: 92px; padding: 17px;
+           box-shadow: 0 70px 120px -20px rgba(20,10,60,.55), 0 30px 50px -20px rgba(0,0,0,.35), inset 0 0 0 3px rgba(255,255,255,.12), inset 0 0 0 7px #0b0a12; }
+  .phone .screen { position: relative; border-radius: 76px; overflow: hidden; background: #fff; aspect-ratio: 390 / 844; }
+  .phone .screen img { display: block; width: 100%; height: 100%; }
+  .phone .cam { position: absolute; top: 2.1%; left: 50%; width: 3.4%; aspect-ratio: 1; transform: translateX(-50%); background: #0b0a12; border-radius: 50%;
+                box-shadow: inset 0 0 0 4px #1c1a28; }
+  .phone .bar { position: absolute; left: 0; right: 0; top: 0; height: 5.2%; display: flex; align-items: center; justify-content: space-between; padding: 0 9% 0 10%;
+                font: 800 calc(var(--w) * .038) Nunito; color: var(--ink); }
+  .phone .bar svg { height: calc(var(--w) * .036); margin-left: calc(var(--w) * .012); }
+  .phone .gloss { position: absolute; inset: 0; border-radius: 76px; background: linear-gradient(115deg, rgba(255,255,255,.16), rgba(255,255,255,0) 32%); pointer-events: none; }
+  .phone .btn { position: absolute; right: -6px; width: 7px; border-radius: 4px; background: #24203a; }
+
+  .mascot { position: absolute; z-index: 6; filter: drop-shadow(0 28px 26px rgba(30,15,80,.33)); }
+
+  .chip { position: absolute; z-index: 7; display: flex; align-items: center; gap: 16px; padding: 20px 32px 20px 20px; background: #fff; border-radius: 999px;
+          font: 900 38px/1 Nunito; color: var(--ink); box-shadow: 0 18px 40px -8px rgba(30,15,80,.35), 0 5px 0 rgba(0,0,0,.08); white-space: nowrap; }
+  .chip i { width: 62px; height: 62px; border-radius: 50%; display: grid; place-items: center; flex: none; }
+  .chip i svg { width: 36px; height: 36px; }
+
+  .ground { position: absolute; left: -10%; right: -10%; bottom: -260px; height: 520px; border-radius: 50%; z-index: 1; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+const P = new URLSearchParams(location.search);
+const which = P.get('s') || '1';
+
+// ---------------------------------------------------------------- icons
+const ICON = {
+  star: '<svg viewBox="0 0 24 24"><path fill="#FFC83D" stroke="#E0A21A" stroke-width="1.4" stroke-linejoin="round" d="M12 2.6l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17l-5.7 3.1 1.2-6.4L2.8 9.3l6.4-.8z"/></svg>',
+  arrow: '<svg viewBox="0 0 24 24"><path fill="#fff" d="M5 12h11.2l-4.6-4.6L13 6l7 7-7 7-1.4-1.4 4.6-4.6H5z"/></svg>',
+  pen: '<svg viewBox="0 0 24 24"><path fill="#fff" d="M3 17.3V21h3.7L17.8 9.9l-3.7-3.7zM20.7 7a1 1 0 000-1.4l-2.3-2.3a1 1 0 00-1.4 0l-1.8 1.8 3.7 3.7z"/></svg>',
+  check: '<svg viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+  lock: '<svg viewBox="0 0 24 24"><path fill="#fff" d="M7 10V8a5 5 0 0110 0v2h1a2 2 0 012 2v8a2 2 0 01-2 2H6a2 2 0 01-2-2v-8a2 2 0 012-2zm2 0h6V8a3 3 0 00-6 0zm3 4a1.6 1.6 0 00-1 2.9V18h2v-1.1A1.6 1.6 0 0012 14z"/></svg>',
+  noads: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="#fff" stroke-width="2.6"/><path stroke="#fff" stroke-width="2.6" stroke-linecap="round" d="M6 6l12 12"/></svg>',
+  chart: '<svg viewBox="0 0 24 24"><path fill="#fff" d="M4 20V10h3.6v10zm6.2 0V4h3.6v16zm6.2 0v-7H20v7z"/></svg>',
+  ear: '<svg viewBox="0 0 24 24"><path fill="#fff" d="M3 9v6h4l5 5V4L7 9zm13.5 3A4.5 4.5 0 0014 8v8a4.5 4.5 0 002.5-4zM14 3.2v2.1a7 7 0 010 13.4v2.1a9 9 0 000-17.6z"/></svg>',
+  hat: '<svg viewBox="0 0 24 24"><path fill="#fff" d="M12 2l7 14H5zM3 17.5h18V20H3z"/></svg>',
+  gift: '<svg viewBox="0 0 24 24"><path fill="#fff" d="M4 11h7v10H5a1 1 0 01-1-1zm9 0h7v9a1 1 0 01-1 1h-6zM3 7h18v3H3zm8-1C9 6 7 5.2 7 3.8 7 2.6 8 2 9 2c1.6 0 2.5 1.8 3 4 .5-2.2 1.4-4 3-4 1 0 2 .6 2 1.8C17 5.2 15 6 13 6z"/></svg>',
+  map: '<svg viewBox="0 0 24 24"><path fill="#fff" d="M15 5.1L9 3 3 5v16l6-2.1 6 2.1 6-2V3zM15 19l-6-2.1V5l6 2.1z"/></svg>',
+  book: '<svg viewBox="0 0 24 24"><path fill="#fff" d="M5 3h11a3 3 0 013 3v15H7a2 2 0 01-2-2zm2 14v2h10v-2z"/></svg>',
+};
+const chipIcon = (name, bg) => `<i style="background:${bg}">${ICON[name]}</i>`;
+
+// status bar: Android style time + signal, wifi, battery
+const STATUS = `<span>9:41</span><span style="display:flex;align-items:center">
+  <svg viewBox="0 0 20 14"><path fill="#2B2D42" d="M1 13h3V9H1zm5 0h3V6H6zm5 0h3V3h-3zm5 0h3V0h-3z"/></svg>
+  <svg viewBox="0 0 20 15"><path fill="#2B2D42" d="M10 14.5L0 4.1A14.4 14.4 0 0110 0a14.4 14.4 0 0110 4.1z"/></svg>
+  <svg viewBox="0 0 28 14"><rect x="1" y="1" width="23" height="12" rx="3.5" fill="none" stroke="#2B2D42" stroke-width="2"/><rect x="3.5" y="3.5" width="15" height="7" rx="1.5" fill="#2B2D42"/><rect x="25.5" y="4.5" width="2" height="5" rx="1" fill="#2B2D42"/></svg></span>`;
+
+function phone(src, { x, y, w, rot = 0, z = 3 }) {
+  return `<div class="phone" style="left:${x}px;top:${y}px;width:${w}px;transform:rotate(${rot}deg);z-index:${z};--w:${w}px">
+    <div class="btn" style="top:22%;height:9%"></div><div class="btn" style="top:34%;height:6%"></div>
+    <div class="screen"><img src="screens/${src}.png"><div class="bar">${STATUS}</div><div class="cam"></div><div class="gloss"></div></div></div>`;
+}
+const pencil = (name, { x, y, h, rot = 0, flip = false, z = 6 }) =>
+  `<img class="mascot" src="mascot/${name}.png" style="left:${x}px;top:${y}px;height:${h}px;z-index:${z};transform:rotate(${rot}deg)${flip ? ' scaleX(-1)' : ''}">`;
+const chip = (text, icon, bg, { x, y, rot = 0 }) =>
+  `<div class="chip" style="left:${x}px;top:${y}px;transform:rotate(${rot}deg)">${chipIcon(icon, bg)}${text}</div>`;
+
+// a hand-drawn underline under the highlighted word, like a pencil stroke
+const SWOOSH = '<svg viewBox="0 0 200 20" preserveAspectRatio="none"><path d="M3 13 C 50 5, 120 4, 197 9 M20 17 C 80 11, 140 11, 185 14" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" vector-effect="non-scaling-stroke" style="stroke-width:9px"/></svg>';
+const hi = word => `<span class="hi">${word}${SWOOSH}</span>`;
+
+// ---------------------------------------------------------------- background
+// handwriting guide lines (solid, dashed, solid), like the app's writing pad
+function lines(W, H, color, from = 0) {
+  let s = '';
+  for (let y = from; y < H + 300; y += 300) {
+    s += `<line x1="0" x2="${W}" y1="${y}" y2="${y}" stroke="${color}" stroke-width="4"/>`;
+    s += `<line x1="0" x2="${W}" y1="${y + 100}" y2="${y + 100}" stroke="${color}" stroke-width="4" stroke-dasharray="22 18"/>`;
+    s += `<line x1="0" x2="${W}" y1="${y + 200}" y2="${y + 200}" stroke="${color}" stroke-width="4"/>`;
+  }
+  return `<svg class="lines" viewBox="0 0 ${W} ${H}">${s}</svg>`;
+}
+
+// one dotted pencil trail that runs through all 8 screenshots (they line up
+// side by side in the store), each slide showing its own 1080 px of it
+function trailPath() {
+  const pts = [];
+  for (let x = -100; x <= 8740; x += 30) {
+    const y = 1560 + 150 * Math.sin(x / 520) + 70 * Math.sin(x / 233 + 1.3);
+    pts.push([x, y]);
+  }
+  return 'M' + pts.map(p => p.map(n => n.toFixed(1)).join(' ')).join(' L');
+}
+function trail(i) {
+  return `<svg class="trail" viewBox="${(i - 1) * 1080} 0 1080 1920" style="z-index:2">
+    <path d="${trailPath()}" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="12" stroke-linecap="round" stroke-dasharray="2 34"/></svg>`;
+}
+
+function sparkle(x, y, r, color = '#fff', o = 1) {
+  const k = r * .16;
+  return `<path fill="${color}" opacity="${o}" d="M${x} ${y - r} Q${x + k} ${y - k} ${x + r} ${y} Q${x + k} ${y + k} ${x} ${y + r} Q${x - k} ${y + k} ${x - r} ${y} Q${x - k} ${y - k} ${x} ${y - r}Z"/>`;
+}
+function deco(items, W = 1080, H = 1920) {
+  return `<svg class="deco" viewBox="0 0 ${W} ${H}" style="z-index:2">${items.join('')}</svg>`;
+}
+const letter = (ch, x, y, size, color, rot = 0, o = .18) =>
+  `<text x="${x}" y="${y}" font-family="Baloo" font-weight="800" font-size="${size}" fill="${color}" opacity="${o}" transform="rotate(${rot} ${x} ${y})">${ch}</text>`;
+const blob = (cx, cy, r, color, o = .14) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${color}" opacity="${o}"/>`;
+const star = (x, y, s, rot = 0) => `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s / 24}) translate(-12 -12)"><path fill="#FFC83D" stroke="#E0A21A" stroke-width="1.3" stroke-linejoin="round" d="M12 2.6l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17l-5.7 3.1 1.2-6.4L2.8 9.3l6.4-.8z"/></g>`;
+
+function frame(i, bg, body, { lineColor = 'rgba(255,255,255,.10)', ground } = {}) {
+  return `<div class="slide">
+    <div class="bg" style="background:${bg}"></div>
+    ${lines(1080, 1920, lineColor, 60)}
+    ${ground ? `<div class="ground" style="background:${ground}"></div>` : ''}
+    ${trail(i)}
+    ${body}
+  </div>`;
+}
+const head = (h1, p, hiColor) => `<div class="head" style="${hiColor ? `--hi:${hiColor}` : ''}"><h1>${h1}</h1><p>${p}</p></div>`;
+
+// ---------------------------------------------------------------- slides
+const W1 = 600; // main phone width
+const S = {
+  1: () => frame(1, 'radial-gradient(120% 80% at 50% 30%, #A98BFF 0%, #7B57F0 45%, #5B39D6 100%)',
+    head(`Learn to write ${hi('ABC')}`, 'Handwriting fun for kids aged 5–8') +
+    deco([blob(140, 700, 220, '#fff', .08), blob(960, 1300, 260, '#fff', .07), sparkle(120, 560, 34), sparkle(980, 520, 24), sparkle(930, 1100, 18, '#FFC83D'),
+          letter('a', 40, 1180, 220, '#fff', -12), letter('B', 900, 900, 200, '#fff', 10)]) +
+    phone('trace-A', { x: 360, y: 480, w: W1, rot: 4 }) +
+    pencil('wave', { x: -10, y: 1170, h: 700, rot: -6 }) +
+    chip('Follow the arrows', 'arrow', '#2F80E0', { x: 470, y: 1640, rot: -3 }) +
+    chip('Step by step', 'pen', '#3BB273', { x: 40, y: 760, rot: -4 })),
+
+  2: () => frame(2, 'radial-gradient(120% 80% at 50% 25%, #FFC24A 0%, #FF9A2E 50%, #F2731E 100%)',
+    head(`${hi('Phonics')} games<br>kids love`, 'Pop, sort, match and more', '#3B1F8F') +
+    deco([sparkle(90, 640, 30), sparkle(1000, 700, 22), sparkle(980, 1700, 30, '#fff'), letter('c', 880, 680, 200, '#fff', 12, .2), blob(900, 1500, 300, '#fff', .08)]) +
+    phone('sort-lk', { x: 40, y: 640, w: 500, rot: -8, z: 3 }) +
+    phone('pick-cat', { x: 470, y: 580, w: 560, rot: 6, z: 4 }) +
+    pencil('dance', { x: 740, y: 1440, h: 470, rot: 4 }) +
+    chip('10 kinds of games', 'star', '#FFE7A3', { x: 40, y: 1740, rot: -2 })),
+
+  3: () => frame(3, 'radial-gradient(120% 80% at 50% 25%, #7EDB6A 0%, #3DBB5A 50%, #1E9450 100%)',
+    head(`${hi('12 worlds')}<br>to explore`, '144 levels, from ABC to stories') +
+    deco([sparkle(80, 600, 28), sparkle(1010, 640, 20), blob(130, 1500, 260, '#fff', .08), letter('w', 860, 760, 180, '#fff', 8, .16)]) +
+    phone('map', { x: 240, y: 560, w: W1, rot: -3 }) +
+    pencil('wizard', { x: 760, y: 1240, h: 640, rot: 5 }) +
+    chip('Letter Land', 'map', '#3DBB5A', { x: 30, y: 800, rot: -5 }) +
+    chip('Phonics Forest', 'map', '#2FA84F', { x: 20, y: 1060, rot: 3 }) +
+    chip('Word Town', 'map', '#1E9450', { x: 50, y: 1320, rot: -3 }) +
+    chip('Story Space', 'map', '#7B57F0', { x: 30, y: 1580, rot: 2 })),
+
+  4: () => frame(4, 'radial-gradient(120% 80% at 50% 25%, #7FD4FF 0%, #3D9BF0 50%, #2563D9 100%)',
+    head(`Capital and<br>${hi('small')} letters`, 'Then words and sentences') +
+    deco([sparkle(100, 620, 28), sparkle(990, 600, 22, '#FFC83D'), letter('l', 60, 1500, 260, '#fff', -8, .14), letter('y', 920, 1650, 220, '#fff', 8, .14)]) +
+    phone('trace-l', { x: 50, y: 610, w: 500, rot: -6, z: 3 }) +
+    phone('spell-you', { x: 500, y: 560, w: 540, rot: 5, z: 4 }) +
+    pencil('glasses', { x: 30, y: 1430, h: 470, rot: -5 }) +
+    chip('a b c → cat → I see a cat.', 'book', '#2563D9', { x: 310, y: 1720, rot: -2 })),
+
+  5: () => frame(5, 'radial-gradient(120% 80% at 50% 25%, #FF9EC0 0%, #FF6B98 50%, #E2457A 100%)',
+    head(`Earn ${hi('stars')}<br>every day`, 'Every try is a reason to cheer', '#FFE45C') +
+    deco([star(110, 700, 130, -14), star(980, 760, 96, 12), star(960, 1250, 70, -8), star(120, 1300, 60, 18), sparkle(60, 980, 26), sparkle(1020, 1000, 20)]) +
+    phone('complete', { x: 240, y: 560, w: W1, rot: 3 }) +
+    pencil('party', { x: -20, y: 1260, h: 640, rot: -6 }) +
+    chip('+5 stars', 'star', '#FFE7A3', { x: 700, y: 1660, rot: -4 })),
+
+  6: () => frame(6, 'radial-gradient(120% 80% at 50% 25%, #6FE3D5 0%, #2BBFAE 50%, #149488 100%)',
+    head(`Dress up ${hi('Pencil')}`, 'Hats, crowns and a cosy room') +
+    deco([sparkle(90, 560, 30), sparkle(990, 520, 24, '#FFC83D'), blob(160, 1450, 260, '#fff', .08), blob(980, 1000, 200, '#fff', .07)]) +
+    phone('room', { x: 370, y: 420, w: 590, rot: 4 }) +
+    pencil('crown', { x: -30, y: 470, h: 560, rot: -8, z: 6 }) +
+    pencil('wizard', { x: 20, y: 1180, h: 600, rot: 5, z: 6 }) +
+    chip('Spend stars in the shop', 'hat', '#149488', { x: 330, y: 1720, rot: -2 })),
+
+  7: () => frame(7, 'radial-gradient(120% 80% at 50% 25%, #B79BFF 0%, #8E6CFF 50%, #6A48DD 100%)',
+    head(`Collect ${hi('stickers')}`, 'A new sticker for every level') +
+    deco([sparkle(90, 600, 30), sparkle(1000, 580, 22, '#FFC83D'), letter('★', 870, 1500, 240, '#fff', 12, .12)]) +
+    phone('stickers', { x: 60, y: 450, w: 560, rot: -4, z: 3 }) +
+    phone('certificate', { x: 560, y: 650, w: 470, rot: 6, z: 4 }) +
+    pencil('happy', { x: 650, y: 1480, h: 420, rot: 4 }) +
+    chip('Certificate at the end', 'gift', '#6A48DD', { x: 40, y: 1720, rot: -2 })),
+
+  8: () => frame(8, 'radial-gradient(120% 80% at 50% 25%, #4B5BC8 0%, #2F3A9A 50%, #1D2266 100%)',
+    head(`${hi('Parents')} see<br>the progress`, 'Safe for kids, made for families') +
+    deco([sparkle(90, 620, 26), sparkle(1000, 600, 20, '#FFC83D'), blob(900, 1500, 300, '#fff', .05)]) +
+    phone('dashboard', { x: 400, y: 560, w: W1, rot: 3 }) +
+    pencil('encourage', { x: -40, y: 1330, h: 540, rot: -4 }) +
+    chip('No ads', 'noads', '#E2457A', { x: 40, y: 760, rot: -4 }) +
+    chip('Parent lock', 'lock', '#2563D9', { x: 30, y: 960, rot: 3 }) +
+    chip('Track each letter', 'chart', '#3BB273', { x: 40, y: 1160, rot: -3 })),
+};
+
+// ---------------------------------------------------------------- feature graphic (1024 x 500)
+function feature() {
+  document.body.classList.add('feature');
+  const W = 1024, H = 500;
+  return `<div class="slide">
+    <div class="bg" style="background:radial-gradient(120% 120% at 30% 40%, #A98BFF 0%, #7B57F0 50%, #5B39D6 100%)"></div>
+    <svg class="lines" viewBox="0 0 ${W} ${H}">${[80, 130, 180, 330, 380, 430].map((y, i) =>
+      `<line x1="0" x2="${W}" y1="${y}" y2="${y}" stroke="rgba(255,255,255,.10)" stroke-width="3" ${i % 3 === 1 ? 'stroke-dasharray="16 13"' : ''}/>`).join('')}</svg>
+    ${deco([sparkle(560, 70, 18), sparkle(980, 450, 14, '#FFC83D'), sparkle(70, 440, 14), letter('a', 900, 200, 140, '#fff', 12, .14)], W, H)}
+    <img class="mascot" src="mascot/wave.png" style="left:18px;top:70px;height:400px;transform:rotate(-8deg)">
+    <div style="position:absolute;left:345px;top:92px;color:#fff;z-index:7">
+      <div style="font:800 118px/0.9 Baloo;letter-spacing:-1px;text-shadow:0 5px 0 rgba(0,0,0,.12)">Likho</div>
+      <div style="font:800 54px/1.05 Baloo;margin-top:14px;text-shadow:0 4px 0 rgba(0,0,0,.12)">Learn to write ${hi('ABC')}</div>
+      <div style="font:800 28px/1.2 Nunito;margin-top:24px;opacity:.95">Letter tracing · phonics · words</div>
+    </div>
+    <div class="phone" style="left:826px;top:128px;width:214px;transform:rotate(8deg);border-radius:38px;padding:8px;--w:220px">
+      <div class="screen" style="border-radius:31px"><img src="screens/trace-A.png"><div class="gloss" style="border-radius:31px"></div></div></div>
+  </div>`;
+}
+
+document.getElementById('root').innerHTML = which === 'feature' ? feature() : S[which]();
+document.fonts.ready.then(() => document.body.dataset.ready = '1');
+</script>
+</body>
+</html>
