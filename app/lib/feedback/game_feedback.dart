@@ -16,8 +16,9 @@ import 'app_feedback.dart';
 /// * each tile placed / letter spelled: a kalimba step, rising
 /// * each letter found in a hunt, fixed in Pencil's notebook, sorted or
 ///   matched: a kalimba step, rising; each bubble popped: a pop
-/// * mic opens: a "ready" blip; next round: a paper swish (halfway through
-///   a long level: the milestone fanfare)
+/// * mic opens: a "ready" blip; next round: a paper swish (also halfway
+///   through a long level: Pencil cheers on screen, but no fanfare, so it
+///   never sounds like the level is over)
 /// * the boss wakes after the last round of a boss level
 /// * writing: a soft pencil-on-paper texture while the finger moves
 class GameFeedback extends ConsumerStatefulWidget {
@@ -47,7 +48,7 @@ class _GameFeedbackState extends ConsumerState<GameFeedback> {
   void _onSession(SessionState? prev, SessionState next) {
     if (prev == null) return;
     if (next.round != prev.round) {
-      next.isHalfway ? _fb.milestone() : _fb.roundNext();
+      _fb.roundNext();
       return;
     }
     if (next.mistakes > prev.mistakes) {
