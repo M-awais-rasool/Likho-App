@@ -1,18 +1,26 @@
 "use client";
 
 import { motion, useScroll, useSpring } from "framer-motion";
-import { Bus, CaseLower, CaseUpper, Cloud, Ear, Rocket, Moon } from "lucide-react";
+import { BookOpen, Bus, CaseLower, CaseUpper, Cloud, Ear, Footprints, MessageCircleQuestionMark, Moon, Mountain, Rocket, Shell, Sprout } from "lucide-react";
 import Image from "next/image";
 import { useRef } from "react";
+import { site } from "@/lib/site";
 import { Reveal, SectionTitle } from "./Reveal";
 
+// The course's worlds in order, worded as in the store listing (docs/google-play-listing.md).
 const worlds = [
-  { name: "Letter Land", skill: "Capital letters and ABC order", color: "#ffc83d", deep: "#e0a21a", picture: "apple", boss: "Sleepy Snail", icon: CaseUpper },
-  { name: "Small Letter Cove", skill: "Small letters, from the magic c letters on", color: "#4d9de0", deep: "#2f7cc0", picture: "fish", boss: "Sleepy Fish", icon: CaseLower },
-  { name: "Phonics Forest", skill: "Letter sounds, vowels and words like cat, dog and sun", color: "#3bb273", deep: "#268f58", picture: "owl", boss: "Sleepy Bear", icon: Ear },
-  { name: "Word Town", skill: "First English words, with a picture for each", color: "#ff8a5b", deep: "#e2683a", picture: "bus", boss: "Robot-Bus", icon: Bus },
-  { name: "Sentence Sky", skill: "Build and write short sentences like “I see a cat.”", color: "#9b7fe6", deep: "#6a48dd", picture: "rainbow", boss: "Sleepy Cloud", icon: Cloud },
-  { name: "Story Space", skill: "Put stories in order, read them and say them out loud", color: "#2b2d42", deep: "#14152a", picture: "planet", boss: "Sleepy Moon", icon: Rocket },
+  { name: "Letter Land", skill: "Capital letters A to Z", color: "#ffc83d", deep: "#e0a21a", picture: "apple", boss: "Sleepy Snail", icon: CaseUpper },
+  { name: "Small Letter Cove", skill: "Small letters a to z and their sounds", color: "#4d9de0", deep: "#2f7cc0", picture: "fish", boss: "Sleepy Fish", icon: CaseLower },
+  { name: "Phonics Forest", skill: "Words like cat, hen, pig, dog and bus", color: "#3bb273", deep: "#268f58", picture: "owl", boss: "Sleepy Bear", icon: Ear },
+  { name: "Word Town", skill: "Colours, numbers, animals, family and food", color: "#ff8a5b", deep: "#e2683a", picture: "bus", boss: "Robot-Bus", icon: Bus },
+  { name: "Sound Mountain", skill: "sh, ch, th, ee, oo and more letter pairs", color: "#8a6fd1", deep: "#6a51b0", picture: "tree", boss: "Sleepy Goat", icon: Mountain },
+  { name: "Blend Beach", skill: "star, frog, flag and other blends", color: "#ee9a32", deep: "#c27a1a", picture: "star", boss: "Sleepy Crab", icon: Shell },
+  { name: "Sight Word Garden", skill: "the, said, was, they and other words to know by sight", color: "#dd5e8c", deep: "#b4436d", picture: "flower", boss: "Sleepy Ladybug", icon: Sprout },
+  { name: "Sentence Sky", skill: "Capital letters, full stops and sentences such as “I see a cat.”", color: "#9b7fe6", deep: "#6a48dd", picture: "rainbow", boss: "Sleepy Cloud", icon: Cloud },
+  { name: "Action Jungle", skill: "Doing words, describing words and in, on, under", color: "#86a321", deep: "#657d14", picture: "lion", boss: "Sleepy Monkey", icon: Footprints },
+  { name: "Question Island", skill: "Who, what, where, and talking with friendly aliens", color: "#d4a20a", deep: "#a67c00", picture: "robot", boss: "Sleepy Turtle", icon: MessageCircleQuestionMark },
+  { name: "Reading River", skill: "Read sentences and little stories, then answer questions", color: "#1897b9", deep: "#0f7591", picture: "storybook", boss: "Sleepy Frog", icon: BookOpen },
+  { name: "Story Space", skill: "Put stories in order and write about me, my family and my day", color: "#2b2d42", deep: "#14152a", picture: "planet", boss: "Sleepy Moon", icon: Rocket },
 ];
 
 export function Worlds() {
@@ -22,7 +30,7 @@ export function Worlds() {
 
   return (
     <section id="worlds" className="relative overflow-hidden bg-[linear-gradient(180deg,#fff8ec_0%,#fff2d9_50%,#fff8ec_100%)] px-5 py-24 sm:px-8 sm:py-28">
-      <SectionTitle label="The journey" title={<>Six worlds. 36 levels. One big adventure.</>}>
+      <SectionTitle label="The journey" title={<>{site.course.worlds} worlds. {site.course.levels} levels. One big adventure.</>}>
         Every world ends with a sleepy boss that your child wakes up by finishing the level. Each level is a handful of short, playful rounds.
       </SectionTitle>
 
@@ -41,11 +49,12 @@ export function Worlds() {
           />
         </svg>
 
+        {/* on wide screens each right-hand card tucks up beside the left-hand one, so 12 worlds stay a short scroll */}
         <ol className="relative space-y-10 md:space-y-4">
           {worlds.map((w, i) => {
             const right = i % 2 === 1;
             return (
-              <li key={w.name} className={`relative pl-14 sm:pl-16 md:flex md:pl-0 ${right ? "md:justify-end" : ""}`}>
+              <li key={w.name} className={`relative pl-14 sm:pl-16 md:flex md:pl-0 ${right ? "md:-mt-20 md:justify-end" : ""}`}>
                 {/* the stop on the road */}
                 <span
                   className="absolute top-7 left-5 z-10 grid size-10 -translate-x-1/2 place-items-center rounded-full font-display text-lg font-extrabold text-white shadow-lg md:top-1/2 md:left-1/2 md:size-12 md:-translate-y-1/2 md:text-xl"
