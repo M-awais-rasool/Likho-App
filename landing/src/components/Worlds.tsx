@@ -3,7 +3,7 @@
 import { motion, useScroll, useSpring } from "framer-motion";
 import { BookOpen, Bus, CaseLower, CaseUpper, Cloud, Ear, Footprints, MessageCircleQuestionMark, Moon, Mountain, Rocket, Shell, Sprout } from "lucide-react";
 import Image from "next/image";
-import { useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { site } from "@/lib/site";
 import { Reveal, SectionTitle } from "./Reveal";
 
@@ -23,8 +23,45 @@ const worlds = [
   { name: "Story Space", skill: "Put stories in order and write about me, my family and my day", color: "#2b2d42", deep: "#14152a", picture: "planet", boss: "Sleepy Moon", icon: Rocket },
 ];
 
+/** A winding road from the top of the box, through every stop, to the bottom. Each bend swings to the other side. */
+function roadThrough(stops: { x: number; y: number }[], height: number) {
+  if (!stops.length) return "";
+  const points = [{ x: stops[0].x, y: 0 }, ...stops, { x: stops[stops.length - 1].x, y: height }];
+  let d = `M${points[0].x} 0`;
+  for (let i = 1; i < points.length; i++) {
+    const a = points[i - 1];
+    const b = points[i];
+    const swing = (i % 2 ? 1 : -1) * Math.min(44, Math.max(10, a.x - 6));
+    const third = (b.y - a.y) / 3;
+    d += ` C${a.x + swing} ${a.y + third}, ${b.x + swing} ${b.y - third}, ${b.x} ${b.y}`;
+  }
+  return d;
+}
+
 export function Worlds() {
   const ref = useRef<HTMLDivElement>(null);
+  const stopRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const [road, setRoad] = useState<{ width: number; height: number; d: string } | null>(null);
+
+  // The stops move with the layout (phone vs desktop, text wrapping), so the road is measured from them.
+  useLayoutEffect(() => {
+    const box = ref.current;
+    if (!box) return;
+    const measure = () => {
+      const r = box.getBoundingClientRect();
+      const stops = stopRefs.current.flatMap((el) => {
+        if (!el) return [];
+        const s = el.getBoundingClientRect();
+        return [{ x: Math.round(s.left + s.width / 2 - r.left), y: Math.round(s.top + s.height / 2 - r.top) }];
+      });
+      setRoad({ width: r.width, height: r.height, d: roadThrough(stops, r.height) });
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(box);
+    return () => observer.disconnect();
+  }, []);
+
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 75%", "end 55%"] });
   const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 24 });
 
@@ -36,18 +73,12 @@ export function Worlds() {
 
       <div ref={ref} className="relative mx-auto mt-16 max-w-[1000px]">
         {/* the road between the worlds, drawn as you scroll */}
-        <svg className="pointer-events-none absolute inset-y-0 left-5 h-full w-8 -translate-x-1/2 md:left-1/2 md:w-24" viewBox="0 0 100 1000" preserveAspectRatio="none" aria-hidden>
-          <path d="M50 0 C 95 90, 5 160, 50 250 S 95 410, 50 500 S 5 660, 50 750 S 95 910, 50 1000" fill="none" stroke="#e9dcc3" strokeWidth="6" strokeDasharray="14 14" vectorEffect="non-scaling-stroke" />
-          <motion.path
-            d="M50 0 C 95 90, 5 160, 50 250 S 95 410, 50 500 S 5 660, 50 750 S 95 910, 50 1000"
-            fill="none"
-            stroke="#ffc83d"
-            strokeWidth="6"
-            strokeLinecap="round"
-            vectorEffect="non-scaling-stroke"
-            style={{ pathLength: progress }}
-          />
-        </svg>
+        {road && (
+          <svg className="pointer-events-none absolute inset-0 overflow-visible" width={road.width} height={road.height} viewBox={`0 0 ${road.width} ${road.height}`} aria-hidden>
+            <path d={road.d} fill="none" stroke="#e9dcc3" strokeWidth="6" strokeDasharray="14 14" />
+            <motion.path d={road.d} fill="none" stroke="#ffc83d" strokeWidth="6" strokeLinecap="round" style={{ pathLength: progress }} />
+          </svg>
+        )}
 
         {/* on wide screens each right-hand card tucks up beside the left-hand one, so 12 worlds stay a short scroll */}
         <ol className="relative space-y-10 md:space-y-4">
@@ -57,6 +88,9 @@ export function Worlds() {
               <li key={w.name} className={`relative pl-14 sm:pl-16 md:flex md:pl-0 ${right ? "md:-mt-20 md:justify-end" : ""}`}>
                 {/* the stop on the road */}
                 <span
+                  ref={(el) => {
+                    stopRefs.current[i] = el;
+                  }}
                   className="absolute top-7 left-5 z-10 grid size-10 -translate-x-1/2 place-items-center rounded-full font-display text-lg font-extrabold text-white shadow-lg md:top-1/2 md:left-1/2 md:size-12 md:-translate-y-1/2 md:text-xl"
                   style={{ background: w.color, boxShadow: `0 5px 0 ${w.deep}` }}
                 >
