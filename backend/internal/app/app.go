@@ -45,6 +45,7 @@ type Deps struct {
 	ContentOptions catalog.Options
 	Geo            *geo.Resolver
 	CountryHeader  string
+	TrustedProxies []string
 	AdminDir       string
 	System         handler.SystemInfo
 	Production     bool
@@ -94,7 +95,7 @@ func BuildApp(d Deps) *Built {
 	}
 	handlers.Media = &handler.MediaHandler{Library: d.Media}
 	router := api.NewRouter(handlers, adminHandler, d.Tokens, c, api.Options{
-		CountryHeader: d.CountryHeader, AdminDir: d.AdminDir, Seen: activity.Seen,
+		CountryHeader: d.CountryHeader, AdminDir: d.AdminDir, Seen: activity.Seen, TrustedProxies: d.TrustedProxies,
 	})
 	return &Built{Handler: router, Content: content, Admins: admins}
 }
@@ -175,7 +176,7 @@ func Run(ctx context.Context, cfg config.Config) error {
 	built := BuildApp(Deps{
 		DB: db, Redis: rdb, Catalog: cat, Media: lib, Google: google, Tokens: tokens,
 		ContentFS: contentFS(cfg), ContentOptions: catalog.Options{IncludeDrafts: cfg.ContentDrafts},
-		Geo: resolver, CountryHeader: cfg.CountryHeader, AdminDir: cfg.AdminDir, Production: cfg.Production(),
+		Geo: resolver, CountryHeader: cfg.CountryHeader, TrustedProxies: cfg.TrustedProxies, AdminDir: cfg.AdminDir, Production: cfg.Production(),
 		System: handler.SystemInfo{Env: cfg.Env, StartedAt: time.Now(), GeoIP: resolver.Enabled(), CountryHeader: cfg.CountryHeader, DevLogin: cfg.DevLogin},
 	})
 	if err := built.Admins.Bootstrap(ctx, cfg.AdminBootstrapEmail, cfg.AdminBootstrapPassword); err != nil {
