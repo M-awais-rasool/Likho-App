@@ -27,3 +27,6 @@ tools/voice/.cache/
 # Pictures and recordings of the courses: made by tools/, kept on the
 # server (MEDIA_DIR) and served at /media/, never in git or in the app
 /media/
+
+# Where the server is (written by terraform; not secret, but per machine)
+deploy/server.env
