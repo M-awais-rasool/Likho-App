@@ -65,16 +65,18 @@ type Overview struct {
 func (r *InsightsRepository) Overview(ctx context.Context, courseID string, lastLevel, days int) (Overview, error) {
 	db := r.db.WithContext(ctx)
 	var o Overview
-	since := time.Now().UTC().Truncate(24*time.Hour).AddDate(0, 0, -(days - 1))
+	// one clock for "today" and the series (UTC days, like active_days)
+	today := time.Now().UTC().Truncate(24 * time.Hour)
+	since := today.AddDate(0, 0, -(days - 1))
 	err := db.Raw(`
 		SELECT
 		  (SELECT count(*) FROM parents) AS parents,
 		  (SELECT count(*) FROM children) AS children,
 		  (SELECT count(*) FROM parents WHERE created_at >= @since) AS new_parents,
-		  (SELECT count(*) FROM parents WHERE created_at >= current_date) AS new_today,
-		  (SELECT count(*) FROM active_days WHERE day = current_date) AS active_today,
-		  (SELECT count(DISTINCT parent_id) FROM active_days WHERE day > current_date - 7) AS active7,
-		  (SELECT count(DISTINCT parent_id) FROM active_days WHERE day > current_date - 30) AS active30,
+		  (SELECT count(*) FROM parents WHERE created_at >= @today) AS new_today,
+		  (SELECT count(*) FROM active_days WHERE day = CAST(@today AS date)) AS active_today,
+		  (SELECT count(DISTINCT parent_id) FROM active_days WHERE day > CAST(@today AS date) - 7) AS active7,
+		  (SELECT count(DISTINCT parent_id) FROM active_days WHERE day > CAST(@today AS date) - 30) AS active30,
 		  (SELECT count(*) FROM parents WHERE last_seen_at > now() - interval '5 minutes') AS online_now,
 		  (SELECT count(*) FROM parents WHERE plus_until > now()) AS plus,
 		  (SELECT count(*) FROM parents WHERE trial_used) AS trials_used,
@@ -86,18 +88,18 @@ func (r *InsightsRepository) Overview(ctx context.Context, courseID string, last
 		     HAVING max(level) >= @last - 1 AND max(level) < @last) x) AS at_end,
 		  (SELECT count(DISTINCT child_id) FROM level_progress WHERE course_id = @course AND level = @last) AS finished,
 		  (SELECT count(DISTINCT country) FROM parents WHERE country <> '') AS countries`,
-		map[string]any{"since": since, "course": courseID, "last": lastLevel}).Scan(&o.Totals).Error
+		map[string]any{"since": since, "today": today, "course": courseID, "last": lastLevel}).Scan(&o.Totals).Error
 	if err != nil {
 		return o, err
 	}
 
 	err = db.Raw(`
-		WITH d AS (SELECT generate_series(CAST(@since AS date), current_date, interval '1 day')::date AS day)
+		WITH d AS (SELECT generate_series(CAST(@since AS date), CAST(@today AS date), interval '1 day')::date AS day)
 		SELECT to_char(d.day, 'YYYY-MM-DD') AS day,
 		  (SELECT count(*) FROM parents p WHERE p.created_at >= d.day AND p.created_at < d.day + 1) AS signups,
 		  (SELECT count(*) FROM active_days a WHERE a.day = d.day) AS active,
 		  (SELECT count(*) FROM activity_events e WHERE e.type = 'level_completed' AND e.at >= d.day AND e.at < d.day + 1) AS levels
-		FROM d ORDER BY d.day`, map[string]any{"since": since}).Scan(&o.Series).Error
+		FROM d ORDER BY d.day`, map[string]any{"since": since, "today": today}).Scan(&o.Series).Error
 	if err != nil {
 		return o, err
 	}
