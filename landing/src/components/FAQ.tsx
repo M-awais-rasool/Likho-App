@@ -19,7 +19,7 @@ const faqs: { q: string; a: React.ReactNode }[] = [
   { q: "How many children can use it?", a: "Up to 4 child profiles per family, each with their own progress, stars and Pencil." },
   {
     q: "What's free, and what's in Likho Plus?",
-    a: `The first two worlds (${site.course.freeLevels} levels) are free. Likho Plus unlocks all ${site.course.worlds} worlds and ${site.course.levels} levels, with a ${site.plus.trialDays}-day free trial. You can cancel anytime from your store subscriptions.`,
+    a: `${site.course.freeWorld}, with all 26 capital letters (${site.course.freeLevels} levels), is free. Likho Plus unlocks all ${site.course.worlds} worlds and ${site.course.levels} levels, with a ${site.plus.trialDays}-day free trial. You can cancel anytime from your store subscriptions.`,
   },
   { q: "What does “Likho” mean?", a: "It means “write!” in Urdu." },
   {

@@ -14,7 +14,7 @@ function Count({ from, to }: { from: number; to: number }) {
     const c = animate(from, to, { duration: 1.6, ease: [0.22, 1, 0.36, 1], onUpdate: (v) => setN(Math.round(v)) });
     return () => c.stop();
   }, [inView, reduce, from, to]);
-  return <span ref={ref}>{reduce ? to : n}</span>;
+  return <span ref={ref}>{(reduce ? to : n).toLocaleString("en-US")}</span>;
 }
 
 const stats = [

@@ -158,8 +158,8 @@ export function Hero() {
           >
             <Image src="/pictures/rainbow.webp" alt="" width={64} height={64} className="size-9" />
             <div>
-              <p className="font-display text-[14px] leading-none font-extrabold text-ink">6 worlds</p>
-              <p className="text-[12px] font-bold text-ink-soft">36 levels to explore</p>
+              <p className="font-display text-[14px] leading-none font-extrabold text-ink">{site.course.worlds} worlds</p>
+              <p className="text-[12px] font-bold text-ink-soft">{site.course.levels} levels to explore</p>
             </div>
           </motion.div>
         </motion.div>

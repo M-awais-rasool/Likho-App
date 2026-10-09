@@ -20,9 +20,10 @@ export const site = {
   playStoreUrl: null as string | null,
   appStoreUrl: null as string | null,
   /** When the legal pages last changed. */
-  updated: "3 October 2026",
+  updated: "10 October 2026",
 
-  course: { worlds: 6, levels: 36, activities: 182, freeLevels: 12, ages: "5–8" },
+  /** From the course: levels leave out the placement warm-up; activities are the rounds in those levels. */
+  course: { worlds: 12, levels: 144, activities: 1326, freeWorld: "Letter Land", freeLevels: 31, ages: "5–8" },
   plus: { monthly: "Rs 799", yearly: "Rs 4,999", yearlyPerMonth: "Rs 416", trialDays: 7, save: "48%" },
 } as const;
 

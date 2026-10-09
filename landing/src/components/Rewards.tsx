@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Award, Star } from "lucide-react";
 import Image from "next/image";
+import { site } from "@/lib/site";
 import { Reveal, SectionTitle } from "./Reveal";
 
 const stickers = ["cat", "sun", "kite", "balloon", "butterfly", "cake", "frog", "star", "duck", "flower"];
@@ -82,7 +83,7 @@ export function Rewards() {
         <Reveal delay={0.08} className="card relative overflow-hidden bg-[linear-gradient(140deg,#fff3cf,#ffffff)] p-7 md:col-span-2">
           <Award className="size-10 text-sun-deep" strokeWidth={2.2} />
           <h3 className="mt-3 font-display text-2xl font-extrabold text-ink">A certificate at the end</h3>
-          <p className="relative z-10 mt-2 pb-16 font-semibold text-ink-soft">Finish all 36 levels and Pencil hands over a certificate with your child&apos;s name.</p>
+          <p className="relative z-10 mt-2 pb-16 font-semibold text-ink-soft">Finish all {site.course.levels} levels and Pencil hands over a certificate with your child&apos;s name.</p>
           <Image src="/pencil/happy.webp" alt="" width={679} height={799} className="absolute right-3 -bottom-5 w-20 rotate-6" />
         </Reveal>
       </div>
