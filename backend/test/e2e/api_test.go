@@ -380,10 +380,12 @@ func TestCoursesRateLimitAndRedisDown(t *testing.T) {
 	}
 	want(t, a.do("GET", "/v1/courses/"+course, "", nil, "If-None-Match", r.header.Get("ETag")), http.StatusNotModified)
 
-	// sign-in is limited to 30 a minute per IP
+	// sign-in is limited to 30 a minute per IP, and a made-up
+	// X-Forwarded-For on every request does not get around it
 	limited := false
 	for i := range 35 {
-		if a.do("POST", "/v1/auth/google", "", map[string]any{"idToken": fmt.Sprintf("dev:kid%d@x.com", i)}).status == http.StatusTooManyRequests {
+		if a.do("POST", "/v1/auth/google", "", map[string]any{"idToken": fmt.Sprintf("dev:kid%d@x.com", i)},
+			"X-Forwarded-For", fmt.Sprintf("203.0.113.%d", i)).status == http.StatusTooManyRequests {
 			limited = true
 		}
 	}
