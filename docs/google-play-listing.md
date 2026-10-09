@@ -122,41 +122,44 @@ Other titles that also fit:
 
 Rules: no emojis, no ALL CAPS, and no "best", "#1", "free" or prices in the title.
 
-### Short description (80 of 80)
+### Short description (76 of 80)
 
 ```
-Letter tracing & handwriting practice: capital and small letters, phonics, words
+Trace ABC with Pencil: capital & small letters, phonics, words and sentences
 ```
 
 Other short descriptions:
-- `Trace and write ABC with Pencil: capital & small letters, phonics and words` (75)
-- `Fun ABC tracing and handwriting game: capital & small letters, phonics, words` (77)
+- `Letter tracing & handwriting practice: capital and small letters, phonics, words` (80)
+- `Learn to write ABC: letter tracing, phonics and word games for kids aged 5-8` (76)
 
-### Full description (2,777 of 4,000)
+### Full description (3505 of 4,000)
 
 ```
-Likho is a kids learning game that makes handwriting practice a happy adventure. With Pencil, a cheerful talking pencil, your child learns to write the English alphabet: first tracing capital and small letters (uppercase and lowercase), then phonics, words, sentences and short stories.
+Likho turns handwriting practice into a happy adventure. With Pencil, a cheerful talking pencil, your child learns to write every letter of the English alphabet: capital letters A to Z, then small letters a to z with their sounds, then phonics, words, sentences and short stories.
 
-"Likho" means "write!" in Urdu. It is made for kindergarten and early primary children aged 5 to 8 (KG to Class 3) who are learning to read and write in English.
+"Likho" means "write!" in Urdu. It is made for children aged 5 to 8 (KG to Class 3) who are learning to read and write in English.
 
 HOW KIDS LEARN TO WRITE
-• Letter tracing with step-by-step stroke guides, then writing on their own
-• One new letter at a time, in nine short games: find it, trace it, hear its sound, hunt for it, write it alone
-• Letters in A to Z order, capitals first, then small letters with their sounds
-• Older letters keep coming back, so children remember them
-• Likho checks every letter and gives a gentle hint after a mistake
+• Letter tracing step by step: start at the blue dot and follow the arrows
+• Then join the dots, and then write the letter all alone
+• All 26 capital letters and all 26 small letters (uppercase and lowercase)
+• Likho checks every stroke and gives a gentle hint after a mistake
 • Pencil reads every instruction out loud, so children who cannot read yet can play on their own
-• Colourful pictures for the words: A is for apple!
+• Colourful pictures for every word: a is for apple!
+• Older letters keep coming back, so children remember them
+
+10 KINDS OF GAMES
+Every level mixes writing with short games: pop the bubbles, find the picture, sort into baskets, match the pairs, build the word, hunt for the letter, true or silly, fix Pencil's mistakes, say it out loud and, of course, write it.
 
 12 WORLDS, 144 LEVELS
 1. Letter Land: capital letters A to Z
 2. Small Letter Cove: small letters a to z and their sounds
-3. Phonics Forest: blend words like cat, hen, pig, dog and bus
+3. Phonics Forest: words like cat, hen, pig, dog and bus
 4. Word Town: colours, numbers, animals, family and food
 5. Sound Mountain: sh, ch, th, ee, oo and more letter pairs
 6. Blend Beach: star, frog, flag and other blends
 7. Sight Word Garden: the, said, was, they and other words to know by sight
-8. Sentence Sky: capital letters, full stops and short sentences such as "I see a cat."
+8. Sentence Sky: capital letters, full stops and sentences such as "I see a cat."
 9. Action Jungle: doing words, describing words and in, on, under
 10. Question Island: who, what, where, and talking with friendly aliens
 11. Reading River: read sentences and little stories, then answer questions
@@ -165,17 +168,17 @@ Each world ends with a sleepy boss that your child wakes up by finishing the lev
 
 REWARDS THAT KEEP THEM GOING
 • Up to 3 stars in every level
-• A sticker book to fill
-• Outfits for Pencil in his room, bought with stars: hats, glasses, a cape and more
+• A sticker book with a new sticker for every level
+• Dress up Pencil with stars: party hats, crowns, wizard hats, glasses, a cape and more
 • A certificate when the whole course is complete
 • Happy sounds and gentle vibrations for every success
 
 FOR PARENTS
 • No ads
 • Up to 4 child profiles, each with their own progress
-• A parent gate keeps settings and the parent area away from little fingers
-• See each child's progress through the course
-• Short sessions: choose about 5, 10 or 15 minutes, then Pencil takes a nap
+• A parent lock keeps settings and the parent area away from little fingers
+• See which letters each child knows and which need practice
+• Short sessions: choose 5, 10 or 15 minutes, then Pencil takes a nap
 • Progress is saved to your account, so it stays safe when you change phones
 • Works offline: once the course is downloaded, kids can keep practising without internet
 
@@ -183,7 +186,7 @@ LIKHO PLUS
 Letter Land, with all 26 capital letters, is free to play. Likho Plus, a monthly or yearly subscription, unlocks all 12 worlds and 144 levels. New families can try it free for 7 days. The subscription renews automatically until you cancel it in Google Play.
 
 WALIDAIN KE LIYE
-Likho bachon ke liye English likhna seekhne wala game hai. Bachay ABC, capital aur small letters, phonics, alfaaz aur chhote jumlay likhna seekhte hain. Pencil har hidayat bol kar batata hai, is liye chhote bachay bhi khud khel sakte hain. Koi ads nahi, aur settings parent gate ke peeche mehfooz hain.
+Likho bachon ke liye English likhna seekhne wala game hai. Bachay ABC, capital aur small letters, phonics, alfaaz aur chhote jumlay likhna seekhte hain. Pencil har hidayat bol kar batata hai, is liye chhote bachay bhi khud khel sakte hain. Koi ads nahi, aur settings parent lock ke peeche mehfooz hain.
 
 One letter at a time, your child will write with confidence. Start the adventure with Pencil today!
 ```
@@ -191,8 +194,9 @@ One letter at a time, your child will write with confidence. Start the adventure
 Notes on the full description:
 - Every feature in it exists in the app today. Two lines depend on the sign-in decision in part 1:
   "Progress is saved to your account" and the offline line. Update them if accounts change.
+- Checked against the course on 10 October 2026: children write all 26 capital and all 26 small
+  letters, every level mixes the 10 round types, and each of the 12 worlds ends with a boss.
 - Not claimed on purpose:
-  - every letter A to Z (children write 13 capital and 13 small letters, grouped by shape)
   - speech checking (speak rounds do not listen yet)
   - left-handed mode (a stored setting that does not change the game yet)
   - weekly reports (on the paywall, but not built)
@@ -275,19 +279,20 @@ reviews from the first week.
 | Asset | Size | Status |
 |---|---|---|
 | App icon | 512 × 512 PNG | ready: `design/app-icon/google-play-512.png` |
-| Feature graphic | 1024 × 500 PNG/JPEG, no transparency | to make: Pencil, the Likho name and a short line such as "Learn to write ABC" |
-| Phone screenshots | 2–8, 9:16 (1080 × 1920 is best) | to take: 6 to 8 is best |
+| Feature graphic | 1024 × 500 PNG/JPEG, no transparency | ready: `design/store-screenshots/play/likho-feature-graphic.png` |
+| Phone screenshots | 2–8, 9:16 (1080 × 1920 is best) | ready: 8 in `design/store-screenshots/play/`, upload in order 01 to 08 |
 | Tablet screenshots (7" and 10") | optional | recommended, because the app runs on tablets |
 | Video | YouTube link, optional | a 30-second clip of Pencil and tracing helps |
 
-Screenshots to take, with a short caption on each:
-1. The world map: "12 worlds, 144 levels of writing fun"
-2. A level intro with Pencil and a picture: "Pencil reads every step out loud"
-3. Tracing a letter: "Trace and write capital and small letters"
-4. A phonics or word round: "Phonics, words and sentences"
-5. Level complete with stars: "Win stars and wake the sleepy boss"
-6. Pencil's room: "Dress up Pencil with your stars"
-7. The parent dashboard: "See every child's progress"
+The screenshots frame real app screens (rebuild them with `design/store-screenshots/build.sh`):
+1. Tracing A: "Learn to write ABC"
+2. Picture games: "Phonics games kids love"
+3. The world map: "12 worlds to explore"
+4. Small letters and spelling: "Capital and small letters"
+5. Level complete: "Earn stars every day"
+6. Pencil's room: "Dress up Pencil"
+7. Sticker book and certificate: "Collect stickers"
+8. Parent dashboard: "Parents see the progress"
 
 ## 9. First release
 
