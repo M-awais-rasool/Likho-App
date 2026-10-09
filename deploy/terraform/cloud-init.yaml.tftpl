@@ -1,0 +1,195 @@
+#cloud-config
+# First boot of Likho's server: a locked-down Ubuntu with Docker, nginx,
+# certbot, a firewall, fail2ban, automatic security updates and a daily
+# database dump. deploy.sh installs Likho itself afterwards.
+
+package_update: true
+package_upgrade: true
+packages:
+  - nginx
+  - certbot
+  - fail2ban
+  - python3-systemd
+  - ufw
+  - unattended-upgrades
+  - rsync
+  - ca-certificates
+  - curl
+  - gnupg
+
+# one user, SSH key only; root cannot log in over SSH
+users:
+  - name: deploy
+    shell: /bin/bash
+    groups: [sudo]
+    sudo: "ALL=(ALL) NOPASSWD:ALL"
+    lock_passwd: true
+    ssh_authorized_keys:
+      - ${ssh_key}
+disable_root: true
+ssh_pwauth: false
+
+write_files:
+  # read before Ubuntu's own files, so these settings win
+  - path: /etc/ssh/sshd_config.d/00-likho.conf
+    permissions: "0644"
+    content: |
+      PermitRootLogin no
+      PasswordAuthentication no
+      KbdInteractiveAuthentication no
+      AuthenticationMethods publickey
+      AllowUsers deploy
+      MaxAuthTries 3
+      MaxSessions 4
+      LoginGraceTime 20
+      X11Forwarding no
+      AllowAgentForwarding no
+      # local forwarding only: the admin panel's SSH tunnel
+      AllowTcpForwarding local
+      PermitTunnel no
+      ClientAliveInterval 300
+      ClientAliveCountMax 2
+      KexAlgorithms sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org
+      Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com
+      MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
+
+  - path: /etc/sysctl.d/99-likho.conf
+    content: |
+      net.ipv4.tcp_syncookies = 1
+      net.ipv4.conf.all.accept_redirects = 0
+      net.ipv4.conf.default.accept_redirects = 0
+      net.ipv6.conf.all.accept_redirects = 0
+      net.ipv6.conf.default.accept_redirects = 0
+      net.ipv4.conf.all.send_redirects = 0
+      net.ipv4.conf.all.accept_source_route = 0
+      net.ipv6.conf.all.accept_source_route = 0
+      net.ipv4.conf.all.log_martians = 1
+      net.ipv4.icmp_echo_ignore_broadcasts = 1
+      kernel.kptr_restrict = 2
+      kernel.dmesg_restrict = 1
+      kernel.unprivileged_bpf_disabled = 1
+      net.core.bpf_jit_harden = 2
+      fs.protected_symlinks = 1
+      fs.protected_hardlinks = 1
+      fs.suid_dumpable = 0
+      vm.swappiness = 10
+
+  # every container: no privilege escalation, small logs, keeps running
+  # while Docker itself updates
+  - path: /etc/docker/daemon.json
+    content: |
+      {
+        "no-new-privileges": true,
+        "live-restore": true,
+        "log-driver": "json-file",
+        "log-opts": { "max-size": "10m", "max-file": "3" }
+      }
+
+  # bans: SSH guessing, scanners looking for .env/wp-admin, clients that
+  # keep hitting the rate limits (scrapers); repeat offenders for a week
+  - path: /etc/fail2ban/jail.d/likho.local
+    content: |
+      [DEFAULT]
+      bantime = 1h
+      findtime = 10m
+      maxretry = 5
+      backend = auto
+
+      [sshd]
+      enabled = true
+      backend = systemd
+      maxretry = 3
+
+      [nginx-botsearch]
+      enabled = true
+      port = http,https
+      logpath = /var/log/nginx/access.log
+      maxretry = 3
+
+      [nginx-limit-req]
+      enabled = true
+      port = http,https
+      logpath = /var/log/nginx/error.log
+      maxretry = 20
+
+      [recidive]
+      enabled = true
+      bantime = 1w
+      findtime = 1d
+      maxretry = 3
+
+  # security updates every night; reboot at 22:00 UTC (03:00 in Pakistan)
+  # when one needs it
+  - path: /etc/apt/apt.conf.d/52likho-upgrades
+    content: |
+      Unattended-Upgrade::Automatic-Reboot "true";
+      Unattended-Upgrade::Automatic-Reboot-Time "22:00";
+      Unattended-Upgrade::Remove-Unused-Dependencies "true";
+  - path: /etc/apt/apt.conf.d/20auto-upgrades
+    content: |
+      APT::Periodic::Update-Package-Lists "1";
+      APT::Periodic::Unattended-Upgrade "1";
+
+  # the database, dumped every night and kept 14 days; Vultr's daily disk
+  # backup (half an hour later) takes the dump off the machine
+  - path: /usr/local/sbin/likho-backup
+    permissions: "0750"
+    content: |
+      #!/bin/sh
+      set -eu
+      dir=/srv/likho/backups
+      install -d -m 700 "$dir"
+      cd /srv/likho/src/deploy 2>/dev/null || exit 0 # not deployed yet
+      f="$dir/likho-$(date -u +%Y%m%d-%H%M).sql.gz"
+      docker compose exec -T postgres pg_dump -U likho -d likho --no-owner --clean --if-exists | gzip -9 > "$f.tmp"
+      mv "$f.tmp" "$f"
+      chmod 600 "$f"
+      find "$dir" -name 'likho-*.sql.gz' -mtime +14 -delete
+  - path: /etc/systemd/system/likho-backup.service
+    content: |
+      [Unit]
+      Description=Dump the Likho database
+      [Service]
+      Type=oneshot
+      ExecStart=/usr/local/sbin/likho-backup
+  - path: /etc/systemd/system/likho-backup.timer
+    content: |
+      [Unit]
+      Description=Dump the Likho database every night
+      [Timer]
+      OnCalendar=*-*-* 20:30:00 UTC
+      Persistent=true
+      [Install]
+      WantedBy=timers.target
+
+runcmd:
+  # Docker from Docker's own signed apt repository
+  - install -m 0755 -d /etc/apt/keyrings
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+  - chmod a+r /etc/apt/keyrings/docker.asc
+  - sh -c 'echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo $VERSION_CODENAME) stable" > /etc/apt/sources.list.d/docker.list'
+  - apt-get update
+  - DEBIAN_FRONTEND=noninteractive apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+  - usermod -aG docker deploy
+  - systemctl enable --now docker
+
+  # second firewall on the machine itself (the Vultr firewall is the first).
+  # Docker publishes nothing publicly: the API is on 127.0.0.1 only.
+  - ufw default deny incoming
+  - ufw default allow outgoing
+  - ufw allow 22/tcp
+  - ufw allow 80/tcp
+  - ufw allow 443/tcp
+  - ufw --force enable
+
+  # 2 GB swap so image builds never run out of memory
+  - sh -c 'test -f /swapfile || { fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && echo "/swapfile none swap sw 0 0" >> /etc/fstab; }'
+
+  - sysctl --system
+  - rm -f /etc/nginx/sites-enabled/default
+  - install -d -o deploy -g deploy -m 750 /srv/likho
+  - install -d -m 755 /var/www/acme
+  - systemctl daemon-reload
+  - systemctl enable --now likho-backup.timer fail2ban unattended-upgrades nginx
+  - systemctl restart ssh
+  - touch /var/lib/likho-ready
