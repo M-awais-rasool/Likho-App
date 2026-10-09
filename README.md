@@ -478,7 +478,7 @@ Every level's intro has a picture and a line Pencil says while it shows:
   repository root (git-ignored); the API serves that folder (`MEDIA_DIR`) at `/media/` with a
   manifest at `/v1/media`. The app keeps every file it downloads (by hash, so it is never stale),
   fetches the next three levels ahead, plays offline what it has, and falls back to placeholders
-  and the device voice for what it does not. `deploy/deploy.sh user@server media` sends new files.
+  and the device voice for what it does not. `deploy/deploy.sh media` sends new files.
 * **Pictures** are Fluent Emoji (3D, MIT) with a transparent background, one 256 x 256 PNG per key,
   made by `tools/illustrations/build_illustrations.py` into `media/pictures/`. For a new picture
   add its key there (one emoji, or a scene of several), run the script, use the key in the content.
@@ -631,10 +631,9 @@ holds what the site says about Likho:
 Course numbers and prices are in the same file; keep them in step with `backend/content` and the
 app's paywall. Read the privacy policy and the terms once yourself before publishing.
 
-**Deploy (Vercel):** on vercel.com **Add New → Project**, import this repository and set **Root
-Directory** to `landing`. Add `NEXT_PUBLIC_SITE_URL` (e.g. `https://likho.app`; used by share
-previews, the sitemap and canonical links) and deploy; add your own domain under **Settings →
-Domains**. Then give Google Play `https://<your site>/privacy` as the privacy policy and
+**Deploy:** the site is a static export (`npm run build` writes `out/`), and `deploy/deploy.sh`
+builds it with `NEXT_PUBLIC_SITE_URL=https://<domain>` and serves it from the Likho server
+([deploy/README.md](deploy/README.md)). Then give Google Play `https://<your site>/privacy` as the privacy policy and
 `https://<your site>/delete-account` as the account deletion link.
 
 ```
