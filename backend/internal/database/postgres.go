@@ -10,6 +10,8 @@ import (
 	"runtime"
 	"time"
 
+	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/stdlib"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -24,12 +26,22 @@ import (
 //     8 to 20, so the API shares the database server politely), idle
 //     connections recycled
 //   - only slow queries (> 200 ms) and errors are logged
+//
+// Every connection runs in UTC. A day in the app is a UTC day (active_days,
+// play_days, the week from Monday), so current_date and date casts in SQL
+// must count the same days, whatever time zone the database server (or
+// PGTZ) is set to.
 func Connect(ctx context.Context, url string, debug bool, maxConns int) (*gorm.DB, error) {
 	level, out := logger.Warn, slogWriter{slog.LevelWarn}
 	if debug {
 		level, out = logger.Info, slogWriter{slog.LevelInfo} // every query, for development
 	}
-	db, err := gorm.Open(postgres.Open(url), &gorm.Config{
+	cfg, err := pgx.ParseConfig(url)
+	if err != nil {
+		return nil, fmt.Errorf("postgres: %w", err)
+	}
+	cfg.RuntimeParams["timezone"] = "UTC"
+	db, err := gorm.Open(postgres.New(postgres.Config{Conn: stdlib.OpenDB(*cfg)}), &gorm.Config{
 		PrepareStmt:            true,
 		SkipDefaultTransaction: true,
 		TranslateError:         true, // unique violations become gorm.ErrDuplicatedKey
