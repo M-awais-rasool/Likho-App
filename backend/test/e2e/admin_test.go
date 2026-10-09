@@ -216,6 +216,44 @@ func TestAdminSeesFamiliesProgressAndEndAlerts(t *testing.T) {
 	}
 }
 
+// The dashboard counts UTC days, even when the database runs in a time zone
+// where it is already another date (here: Pakistan just after midnight, or
+// a server set to local time).
+func TestAdminOverviewDaysAreUTCDays(t *testing.T) {
+	// a fixed zone whose date is not the UTC date right now: 12 hours behind
+	// in the UTC morning, 14 hours ahead after noon ("Etc/GMT+12" is UTC-12)
+	zone := "Etc/GMT-14"
+	if time.Now().UTC().Hour() < 12 {
+		zone = "Etc/GMT+12"
+	}
+	t.Setenv("PGTZ", zone)
+	a := newTestApp(t)
+	adm := a.admin()
+
+	r := a.do("POST", "/v1/auth/google", "", map[string]any{"idToken": "dev:abbu@gmail.com"})
+	want(t, r, http.StatusCreated)
+	tok := r.json()["accessToken"].(string)
+	r = a.do("POST", "/v1/children", tok, map[string]any{"name": "Zara", "age": 5, "color": "#FFC83D"})
+	want(t, r, http.StatusCreated)
+	path := "/v1/children/" + r.json()["id"].(string) + "/courses/" + course + "/results"
+	want(t, a.do("POST", path, tok, map[string]any{"level": 1, "stars": 3, "seconds": 60}), 200)
+
+	ov := adm.json("GET", "/overview?days=7", nil, 200)
+	tot := ov["totals"].(map[string]any)
+	if tot["newToday"] != 1.0 || tot["activeToday"] != 1.0 || tot["active7"] != 1.0 {
+		t.Errorf("today's numbers (session zone %s): %v", zone, tot)
+	}
+	s := ov["series"].([]any)
+	if len(s) != 7 {
+		t.Fatalf("7 days: %v", s)
+	}
+	today := s[6].(map[string]any)
+	if today["day"] != time.Now().UTC().Format("2006-01-02") ||
+		today["signups"] != 1.0 || today["active"] != 1.0 || today["levels"] != 1.0 {
+		t.Errorf("sign-up, activity and the level on the same (UTC) day: %v", s)
+	}
+}
+
 // newLevel is level [from]'s document as level [n] (new ids).
 func newLevel(t *testing.T, adm *adminClient, from, n int, name string) string {
 	t.Helper()
