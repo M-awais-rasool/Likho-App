@@ -356,6 +356,9 @@ void main() {
       // stores: Google Play takes a 512 px square (it rounds the corners itself)
       _write('$_store/google-play-512.png', _png(512, await full(512, _Sky.day), alpha: false));
       _write('$_store/likho-icon-1024.png', _png(1024, day, alpha: false));
+      // 4K masters for print, the website and marketing (the stores take the sizes above)
+      _write('$_store/likho-icon-4096.png', _png(4096, await full(4096, _Sky.day), alpha: false));
+      _write('$_store/likho-icon-dark-4096.png', _png(4096, await full(4096, _Sky.night), alpha: false));
       // ignore: avoid_print
       print('icon written; Pencil reaches ${(reach / probe * 72).toStringAsFixed(1)} of 33 dp from the centre');
     });
