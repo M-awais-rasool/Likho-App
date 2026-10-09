@@ -675,33 +675,34 @@ by hand. `app/assets/reference/` holds screen captures for the app's debug refer
 | Add a picture for the content | key in `tools/illustrations/build_illustrations.py`, then run it |
 | Record Pencil's new or changed lines | `tools/voice/generate_voice.py` (Kokoro voice, `--print` checks pronunciations) |
 | Change the course plan | `tools/curriculum/` (tables), then the two tools above, then `make content-fixture` |
-| Deploy | `deploy/deploy.sh user@server` ([guide](#deploy-one-server)); new media only: `… media` |
+| Deploy | `deploy/deploy.sh` ([guide](deploy/README.md)); new media only: `deploy/deploy.sh media` |
 | Change an API endpoint | `backend/internal/api/` → service → repository; update `backend/docs/openapi.yaml` |
 | Change a screen | `app/lib/screens/` ([app](#app-flutter)) |
 | Run all tests | `cd app && flutter test` · `cd backend && make test-db` · `cd admin && npm run build` |
 
 ## Deploy (one server)
 
-Everything runs on one server next to other projects, from `deploy/`:
+Likho runs on one Vultr server made by Terraform, with the website, the API and the media behind
+nginx and the admin panel reachable only through an SSH tunnel. The whole guide, with the security
+setup, is [deploy/README.md](deploy/README.md):
 
-* **`docker-compose.yml`:** Postgres, Redis and the API, each with a memory and CPU cap (512 MB,
-  128 MB, 384 MB), restarting by themselves, 30 MB of logs at most. Only the API has a port, on
-  `127.0.0.1` (`LIKHO_PORT`); Postgres and Redis are on Likho's own Docker network. Postgres is
+* **`deploy/terraform/`:** the server (Ubuntu 24.04), its two firewalls, DNS, daily backups, and
+  first-boot hardening (`cloud-init.yaml.tftpl`).
+* **`deploy/docker-compose.yml`:** Postgres, Redis and the API, each with a memory and CPU cap (512 MB,
+  128 MB, 384 MB), no extra privileges, restarting by themselves, 30 MB of logs at most. Only the
+  API has a port, on `127.0.0.1`; Postgres and Redis are on Likho's own Docker network. Postgres is
   tuned for its share (128 MB shared buffers, 40 connections, the API uses at most 16), Redis is a
-  96 MB cache with no disk, the API's Go heap is held under 300 MB. The API image is a static
-  binary on distroless, read-only, with `likho-api health` as its health check.
-* **`nginx/likho.conf`:** the site for your nginx: `/media/` straight from the disk (sendfile,
-  cached a year), the rest to the API with keep-alive. Add HTTPS with certbot.
-* **`deploy.sh user@server`:** checks the media, sends the media folder, the admin panel's build
-  and the code (rsync, only what changed), builds and starts the containers, restarts the API so it
-  indexes new media, and waits until it is ready. `deploy.sh user@server media` only sends media.
+  96 MB cache with a password and no disk, the API's Go heap is held under 300 MB. The API image is
+  a static binary on distroless, read-only, with `likho-api health` as its health check.
+* **`deploy/nginx/`:** HTTPS, security headers, per-IP rate limits, `/media/` straight from the
+  disk (sendfile, cached a year), the website, and nothing for scanners that hit the bare IP.
+* **`deploy/deploy.sh`:** checks the media, sends the media, the admin panel, the website and the
+  code (rsync, only what changed), makes the secrets and the certificate the first time, builds and
+  starts the containers, and waits until the API is ready. `deploy.sh media` only sends media.
 
-First time on the server: install Docker and rsync, run `deploy.sh` once (it creates
-`/srv/likho/src/deploy/`), fill in `/srv/likho/src/deploy/.env` from `.env.example`, run it again,
-then add the nginx site. Measured with the production image under Docker Desktop on a laptop:
-36 MB of memory for the API, the course and the media manifest at 1,300–1,900 requests/s and a
-picture at 900/s through Docker's network (a Linux server is several times faster, and nginx
-serves the media itself).
+Measured with the production image under Docker Desktop on a laptop: 36 MB of memory for the API,
+the course and the media manifest at 1,300–1,900 requests/s and a picture at 900/s through
+Docker's network (a Linux server is several times faster, and nginx serves the media itself).
 
 ## Before production
 
@@ -709,6 +710,6 @@ serves the media itself).
   `GOOGLE_SERVER_CLIENT_ID` (app build), the iOS URL scheme in `app/ios/Runner/Info.plist`.
 * The API address for release builds (`ApiConfig` in `app/lib/data/api/api_client.dart`).
 * Store purchases for Likho Plus (the 7-day trial works today).
-* Admin panel: HTTPS, a strong `ADMIN_BOOTSTRAP_PASSWORD` (or add the team and remove it), and
-  `COUNTRY_HEADER` or `GEOIP_DB` for countries.
+* Admin panel: change the password the first deploy prints; countries come from `GEOIP_DB`
+  (`make geoip`, sent by `deploy.sh`).
 * The website's placeholders in `landing/src/lib/site.ts`.
