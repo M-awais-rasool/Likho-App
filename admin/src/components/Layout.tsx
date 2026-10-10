@@ -7,6 +7,7 @@ import {
   ChartColumn,
   ChevronDown,
   Cog,
+  FlaskConical,
   LayoutDashboard,
   LogOut,
   Menu,
@@ -29,6 +30,7 @@ import { Avatar, Badge, Loading, useToast } from './ui'
 
 const nav: { to: string; label: string; icon: ReactNode; owner?: boolean }[] = [
   { to: '/', label: 'Overview', icon: <LayoutDashboard className="size-4" /> },
+  { to: '/closed-test', label: 'Closed test', icon: <FlaskConical className="size-4" /> },
   { to: '/families', label: 'Families', icon: <Users className="size-4" /> },
   { to: '/learners', label: 'Learners', icon: <Baby className="size-4" /> },
   { to: '/activity', label: 'Live activity', icon: <Activity className="size-4" /> },

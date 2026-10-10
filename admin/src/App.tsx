@@ -18,6 +18,7 @@ const Team = lazy(() => import('./pages/Team'))
 const Audit = lazy(() => import('./pages/Audit'))
 const Settings = lazy(() => import('./pages/Settings'))
 const System = lazy(() => import('./pages/System'))
+const ClosedTest = lazy(() => import('./pages/ClosedTest'))
 
 export default function App() {
   const { admin, loading, can } = useSession()
@@ -28,6 +29,7 @@ export default function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Overview />} />
+          <Route path="closed-test" element={<ClosedTest />} />
           <Route path="families" element={<Families />} />
           <Route path="families/:id" element={<FamilyDetail />} />
           <Route path="learners" element={<Learners />} />
