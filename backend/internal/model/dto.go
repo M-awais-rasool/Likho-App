@@ -11,6 +11,7 @@ type Account struct {
 	Email      string `json:"email"`
 	Name       string `json:"name"`
 	PictureURL string `json:"pictureUrl"`
+	Tester     bool   `json:"tester"` // test account: every level is open
 }
 
 type Settings struct {
