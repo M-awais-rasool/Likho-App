@@ -324,6 +324,7 @@ that account is signed out.
 | `activity_events`, `active_days` | what families do and the days they use the app (admin panel) |
 | `admin_users`, `admin_sessions`, `admin_alerts`, `admin_audit`, `admin_settings` | the admin panel |
 | `content_levels`, `content_worlds` | levels and worlds written in the admin panel |
+| `closed_testers`, `closed_test_accounts`, `closed_test_days` | the Google Play closed test: testers, whose account is whose, the days each used the app |
 
 Development databases from before per-course progress can be reset with `make db-reset`.
 
@@ -528,6 +529,7 @@ adding or editing levels with a **real phone preview** before they go live.
 
 | page | |
 |---|---|
+| Closed test | the Google Play closed test (12+ testers for 14 days): test day, who signed in, who opened Likho today, a 14-day strip per tester, testers per day, WhatsApp reminders, the invite message; link new accounts to testers |
 | Overview | families, learners, active families (day / week / month), Likho Plus, levels and stars, children at the end of the course, countries, devices, app versions, ages, a per-level funnel, latest alerts and activity |
 | Families | every parent account: country, device, app version, children, levels done, stars, plan, last seen; search, filters, sorting, CSV export |
 | Family detail | each child's stars on every level, star balance, devices, settings, activity; give or end Likho Plus, adjust stars, sign out every device, delete the account |
@@ -589,6 +591,7 @@ change must also send `X-Requested-With: likho-admin`. Every change is written t
 | alerts | `GET /alerts`, `GET /alerts/unread`, `POST /alerts/read`, `GET/PUT /settings/alerts` |
 | content | `GET /courses`, `GET /content/courses/{id}`, `GET …/document` (preview), `GET …/levels/{n}`, `POST …/levels/validate`, `POST …/levels`, `PUT …/levels/{n}`, `POST …/levels/{n}/publish`, `…/unpublish`, `…/discard`, `DELETE …/levels/{n}`, `POST/PUT/DELETE …/worlds` |
 | team | `GET/POST /team`, `PATCH/DELETE /team/{id}` (owner), `GET /audit`, `GET /system` |
+| closed test | `GET /closed-test`, `PUT /closed-test/settings`, `POST /closed-test/testers`, `PATCH/DELETE /closed-test/testers/{id}`, `PUT/DELETE /closed-test/accounts/{parentId}` |
 
 **Activity and countries.** Signed-in requests mark the parent active (at most every 5 minutes, via
 Redis): `last_seen_at`, today's `active_days` row, platform, app version and the country: the CDN's
@@ -596,6 +599,17 @@ header (`COUNTRY_HEADER`, e.g. `CF-IPCountry`), else the IP in a GeoIP database 
 `GEOIP_DB`; DB-IP Lite, CC BY 4.0: "IP Geolocation by DB-IP"), else the phone's region. Only the
 country code is kept, never the IP. Deleting an account deletes its events (an anonymous
 `account_deleted` stays).
+
+**Closed test.** Before launch, a new personal Play account needs 12+ testers opted in for 14 days
+in a row. Testers are told apart by the Likho account they sign in with, never by a device id
+(kids' apps must not send one), and they may sign in with another email than the one added in Play
+Console. While the test is set up (from its settings until its last day), each signed-in account's
+first request of the day adds a `closed_test_days` row, in the test's time zone (default
+Asia/Karachi). That first time it is also linked to the tester with the same email (Gmail dots and
+`+tags` ignored) and gets the testers' perks: Likho Plus until `plusUntil` and every level open
+(`parents.tester`). Other accounts show as **new accounts** until the team picks whose they are, or
+marks them as not a tester (no perks). The app reloads the account when it comes back to the front
+after 30 minutes or on a new day, so a quick look counts too.
 
 **Alerts.** When a child finishes, for the first time, the level `levelsBeforeEnd` before the last
 one (default: they are now on the last level), and when they finish the last level, an alert is
