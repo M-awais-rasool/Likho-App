@@ -23,7 +23,7 @@ export const site = {
   updated: "10 October 2026",
 
   /** From the course: levels leave out the placement warm-up; activities are the rounds in those levels. */
-  course: { worlds: 12, levels: 144, activities: 1326, freeWorld: "Letter Land", freeLevels: 31, ages: "5–8" },
+  course: { worlds: 14, levels: 210, activities: 1988, freeWorlds: "Letter Land and Alphabet Jungle", freeLevels: 30, ages: "5–8" },
   plus: { monthly: "Rs 799", yearly: "Rs 4,999", yearlyPerMonth: "Rs 416", trialDays: 7, save: "48%" },
 } as const;
 

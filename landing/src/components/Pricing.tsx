@@ -7,7 +7,7 @@ import { site } from "@/lib/site";
 import { Reveal, SectionTitle } from "./Reveal";
 
 const { course } = site;
-const free = [`${course.freeWorld}: all 26 capital letters (${course.freeLevels} levels)`, "Every capital letter, stroke by stroke", "Pencil's voice, stars and stickers", "No ads"];
+const free = [`${course.freeWorlds}: all 26 capital letters (${course.freeLevels} levels)`, "Every capital letter, stroke by stroke", "Pencil's voice, stars and stickers", "No ads"];
 const plus = [`All ${course.worlds} worlds and ${course.levels} levels`, "Small letters, phonics, words, sentences and stories", "Every boss to wake up, and the certificate", "No ads"];
 
 export function Pricing() {
@@ -17,7 +17,7 @@ export function Pricing() {
   return (
     <section id="pricing" className="relative px-5 py-24 sm:px-8 sm:py-28">
       <SectionTitle label="Pricing" title={<>Start free. Unlock the whole adventure.</>}>
-        {course.freeWorld} is free. Likho Plus opens all {course.levels} levels, with a {p.trialDays}-day free trial.
+        {course.freeWorlds} are free. Likho Plus opens all {course.levels} levels, with a {p.trialDays}-day free trial.
       </SectionTitle>
 
       <div className="mx-auto mt-14 grid max-w-[920px] gap-6 md:grid-cols-2">
