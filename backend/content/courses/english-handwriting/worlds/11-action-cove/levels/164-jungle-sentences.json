@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-119",
-  "number": 119,
+  "id": "level-164",
+  "number": 164,
   "name": "Jungle Sentences",
   "skill": "Writing what we do",
   "icon": "edit_note",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-119-r1",
+      "id": "level-164-r1",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -52,82 +52,30 @@
       }
     },
     {
-      "id": "level-119-r2",
-      "type": "sort",
+      "id": "level-164-r2",
+      "type": "write",
       "prompt": {
-        "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/j/|ʤʌ}?",
-        "audio": "voice/line-ad0f5467c4b713b8.m4a"
+        "text": "Look, then write some",
+        "say": "Look at the word some. Then write it from memory!",
+        "audio": "voice/line-ad078854ad99be58.m4a"
       },
       "card": {
-        "text": "d j",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "sort": {
-        "bins": [
-          {
-            "label": "d",
-            "picture": null,
-            "bin": null
-          },
-          {
-            "label": "j",
-            "picture": null,
-            "bin": null
-          }
-        ],
-        "items": [
-          {
-            "label": "duck",
-            "picture": {
-              "key": "duck",
-              "label": "duck",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "dog",
-            "picture": {
-              "key": "dog",
-              "label": "dog",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "doctor",
-            "picture": {
-              "key": "doctor",
-              "label": "doctor",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "jump",
-            "picture": {
-              "key": "jump",
-              "label": "jump",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "jam",
-            "picture": {
-              "key": "jam",
-              "label": "jam",
-              "url": null
-            },
-            "bin": 1
-          }
-        ]
+      "write": {
+        "mode": "flash",
+        "target": "some",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
       }
     },
     {
-      "id": "level-119-r3",
+      "id": "level-164-r3",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -150,7 +98,7 @@
       }
     },
     {
-      "id": "level-119-r4",
+      "id": "level-164-r4",
       "type": "speak",
       "prompt": {
         "text": "Say: I can jump.",
@@ -171,7 +119,7 @@
       }
     },
     {
-      "id": "level-119-r5",
+      "id": "level-164-r5",
       "type": "pick",
       "prompt": {
         "text": "I can jump.",
@@ -186,18 +134,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-119-r5-o1",
-            "label": "jump",
-            "picture": {
-              "key": "jump",
-              "label": "jump",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-119-r5-o2",
+            "id": "level-164-r5-o1",
             "label": "swim",
             "picture": {
               "key": "swim",
@@ -208,11 +145,22 @@
             "hideLabel": true
           },
           {
-            "id": "level-119-r5-o3",
+            "id": "level-164-r5-o2",
             "label": "bird in sky",
             "picture": {
               "key": "bird_in_sky",
               "label": "bird in sky",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-164-r5-o3",
+            "label": "jump",
+            "picture": {
+              "key": "jump",
+              "label": "jump",
               "url": null
             },
             "color": null,
@@ -231,30 +179,30 @@
       }
     },
     {
-      "id": "level-119-r6",
-      "type": "write",
+      "id": "level-164-r6",
+      "type": "pop",
       "prompt": {
-        "text": "Look, then write the",
-        "say": "Look at the word the. Then write it from memory!",
-        "audio": "voice/line-9ca35a4f6e45755e.m4a"
+        "text": "Pop every sad!",
+        "say": "Pop every bubble that says sad!",
+        "audio": "voice/line-38b5ee39f05630c4.m4a"
       },
       "card": {
-        "text": null,
+        "text": "sad",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "write": {
-        "mode": "flash",
-        "target": "the",
-        "guide": null,
-        "word": null,
-        "missingIndex": null,
-        "sentence": false,
-        "story": false
+      "pop": {
+        "target": "sad",
+        "others": [
+          "for",
+          "his",
+          "hop"
+        ],
+        "count": 4
       }
     },
     {
-      "id": "level-119-r7",
+      "id": "level-164-r7",
       "type": "pick",
       "prompt": {
         "text": "Which mark ends it?",
@@ -269,22 +217,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-119-r7-o1",
-            "label": "?",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-119-r7-o2",
+            "id": "level-164-r7-o1",
             "label": ".",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-119-r7-o3",
+            "id": "level-164-r7-o2",
             "label": "!",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-164-r7-o3",
+            "label": "?",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -294,7 +242,7 @@
           "kind": "label",
           "value": "."
         },
-        "shape": "balloon",
+        "shape": "fish",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -302,77 +250,118 @@
       }
     },
     {
-      "id": "level-119-r8",
+      "id": "level-164-r8",
       "type": "hunt",
       "prompt": {
-        "text": "Find every and!",
-        "say": "Find every word and!",
-        "audio": "voice/line-3779725e51b55a1f.m4a"
+        "text": "Find every some!",
+        "say": "Find every word some!",
+        "audio": "voice/line-754c13b9440d77de.m4a"
       },
       "card": {
-        "text": "and",
+        "text": "some",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "and",
+        "target": "some",
         "grid": [
-          "and",
-          "he",
-          "and",
-          "you",
-          "star",
-          "and",
-          "tiger",
-          "the",
-          "look"
+          "out",
+          "his",
+          "for",
+          "some",
+          "hop",
+          "do",
+          "some",
+          "jumping",
+          "some"
         ]
       }
     },
     {
-      "id": "level-119-r9",
+      "id": "level-164-r9",
       "type": "write",
       "prompt": {
-        "text": "Spell said",
-        "say": "Said! Write it one letter at a time.",
-        "audio": "voice/line-604a037fd1f29408.m4a"
+        "text": "Spell sad",
+        "say": "Sad! Write it one letter at a time.",
+        "audio": "voice/line-b54998d6e6f5cbd3.m4a"
       },
       "card": {
-        "text": "said",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "sad",
+          "label": "sad",
+          "url": null
+        },
         "listen": false
       },
       "write": {
         "mode": "spell",
-        "target": "said",
+        "target": "sad",
         "guide": null,
-        "word": "said",
+        "word": "sad",
         "missingIndex": null,
         "sentence": false,
         "story": false
       }
     },
     {
-      "id": "level-119-r10",
-      "type": "pop",
+      "id": "level-164-r10",
+      "type": "match",
       "prompt": {
-        "text": "Pop every under!",
-        "say": "Pop every bubble that says under!",
-        "audio": "voice/line-06c2f94d5d1fdada.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
       },
       "card": {
-        "text": "under",
+        "text": "Find the pairs!",
         "picture": null,
         "listen": false
       },
-      "pop": {
-        "target": "under",
-        "others": [
-          "tiger",
-          "down",
-          "like"
-        ],
-        "count": 4
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "sad",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "sad",
+                "label": "sad",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "down",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "down",
+                "label": "down",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "behind",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "cat_behind_box",
+                "label": "behind",
+                "url": null
+              }
+            }
+          }
+        ]
       }
     }
   ]

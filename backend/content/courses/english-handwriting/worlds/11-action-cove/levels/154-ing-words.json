@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-118",
-  "number": 118,
+  "id": "level-154",
+  "number": 154,
   "name": "-ing Words",
   "skill": "Running, jumping",
   "icon": "directions_run",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-118-r1",
+      "id": "level-154-r1",
       "type": "pick",
       "prompt": {
         "text": "Which word fits?",
@@ -41,21 +41,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-118-r1-o1",
-            "label": "run",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-118-r1-o2",
+            "id": "level-154-r1-o1",
             "label": "red",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-118-r1-o3",
+            "id": "level-154-r1-o2",
+            "label": "run",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-154-r1-o3",
             "label": "running",
             "picture": null,
             "color": null,
@@ -74,67 +74,91 @@
       }
     },
     {
-      "id": "level-118-r2",
-      "type": "match",
+      "id": "level-154-r2",
+      "type": "sort",
       "prompt": {
-        "text": "Find the pairs!",
-        "say": "Find the pairs! Match each word to its picture.",
-        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/h/|hʌ} or {/f/|fːː}?",
+        "audio": "voice/line-38a14f117e2ae253.m4a"
       },
       "card": {
-        "text": "Find the pairs!",
+        "text": "h f",
         "picture": null,
         "listen": false
       },
-      "match": {
-        "pairs": [
+      "sort": {
+        "bins": [
           {
-            "a": {
-              "text": "ship",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "ship",
-                "label": "ship",
-                "url": null
-              }
-            }
+            "label": "h",
+            "picture": null,
+            "bin": null
           },
           {
-            "a": {
-              "text": "tiger",
-              "picture": null
+            "label": "f",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "foot",
+            "picture": {
+              "key": "foot",
+              "label": "foot",
+              "url": null
             },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "tiger",
-                "label": "tiger",
-                "url": null
-              }
-            }
+            "bin": 1
           },
           {
-            "a": {
-              "text": "star",
-              "picture": null
+            "label": "hand",
+            "picture": {
+              "key": "hand",
+              "label": "hand",
+              "url": null
             },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "star",
-                "label": "star",
-                "url": null
-              }
-            }
+            "bin": 0
+          },
+          {
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "hen",
+            "picture": {
+              "key": "hen",
+              "label": "hen",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "four",
+            "picture": {
+              "key": "four",
+              "label": "four",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "bin": 1
           }
         ]
       }
     },
     {
-      "id": "level-118-r3",
+      "id": "level-154-r3",
       "type": "write",
       "prompt": {
         "text": "Spell jumping",
@@ -157,7 +181,7 @@
       }
     },
     {
-      "id": "level-118-r4",
+      "id": "level-154-r4",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -184,7 +208,7 @@
       }
     },
     {
-      "id": "level-118-r5",
+      "id": "level-154-r5",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -207,45 +231,30 @@
       }
     },
     {
-      "id": "level-118-r6",
-      "type": "fix",
+      "id": "level-154-r6",
+      "type": "write",
       "prompt": {
-        "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "text": "Look, then write some",
+        "say": "Look at the word some. Then write it from memory!",
+        "audio": "voice/line-ad078854ad99be58.m4a"
       },
       "card": {
-        "text": "Fix it!",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "fix": {
-        "items": [
-          {
-            "text": "ship",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "tiger",
-            "wrong": "mirror",
-            "at": 4
-          },
-          {
-            "text": "star",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "the",
-            "wrong": "mirror",
-            "at": 2
-          }
-        ]
+      "write": {
+        "mode": "flash",
+        "target": "some",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
       }
     },
     {
-      "id": "level-118-r7",
+      "id": "level-154-r7",
       "type": "speak",
       "prompt": {
         "text": "Say: Run, running! Jump, jumping!",
@@ -266,7 +275,7 @@
       }
     },
     {
-      "id": "level-118-r8",
+      "id": "level-154-r8",
       "type": "hunt",
       "prompt": {
         "text": "Find every ing!",
@@ -281,20 +290,20 @@
       "hunt": {
         "target": "ing",
         "grid": [
-          "sing",
+          "ing",
+          "in",
+          "ing",
           "in",
           "ing",
           "ink",
-          "in",
-          "ing",
           "king",
-          "ing",
-          "ink"
+          "ink",
+          "sing"
         ]
       }
     },
     {
-      "id": "level-118-r9",
+      "id": "level-154-r9",
       "type": "pick",
       "prompt": {
         "text": "I see a red car.",
@@ -309,18 +318,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-118-r9-o1",
-            "label": "hot sun",
-            "picture": {
-              "key": "hot_sun",
-              "label": "hot sun",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-118-r9-o2",
+            "id": "level-154-r9-o1",
             "label": "red car",
             "picture": {
               "key": "red_car",
@@ -331,7 +329,18 @@
             "hideLabel": true
           },
           {
-            "id": "level-118-r9-o3",
+            "id": "level-154-r9-o2",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-154-r9-o3",
             "label": "dog running",
             "picture": {
               "key": "dog_running",
@@ -354,26 +363,26 @@
       }
     },
     {
-      "id": "level-118-r10",
-      "type": "truth",
+      "id": "level-154-r10",
+      "type": "pop",
       "prompt": {
-        "text": "True or silly?",
-        "say": "This is a tiger. True, or silly?",
-        "audio": "voice/line-41b38e15543df7ab.m4a"
+        "text": "Pop every some!",
+        "say": "Pop every bubble that says some!",
+        "audio": "voice/line-2138b9fc7316cec3.m4a"
       },
       "card": {
-        "text": null,
+        "text": "some",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "truth": {
-        "text": "This is a tiger.",
-        "picture": {
-          "key": "star",
-          "label": "star",
-          "url": null
-        },
-        "answer": false
+      "pop": {
+        "target": "some",
+        "others": [
+          "said",
+          "help",
+          "like"
+        ],
+        "count": 4
       }
     }
   ]

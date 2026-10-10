@@ -1,0 +1,398 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-157",
+  "number": 157,
+  "name": "Colour and Size",
+  "skill": "Describing things",
+  "icon": "format_paint",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "a big red bus",
+    "word": "red bus",
+    "say": "A big red bus! Words can tell the colour and the size.",
+    "audio": "voice/line-fde70933ed1a91d2.m4a",
+    "picture": {
+      "key": "red_bus",
+      "label": "red_bus",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-157-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red bus.",
+        "say": "I see a red bus. Find the picture!",
+        "audio": "voice/line-171fee4567bb850a.m4a"
+      },
+      "card": {
+        "text": "I see a red bus.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-157-r1-o1",
+            "label": "red bus",
+            "picture": {
+              "key": "red_bus",
+              "label": "red bus",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-157-r1-o2",
+            "label": "car",
+            "picture": {
+              "key": "car",
+              "label": "car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-157-r1-o3",
+            "label": "bus",
+            "picture": {
+              "key": "bus",
+              "label": "bus",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red bus"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-157-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write big",
+        "say": "Look at the word big. Then write it from memory!",
+        "audio": "voice/line-c1abff97d9bf4571.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "elephant",
+          "label": "big",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "big",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-157-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word tells the colour?",
+        "say": "A big red ball. Which word tells the colour?",
+        "audio": "voice/line-ec154e2fa65d894e.m4a"
+      },
+      "card": {
+        "text": "a big red ball",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-157-r3-o1",
+            "label": "big",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-157-r3-o2",
+            "label": "red",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-157-r3-o3",
+            "label": "ball",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-157-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Tap the size word!",
+        "say": "The big dog runs. Tap the word that tells the size!",
+        "audio": "voice/line-a864a920639325f2.m4a"
+      },
+      "card": {
+        "text": "The big dog runs.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-157-r4-o1",
+            "label": "The",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-157-r4-o2",
+            "label": "big",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-157-r4-o3",
+            "label": "dog",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-157-r4-o4",
+            "label": "runs",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "big"
+        },
+        "shape": null,
+        "layout": "flow",
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-157-r5",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. The frog is green. True, or silly?",
+        "audio": "voice/line-9664b45603a85580.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "The frog is green.",
+        "picture": {
+          "key": "frog",
+          "label": "frog",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-157-r6",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every small!",
+        "say": "Pop every bubble that says small!",
+        "audio": "voice/line-d33e1f63b1cf1304.m4a"
+      },
+      "card": {
+        "text": "small",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "small",
+        "others": [
+          "green",
+          "said",
+          "some"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-157-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "I see a big red bus. Put the words in order.",
+        "audio": "voice/line-694025bf888f59d5.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "red_bus",
+          "label": "red bus",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "I",
+          "see",
+          "a",
+          "big",
+          "red",
+          "bus"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-157-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "I see a little green frog. Now write it!",
+        "audio": "voice/line-6fb95e110690ac66.m4a"
+      },
+      "card": {
+        "text": "I see a little green frog.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I see a little green frog.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-157-r9",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: A big red bus and a little yellow chick!",
+        "say": "A big red bus and a little yellow chick! Now you say it!",
+        "audio": "voice/line-6691265ed70188c9.m4a"
+      },
+      "card": {
+        "text": "A big red bus and a little yellow chick!",
+        "picture": {
+          "key": "red_bus",
+          "label": "red bus",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "A big red bus and a little yellow chick!"
+      }
+    },
+    {
+      "id": "level-157-r10",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "big",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "elephant",
+                "label": "big",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "small",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "mouse",
+                "label": "small",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "red",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "red",
+                "label": "red",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

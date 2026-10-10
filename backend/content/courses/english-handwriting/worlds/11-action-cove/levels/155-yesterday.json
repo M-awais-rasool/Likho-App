@@ -1,0 +1,390 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-155",
+  "number": 155,
+  "name": "Yesterday",
+  "skill": "Words with -ed",
+  "icon": "calendar_month",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "jumped",
+    "word": "jump",
+    "say": "Today I jump. Yesterday I jumped! Let's add e d.",
+    "audio": "voice/line-82fbe3856e278992.m4a",
+    "picture": {
+      "key": "jump",
+      "label": "jump",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-155-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "Yesterday I what with my ball. Which word fits?",
+        "audio": "voice/line-905270579082d850.m4a"
+      },
+      "card": {
+        "text": "Yesterday I ___ with my ball.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-155-r1-o1",
+            "label": "played",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-155-r1-o2",
+            "label": "plays",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-155-r1-o3",
+            "label": "play",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "played"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-155-r2",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every walked!",
+        "say": "Pop every bubble that says walked!",
+        "audio": "voice/line-2e0781909cdc54a3.m4a"
+      },
+      "card": {
+        "text": "walked",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "walked",
+        "others": [
+          "what",
+          "help",
+          "like"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-155-r3",
+      "type": "sort",
+      "prompt": {
+        "text": "Today or yesterday?",
+        "say": "Read each word. Is it today, or yesterday?",
+        "audio": "voice/line-6c87075359f98838.m4a"
+      },
+      "card": {
+        "text": "jump jumped",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "today",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "yesterday",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "walk",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "jump",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "play",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "jumped",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "walked",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "played",
+            "picture": null,
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-155-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "What did Ali play?",
+        "say": "Yesterday Ali played cricket. Then he walked home. What did Ali play?",
+        "audio": "voice/line-8aa74cfd3271f587.m4a"
+      },
+      "card": {
+        "text": "Yesterday Ali played cricket. Then he walked home.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-155-r4-o1",
+            "label": "football",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-155-r4-o2",
+            "label": "tennis",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-155-r4-o3",
+            "label": "cricket",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "cricket"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-155-r5",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to the same word with e d.",
+        "audio": "voice/line-a7d39d50a64b24aa.m4a"
+      },
+      "card": {
+        "text": "jump = jumped",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "jump",
+              "picture": null
+            },
+            "b": {
+              "text": "jumped",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "kick",
+              "picture": null
+            },
+            "b": {
+              "text": "kicked",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "help",
+              "picture": null
+            },
+            "b": {
+              "text": "helped",
+              "picture": null
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-155-r6",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "jumped",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "played",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "walked",
+            "wrong": "mirror",
+            "at": 4
+          },
+          {
+            "text": "kicked",
+            "wrong": "mirror",
+            "at": 5
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-155-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "We played in the park. Put the words in order.",
+        "audio": "voice/line-3cb5e9ad44099fd9.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "play",
+          "label": "play",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "We",
+          "played",
+          "in",
+          "the",
+          "park"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-155-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "I kicked the ball. Now write it!",
+        "audio": "voice/line-1a778e8ad225fc3b.m4a"
+      },
+      "card": {
+        "text": "I kicked the ball.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I kicked the ball.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-155-r9",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Today I jump. Yesterday I jumped!",
+        "say": "Today I jump. Yesterday I jumped! Now you say it!",
+        "audio": "voice/line-84f8ba2af1a012f0.m4a"
+      },
+      "card": {
+        "text": "Today I jump. Yesterday I jumped!",
+        "picture": {
+          "key": "jump",
+          "label": "jump",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Today I jump. Yesterday I jumped!"
+      }
+    },
+    {
+      "id": "level-155-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write look",
+        "say": "Look at the word look. Then write it from memory!",
+        "audio": "voice/line-c6c8f27c36221a71.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "look",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

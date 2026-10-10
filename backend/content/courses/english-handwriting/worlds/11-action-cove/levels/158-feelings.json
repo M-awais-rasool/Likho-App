@@ -1,0 +1,429 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-158",
+  "number": 158,
+  "name": "Feelings",
+  "skill": "Feeling words",
+  "icon": "face",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "happy",
+    "word": "happy",
+    "say": "Happy, sad, angry, scared! How do you feel?",
+    "audio": "voice/line-f4c68058526b54e7.m4a",
+    "picture": {
+      "key": "happy",
+      "label": "happy",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-158-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is happy?",
+        "say": "Read the word. Which picture is happy?",
+        "audio": "voice/line-1df41a722d106188.m4a"
+      },
+      "card": {
+        "text": "happy",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-158-r1-o1",
+            "label": "happy",
+            "picture": {
+              "key": "happy",
+              "label": "happy",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-158-r1-o2",
+            "label": "tired",
+            "picture": {
+              "key": "tired",
+              "label": "tired",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-158-r1-o3",
+            "label": "scared",
+            "picture": {
+              "key": "scared",
+              "label": "scared",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "happy"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-158-r2",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "happy",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "sad",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "angry",
+            "wrong": "mirror",
+            "at": 0
+          },
+          {
+            "text": "scared",
+            "wrong": "mirror",
+            "at": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-158-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "Ali lost his ball. He is what. Which word fits?",
+        "audio": "voice/line-355b43629facbf7c.m4a"
+      },
+      "card": {
+        "text": "Ali lost his ball. He is ___.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-158-r3-o1",
+            "label": "sad",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-158-r3-o2",
+            "label": "happy",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-158-r3-o3",
+            "label": "funny",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "sad"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-158-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "How does Mia feel?",
+        "say": "It is Mia's birthday. She has a big cake. How does Mia feel?",
+        "audio": "voice/line-0cd08f950826f420.m4a"
+      },
+      "card": {
+        "text": "It is Mia's birthday. She has a big cake.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-158-r4-o1",
+            "label": "happy",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-158-r4-o2",
+            "label": "angry",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-158-r4-o3",
+            "label": "sad",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "happy"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-158-r5",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "I feel happy today. Put the words in order.",
+        "audio": "voice/line-3cabf31c8c91ae3a.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "happy",
+          "label": "happy",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "I",
+          "feel",
+          "happy",
+          "today"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-158-r6",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. The baby is tired. True, or silly?",
+        "audio": "voice/line-576f120b1164d20b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "The baby is tired.",
+        "picture": {
+          "key": "sad",
+          "label": "sad",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-158-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "I feel sleepy. Now write it!",
+        "audio": "voice/line-59bb988d023b0bb8.m4a"
+      },
+      "card": {
+        "text": "I feel sleepy.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I feel sleepy.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-158-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Happy, sad, angry, scared!",
+        "say": "Happy, sad, angry, scared! Now you say it!",
+        "audio": "voice/line-788019d4666f6351.m4a"
+      },
+      "card": {
+        "text": "Happy, sad, angry, scared!",
+        "picture": {
+          "key": "happy",
+          "label": "happy",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Happy, sad, angry, scared!"
+      }
+    },
+    {
+      "id": "level-158-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Spell sad",
+        "say": "Sad! Write it one letter at a time.",
+        "audio": "voice/line-b54998d6e6f5cbd3.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "sad",
+          "label": "sad",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "sad",
+        "guide": null,
+        "word": "sad",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-158-r10",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/f/|fːː} or {/d/|dʌ}?",
+        "audio": "voice/line-27f67eb9d3dcde7f.m4a"
+      },
+      "card": {
+        "text": "f d",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "f",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "d",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "foot",
+            "picture": {
+              "key": "foot",
+              "label": "foot",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "four",
+            "picture": {
+              "key": "four",
+              "label": "four",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    }
+  ]
+}
