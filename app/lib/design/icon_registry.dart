@@ -11,6 +11,8 @@ abstract final class IconRegistry {
   static const Map<String, IconData> _icons = {
     // worlds
     'grass': Symbols.grass_rounded,
+    'castle': Symbols.castle_rounded,
+    'ac_unit': Symbols.ac_unit_rounded,
     'waves': Symbols.waves_rounded,
     'forest': Symbols.forest_rounded,
     'location_city': Symbols.location_city_rounded,
