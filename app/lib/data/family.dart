@@ -112,8 +112,11 @@ class AppSettings {
 /// The signed-in parent.
 @immutable
 class Account {
-  const Account({required this.id, required this.email, this.name = '', this.pictureUrl = ''});
+  const Account({required this.id, required this.email, this.name = '', this.pictureUrl = '', this.tester = false});
   final String id, email, name, pictureUrl;
+
+  /// A test account: every level is open (set on the server).
+  final bool tester;
 }
 
 /// Where the family's data lives.
@@ -182,7 +185,13 @@ class FamilyState {
       records: {for (final c in kids) c['id'] as String: childRecordFromJson(c)},
       settings: AppSettings.fromJson((me['settings'] as Map).cast<String, dynamic>()),
       subscribed: (me['subscription'] as Map?)?['active'] == true,
-      account: Account(id: acc['id'] as String, email: acc['email'] as String? ?? '', name: acc['name'] as String? ?? '', pictureUrl: acc['pictureUrl'] as String? ?? ''),
+      account: Account(
+        id: acc['id'] as String,
+        email: acc['email'] as String? ?? '',
+        name: acc['name'] as String? ?? '',
+        pictureUrl: acc['pictureUrl'] as String? ?? '',
+        tester: acc['tester'] == true,
+      ),
       mode: FamilyMode.online,
     );
   }

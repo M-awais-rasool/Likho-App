@@ -9,6 +9,7 @@ import 'package:likho/data/api/api_client.dart';
 import 'package:likho/data/api/likho_api.dart';
 import 'package:likho/data/auth.dart';
 import 'package:likho/data/course_providers.dart';
+import 'package:likho/data/media.dart';
 
 import 'test_course.dart';
 
@@ -187,6 +188,8 @@ List<Override> fakeBackendOverrides(FakeBackend backend, {FakeGoogle? google, bo
     apiClientProvider.overrideWith((ref) => ApiClient(baseUrl: 'http://fake', tokens: tokens!, client: backend.client)),
     localFilesProvider.overrideWithValue(files),
     googleIdentityProvider.overrideWithValue(google ?? FakeGoogle()),
+    // media manifest from the fake server too, never the real network
+    mediaProvider.overrideWithValue(MediaStore(baseUrl: 'http://fake', files: files, client: backend.client, cacheDir: () async => null)),
     if (!realCourse) courseProvider.overrideWith((ref) async => testCourse),
   ];
 }
