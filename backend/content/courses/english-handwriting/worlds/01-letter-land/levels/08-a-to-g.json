@@ -1,17 +1,17 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-06",
-  "number": 6,
-  "name": "A to E",
+  "id": "level-08",
+  "number": 8,
+  "name": "A to G",
   "skill": "Review",
   "icon": "auto_awesome",
   "isBoss": false,
   "requiresSubscription": false,
   "intro": {
-    "text": "A B C D E",
+    "text": "A B C D E F G",
     "word": "star",
-    "say": "A to E! Let's play with {A|ˈeɪ}, {B|bˈiː}, {C|sˈiː}, {D|dˈiː}, {E|ˈiː}.",
-    "audio": "voice/line-e8f10f30bebee236.m4a",
+    "say": "A to G! Let's play with {A|ˈeɪ}, {B|bˈiː}, {C|sˈiː}, {D|dˈiː}, {E|ˈiː}, {F|ˈɛf}, {G|ʤˈiː}.",
+    "audio": "voice/line-554907046488d58f.m4a",
     "picture": {
       "key": "star",
       "label": "star",
@@ -26,12 +26,12 @@
   },
   "rounds": [
     {
-      "id": "level-06-r1",
+      "id": "level-08-r1",
       "type": "pick",
       "prompt": {
         "text": "Which letter do you hear?",
-        "say": "Listen! Find {E|ˈiː}.",
-        "audio": "voice/line-5f3060494bcc827e.m4a"
+        "say": "Listen! Find {G|ʤˈiː}.",
+        "audio": "voice/line-9a88384beccbcec1.m4a"
       },
       "card": {
         "text": null,
@@ -41,29 +41,29 @@
       "pick": {
         "options": [
           {
-            "id": "level-06-r1-o1",
+            "id": "level-08-r1-o1",
+            "label": "B",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-08-r1-o2",
             "label": "A",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-06-r1-o2",
+            "id": "level-08-r1-o3",
             "label": "C",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-06-r1-o3",
-            "label": "E",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-06-r1-o4",
-            "label": "B",
+            "id": "level-08-r1-o4",
+            "label": "G",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -71,9 +71,9 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "E"
+          "value": "G"
         },
-        "shape": "mushroom",
+        "shape": "balloon",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -81,7 +81,7 @@
       }
     },
     {
-      "id": "level-06-r2",
+      "id": "level-08-r2",
       "type": "write",
       "prompt": {
         "text": "Trace B",
@@ -108,7 +108,7 @@
       }
     },
     {
-      "id": "level-06-r3",
+      "id": "level-08-r3",
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
@@ -135,19 +135,19 @@
         ],
         "items": [
           {
-            "label": "boat",
-            "picture": {
-              "key": "boat",
-              "label": "boat",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
             "label": "cup",
             "picture": {
               "key": "cup",
               "label": "cup",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "car",
+            "picture": {
+              "key": "car",
+              "label": "car",
               "url": null
             },
             "bin": 1
@@ -162,22 +162,22 @@
             "bin": 0
           },
           {
-            "label": "cake",
+            "label": "corn",
             "picture": {
-              "key": "cake",
-              "label": "cake",
+              "key": "corn",
+              "label": "corn",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "cow",
+            "label": "bat",
             "picture": {
-              "key": "cow",
-              "label": "cow",
+              "key": "bat",
+              "label": "bat",
               "url": null
             },
-            "bin": 1
+            "bin": 0
           },
           {
             "label": "bug",
@@ -192,7 +192,7 @@
       }
     },
     {
-      "id": "level-06-r4",
+      "id": "level-08-r4",
       "type": "write",
       "prompt": {
         "text": "Join the dots to make D",
@@ -215,7 +215,7 @@
       }
     },
     {
-      "id": "level-06-r5",
+      "id": "level-08-r5",
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
@@ -223,7 +223,7 @@
         "audio": "voice/line-5b61022a0ee7b93d.m4a"
       },
       "card": {
-        "text": "A B C D E",
+        "text": "A B C D E F G",
         "picture": null,
         "listen": false
       },
@@ -231,7 +231,7 @@
         "items": [
           {
             "text": "A",
-            "wrong": "upside",
+            "wrong": null,
             "at": null
           },
           {
@@ -253,12 +253,22 @@
             "text": "E",
             "wrong": null,
             "at": null
+          },
+          {
+            "text": "F",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "G",
+            "wrong": "mirror",
+            "at": null
           }
         ]
       }
     },
     {
-      "id": "level-06-r6",
+      "id": "level-08-r6",
       "type": "write",
       "prompt": {
         "text": "Look, then write E",
@@ -285,7 +295,7 @@
       }
     },
     {
-      "id": "level-06-r7",
+      "id": "level-08-r7",
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
@@ -310,24 +320,24 @@
       }
     },
     {
-      "id": "level-06-r8",
+      "id": "level-08-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: A, B, C, D, E!",
-        "say": "Say all the letters with me! {A|ˈeɪ}, {B|bˈiː}, {C|sˈiː}, {D|dˈiː}, {E|ˈiː}!",
-        "audio": "voice/line-c08c3ca64072cf34.m4a"
+        "text": "Say: A, B, C, D, E, F, G!",
+        "say": "Say all the letters with me! {A|ˈeɪ}, {B|bˈiː}, {C|sˈiː}, {D|dˈiː}, {E|ˈiː}, {F|ˈɛf}, {G|ʤˈiː}!",
+        "audio": "voice/line-8815a20b48fa3208.m4a"
       },
       "card": {
-        "text": "A, B, C, D, E!",
+        "text": "A, B, C, D, E, F, G!",
         "picture": null,
         "listen": true
       },
       "speak": {
-        "expected": "A, B, C, D, E!"
+        "expected": "A, B, C, D, E, F, G!"
       }
     },
     {
-      "id": "level-06-r9",
+      "id": "level-08-r9",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
