@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../schema/world.schema.json",
-  "id": "world-12",
-  "order": 12,
+  "id": "world-14",
+  "order": 14,
   "name": "Story Space",
   "skill": "Stories",
   "icon": "rocket_launch",

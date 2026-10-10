@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-143",
-  "number": 143,
+  "id": "level-209",
+  "number": 209,
   "name": "My Story",
   "skill": "Creative writing",
   "icon": "edit",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-143-r1",
+      "id": "level-209-r1",
       "type": "pick",
       "prompt": {
         "text": "Choose a friend",
@@ -48,7 +48,7 @@
             },
             "color": null,
             "hideLabel": false,
-            "id": "level-143-r1-o1"
+            "id": "level-209-r1-o1"
           },
           {
             "label": "robot",
@@ -59,7 +59,7 @@
             },
             "color": null,
             "hideLabel": false,
-            "id": "level-143-r1-o2"
+            "id": "level-209-r1-o2"
           },
           {
             "label": "dragon",
@@ -70,7 +70,7 @@
             },
             "color": null,
             "hideLabel": false,
-            "id": "level-143-r1-o3"
+            "id": "level-209-r1-o3"
           }
         ],
         "answer": {
@@ -84,30 +84,67 @@
       }
     },
     {
-      "id": "level-143-r2",
-      "type": "write",
+      "id": "level-209-r2",
+      "type": "match",
       "prompt": {
-        "text": "Look, then write who",
-        "say": "Look at the word who. Then write it from memory!",
-        "audio": "voice/line-4563f325ff6fe97c.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
       },
       "card": {
-        "text": null,
+        "text": "Find the pairs!",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "write": {
-        "mode": "flash",
-        "target": "who",
-        "guide": null,
-        "word": null,
-        "missingIndex": null,
-        "sentence": false,
-        "story": false
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "behind",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "cat_behind_box",
+                "label": "behind",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "jump",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "jump",
+                "label": "jump",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "nest",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "nest",
+                "label": "nest",
+                "url": null
+              }
+            }
+          }
+        ]
       }
     },
     {
-      "id": "level-143-r3",
+      "id": "level-209-r3",
       "type": "write",
       "prompt": {
         "text": "Write your story",
@@ -129,7 +166,7 @@
       }
     },
     {
-      "id": "level-143-r4",
+      "id": "level-209-r4",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -156,7 +193,7 @@
       }
     },
     {
-      "id": "level-143-r5",
+      "id": "level-209-r5",
       "type": "speak",
       "prompt": {
         "text": "Say: Once upon a time, there was a cat.",
@@ -177,30 +214,45 @@
       }
     },
     {
-      "id": "level-143-r6",
-      "type": "pop",
+      "id": "level-209-r6",
+      "type": "fix",
       "prompt": {
-        "text": "Pop every first!",
-        "say": "Pop every bubble that says first!",
-        "audio": "voice/line-d267577850524cd2.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
       },
       "card": {
-        "text": "first",
+        "text": "Fix it!",
         "picture": null,
         "listen": false
       },
-      "pop": {
-        "target": "first",
-        "others": [
-          "under",
-          "where",
-          "down"
-        ],
-        "count": 4
+      "fix": {
+        "items": [
+          {
+            "text": "under",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "behind",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "bigger",
+            "wrong": "mirror",
+            "at": 4
+          },
+          {
+            "text": "jump",
+            "wrong": "mirror",
+            "at": 0
+          }
+        ]
       }
     },
     {
-      "id": "level-143-r7",
+      "id": "level-209-r7",
       "type": "pick",
       "prompt": {
         "text": "Which word fits?",
@@ -215,22 +267,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-143-r7-o1",
+            "id": "level-209-r7-o1",
+            "label": "up",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-209-r7-o2",
             "label": "red",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-143-r7-o2",
+            "id": "level-209-r7-o3",
             "label": "dragon",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-143-r7-o3",
-            "label": "up",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -248,114 +300,77 @@
       }
     },
     {
-      "id": "level-143-r8",
+      "id": "level-209-r8",
       "type": "hunt",
       "prompt": {
-        "text": "Find every under!",
-        "say": "Find every word under!",
-        "audio": "voice/line-66aed6e407dccf1e.m4a"
+        "text": "Find every jump!",
+        "say": "Find every word jump!",
+        "audio": "voice/line-bfc374f0da48ec34.m4a"
       },
       "card": {
-        "text": "under",
+        "text": "jump",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "under",
+        "target": "jump",
         "grid": [
-          "jumping",
+          "bigger",
+          "jump",
+          "behind",
           "under",
-          "under",
-          "who",
-          "like",
-          "said",
-          "down",
-          "under",
-          "jump"
+          "nest",
+          "where",
+          "jump",
+          "jump",
+          "who"
         ]
       }
     },
     {
-      "id": "level-143-r9",
+      "id": "level-209-r9",
       "type": "write",
       "prompt": {
-        "text": "Spell what",
-        "say": "What! Write it one letter at a time.",
-        "audio": "voice/line-93fc4e40497990fc.m4a"
+        "text": "Spell first",
+        "say": "First! Write it one letter at a time.",
+        "audio": "voice/line-f73836d9a4557c3d.m4a"
       },
       "card": {
-        "text": "what",
+        "text": "first",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "spell",
-        "target": "what",
+        "target": "first",
         "guide": null,
-        "word": "what",
+        "word": "first",
         "missingIndex": null,
         "sentence": false,
         "story": false
       }
     },
     {
-      "id": "level-143-r10",
-      "type": "match",
+      "id": "level-209-r10",
+      "type": "truth",
       "prompt": {
-        "text": "Find the pairs!",
-        "say": "Find the pairs! Match each word to its picture.",
-        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+        "text": "True or silly?",
+        "say": "This is a forest. True, or silly?",
+        "audio": "voice/line-720bff6cc57e0270.m4a"
       },
       "card": {
-        "text": "Find the pairs!",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "match": {
-        "pairs": [
-          {
-            "a": {
-              "text": "down",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "down",
-                "label": "down",
-                "url": null
-              }
-            }
-          },
-          {
-            "a": {
-              "text": "jump",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "jump",
-                "label": "jump",
-                "url": null
-              }
-            }
-          },
-          {
-            "a": {
-              "text": "forest",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "forest",
-                "label": "forest",
-                "url": null
-              }
-            }
-          }
-        ]
+      "truth": {
+        "text": "This is a forest.",
+        "picture": {
+          "key": "forest",
+          "label": "forest",
+          "url": null
+        },
+        "answer": true
       }
     }
   ]

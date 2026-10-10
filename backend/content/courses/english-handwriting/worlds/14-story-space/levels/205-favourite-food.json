@@ -1,0 +1,410 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-205",
+  "number": 205,
+  "name": "Favourite Food",
+  "skill": "Writing about food",
+  "icon": "restaurant",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Yum!",
+    "word": "mango",
+    "say": "Yum! Let's write about your favourite food.",
+    "audio": "voice/line-c3014213d65913c0.m4a",
+    "picture": {
+      "key": "mango",
+      "label": "mango",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-205-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "I like to eat mangoes.",
+        "say": "I like to eat mangoes. Find the picture!",
+        "audio": "voice/line-c1af2703fabf1f67.m4a"
+      },
+      "card": {
+        "text": "I like to eat mangoes.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-205-r1-o1",
+            "label": "mango",
+            "picture": {
+              "key": "mango",
+              "label": "mango",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-205-r1-o2",
+            "label": "egg",
+            "picture": {
+              "key": "egg",
+              "label": "egg",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-205-r1-o3",
+            "label": "rice",
+            "picture": {
+              "key": "rice",
+              "label": "rice",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "mango"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-205-r2",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is rice. True, or silly?",
+        "audio": "voice/line-a914f21dfc6f46cb.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is rice.",
+        "picture": {
+          "key": "rice",
+          "label": "rice",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-205-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "Yum! I love sweet what. Which word fits?",
+        "audio": "voice/line-3b07955f2560ea9a.m4a"
+      },
+      "card": {
+        "text": "Yum! I love sweet ___.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-205-r3-o1",
+            "label": "mangoes",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-205-r3-o2",
+            "label": "socks",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-205-r3-o3",
+            "label": "shoes",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "mangoes"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-205-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "What do they both like?",
+        "say": "Ali likes rice. Sara likes roti. They both like mangoes. What do they both like?",
+        "audio": "voice/line-8f3a9262bf98b428.m4a"
+      },
+      "card": {
+        "text": "Ali likes rice. Sara likes roti. They both like mangoes.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-205-r4-o1",
+            "label": "rice",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-205-r4-o2",
+            "label": "mangoes",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-205-r4-o3",
+            "label": "roti",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "mangoes"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-205-r5",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "My favourite food is rice. Put the words in order.",
+        "audio": "voice/line-0677aac85301c0f5.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "rice",
+          "label": "rice",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "My",
+          "favourite",
+          "food",
+          "is",
+          "rice"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-205-r6",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/b/|bʌ} or {/j/|ʤʌ}?",
+        "audio": "voice/line-7fb14b51a11df96a.m4a"
+      },
+      "card": {
+        "text": "b j",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "b",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "j",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "jam",
+            "picture": {
+              "key": "jam",
+              "label": "jam",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "bus",
+            "picture": {
+              "key": "bus",
+              "label": "bus",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "ball",
+            "picture": {
+              "key": "ball",
+              "label": "ball",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "jump",
+            "picture": {
+              "key": "jump",
+              "label": "jump",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "boat",
+            "picture": {
+              "key": "boat",
+              "label": "boat",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-205-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "I like to eat roti. Now write it!",
+        "audio": "voice/line-6e10388dcfd210c4.m4a"
+      },
+      "card": {
+        "text": "I like to eat roti.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I like to eat roti.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-205-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Yum! My favourite food is mango!",
+        "say": "Yum! My favourite food is mango! Now you say it!",
+        "audio": "voice/line-b7d73e292a5d5eda.m4a"
+      },
+      "card": {
+        "text": "Yum! My favourite food is mango!",
+        "picture": {
+          "key": "mango",
+          "label": "mango",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Yum! My favourite food is mango!"
+      }
+    },
+    {
+      "id": "level-205-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Spell food",
+        "say": "Food! Write it one letter at a time.",
+        "audio": "voice/line-646359ede8819bc9.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "food",
+          "label": "food",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "food",
+        "guide": null,
+        "word": "food",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-205-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write rice",
+        "say": "Look at the word rice. Then write it from memory!",
+        "audio": "voice/line-6a44069c8b300cf4.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "rice",
+          "label": "rice",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "rice",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

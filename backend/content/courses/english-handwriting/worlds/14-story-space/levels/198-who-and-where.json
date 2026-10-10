@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-139",
-  "number": 139,
+  "id": "level-198",
+  "number": 198,
   "name": "Who and Where",
   "skill": "Story people and places",
   "icon": "map",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-139-r1",
+      "id": "level-198-r1",
       "type": "pick",
       "prompt": {
         "text": "Who is in the story?",
@@ -45,22 +45,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-139-r1-o1",
+            "id": "level-198-r1-o1",
+            "label": "bus",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-198-r1-o2",
             "label": "dragon",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-139-r1-o2",
+            "id": "level-198-r1-o3",
             "label": "cat",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-139-r1-o3",
-            "label": "bus",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -78,55 +78,30 @@
       }
     },
     {
-      "id": "level-139-r2",
-      "type": "match",
+      "id": "level-198-r2",
+      "type": "truth",
       "prompt": {
-        "text": "Find the pairs!",
-        "say": "Find the pairs! Match each word to the same word with a capital letter.",
-        "audio": "voice/line-d82ba5aa00efefb3.m4a"
+        "text": "True or silly?",
+        "say": "The cat is behind the box. True, or silly?",
+        "audio": "voice/line-3348de1dc19eaffc.m4a"
       },
       "card": {
-        "text": "the = The",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "match": {
-        "pairs": [
-          {
-            "a": {
-              "text": "look",
-              "picture": null
-            },
-            "b": {
-              "text": "Look",
-              "picture": null
-            }
-          },
-          {
-            "a": {
-              "text": "said",
-              "picture": null
-            },
-            "b": {
-              "text": "Said",
-              "picture": null
-            }
-          },
-          {
-            "a": {
-              "text": "like",
-              "picture": null
-            },
-            "b": {
-              "text": "Like",
-              "picture": null
-            }
-          }
-        ]
+      "truth": {
+        "text": "The cat is behind the box.",
+        "picture": {
+          "key": "jump",
+          "label": "jump",
+          "url": null
+        },
+        "answer": false
       }
     },
     {
-      "id": "level-139-r3",
+      "id": "level-198-r3",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -149,7 +124,7 @@
       }
     },
     {
-      "id": "level-139-r4",
+      "id": "level-198-r4",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -177,7 +152,7 @@
       }
     },
     {
-      "id": "level-139-r5",
+      "id": "level-198-r5",
       "type": "speak",
       "prompt": {
         "text": "Say: Once upon a time, a fish lived in the sea.",
@@ -198,45 +173,91 @@
       }
     },
     {
-      "id": "level-139-r6",
-      "type": "fix",
+      "id": "level-198-r6",
+      "type": "sort",
       "prompt": {
-        "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/w/|wʌ} or {/n/|nːː}?",
+        "audio": "voice/line-8b9754fbfa980d2c.m4a"
       },
       "card": {
-        "text": "Fix it!",
+        "text": "w n",
         "picture": null,
         "listen": false
       },
-      "fix": {
+      "sort": {
+        "bins": [
+          {
+            "label": "w",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "n",
+            "picture": null,
+            "bin": null
+          }
+        ],
         "items": [
           {
-            "text": "look",
-            "wrong": null,
-            "at": null
+            "label": "nest",
+            "picture": {
+              "key": "nest",
+              "label": "nest",
+              "url": null
+            },
+            "bin": 1
           },
           {
-            "text": "said",
-            "wrong": "mirror",
-            "at": 1
+            "label": "web",
+            "picture": {
+              "key": "web",
+              "label": "web",
+              "url": null
+            },
+            "bin": 0
           },
           {
-            "text": "like",
-            "wrong": "mirror",
-            "at": 2
+            "label": "nail",
+            "picture": {
+              "key": "nail",
+              "label": "nail",
+              "url": null
+            },
+            "bin": 1
           },
           {
-            "text": "down",
-            "wrong": null,
-            "at": null
+            "label": "nose",
+            "picture": {
+              "key": "nose",
+              "label": "nose",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "whale",
+            "picture": {
+              "key": "whale",
+              "label": "whale",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "wing",
+            "picture": {
+              "key": "wing",
+              "label": "wing",
+              "url": null
+            },
+            "bin": 0
           }
         ]
       }
     },
     {
-      "id": "level-139-r7",
+      "id": "level-198-r7",
       "type": "write",
       "prompt": {
         "text": "Spell forest",
@@ -263,7 +284,7 @@
       }
     },
     {
-      "id": "level-139-r8",
+      "id": "level-198-r8",
       "type": "hunt",
       "prompt": {
         "text": "Find every down!",
@@ -278,20 +299,20 @@
       "hunt": {
         "target": "down",
         "grid": [
-          "jump",
-          "down",
-          "said",
-          "down",
           "jumping",
           "down",
-          "look",
-          "like",
+          "hop",
+          "sad",
+          "down",
+          "bigger",
+          "behind",
+          "down",
           "under"
         ]
       }
     },
     {
-      "id": "level-139-r9",
+      "id": "level-198-r9",
       "type": "pick",
       "prompt": {
         "text": "I see a red car.",
@@ -306,7 +327,18 @@
       "pick": {
         "options": [
           {
-            "id": "level-139-r9-o1",
+            "id": "level-198-r9-o1",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-198-r9-o2",
             "label": "dog running",
             "picture": {
               "key": "dog_running",
@@ -317,22 +349,11 @@
             "hideLabel": true
           },
           {
-            "id": "level-139-r9-o2",
+            "id": "level-198-r9-o3",
             "label": "hot sun",
             "picture": {
               "key": "hot_sun",
               "label": "hot sun",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-139-r9-o3",
-            "label": "red car",
-            "picture": {
-              "key": "red_car",
-              "label": "red car",
               "url": null
             },
             "color": null,
@@ -351,26 +372,30 @@
       }
     },
     {
-      "id": "level-139-r10",
-      "type": "truth",
+      "id": "level-198-r10",
+      "type": "write",
       "prompt": {
-        "text": "True or silly?",
-        "say": "This is a down. True, or silly?",
-        "audio": "voice/line-4a9b4311660d87fc.m4a"
+        "text": "Look, then write nest",
+        "say": "Look at the word nest. Then write it from memory!",
+        "audio": "voice/line-ed53318ca1f53e0c.m4a"
       },
       "card": {
         "text": null,
-        "picture": null,
-        "listen": true
-      },
-      "truth": {
-        "text": "This is a down.",
         "picture": {
-          "key": "down",
-          "label": "down",
+          "key": "nest",
+          "label": "nest",
           "url": null
         },
-        "answer": true
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "nest",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
       }
     }
   ]
