@@ -10,7 +10,9 @@ import '../../data/models/course_models.dart';
 import '../../data/progress.dart';
 import '../../design/tokens.dart';
 import '../../mascot/mascot.dart';
+import '../common/clock.dart';
 import '../gameplay/widgets/illustration.dart';
+import '../world_map/boss_painter.dart';
 
 /// 11 Level intro, from the prototype: level name, the big letters/word,
 /// its picture and Pencil talking. Everything is in place by 2.3 s; then,
@@ -160,8 +162,11 @@ class _LevelIntroScreenState extends ConsumerState<LevelIntroScreen> with Ticker
                           transform: lift,
                           child: Transform.scale(
                             scale: _popIn(seg(.35, .8)),
-                            // the picture on a white card (the prototype's 170 x 130 frame)
-                            child: Container(
+                            // a boss level shows its boss, fast asleep; other levels the
+                            // picture on a white card (the prototype's 170 x 130 frame)
+                            child: widget.level.isBoss
+                                ? BossFigure(world: BossPainter.indexOf(world?.bossId ?? ''), awake: false, dozing: true, width: 190, height: 158)
+                                : Container(
                               width: 170,
                               height: 130,
                               padding: const EdgeInsets.all(10),

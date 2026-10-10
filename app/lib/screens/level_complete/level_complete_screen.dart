@@ -177,7 +177,7 @@ class _LevelCompleteScreenState extends ConsumerState<LevelCompleteScreen> {
                     ),
                     const SizedBox(height: 18),
                     PopIn(delay: 2.4, child: _GainPill(gain: o.gain)),
-                    if (o.level == 35) ...[const SizedBox(height: 16), RiseIn(delay: 2.6, seconds: .4, child: _StoryCard(choices: o.choices))],
+                    if (o.choices.isNotEmpty) ...[const SizedBox(height: 16), RiseIn(delay: 2.6, seconds: .4, child: _StoryCard(choices: o.choices))],
                     const SizedBox(height: 24),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
