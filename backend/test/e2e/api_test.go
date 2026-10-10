@@ -395,7 +395,7 @@ func TestCoursesRateLimitAndRedisDown(t *testing.T) {
 		t.Fatal(err)
 	}
 	var doc map[string]any
-	if err := json.NewDecoder(zr).Decode(&doc); err != nil || len(doc["levels"].([]any)) != 145 || doc["courseId"] != course {
+	if err := json.NewDecoder(zr).Decode(&doc); err != nil || len(doc["levels"].([]any)) != 211 || doc["courseId"] != course {
 		t.Fatalf("course body: %v", err)
 	}
 	if r.header.Get("ETag") != `"`+courses[0].(map[string]any)["version"].(string)+`"` {
