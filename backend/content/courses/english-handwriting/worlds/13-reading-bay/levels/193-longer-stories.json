@@ -1,0 +1,430 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-193",
+  "number": 193,
+  "name": "Longer Stories",
+  "skill": "Reading longer stories",
+  "icon": "menu_book",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Max",
+    "word": "dog",
+    "say": "Let's read a longer story about Bilal and his dog!",
+    "audio": "voice/line-ff85b342f8bf3663.m4a",
+    "picture": {
+      "key": "dog",
+      "label": "dog",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-193-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "What is the dog called?",
+        "say": "Bilal has a little brown dog called Max. Every morning, they go to the park. Max runs after the ball. Then they go home and have a nap. What is the dog called?",
+        "audio": "voice/line-ebaaca4470984550.m4a"
+      },
+      "card": {
+        "text": "Bilal has a little brown dog called Max. Every morning, they go to the park. Max runs after the ball. Then they go home and have a nap.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-193-r1-o1",
+            "label": "Bilal",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-193-r1-o2",
+            "label": "Max",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-193-r1-o3",
+            "label": "Sam",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Max"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-193-r2",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "dog",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "park",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "ball",
+            "wrong": "mirror",
+            "at": 1
+          },
+          {
+            "text": "home",
+            "wrong": "mirror",
+            "at": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-193-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "Max runs after the what. Which word fits?",
+        "audio": "voice/line-3c16712067a1fdf5.m4a"
+      },
+      "card": {
+        "text": "Max runs after the ___.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-193-r3-o1",
+            "label": "cat",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-193-r3-o2",
+            "label": "bus",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-193-r3-o3",
+            "label": "ball",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "ball"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-193-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "They go to the park.",
+        "say": "They go to the park. Find the picture!",
+        "audio": "voice/line-514654572ef4fb77.m4a"
+      },
+      "card": {
+        "text": "They go to the park.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-193-r4-o1",
+            "label": "shop",
+            "picture": {
+              "key": "shop",
+              "label": "shop",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-193-r4-o2",
+            "label": "play",
+            "picture": {
+              "key": "play",
+              "label": "play",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-193-r4-o3",
+            "label": "school",
+            "picture": {
+              "key": "school",
+              "label": "school",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "play"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-193-r5",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. Max runs after a cat. True, or silly?",
+        "audio": "voice/line-6fa4003ca67dc043.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "Max runs after a cat.",
+        "picture": {
+          "key": "dog_running",
+          "label": "dog running",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-193-r6",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "Max runs after the ball. Put the words in order.",
+        "audio": "voice/line-6df70b04d2cd7030.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "dog_running",
+          "label": "dog running",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "Max",
+          "runs",
+          "after",
+          "the",
+          "ball"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-193-r7",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/p/|pʌ}?",
+        "audio": "voice/line-58e5a65228fecd70.m4a"
+      },
+      "card": {
+        "text": "d p",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "d",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "p",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "pen",
+            "picture": {
+              "key": "pen",
+              "label": "pen",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "pin",
+            "picture": {
+              "key": "pin",
+              "label": "pin",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "pig",
+            "picture": {
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-193-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "Bilal has a little dog. Now write it!",
+        "audio": "voice/line-499c904b4c0ff0e3.m4a"
+      },
+      "card": {
+        "text": "Bilal has a little dog.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "Bilal has a little dog.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-193-r9",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Every morning, they go to the park.",
+        "say": "Every morning, they go to the park. Now you say it!",
+        "audio": "voice/line-451174ee39e25a45.m4a"
+      },
+      "card": {
+        "text": "Every morning, they go to the park.",
+        "picture": {
+          "key": "play",
+          "label": "play",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Every morning, they go to the park."
+      }
+    },
+    {
+      "id": "level-193-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write dog",
+        "say": "Look at the word dog. Then write it from memory!",
+        "audio": "voice/line-cea7cf2d92dba27b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "dog",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

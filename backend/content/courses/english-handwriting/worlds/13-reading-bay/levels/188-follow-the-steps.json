@@ -1,0 +1,470 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-188",
+  "number": 188,
+  "name": "Follow the Steps",
+  "skill": "Instructions",
+  "icon": "format_list_numbered",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "1 2 3",
+    "word": "sandwich",
+    "say": "First, next, last! Let's follow the steps.",
+    "audio": "voice/line-64f98ae259b14654.m4a",
+    "picture": {
+      "key": "sandwich",
+      "label": "sandwich",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-188-r1",
+      "type": "order",
+      "prompt": {
+        "text": "Put the steps in order!",
+        "say": "First the bread, next the cheese, last the sandwich! Put the steps in order.",
+        "audio": "voice/line-efcce86bfe04f52a.m4a"
+      },
+      "card": {
+        "text": "1 · 2 · 3",
+        "picture": null,
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "bread",
+          "cheese",
+          "sandwich"
+        ],
+        "slot": "panel"
+      }
+    },
+    {
+      "id": "level-188-r2",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to the same word with a capital letter.",
+        "audio": "voice/line-d82ba5aa00efefb3.m4a"
+      },
+      "card": {
+        "text": "the = The",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "wash",
+              "picture": null
+            },
+            "b": {
+              "text": "Wash",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "brush",
+              "picture": null
+            },
+            "b": {
+              "text": "Brush",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "first",
+              "picture": null
+            },
+            "b": {
+              "text": "First",
+              "picture": null
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-188-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What do you do first?",
+        "say": "First, wet your hands. Next, use soap. Last, dry your hands. What do you do first?",
+        "audio": "voice/line-24ea8500d13b0e3d.m4a"
+      },
+      "card": {
+        "text": "First, wet your hands. Next, use soap. Last, dry your hands.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-188-r3-o1",
+            "label": "dry your hands",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-188-r3-o2",
+            "label": "use soap",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-188-r3-o3",
+            "label": "wet your hands",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "wet your hands"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-188-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Tap the doing word!",
+        "say": "Wash your hands. Tap the doing word!",
+        "audio": "voice/line-9306f4f4e1a5c3f7.m4a"
+      },
+      "card": {
+        "text": "Wash your hands.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-188-r4-o1",
+            "label": "Wash",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-188-r4-o2",
+            "label": "your",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-188-r4-o3",
+            "label": "hands",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Wash"
+        },
+        "shape": null,
+        "layout": "flow",
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-188-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "Brush your teeth.",
+        "say": "Brush your teeth. Find the picture!",
+        "audio": "voice/line-22724f0b45691446.m4a"
+      },
+      "card": {
+        "text": "Brush your teeth.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-188-r5-o1",
+            "label": "bed",
+            "picture": {
+              "key": "bed",
+              "label": "bed",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-188-r5-o2",
+            "label": "brush",
+            "picture": {
+              "key": "brush",
+              "label": "brush",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-188-r5-o3",
+            "label": "soap",
+            "picture": {
+              "key": "soap",
+              "label": "soap",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "brush"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-188-r6",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "wash",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "brush",
+            "wrong": "mirror",
+            "at": 1
+          },
+          {
+            "text": "first",
+            "wrong": "mirror",
+            "at": 2
+          },
+          {
+            "text": "next",
+            "wrong": null,
+            "at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-188-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "First, put on your socks. what, put on your shoes. Which word fits?",
+        "audio": "voice/line-4a9252f0990d1965.m4a"
+      },
+      "card": {
+        "text": "First, put on your socks. ___, put on your shoes.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-188-r7-o1",
+            "label": "Next",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-188-r7-o2",
+            "label": "First",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-188-r7-o3",
+            "label": "Last",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Next"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-188-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "First, wash your hands. Now write it!",
+        "audio": "voice/line-950794ef71d5b74a.m4a"
+      },
+      "card": {
+        "text": "First, wash your hands.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "First, wash your hands.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-188-r9",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Wash, rinse, dry!",
+        "say": "Wash, rinse, dry! Now you say it!",
+        "audio": "voice/line-5542a40f8c1d2fdd.m4a"
+      },
+      "card": {
+        "text": "Wash, rinse, dry!",
+        "picture": {
+          "key": "soap",
+          "label": "soap",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Wash, rinse, dry!"
+      }
+    },
+    {
+      "id": "level-188-r10",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/s/|sːː} or {/d/|dʌ}?",
+        "audio": "voice/line-b506d5a2b1764767.m4a"
+      },
+      "card": {
+        "text": "s d",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "s",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "d",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "sock",
+            "picture": {
+              "key": "sock",
+              "label": "sock",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "seed",
+            "picture": {
+              "key": "seed",
+              "label": "seed",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    }
+  ]
+}

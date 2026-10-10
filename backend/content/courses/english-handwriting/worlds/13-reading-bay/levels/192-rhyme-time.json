@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-134",
-  "number": 134,
+  "id": "level-192",
+  "number": 192,
   "name": "Rhyme Time",
   "skill": "Poems and rhymes",
   "icon": "music_note",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-134-r1",
+      "id": "level-192-r1",
       "type": "pick",
       "prompt": {
         "text": "What rhymes with cat?",
@@ -45,18 +45,18 @@
       "pick": {
         "options": [
           {
-            "id": "level-134-r1-o1",
-            "label": "hat",
+            "id": "level-192-r1-o1",
+            "label": "dog",
             "picture": {
-              "key": "hat",
-              "label": "hat",
+              "key": "dog",
+              "label": "dog",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-134-r1-o2",
+            "id": "level-192-r1-o2",
             "label": "sun",
             "picture": {
               "key": "sun",
@@ -67,11 +67,11 @@
             "hideLabel": true
           },
           {
-            "id": "level-134-r1-o3",
-            "label": "dog",
+            "id": "level-192-r1-o3",
+            "label": "hat",
             "picture": {
-              "key": "dog",
-              "label": "dog",
+              "key": "hat",
+              "label": "hat",
               "url": null
             },
             "color": null,
@@ -90,30 +90,34 @@
       }
     },
     {
-      "id": "level-134-r2",
-      "type": "pop",
+      "id": "level-192-r2",
+      "type": "write",
       "prompt": {
-        "text": "Pop every look!",
-        "say": "Pop every bubble that says look!",
-        "audio": "voice/line-5f4f7927532f36b6.m4a"
+        "text": "Look, then write sad",
+        "say": "Look at the word sad. Then write it from memory!",
+        "audio": "voice/line-70f4ea11e3eb63bd.m4a"
       },
       "card": {
-        "text": "look",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "sad",
+          "label": "sad",
+          "url": null
+        },
         "listen": false
       },
-      "pop": {
-        "target": "look",
-        "others": [
-          "like",
-          "down",
-          "jump"
-        ],
-        "count": 4
+      "write": {
+        "mode": "flash",
+        "target": "sad",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
       }
     },
     {
-      "id": "level-134-r3",
+      "id": "level-192-r3",
       "type": "pick",
       "prompt": {
         "text": "Which word fits?",
@@ -128,22 +132,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-134-r3-o1",
-            "label": "sun",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-134-r3-o2",
+            "id": "level-192-r3-o1",
             "label": "hat",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-134-r3-o3",
+            "id": "level-192-r3-o2",
             "label": "dog",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-192-r3-o3",
+            "label": "sun",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -161,7 +165,7 @@
       }
     },
     {
-      "id": "level-134-r4",
+      "id": "level-192-r4",
       "type": "speak",
       "prompt": {
         "text": "Say: Twinkle, twinkle, little star!",
@@ -182,7 +186,7 @@
       }
     },
     {
-      "id": "level-134-r5",
+      "id": "level-192-r5",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -211,55 +215,30 @@
       }
     },
     {
-      "id": "level-134-r6",
-      "type": "match",
+      "id": "level-192-r6",
+      "type": "pop",
       "prompt": {
-        "text": "Find the pairs!",
-        "say": "Find the pairs! Match each word to the same word with a capital letter.",
-        "audio": "voice/line-d82ba5aa00efefb3.m4a"
+        "text": "Pop every nest!",
+        "say": "Pop every bubble that says nest!",
+        "audio": "voice/line-1a617fa6b7737492.m4a"
       },
       "card": {
-        "text": "the = The",
+        "text": "nest",
         "picture": null,
         "listen": false
       },
-      "match": {
-        "pairs": [
-          {
-            "a": {
-              "text": "you",
-              "picture": null
-            },
-            "b": {
-              "text": "You",
-              "picture": null
-            }
-          },
-          {
-            "a": {
-              "text": "look",
-              "picture": null
-            },
-            "b": {
-              "text": "Look",
-              "picture": null
-            }
-          },
-          {
-            "a": {
-              "text": "said",
-              "picture": null
-            },
-            "b": {
-              "text": "Said",
-              "picture": null
-            }
-          }
-        ]
+      "pop": {
+        "target": "nest",
+        "others": [
+          "down",
+          "jump",
+          "his"
+        ],
+        "count": 4
       }
     },
     {
-      "id": "level-134-r7",
+      "id": "level-192-r7",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -282,7 +261,7 @@
       }
     },
     {
-      "id": "level-134-r8",
+      "id": "level-192-r8",
       "type": "hunt",
       "prompt": {
         "text": "Find every at!",
@@ -297,79 +276,97 @@
       "hunt": {
         "target": "at",
         "grid": [
-          "at",
           "hat",
-          "hat",
-          "at",
-          "it",
-          "at",
           "cat",
+          "at",
+          "at",
+          "hat",
+          "it",
           "bat",
-          "cat"
+          "cat",
+          "at"
         ]
       }
     },
     {
-      "id": "level-134-r9",
+      "id": "level-192-r9",
       "type": "write",
       "prompt": {
-        "text": "Spell jump",
-        "say": "Jump! Write it one letter at a time.",
-        "audio": "voice/line-cc81fb1811517725.m4a"
+        "text": "Spell bigger",
+        "say": "Bigger! Write it one letter at a time.",
+        "audio": "voice/line-8c966f453dba84c2.m4a"
       },
       "card": {
-        "text": null,
-        "picture": {
-          "key": "jump",
-          "label": "jump",
-          "url": null
-        },
+        "text": "bigger",
+        "picture": null,
         "listen": false
       },
       "write": {
         "mode": "spell",
-        "target": "jump",
+        "target": "bigger",
         "guide": null,
-        "word": "jump",
+        "word": "bigger",
         "missingIndex": null,
         "sentence": false,
         "story": false
       }
     },
     {
-      "id": "level-134-r10",
-      "type": "fix",
+      "id": "level-192-r10",
+      "type": "match",
       "prompt": {
-        "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
       },
       "card": {
-        "text": "Fix it!",
+        "text": "Find the pairs!",
         "picture": null,
         "listen": false
       },
-      "fix": {
-        "items": [
+      "match": {
+        "pairs": [
           {
-            "text": "you",
-            "wrong": null,
-            "at": null
+            "a": {
+              "text": "sad",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "sad",
+                "label": "sad",
+                "url": null
+              }
+            }
           },
           {
-            "text": "look",
-            "wrong": "mirror",
-            "at": 3
+            "a": {
+              "text": "down",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "down",
+                "label": "down",
+                "url": null
+              }
+            }
           },
           {
-            "text": "said",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "like",
-            "wrong": "mirror",
-            "at": 3
+            "a": {
+              "text": "behind",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "cat_behind_box",
+                "label": "behind",
+                "url": null
+              }
+            }
           }
         ]
       }

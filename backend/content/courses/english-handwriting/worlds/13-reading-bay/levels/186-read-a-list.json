@@ -1,0 +1,424 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-186",
+  "number": 186,
+  "name": "Read a List",
+  "skill": "Lists",
+  "icon": "shopping_basket",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "milk, eggs",
+    "word": "milk",
+    "say": "Milk, eggs, bread! Let's read a shopping list.",
+    "audio": "voice/line-4ab44098dbe72f51.m4a",
+    "picture": {
+      "key": "milk",
+      "label": "milk",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-186-r1",
+      "type": "sort",
+      "prompt": {
+        "text": "Is it on the list?",
+        "say": "The list says milk, eggs, bread. Sort the pictures! Is it on the list?",
+        "audio": "voice/line-a4a7395127bbc6c2.m4a"
+      },
+      "card": {
+        "text": "milk, eggs, bread",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "yes",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "no",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "milk",
+            "picture": {
+              "key": "milk",
+              "label": "milk",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "cake",
+            "picture": {
+              "key": "cake",
+              "label": "cake",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "egg",
+            "picture": {
+              "key": "egg",
+              "label": "egg",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "rice",
+            "picture": {
+              "key": "rice",
+              "label": "rice",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "bread",
+            "picture": {
+              "key": "bread",
+              "label": "bread",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-186-r2",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "milk",
+            "wrong": "mirror",
+            "at": 3
+          },
+          {
+            "text": "egg",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "bread",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "rice",
+            "wrong": "mirror",
+            "at": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-186-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What is first on the list?",
+        "say": "Shopping list: rice, mangoes, milk, bread. What is first on the list?",
+        "audio": "voice/line-a31b51be700fa22f.m4a"
+      },
+      "card": {
+        "text": "Shopping list: rice, mangoes, milk, bread.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-186-r3-o1",
+            "label": "rice",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-186-r3-o2",
+            "label": "milk",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-186-r3-o3",
+            "label": "bread",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "rice"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-186-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "What is on the list?",
+        "say": "The list says pen, book, bag. What is on the list?",
+        "audio": "voice/line-f129b6e76db135a1.m4a"
+      },
+      "card": {
+        "text": "pen, book, bag",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-186-r4-o1",
+            "label": "a cake",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-186-r4-o2",
+            "label": "a book",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-186-r4-o3",
+            "label": "a cat",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "a book"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-186-r5",
+      "type": "order",
+      "prompt": {
+        "text": "Put the list in order!",
+        "say": "One, milk. Two, eggs. Three, bread. Put the list in order.",
+        "audio": "voice/line-ed8ff3cb5998a1d2.m4a"
+      },
+      "card": {
+        "text": "1 milk  2 eggs  3 bread",
+        "picture": null,
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "milk",
+          "eggs",
+          "bread"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-186-r6",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is milk. True, or silly?",
+        "audio": "voice/line-7330cfb6667f3739.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is milk.",
+        "picture": {
+          "key": "down",
+          "label": "down",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-186-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write the list",
+        "say": "milk, eggs, bread. Now write it!",
+        "audio": "voice/line-74f168e0a6f9ba71.m4a"
+      },
+      "card": {
+        "text": "milk, eggs, bread",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "milk, eggs, bread",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-186-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is bread?",
+        "say": "Read the word. Which picture is bread?",
+        "audio": "voice/line-aee7f83b1fe34fac.m4a"
+      },
+      "card": {
+        "text": "bread",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-186-r8-o1",
+            "label": "milk",
+            "picture": {
+              "key": "milk",
+              "label": "milk",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-186-r8-o2",
+            "label": "bread",
+            "picture": {
+              "key": "bread",
+              "label": "bread",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-186-r8-o3",
+            "label": "rice",
+            "picture": {
+              "key": "rice",
+              "label": "rice",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "bread"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-186-r9",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Milk, eggs, bread and rice!",
+        "say": "Milk, eggs, bread and rice! Now you say it!",
+        "audio": "voice/line-dd7953ee3c4072cb.m4a"
+      },
+      "card": {
+        "text": "Milk, eggs, bread and rice!",
+        "picture": {
+          "key": "milk",
+          "label": "milk",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Milk, eggs, bread and rice!"
+      }
+    },
+    {
+      "id": "level-186-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write rice",
+        "say": "Look at the word rice. Then write it from memory!",
+        "audio": "voice/line-6a44069c8b300cf4.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "rice",
+          "label": "rice",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "rice",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

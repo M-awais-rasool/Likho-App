@@ -1,0 +1,414 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-189",
+  "number": 189,
+  "name": "How Do They Feel?",
+  "skill": "Feelings in stories",
+  "icon": "face",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "?",
+    "word": "sad",
+    "say": "How does Sam feel? Let's read and find out!",
+    "audio": "voice/line-1504e16af5103cbf.m4a",
+    "picture": {
+      "key": "sad",
+      "label": "sad",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-189-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "How does Sam feel?",
+        "say": "Sam's ice cream fell on the ground. How does Sam feel?",
+        "audio": "voice/line-d99714c8964efdcf.m4a"
+      },
+      "card": {
+        "text": "Sam's ice cream fell on the ground.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-189-r1-o1",
+            "label": "sad",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-189-r1-o2",
+            "label": "sleepy",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-189-r1-o3",
+            "label": "happy",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "sad"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-189-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/b/|bʌ}?",
+        "audio": "voice/line-55e04600648a8763.m4a"
+      },
+      "card": {
+        "text": "d b",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "d",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "b",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "ball",
+            "picture": {
+              "key": "ball",
+              "label": "ball",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "boat",
+            "picture": {
+              "key": "boat",
+              "label": "boat",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "bag",
+            "picture": {
+              "key": "bag",
+              "label": "bag",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-189-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "How does Mia feel?",
+        "say": "Mia has a new kite. How does she feel? Find the face!",
+        "audio": "voice/line-dac7590a29f77578.m4a"
+      },
+      "card": {
+        "text": "Mia has a new kite.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-189-r3-o1",
+            "label": "happy",
+            "picture": {
+              "key": "happy",
+              "label": "happy",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-189-r3-o2",
+            "label": "angry",
+            "picture": {
+              "key": "angry",
+              "label": "angry",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-189-r3-o3",
+            "label": "sad",
+            "picture": {
+              "key": "sad",
+              "label": "sad",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "happy"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-189-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "A big dog barks at the cat. The cat is what. Which word fits?",
+        "audio": "voice/line-436be85dc5958421.m4a"
+      },
+      "card": {
+        "text": "A big dog barks at the cat. The cat is ___.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-189-r4-o1",
+            "label": "happy",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-189-r4-o2",
+            "label": "scared",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-189-r4-o3",
+            "label": "hungry",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "scared"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-189-r5",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. The baby is tired. True, or silly?",
+        "audio": "voice/line-576f120b1164d20b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "The baby is tired.",
+        "picture": {
+          "key": "tired",
+          "label": "tired",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-189-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write sad",
+        "say": "Look at the word sad. Then write it from memory!",
+        "audio": "voice/line-70f4ea11e3eb63bd.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "sad",
+          "label": "sad",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "sad",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-189-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "Mia is happy today. Put the words in order.",
+        "audio": "voice/line-b76412b9bda5ea2b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "happy",
+          "label": "happy",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "Mia",
+          "is",
+          "happy",
+          "today"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-189-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "I feel happy when I play. Now write it!",
+        "audio": "voice/line-76358368ee65243e.m4a"
+      },
+      "card": {
+        "text": "I feel happy when I play.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I feel happy when I play.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-189-r9",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: How do you feel today?",
+        "say": "How do you feel today? Now you say it!",
+        "audio": "voice/line-4efca74012593920.m4a"
+      },
+      "card": {
+        "text": "How do you feel today?",
+        "picture": {
+          "key": "happy",
+          "label": "happy",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "How do you feel today?"
+      }
+    },
+    {
+      "id": "level-189-r10",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every scared!",
+        "say": "Pop every bubble that says scared!",
+        "audio": "voice/line-ec50b7d0bfb83f75.m4a"
+      },
+      "card": {
+        "text": "scared",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "scared",
+        "others": [
+          "angry",
+          "happy",
+          "tired"
+        ],
+        "count": 4
+      }
+    }
+  ]
+}
