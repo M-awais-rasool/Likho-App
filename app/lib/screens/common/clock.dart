@@ -23,12 +23,25 @@ mixin ClockMixin<T extends StatefulWidget> on State<T>, TickerProvider {
   }
 }
 
-/// A world boss (prototype `<Boss world awake dance>`), [width] x [height]
-/// (the art is 120 x 100).
+/// A world boss (lib/bosses), [width] x [height] (the art is 120 x 100).
+/// When [awake] turns true it first plays the wake-up (eyes flutter, a big
+/// yawn and stretch, a happy hop), then dances or idles. Asleep and
+/// [dozing], it peeks around now and then; each time [pokes] goes up it
+/// startles (a flutter, a yawn, a "wow") and nods off again.
 class BossFigure extends StatefulWidget {
-  const BossFigure({super.key, required this.world, this.awake = true, this.dance = false, this.width = 120, this.height = 100});
-  final int world; // 0..5
-  final bool awake, dance;
+  const BossFigure({
+    super.key,
+    required this.world,
+    this.awake = true,
+    this.dance = false,
+    this.dozing = false,
+    this.pokes = 0,
+    this.width = 120,
+    this.height = 100,
+  });
+  final int world; // BossPainter.indexOf(bossId)
+  final bool awake, dance, dozing;
+  final int pokes;
   final double width, height;
 
   @override
@@ -36,12 +49,29 @@ class BossFigure extends StatefulWidget {
 }
 
 class _BossFigureState extends State<BossFigure> with SingleTickerProviderStateMixin, ClockMixin {
+  double? _wokeAt, _pokedAt;
+
+  @override
+  void didUpdateWidget(BossFigure old) {
+    super.didUpdateWidget(old);
+    if (widget.awake && !old.awake) _wokeAt = clock.value;
+    if (widget.pokes > old.pokes && !widget.awake) _pokedAt = clock.value;
+  }
+
   @override
   Widget build(BuildContext context) => SizedBox(
     width: widget.width,
     height: widget.height,
     child: CustomPaint(
-      painter: BossPainter(world: widget.world, awake: widget.awake, dance: widget.dance, time: clock),
+      painter: BossPainter(
+        world: widget.world,
+        awake: widget.awake,
+        dance: widget.dance,
+        dozing: widget.dozing,
+        time: clock,
+        wokeAt: _wokeAt,
+        pokedAt: _pokedAt,
+      ),
     ),
   );
 }
