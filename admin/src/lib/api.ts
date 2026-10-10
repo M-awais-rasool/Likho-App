@@ -337,3 +337,57 @@ export interface AuditEntry {
   target: string
   detail: Record<string, unknown> | null
 }
+
+// Google Play closed test
+
+export interface ClosedTestSettings {
+  startDate: string // YYYY-MM-DD, '' = not set up
+  days: number
+  needed: number
+  timeZone: string
+  plus: boolean
+  plusUntil: string
+  openLevels: boolean
+  optInUrl: string
+  reminder: string // {name} {day} {days}
+}
+
+export interface TestAccount {
+  parentId: string
+  email: string
+  name: string
+  pictureUrl: string
+  platform: string
+  appVersion: string
+  country: string
+  createdAt: string
+  lastSeenAt: string | null
+  plusUntil: string | null
+  openLevels: boolean
+  children: number
+  levels: number
+  testerId: string | null
+  auto: boolean
+  days: string[]
+}
+
+export interface Tester {
+  id: string
+  name: string
+  email: string
+  phone: string
+  note: string
+  createdAt: string
+  accounts: TestAccount[]
+  days: string[]
+}
+
+export interface ClosedTestBoard {
+  settings: ClosedTestSettings
+  today: string
+  endDate: string
+  day: number
+  testers: Tester[]
+  newAccounts: TestAccount[]
+  notTesters: TestAccount[]
+}

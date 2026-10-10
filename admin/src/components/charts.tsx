@@ -1,4 +1,4 @@
-import { Area, AreaChart, Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis, type TooltipContentProps } from "recharts"
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis, type TooltipContentProps } from "recharts"
 import type { NameType, ValueType } from "recharts/types/component/DefaultTooltipContent"
 import { num, pct, shortDay } from '../lib/format'
 
@@ -77,6 +77,32 @@ export function FunnelChart({ data, total, height = 220, onLevel }: { data: { le
             }}
           />
           <Bar dataKey="children" fill="var(--series-1)" radius={[4, 4, 0, 0]} onClick={(d) => onLevel?.((d as unknown as { level: number }).level)} className={onLevel ? 'cursor-pointer' : ''} />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  )
+}
+
+/** Closed test: testers who opened Likho on each day so far, with the
+ *  target as a hairline. */
+export function TesterDaysChart({ data, target, height = 200 }: { data: { day: string; n: number; total: number }[]; target: number; height?: number }) {
+  return (
+    <div style={{ height }} role="img" aria-label="Testers who opened Likho each day">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart data={data} margin={{ top: 16, right: 8, bottom: 0, left: -18 }} barCategoryGap="20%">
+          <CartesianGrid vertical={false} stroke="var(--grid)" />
+          <XAxis dataKey="day" tickFormatter={shortDay} tick={axis} tickLine={false} axisLine={false} interval="preserveStartEnd" minTickGap={8} />
+          <YAxis allowDecimals={false} tick={axis} tickLine={false} axisLine={false} width={44} domain={[0, (max: number) => Math.max(max, target)]} />
+          <ReferenceLine y={target} stroke="var(--ink-3)" label={{ value: `Target ${target}`, position: 'insideTopRight', fontSize: 11, fill: 'var(--ink-2)' }} />
+          <Tooltip
+            cursor={{ fill: 'var(--surface-2)' }}
+            content={(p: TooltipContentProps<ValueType, NameType>) => {
+              if (!p.active || !p.payload?.length) return null
+              const d = p.payload[0].payload as { day: string; n: number; total: number }
+              return <TipBox title={shortDay(d.day)} rows={[{ label: 'Opened Likho', value: `${num(d.n)} of ${num(d.total)}`, color: 'var(--series-1)' }]} />
+            }}
+          />
+          <Bar dataKey="n" fill="var(--series-1)" radius={[4, 4, 0, 0]} maxBarSize={24} />
         </BarChart>
       </ResponsiveContainer>
     </div>
