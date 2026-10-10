@@ -1,17 +1,17 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-79",
-  "number": 79,
-  "name": "Wake the Robot-Bus",
+  "id": "level-90",
+  "number": 90,
+  "name": "Wake the Ladybug",
   "skill": "Boss · words",
   "icon": "bedtime",
   "isBoss": true,
   "requiresSubscription": true,
   "intro": {
-    "text": "red two cow",
+    "text": "red ten cow",
     "word": "star",
-    "say": "The robot bus is sleeping. Let's write words to wake it up!",
-    "audio": "voice/line-9147dfa5aff4f5b3.m4a",
+    "say": "The ladybug is sleeping in the garden. Let's write words to wake it up!",
+    "audio": "voice/line-7ee69cf76b3eed8a.m4a",
     "picture": {
       "key": "star",
       "label": "star",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-79-r1",
+      "id": "level-90-r1",
       "type": "write",
       "prompt": {
         "text": "bus",
@@ -52,35 +52,72 @@
       }
     },
     {
-      "id": "level-79-r2",
-      "type": "truth",
+      "id": "level-90-r2",
+      "type": "match",
       "prompt": {
-        "text": "True or silly?",
-        "say": "This is a red. True, or silly?",
-        "audio": "voice/line-16a9e1a7a9528574.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
       },
       "card": {
-        "text": null,
+        "text": "Find the pairs!",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "truth": {
-        "text": "This is a red.",
-        "picture": {
-          "key": "red",
-          "label": "red",
-          "url": null
-        },
-        "answer": true
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "red",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "red",
+                "label": "red",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "ten",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "ten",
+                "label": "ten",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "cow",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "cow",
+                "label": "cow",
+                "url": null
+              }
+            }
+          }
+        ]
       }
     },
     {
-      "id": "level-79-r3",
+      "id": "level-90-r3",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
-        "say": "Listen! Find the word two.",
-        "audio": "voice/line-f2a0167d8787f369.m4a"
+        "say": "Listen! Find the word ten.",
+        "audio": "voice/line-9aa1cdceddb87409.m4a"
       },
       "card": {
         "text": null,
@@ -90,21 +127,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-79-r3-o1",
-            "label": "two",
+            "id": "level-90-r3-o1",
+            "label": "brother",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-79-r3-o2",
-            "label": "pig",
+            "id": "level-90-r3-o2",
+            "label": "ten",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-79-r3-o3",
+            "id": "level-90-r3-o3",
             "label": "dog",
             "picture": null,
             "color": null,
@@ -113,9 +150,9 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "two"
+          "value": "ten"
         },
-        "shape": "kite",
+        "shape": "cloud",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -123,7 +160,7 @@
       }
     },
     {
-      "id": "level-79-r4",
+      "id": "level-90-r4",
       "type": "hunt",
       "prompt": {
         "text": "Find every cow!",
@@ -138,104 +175,58 @@
       "hunt": {
         "target": "cow",
         "grid": [
-          "red",
           "cow",
           "cow",
-          "hand",
-          "cow",
+          "coat",
+          "pig",
           "book",
           "milk",
-          "two",
-          "pig"
+          "ten",
+          "cow",
+          "red"
         ]
       }
     },
     {
-      "id": "level-79-r5",
-      "type": "sort",
+      "id": "level-90-r5",
+      "type": "fix",
       "prompt": {
-        "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/t/|tʌ} or {/c/|kʌ}?",
-        "audio": "voice/line-1a09855a677966ef.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
       },
       "card": {
-        "text": "t c",
+        "text": "Fix it!",
         "picture": null,
         "listen": false
       },
-      "sort": {
-        "bins": [
-          {
-            "label": "t",
-            "picture": null,
-            "bin": null
-          },
-          {
-            "label": "c",
-            "picture": null,
-            "bin": null
-          }
-        ],
+      "fix": {
         "items": [
           {
-            "label": "tiger",
-            "picture": {
-              "key": "tiger",
-              "label": "tiger",
-              "url": null
-            },
-            "bin": 0
+            "text": "red",
+            "wrong": "mirror",
+            "at": 0
           },
           {
-            "label": "tent",
-            "picture": {
-              "key": "tent",
-              "label": "tent",
-              "url": null
-            },
-            "bin": 0
+            "text": "ten",
+            "wrong": null,
+            "at": null
           },
           {
-            "label": "cat",
-            "picture": {
-              "key": "cat",
-              "label": "cat",
-              "url": null
-            },
-            "bin": 1
+            "text": "cow",
+            "wrong": null,
+            "at": null
           },
           {
-            "label": "cake",
-            "picture": {
-              "key": "cake",
-              "label": "cake",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "turtle",
-            "picture": {
-              "key": "turtle",
-              "label": "turtle",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "cow",
-            "picture": {
-              "key": "cow",
-              "label": "cow",
-              "url": null
-            },
-            "bin": 1
+            "text": "coat",
+            "wrong": "mirror",
+            "at": 0
           }
         ]
       }
     },
     {
-      "id": "level-79-r6",
+      "id": "level-90-r6",
       "type": "pick",
       "prompt": {
         "text": "What is this?",
@@ -245,8 +236,8 @@
       "card": {
         "text": null,
         "picture": {
-          "key": "hand",
-          "label": "hand",
+          "key": "coat",
+          "label": "coat",
           "url": null
         },
         "listen": false
@@ -254,22 +245,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-79-r6-o1",
-            "label": "pig",
+            "id": "level-90-r6-o1",
+            "label": "cow",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-79-r6-o2",
-            "label": "hand",
+            "id": "level-90-r6-o2",
+            "label": "four",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-79-r6-o3",
-            "label": "pink",
+            "id": "level-90-r6-o3",
+            "label": "coat",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -277,7 +268,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "hand"
+          "value": "coat"
         },
         "shape": "card",
         "layout": null,
@@ -287,7 +278,7 @@
       }
     },
     {
-      "id": "level-79-r7",
+      "id": "level-90-r7",
       "type": "write",
       "prompt": {
         "text": "Write milk",
@@ -314,7 +305,7 @@
       }
     },
     {
-      "id": "level-79-r8",
+      "id": "level-90-r8",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -337,46 +328,42 @@
           "o",
           "k"
         ],
-        "slot": "plank"
+        "slot": "stripe"
       }
     },
     {
-      "id": "level-79-r9",
-      "type": "write",
+      "id": "level-90-r9",
+      "type": "truth",
       "prompt": {
-        "text": "Look, then write red",
-        "say": "Look at the word red. Then write it from memory!",
-        "audio": "voice/line-42a5ea851deb06ac.m4a"
+        "text": "True or silly?",
+        "say": "This is a book. True, or silly?",
+        "audio": "voice/line-0287f631c41f9e95.m4a"
       },
       "card": {
         "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a book.",
         "picture": {
-          "key": "red",
-          "label": "red",
+          "key": "pig",
+          "label": "pig",
           "url": null
         },
-        "listen": false
-      },
-      "write": {
-        "mode": "flash",
-        "target": "red",
-        "guide": null,
-        "word": null,
-        "missingIndex": null,
-        "sentence": false,
-        "story": false
+        "answer": false
       }
     },
     {
-      "id": "level-79-r10",
+      "id": "level-90-r10",
       "type": "speak",
       "prompt": {
-        "text": "Say: red, two, cow, hand!",
-        "say": "Say them with me! red, two, cow, hand!",
-        "audio": "voice/line-133fd208b8a1da00.m4a"
+        "text": "Say: red, ten, cow, coat!",
+        "say": "Say them with me! red, ten, cow, coat!",
+        "audio": "voice/line-720d0b64b4c08e77.m4a"
       },
       "card": {
-        "text": "red, two, cow, hand!",
+        "text": "red, ten, cow, coat!",
         "picture": {
           "key": "red",
           "label": "red",
@@ -385,7 +372,7 @@
         "listen": true
       },
       "speak": {
-        "expected": "red, two, cow, hand!"
+        "expected": "red, ten, cow, coat!"
       }
     }
   ]

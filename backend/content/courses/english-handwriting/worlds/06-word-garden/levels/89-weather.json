@@ -1,0 +1,418 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-89",
+  "number": 89,
+  "name": "Weather",
+  "skill": "Weather words",
+  "icon": "wb_sunny",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "sun rain",
+    "word": "rain",
+    "say": "Sunny, rainy, windy, snowy! What is the weather today?",
+    "audio": "voice/line-b2f9a363c31d1308.m4a",
+    "picture": {
+      "key": "rain",
+      "label": "rain",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-89-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "It is windy.",
+        "say": "It is windy. Find the picture!",
+        "audio": "voice/line-efc8b58df1f6e8d3.m4a"
+      },
+      "card": {
+        "text": "It is windy.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-89-r1-o1",
+            "label": "wind",
+            "picture": {
+              "key": "wind",
+              "label": "wind",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-89-r1-o2",
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-89-r1-o3",
+            "label": "snow",
+            "picture": {
+              "key": "snow",
+              "label": "snow",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "wind"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-89-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/s/|sːː} or {/r/|ɹːː}?",
+        "audio": "voice/line-1fed2d6421905a62.m4a"
+      },
+      "card": {
+        "text": "s r",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "s",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "r",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "rain",
+            "picture": {
+              "key": "rain",
+              "label": "rain",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "rabbit",
+            "picture": {
+              "key": "rabbit",
+              "label": "rabbit",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "robot",
+            "picture": {
+              "key": "robot",
+              "label": "robot",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "sock",
+            "picture": {
+              "key": "sock",
+              "label": "sock",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "seed",
+            "picture": {
+              "key": "seed",
+              "label": "seed",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-89-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What is the weather?",
+        "say": "Look! What is the weather?",
+        "audio": "voice/line-0dd1dd1b60ed1fd4.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "rain",
+          "label": "rain",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-89-r3-o1",
+            "label": "It is sunny.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-89-r3-o2",
+            "label": "It is rainy.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-89-r3-o3",
+            "label": "It is snowy.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "It is rainy."
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-89-r4",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. It is snowy. True, or silly?",
+        "audio": "voice/line-025dde76f8f773a0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "It is snowy.",
+        "picture": {
+          "key": "hot_sun",
+          "label": "hot sun",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-89-r5",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "It is a sunny day. Put the words in order.",
+        "audio": "voice/line-6bdd2337ae40b506.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "sun",
+          "label": "sun",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "It",
+          "is",
+          "a",
+          "sunny",
+          "day"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-89-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write sun",
+        "say": "Look at the word sun. Then write it from memory!",
+        "audio": "voice/line-b826f034d5d868d2.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "sun",
+          "label": "sun",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "sun",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-89-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "It is cold. Now write it!",
+        "audio": "voice/line-cc0776195140f8d2.m4a"
+      },
+      "card": {
+        "text": "It is cold.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "It is cold.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-89-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Rain, rain, go away!",
+        "say": "Rain, rain, go away! Now you say it!",
+        "audio": "voice/line-a8bef486bcf66a29.m4a"
+      },
+      "card": {
+        "text": "Rain, rain, go away!",
+        "picture": {
+          "key": "rain",
+          "label": "rain",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Rain, rain, go away!"
+      }
+    },
+    {
+      "id": "level-89-r9",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word wind.",
+        "audio": "voice/line-a26c80d02127ad3c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-89-r9-o1",
+            "label": "sun",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-89-r9-o2",
+            "label": "wind",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-89-r9-o3",
+            "label": "snow",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "wind"
+        },
+        "shape": "mushroom",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-89-r10",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every wind!",
+        "say": "Pop every bubble that says wind!",
+        "audio": "voice/line-af3e331c6deb7f46.m4a"
+      },
+      "card": {
+        "text": "wind",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "wind",
+        "others": [
+          "four",
+          "goat",
+          "hand"
+        ],
+        "count": 4
+      }
+    }
+  ]
+}

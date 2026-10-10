@@ -1,0 +1,379 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-80",
+  "number": 80,
+  "name": "Pet Shop",
+  "skill": "Pets",
+  "icon": "pets",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "pets",
+    "word": "parrot",
+    "say": "Cat, dog, rabbit, parrot! Let's choose a pet.",
+    "audio": "voice/line-085ab49d91b9f879.m4a",
+    "picture": {
+      "key": "parrot",
+      "label": "parrot",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-80-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is parrot?",
+        "say": "Read the word. Which picture is parrot?",
+        "audio": "voice/line-ea0b2a011ed0c39b.m4a"
+      },
+      "card": {
+        "text": "parrot",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-80-r1-o1",
+            "label": "parrot",
+            "picture": {
+              "key": "parrot",
+              "label": "parrot",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-80-r1-o2",
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-80-r1-o3",
+            "label": "rabbit",
+            "picture": {
+              "key": "rabbit",
+              "label": "rabbit",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "parrot"
+        },
+        "shape": "bucket",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-80-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write cat",
+        "say": "Look at the word cat. Then write it from memory!",
+        "audio": "voice/line-1287718e1719c23c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "cat",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-80-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Parrot! Build the word parrot.",
+        "audio": "voice/line-4f57ac30cb46226d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "parrot",
+          "label": "parrot",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "p",
+          "a",
+          "r",
+          "r",
+          "o",
+          "t"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-80-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word fish.",
+        "audio": "voice/line-ebb2679421fa491b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-80-r4-o1",
+            "label": "rabbit",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-80-r4-o2",
+            "label": "fish",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-80-r4-o3",
+            "label": "hamster",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "fish"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-80-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Fish! Which letter is missing?",
+        "audio": "voice/line-6b6d63c716562260.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "fish",
+          "label": "fish",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "i",
+        "guide": "i",
+        "word": "fish",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-80-r6",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every fish!",
+        "say": "Pop every bubble that says fish!",
+        "audio": "voice/line-eec8cfa29017c73d.m4a"
+      },
+      "card": {
+        "text": "fish",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "fish",
+        "others": [
+          "four",
+          "goat",
+          "pink"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-80-r7",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every rabbit!",
+        "say": "Find every word rabbit!",
+        "audio": "voice/line-11378a223e6ce919.m4a"
+      },
+      "card": {
+        "text": "rabbit",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "rabbit",
+        "grid": [
+          "fish",
+          "hamster",
+          "dog",
+          "parrot",
+          "rabbit",
+          "cat",
+          "rabbit",
+          "pig",
+          "rabbit"
+        ]
+      }
+    },
+    {
+      "id": "level-80-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: parrot, fish, cat, rabbit!",
+        "say": "Say them with me! parrot, fish, cat, rabbit!",
+        "audio": "voice/line-6166b75959b720eb.m4a"
+      },
+      "card": {
+        "text": "parrot, fish, cat, rabbit!",
+        "picture": {
+          "key": "parrot",
+          "label": "parrot",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "parrot, fish, cat, rabbit!"
+      }
+    },
+    {
+      "id": "level-80-r9",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "parrot",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "parrot",
+                "label": "parrot",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "fish",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "fish",
+                "label": "fish",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "cat",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "cat",
+                "label": "cat",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-80-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Write cat",
+        "say": "Write the word cat.",
+        "audio": "voice/line-f69ac7e01523de18.m4a"
+      },
+      "card": {
+        "text": "cat",
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "cat",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

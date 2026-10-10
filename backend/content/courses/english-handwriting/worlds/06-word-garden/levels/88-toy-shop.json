@@ -1,0 +1,404 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-88",
+  "number": 88,
+  "name": "Toy Shop",
+  "skill": "Toys",
+  "icon": "sports_soccer",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "toys",
+    "word": "teddy",
+    "say": "Teddy, ball, kite, drum! Let's play with toys.",
+    "audio": "voice/line-8a69cae5b941a134.m4a",
+    "picture": {
+      "key": "teddy",
+      "label": "teddy",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-88-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is teddy?",
+        "say": "Read the word. Which picture is teddy?",
+        "audio": "voice/line-3802eb3efa474d61.m4a"
+      },
+      "card": {
+        "text": "teddy",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-88-r1-o1",
+            "label": "drum",
+            "picture": {
+              "key": "drum",
+              "label": "drum",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-88-r1-o2",
+            "label": "teddy",
+            "picture": {
+              "key": "teddy",
+              "label": "teddy",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-88-r1-o3",
+            "label": "robot",
+            "picture": {
+              "key": "robot",
+              "label": "robot",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "teddy"
+        },
+        "shape": "bucket",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-88-r2",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "teddy",
+            "wrong": "mirror",
+            "at": 4
+          },
+          {
+            "text": "kite",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "ball",
+            "wrong": "mirror",
+            "at": 0
+          },
+          {
+            "text": "drum",
+            "wrong": null,
+            "at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-88-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Teddy! Build the word teddy.",
+        "audio": "voice/line-214851ad7c06fc79.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "teddy",
+          "label": "teddy",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "t",
+          "e",
+          "d",
+          "d",
+          "y"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-88-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word kite.",
+        "audio": "voice/line-bd18e58b59c84268.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-88-r4-o1",
+            "label": "kite",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-88-r4-o2",
+            "label": "ball",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-88-r4-o3",
+            "label": "balloon",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "kite"
+        },
+        "shape": "fish",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-88-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Kite! Which letter is missing?",
+        "audio": "voice/line-940687b222a2c78e.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "kite",
+          "label": "kite",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "i",
+        "guide": "i",
+        "word": "kite",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-88-r6",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a drum. True, or silly?",
+        "audio": "voice/line-c263ff1918452b5c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a drum.",
+        "picture": {
+          "key": "balloon",
+          "label": "balloon",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-88-r7",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every drum!",
+        "say": "Find every word drum!",
+        "audio": "voice/line-371c81b13004ebda.m4a"
+      },
+      "card": {
+        "text": "drum",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "drum",
+        "grid": [
+          "drum",
+          "ball",
+          "drum",
+          "balloon",
+          "dog",
+          "kite",
+          "teddy",
+          "robot",
+          "drum"
+        ]
+      }
+    },
+    {
+      "id": "level-88-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: teddy, kite, ball, drum!",
+        "say": "Say them with me! teddy, kite, ball, drum!",
+        "audio": "voice/line-5d3bd9fb7675c242.m4a"
+      },
+      "card": {
+        "text": "teddy, kite, ball, drum!",
+        "picture": {
+          "key": "teddy",
+          "label": "teddy",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "teddy, kite, ball, drum!"
+      }
+    },
+    {
+      "id": "level-88-r9",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/f/|fːː} or {/g/|ɡʌ}?",
+        "audio": "voice/line-50bc4e75f05dae0e.m4a"
+      },
+      "card": {
+        "text": "f g",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "f",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "g",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "gift",
+            "picture": {
+              "key": "gift",
+              "label": "gift",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "foot",
+            "picture": {
+              "key": "foot",
+              "label": "foot",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "four",
+            "picture": {
+              "key": "four",
+              "label": "four",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "goat",
+            "picture": {
+              "key": "goat",
+              "label": "goat",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-88-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Write ball",
+        "say": "Write the word ball.",
+        "audio": "voice/line-088f8b7cb7a7628d.m4a"
+      },
+      "card": {
+        "text": "ball",
+        "picture": {
+          "key": "ball",
+          "label": "ball",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "ball",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

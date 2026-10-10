@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-75",
-  "number": 75,
+  "id": "level-81",
+  "number": 81,
   "name": "Doctor Pencil",
   "skill": "Body parts",
   "icon": "medical_services",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-75-r1",
+      "id": "level-81-r1",
       "type": "pick",
       "prompt": {
         "text": "Touch the nose!",
@@ -44,35 +44,35 @@
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-75-r1-o1"
+            "id": "level-81-r1-o1"
           },
           {
             "label": "eye",
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-75-r1-o2"
+            "id": "level-81-r1-o2"
           },
           {
             "label": "ear",
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-75-r1-o3"
+            "id": "level-81-r1-o3"
           },
           {
             "label": "mouth",
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-75-r1-o4"
+            "id": "level-81-r1-o4"
           },
           {
             "label": "hand",
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-75-r1-o5"
+            "id": "level-81-r1-o5"
           }
         ],
         "answer": {
@@ -87,91 +87,45 @@
       }
     },
     {
-      "id": "level-75-r2",
-      "type": "sort",
+      "id": "level-81-r2",
+      "type": "fix",
       "prompt": {
-        "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/h/|hʌ} or {/l/|lːː}?",
-        "audio": "voice/line-dfb3bb467ce2a295.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
       },
       "card": {
-        "text": "h l",
+        "text": "Fix it!",
         "picture": null,
         "listen": false
       },
-      "sort": {
-        "bins": [
-          {
-            "label": "h",
-            "picture": null,
-            "bin": null
-          },
-          {
-            "label": "l",
-            "picture": null,
-            "bin": null
-          }
-        ],
+      "fix": {
         "items": [
           {
-            "label": "log",
-            "picture": {
-              "key": "log",
-              "label": "log",
-              "url": null
-            },
-            "bin": 1
+            "text": "nose",
+            "wrong": null,
+            "at": null
           },
           {
-            "label": "hut",
-            "picture": {
-              "key": "hut",
-              "label": "hut",
-              "url": null
-            },
-            "bin": 0
+            "text": "eye",
+            "wrong": "mirror",
+            "at": 1
           },
           {
-            "label": "hand",
-            "picture": {
-              "key": "hand",
-              "label": "hand",
-              "url": null
-            },
-            "bin": 0
+            "text": "ear",
+            "wrong": "mirror",
+            "at": 1
           },
           {
-            "label": "lemon",
-            "picture": {
-              "key": "lemon",
-              "label": "lemon",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "hen",
-            "picture": {
-              "key": "hen",
-              "label": "hen",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "lamp",
-            "picture": {
-              "key": "lamp",
-              "label": "lamp",
-              "url": null
-            },
-            "bin": 1
+            "text": "hand",
+            "wrong": null,
+            "at": null
           }
         ]
       }
     },
     {
-      "id": "level-75-r3",
+      "id": "level-81-r3",
       "type": "pick",
       "prompt": {
         "text": "Which picture is nose?",
@@ -186,7 +140,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-75-r3-o1",
+            "id": "level-81-r3-o1",
             "label": "nose",
             "picture": {
               "key": "nose",
@@ -197,7 +151,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-75-r3-o2",
+            "id": "level-81-r3-o2",
             "label": "ear",
             "picture": {
               "key": "ear",
@@ -208,11 +162,11 @@
             "hideLabel": true
           },
           {
-            "id": "level-75-r3-o3",
-            "label": "foot",
+            "id": "level-81-r3-o3",
+            "label": "hand",
             "picture": {
-              "key": "foot",
-              "label": "foot",
+              "key": "hand",
+              "label": "hand",
               "url": null
             },
             "color": null,
@@ -223,7 +177,7 @@
           "kind": "label",
           "value": "nose"
         },
-        "shape": "jar",
+        "shape": "card",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -231,7 +185,7 @@
       }
     },
     {
-      "id": "level-75-r4",
+      "id": "level-81-r4",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -257,34 +211,30 @@
       }
     },
     {
-      "id": "level-75-r5",
-      "type": "write",
+      "id": "level-81-r5",
+      "type": "truth",
       "prompt": {
-        "text": "Look, then write ear",
-        "say": "Look at the word ear. Then write it from memory!",
-        "audio": "voice/line-df6b2bb7ab0f4f05.m4a"
+        "text": "True or silly?",
+        "say": "This is an ear. True, or silly?",
+        "audio": "voice/line-a7cd2413ed647c4a.m4a"
       },
       "card": {
         "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is an ear.",
         "picture": {
           "key": "ear",
           "label": "ear",
           "url": null
         },
-        "listen": false
-      },
-      "write": {
-        "mode": "flash",
-        "target": "ear",
-        "guide": null,
-        "word": null,
-        "missingIndex": null,
-        "sentence": false,
-        "story": false
+        "answer": true
       }
     },
     {
-      "id": "level-75-r6",
+      "id": "level-81-r6",
       "type": "write",
       "prompt": {
         "text": "Spell hand",
@@ -311,7 +261,7 @@
       }
     },
     {
-      "id": "level-75-r7",
+      "id": "level-81-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every leg!",
@@ -327,19 +277,19 @@
         "target": "leg",
         "grid": [
           "nose",
-          "leg",
-          "leg",
-          "eye",
           "pig",
-          "foot",
           "leg",
           "hand",
-          "ear"
+          "leg",
+          "ear",
+          "leg",
+          "foot",
+          "eye"
         ]
       }
     },
     {
-      "id": "level-75-r8",
+      "id": "level-81-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: nose, eye, ear, hand!",
@@ -360,30 +310,82 @@
       }
     },
     {
-      "id": "level-75-r9",
-      "type": "pop",
+      "id": "level-81-r9",
+      "type": "sort",
       "prompt": {
-        "text": "Pop every ear!",
-        "say": "Pop every bubble that says ear!",
-        "audio": "voice/line-3c8224a0f0d95cc6.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/n/|nːː} or {/e/|ɛ}?",
+        "audio": "voice/line-8f00f771965733f8.m4a"
       },
       "card": {
-        "text": "ear",
+        "text": "n e",
         "picture": null,
         "listen": false
       },
-      "pop": {
-        "target": "ear",
-        "others": [
-          "eye",
-          "dog",
-          "leg"
+      "sort": {
+        "bins": [
+          {
+            "label": "n",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "e",
+            "picture": null,
+            "bin": null
+          }
         ],
-        "count": 4
+        "items": [
+          {
+            "label": "nest",
+            "picture": {
+              "key": "nest",
+              "label": "nest",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "nail",
+            "picture": {
+              "key": "nail",
+              "label": "nail",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "elephant",
+            "picture": {
+              "key": "elephant",
+              "label": "elephant",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "egg",
+            "picture": {
+              "key": "egg",
+              "label": "egg",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "nose",
+            "picture": {
+              "key": "nose",
+              "label": "nose",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
       }
     },
     {
-      "id": "level-75-r10",
+      "id": "level-81-r10",
       "type": "write",
       "prompt": {
         "text": "Write ear",

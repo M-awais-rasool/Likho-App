@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-74",
-  "number": 74,
+  "id": "level-79",
+  "number": 79,
   "name": "Zoo Bus",
   "skill": "Animals",
   "icon": "directions_bus",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-74-r1",
+      "id": "level-79-r1",
       "type": "pick",
       "prompt": {
         "text": "Moo!",
@@ -48,7 +48,7 @@
             },
             "color": null,
             "hideLabel": false,
-            "id": "level-74-r1-o1"
+            "id": "level-79-r1-o1"
           },
           {
             "label": "duck",
@@ -59,7 +59,7 @@
             },
             "color": null,
             "hideLabel": false,
-            "id": "level-74-r1-o2"
+            "id": "level-79-r1-o2"
           },
           {
             "label": "cat",
@@ -70,7 +70,7 @@
             },
             "color": null,
             "hideLabel": false,
-            "id": "level-74-r1-o3"
+            "id": "level-79-r1-o3"
           }
         ],
         "answer": {
@@ -85,45 +85,30 @@
       }
     },
     {
-      "id": "level-74-r2",
-      "type": "fix",
+      "id": "level-79-r2",
+      "type": "truth",
       "prompt": {
-        "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "text": "True or silly?",
+        "say": "This is a cow. True, or silly?",
+        "audio": "voice/line-40a739add87536f3.m4a"
       },
       "card": {
-        "text": "Fix it!",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "fix": {
-        "items": [
-          {
-            "text": "cow",
-            "wrong": "mirror",
-            "at": 0
-          },
-          {
-            "text": "duck",
-            "wrong": "mirror",
-            "at": 2
-          },
-          {
-            "text": "lion",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "goat",
-            "wrong": null,
-            "at": null
-          }
-        ]
+      "truth": {
+        "text": "This is a cow.",
+        "picture": {
+          "key": "cow",
+          "label": "cow",
+          "url": null
+        },
+        "answer": true
       }
     },
     {
-      "id": "level-74-r3",
+      "id": "level-79-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -146,11 +131,11 @@
           "c",
           "k"
         ],
-        "slot": "stripe"
+        "slot": "plank"
       }
     },
     {
-      "id": "level-74-r4",
+      "id": "level-79-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -165,22 +150,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-74-r4-o1",
-            "label": "cow",
+            "id": "level-79-r4-o1",
+            "label": "log",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-74-r4-o2",
+            "id": "level-79-r4-o2",
+            "label": "frog",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-79-r4-o3",
             "label": "lion",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-74-r4-o3",
-            "label": "four",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -190,7 +175,7 @@
           "kind": "label",
           "value": "lion"
         },
-        "shape": "fish",
+        "shape": "bubble",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -198,7 +183,7 @@
       }
     },
     {
-      "id": "level-74-r5",
+      "id": "level-79-r5",
       "type": "write",
       "prompt": {
         "text": "Spell goat",
@@ -225,30 +210,91 @@
       }
     },
     {
-      "id": "level-74-r6",
-      "type": "truth",
+      "id": "level-79-r6",
+      "type": "sort",
       "prompt": {
-        "text": "True or silly?",
-        "say": "This is a goat. True, or silly?",
-        "audio": "voice/line-eb0d94a1fc125b55.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/l/|lːː}?",
+        "audio": "voice/line-9d1dd00f8db33bf3.m4a"
       },
       "card": {
-        "text": null,
+        "text": "d l",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "truth": {
-        "text": "This is a goat.",
-        "picture": {
-          "key": "frog",
-          "label": "frog",
-          "url": null
-        },
-        "answer": false
+      "sort": {
+        "bins": [
+          {
+            "label": "d",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "l",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "log",
+            "picture": {
+              "key": "log",
+              "label": "log",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "leg",
+            "picture": {
+              "key": "leg",
+              "label": "leg",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "lamp",
+            "picture": {
+              "key": "lamp",
+              "label": "lamp",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
       }
     },
     {
-      "id": "level-74-r7",
+      "id": "level-79-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every horse!",
@@ -263,20 +309,20 @@
       "hunt": {
         "target": "horse",
         "grid": [
-          "cow",
           "horse",
-          "lion",
-          "horse",
-          "frog",
-          "goat",
           "pig",
+          "goat",
           "horse",
-          "duck"
+          "duck",
+          "lion",
+          "frog",
+          "cow",
+          "horse"
         ]
       }
     },
     {
-      "id": "level-74-r8",
+      "id": "level-79-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: cow, duck, lion, goat!",
@@ -297,82 +343,34 @@
       }
     },
     {
-      "id": "level-74-r9",
-      "type": "sort",
+      "id": "level-79-r9",
+      "type": "write",
       "prompt": {
-        "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/g/|ɡʌ} or {/h/|hʌ}?",
-        "audio": "voice/line-3a5448a6011a54ca.m4a"
+        "text": "Look, then write goat",
+        "say": "Look at the word goat. Then write it from memory!",
+        "audio": "voice/line-de397e118d76e662.m4a"
       },
       "card": {
-        "text": "g h",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "goat",
+          "label": "goat",
+          "url": null
+        },
         "listen": false
       },
-      "sort": {
-        "bins": [
-          {
-            "label": "g",
-            "picture": null,
-            "bin": null
-          },
-          {
-            "label": "h",
-            "picture": null,
-            "bin": null
-          }
-        ],
-        "items": [
-          {
-            "label": "hut",
-            "picture": {
-              "key": "hut",
-              "label": "hut",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "goat",
-            "picture": {
-              "key": "goat",
-              "label": "goat",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "gift",
-            "picture": {
-              "key": "gift",
-              "label": "gift",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "hen",
-            "picture": {
-              "key": "hen",
-              "label": "hen",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "hat",
-            "picture": {
-              "key": "hat",
-              "label": "hat",
-              "url": null
-            },
-            "bin": 1
-          }
-        ]
+      "write": {
+        "mode": "flash",
+        "target": "goat",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
       }
     },
     {
-      "id": "level-74-r10",
+      "id": "level-79-r10",
       "type": "write",
       "prompt": {
         "text": "Write lion",
