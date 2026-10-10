@@ -1,26 +1,29 @@
 "use client";
 
 import { motion, useScroll, useSpring } from "framer-motion";
-import { BookOpen, Bus, CaseLower, CaseUpper, Cloud, Ear, Footprints, MessageCircleQuestionMark, Moon, Mountain, Rocket, Shell, Sprout } from "lucide-react";
+import { Bus, CaseUpper, Castle, Cloud, Footprints, MessageCircleQuestionMark, Moon, Mountain, Rocket, Shell, Snowflake, Sprout, TreePalm, Trees, Waves } from "lucide-react";
 import Image from "next/image";
 import { useLayoutEffect, useRef, useState } from "react";
 import { site } from "@/lib/site";
 import { Reveal, SectionTitle } from "./Reveal";
 
-// The course's worlds in order, worded as in the store listing (docs/google-play-listing.md).
+// The course's worlds in order (their colours go round the colour wheel, then the two night worlds), worded as in the store listing (docs/google-play-listing.md), in each world's
+// accent colour from the app's theme (deep: a darker shade, or the world's own dark background).
 const worlds = [
-  { name: "Letter Land", skill: "Capital letters A to Z", color: "#ffc83d", deep: "#e0a21a", picture: "apple", boss: "Sleepy Snail", icon: CaseUpper },
-  { name: "Small Letter Cove", skill: "Small letters a to z and their sounds", color: "#4d9de0", deep: "#2f7cc0", picture: "fish", boss: "Sleepy Fish", icon: CaseLower },
-  { name: "Phonics Forest", skill: "Words like cat, hen, pig, dog and bus", color: "#3bb273", deep: "#268f58", picture: "owl", boss: "Sleepy Bear", icon: Ear },
-  { name: "Word Town", skill: "Colours, numbers, animals, family and food", color: "#ff8a5b", deep: "#e2683a", picture: "bus", boss: "Robot-Bus", icon: Bus },
-  { name: "Sound Mountain", skill: "sh, ch, th, ee, oo and more letter pairs", color: "#8a6fd1", deep: "#6a51b0", picture: "tree", boss: "Sleepy Goat", icon: Mountain },
-  { name: "Blend Beach", skill: "star, frog, flag and other blends", color: "#ee9a32", deep: "#c27a1a", picture: "star", boss: "Sleepy Crab", icon: Shell },
-  { name: "Sight Word Garden", skill: "the, said, was, they and other words to know by sight", color: "#dd5e8c", deep: "#b4436d", picture: "flower", boss: "Sleepy Ladybug", icon: Sprout },
-  { name: "Sentence Sky", skill: "Capital letters, full stops and sentences such as “I see a cat.”", color: "#9b7fe6", deep: "#6a48dd", picture: "rainbow", boss: "Sleepy Cloud", icon: Cloud },
-  { name: "Action Jungle", skill: "Doing words, describing words and in, on, under", color: "#86a321", deep: "#657d14", picture: "lion", boss: "Sleepy Monkey", icon: Footprints },
-  { name: "Question Island", skill: "Who, what, where, and talking with friendly aliens", color: "#d4a20a", deep: "#a67c00", picture: "robot", boss: "Sleepy Turtle", icon: MessageCircleQuestionMark },
-  { name: "Reading River", skill: "Read sentences and little stories, then answer questions", color: "#1897b9", deep: "#0f7591", picture: "storybook", boss: "Sleepy Frog", icon: BookOpen },
-  { name: "Story Space", skill: "Put stories in order and write about me, my family and my day", color: "#2b2d42", deep: "#14152a", picture: "planet", boss: "Sleepy Moon", icon: Rocket },
+  { name: "Letter Land", skill: "Capital letters A to M", color: "#5BB13C", deep: "#45872E", picture: "apple", boss: "Sleepy Snail", icon: CaseUpper },
+  { name: "Alphabet Jungle", skill: "Capital letters N to Z", color: "#8DB51E", deep: "#6B8A17", picture: "lion", boss: "Sleepy Monkey", icon: Footprints },
+  { name: "Small Letter Beach", skill: "Small letters a to m and their sounds", color: "#F0A417", deep: "#B67D11", picture: "star", boss: "Sleepy Crab", icon: Shell },
+  { name: "Letter Forest", skill: "Small letters n to z and their sounds", color: "#E8702A", deep: "#B05520", picture: "owl", boss: "Sleepy Bear", icon: Trees },
+  { name: "Phonics Island", skill: "Words like cat, hen, pig, dog and bus, and word families", color: "#F05A4F", deep: "#B6443C", picture: "sun", boss: "Sleepy Turtle", icon: TreePalm },
+  { name: "Word Garden", skill: "Colours, numbers, animals, clothes, fruit, toys and the weather", color: "#EE5F8F", deep: "#B5486D", picture: "flower", boss: "Sleepy Ladybug", icon: Sprout },
+  { name: "Sound Castle", skill: "sh, ch, th, ee, oo, igh and more letter pairs", color: "#C752C0", deep: "#973E92", picture: "dragon", boss: "Sleepy Dragon", icon: Castle },
+  { name: "Blend Mountain", skill: "star, frog, flag, long words and compound words", color: "#8C67DB", deep: "#6A4EA6", picture: "tree", boss: "Sleepy Goat", icon: Mountain },
+  { name: "Sight Word Town", skill: "the, said, was, they and other words to know by sight", color: "#3D63DD", deep: "#2E4BA8", picture: "bus", boss: "Robot-Bus", icon: Bus },
+  { name: "Sentence Sky", skill: "Capital letters, full stops, commas and sentences such as “I see a cat.”", color: "#2EA3E6", deep: "#237CAF", picture: "rainbow", boss: "Sleepy Cloud", icon: Cloud },
+  { name: "Action Cove", skill: "Doing words, describing words, feelings and opposites", color: "#11A7A0", deep: "#0D7F7A", picture: "fish", boss: "Sleepy Fish", icon: Waves },
+  { name: "Question River", skill: "Who, what, where, when, why, and talking with friendly aliens", color: "#22B07D", deep: "#1A865F", picture: "frog", boss: "Sleepy Frog", icon: MessageCircleQuestionMark },
+  { name: "Reading Bay", skill: "Read signs, lists and little stories, then answer questions", color: "#56C2EE", deep: "#15304A", picture: "penguin", boss: "Sleepy Penguin", icon: Snowflake },
+  { name: "Story Space", skill: "Put stories in order and write about me, my pet, my school and my day", color: "#A08BF0", deep: "#252950", picture: "planet", boss: "Sleepy Moon", icon: Rocket },
 ];
 
 /** A winding road from the top of the box, through every stop, to the bottom. Each bend swings to the other side. */
@@ -80,7 +83,7 @@ export function Worlds() {
           </svg>
         )}
 
-        {/* on wide screens each right-hand card tucks up beside the left-hand one, so 12 worlds stay a short scroll */}
+        {/* on wide screens each right-hand card tucks up beside the left-hand one, so 14 worlds stay a short scroll */}
         <ol className="relative space-y-10 md:space-y-4">
           {worlds.map((w, i) => {
             const right = i % 2 === 1;

@@ -28,7 +28,7 @@ export default function TermsPage() {
 
       <LegalSection title="Likho Plus">
         <ul>
-          <li>{site.course.freeWorld}, the first world, is free. Likho Plus unlocks all worlds and levels.</li>
+          <li>{site.course.freeWorlds}, the first two worlds, are free. Likho Plus unlocks all worlds and levels.</li>
           <li>Likho Plus is a monthly or yearly subscription, sold through Google Play or the App Store, and may start with a free trial.</li>
           <li>The subscription renews automatically until you cancel it. You can cancel anytime from your store&apos;s subscription settings; access continues until the end of the period you paid for.</li>
           <li>Payments and refunds are handled by the store, under its own rules.</li>
