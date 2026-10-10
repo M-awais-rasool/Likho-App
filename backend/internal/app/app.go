@@ -69,7 +69,8 @@ func BuildApp(d Deps) *Built {
 	}
 	store := catalog.NewStore(d.Catalog)
 
-	activity := service.NewActivityService(repos.Activity, repos.Admin, c, d.Geo)
+	closedTest := service.NewClosedTestService(repos.ClosedTest, repos.Accounts, repos.Admin, c)
+	activity := service.NewActivityService(repos.Activity, repos.Admin, c, d.Geo, closedTest)
 	account := service.NewAccountService(repos.Accounts, repos.Children, c, activity)
 	services := handler.Services{
 		Auth:     service.NewAuthService(repos.Accounts, repos.Sessions, d.Google, d.Tokens, account, activity),
@@ -87,7 +88,7 @@ func BuildApp(d Deps) *Built {
 	admins := service.NewAdminAuthService(repos.Admin)
 	adminHandler := &handler.AdminHandler{
 		Auth: admins, Admin: service.NewAdminService(repos, store, c, activity, account), Content: content,
-		Health: health, Info: d.System, Secure: d.Production,
+		ClosedTest: closedTest, Health: health, Info: d.System, Secure: d.Production,
 	}
 	handlers := handler.New(services, health)
 	if d.Media == nil {
