@@ -119,6 +119,7 @@ SINGLE = {
     "bag": "Backpack",
     "bat": "Bat",
     "bath": "Bathtub",
+    "bear": "Bear",
     "bin": "Wastebasket",
     "black": "Black heart",
     "blue": "Blue heart",
@@ -133,6 +134,7 @@ SINGLE = {
     "cheese": "Cheese wedge",
     "clock": "Mantelpiece clock",
     "corn": "Ear of corn",
+    "crab": "Crab",
     "crayon": "Crayon",
     "dance": ("Woman dancing", TONE),
     "down": "Down arrow",
@@ -151,6 +153,7 @@ SINGLE = {
     "hut": "Hut",
     "jump": "Kangaroo",
     "king": ("Prince", TONE),
+    "ladybug": "Lady beetle",
     "lamp": "Diya lamp",
     "leg": ("Leg", TONE),
     "lemon": "Lemon",
@@ -194,6 +197,90 @@ SINGLE = {
     "watch": "Watch",
     "web": "Spider web",
     "wing": "Wing",
+    # added with the 14 worlds (tools/curriculum: Frosty Bay's boss and the new levels)
+    "angry": "Angry face",
+    "balloon": "Balloon",
+    "bird": "Bird",
+    "brick": "Brick",
+    "broom": "Broom",
+    "bus_stop": "Bus stop",
+    "butterfly": "Butterfly",
+    "climb": ("Person climbing", TONE),
+    "clown": "Clown face",
+    "coat": "Coat",
+    "crown": "Crown",
+    "dinosaur": "Sauropod",
+    "dolphin": "Dolphin",
+    "door": "Door",
+    "dot": "Red circle",
+    "dress": "Dress",
+    "eight": "Keycap 8",
+    "envelope": "Envelope",
+    "fan": "Folding hand fan",
+    "five": "Keycap 5",
+    "fox": "Fox",
+    "grapes": "Grapes",
+    "hamster": "Hamster",
+    "happy": "Grinning face with big eyes",
+    "horse": "Horse",
+    "hospital": "Hospital",
+    "house": "House",
+    "hug": "People hugging",
+    "kangaroo": "Kangaroo",
+    "light": "Light bulb",
+    "loud": "Speaker high volume",
+    "mango": "Mango",
+    "mask": "Diving mask",
+    "net": "Goal net",
+    "night": "Night with stars",
+    "nine": "Keycap 9",
+    "old": ("Old man", TONE),
+    "orange": "Tangerine",
+    "pan": "Cooking",
+    "parrot": "Parrot",
+    "pear": "Pear",
+    "penguin": "Penguin",
+    "phone": "Mobile phone",
+    "photo": "Camera with flash",
+    "popcorn": "Popcorn",
+    "postbox": "Postbox",
+    "potato": "Potato",
+    "prize": "Trophy",
+    "purse": "Purse",
+    "quiet": "Muted speaker",
+    "rat": "Rat",
+    "roti": "Flatbread",
+    "salt": "Salt",
+    "sandwich": "Sandwich",
+    "scared": "Fearful face",
+    "scarf": "Scarf",
+    "scooter": "Kick scooter",
+    "scream": "Face screaming in fear",
+    "scroll": "Scroll",
+    "seven": "Keycap 7",
+    "shirt": "T-shirt",
+    "shoe": "Running shoe",
+    "skate": "Ice skate",
+    "skunk": "Skunk",
+    "sled": "Sled",
+    "smile": "Smiling face with smiling eyes",
+    "snow": "Snowflake",
+    "snowman": "Snowman",
+    "soap": "Soap",
+    "splash": "Sweat droplets",
+    "straw": "Cup with straw",
+    "sweet": "Lollipop",
+    "teacher": ("Teacher", TONE),
+    "teddy": "Teddy bear",
+    "ten": "Keycap 10",
+    "tin": "Canned food",
+    "tired": "Yawning face",
+    "toilet": "Toilet",
+    "traffic_light": "Vertical traffic light",
+    "van": "Minibus",
+    "wet": "Droplet",
+    "wind": "Wind face",
+    "window": "Window",
 }
 
 
@@ -416,12 +503,54 @@ def under_chair(animal):
     return put(im, scaled(emoji(animal), height=round(SIZE * 0.46)), 0.5, 0.76)
 
 
+def behind_box(face):
+    """The animal's head peeps over a box in front of it (the box hides the rest)."""
+    im = put(canvas(), scaled(emoji(face), height=round(SIZE * 0.40)), 0.5, 0.24)
+    return put(im, scaled(emoji("Package"), width=round(SIZE * 0.62)), 0.5, 0.64)
+
+
+def next_to_box(animal):
+    """The animal stands beside a box, both on the ground."""
+    im = put(canvas(), scaled(emoji("Package"), width=round(SIZE * 0.44)), 0.27, 0.70)
+    return put(im, scaled(emoji(animal), height=round(SIZE * 0.52)), 0.73, 0.62)
+
+
+def between_boxes(animal):
+    """The animal between two boxes."""
+    box = scaled(emoji("Package"), width=round(SIZE * 0.30))
+    im = put(canvas(), box, 0.16, 0.72)
+    im = put(im, box, 0.84, 0.72)
+    return put(im, scaled(emoji(animal), height=round(SIZE * 0.46)), 0.5, 0.64)
+
+
+def cat_and_dog():
+    im = put(canvas(), scaled(emoji("Cat"), width=round(SIZE * 0.44)), 0.24, 0.52)
+    return put(im, mirrored(scaled(emoji("Dog"), width=round(SIZE * 0.46))), 0.76, 0.52)
+
+
+def sizes():
+    """Three balls, small to big: big, bigger, biggest."""
+    ball = emoji("Soccer ball")
+    im = put(canvas(), scaled(ball, height=round(SIZE * 0.18)), 0.12, 0.80)
+    im = put(im, scaled(ball, height=round(SIZE * 0.32)), 0.38, 0.73)
+    return put(im, scaled(ball, height=round(SIZE * 0.50)), 0.74, 0.64)
+
+
 SCENES = {
     "bird_in_sky": bird_in_sky,
+    "cat_and_dog": cat_and_dog,
+    "cat_behind_box": lambda: behind_box("Cat face"),
+    "cat_between_boxes": lambda: between_boxes("Cat"),
+    "cat_next_to_box": lambda: next_to_box("Cat"),
+    "dog_behind_box": lambda: behind_box("Dog face"),
+    "dog_between_boxes": lambda: between_boxes("Dog"),
+    "dog_next_to_box": lambda: next_to_box("Dog"),
+    "sizes": sizes,
     "bottle_message": message_in_bottle,
     "cat_in_bed": lambda: in_bed("Cat", "Cat face"),
     "cat_on_box": lambda: on_box("Cat"),
     "cat_under_chair": lambda: under_chair("Cat"),
+    "dog_under_chair": lambda: under_chair("Dog"),
     "dog_on_box": lambda: on_box("Dog"),
     "dog_running": lambda: running("Dog"),
     "family": family,
