@@ -376,9 +376,9 @@ backend/content/
             ├── 01-letter-land/          NN = the world's order on the map
             │   ├── world.json           name, icon, theme, boss
             │   └── levels/
-            │       ├── 01-straight-lines.json   NN = the level number
+            │       ├── 01-letter-a.json   NN = the level number
             │       └── …
-            └── 02-small-letter-cove/
+            └── 02-alphabet-jungle/
                 └── …
 ```
 
@@ -386,48 +386,52 @@ Every file starts with a `"$schema"` line pointing at its schema in `schema/`, f
 API removes it). Levels can also be written in the [admin panel](#admin-panel), without touching
 these files.
 
-**The course is generated.** All 12 worlds (144 levels) are written by
-`tools/curriculum/build_levels.py` (worlds 1–2, the alphabet) and `tools/curriculum/later_worlds.py`
-(worlds 3–12) from their tables:
+**The course is generated.** All 14 worlds (210 levels, 15 a world, each ending in its boss) are
+written by `tools/curriculum/build_levels.py` (worlds 1–4, the alphabet) and
+`tools/curriculum/later_worlds.py` (worlds 5–14) from their tables:
 
 | World | Levels | Teaches |
 |---|---|---|
-| 1 Letter Land | 1–31 | capitals A–Z, in alphabet order |
-| 2 Small Letter Cove | 32–62 | small a–z and their sounds |
-| 3 Phonics Forest | 63–71 | blending three-letter words, short vowels, rhymes |
-| 4 Word Town | 72–79 | colours, numbers, animals, body, family, food, school |
-| 5 Sound Mountain | 80–89 | sh ch th ck ng ee oo ai oa ar or |
-| 6 Blend Beach | 90–96 | blends (st, fl, tr, -nd) and two-beat words |
-| 7 Sight Word Garden | 97–104 | sight words (the, said, was, they …) |
-| 8 Sentence Sky | 105–112 | spaces, capitals, full stops, a/an, plurals, sentences |
-| 9 Action Jungle | 113–120 | doing and describing words, opposites, in/on/under, -ing |
-| 10 Question Island | 121–128 | who/what/where, ? and !, days, talking |
-| 11 Reading River | 129–136 | reading sentences and short passages |
-| 12 Story Space | 137–144 | story order, writing about me, my story |
+| 1 Letter Land | 1–15 | capitals A–M, in alphabet order, a review after G |
+| 2 Alphabet Jungle | 16–30 | capitals N–Z, a review after T |
+| 3 Small Letter Beach | 31–45 | small a–m and their sounds |
+| 4 Letter Forest | 46–60 | small n–z and their sounds |
+| 5 Phonics Island | 61–75 | blending three-letter words, short vowels and their word families (-at, -an …), last sounds, rhymes |
+| 6 Word Garden | 76–90 | colours, numbers to ten, animals, pets, body, clothes, family, home, food, fruit, school, toys, weather |
+| 7 Sound Castle | 91–105 | sh ch th ck ng ee oo ai igh oa ar or, ow/ou, er/ir/ur, wh/ph |
+| 8 Blend Mountain | 106–120 | blends at the start (st, bl, br, sk, str …) and the end (-nd, -sk …), two- and three-beat words, compound words |
+| 9 Sight Word Town | 121–135 | sight words (the, said, was, they, with, many, their …) |
+| 10 Sentence Sky | 136–150 | spaces, naming words, capitals for sentences and names, full stops, !, a/an, plurals, and, commas in lists |
+| 11 Action Cove | 151–165 | doing words, animal actions, -ing and -ed, describing words, feelings, opposites, in/on/under, behind/next to/between, bigger/biggest |
+| 12 Question River | 166–180 | who/what/where/when/why/how many, yes/no questions, days, months, asking politely |
+| 13 Reading Bay | 181–195 | reading sentences, signs, lists, steps and stories; picture clues, feelings, what happens next |
+| 14 Story Space | 196–210 | story order, story beginnings, writing about me, family, a pet, a friend, school, food, a picture, a letter, my story |
 
 One new idea per level in 8 to 10 games, never two games of one kind in a level (the script
 checks it), writing always on the one paper pad, a boss at the end of each world. So that no two
 levels play alike, every level has at least two of the newer games (bubble pop, fix Pencil's
 mistakes, the hungry monster or baskets, memory match, true or silly, writing from memory): in the
 letter worlds each game slot (meet, sound, look, build, write) has a few games that teach the same
-thing and turns with the level; in worlds 3–12 three new games are added to every level, starting
+thing and turns with the level; in worlds 5–14 three new games are added to every level, starting
 further along the list each time (`add_star_games` in `later_worlds.py`). The games the
 course had before (Paint Shop, Doctor Pencil, Talk to Aliens, My Story …) are kept in
-`tools/curriculum/classic_rounds.json` and played inside these levels. Change the plan there and
-run it (`--check` prints the plan and the pictures still to draw), then draw the pictures and
-record the new lines (below). World 1 is free; Likho Plus starts at level 32.
+`tools/curriculum/classic_rounds.json` and played inside these levels; the levels added with the
+14 worlds are the `TOPICS` in `later_worlds.py` (each a list of games, most important first). Change
+the plan there and run it (`--check` prints the plan and the pictures still to draw), then draw the
+pictures and record the new lines (below). Worlds 1 and 2 (all 26 capitals) are free; Likho Plus
+starts at level 31 (`FREE_UP_TO` in `build_levels.py`).
 
 **Add a level.** Copy a level file of the same kind into the world's `levels/` folder, give it the
-next `number` (and start the file name with it: `145-…json`), a new `id` and new round ids
+next `number` (and start the file name with it: `211-…json`), a new `id` and new round ids
 (`<level id>-r1`, `-r2` …), then run `make content`. Numbers run 1, 2, 3 … across the whole course,
 world after world. **Never renumber a published level**: each child's progress is stored by level
 number. Add new levels at the end of the last world, or in a new world.
 
 **Add a world.** Make a folder `worlds/NN-name/` with a `world.json` (`order` = NN) and at least one
-level. `themeId` picks its look (`letterLand`, `smallLetterCove`, `phonicsForest`, `wordTown`,
-`sentenceSky`, `storySpace`, `soundMountain`, `blendBeach`, `sightGarden`, `actionJungle`,
-`questionIsland`, `readingRiver`) and `boss.id` its boss (`snail`, `fish`, `bear`, `robotBus`,
-`cloud`, `moon`, `goat`, `crab`, `ladybug`, `monkey`, `turtle`, `frog`).
+level. `themeId` picks its look (`letterLand`, `alphabetCastle`, `smallLetterCove`, `frostyBay`,
+`phonicsForest`, `wordTown`, `sentenceSky`, `storySpace`, `soundMountain`, `blendBeach`, `sightGarden`,
+`actionJungle`, `questionIsland`, `readingRiver`) and `boss.id` its boss (`snail`, `dragon`, `fish`,
+`penguin`, `bear`, `robotBus`, `cloud`, `moon`, `goat`, `crab`, `ladybug`, `monkey`, `turtle`, `frog`).
 
 **Add a course.** Make a folder `courses/<course-id>/` with `course.json`, `glyphs.json` and
 `worlds/`. Keep `"status": "draft"` while you work on it: drafts are served in development only.
