@@ -1,0 +1,382 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-190",
+  "number": 190,
+  "name": "Little Stories",
+  "skill": "Reading stories",
+  "icon": "auto_stories",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Sam",
+    "word": "story",
+    "say": "Let's read little stories and answer questions!",
+    "audio": "voice/line-4643de348a0c202e.m4a",
+    "picture": {
+      "key": "story",
+      "label": "story",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-190-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Where does Sara go?",
+        "say": "Sara goes to school. She has a big bag. In the bag is a red book. Where does Sara go?",
+        "audio": "voice/line-86d1b45387695077.m4a"
+      },
+      "card": {
+        "text": "Sara goes to school. She has a big bag. In the bag is a red book.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-190-r1-o1",
+            "label": "to the zoo",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-190-r1-o2",
+            "label": "to the park",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-190-r1-o3",
+            "label": "to school",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "to school"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-190-r2",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every who!",
+        "say": "Pop every bubble that says who!",
+        "audio": "voice/line-d026c8911811d112.m4a"
+      },
+      "card": {
+        "text": "who",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "who",
+        "others": [
+          "his",
+          "hop",
+          "sad"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-190-r3",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "Sara goes to school. Now write it!",
+        "audio": "voice/line-597a7664b6bf552d.m4a"
+      },
+      "card": {
+        "text": "Sara goes to school.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "Sara goes to school.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-190-r4",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "She has a big bag. Put the words in order.",
+        "audio": "voice/line-72656bcbf1a6970b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "school",
+          "label": "school",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "She",
+          "has",
+          "a",
+          "big",
+          "bag"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-190-r5",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: It is hot.",
+        "say": "It is hot. Now you say it!",
+        "audio": "voice/line-89d639c51c228d4d.m4a"
+      },
+      "card": {
+        "text": "It is hot.",
+        "picture": {
+          "key": "fish_in_sea",
+          "label": "fish in sea",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "It is hot."
+      }
+    },
+    {
+      "id": "level-190-r6",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "sad",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "sad",
+                "label": "sad",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "down",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "down",
+                "label": "down",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "behind",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "cat_behind_box",
+                "label": "behind",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-190-r7",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. Sara goes to school. True, or silly?",
+        "audio": "voice/line-640228c41fca8eb2.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "Sara goes to school.",
+        "picture": {
+          "key": "school",
+          "label": "school",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-190-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "The cat is on the bed.",
+        "say": "The cat is on the bed. Find the picture!",
+        "audio": "voice/line-817cde14e53d9d7b.m4a"
+      },
+      "card": {
+        "text": "The cat is on the bed.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-190-r8-o1",
+            "label": "cat in bed",
+            "picture": {
+              "key": "cat_in_bed",
+              "label": "cat in bed",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-190-r8-o2",
+            "label": "cat on box",
+            "picture": {
+              "key": "cat_on_box",
+              "label": "cat on box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-190-r8-o3",
+            "label": "dog on box",
+            "picture": {
+              "key": "dog_on_box",
+              "label": "dog on box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "cat in bed"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-190-r9",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "his",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "hop",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "sad",
+            "wrong": "mirror",
+            "at": 1
+          },
+          {
+            "text": "down",
+            "wrong": "mirror",
+            "at": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-190-r10",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every sad!",
+        "say": "Find every word sad!",
+        "audio": "voice/line-29f9f3600528429a.m4a"
+      },
+      "card": {
+        "text": "sad",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "sad",
+        "grid": [
+          "sad",
+          "sad",
+          "hop",
+          "under",
+          "behind",
+          "down",
+          "jumping",
+          "sad",
+          "his"
+        ]
+      }
+    }
+  ]
+}

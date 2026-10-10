@@ -1,0 +1,447 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-182",
+  "number": 182,
+  "name": "Read the Signs",
+  "skill": "Signs",
+  "icon": "place",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "STOP",
+    "word": "stop",
+    "say": "Stop! Go! Exit! Let's read the signs around us.",
+    "audio": "voice/line-4563fdb297934672.m4a",
+    "picture": {
+      "key": "stop",
+      "label": "stop",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-182-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "TOILET",
+        "say": "Read the sign. Which picture goes with it?",
+        "audio": "voice/line-aa0c7ef814ce7c44.m4a"
+      },
+      "card": {
+        "text": "TOILET",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-182-r1-o1",
+            "label": "school",
+            "picture": {
+              "key": "school",
+              "label": "school",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-182-r1-o2",
+            "label": "bus stop",
+            "picture": {
+              "key": "bus_stop",
+              "label": "bus stop",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-182-r1-o3",
+            "label": "toilet",
+            "picture": {
+              "key": "toilet",
+              "label": "toilet",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "toilet"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-182-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/b/|bʌ}?",
+        "audio": "voice/line-55e04600648a8763.m4a"
+      },
+      "card": {
+        "text": "d b",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "d",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "b",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "bat",
+            "picture": {
+              "key": "bat",
+              "label": "bat",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bee",
+            "picture": {
+              "key": "bee",
+              "label": "bee",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bed",
+            "picture": {
+              "key": "bed",
+              "label": "bed",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-182-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "The sign says PUSH.",
+        "say": "The sign on the door says PUSH. What do you do?",
+        "audio": "voice/line-2f97c37c98d4d89f.m4a"
+      },
+      "card": {
+        "text": "PUSH",
+        "picture": {
+          "key": "door",
+          "label": "door",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-182-r3-o1",
+            "label": "push the door",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-182-r3-o2",
+            "label": "stop",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-182-r3-o3",
+            "label": "pull the door",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "push the door"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-182-r4",
+      "type": "match",
+      "prompt": {
+        "text": "Match the signs!",
+        "say": "Find the pairs! Match each sign to its picture.",
+        "audio": "voice/line-c7418cc23f06d2ce.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "STOP",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "stop",
+                "label": "stop",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "BUS STOP",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "bus_stop",
+                "label": "bus stop",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "HOSPITAL",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "hospital",
+                "label": "hospital",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-182-r5",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. Red means go. True, or silly?",
+        "audio": "voice/line-7c1d389f1925fd34.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "Red means go.",
+        "picture": {
+          "key": "traffic_light",
+          "label": "traffic light",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-182-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "Can we go in?",
+        "say": "The sign on the shop door says CLOSED. Can we go in?",
+        "audio": "voice/line-926ed396949b49eb.m4a"
+      },
+      "card": {
+        "text": "The sign on the shop door says CLOSED.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-182-r6-o1",
+            "label": "No, we can not.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-182-r6-o2",
+            "label": "Yes, we can.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "No, we can not."
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-182-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write go",
+        "say": "Look at the word go. Then write it from memory!",
+        "audio": "voice/line-9d91bf90ce65904b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "go",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-182-r8",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "Stop at the red light. Put the words in order.",
+        "audio": "voice/line-1ebe1334f638499b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "traffic_light",
+          "label": "traffic light",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "Stop",
+          "at",
+          "the",
+          "red",
+          "light"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-182-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Write exit",
+        "say": "Write the word exit.",
+        "audio": "voice/line-1def35ccc004c839.m4a"
+      },
+      "card": {
+        "text": "exit",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "exit",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-182-r10",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every go!",
+        "say": "Pop every bubble that says go!",
+        "audio": "voice/line-06cfce304033d5f5.m4a"
+      },
+      "card": {
+        "text": "go",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "go",
+        "others": [
+          "his",
+          "hop",
+          "sad"
+        ],
+        "count": 4
+      }
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-130",
-  "number": 130,
+  "id": "level-183",
+  "number": 183,
   "name": "Yes or No?",
   "skill": "Reading carefully",
   "icon": "check_circle",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-130-r1",
+      "id": "level-183-r1",
       "type": "truth",
       "prompt": {
         "text": "True or silly?",
@@ -49,45 +49,30 @@
       }
     },
     {
-      "id": "level-130-r2",
-      "type": "fix",
+      "id": "level-183-r2",
+      "type": "pop",
       "prompt": {
-        "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "text": "Pop every hop!",
+        "say": "Pop every bubble that says hop!",
+        "audio": "voice/line-6a09b5cf6f200c6a.m4a"
       },
       "card": {
-        "text": "Fix it!",
+        "text": "hop",
         "picture": null,
         "listen": false
       },
-      "fix": {
-        "items": [
-          {
-            "text": "you",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "look",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "said",
-            "wrong": "mirror",
-            "at": 0
-          },
-          {
-            "text": "like",
-            "wrong": "mirror",
-            "at": 3
-          }
-        ]
+      "pop": {
+        "target": "hop",
+        "others": [
+          "his",
+          "sad",
+          "who"
+        ],
+        "count": 4
       }
     },
     {
-      "id": "level-130-r3",
+      "id": "level-183-r3",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -110,7 +95,7 @@
       }
     },
     {
-      "id": "level-130-r4",
+      "id": "level-183-r4",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -137,7 +122,7 @@
       }
     },
     {
-      "id": "level-130-r5",
+      "id": "level-183-r5",
       "type": "speak",
       "prompt": {
         "text": "Say: Yes, the cat is on the box!",
@@ -158,91 +143,67 @@
       }
     },
     {
-      "id": "level-130-r6",
-      "type": "sort",
+      "id": "level-183-r6",
+      "type": "match",
       "prompt": {
-        "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/w/|wʌ} or {/l/|lːː}?",
-        "audio": "voice/line-1b1c51ab935d596c.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
       },
       "card": {
-        "text": "w l",
+        "text": "Find the pairs!",
         "picture": null,
         "listen": false
       },
-      "sort": {
-        "bins": [
+      "match": {
+        "pairs": [
           {
-            "label": "w",
-            "picture": null,
-            "bin": null
+            "a": {
+              "text": "sad",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "sad",
+                "label": "sad",
+                "url": null
+              }
+            }
           },
           {
-            "label": "l",
-            "picture": null,
-            "bin": null
-          }
-        ],
-        "items": [
-          {
-            "label": "watch",
-            "picture": {
-              "key": "watch",
-              "label": "watch",
-              "url": null
+            "a": {
+              "text": "down",
+              "picture": null
             },
-            "bin": 0
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "down",
+                "label": "down",
+                "url": null
+              }
+            }
           },
           {
-            "label": "web",
-            "picture": {
-              "key": "web",
-              "label": "web",
-              "url": null
+            "a": {
+              "text": "behind",
+              "picture": null
             },
-            "bin": 0
-          },
-          {
-            "label": "log",
-            "picture": {
-              "key": "log",
-              "label": "log",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "leg",
-            "picture": {
-              "key": "leg",
-              "label": "leg",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "lemon",
-            "picture": {
-              "key": "lemon",
-              "label": "lemon",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "whale",
-            "picture": {
-              "key": "whale",
-              "label": "whale",
-              "url": null
-            },
-            "bin": 0
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "cat_behind_box",
+                "label": "behind",
+                "url": null
+              }
+            }
           }
         ]
       }
     },
     {
-      "id": "level-130-r7",
+      "id": "level-183-r7",
       "type": "pick",
       "prompt": {
         "text": "Which word fits?",
@@ -257,22 +218,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-130-r7-o1",
-            "label": "red",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-130-r7-o2",
+            "id": "level-183-r7-o1",
             "label": "big",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-130-r7-o3",
+            "id": "level-183-r7-o2",
             "label": "blue",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-183-r7-o3",
+            "label": "red",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -290,81 +251,96 @@
       }
     },
     {
-      "id": "level-130-r8",
+      "id": "level-183-r8",
       "type": "hunt",
       "prompt": {
-        "text": "Find every like!",
-        "say": "Find every word like!",
-        "audio": "voice/line-ef09687e3c13ecc5.m4a"
+        "text": "Find every jumping!",
+        "say": "Find every word jumping!",
+        "audio": "voice/line-809ab75a3969324a.m4a"
       },
       "card": {
-        "text": "like",
+        "text": "jumping",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "like",
+        "target": "jumping",
         "grid": [
-          "down",
-          "said",
-          "under",
-          "like",
-          "you",
+          "hop",
           "jumping",
-          "look",
-          "like",
-          "like"
+          "his",
+          "sad",
+          "down",
+          "some",
+          "jumping",
+          "under",
+          "jumping"
         ]
       }
     },
     {
-      "id": "level-130-r9",
+      "id": "level-183-r9",
       "type": "write",
       "prompt": {
-        "text": "Spell jump",
-        "say": "Jump! Write it one letter at a time.",
-        "audio": "voice/line-cc81fb1811517725.m4a"
+        "text": "Spell behind",
+        "say": "Behind! Write it one letter at a time.",
+        "audio": "voice/line-6de8f1c573b2b22b.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "jump",
-          "label": "jump",
+          "key": "cat_behind_box",
+          "label": "behind",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "spell",
-        "target": "jump",
+        "target": "behind",
         "guide": null,
-        "word": "jump",
+        "word": "behind",
         "missingIndex": null,
         "sentence": false,
         "story": false
       }
     },
     {
-      "id": "level-130-r10",
-      "type": "write",
+      "id": "level-183-r10",
+      "type": "fix",
       "prompt": {
-        "text": "Look, then write look",
-        "say": "Look at the word look. Then write it from memory!",
-        "audio": "voice/line-c6c8f27c36221a71.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
       },
       "card": {
-        "text": null,
+        "text": "Fix it!",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "write": {
-        "mode": "flash",
-        "target": "look",
-        "guide": null,
-        "word": null,
-        "missingIndex": null,
-        "sentence": false,
-        "story": false
+      "fix": {
+        "items": [
+          {
+            "text": "some",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "his",
+            "wrong": "mirror",
+            "at": 0
+          },
+          {
+            "text": "hop",
+            "wrong": "mirror",
+            "at": 2
+          },
+          {
+            "text": "sad",
+            "wrong": null,
+            "at": null
+          }
+        ]
       }
     }
   ]

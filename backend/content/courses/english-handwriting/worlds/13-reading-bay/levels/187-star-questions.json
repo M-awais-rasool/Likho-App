@@ -1,20 +1,20 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-133",
-  "number": 133,
-  "name": "Little Stories",
-  "skill": "Reading stories",
-  "icon": "auto_stories",
+  "id": "level-187",
+  "number": 187,
+  "name": "Star Questions",
+  "skill": "Comprehension",
+  "icon": "auto_awesome",
   "isBoss": false,
   "requiresSubscription": true,
   "intro": {
-    "text": "Sam",
-    "word": "story",
-    "say": "Let's read little stories and answer questions!",
-    "audio": "voice/line-4643de348a0c202e.m4a",
+    "text": "Who? What?",
+    "word": "star",
+    "say": "Who? What? Where? Let's answer the star questions.",
+    "audio": "voice/line-43df3cf79059262e.m4a",
     "picture": {
-      "key": "story",
-      "label": "story",
+      "key": "star",
+      "label": "star",
       "url": null
     }
   },
@@ -26,45 +26,44 @@
   },
   "rounds": [
     {
-      "id": "level-133-r1",
+      "id": "level-187-r1",
       "type": "pick",
       "prompt": {
-        "text": "Where does Sara go?",
-        "say": "Sara goes to school. She has a big bag. In the bag is a red book. Where does Sara go?",
-        "audio": "voice/line-86d1b45387695077.m4a"
+        "text": "Who has a ball?",
+        "audio": "voice/line-09f6a4fbf8311b6e.m4a"
       },
       "card": {
-        "text": "Sara goes to school. She has a big bag. In the bag is a red book.",
+        "text": "Sam has a red ball. He plays in the park.",
         "picture": null,
         "listen": false
       },
       "pick": {
         "options": [
           {
-            "id": "level-133-r1-o1",
-            "label": "to school",
+            "label": "Sam",
             "picture": null,
             "color": null,
-            "hideLabel": false
+            "hideLabel": false,
+            "id": "level-187-r1-o1"
           },
           {
-            "id": "level-133-r1-o2",
-            "label": "to the zoo",
+            "label": "Mia",
             "picture": null,
             "color": null,
-            "hideLabel": false
+            "hideLabel": false,
+            "id": "level-187-r1-o2"
           },
           {
-            "id": "level-133-r1-o3",
-            "label": "to the park",
+            "label": "Tom",
             "picture": null,
             "color": null,
-            "hideLabel": false
+            "hideLabel": false,
+            "id": "level-187-r1-o3"
           }
         ],
         "answer": {
           "kind": "label",
-          "value": "to school"
+          "value": "Sam"
         },
         "shape": "card",
         "layout": null,
@@ -75,96 +74,105 @@
       }
     },
     {
-      "id": "level-133-r2",
+      "id": "level-187-r2",
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/j/|ʤʌ}?",
-        "audio": "voice/line-ad0f5467c4b713b8.m4a"
+        "say": "Sort the pictures! Do they start with {/b/|bʌ} or {/w/|wʌ}?",
+        "audio": "voice/line-0ff4e05d6c5560cb.m4a"
       },
       "card": {
-        "text": "d j",
+        "text": "b w",
         "picture": null,
         "listen": false
       },
       "sort": {
         "bins": [
           {
-            "label": "d",
+            "label": "b",
             "picture": null,
             "bin": null
           },
           {
-            "label": "j",
+            "label": "w",
             "picture": null,
             "bin": null
           }
         ],
         "items": [
           {
-            "label": "duck",
+            "label": "whale",
             "picture": {
-              "key": "duck",
-              "label": "duck",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "jump",
-            "picture": {
-              "key": "jump",
-              "label": "jump",
+              "key": "whale",
+              "label": "whale",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "jam",
+            "label": "bug",
             "picture": {
-              "key": "jam",
-              "label": "jam",
+              "key": "bug",
+              "label": "bug",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bed",
+            "picture": {
+              "key": "bed",
+              "label": "bed",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "watch",
+            "picture": {
+              "key": "watch",
+              "label": "watch",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "doctor",
+            "label": "bat",
             "picture": {
-              "key": "doctor",
-              "label": "doctor",
+              "key": "bat",
+              "label": "bat",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "dog",
+            "label": "web",
             "picture": {
-              "key": "dog",
-              "label": "dog",
+              "key": "web",
+              "label": "web",
               "url": null
             },
-            "bin": 0
+            "bin": 1
           }
         ]
       }
     },
     {
-      "id": "level-133-r3",
+      "id": "level-187-r3",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
-        "say": "Sara goes to school. Now write it!",
-        "audio": "voice/line-597a7664b6bf552d.m4a"
+        "say": "Ali has a kite. Now write it!",
+        "audio": "voice/line-cf551172ec963a66.m4a"
       },
       "card": {
-        "text": "Sara goes to school.",
+        "text": "Ali has a kite.",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "free",
-        "target": "Sara goes to school.",
+        "target": "Ali has a kite.",
         "guide": null,
         "word": null,
         "missingIndex": null,
@@ -173,74 +181,73 @@
       }
     },
     {
-      "id": "level-133-r4",
+      "id": "level-187-r4",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
-        "say": "She has a big bag. Put the words in order.",
-        "audio": "voice/line-72656bcbf1a6970b.m4a"
+        "say": "The kite is red. Put the words in order.",
+        "audio": "voice/line-f516eb450da0b07a.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "school",
-          "label": "school",
+          "key": "kite",
+          "label": "kite",
           "url": null
         },
         "listen": false
       },
       "order": {
         "tiles": [
-          "She",
-          "has",
-          "a",
-          "big",
-          "bag"
+          "The",
+          "kite",
+          "is",
+          "red"
         ],
         "slot": "stripe"
       }
     },
     {
-      "id": "level-133-r5",
+      "id": "level-187-r5",
       "type": "speak",
       "prompt": {
-        "text": "Say: It is hot.",
-        "say": "It is hot. Now you say it!",
-        "audio": "voice/line-89d639c51c228d4d.m4a"
+        "text": "Say: Sam can swim.",
+        "say": "Sam can swim. Now you say it!",
+        "audio": "voice/line-4cdc76de2d5124bd.m4a"
       },
       "card": {
-        "text": "It is hot.",
+        "text": "Sam can swim.",
         "picture": {
-          "key": "fish_in_sea",
-          "label": "fish in sea",
+          "key": "swim",
+          "label": "swim",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "It is hot."
+        "expected": "Sam can swim."
       }
     },
     {
-      "id": "level-133-r6",
+      "id": "level-187-r6",
       "type": "write",
       "prompt": {
-        "text": "Look, then write down",
-        "say": "Look at the word down. Then write it from memory!",
-        "audio": "voice/line-7a7e40edfc29c9cb.m4a"
+        "text": "Look, then write jump",
+        "say": "Look at the word jump. Then write it from memory!",
+        "audio": "voice/line-db2df7e90ad5e116.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "down",
-          "label": "down",
+          "key": "jump",
+          "label": "jump",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "flash",
-        "target": "down",
+        "target": "jump",
         "guide": null,
         "word": null,
         "missingIndex": null,
@@ -249,12 +256,12 @@
       }
     },
     {
-      "id": "level-133-r7",
+      "id": "level-187-r7",
       "type": "truth",
       "prompt": {
         "text": "True or silly?",
-        "say": "Look at the picture. Sara goes to school. True, or silly?",
-        "audio": "voice/line-640228c41fca8eb2.m4a"
+        "say": "Look at the picture. Ali has a kite. True, or silly?",
+        "audio": "voice/line-f8928145aace98c2.m4a"
       },
       "card": {
         "text": null,
@@ -262,17 +269,17 @@
         "listen": true
       },
       "truth": {
-        "text": "Sara goes to school.",
+        "text": "Ali has a kite.",
         "picture": {
-          "key": "school",
-          "label": "school",
+          "key": "kite",
+          "label": "kite",
           "url": null
         },
         "answer": true
       }
     },
     {
-      "id": "level-133-r8",
+      "id": "level-187-r8",
       "type": "pick",
       "prompt": {
         "text": "The cat is on the bed.",
@@ -287,18 +294,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-133-r8-o1",
-            "label": "cat in bed",
-            "picture": {
-              "key": "cat_in_bed",
-              "label": "cat in bed",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-133-r8-o2",
+            "id": "level-187-r8-o1",
             "label": "cat on box",
             "picture": {
               "key": "cat_on_box",
@@ -309,11 +305,22 @@
             "hideLabel": true
           },
           {
-            "id": "level-133-r8-o3",
+            "id": "level-187-r8-o2",
             "label": "dog on box",
             "picture": {
               "key": "dog_on_box",
               "label": "dog on box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-187-r8-o3",
+            "label": "cat in bed",
+            "picture": {
+              "key": "cat_in_bed",
+              "label": "cat in bed",
               "url": null
             },
             "color": null,
@@ -332,53 +339,53 @@
       }
     },
     {
-      "id": "level-133-r9",
+      "id": "level-187-r9",
       "type": "pop",
       "prompt": {
-        "text": "Pop every you!",
-        "say": "Pop every bubble that says you!",
-        "audio": "voice/line-c98e4b698661b0ee.m4a"
+        "text": "Pop every behind!",
+        "say": "Pop every bubble that says behind!",
+        "audio": "voice/line-5e522ced2f1b457b.m4a"
       },
       "card": {
-        "text": "you",
+        "text": "behind",
         "picture": null,
         "listen": false
       },
       "pop": {
-        "target": "you",
+        "target": "behind",
         "others": [
-          "who",
-          "down",
-          "jump"
+          "under",
+          "where",
+          "down"
         ],
         "count": 4
       }
     },
     {
-      "id": "level-133-r10",
+      "id": "level-187-r10",
       "type": "hunt",
       "prompt": {
-        "text": "Find every like!",
-        "say": "Find every word like!",
-        "audio": "voice/line-ef09687e3c13ecc5.m4a"
+        "text": "Find every sad!",
+        "say": "Find every word sad!",
+        "audio": "voice/line-29f9f3600528429a.m4a"
       },
       "card": {
-        "text": "like",
+        "text": "sad",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "like",
+        "target": "sad",
         "grid": [
-          "you",
-          "down",
-          "like",
-          "look",
-          "under",
           "jumping",
-          "like",
-          "like",
-          "said"
+          "hop",
+          "sad",
+          "his",
+          "under",
+          "sad",
+          "sad",
+          "down",
+          "behind"
         ]
       }
     }

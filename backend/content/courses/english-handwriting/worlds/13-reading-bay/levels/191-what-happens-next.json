@@ -1,0 +1,409 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-191",
+  "number": 191,
+  "name": "What Happens Next?",
+  "skill": "Guessing what happens",
+  "icon": "auto_stories",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Next?",
+    "word": "rain",
+    "say": "Dark clouds... what happens next? Let's guess!",
+    "audio": "voice/line-7ffc185f8d12d05c.m4a",
+    "picture": {
+      "key": "rain",
+      "label": "rain",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-191-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "What happens next?",
+        "say": "It is very hot. Mia has an ice cream in the sun. What happens next?",
+        "audio": "voice/line-c6d1b67f37630b25.m4a"
+      },
+      "card": {
+        "text": "It is very hot. Mia has an ice cream in the sun.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-191-r1-o1",
+            "label": "It snows.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-191-r1-o2",
+            "label": "The ice cream melts.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-191-r1-o3",
+            "label": "The ice cream grows.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "The ice cream melts."
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-191-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/n/|nːː} or {/m/|mːː}?",
+        "audio": "voice/line-b59f47fa50169e60.m4a"
+      },
+      "card": {
+        "text": "n m",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "n",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "m",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "mouse",
+            "picture": {
+              "key": "mouse",
+              "label": "mouse",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "nose",
+            "picture": {
+              "key": "nose",
+              "label": "nose",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "milk",
+            "picture": {
+              "key": "milk",
+              "label": "milk",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "nail",
+            "picture": {
+              "key": "nail",
+              "label": "nail",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "nest",
+            "picture": {
+              "key": "nest",
+              "label": "nest",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "moon",
+            "picture": {
+              "key": "moon",
+              "label": "moon",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-191-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What happens next?",
+        "say": "The clouds are dark and grey. What happens next?",
+        "audio": "voice/line-fff355b71c3debaf.m4a"
+      },
+      "card": {
+        "text": "Dark clouds...",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-191-r3-o1",
+            "label": "rainbow",
+            "picture": {
+              "key": "rainbow",
+              "label": "rainbow",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-191-r3-o2",
+            "label": "rain",
+            "picture": {
+              "key": "rain",
+              "label": "rain",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-191-r3-o3",
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "rain"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-191-r4",
+      "type": "order",
+      "prompt": {
+        "text": "Put the story in order!",
+        "say": "First an egg, then a chick, then a hen! Put them in order.",
+        "audio": "voice/line-ef81088473c08cdc.m4a"
+      },
+      "card": {
+        "text": "1 · 2 · 3",
+        "picture": null,
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "egg",
+          "chick",
+          "hen"
+        ],
+        "slot": "panel"
+      }
+    },
+    {
+      "id": "level-191-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "What happens next?",
+        "say": "Sara plants a seed and gives it water. What happens next?",
+        "audio": "voice/line-1bb64356a258fe61.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "seed",
+          "label": "seed",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-191-r5-o1",
+            "label": "It flies.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-191-r5-o2",
+            "label": "It grows.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-191-r5-o3",
+            "label": "It sings.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "It grows."
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-191-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write grow",
+        "say": "Look at the word grow. Then write it from memory!",
+        "audio": "voice/line-fd93365b5902aa45.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "grow",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-191-r7",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. A chick grows into a hen. True, or silly?",
+        "audio": "voice/line-955daac0fc75b30b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "A chick grows into a hen.",
+        "picture": {
+          "key": "chick",
+          "label": "chick",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-191-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "The ice cream melts. Now write it!",
+        "audio": "voice/line-87d9835fc5f95a23.m4a"
+      },
+      "card": {
+        "text": "The ice cream melts.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "The ice cream melts.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-191-r9",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: What happens next? Let's guess!",
+        "say": "What happens next? Let's guess! Now you say it!",
+        "audio": "voice/line-eaa7c8cc1453c8c0.m4a"
+      },
+      "card": {
+        "text": "What happens next? Let's guess!",
+        "picture": {
+          "key": "storybook",
+          "label": "storybook",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "What happens next? Let's guess!"
+      }
+    },
+    {
+      "id": "level-191-r10",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every grow!",
+        "say": "Pop every bubble that says grow!",
+        "audio": "voice/line-75ab832ea815a9bd.m4a"
+      },
+      "card": {
+        "text": "grow",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "grow",
+        "others": [
+          "down",
+          "jump",
+          "melt"
+        ],
+        "count": 4
+      }
+    }
+  ]
+}

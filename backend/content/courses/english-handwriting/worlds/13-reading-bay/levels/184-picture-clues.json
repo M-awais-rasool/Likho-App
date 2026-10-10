@@ -1,0 +1,389 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-184",
+  "number": 184,
+  "name": "Picture Clues",
+  "skill": "Using the picture",
+  "icon": "image",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "?",
+    "word": "nest",
+    "say": "Stuck on a word? Look at the picture for a clue!",
+    "audio": "voice/line-e70b1a6c0d5de1a7.m4a",
+    "picture": {
+      "key": "nest",
+      "label": "nest",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-184-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "The ___ are in the nest.",
+        "say": "Look at the picture. The what are in the nest? Which word fits?",
+        "audio": "voice/line-9b7de7c426090757.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "nest",
+          "label": "nest",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-184-r1-o1",
+            "label": "cups",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-184-r1-o2",
+            "label": "dogs",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-184-r1-o3",
+            "label": "eggs",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "eggs"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-184-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/k/|kʌ} or {/s/|sːː}?",
+        "audio": "voice/line-746a7644c6ebde96.m4a"
+      },
+      "card": {
+        "text": "k s",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "k",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "s",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "kite",
+            "picture": {
+              "key": "kite",
+              "label": "kite",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "seed",
+            "picture": {
+              "key": "seed",
+              "label": "seed",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "sock",
+            "picture": {
+              "key": "sock",
+              "label": "sock",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "six",
+            "picture": {
+              "key": "six",
+              "label": "six",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "king",
+            "picture": {
+              "key": "king",
+              "label": "king",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-184-r3",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. The bird is in the nest. True, or silly?",
+        "audio": "voice/line-4681b76433591cef.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "The bird is in the nest.",
+        "picture": {
+          "key": "nest",
+          "label": "nest",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-184-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "The penguin is on the ice.",
+        "say": "The penguin is on the ice. Find the picture!",
+        "audio": "voice/line-90922c8e666bb02e.m4a"
+      },
+      "card": {
+        "text": "The penguin is on the ice.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-184-r4-o1",
+            "label": "penguin",
+            "picture": {
+              "key": "penguin",
+              "label": "penguin",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-184-r4-o2",
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-184-r4-o3",
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "penguin"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-184-r5",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "The eggs are in the nest. Put the words in order.",
+        "audio": "voice/line-8c6a9fac47d30a3c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "nest",
+          "label": "nest",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "The",
+          "eggs",
+          "are",
+          "in",
+          "the",
+          "nest"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-184-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write kite",
+        "say": "Look at the word kite. Then write it from memory!",
+        "audio": "voice/line-8aae881f92d14e22.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "kite",
+          "label": "kite",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "kite",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-184-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "The bee is on the flower. Now write it!",
+        "audio": "voice/line-7bb65f9549844ca0.m4a"
+      },
+      "card": {
+        "text": "The bee is on the flower.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "The bee is on the flower.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-184-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Look at the picture for a clue!",
+        "say": "Look at the picture for a clue! Now you say it!",
+        "audio": "voice/line-95da3c81e727ec54.m4a"
+      },
+      "card": {
+        "text": "Look at the picture for a clue!",
+        "picture": {
+          "key": "storybook",
+          "label": "storybook",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Look at the picture for a clue!"
+      }
+    },
+    {
+      "id": "level-184-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Spell nest",
+        "say": "Nest! Write it one letter at a time.",
+        "audio": "voice/line-14734c184b212441.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "nest",
+          "label": "nest",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "nest",
+        "guide": null,
+        "word": "nest",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-184-r10",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every kite!",
+        "say": "Pop every bubble that says kite!",
+        "audio": "voice/line-fb0fe222de69eb6f.m4a"
+      },
+      "card": {
+        "text": "kite",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "kite",
+        "others": [
+          "down",
+          "jump",
+          "nest"
+        ],
+        "count": 4
+      }
+    }
+  ]
+}
