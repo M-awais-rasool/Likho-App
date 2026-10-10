@@ -1,5 +1,4 @@
 import 'dart:math' as math;
-import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +21,8 @@ import 'map_painters.dart';
 
 /// 10 World map, from export/Likho-Prototype.html (screen "map", 390 x 844).
 ///
-/// One tall scroll (world 1 at the bottom, world 6 at the top). On open it
+/// One tall scroll (world 1 at the bottom, the last world at the top), each
+/// world in its own colours and scenery. On open it
 /// starts at the bottom and, after 250 ms, glides so the current level sits
 /// at 55 % of the screen. Nodes pop in, staggered by distance from the
 /// current level; the mascot stands on the current level.
@@ -48,6 +48,29 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen> with SingleTick
   MapGeometry? _geometry;
   List<List<MapDeco>>? _decosByWorld;
   bool _scrolled = false;
+
+  /// Boss levels already seen beaten (for [_seenFor]) while the app runs. A
+  /// boss beaten since (the child just won it) wakes up and dances once.
+  static Set<int>? _seenBeaten;
+  static String? _seenFor;
+
+  /// Boss level -> clock time it wakes up on this map.
+  final Map<int, double> _celebrations = {};
+
+  void _noteBeaten(Course course, ChildProgress progress) {
+    final beaten = {for (final l in course.levels) if (l.isBoss && progress.isDone(l.number)) l.number};
+    final seen = _seenBeaten;
+    if (seen == null || _seenFor != progress.name) {
+      _seenBeaten = beaten;
+      _seenFor = progress.name;
+      return;
+    }
+    for (final n in beaten.difference(seen)) {
+      // only the boss just won: its world's next level is the current one
+      if (progress.current == n + 1) _celebrations[n] = _time.value + 1.0; // once the glide has ended
+    }
+    seen.addAll(beaten);
+  }
 
   final MascotController _mapMascot = MascotController();
   final MascotController _avatarMascot = MascotController();
@@ -115,7 +138,10 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen> with SingleTick
     final progress = ref.watch(progressProvider);
     final current = progress.current;
     final course = ref.watch(courseProvider).value;
-    if (course != null) _fetchAhead(course, current);
+    if (course != null) {
+      _fetchAhead(course, current);
+      _noteBeaten(course, progress);
+    }
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark.copyWith(statusBarColor: LikhoColors.clear),
       child: ReferenceOverlay(
@@ -147,6 +173,7 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen> with SingleTick
                       progress: progress,
                       time: _time,
                       mascot: _mapMascot,
+                      celebrations: _celebrations,
                       onOpenLevel: widget.onOpenLevel,
                     ),
                   ),
@@ -182,6 +209,7 @@ class _WorldSection extends StatelessWidget {
     required this.progress,
     required this.time,
     required this.mascot,
+    required this.celebrations,
     required this.onOpenLevel,
   });
 
@@ -193,23 +221,47 @@ class _WorldSection extends StatelessWidget {
   final ChildProgress progress;
   final ValueNotifier<double> time;
   final MascotController mascot;
+  final Map<int, double> celebrations;
   final ValueChanged<int>? onOpenLevel;
 
   @override
   Widget build(BuildContext context) {
     final info = course.worlds[world];
     final theme = LikhoWorlds.byId(info.themeId);
-    final next = world < course.worlds.length - 1 ? LikhoWorlds.byId(course.worlds[world + 1].themeId) : theme;
     final current = progress.current;
-    final labelY = geometry.worldBottom(world) - 38 - top;
+    // the world sits on a cloud bank (its bottom edge); the bank on its top
+    // edge is the next world's
+    final bankY = geometry.worldBottom(world) - top;
+    final seams = [(bankY, world), if (world < geometry.worlds - 1) (0.0, world + 1)];
+    // the world's sign sits on its cloud bank, beside the path
+    final cross = geometry.crossingX(world);
+    final signLeft = cross >= geometry.width / 2;
+    final room = (signLeft ? cross - 16 : geometry.width - cross - 16) - 13 - 10;
+    final levels = course.levelsOf(info);
+    final inWorld = levels.isNotEmpty && current >= levels.first.number && current <= levels.last.number;
     final children = <Widget>[
-      Positioned.fill(child: CustomPaint(painter: SectionBackgroundPainter(color: theme.bg, next: next.bg))),
+      Positioned.fill(child: CustomPaint(painter: SectionBackgroundPainter(color: theme.bg, sky: theme.sky))),
+      Positioned.fill(
+        child: RepaintBoundary(
+          child: CustomPaint(painter: SceneryPainter(theme: theme, seed: world, contentLeft: geometry.offsetX, contentWidth: geometry.contentWidth)),
+        ),
+      ),
       Positioned.fill(child: RepaintBoundary(child: CustomPaint(painter: DecorationPainter(decos: decos, sectionTop: top, time: time)))),
       Positioned.fill(child: CustomPaint(painter: MapPathPainter(geometry: geometry, sectionTop: top))),
-      Positioned(left: 24, top: labelY, height: 40, child: _WorldLabel(index: world, world: info, theme: theme)),
+      Positioned.fill(child: CustomPaint(painter: CloudBankPainter(seams: seams))),
+      Positioned(
+        left: signLeft ? 16 : null,
+        right: signLeft ? null : 16,
+        top: bankY - 58,
+        height: 52,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: math.max(room, 120)),
+          child: FittedBox(fit: BoxFit.scaleDown, alignment: signLeft ? Alignment.centerLeft : Alignment.centerRight, child: _WorldSign(index: world, world: info, theme: theme)),
+        ),
+      ),
     ];
     Widget? mascotOnTop;
-    for (final level in course.levelsOf(info)) {
+    for (final level in levels) {
       final n = level.number;
       final c = geometry.node(n) - Offset(0, top);
       final done = progress.isDone(n);
@@ -220,7 +272,14 @@ class _WorldSection extends StatelessWidget {
           top: c.dy - 66,
           width: 96,
           height: 80,
-          child: IgnorePointer(child: CustomPaint(painter: BossPainter(world: BossPainter.indexOf(info.bossId), awake: done, time: time))),
+          child: _MapBoss(
+            boss: BossPainter.indexOf(info.bossId),
+            beaten: done,
+            // the boss of the child's world dozes and peeks; later ones sleep
+            dozing: inWorld,
+            wokeAt: celebrations[n],
+            time: time,
+          ),
         ));
       }
       if (isCur) {
@@ -274,8 +333,11 @@ class _WorldSection extends StatelessWidget {
   }
 }
 
-class _WorldLabel extends StatelessWidget {
-  const _WorldLabel({required this.index, required this.world, required this.theme});
+/// The world's sign on its cloud bank: a chunky button-like plate in the
+/// world's colour (the same 3D edge as the level nodes), the world's icon
+/// in a white disc, "WORLD 9" and the name.
+class _WorldSign extends StatelessWidget {
+  const _WorldSign({required this.index, required this.world, required this.theme});
   final int index;
   final CourseWorld world;
   final WorldTheme theme;
@@ -283,30 +345,81 @@ class _WorldLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = theme;
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: BackdropFilter(
-        filter: ui.ImageFilter.blur(sigmaX: 6, sigmaY: 6),
-        child: Container(
-          height: 40,
-          padding: const EdgeInsets.only(left: 10, right: 16),
-          color: t.dark ? MapColors.labelBgDark : MapColors.labelBg,
-          child: Row(
+    return Container(
+      height: 52,
+      padding: const EdgeInsets.only(left: 6, right: 18, bottom: 4),
+      decoration: BoxDecoration(
+        color: t.accent,
+        borderRadius: BorderRadius.circular(26),
+        border: Border.all(color: MapColors.cloudWhite, width: 2.5),
+        boxShadow: [BoxShadow(color: t.deep, offset: const Offset(0, 4))],
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 36,
+            height: 36,
+            decoration: const BoxDecoration(color: MapColors.cloudWhite, shape: BoxShape.circle),
+            alignment: Alignment.center,
+            child: Icon(IconRegistry.of(world.icon), size: 22, fill: 1, weight: 700, opticalSize: 22, color: t.accent),
+          ),
+          const SizedBox(width: 10),
+          Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // inherits the label's bold weight in the prototype
-              Icon(IconRegistry.of(world.icon), size: 22, fill: 1, weight: 700, opticalSize: 22, color: t.accent),
-              const SizedBox(width: 8),
               Text(
-                '${index + 1} · ${world.name}',
-                style: LikhoFonts.title(size: 16, color: t.dark ? LikhoColors.surface : t.deep).copyWith(height: 1),
+                'WORLD ${index + 1}',
+                style: LikhoFonts.body(size: 10.5, weight: FontWeight.w800, color: LikhoColors.surface.withValues(alpha: .85))
+                    .copyWith(height: 1.1, letterSpacing: 1.2),
               ),
+              Text(world.name, style: LikhoFonts.title(size: 17, color: LikhoColors.surface).copyWith(height: 1.1)),
             ],
           ),
-        ),
+        ],
       ),
     );
   }
+}
+
+/// A world boss on the map. Not beaten: asleep, or dozing and peeking when
+/// it is the boss of the child's world. Beaten: awake, blinking and waving;
+/// just beaten ([wokeAt]): wakes up and dances first. A tap startles it.
+class _MapBoss extends StatefulWidget {
+  const _MapBoss({required this.boss, required this.beaten, required this.dozing, required this.wokeAt, required this.time});
+  final int boss;
+  final bool beaten, dozing;
+  final double? wokeAt;
+  final ValueNotifier<double> time;
+
+  @override
+  State<_MapBoss> createState() => _MapBossState();
+}
+
+class _MapBossState extends State<_MapBoss> {
+  double? _pokedAt;
+
+  @override
+  Widget build(BuildContext context) => GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () {
+          HapticFeedback.selectionClick();
+          setState(() => _pokedAt = widget.time.value);
+        },
+        child: CustomPaint(
+          painter: BossPainter(
+            world: widget.boss,
+            awake: widget.beaten,
+            dance: widget.wokeAt != null,
+            danceFor: 6,
+            wokeAt: widget.wokeAt,
+            dozing: widget.dozing,
+            pokedAt: _pokedAt,
+            time: widget.time,
+          ),
+        ),
+      );
 }
 
 // ------------------------------------------------------------------ level node
