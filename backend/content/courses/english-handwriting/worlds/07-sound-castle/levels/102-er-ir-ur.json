@@ -1,0 +1,379 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-102",
+  "number": 102,
+  "name": "er, ir, ur",
+  "skill": "er ir ur words",
+  "icon": "graphic_eq",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "er ir ur",
+    "word": "bird",
+    "say": "Her, bird, turtle! Three ways to write {/er/|ɜː}.",
+    "audio": "voice/line-f826a832f8332431.m4a",
+    "picture": {
+      "key": "bird",
+      "label": "bird",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-102-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is bird?",
+        "say": "Read the word. Which picture is bird?",
+        "audio": "voice/line-ec6d3232f338da18.m4a"
+      },
+      "card": {
+        "text": "bird",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-102-r1-o1",
+            "label": "purse",
+            "picture": {
+              "key": "purse",
+              "label": "purse",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-102-r1-o2",
+            "label": "girl",
+            "picture": {
+              "key": "family_sister",
+              "label": "girl",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-102-r1-o3",
+            "label": "bird",
+            "picture": {
+              "key": "bird",
+              "label": "bird",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "bird"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-102-r2",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "bird",
+            "wrong": "mirror",
+            "at": 0
+          },
+          {
+            "text": "girl",
+            "wrong": "mirror",
+            "at": 2
+          },
+          {
+            "text": "her",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "turtle",
+            "wrong": null,
+            "at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-102-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Bird! Build the word bird.",
+        "audio": "voice/line-fe0507ad4c4b1bc6.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bird",
+          "label": "bird",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "b",
+          "i",
+          "r",
+          "d"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-102-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Girl! Which letter is missing?",
+        "audio": "voice/line-17a6102371910ec4.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "family_sister",
+          "label": "girl",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "i",
+        "guide": "i",
+        "word": "girl",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-102-r5",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a girl. True, or silly?",
+        "audio": "voice/line-9552b512fbc01953.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a girl.",
+        "picture": {
+          "key": "purse",
+          "label": "purse",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-102-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every turtle!",
+        "say": "Find every word turtle!",
+        "audio": "voice/line-b73d0cb7e8970397.m4a"
+      },
+      "card": {
+        "text": "turtle",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "turtle",
+        "grid": [
+          "turtle",
+          "turtle",
+          "pink",
+          "girl",
+          "bird",
+          "turtle",
+          "shirt",
+          "her",
+          "purse"
+        ]
+      }
+    },
+    {
+      "id": "level-102-r7",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the words: er or ir or ur?",
+        "say": "Read each word. Is it {e|ˈiː} {r|ˈɑːɹ} or {i|ˈaɪ} {r|ˈɑːɹ} or {u|jˈuː} {r|ˈɑːɹ}?",
+        "audio": "voice/line-b700398f2fa994f9.m4a"
+      },
+      "card": {
+        "text": "er ir ur",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "er",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "ir",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "ur",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "bird",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "turtle",
+            "picture": null,
+            "bin": 2
+          },
+          {
+            "label": "term",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "girl",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "fern",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "burn",
+            "picture": null,
+            "bin": 2
+          },
+          {
+            "label": "purse",
+            "picture": null,
+            "bin": 2
+          },
+          {
+            "label": "shirt",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "her",
+            "picture": null,
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-102-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: bird, girl, her, turtle!",
+        "say": "Say them with me! bird, girl, her, turtle!",
+        "audio": "voice/line-b3d43e9b64b8fcd8.m4a"
+      },
+      "card": {
+        "text": "bird, girl, her, turtle!",
+        "picture": {
+          "key": "bird",
+          "label": "bird",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "bird, girl, her, turtle!"
+      }
+    },
+    {
+      "id": "level-102-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write her",
+        "say": "Look at the word her. Then write it from memory!",
+        "audio": "voice/line-5f9baa325c368e87.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "her",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-102-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Write her",
+        "say": "Write the word her.",
+        "audio": "voice/line-3754bb2bb824bd51.m4a"
+      },
+      "card": {
+        "text": "her",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "her",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

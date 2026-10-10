@@ -1,0 +1,408 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-101",
+  "number": 101,
+  "name": "ow, ou",
+  "skill": "ow ou words",
+  "icon": "graphic_eq",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "ow ou",
+    "word": "cow",
+    "say": "Cow, owl, crown! House, mouse, cloud! Two ways to write {/ow/|aʊ}.",
+    "audio": "voice/line-2ad50eec653ce26e.m4a",
+    "picture": {
+      "key": "cow",
+      "label": "cow",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-101-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is cow?",
+        "say": "Read the word. Which picture is cow?",
+        "audio": "voice/line-ebe4c05834c09906.m4a"
+      },
+      "card": {
+        "text": "cow",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-101-r1-o1",
+            "label": "cloud",
+            "picture": {
+              "key": "cloud",
+              "label": "cloud",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-101-r1-o2",
+            "label": "owl",
+            "picture": {
+              "key": "owl",
+              "label": "owl",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-101-r1-o3",
+            "label": "cow",
+            "picture": {
+              "key": "cow",
+              "label": "cow",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "cow"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-101-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write cow",
+        "say": "Look at the word cow. Then write it from memory!",
+        "audio": "voice/line-f569ce2582277909.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cow",
+          "label": "cow",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "cow",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-101-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Cow! Build the word cow.",
+        "audio": "voice/line-97be46ed88c27a7a.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cow",
+          "label": "cow",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "c",
+          "o",
+          "w"
+        ],
+        "slot": "wagon"
+      }
+    },
+    {
+      "id": "level-101-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "House! Which letter is missing?",
+        "audio": "voice/line-038cd4b692d96ad9.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "house",
+          "label": "house",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "o",
+        "guide": "o",
+        "word": "house",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-101-r5",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every owl!",
+        "say": "Pop every bubble that says owl!",
+        "audio": "voice/line-6f72f5ca0b26f819.m4a"
+      },
+      "card": {
+        "text": "owl",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "owl",
+        "others": [
+          "bus",
+          "cow",
+          "dog"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-101-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every mouse!",
+        "say": "Find every word mouse!",
+        "audio": "voice/line-e028dbebed6def4d.m4a"
+      },
+      "card": {
+        "text": "mouse",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "mouse",
+        "grid": [
+          "mouse",
+          "cow",
+          "cloud",
+          "pink",
+          "mouse",
+          "house",
+          "crown",
+          "mouse",
+          "owl"
+        ]
+      }
+    },
+    {
+      "id": "level-101-r7",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the words: ow or ou?",
+        "say": "Read each word. Is it {o|ˈoʊ} {w|dˈʌbəljuː} or {o|ˈoʊ} {u|jˈuː}?",
+        "audio": "voice/line-84363b409d184122.m4a"
+      },
+      "card": {
+        "text": "ow ou",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "ow",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "ou",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "cloud",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "down",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "crown",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "owl",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "shout",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "mouse",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "clown",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "cow",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "out",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "house",
+            "picture": null,
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-101-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: cow, house, crown, mouse!",
+        "say": "Say them with me! cow, house, crown, mouse!",
+        "audio": "voice/line-00fea56be99e6bab.m4a"
+      },
+      "card": {
+        "text": "cow, house, crown, mouse!",
+        "picture": {
+          "key": "cow",
+          "label": "cow",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "cow, house, crown, mouse!"
+      }
+    },
+    {
+      "id": "level-101-r9",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "cow",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "cow",
+                "label": "cow",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "house",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "house",
+                "label": "house",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "crown",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "crown",
+                "label": "crown",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-101-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Write crown",
+        "say": "Write the word crown.",
+        "audio": "voice/line-1aaedb144155a512.m4a"
+      },
+      "card": {
+        "text": "crown",
+        "picture": {
+          "key": "crown",
+          "label": "crown",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "crown",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

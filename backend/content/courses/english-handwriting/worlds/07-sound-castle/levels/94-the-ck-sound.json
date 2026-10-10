@@ -1,20 +1,20 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-80",
-  "number": 80,
-  "name": "The sh Sound",
-  "skill": "sh words",
+  "id": "level-94",
+  "number": 94,
+  "name": "The ck Sound",
+  "skill": "ck words",
   "icon": "graphic_eq",
   "isBoss": false,
   "requiresSubscription": true,
   "intro": {
-    "text": "sh",
-    "word": "ship",
-    "say": "Two letters, one sound: {/sh/|ʃːː}! Like ship.",
-    "audio": "voice/line-d7a116298e934423.m4a",
+    "text": "ck",
+    "word": "duck",
+    "say": "Two letters, one sound: {/ck/|kʌ}! Like duck.",
+    "audio": "voice/line-fb3dbecba2322c15.m4a",
     "picture": {
-      "key": "ship",
-      "label": "ship",
+      "key": "duck",
+      "label": "duck",
       "url": null
     }
   },
@@ -26,48 +26,48 @@
   },
   "rounds": [
     {
-      "id": "level-80-r1",
+      "id": "level-94-r1",
       "type": "pick",
       "prompt": {
-        "text": "Which picture is ship?",
-        "say": "Read the word. Which picture is ship?",
-        "audio": "voice/line-ce785152aa14dbbc.m4a"
+        "text": "Which picture is duck?",
+        "say": "Read the word. Which picture is duck?",
+        "audio": "voice/line-69974f80f137e0b2.m4a"
       },
       "card": {
-        "text": "ship",
+        "text": "duck",
         "picture": null,
         "listen": false
       },
       "pick": {
         "options": [
           {
-            "id": "level-80-r1-o1",
-            "label": "ship",
+            "id": "level-94-r1-o1",
+            "label": "duck",
             "picture": {
-              "key": "ship",
-              "label": "ship",
+              "key": "duck",
+              "label": "duck",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-80-r1-o2",
-            "label": "sheep",
+            "id": "level-94-r1-o2",
+            "label": "truck",
             "picture": {
-              "key": "sheep",
-              "label": "sheep",
+              "key": "truck",
+              "label": "truck",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-80-r1-o3",
-            "label": "shell",
+            "id": "level-94-r1-o3",
+            "label": "chick",
             "picture": {
-              "key": "shell",
-              "label": "shell",
+              "key": "chick",
+              "label": "chick",
               "url": null
             },
             "color": null,
@@ -76,9 +76,9 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "ship"
+          "value": "duck"
         },
-        "shape": "bucket",
+        "shape": "planet",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -86,25 +86,25 @@
       }
     },
     {
-      "id": "level-80-r2",
+      "id": "level-94-r2",
       "type": "write",
       "prompt": {
-        "text": "Look, then write shop",
-        "say": "Look at the word shop. Then write it from memory!",
-        "audio": "voice/line-6b85d19b0179893a.m4a"
+        "text": "Look, then write duck",
+        "say": "Look at the word duck. Then write it from memory!",
+        "audio": "voice/line-d621043f1ab01cfc.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "shop",
-          "label": "shop",
+          "key": "duck",
+          "label": "duck",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "flash",
-        "target": "shop",
+        "target": "duck",
         "guide": null,
         "word": null,
         "missingIndex": null,
@@ -113,38 +113,38 @@
       }
     },
     {
-      "id": "level-80-r3",
+      "id": "level-94-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
-        "say": "Ship! Build the word ship.",
-        "audio": "voice/line-3b1fd5e1837e0747.m4a"
+        "say": "Duck! Build the word duck.",
+        "audio": "voice/line-6a0b31f1a743702f.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "ship",
-          "label": "ship",
+          "key": "duck",
+          "label": "duck",
           "url": null
         },
         "listen": false
       },
       "order": {
         "tiles": [
-          "sh",
-          "i",
-          "p"
+          "d",
+          "u",
+          "ck"
         ],
-        "slot": "wagon"
+        "slot": "plank"
       }
     },
     {
-      "id": "level-80-r4",
+      "id": "level-94-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
-        "say": "Listen! Find the word shop.",
-        "audio": "voice/line-b25151afc487f6a9.m4a"
+        "say": "Listen! Find the word sock.",
+        "audio": "voice/line-27118c85d5a28020.m4a"
       },
       "card": {
         "text": null,
@@ -154,22 +154,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-80-r4-o1",
-            "label": "shell",
+            "id": "level-94-r4-o1",
+            "label": "truck",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-80-r4-o2",
-            "label": "shop",
+            "id": "level-94-r4-o2",
+            "label": "sock",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-80-r4-o3",
-            "label": "brush",
+            "id": "level-94-r4-o3",
+            "label": "duck",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -177,7 +177,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "shop"
+          "value": "sock"
         },
         "shape": "kite",
         "layout": null,
@@ -187,18 +187,18 @@
       }
     },
     {
-      "id": "level-80-r5",
+      "id": "level-94-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
-        "say": "Shop! Which letter is missing?",
-        "audio": "voice/line-8f74005659ba00e3.m4a"
+        "say": "Sock! Which letter is missing?",
+        "audio": "voice/line-d59fce04d353e41b.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "shop",
-          "label": "shop",
+          "key": "sock",
+          "label": "sock",
           "url": null
         },
         "listen": false
@@ -207,86 +207,86 @@
         "mode": "missing",
         "target": "o",
         "guide": "o",
-        "word": "shop",
-        "missingIndex": 2,
+        "word": "sock",
+        "missingIndex": 1,
         "sentence": false,
         "story": false
       }
     },
     {
-      "id": "level-80-r6",
+      "id": "level-94-r6",
       "type": "pop",
       "prompt": {
-        "text": "Pop every shop!",
-        "say": "Pop every bubble that says shop!",
-        "audio": "voice/line-23b2637b913b143b.m4a"
+        "text": "Pop every rock!",
+        "say": "Pop every bubble that says rock!",
+        "audio": "voice/line-459634a67b386aee.m4a"
       },
       "card": {
-        "text": "shop",
+        "text": "rock",
         "picture": null,
         "listen": false
       },
       "pop": {
-        "target": "shop",
+        "target": "rock",
         "others": [
-          "ship",
-          "fish",
-          "four"
+          "duck",
+          "four",
+          "goat"
         ],
         "count": 4
       }
     },
     {
-      "id": "level-80-r7",
+      "id": "level-94-r7",
       "type": "hunt",
       "prompt": {
-        "text": "Find every shell!",
-        "say": "Find every word shell!",
-        "audio": "voice/line-185f4047ba2d878c.m4a"
+        "text": "Find every rock!",
+        "say": "Find every word rock!",
+        "audio": "voice/line-87fb42d443239006.m4a"
       },
       "card": {
-        "text": "shell",
+        "text": "rock",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "shell",
+        "target": "rock",
         "grid": [
-          "shop",
-          "brush",
-          "sheep",
-          "ship",
-          "shell",
-          "fish",
-          "shell",
+          "rock",
+          "rock",
+          "clock",
+          "duck",
+          "chick",
+          "sock",
+          "truck",
           "pink",
-          "shell"
+          "rock"
         ]
       }
     },
     {
-      "id": "level-80-r8",
+      "id": "level-94-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: ship, shop, fish, shell!",
-        "say": "Say them with me! ship, shop, fish, shell!",
-        "audio": "voice/line-b6e9cafe50cafa76.m4a"
+        "text": "Say: duck, sock, clock, rock!",
+        "say": "Say them with me! duck, sock, clock, rock!",
+        "audio": "voice/line-565bf41e933e3b4c.m4a"
       },
       "card": {
-        "text": "ship, shop, fish, shell!",
+        "text": "duck, sock, clock, rock!",
         "picture": {
-          "key": "ship",
-          "label": "ship",
+          "key": "duck",
+          "label": "duck",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "ship, shop, fish, shell!"
+        "expected": "duck, sock, clock, rock!"
       }
     },
     {
-      "id": "level-80-r9",
+      "id": "level-94-r9",
       "type": "match",
       "prompt": {
         "text": "Find the pairs!",
@@ -302,42 +302,42 @@
         "pairs": [
           {
             "a": {
-              "text": "ship",
+              "text": "duck",
               "picture": null
             },
             "b": {
               "text": null,
               "picture": {
-                "key": "ship",
-                "label": "ship",
+                "key": "duck",
+                "label": "duck",
                 "url": null
               }
             }
           },
           {
             "a": {
-              "text": "shop",
+              "text": "sock",
               "picture": null
             },
             "b": {
               "text": null,
               "picture": {
-                "key": "shop",
-                "label": "shop",
+                "key": "sock",
+                "label": "sock",
                 "url": null
               }
             }
           },
           {
             "a": {
-              "text": "fish",
+              "text": "clock",
               "picture": null
             },
             "b": {
               "text": null,
               "picture": {
-                "key": "fish",
-                "label": "fish",
+                "key": "clock",
+                "label": "clock",
                 "url": null
               }
             }
@@ -346,25 +346,25 @@
       }
     },
     {
-      "id": "level-80-r10",
+      "id": "level-94-r10",
       "type": "write",
       "prompt": {
-        "text": "Write fish",
-        "say": "Write the word fish.",
-        "audio": "voice/line-c26674bc8d172313.m4a"
+        "text": "Write clock",
+        "say": "Write the word clock.",
+        "audio": "voice/line-b398075f73381c2e.m4a"
       },
       "card": {
-        "text": "fish",
+        "text": "clock",
         "picture": {
-          "key": "fish",
-          "label": "fish",
+          "key": "clock",
+          "label": "clock",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "free",
-        "target": "fish",
+        "target": "clock",
         "guide": null,
         "word": null,
         "missingIndex": null,

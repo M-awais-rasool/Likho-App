@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-88",
-  "number": 88,
+  "id": "level-100",
+  "number": 100,
   "name": "oa, ar, or",
   "skill": "More letter pairs",
   "icon": "sailing",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-88-r1",
+      "id": "level-100-r1",
       "type": "pick",
       "prompt": {
         "text": "Which picture is boat?",
@@ -41,7 +41,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-88-r1-o1",
+            "id": "level-100-r1-o1",
             "label": "boat",
             "picture": {
               "key": "boat",
@@ -52,22 +52,22 @@
             "hideLabel": true
           },
           {
-            "id": "level-88-r1-o2",
-            "label": "car",
+            "id": "level-100-r1-o2",
+            "label": "goat",
             "picture": {
-              "key": "car",
-              "label": "car",
+              "key": "goat",
+              "label": "goat",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-88-r1-o3",
-            "label": "star",
+            "id": "level-100-r1-o3",
+            "label": "car",
             "picture": {
-              "key": "star",
-              "label": "star",
+              "key": "car",
+              "label": "car",
               "url": null
             },
             "color": null,
@@ -86,45 +86,30 @@
       }
     },
     {
-      "id": "level-88-r2",
-      "type": "fix",
+      "id": "level-100-r2",
+      "type": "truth",
       "prompt": {
-        "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "text": "True or silly?",
+        "say": "This is corn. True, or silly?",
+        "audio": "voice/line-0688bb4326178e71.m4a"
       },
       "card": {
-        "text": "Fix it!",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "fix": {
-        "items": [
-          {
-            "text": "boat",
-            "wrong": "mirror",
-            "at": 2
-          },
-          {
-            "text": "goat",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "car",
-            "wrong": "mirror",
-            "at": 0
-          },
-          {
-            "text": "star",
-            "wrong": null,
-            "at": null
-          }
-        ]
+      "truth": {
+        "text": "This is corn.",
+        "picture": {
+          "key": "four",
+          "label": "four",
+          "url": null
+        },
+        "answer": false
       }
     },
     {
-      "id": "level-88-r3",
+      "id": "level-100-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -151,7 +136,7 @@
       }
     },
     {
-      "id": "level-88-r4",
+      "id": "level-100-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -166,21 +151,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-88-r4-o1",
+            "id": "level-100-r4-o1",
+            "label": "boat",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-100-r4-o2",
             "label": "goat",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-88-r4-o2",
-            "label": "corn",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-88-r4-o3",
+            "id": "level-100-r4-o3",
             "label": "fork",
             "picture": null,
             "color": null,
@@ -191,7 +176,7 @@
           "kind": "label",
           "value": "goat"
         },
-        "shape": "fish",
+        "shape": "bubble",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -199,7 +184,7 @@
       }
     },
     {
-      "id": "level-88-r5",
+      "id": "level-100-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
@@ -226,30 +211,82 @@
       }
     },
     {
-      "id": "level-88-r6",
-      "type": "truth",
+      "id": "level-100-r6",
+      "type": "sort",
       "prompt": {
-        "text": "True or silly?",
-        "say": "This is a four. True, or silly?",
-        "audio": "voice/line-3f3ac2923b45b250.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/b/|bʌ} or {/g/|ɡʌ}?",
+        "audio": "voice/line-ec84937b60d1ec60.m4a"
       },
       "card": {
-        "text": null,
+        "text": "b g",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "truth": {
-        "text": "This is a four.",
-        "picture": {
-          "key": "hand",
-          "label": "hand",
-          "url": null
-        },
-        "answer": false
+      "sort": {
+        "bins": [
+          {
+            "label": "b",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "g",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "book",
+            "picture": {
+              "key": "book",
+              "label": "book",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "goat",
+            "picture": {
+              "key": "goat",
+              "label": "goat",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "bug",
+            "picture": {
+              "key": "bug",
+              "label": "bug",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "gift",
+            "picture": {
+              "key": "gift",
+              "label": "gift",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "ball",
+            "picture": {
+              "key": "ball",
+              "label": "ball",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
       }
     },
     {
-      "id": "level-88-r7",
+      "id": "level-100-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every star!",
@@ -264,20 +301,20 @@
       "hunt": {
         "target": "star",
         "grid": [
-          "star",
-          "car",
-          "star",
-          "fork",
           "pink",
-          "goat",
-          "boat",
+          "star",
           "corn",
-          "star"
+          "star",
+          "boat",
+          "fork",
+          "goat",
+          "star",
+          "car"
         ]
       }
     },
     {
-      "id": "level-88-r8",
+      "id": "level-100-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: boat, goat, car, star!",
@@ -298,91 +335,34 @@
       }
     },
     {
-      "id": "level-88-r9",
-      "type": "sort",
+      "id": "level-100-r9",
+      "type": "write",
       "prompt": {
-        "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/l/|lːː} or {/d/|dʌ}?",
-        "audio": "voice/line-5f8f3ed64cb22854.m4a"
+        "text": "Look, then write star",
+        "say": "Look at the word star. Then write it from memory!",
+        "audio": "voice/line-2b1987733fd4b077.m4a"
       },
       "card": {
-        "text": "l d",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "star",
+          "label": "star",
+          "url": null
+        },
         "listen": false
       },
-      "sort": {
-        "bins": [
-          {
-            "label": "l",
-            "picture": null,
-            "bin": null
-          },
-          {
-            "label": "d",
-            "picture": null,
-            "bin": null
-          }
-        ],
-        "items": [
-          {
-            "label": "leg",
-            "picture": {
-              "key": "leg",
-              "label": "leg",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "dog",
-            "picture": {
-              "key": "dog",
-              "label": "dog",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "log",
-            "picture": {
-              "key": "log",
-              "label": "log",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "lemon",
-            "picture": {
-              "key": "lemon",
-              "label": "lemon",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "doctor",
-            "picture": {
-              "key": "doctor",
-              "label": "doctor",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "duck",
-            "picture": {
-              "key": "duck",
-              "label": "duck",
-              "url": null
-            },
-            "bin": 1
-          }
-        ]
+      "write": {
+        "mode": "flash",
+        "target": "star",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
       }
     },
     {
-      "id": "level-88-r10",
+      "id": "level-100-r10",
       "type": "write",
       "prompt": {
         "text": "Write car",

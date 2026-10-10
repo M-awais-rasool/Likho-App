@@ -1,8 +1,8 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-89",
-  "number": 89,
-  "name": "Wake the Goat",
+  "id": "level-105",
+  "number": 105,
+  "name": "Wake the Dragon",
   "skill": "Boss · letter pairs",
   "icon": "bedtime",
   "isBoss": true,
@@ -10,8 +10,8 @@
   "intro": {
     "text": "ship chick thumb",
     "word": "star",
-    "say": "The goat is sleeping on the mountain. Let's read and write to wake it up!",
-    "audio": "voice/line-e4497c1989f55708.m4a",
+    "say": "The little dragon is sleeping in the castle. Let's read and write to wake it up!",
+    "audio": "voice/line-620f44f431d3bfdf.m4a",
     "picture": {
       "key": "star",
       "label": "star",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-89-r1",
+      "id": "level-105-r1",
       "type": "write",
       "prompt": {
         "text": "Spell ship",
@@ -53,91 +53,91 @@
       }
     },
     {
-      "id": "level-89-r2",
+      "id": "level-105-r2",
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/r/|ɹːː} or {/m/|mːː}?",
-        "audio": "voice/line-9a989bdd2e2009e2.m4a"
+        "say": "Sort the pictures! Do they start with {/p/|pʌ} or {/d/|dʌ}?",
+        "audio": "voice/line-23a2f6ba528599e7.m4a"
       },
       "card": {
-        "text": "r m",
+        "text": "p d",
         "picture": null,
         "listen": false
       },
       "sort": {
         "bins": [
           {
-            "label": "r",
+            "label": "p",
             "picture": null,
             "bin": null
           },
           {
-            "label": "m",
+            "label": "d",
             "picture": null,
             "bin": null
           }
         ],
         "items": [
           {
-            "label": "robot",
+            "label": "duck",
             "picture": {
-              "key": "robot",
-              "label": "robot",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "mouse",
-            "picture": {
-              "key": "mouse",
-              "label": "mouse",
+              "key": "duck",
+              "label": "duck",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "moon",
+            "label": "pig",
             "picture": {
-              "key": "moon",
-              "label": "moon",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "monkey",
-            "picture": {
-              "key": "monkey",
-              "label": "monkey",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "rabbit",
-            "picture": {
-              "key": "rabbit",
-              "label": "rabbit",
+              "key": "pig",
+              "label": "pig",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "rain",
+            "label": "pin",
             "picture": {
-              "key": "rain",
-              "label": "rain",
+              "key": "pin",
+              "label": "pin",
               "url": null
             },
             "bin": 0
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "pot",
+            "picture": {
+              "key": "pot",
+              "label": "pot",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 1
           }
         ]
       }
     },
     {
-      "id": "level-89-r3",
+      "id": "level-105-r3",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -152,22 +152,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-89-r3-o1",
+            "id": "level-105-r3-o1",
             "label": "chick",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-89-r3-o2",
+            "id": "level-105-r3-o2",
             "label": "dog",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-89-r3-o3",
-            "label": "duck",
+            "id": "level-105-r3-o3",
+            "label": "four",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -177,7 +177,7 @@
           "kind": "label",
           "value": "chick"
         },
-        "shape": "mushroom",
+        "shape": "balloon",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -185,7 +185,7 @@
       }
     },
     {
-      "id": "level-89-r4",
+      "id": "level-105-r4",
       "type": "hunt",
       "prompt": {
         "text": "Find every thumb!",
@@ -200,38 +200,38 @@
       "hunt": {
         "target": "thumb",
         "grid": [
-          "moon",
-          "ring",
-          "chick",
+          "light",
           "thumb",
           "log",
+          "moon",
+          "chick",
+          "cow",
           "thumb",
-          "duck",
           "thumb",
           "ship"
         ]
       }
     },
     {
-      "id": "level-89-r5",
+      "id": "level-105-r5",
       "type": "write",
       "prompt": {
-        "text": "Look, then write ship",
-        "say": "Look at the word ship. Then write it from memory!",
-        "audio": "voice/line-c55703f2b84b212c.m4a"
+        "text": "Look, then write cow",
+        "say": "Look at the word cow. Then write it from memory!",
+        "audio": "voice/line-f569ce2582277909.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "ship",
-          "label": "ship",
+          "key": "cow",
+          "label": "cow",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "flash",
-        "target": "ship",
+        "target": "cow",
         "guide": null,
         "word": null,
         "missingIndex": null,
@@ -240,91 +240,12 @@
       }
     },
     {
-      "id": "level-89-r6",
+      "id": "level-105-r6",
       "type": "pick",
       "prompt": {
         "text": "What is this?",
         "say": "What is this? Find the word!",
         "audio": "voice/line-69b2bf73b2b7783d.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "duck",
-          "label": "duck",
-          "url": null
-        },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-89-r6-o1",
-            "label": "thumb",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-89-r6-o2",
-            "label": "brother",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-89-r6-o3",
-            "label": "duck",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "duck"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-89-r7",
-      "type": "write",
-      "prompt": {
-        "text": "Write ring",
-        "say": "Write the word ring.",
-        "audio": "voice/line-0eaf9ed52f48019a.m4a"
-      },
-      "card": {
-        "text": "ring",
-        "picture": {
-          "key": "ring",
-          "label": "ring",
-          "url": null
-        },
-        "listen": false
-      },
-      "write": {
-        "mode": "free",
-        "target": "ring",
-        "guide": null,
-        "word": null,
-        "missingIndex": null,
-        "sentence": true,
-        "story": false
-      }
-    },
-    {
-      "id": "level-89-r8",
-      "type": "order",
-      "prompt": {
-        "text": "Build the word!",
-        "say": "Moon! Build the word moon.",
-        "audio": "voice/line-7c139dddbaa5edf8.m4a"
       },
       "card": {
         "text": null,
@@ -335,49 +256,127 @@
         },
         "listen": false
       },
-      "order": {
-        "tiles": [
-          "m",
-          "o",
-          "o",
-          "n"
+      "pick": {
+        "options": [
+          {
+            "id": "level-105-r6-o1",
+            "label": "moon",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-105-r6-o2",
+            "label": "dog",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-105-r6-o3",
+            "label": "bus",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
         ],
-        "slot": "plank"
+        "answer": {
+          "kind": "label",
+          "value": "moon"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
       }
     },
     {
-      "id": "level-89-r9",
-      "type": "pop",
+      "id": "level-105-r7",
+      "type": "write",
       "prompt": {
-        "text": "Pop every ring!",
-        "say": "Pop every bubble that says ring!",
-        "audio": "voice/line-5e5106f3c360b442.m4a"
+        "text": "Write light",
+        "say": "Write the word light.",
+        "audio": "voice/line-3fa5c1fe0b473f3a.m4a"
       },
       "card": {
-        "text": "ring",
+        "text": "light",
+        "picture": {
+          "key": "light",
+          "label": "light",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "light",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-105-r8",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Cow! Build the word cow.",
+        "audio": "voice/line-97be46ed88c27a7a.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cow",
+          "label": "cow",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "c",
+          "o",
+          "w"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-105-r9",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every thumb!",
+        "say": "Pop every bubble that says thumb!",
+        "audio": "voice/line-198d18f45b9a1ec0.m4a"
+      },
+      "card": {
+        "text": "thumb",
         "picture": null,
         "listen": false
       },
       "pop": {
-        "target": "ring",
+        "target": "thumb",
         "others": [
-          "duck",
-          "four",
-          "goat"
+          "chick",
+          "light",
+          "four"
         ],
         "count": 4
       }
     },
     {
-      "id": "level-89-r10",
+      "id": "level-105-r10",
       "type": "speak",
       "prompt": {
-        "text": "Say: ship, chick, thumb, duck!",
-        "say": "Say them with me! ship, chick, thumb, duck!",
-        "audio": "voice/line-f57b7c35c59d1a2a.m4a"
+        "text": "Say: ship, chick, thumb, moon!",
+        "say": "Say them with me! ship, chick, thumb, moon!",
+        "audio": "voice/line-2bcb0d199a505d43.m4a"
       },
       "card": {
-        "text": "ship, chick, thumb, duck!",
+        "text": "ship, chick, thumb, moon!",
         "picture": {
           "key": "ship",
           "label": "ship",
@@ -386,7 +385,7 @@
         "listen": true
       },
       "speak": {
-        "expected": "ship, chick, thumb, duck!"
+        "expected": "ship, chick, thumb, moon!"
       }
     }
   ]

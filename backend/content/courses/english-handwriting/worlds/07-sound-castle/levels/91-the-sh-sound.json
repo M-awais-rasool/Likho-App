@@ -1,20 +1,20 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-84",
-  "number": 84,
-  "name": "The ng Sound",
-  "skill": "ng words",
+  "id": "level-91",
+  "number": 91,
+  "name": "The sh Sound",
+  "skill": "sh words",
   "icon": "graphic_eq",
   "isBoss": false,
   "requiresSubscription": true,
   "intro": {
-    "text": "ng",
-    "word": "ring",
-    "say": "Two letters, one sound: {/ng/|ŋːː}! Like ring.",
-    "audio": "voice/line-8b89d030eb250ace.m4a",
+    "text": "sh",
+    "word": "ship",
+    "say": "Two letters, one sound: {/sh/|ʃːː}! Like ship.",
+    "audio": "voice/line-d7a116298e934423.m4a",
     "picture": {
-      "key": "ring",
-      "label": "ring",
+      "key": "ship",
+      "label": "ship",
       "url": null
     }
   },
@@ -26,48 +26,48 @@
   },
   "rounds": [
     {
-      "id": "level-84-r1",
+      "id": "level-91-r1",
       "type": "pick",
       "prompt": {
-        "text": "Which picture is ring?",
-        "say": "Read the word. Which picture is ring?",
-        "audio": "voice/line-89d4c22777207bee.m4a"
+        "text": "Which picture is ship?",
+        "say": "Read the word. Which picture is ship?",
+        "audio": "voice/line-ce785152aa14dbbc.m4a"
       },
       "card": {
-        "text": "ring",
+        "text": "ship",
         "picture": null,
         "listen": false
       },
       "pick": {
         "options": [
           {
-            "id": "level-84-r1-o1",
-            "label": "king",
+            "id": "level-91-r1-o1",
+            "label": "shell",
             "picture": {
-              "key": "king",
-              "label": "king",
+              "key": "shell",
+              "label": "shell",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-84-r1-o2",
-            "label": "sing",
+            "id": "level-91-r1-o2",
+            "label": "ship",
             "picture": {
-              "key": "sing",
-              "label": "sing",
+              "key": "ship",
+              "label": "ship",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-84-r1-o3",
-            "label": "ring",
+            "id": "level-91-r1-o3",
+            "label": "shop",
             "picture": {
-              "key": "ring",
-              "label": "ring",
+              "key": "shop",
+              "label": "shop",
               "url": null
             },
             "color": null,
@@ -76,9 +76,9 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "ring"
+          "value": "ship"
         },
-        "shape": "bucket",
+        "shape": "jar",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -86,41 +86,68 @@
       }
     },
     {
-      "id": "level-84-r2",
+      "id": "level-91-r2",
       "type": "sort",
       "prompt": {
-        "text": "Feed it /ng/!",
-        "say": "This monster only eats words with {/ng/|ŋːː}. Feed it!",
-        "audio": "voice/line-576eacf8595389b4.m4a"
+        "text": "Feed it /sh/!",
+        "say": "This monster only eats words with {/sh/|ʃːː}. Feed it!",
+        "audio": "voice/line-068ff4828e4d05f7.m4a"
       },
       "card": {
-        "text": "ng",
+        "text": "sh",
         "picture": null,
         "listen": false
       },
       "sort": {
         "bins": [
           {
-            "label": "ng",
+            "label": "sh",
             "picture": null,
             "bin": null
           }
         ],
         "items": [
           {
-            "label": "ring",
+            "label": "fish",
             "picture": {
-              "key": "ring",
-              "label": "ring",
+              "key": "fish",
+              "label": "fish",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "king",
+            "label": "brother",
             "picture": {
-              "key": "king",
-              "label": "king",
+              "key": "family_brother",
+              "label": "brother",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "hand",
+            "picture": {
+              "key": "hand",
+              "label": "hand",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "ship",
+            "picture": {
+              "key": "ship",
+              "label": "ship",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "shop",
+            "picture": {
+              "key": "shop",
+              "label": "shop",
               "url": null
             },
             "bin": 0
@@ -133,70 +160,43 @@
               "url": null
             },
             "bin": null
-          },
-          {
-            "label": "brother",
-            "picture": {
-              "key": "family_brother",
-              "label": "brother",
-              "url": null
-            },
-            "bin": null
-          },
-          {
-            "label": "wing",
-            "picture": {
-              "key": "wing",
-              "label": "wing",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "hand",
-            "picture": {
-              "key": "hand",
-              "label": "hand",
-              "url": null
-            },
-            "bin": null
           }
         ]
       }
     },
     {
-      "id": "level-84-r3",
+      "id": "level-91-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
-        "say": "Ring! Build the word ring.",
-        "audio": "voice/line-548e6fdfaa945c9e.m4a"
+        "say": "Ship! Build the word ship.",
+        "audio": "voice/line-3b1fd5e1837e0747.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "ring",
-          "label": "ring",
+          "key": "ship",
+          "label": "ship",
           "url": null
         },
         "listen": false
       },
       "order": {
         "tiles": [
-          "r",
+          "sh",
           "i",
-          "ng"
+          "p"
         ],
-        "slot": "stripe"
+        "slot": "plank"
       }
     },
     {
-      "id": "level-84-r4",
+      "id": "level-91-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
-        "say": "Listen! Find the word king.",
-        "audio": "voice/line-524726e5bcafe71c.m4a"
+        "say": "Listen! Find the word shop.",
+        "audio": "voice/line-b25151afc487f6a9.m4a"
       },
       "card": {
         "text": null,
@@ -206,22 +206,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-84-r4-o1",
-            "label": "song",
+            "id": "level-91-r4-o1",
+            "label": "brush",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-84-r4-o2",
-            "label": "wing",
+            "id": "level-91-r4-o2",
+            "label": "ship",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-84-r4-o3",
-            "label": "king",
+            "id": "level-91-r4-o3",
+            "label": "shop",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -229,7 +229,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "king"
+          "value": "shop"
         },
         "shape": "cloud",
         "layout": null,
@@ -239,52 +239,52 @@
       }
     },
     {
-      "id": "level-84-r5",
+      "id": "level-91-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
-        "say": "King! Which letter is missing?",
-        "audio": "voice/line-33793554453314a3.m4a"
+        "say": "Shop! Which letter is missing?",
+        "audio": "voice/line-8f74005659ba00e3.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "king",
-          "label": "king",
+          "key": "shop",
+          "label": "shop",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "missing",
-        "target": "i",
-        "guide": "i",
-        "word": "king",
-        "missingIndex": 1,
+        "target": "o",
+        "guide": "o",
+        "word": "shop",
+        "missingIndex": 2,
         "sentence": false,
         "story": false
       }
     },
     {
-      "id": "level-84-r6",
+      "id": "level-91-r6",
       "type": "write",
       "prompt": {
-        "text": "Look, then write sing",
-        "say": "Look at the word sing. Then write it from memory!",
-        "audio": "voice/line-4cb254660433357b.m4a"
+        "text": "Look, then write ship",
+        "say": "Look at the word ship. Then write it from memory!",
+        "audio": "voice/line-c55703f2b84b212c.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "sing",
-          "label": "sing",
+          "key": "ship",
+          "label": "ship",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "flash",
-        "target": "sing",
+        "target": "ship",
         "guide": null,
         "word": null,
         "missingIndex": null,
@@ -293,97 +293,97 @@
       }
     },
     {
-      "id": "level-84-r7",
+      "id": "level-91-r7",
       "type": "hunt",
       "prompt": {
-        "text": "Find every sing!",
-        "say": "Find every word sing!",
-        "audio": "voice/line-9869131c1f01573d.m4a"
+        "text": "Find every shell!",
+        "say": "Find every word shell!",
+        "audio": "voice/line-185f4047ba2d878c.m4a"
       },
       "card": {
-        "text": "sing",
+        "text": "shell",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "sing",
+        "target": "shell",
         "grid": [
-          "wing",
-          "four",
-          "sing",
-          "sing",
-          "king",
-          "sing",
-          "song",
           "pink",
-          "ring"
+          "shop",
+          "shell",
+          "sheep",
+          "fish",
+          "ship",
+          "brush",
+          "shell",
+          "shell"
         ]
       }
     },
     {
-      "id": "level-84-r8",
+      "id": "level-91-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: ring, king, wing, sing!",
-        "say": "Say them with me! ring, king, wing, sing!",
-        "audio": "voice/line-b5fbceec84b35e05.m4a"
+        "text": "Say: ship, shop, fish, shell!",
+        "say": "Say them with me! ship, shop, fish, shell!",
+        "audio": "voice/line-b6e9cafe50cafa76.m4a"
       },
       "card": {
-        "text": "ring, king, wing, sing!",
+        "text": "ship, shop, fish, shell!",
         "picture": {
-          "key": "ring",
-          "label": "ring",
+          "key": "ship",
+          "label": "ship",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "ring, king, wing, sing!"
+        "expected": "ship, shop, fish, shell!"
       }
     },
     {
-      "id": "level-84-r9",
+      "id": "level-91-r9",
       "type": "pop",
       "prompt": {
-        "text": "Pop every sing!",
-        "say": "Pop every bubble that says sing!",
-        "audio": "voice/line-fd9f4eadf7c1be81.m4a"
+        "text": "Pop every ship!",
+        "say": "Pop every bubble that says ship!",
+        "audio": "voice/line-f0e9123ae539b25b.m4a"
       },
       "card": {
-        "text": "sing",
+        "text": "ship",
         "picture": null,
         "listen": false
       },
       "pop": {
-        "target": "sing",
+        "target": "ship",
         "others": [
-          "song",
-          "four",
-          "goat"
+          "shop",
+          "fish",
+          "four"
         ],
         "count": 4
       }
     },
     {
-      "id": "level-84-r10",
+      "id": "level-91-r10",
       "type": "write",
       "prompt": {
-        "text": "Write wing",
-        "say": "Write the word wing.",
-        "audio": "voice/line-5e31caabac4c8b87.m4a"
+        "text": "Write fish",
+        "say": "Write the word fish.",
+        "audio": "voice/line-c26674bc8d172313.m4a"
       },
       "card": {
-        "text": "wing",
+        "text": "fish",
         "picture": {
-          "key": "wing",
-          "label": "wing",
+          "key": "fish",
+          "label": "fish",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "free",
-        "target": "wing",
+        "target": "fish",
         "guide": null,
         "word": null,
         "missingIndex": null,

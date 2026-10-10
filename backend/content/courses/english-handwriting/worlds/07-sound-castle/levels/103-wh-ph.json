@@ -1,0 +1,392 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-103",
+  "number": 103,
+  "name": "wh, ph",
+  "skill": "wh ph words",
+  "icon": "graphic_eq",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "wh ph",
+    "word": "whale",
+    "say": "Whale and phone! Let's hear {/wh/|wʌ} in whale and {/ph/|fːː} in phone.",
+    "audio": "voice/line-0f292ae9fb6ed49b.m4a",
+    "picture": {
+      "key": "whale",
+      "label": "whale",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-103-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is whale?",
+        "say": "Read the word. Which picture is whale?",
+        "audio": "voice/line-d38194b55311aabb.m4a"
+      },
+      "card": {
+        "text": "whale",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-103-r1-o1",
+            "label": "dolphin",
+            "picture": {
+              "key": "dolphin",
+              "label": "dolphin",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-103-r1-o2",
+            "label": "phone",
+            "picture": {
+              "key": "phone",
+              "label": "phone",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-103-r1-o3",
+            "label": "whale",
+            "picture": {
+              "key": "whale",
+              "label": "whale",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "whale"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-103-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write when",
+        "say": "Look at the word when. Then write it from memory!",
+        "audio": "voice/line-4f253dfe1e05b435.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "when",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-103-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Whale! Build the word whale.",
+        "audio": "voice/line-808c50982df6a2c9.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "whale",
+          "label": "whale",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "w",
+          "h",
+          "a",
+          "l",
+          "e"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-103-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Phone! Which letter is missing?",
+        "audio": "voice/line-315a528cea253c95.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "phone",
+          "label": "phone",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "o",
+        "guide": "o",
+        "word": "phone",
+        "missingIndex": 2,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-103-r5",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every whale!",
+        "say": "Pop every bubble that says whale!",
+        "audio": "voice/line-248b6c997c37dfe7.m4a"
+      },
+      "card": {
+        "text": "whale",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "whale",
+        "others": [
+          "white",
+          "phone",
+          "photo"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-103-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every dolphin!",
+        "say": "Find every word dolphin!",
+        "audio": "voice/line-558f4bb1fdf1a987.m4a"
+      },
+      "card": {
+        "text": "dolphin",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "dolphin",
+        "grid": [
+          "photo",
+          "whale",
+          "when",
+          "dolphin",
+          "dolphin",
+          "dolphin",
+          "pink",
+          "white",
+          "phone"
+        ]
+      }
+    },
+    {
+      "id": "level-103-r7",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the words: wh or ph?",
+        "say": "Read each word. Is it {w|dˈʌbəljuː} {h|ˈeɪʧ} or {p|pˈiː} {h|ˈeɪʧ}?",
+        "audio": "voice/line-e0e735c640e9a02e.m4a"
+      },
+      "card": {
+        "text": "wh ph",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "wh",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "ph",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "when",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "white",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "phone",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "photo",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "elephant",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "dolphin",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "wheel",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "whale",
+            "picture": null,
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-103-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: whale, phone, white, dolphin!",
+        "say": "Say them with me! whale, phone, white, dolphin!",
+        "audio": "voice/line-6c5323c711e63965.m4a"
+      },
+      "card": {
+        "text": "whale, phone, white, dolphin!",
+        "picture": {
+          "key": "whale",
+          "label": "whale",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "whale, phone, white, dolphin!"
+      }
+    },
+    {
+      "id": "level-103-r9",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "whale",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "whale",
+                "label": "whale",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "phone",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "phone",
+                "label": "phone",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "dolphin",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "dolphin",
+                "label": "dolphin",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-103-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Write white",
+        "say": "Write the word white.",
+        "audio": "voice/line-70060e1be29bffce.m4a"
+      },
+      "card": {
+        "text": "white",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "white",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}
