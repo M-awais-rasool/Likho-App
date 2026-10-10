@@ -1,0 +1,473 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-137",
+  "number": 137,
+  "name": "Naming Words",
+  "skill": "Nouns",
+  "icon": "category",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "cat school ball",
+    "word": "ball",
+    "say": "Cat, school, ball! Naming words name a person, a place or a thing.",
+    "audio": "voice/line-6bc51edbdf44ac8f.m4a",
+    "picture": {
+      "key": "ball",
+      "label": "ball",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-137-r1",
+      "type": "sort",
+      "prompt": {
+        "text": "Person, place or thing?",
+        "say": "Is it a person, a place or a thing? Sort the pictures!",
+        "audio": "voice/line-c436e2d009dd197e.m4a"
+      },
+      "card": {
+        "text": "person place thing",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "person",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "place",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "thing",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "shop",
+            "picture": {
+              "key": "shop",
+              "label": "shop",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "house",
+            "picture": {
+              "key": "house",
+              "label": "house",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "baby",
+            "picture": {
+              "key": "family_baby",
+              "label": "baby",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "teacher",
+            "picture": {
+              "key": "teacher",
+              "label": "teacher",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "ball",
+            "picture": {
+              "key": "ball",
+              "label": "ball",
+              "url": null
+            },
+            "bin": 2
+          },
+          {
+            "label": "school",
+            "picture": {
+              "key": "school",
+              "label": "school",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "kite",
+            "picture": {
+              "key": "kite",
+              "label": "kite",
+              "url": null
+            },
+            "bin": 2
+          },
+          {
+            "label": "cup",
+            "picture": {
+              "key": "cup",
+              "label": "cup",
+              "url": null
+            },
+            "bin": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-137-r2",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "dog",
+            "wrong": "mirror",
+            "at": 0
+          },
+          {
+            "text": "cat",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "ball",
+            "wrong": "mirror",
+            "at": 0
+          },
+          {
+            "text": "school",
+            "wrong": null,
+            "at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-137-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Tap the naming word!",
+        "say": "The dog is big. Tap the naming word!",
+        "audio": "voice/line-9a6bedf3a45b1a50.m4a"
+      },
+      "card": {
+        "text": "The dog is big.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-137-r3-o1",
+            "label": "The",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-137-r3-o2",
+            "label": "dog",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-137-r3-o3",
+            "label": "is",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-137-r3-o4",
+            "label": "big",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "dog"
+        },
+        "shape": null,
+        "layout": "flow",
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-137-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Which is a naming word?",
+        "say": "Which word is a naming word?",
+        "audio": "voice/line-9e9bb9a4a561079f.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "kite",
+          "label": "kite",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-137-r4-o1",
+            "label": "run",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-137-r4-o2",
+            "label": "big",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-137-r4-o3",
+            "label": "kite",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "kite"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-137-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "The doctor has a bag.",
+        "say": "The doctor has a bag. Find the picture!",
+        "audio": "voice/line-ccbf6c93fa7b8310.m4a"
+      },
+      "card": {
+        "text": "The doctor has a bag.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-137-r5-o1",
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-137-r5-o2",
+            "label": "teacher",
+            "picture": {
+              "key": "teacher",
+              "label": "teacher",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-137-r5-o3",
+            "label": "family baby",
+            "picture": {
+              "key": "family_baby",
+              "label": "family baby",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "doctor"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-137-r6",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. I see a dog. True, or silly?",
+        "audio": "voice/line-a9df3c788df82e65.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "I see a dog.",
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-137-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "The cat sat on the mat. Put the words in order.",
+        "audio": "voice/line-b2b0c77853c00295.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "The",
+          "cat",
+          "sat",
+          "on",
+          "the",
+          "mat"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-137-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "The dog has a ball. Now write it!",
+        "audio": "voice/line-8d188be4b1b599d1.m4a"
+      },
+      "card": {
+        "text": "The dog has a ball.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "The dog has a ball.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-137-r9",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: A naming word names a person, a place or a thing.",
+        "say": "A naming word names a person, a place or a thing. Now you say it!",
+        "audio": "voice/line-424ed74a981bad50.m4a"
+      },
+      "card": {
+        "text": "A naming word names a person, a place or a thing.",
+        "picture": {
+          "key": "ball",
+          "label": "ball",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "A naming word names a person, a place or a thing."
+      }
+    },
+    {
+      "id": "level-137-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write cat",
+        "say": "Look at the word cat. Then write it from memory!",
+        "audio": "voice/line-1287718e1719c23c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "cat",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

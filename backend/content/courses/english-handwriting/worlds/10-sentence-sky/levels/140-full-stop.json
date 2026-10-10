@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-107",
-  "number": 107,
+  "id": "level-140",
+  "number": 140,
   "name": "Full Stop",
   "skill": "Ending a sentence",
   "icon": "fiber_manual_record",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-107-r1",
+      "id": "level-140-r1",
       "type": "pick",
       "prompt": {
         "text": "Which mark ends it?",
@@ -41,22 +41,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-107-r1-o1",
-            "label": "?",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-107-r1-o2",
+            "id": "level-140-r1-o1",
             "label": ".",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-107-r1-o3",
+            "id": "level-140-r1-o2",
             "label": "!",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-140-r1-o3",
+            "label": "?",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -66,7 +66,7 @@
           "kind": "label",
           "value": "."
         },
-        "shape": "kite",
+        "shape": "balloon",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -74,30 +74,91 @@
       }
     },
     {
-      "id": "level-107-r2",
-      "type": "truth",
+      "id": "level-140-r2",
+      "type": "sort",
       "prompt": {
-        "text": "True or silly?",
-        "say": "This is a bus. True, or silly?",
-        "audio": "voice/line-6a9ebaa8a238af23.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/l/|lːː} or {/s/|sːː}?",
+        "audio": "voice/line-b6c439fac7c04efd.m4a"
       },
       "card": {
-        "text": null,
+        "text": "l s",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "truth": {
-        "text": "This is a bus.",
-        "picture": {
-          "key": "bus",
-          "label": "bus",
-          "url": null
-        },
-        "answer": true
+      "sort": {
+        "bins": [
+          {
+            "label": "l",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "s",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "seed",
+            "picture": {
+              "key": "seed",
+              "label": "seed",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "lion",
+            "picture": {
+              "key": "lion",
+              "label": "lion",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "lamp",
+            "picture": {
+              "key": "lamp",
+              "label": "lamp",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "sock",
+            "picture": {
+              "key": "sock",
+              "label": "sock",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "log",
+            "picture": {
+              "key": "log",
+              "label": "log",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
       }
     },
     {
-      "id": "level-107-r3",
+      "id": "level-140-r3",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -125,7 +186,7 @@
       }
     },
     {
-      "id": "level-107-r4",
+      "id": "level-140-r4",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -148,7 +209,7 @@
       }
     },
     {
-      "id": "level-107-r5",
+      "id": "level-140-r5",
       "type": "speak",
       "prompt": {
         "text": "Say: A full stop ends a sentence.",
@@ -169,142 +230,81 @@
       }
     },
     {
-      "id": "level-107-r6",
-      "type": "sort",
-      "prompt": {
-        "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/s/|sːː} or {/t/|tʌ}?",
-        "audio": "voice/line-780408637d318bc0.m4a"
-      },
-      "card": {
-        "text": "s t",
-        "picture": null,
-        "listen": false
-      },
-      "sort": {
-        "bins": [
-          {
-            "label": "s",
-            "picture": null,
-            "bin": null
-          },
-          {
-            "label": "t",
-            "picture": null,
-            "bin": null
-          }
-        ],
-        "items": [
-          {
-            "label": "tooth",
-            "picture": {
-              "key": "tooth",
-              "label": "tooth",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "tiger",
-            "picture": {
-              "key": "tiger",
-              "label": "tiger",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "sock",
-            "picture": {
-              "key": "sock",
-              "label": "sock",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "sun",
-            "picture": {
-              "key": "sun",
-              "label": "sun",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "seed",
-            "picture": {
-              "key": "seed",
-              "label": "seed",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "tent",
-            "picture": {
-              "key": "tent",
-              "label": "tent",
-              "url": null
-            },
-            "bin": 1
-          }
-        ]
-      }
-    },
-    {
-      "id": "level-107-r7",
-      "type": "hunt",
-      "prompt": {
-        "text": "Find every tiger!",
-        "say": "Find every word tiger!",
-        "audio": "voice/line-d92215d3aad1476b.m4a"
-      },
-      "card": {
-        "text": "tiger",
-        "picture": null,
-        "listen": false
-      },
-      "hunt": {
-        "target": "tiger",
-        "grid": [
-          "tiger",
-          "ship",
-          "and",
-          "star",
-          "the",
-          "bus",
-          "tiger",
-          "tiger",
-          "brother"
-        ]
-      }
-    },
-    {
-      "id": "level-107-r8",
+      "id": "level-140-r6",
       "type": "write",
       "prompt": {
-        "text": "Spell he",
-        "say": "He! Write it one letter at a time.",
-        "audio": "voice/line-487d7956bd61835e.m4a"
+        "text": "Look, then write for",
+        "say": "Look at the word for. Then write it from memory!",
+        "audio": "voice/line-94b575bf0bfb37f3.m4a"
       },
       "card": {
-        "text": "he",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
       "write": {
-        "mode": "spell",
-        "target": "he",
+        "mode": "flash",
+        "target": "for",
         "guide": null,
-        "word": "he",
+        "word": null,
         "missingIndex": null,
         "sentence": false,
         "story": false
       }
     },
     {
-      "id": "level-107-r9",
+      "id": "level-140-r7",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every said!",
+        "say": "Find every word said!",
+        "audio": "voice/line-6f89fb4b319f7b6e.m4a"
+      },
+      "card": {
+        "text": "said",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "said",
+        "grid": [
+          "what",
+          "he",
+          "said",
+          "you",
+          "said",
+          "said",
+          "look",
+          "help",
+          "like"
+        ]
+      }
+    },
+    {
+      "id": "level-140-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Spell for",
+        "say": "For! Write it one letter at a time.",
+        "audio": "voice/line-9da2335ef286d9f9.m4a"
+      },
+      "card": {
+        "text": "for",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "for",
+        "guide": null,
+        "word": "for",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-140-r9",
       "type": "pick",
       "prompt": {
         "text": "I see a red car.",
@@ -319,7 +319,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-107-r9-o1",
+            "id": "level-140-r9-o1",
             "label": "red car",
             "picture": {
               "key": "red_car",
@@ -330,22 +330,22 @@
             "hideLabel": true
           },
           {
-            "id": "level-107-r9-o2",
-            "label": "hot sun",
+            "id": "level-140-r9-o2",
+            "label": "dog running",
             "picture": {
-              "key": "hot_sun",
-              "label": "hot sun",
+              "key": "dog_running",
+              "label": "dog running",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-107-r9-o3",
-            "label": "dog running",
+            "id": "level-140-r9-o3",
+            "label": "hot sun",
             "picture": {
-              "key": "dog_running",
-              "label": "dog running",
+              "key": "hot_sun",
+              "label": "hot sun",
               "url": null
             },
             "color": null,
@@ -364,26 +364,26 @@
       }
     },
     {
-      "id": "level-107-r10",
-      "type": "write",
+      "id": "level-140-r10",
+      "type": "pop",
       "prompt": {
-        "text": "Look, then write you",
-        "say": "Look at the word you. Then write it from memory!",
-        "audio": "voice/line-d78b3ba09c239bc9.m4a"
+        "text": "Pop every for!",
+        "say": "Pop every bubble that says for!",
+        "audio": "voice/line-bdcba59c619872a2.m4a"
       },
       "card": {
-        "text": null,
+        "text": "for",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "write": {
-        "mode": "flash",
-        "target": "you",
-        "guide": null,
-        "word": null,
-        "missingIndex": null,
-        "sentence": false,
-        "story": false
+      "pop": {
+        "target": "for",
+        "others": [
+          "his",
+          "out",
+          "you"
+        ],
+        "count": 4
       }
     }
   ]
