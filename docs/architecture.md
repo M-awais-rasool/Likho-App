@@ -70,4 +70,4 @@ app: applies the server's totals when nothing else is queued for that child
 | | app | API |
 |---|---|---|
 | development | `flutter run` (debug → `localhost:8080`, `LIKHO_DEV_EMAIL` sign-in) | `make run`, `DEV_LOGIN=true`, drafts served |
-| production | release build → `https://api.likho.app` (placeholder), Google Sign-In | Docker image (`backend/Dockerfile`), `APP_ENV=production` |
+| production | release build → `https://api.likho.io`, Google Sign-In | Docker image (`backend/Dockerfile`), `APP_ENV=production` |
