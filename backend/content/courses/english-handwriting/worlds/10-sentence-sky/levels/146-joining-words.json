@@ -1,0 +1,434 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-146",
+  "number": 146,
+  "name": "Joining Words",
+  "skill": "Joining with and",
+  "icon": "linear_scale",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "and",
+    "word": "cat and dog",
+    "say": "A cat and a dog! The word and joins things together.",
+    "audio": "voice/line-c04470437784d061.m4a",
+    "picture": {
+      "key": "cat_and_dog",
+      "label": "cat_and_dog",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-146-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "I have a cat what a dog. Which word fits?",
+        "audio": "voice/line-137875cac0d73a31.m4a"
+      },
+      "card": {
+        "text": "I have a cat ___ a dog.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-146-r1-o1",
+            "label": "the",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-146-r1-o2",
+            "label": "is",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-146-r1-o3",
+            "label": "and",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "and"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-146-r2",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "cat",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "cat",
+                "label": "cat",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "dog",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "dog",
+                "label": "dog",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "jam",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "jam",
+                "label": "jam",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-146-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "A cat and a dog.",
+        "say": "A cat and a dog. Find the picture!",
+        "audio": "voice/line-6a534e0b5de488ad.m4a"
+      },
+      "card": {
+        "text": "A cat and a dog.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-146-r3-o1",
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-146-r3-o2",
+            "label": "cat and dog",
+            "picture": {
+              "key": "cat_and_dog",
+              "label": "cat and dog",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-146-r3-o3",
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "cat and dog"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-146-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Tap the joining word!",
+        "say": "Ali and Sara play. Tap the joining word!",
+        "audio": "voice/line-52412b0b6ccb3319.m4a"
+      },
+      "card": {
+        "text": "Ali and Sara play.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-146-r4-o1",
+            "label": "Ali",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-146-r4-o2",
+            "label": "and",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-146-r4-o3",
+            "label": "Sara",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-146-r4-o4",
+            "label": "play",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "and"
+        },
+        "shape": null,
+        "layout": "flow",
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-146-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "Which sentence joins them?",
+        "say": "Mia has a cat. Mia has a dog. Which sentence joins them?",
+        "audio": "voice/line-f582026382e8dd9b.m4a"
+      },
+      "card": {
+        "text": "Mia has a cat. Mia has a dog.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-146-r5-o1",
+            "label": "Mia has a cat and a dog.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-146-r5-o2",
+            "label": "Mia and has a cat.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-146-r5-o3",
+            "label": "Mia has a cat a dog.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Mia has a cat and a dog."
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-146-r6",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "and",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "cat",
+            "wrong": "mirror",
+            "at": 1
+          },
+          {
+            "text": "dog",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "jam",
+            "wrong": "mirror",
+            "at": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-146-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "I like milk and cake. Put the words in order.",
+        "audio": "voice/line-8623d98649e8638c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cake",
+          "label": "cake",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "I",
+          "like",
+          "milk",
+          "and",
+          "cake"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-146-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "I can run and jump. Now write it!",
+        "audio": "voice/line-54237565e271de13.m4a"
+      },
+      "card": {
+        "text": "I can run and jump.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I can run and jump.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-146-r9",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Bread and jam, cat and dog!",
+        "say": "Bread and jam, cat and dog! Now you say it!",
+        "audio": "voice/line-5e0afe0f62861d96.m4a"
+      },
+      "card": {
+        "text": "Bread and jam, cat and dog!",
+        "picture": {
+          "key": "jam",
+          "label": "jam",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Bread and jam, cat and dog!"
+      }
+    },
+    {
+      "id": "level-146-r10",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. I like milk and cake. True, or silly?",
+        "audio": "voice/line-f0c551989fb69ba7.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "I like milk and cake.",
+        "picture": {
+          "key": "cat_and_dog",
+          "label": "cat and dog",
+          "url": null
+        },
+        "answer": false
+      }
+    }
+  ]
+}

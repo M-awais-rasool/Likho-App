@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../schema/world.schema.json",
-  "id": "world-8",
-  "order": 8,
+  "id": "world-10",
+  "order": 10,
   "name": "Sentence Sky",
   "skill": "Sentences",
   "icon": "cloud",

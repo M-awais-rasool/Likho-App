@@ -1,0 +1,434 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-147",
+  "number": 147,
+  "name": "Commas in Lists",
+  "skill": "Lists",
+  "icon": "format_list_numbered",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "red, blue and green",
+    "word": "paint",
+    "say": "Red, blue and green! Commas go between the things in a list.",
+    "audio": "voice/line-98830290fb6ab919.m4a",
+    "picture": {
+      "key": "paint",
+      "label": "paint",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-147-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which list is right?",
+        "say": "Red, blue and green. Which list has its commas in the right place?",
+        "audio": "voice/line-bc4833177f776a6b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "paint",
+          "label": "paint",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-147-r1-o1",
+            "label": "red, blue and green",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-147-r1-o2",
+            "label": "red blue, and green",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-147-r1-o3",
+            "label": "red, blue, and, green",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red, blue and green"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-147-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/s/|sːː} or {/w/|wʌ}?",
+        "audio": "voice/line-919af3a167ea56ed.m4a"
+      },
+      "card": {
+        "text": "s w",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "s",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "w",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "six",
+            "picture": {
+              "key": "six",
+              "label": "six",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "watch",
+            "picture": {
+              "key": "watch",
+              "label": "watch",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "wing",
+            "picture": {
+              "key": "wing",
+              "label": "wing",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "sock",
+            "picture": {
+              "key": "sock",
+              "label": "sock",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "web",
+            "picture": {
+              "key": "web",
+              "label": "web",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-147-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Where does the comma go?",
+        "say": "I like red blue and green. Tap the word that needs a comma after it!",
+        "audio": "voice/line-1c4a9857b760f814.m4a"
+      },
+      "card": {
+        "text": "I like red blue and green.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-147-r3-o1",
+            "label": "I",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-147-r3-o2",
+            "label": "like",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-147-r3-o3",
+            "label": "red",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-147-r3-o4",
+            "label": "blue",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-147-r3-o5",
+            "label": "and",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-147-r3-o6",
+            "label": "green",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red"
+        },
+        "shape": null,
+        "layout": "flow",
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-147-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "How many pets does Sara have?",
+        "say": "Sara has a cat, a dog and a fish. How many pets does Sara have?",
+        "audio": "voice/line-de5a81202c0c3296.m4a"
+      },
+      "card": {
+        "text": "Sara has a cat, a dog and a fish.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-147-r4-o1",
+            "label": "one",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-147-r4-o2",
+            "label": "three",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-147-r4-o3",
+            "label": "two",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "three"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-147-r5",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "I see red, blue and green. Put the words in order.",
+        "audio": "voice/line-1d162af96b9a18a5.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "paint",
+          "label": "paint",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "I",
+          "see",
+          "red,",
+          "blue",
+          "and",
+          "green"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-147-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write pink",
+        "say": "Look at the word pink. Then write it from memory!",
+        "audio": "voice/line-f145c7d52270d0d3.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "pink",
+          "label": "pink",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "pink",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-147-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "I like cats, dogs and fish. Now write it!",
+        "audio": "voice/line-14d4bc265ad203d9.m4a"
+      },
+      "card": {
+        "text": "I like cats, dogs and fish.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I like cats, dogs and fish.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-147-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Mangoes, bananas and apples!",
+        "say": "Mangoes, bananas and apples! Now you say it!",
+        "audio": "voice/line-49ab70fdb913b5f7.m4a"
+      },
+      "card": {
+        "text": "Mangoes, bananas and apples!",
+        "picture": {
+          "key": "mango",
+          "label": "mango",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Mangoes, bananas and apples!"
+      }
+    },
+    {
+      "id": "level-147-r9",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every ,",
+        "say": "Find every comma!",
+        "audio": "voice/line-906b659b74851acd.m4a"
+      },
+      "card": {
+        "text": ",",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": ",",
+        "grid": [
+          "?",
+          "!",
+          "!",
+          ",",
+          ".",
+          ",",
+          ",",
+          ".",
+          "?"
+        ]
+      }
+    },
+    {
+      "id": "level-147-r10",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every green!",
+        "say": "Pop every bubble that says green!",
+        "audio": "voice/line-49df467456dee293.m4a"
+      },
+      "card": {
+        "text": "green",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "green",
+        "others": [
+          "blue",
+          "help",
+          "like"
+        ],
+        "count": 4
+      }
+    }
+  ]
+}

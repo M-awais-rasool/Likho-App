@@ -1,0 +1,447 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-142",
+  "number": 142,
+  "name": "Exclamation Mark!",
+  "skill": "Strong feelings",
+  "icon": "celebration",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "!",
+    "word": "rainbow",
+    "say": "Wow! An exclamation mark shows a big feeling!",
+    "audio": "voice/line-4f8f2a0ee3822ea7.m4a",
+    "picture": {
+      "key": "rainbow",
+      "label": "rainbow",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-142-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which mark ends it?",
+        "say": "Look out! Which mark goes at the end?",
+        "audio": "voice/line-4295f9e34ef1e5f2.m4a"
+      },
+      "card": {
+        "text": "Look out ___",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-142-r1-o1",
+            "label": "!",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-142-r1-o2",
+            "label": ".",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-142-r1-o3",
+            "label": "?",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "!"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-142-r2",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. Wow! A rainbow! True, or silly?",
+        "audio": "voice/line-d5848d16d010a27d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "Wow! A rainbow!",
+        "picture": {
+          "key": "leg",
+          "label": "leg",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-142-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Wow! A rainbow!",
+        "say": "Wow! A rainbow! Find the picture!",
+        "audio": "voice/line-c88e247f045e7d00.m4a"
+      },
+      "card": {
+        "text": "Wow! A rainbow!",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-142-r3-o1",
+            "label": "moon",
+            "picture": {
+              "key": "moon",
+              "label": "moon",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-142-r3-o2",
+            "label": "rain",
+            "picture": {
+              "key": "rain",
+              "label": "rain",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-142-r3-o3",
+            "label": "rainbow",
+            "picture": {
+              "key": "rainbow",
+              "label": "rainbow",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "rainbow"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-142-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Tap the word that shouts!",
+        "say": "Ouch, my leg hurts. Tap the word that needs an exclamation mark!",
+        "audio": "voice/line-d177b257dae4fbc6.m4a"
+      },
+      "card": {
+        "text": "Ouch my leg hurts.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-142-r4-o1",
+            "label": "Ouch",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-142-r4-o2",
+            "label": "my",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-142-r4-o3",
+            "label": "leg",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-142-r4-o4",
+            "label": "hurts",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Ouch"
+        },
+        "shape": null,
+        "layout": "flow",
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-142-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "What does Mia shout?",
+        "say": "The bus is coming. Mia shouts, Stop! What does Mia shout?",
+        "audio": "voice/line-15a258c65764501f.m4a"
+      },
+      "card": {
+        "text": "The bus is coming. Mia shouts, Stop!",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-142-r5-o1",
+            "label": "Stop!",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-142-r5-o2",
+            "label": "Hello.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-142-r5-o3",
+            "label": "Is it red?",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Stop!"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-142-r6",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/l/|lːː} or {/f/|fːː}?",
+        "audio": "voice/line-ad5ac4293b9ce3da.m4a"
+      },
+      "card": {
+        "text": "l f",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "l",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "f",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "foot",
+            "picture": {
+              "key": "foot",
+              "label": "foot",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "leg",
+            "picture": {
+              "key": "leg",
+              "label": "leg",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "log",
+            "picture": {
+              "key": "log",
+              "label": "log",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "four",
+            "picture": {
+              "key": "four",
+              "label": "four",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "lemon",
+            "picture": {
+              "key": "lemon",
+              "label": "lemon",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-142-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "Look at the big rainbow! Put the words in order.",
+        "audio": "voice/line-0cc1c202a9dcb54c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "rainbow",
+          "label": "rainbow",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "Look",
+          "at",
+          "the",
+          "big",
+          "rainbow"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-142-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "I did it! Now write it!",
+        "audio": "voice/line-6739d229f101f1df.m4a"
+      },
+      "card": {
+        "text": "I did it!",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I did it!",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-142-r9",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Wow! What a big cake!",
+        "say": "Wow! What a big cake! Now you say it!",
+        "audio": "voice/line-f7267fc83aefc5d2.m4a"
+      },
+      "card": {
+        "text": "Wow! What a big cake!",
+        "picture": {
+          "key": "cake",
+          "label": "cake",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Wow! What a big cake!"
+      }
+    },
+    {
+      "id": "level-142-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write stop",
+        "say": "Look at the word stop. Then write it from memory!",
+        "audio": "voice/line-fcaa5d9fd2317c14.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "stop",
+          "label": "stop",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "stop",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

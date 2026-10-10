@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-106",
-  "number": 106,
+  "id": "level-138",
+  "number": 138,
   "name": "Fix-It Pencil",
   "skill": "Capital letters",
   "icon": "edit",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-106-r1",
+      "id": "level-138-r1",
       "type": "pick",
       "prompt": {
         "text": "Fix it!",
@@ -44,28 +44,28 @@
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-106-r1-o1"
+            "id": "level-138-r1-o1"
           },
           {
             "label": "see",
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-106-r1-o2"
+            "id": "level-138-r1-o2"
           },
           {
             "label": "a",
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-106-r1-o3"
+            "id": "level-138-r1-o3"
           },
           {
             "label": "dog",
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-106-r1-o4"
+            "id": "level-138-r1-o4"
           }
         ],
         "answer": {
@@ -80,30 +80,91 @@
       }
     },
     {
-      "id": "level-106-r2",
-      "type": "pop",
+      "id": "level-138-r2",
+      "type": "sort",
       "prompt": {
-        "text": "Pop every look!",
-        "say": "Pop every bubble that says look!",
-        "audio": "voice/line-5f4f7927532f36b6.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/h/|hʌ}?",
+        "audio": "voice/line-c7ac37372e7b32ac.m4a"
       },
       "card": {
-        "text": "look",
+        "text": "d h",
         "picture": null,
         "listen": false
       },
-      "pop": {
-        "target": "look",
-        "others": [
-          "like",
-          "said",
-          "ship"
+      "sort": {
+        "bins": [
+          {
+            "label": "d",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "h",
+            "picture": null,
+            "bin": null
+          }
         ],
-        "count": 4
+        "items": [
+          {
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "hand",
+            "picture": {
+              "key": "hand",
+              "label": "hand",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "hut",
+            "picture": {
+              "key": "hut",
+              "label": "hut",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
       }
     },
     {
-      "id": "level-106-r3",
+      "id": "level-138-r3",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -126,7 +187,7 @@
       }
     },
     {
-      "id": "level-106-r4",
+      "id": "level-138-r4",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -153,7 +214,7 @@
       }
     },
     {
-      "id": "level-106-r5",
+      "id": "level-138-r5",
       "type": "pick",
       "prompt": {
         "text": "Which one is right?",
@@ -172,14 +233,14 @@
       "pick": {
         "options": [
           {
-            "id": "level-106-r5-o1",
+            "id": "level-138-r5-o1",
             "label": "The cat is big.",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-106-r5-o2",
+            "id": "level-138-r5-o2",
             "label": "the cat is big.",
             "picture": null,
             "color": null,
@@ -198,67 +259,30 @@
       }
     },
     {
-      "id": "level-106-r6",
-      "type": "match",
+      "id": "level-138-r6",
+      "type": "write",
       "prompt": {
-        "text": "Find the pairs!",
-        "say": "Find the pairs! Match each word to its picture.",
-        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+        "text": "Look, then write what",
+        "say": "Look at the word what. Then write it from memory!",
+        "audio": "voice/line-6468b14d1ebfca5e.m4a"
       },
       "card": {
-        "text": "Find the pairs!",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "match": {
-        "pairs": [
-          {
-            "a": {
-              "text": "brother",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "family_brother",
-                "label": "brother",
-                "url": null
-              }
-            }
-          },
-          {
-            "a": {
-              "text": "bus",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "bus",
-                "label": "bus",
-                "url": null
-              }
-            }
-          },
-          {
-            "a": {
-              "text": "ship",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "ship",
-                "label": "ship",
-                "url": null
-              }
-            }
-          }
-        ]
+      "write": {
+        "mode": "flash",
+        "target": "what",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
       }
     },
     {
-      "id": "level-106-r7",
+      "id": "level-138-r7",
       "type": "speak",
       "prompt": {
         "text": "Say: A sentence starts with a capital letter.",
@@ -279,92 +303,77 @@
       }
     },
     {
-      "id": "level-106-r8",
+      "id": "level-138-r8",
       "type": "hunt",
       "prompt": {
-        "text": "Find every tiger!",
-        "say": "Find every word tiger!",
-        "audio": "voice/line-d92215d3aad1476b.m4a"
+        "text": "Find every said!",
+        "say": "Find every word said!",
+        "audio": "voice/line-6f89fb4b319f7b6e.m4a"
       },
       "card": {
-        "text": "tiger",
+        "text": "said",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "tiger",
+        "target": "said",
         "grid": [
-          "ship",
-          "tiger",
-          "brother",
-          "the",
-          "star",
-          "tiger",
-          "tiger",
-          "bus",
-          "and"
+          "like",
+          "you",
+          "look",
+          "said",
+          "he",
+          "what",
+          "help",
+          "said",
+          "said"
         ]
       }
     },
     {
-      "id": "level-106-r9",
+      "id": "level-138-r9",
       "type": "write",
       "prompt": {
-        "text": "Spell he",
-        "say": "He! Write it one letter at a time.",
-        "audio": "voice/line-487d7956bd61835e.m4a"
+        "text": "Spell for",
+        "say": "For! Write it one letter at a time.",
+        "audio": "voice/line-9da2335ef286d9f9.m4a"
       },
       "card": {
-        "text": "he",
+        "text": "for",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "spell",
-        "target": "he",
+        "target": "for",
         "guide": null,
-        "word": "he",
+        "word": "for",
         "missingIndex": null,
         "sentence": false,
         "story": false
       }
     },
     {
-      "id": "level-106-r10",
-      "type": "fix",
+      "id": "level-138-r10",
+      "type": "pop",
       "prompt": {
-        "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "text": "Pop every what!",
+        "say": "Pop every bubble that says what!",
+        "audio": "voice/line-dd1707dfc8e91f61.m4a"
       },
       "card": {
-        "text": "Fix it!",
+        "text": "what",
         "picture": null,
         "listen": false
       },
-      "fix": {
-        "items": [
-          {
-            "text": "bus",
-            "wrong": "mirror",
-            "at": 0
-          },
-          {
-            "text": "ship",
-            "wrong": "mirror",
-            "at": 1
-          },
-          {
-            "text": "tiger",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "star",
-            "wrong": null,
-            "at": null
-          }
-        ]
+      "pop": {
+        "target": "what",
+        "others": [
+          "help",
+          "like",
+          "look"
+        ],
+        "count": 4
       }
     }
   ]

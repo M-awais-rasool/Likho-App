@@ -1,0 +1,422 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-139",
+  "number": 139,
+  "name": "Capital Names",
+  "skill": "Names start with capitals",
+  "icon": "person",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Ali Sara",
+    "word": "family",
+    "say": "Ali, Sara, Lahore! Names of people and places start with a capital letter.",
+    "audio": "voice/line-3548ea711b2ec64b.m4a",
+    "picture": {
+      "key": "family",
+      "label": "family",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-139-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Fix it!",
+        "say": "This name needs a capital letter. Tap the name to fix it!",
+        "audio": "voice/line-b2363b6bb58bc8a9.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-139-r1-o1",
+            "label": "My",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-139-r1-o2",
+            "label": "friend",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-139-r1-o3",
+            "label": "is",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-139-r1-o4",
+            "label": "ali",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "ali"
+        },
+        "shape": null,
+        "layout": "flow",
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": true
+      }
+    },
+    {
+      "id": "level-139-r2",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "Ali",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "Sara",
+            "wrong": "mirror",
+            "at": 1
+          },
+          {
+            "text": "Mia",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "Sam",
+            "wrong": "mirror",
+            "at": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-139-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Which one is right?",
+        "say": "Which name is written the right way?",
+        "audio": "voice/line-4f91082182bcf673.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "family_sister",
+          "label": "family sister",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-139-r3-o1",
+            "label": "sara",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-139-r3-o2",
+            "label": "Sara",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Sara"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-139-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Where does Ali live?",
+        "say": "Sara lives in Karachi. Her friend Ali lives in Lahore. Where does Ali live?",
+        "audio": "voice/line-746fe5a6e05574b2.m4a"
+      },
+      "card": {
+        "text": "Sara lives in Karachi. Her friend Ali lives in Lahore.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-139-r4-o1",
+            "label": "in Lahore",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-139-r4-o2",
+            "label": "in Karachi",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-139-r4-o3",
+            "label": "with Sara",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "in Lahore"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-139-r5",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "Ali lives in Lahore. Put the words in order.",
+        "audio": "voice/line-3271964e1b910ff8.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "house",
+          "label": "house",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "Ali",
+          "lives",
+          "in",
+          "Lahore"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-139-r6",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/h/|hʌ} or {/l/|lːː}?",
+        "audio": "voice/line-dfb3bb467ce2a295.m4a"
+      },
+      "card": {
+        "text": "h l",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "h",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "l",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "hut",
+            "picture": {
+              "key": "hut",
+              "label": "hut",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "lion",
+            "picture": {
+              "key": "lion",
+              "label": "lion",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "lamp",
+            "picture": {
+              "key": "lamp",
+              "label": "lamp",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "log",
+            "picture": {
+              "key": "log",
+              "label": "log",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "hen",
+            "picture": {
+              "key": "hen",
+              "label": "hen",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "hand",
+            "picture": {
+              "key": "hand",
+              "label": "hand",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-139-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "Ali and Sara are friends. Now write it!",
+        "audio": "voice/line-252437964fbbde96.m4a"
+      },
+      "card": {
+        "text": "Ali and Sara are friends.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "Ali and Sara are friends.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-139-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Names start with a capital letter!",
+        "say": "Names start with a capital letter! Now you say it!",
+        "audio": "voice/line-dde5ad9b0b6abd25.m4a"
+      },
+      "card": {
+        "text": "Names start with a capital letter!",
+        "picture": {
+          "key": "pencil",
+          "label": "pencil",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Names start with a capital letter!"
+      }
+    },
+    {
+      "id": "level-139-r9",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every Ali!",
+        "say": "Find every word Ali!",
+        "audio": "voice/line-437eb5a5cbea5082.m4a"
+      },
+      "card": {
+        "text": "Ali",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "Ali",
+        "grid": [
+          "Ali",
+          "Al",
+          "Ali",
+          "ali",
+          "Ali",
+          "Al",
+          "ali",
+          "All",
+          "All"
+        ]
+      }
+    },
+    {
+      "id": "level-139-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write Mia",
+        "say": "Look at the word Mia. Then write it from memory!",
+        "audio": "voice/line-773f187844f7b92b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "Mia",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-110",
-  "number": 110,
+  "id": "level-145",
+  "number": 145,
   "name": "Sentence Rainbow",
   "skill": "Word order",
   "icon": "looks",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-110-r1",
+      "id": "level-145-r1",
       "type": "order",
       "prompt": {
         "text": "I see a cat",
@@ -52,50 +52,32 @@
       }
     },
     {
-      "id": "level-110-r2",
+      "id": "level-145-r2",
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/l/|lːː} or {/b/|bʌ}?",
-        "audio": "voice/line-9d0f05a15cfd7fdd.m4a"
+        "say": "Sort the pictures! Do they start with {/h/|hʌ} or {/l/|lːː}?",
+        "audio": "voice/line-dfb3bb467ce2a295.m4a"
       },
       "card": {
-        "text": "l b",
+        "text": "h l",
         "picture": null,
         "listen": false
       },
       "sort": {
         "bins": [
           {
-            "label": "l",
+            "label": "h",
             "picture": null,
             "bin": null
           },
           {
-            "label": "b",
+            "label": "l",
             "picture": null,
             "bin": null
           }
         ],
         "items": [
-          {
-            "label": "log",
-            "picture": {
-              "key": "log",
-              "label": "log",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "bus",
-            "picture": {
-              "key": "bus",
-              "label": "bus",
-              "url": null
-            },
-            "bin": 1
-          },
           {
             "label": "lion",
             "picture": {
@@ -103,40 +85,58 @@
               "label": "lion",
               "url": null
             },
-            "bin": 0
+            "bin": 1
           },
           {
-            "label": "lamp",
+            "label": "hut",
             "picture": {
-              "key": "lamp",
-              "label": "lamp",
+              "key": "hut",
+              "label": "hut",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "ball",
+            "label": "hand",
             "picture": {
-              "key": "ball",
-              "label": "ball",
+              "key": "hand",
+              "label": "hand",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "lemon",
+            "picture": {
+              "key": "lemon",
+              "label": "lemon",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "boat",
+            "label": "leg",
             "picture": {
-              "key": "boat",
-              "label": "boat",
+              "key": "leg",
+              "label": "leg",
               "url": null
             },
             "bin": 1
+          },
+          {
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "bin": 0
           }
         ]
       }
     },
     {
-      "id": "level-110-r3",
+      "id": "level-145-r3",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -159,7 +159,7 @@
       }
     },
     {
-      "id": "level-110-r4",
+      "id": "level-145-r4",
       "type": "speak",
       "prompt": {
         "text": "Say: The fish is in the sea.",
@@ -180,7 +180,7 @@
       }
     },
     {
-      "id": "level-110-r5",
+      "id": "level-145-r5",
       "type": "pick",
       "prompt": {
         "text": "The cat is on the box.",
@@ -195,18 +195,18 @@
       "pick": {
         "options": [
           {
-            "id": "level-110-r5-o1",
-            "label": "cat in bed",
+            "id": "level-145-r5-o1",
+            "label": "dog on box",
             "picture": {
-              "key": "cat_in_bed",
-              "label": "cat in bed",
+              "key": "dog_on_box",
+              "label": "dog on box",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-110-r5-o2",
+            "id": "level-145-r5-o2",
             "label": "cat on box",
             "picture": {
               "key": "cat_on_box",
@@ -217,11 +217,11 @@
             "hideLabel": true
           },
           {
-            "id": "level-110-r5-o3",
-            "label": "dog on box",
+            "id": "level-145-r5-o3",
+            "label": "cat in bed",
             "picture": {
-              "key": "dog_on_box",
-              "label": "dog on box",
+              "key": "cat_in_bed",
+              "label": "cat in bed",
               "url": null
             },
             "color": null,
@@ -240,12 +240,12 @@
       }
     },
     {
-      "id": "level-110-r6",
+      "id": "level-145-r6",
       "type": "write",
       "prompt": {
-        "text": "Look, then write like",
-        "say": "Look at the word like. Then write it from memory!",
-        "audio": "voice/line-9a2f243b1f870b80.m4a"
+        "text": "Look, then write he",
+        "say": "Look at the word he. Then write it from memory!",
+        "audio": "voice/line-6948979307e987b7.m4a"
       },
       "card": {
         "text": null,
@@ -254,7 +254,7 @@
       },
       "write": {
         "mode": "flash",
-        "target": "like",
+        "target": "he",
         "guide": null,
         "word": null,
         "missingIndex": null,
@@ -263,63 +263,63 @@
       }
     },
     {
-      "id": "level-110-r7",
+      "id": "level-145-r7",
       "type": "hunt",
       "prompt": {
-        "text": "Find every tiger!",
-        "say": "Find every word tiger!",
-        "audio": "voice/line-d92215d3aad1476b.m4a"
+        "text": "Find every said!",
+        "say": "Find every word said!",
+        "audio": "voice/line-6f89fb4b319f7b6e.m4a"
       },
       "card": {
-        "text": "tiger",
+        "text": "said",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "tiger",
+        "target": "said",
         "grid": [
-          "and",
-          "tiger",
-          "the",
-          "bus",
-          "star",
-          "brother",
-          "ship",
-          "tiger",
-          "tiger"
+          "said",
+          "like",
+          "he",
+          "said",
+          "look",
+          "you",
+          "said",
+          "what",
+          "help"
         ]
       }
     },
     {
-      "id": "level-110-r8",
+      "id": "level-145-r8",
       "type": "write",
       "prompt": {
-        "text": "Spell he",
-        "say": "He! Write it one letter at a time.",
-        "audio": "voice/line-487d7956bd61835e.m4a"
+        "text": "Spell for",
+        "say": "For! Write it one letter at a time.",
+        "audio": "voice/line-9da2335ef286d9f9.m4a"
       },
       "card": {
-        "text": "he",
+        "text": "for",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "spell",
-        "target": "he",
+        "target": "for",
         "guide": null,
-        "word": "he",
+        "word": "for",
         "missingIndex": null,
         "sentence": false,
         "story": false
       }
     },
     {
-      "id": "level-110-r9",
+      "id": "level-145-r9",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
-        "say": "Listen! Find the word like.",
-        "audio": "voice/line-0e49269b26f07822.m4a"
+        "say": "Listen! Find the word his.",
+        "audio": "voice/line-e7bcdd2d715da962.m4a"
       },
       "card": {
         "text": null,
@@ -329,22 +329,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-110-r9-o1",
-            "label": "like",
+            "id": "level-145-r9-o1",
+            "label": "his",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-110-r9-o2",
-            "label": "bus",
+            "id": "level-145-r9-o2",
+            "label": "do",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-110-r9-o3",
-            "label": "brother",
+            "id": "level-145-r9-o3",
+            "label": "help",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -352,7 +352,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "like"
+          "value": "his"
         },
         "shape": "fish",
         "layout": null,
@@ -362,24 +362,24 @@
       }
     },
     {
-      "id": "level-110-r10",
+      "id": "level-145-r10",
       "type": "pop",
       "prompt": {
-        "text": "Pop every bus!",
-        "say": "Pop every bubble that says bus!",
-        "audio": "voice/line-d8fa58b86a94481f.m4a"
+        "text": "Pop every he!",
+        "say": "Pop every bubble that says he!",
+        "audio": "voice/line-3b6d08ef65c29a1e.m4a"
       },
       "card": {
-        "text": "bus",
+        "text": "he",
         "picture": null,
         "listen": false
       },
       "pop": {
-        "target": "bus",
+        "target": "he",
         "others": [
-          "and",
-          "the",
-          "you"
+          "do",
+          "his",
+          "for"
         ],
         "count": 4
       }
