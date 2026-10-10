@@ -1,20 +1,20 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-53",
-  "number": 53,
-  "name": "Small s",
-  "skill": "Small s and its sound",
+  "id": "level-52",
+  "number": 52,
+  "name": "Small t",
+  "skill": "Small t and its sound",
   "icon": "spa",
   "isBoss": false,
   "requiresSubscription": true,
   "intro": {
-    "text": "Ss",
-    "word": "sun",
-    "say": "Big {S|ˈɛs}, small {s|ˈɛs}! Small {s|ˈɛs} says {/s/|sːː}, like sun.",
-    "audio": "voice/line-4f5a562d7e71074f.m4a",
+    "text": "Tt",
+    "word": "tiger",
+    "say": "Big {T|tˈiː}, small {t|tˈiː}! Small {t|tˈiː} says {/t/|tʌ}, like tiger.",
+    "audio": "voice/line-34573e7b692e9a77.m4a",
     "picture": {
-      "key": "sun",
-      "label": "sun",
+      "key": "tiger",
+      "label": "tiger",
       "url": null
     }
   },
@@ -26,53 +26,53 @@
   },
   "rounds": [
     {
-      "id": "level-53-r1",
+      "id": "level-52-r1",
       "type": "pop",
       "prompt": {
-        "text": "Pop every small s!",
-        "say": "Pop every small {s|ˈɛs} bubble!",
-        "audio": "voice/line-a1f6267ce37085c7.m4a"
+        "text": "Pop every small t!",
+        "say": "Pop every small {t|tˈiː} bubble!",
+        "audio": "voice/line-f220d0e67f20b797.m4a"
       },
       "card": {
-        "text": "s",
+        "text": "t",
         "picture": {
-          "key": "sun",
-          "label": "sun",
+          "key": "tiger",
+          "label": "tiger",
           "url": null
         },
         "listen": false
       },
       "pop": {
-        "target": "s",
+        "target": "t",
         "others": [
-          "z",
-          "c",
-          "e"
+          "f",
+          "l",
+          "i"
         ],
         "count": 5
       }
     },
     {
-      "id": "level-53-r2",
+      "id": "level-52-r2",
       "type": "write",
       "prompt": {
-        "text": "Trace small s",
-        "say": "Trace small {s|ˈɛs}.",
-        "audio": "voice/line-65c0feb26f902ac8.m4a"
+        "text": "Trace small t",
+        "say": "Trace small {t|tˈiː}.",
+        "audio": "voice/line-e4aeaab9519bbc1e.m4a"
       },
       "card": {
-        "text": "s",
+        "text": "t",
         "picture": {
-          "key": "sun",
-          "label": "sun",
+          "key": "tiger",
+          "label": "tiger",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "trace",
-        "target": "s",
-        "guide": "s",
+        "target": "t",
+        "guide": "t",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -80,47 +80,47 @@
       }
     },
     {
-      "id": "level-53-r3",
+      "id": "level-52-r3",
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote some small {s|ˈɛs} the wrong way. Tap them to fix them!",
-        "audio": "voice/line-5d0ee0fcb909fc75.m4a"
+        "say": "Oops! Pencil wrote some small {t|tˈiː} the wrong way. Tap them to fix them!",
+        "audio": "voice/line-2a751034d14376e2.m4a"
       },
       "card": {
-        "text": "s",
+        "text": "t",
         "picture": null,
         "listen": false
       },
       "fix": {
         "items": [
           {
-            "text": "s",
+            "text": "t",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "t",
             "wrong": "mirror",
             "at": null
           },
           {
-            "text": "s",
+            "text": "t",
             "wrong": null,
             "at": null
           },
           {
-            "text": "s",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "s",
+            "text": "t",
             "wrong": "mirror",
             "at": null
           },
           {
-            "text": "s",
+            "text": "t",
             "wrong": null,
             "at": null
           },
           {
-            "text": "s",
+            "text": "t",
             "wrong": null,
             "at": null
           }
@@ -128,22 +128,22 @@
       }
     },
     {
-      "id": "level-53-r4",
+      "id": "level-52-r4",
       "type": "write",
       "prompt": {
-        "text": "Join the dots to make small s",
-        "say": "Join the dots to make small {s|ˈɛs}.",
-        "audio": "voice/line-78471f7e877fd504.m4a"
+        "text": "Join the dots to make small t",
+        "say": "Join the dots to make small {t|tˈiː}.",
+        "audio": "voice/line-80260b7b8d916041.m4a"
       },
       "card": {
-        "text": "s",
+        "text": "t",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "dots",
-        "target": "s",
-        "guide": "s",
+        "target": "t",
+        "guide": "t",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -151,48 +151,48 @@
       }
     },
     {
-      "id": "level-53-r5",
+      "id": "level-52-r5",
       "type": "pick",
       "prompt": {
-        "text": "What starts with /s/?",
-        "say": "{s|ˈɛs} says {/s/|sːː}. Which one starts with {/s/|sːː}?",
-        "audio": "voice/line-9374f15561604097.m4a"
+        "text": "What starts with /t/?",
+        "say": "{t|tˈiː} says {/t/|tʌ}. Which one starts with {/t/|tʌ}?",
+        "audio": "voice/line-9335f1ac7a21afb4.m4a"
       },
       "card": {
-        "text": "s",
+        "text": "t",
         "picture": null,
         "listen": true
       },
       "pick": {
         "options": [
           {
-            "id": "level-53-r5-o1",
-            "label": "octopus",
+            "id": "level-52-r5-o1",
+            "label": "jam",
             "picture": {
-              "key": "octopus",
-              "label": "octopus",
+              "key": "jam",
+              "label": "jam",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-53-r5-o2",
-            "label": "lion",
+            "id": "level-52-r5-o2",
+            "label": "insect",
             "picture": {
-              "key": "lion",
-              "label": "lion",
+              "key": "insect",
+              "label": "insect",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-53-r5-o3",
-            "label": "sun",
+            "id": "level-52-r5-o3",
+            "label": "tiger",
             "picture": {
-              "key": "sun",
-              "label": "sun",
+              "key": "tiger",
+              "label": "tiger",
               "url": null
             },
             "color": null,
@@ -201,7 +201,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "sun"
+          "value": "tiger"
         },
         "shape": "planet",
         "layout": null,
@@ -211,49 +211,49 @@
       }
     },
     {
-      "id": "level-53-r6",
+      "id": "level-52-r6",
       "type": "write",
       "prompt": {
         "text": "Finish the word!",
-        "say": "Sun! Write the missing letter.",
-        "audio": "voice/line-eab2724be18ea86e.m4a"
+        "say": "Tiger! Write the missing letter.",
+        "audio": "voice/line-f86838b9cc957fa8.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "sun",
-          "label": "sun",
+          "key": "tiger",
+          "label": "tiger",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "missing",
-        "target": "s",
-        "guide": "s",
-        "word": "sun",
+        "target": "t",
+        "guide": "t",
+        "word": "tiger",
         "missingIndex": 0,
         "sentence": false,
         "story": false
       }
     },
     {
-      "id": "level-53-r7",
+      "id": "level-52-r7",
       "type": "write",
       "prompt": {
-        "text": "Write small s by yourself",
-        "say": "Now write small {s|ˈɛs} all by yourself!",
-        "audio": "voice/line-9e6280e47ecd611d.m4a"
+        "text": "Write small t by yourself",
+        "say": "Now write small {t|tˈiː} all by yourself!",
+        "audio": "voice/line-2fe3c82143281f6e.m4a"
       },
       "card": {
-        "text": "s",
+        "text": "t",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "free",
-        "target": "s",
-        "guide": "s",
+        "target": "t",
+        "guide": "t",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -261,24 +261,24 @@
       }
     },
     {
-      "id": "level-53-r8",
+      "id": "level-52-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: s says /s/ like sun!",
-        "say": "{s|ˈɛs} says {/s/|sːː}, like sun! Now you say it.",
-        "audio": "voice/line-46d64392be651a70.m4a"
+        "text": "Say: t says /t/ like tiger!",
+        "say": "{t|tˈiː} says {/t/|tʌ}, like tiger! Now you say it.",
+        "audio": "voice/line-f48a8b2758d2677a.m4a"
       },
       "card": {
-        "text": "s says /s/ like sun!",
+        "text": "t says /t/ like tiger!",
         "picture": {
-          "key": "sun",
-          "label": "sun",
+          "key": "tiger",
+          "label": "tiger",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "s says /s/ like sun!"
+        "expected": "t says /t/ like tiger!"
       }
     }
   ]

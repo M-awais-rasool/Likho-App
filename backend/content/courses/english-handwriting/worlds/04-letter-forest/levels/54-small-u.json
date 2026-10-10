@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-56",
-  "number": 56,
+  "id": "level-54",
+  "number": 54,
   "name": "Small u",
   "skill": "Small u and its sound",
   "icon": "spa",
@@ -26,15 +26,15 @@
   },
   "rounds": [
     {
-      "id": "level-56-r1",
-      "type": "pick",
+      "id": "level-54-r1",
+      "type": "pop",
       "prompt": {
-        "text": "Find small u!",
-        "say": "Big {U|jˈuː}, small {u|jˈuː}! Find small {u|jˈuː}.",
-        "audio": "voice/line-64627260fce1e7bb.m4a"
+        "text": "Pop every small u!",
+        "say": "Pop every small {u|jˈuː} bubble!",
+        "audio": "voice/line-4059a4a4f3bcd340.m4a"
       },
       "card": {
-        "text": "U",
+        "text": "u",
         "picture": {
           "key": "umbrella",
           "label": "umbrella",
@@ -42,50 +42,18 @@
         },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-56-r1-o1",
-            "label": "n",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-56-r1-o2",
-            "label": "u",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-56-r1-o3",
-            "label": "y",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-56-r1-o4",
-            "label": "v",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "u",
+        "others": [
+          "n",
+          "v",
+          "y"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "u"
-        },
-        "shape": "fish",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 5
       }
     },
     {
-      "id": "level-56-r2",
+      "id": "level-54-r2",
       "type": "write",
       "prompt": {
         "text": "Trace small u",
@@ -112,90 +80,7 @@
       }
     },
     {
-      "id": "level-56-r3",
-      "type": "pick",
-      "prompt": {
-        "text": "What starts with /u/?",
-        "say": "{u|jˈuː} says {/u/|ʌ}. Which one starts with {/u/|ʌ}?",
-        "audio": "voice/line-4c8c135c60470875.m4a"
-      },
-      "card": {
-        "text": "u",
-        "picture": null,
-        "listen": true
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-56-r3-o1",
-            "label": "nest",
-            "picture": {
-              "key": "nest",
-              "label": "nest",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-56-r3-o2",
-            "label": "umbrella",
-            "picture": {
-              "key": "umbrella",
-              "label": "umbrella",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-56-r3-o3",
-            "label": "queen",
-            "picture": {
-              "key": "queen",
-              "label": "queen",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "umbrella"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-56-r4",
-      "type": "write",
-      "prompt": {
-        "text": "Join the dots to make small u",
-        "say": "Join the dots to make small {u|jˈuː}.",
-        "audio": "voice/line-aa835789217b8ac0.m4a"
-      },
-      "card": {
-        "text": "u",
-        "picture": null,
-        "listen": false
-      },
-      "write": {
-        "mode": "dots",
-        "target": "u",
-        "guide": "u",
-        "word": null,
-        "missingIndex": null,
-        "sentence": false,
-        "story": false
-      }
-    },
-    {
-      "id": "level-56-r5",
+      "id": "level-54-r3",
       "type": "match",
       "prompt": {
         "text": "Find the pairs!",
@@ -243,7 +128,53 @@
       }
     },
     {
-      "id": "level-56-r6",
+      "id": "level-54-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make small u",
+        "say": "Join the dots to make small {u|jˈuː}.",
+        "audio": "voice/line-aa835789217b8ac0.m4a"
+      },
+      "card": {
+        "text": "u",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "u",
+        "guide": "u",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-54-r5",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Nest starts with small {u|jˈuː}. True, or silly?",
+        "audio": "voice/line-b52f643845bc43fc.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "Nest starts with u.",
+        "picture": {
+          "key": "nest",
+          "label": "nest",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-54-r6",
       "type": "sort",
       "prompt": {
         "text": "Sort the letters!",
@@ -270,11 +201,6 @@
         ],
         "items": [
           {
-            "label": "n",
-            "picture": null,
-            "bin": 1
-          },
-          {
             "label": "u",
             "picture": null,
             "bin": 0
@@ -293,6 +219,11 @@
             "label": "u",
             "picture": null,
             "bin": 0
+          },
+          {
+            "label": "n",
+            "picture": null,
+            "bin": 1
           },
           {
             "label": "n",
@@ -303,24 +234,20 @@
       }
     },
     {
-      "id": "level-56-r7",
+      "id": "level-54-r7",
       "type": "write",
       "prompt": {
-        "text": "Look, then write small u",
-        "say": "Look at small {u|jˈuː}. Then write it from memory!",
-        "audio": "voice/line-5f2c8dc6062ab2c4.m4a"
+        "text": "Write small u by yourself",
+        "say": "Now write small {u|jˈuː} all by yourself!",
+        "audio": "voice/line-30627a0c699df139.m4a"
       },
       "card": {
-        "text": null,
-        "picture": {
-          "key": "umbrella",
-          "label": "umbrella",
-          "url": null
-        },
+        "text": "u",
+        "picture": null,
         "listen": false
       },
       "write": {
-        "mode": "flash",
+        "mode": "free",
         "target": "u",
         "guide": "u",
         "word": null,
@@ -330,7 +257,7 @@
       }
     },
     {
-      "id": "level-56-r8",
+      "id": "level-54-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: u says /u/ like umbrella!",

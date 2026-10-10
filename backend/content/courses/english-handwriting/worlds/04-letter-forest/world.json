@@ -1,9 +1,9 @@
 {
   "$schema": "../../../../schema/world.schema.json",
-  "id": "world-3",
-  "order": 3,
-  "name": "Phonics Forest",
-  "skill": "Sounds & words",
+  "id": "world-4",
+  "order": 4,
+  "name": "Letter Forest",
+  "skill": "Small n to z & sounds",
   "icon": "forest",
   "themeId": "phonicsForest",
   "boss": {

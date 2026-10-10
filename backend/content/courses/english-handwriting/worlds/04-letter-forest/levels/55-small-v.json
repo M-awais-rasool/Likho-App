@@ -1,20 +1,20 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-48",
-  "number": 48,
-  "name": "Small o",
-  "skill": "Small o and its sound",
+  "id": "level-55",
+  "number": 55,
+  "name": "Small v",
+  "skill": "Small v and its sound",
   "icon": "spa",
   "isBoss": false,
   "requiresSubscription": true,
   "intro": {
-    "text": "Oo",
-    "word": "octopus",
-    "say": "Big {O|ˈoʊ}, small {o|ˈoʊ}! Small {o|ˈoʊ} says {/o/|ɑ}, like octopus.",
-    "audio": "voice/line-3ab5a6bbaf475db3.m4a",
+    "text": "Vv",
+    "word": "violin",
+    "say": "Big {V|vˈiː}, small {v|vˈiː}! Small {v|vˈiː} says {/v/|vːː}, like violin.",
+    "audio": "voice/line-2ef35f2b7ec2a409.m4a",
     "picture": {
-      "key": "octopus",
-      "label": "octopus",
+      "key": "violin",
+      "label": "violin",
       "url": null
     }
   },
@@ -26,18 +26,18 @@
   },
   "rounds": [
     {
-      "id": "level-48-r1",
+      "id": "level-55-r1",
       "type": "pick",
       "prompt": {
-        "text": "Find small o!",
-        "say": "Big {O|ˈoʊ}, small {o|ˈoʊ}! Find small {o|ˈoʊ}.",
-        "audio": "voice/line-a23cf1fb0219e6cf.m4a"
+        "text": "Find small v!",
+        "say": "Big {V|vˈiː}, small {v|vˈiː}! Find small {v|vˈiː}.",
+        "audio": "voice/line-b418e63feeb8210b.m4a"
       },
       "card": {
-        "text": "O",
+        "text": "V",
         "picture": {
-          "key": "octopus",
-          "label": "octopus",
+          "key": "violin",
+          "label": "violin",
           "url": null
         },
         "listen": false
@@ -45,29 +45,29 @@
       "pick": {
         "options": [
           {
-            "id": "level-48-r1-o1",
-            "label": "e",
+            "id": "level-55-r1-o1",
+            "label": "y",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-48-r1-o2",
-            "label": "o",
+            "id": "level-55-r1-o2",
+            "label": "u",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-48-r1-o3",
-            "label": "c",
+            "id": "level-55-r1-o3",
+            "label": "w",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-48-r1-o4",
-            "label": "a",
+            "id": "level-55-r1-o4",
+            "label": "v",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -75,9 +75,9 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "o"
+          "value": "v"
         },
-        "shape": "kite",
+        "shape": "fish",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -85,26 +85,26 @@
       }
     },
     {
-      "id": "level-48-r2",
+      "id": "level-55-r2",
       "type": "write",
       "prompt": {
-        "text": "Trace small o",
-        "say": "Trace small {o|ˈoʊ}.",
-        "audio": "voice/line-51122d1c7da2ae27.m4a"
+        "text": "Trace small v",
+        "say": "Trace small {v|vˈiː}.",
+        "audio": "voice/line-c2d2d466d91843d0.m4a"
       },
       "card": {
-        "text": "o",
+        "text": "v",
         "picture": {
-          "key": "octopus",
-          "label": "octopus",
+          "key": "violin",
+          "label": "violin",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "trace",
-        "target": "o",
-        "guide": "o",
+        "target": "v",
+        "guide": "v",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -112,48 +112,48 @@
       }
     },
     {
-      "id": "level-48-r3",
+      "id": "level-55-r3",
       "type": "pick",
       "prompt": {
-        "text": "What starts with /o/?",
-        "say": "{o|ˈoʊ} says {/o/|ɑ}. Which one starts with {/o/|ɑ}?",
-        "audio": "voice/line-a488d47b0b46e2b8.m4a"
+        "text": "What starts with /v/?",
+        "say": "{v|vˈiː} says {/v/|vːː}. Which one starts with {/v/|vːː}?",
+        "audio": "voice/line-1fa631ef270a2086.m4a"
       },
       "card": {
-        "text": "o",
+        "text": "v",
         "picture": null,
         "listen": true
       },
       "pick": {
         "options": [
           {
-            "id": "level-48-r3-o1",
-            "label": "queen",
+            "id": "level-55-r3-o1",
+            "label": "violin",
             "picture": {
-              "key": "queen",
-              "label": "queen",
+              "key": "violin",
+              "label": "violin",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-48-r3-o2",
-            "label": "octopus",
+            "id": "level-55-r3-o2",
+            "label": "yo-yo",
             "picture": {
-              "key": "octopus",
-              "label": "octopus",
+              "key": "yoyo",
+              "label": "yo-yo",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-48-r3-o3",
-            "label": "sun",
+            "id": "level-55-r3-o3",
+            "label": "tiger",
             "picture": {
-              "key": "sun",
-              "label": "sun",
+              "key": "tiger",
+              "label": "tiger",
               "url": null
             },
             "color": null,
@@ -162,7 +162,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "octopus"
+          "value": "violin"
         },
         "shape": "card",
         "layout": null,
@@ -172,22 +172,22 @@
       }
     },
     {
-      "id": "level-48-r4",
+      "id": "level-55-r4",
       "type": "write",
       "prompt": {
-        "text": "Join the dots to make small o",
-        "say": "Join the dots to make small {o|ˈoʊ}.",
-        "audio": "voice/line-de27538789f550ba.m4a"
+        "text": "Join the dots to make small v",
+        "say": "Join the dots to make small {v|vˈiː}.",
+        "audio": "voice/line-55354925a9f33091.m4a"
       },
       "card": {
-        "text": "o",
+        "text": "v",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "dots",
-        "target": "o",
-        "guide": "o",
+        "target": "v",
+        "guide": "v",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -195,7 +195,7 @@
       }
     },
     {
-      "id": "level-48-r5",
+      "id": "level-55-r5",
       "type": "match",
       "prompt": {
         "text": "Find the pairs!",
@@ -203,7 +203,7 @@
         "audio": "voice/line-4140f52a5074e7c8.m4a"
       },
       "card": {
-        "text": "Oo",
+        "text": "Vv",
         "picture": null,
         "listen": false
       },
@@ -211,31 +211,31 @@
         "pairs": [
           {
             "a": {
-              "text": "N",
+              "text": "U",
               "picture": null
             },
             "b": {
-              "text": "n",
+              "text": "u",
               "picture": null
             }
           },
           {
             "a": {
-              "text": "O",
+              "text": "V",
               "picture": null
             },
             "b": {
-              "text": "o",
+              "text": "v",
               "picture": null
             }
           },
           {
             "a": {
-              "text": "P",
+              "text": "W",
               "picture": null
             },
             "b": {
-              "text": "p",
+              "text": "w",
               "picture": null
             }
           }
@@ -243,86 +243,86 @@
       }
     },
     {
-      "id": "level-48-r6",
+      "id": "level-55-r6",
       "type": "sort",
       "prompt": {
         "text": "Sort the letters!",
-        "say": "Put each letter in its basket: small {o|ˈoʊ} or {a|ˈeɪ}!",
-        "audio": "voice/line-face5765e7aa9bce.m4a"
+        "say": "Put each letter in its basket: small {v|vˈiː} or {w|dˈʌbəljuː}!",
+        "audio": "voice/line-0fdc3e9c276987b9.m4a"
       },
       "card": {
-        "text": "o a",
+        "text": "v w",
         "picture": null,
         "listen": false
       },
       "sort": {
         "bins": [
           {
-            "label": "o",
+            "label": "v",
             "picture": null,
             "bin": null
           },
           {
-            "label": "a",
+            "label": "w",
             "picture": null,
             "bin": null
           }
         ],
         "items": [
           {
-            "label": "o",
+            "label": "v",
             "picture": null,
             "bin": 0
           },
           {
-            "label": "o",
+            "label": "w",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "w",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "w",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "v",
             "picture": null,
             "bin": 0
           },
           {
-            "label": "a",
-            "picture": null,
-            "bin": 1
-          },
-          {
-            "label": "a",
-            "picture": null,
-            "bin": 1
-          },
-          {
-            "label": "o",
+            "label": "v",
             "picture": null,
             "bin": 0
-          },
-          {
-            "label": "a",
-            "picture": null,
-            "bin": 1
           }
         ]
       }
     },
     {
-      "id": "level-48-r7",
+      "id": "level-55-r7",
       "type": "write",
       "prompt": {
-        "text": "Look, then write small o",
-        "say": "Look at small {o|ˈoʊ}. Then write it from memory!",
-        "audio": "voice/line-d4fd529667275275.m4a"
+        "text": "Look, then write small v",
+        "say": "Look at small {v|vˈiː}. Then write it from memory!",
+        "audio": "voice/line-fec08b951b1282bd.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "octopus",
-          "label": "octopus",
+          "key": "violin",
+          "label": "violin",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "flash",
-        "target": "o",
-        "guide": "o",
+        "target": "v",
+        "guide": "v",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -330,24 +330,24 @@
       }
     },
     {
-      "id": "level-48-r8",
+      "id": "level-55-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: o says /o/ like octopus!",
-        "say": "{o|ˈoʊ} says {/o/|ɑ}, like octopus! Now you say it.",
-        "audio": "voice/line-890c2ca7ad273891.m4a"
+        "text": "Say: v says /v/ like violin!",
+        "say": "{v|vˈiː} says {/v/|vːː}, like violin! Now you say it.",
+        "audio": "voice/line-6bb769338a11917d.m4a"
       },
       "card": {
-        "text": "o says /o/ like octopus!",
+        "text": "v says /v/ like violin!",
         "picture": {
-          "key": "octopus",
-          "label": "octopus",
+          "key": "violin",
+          "label": "violin",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "o says /o/ like octopus!"
+        "expected": "v says /v/ like violin!"
       }
     }
   ]

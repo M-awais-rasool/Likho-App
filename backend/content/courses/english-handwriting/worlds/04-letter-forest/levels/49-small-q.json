@@ -1,20 +1,20 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-50",
-  "number": 50,
-  "name": "Small p",
-  "skill": "Small p and its sound",
+  "id": "level-49",
+  "number": 49,
+  "name": "Small q",
+  "skill": "Small q and its sound",
   "icon": "spa",
   "isBoss": false,
   "requiresSubscription": true,
   "intro": {
-    "text": "Pp",
-    "word": "pig",
-    "say": "Big {P|pˈiː}, small {p|pˈiː}! Small {p|pˈiː} says {/p/|pʌ}, like pig.",
-    "audio": "voice/line-62646ba321f4ccc7.m4a",
+    "text": "Qq",
+    "word": "queen",
+    "say": "Big {Q|kjˈuː}, small {q|kjˈuː}! Small {q|kjˈuː} says {/q/|kwʌ}, like queen.",
+    "audio": "voice/line-084deea19a65c4b2.m4a",
     "picture": {
-      "key": "pig",
-      "label": "pig",
+      "key": "queen",
+      "label": "queen",
       "url": null
     }
   },
@@ -26,18 +26,18 @@
   },
   "rounds": [
     {
-      "id": "level-50-r1",
+      "id": "level-49-r1",
       "type": "pick",
       "prompt": {
-        "text": "Find small p!",
-        "say": "Big {P|pˈiː}, small {p|pˈiː}! Find small {p|pˈiː}.",
-        "audio": "voice/line-bdd7b958972b47f0.m4a"
+        "text": "Find small q!",
+        "say": "Big {Q|kjˈuː}, small {q|kjˈuː}! Find small {q|kjˈuː}.",
+        "audio": "voice/line-0614609f8c9facbf.m4a"
       },
       "card": {
-        "text": "P",
+        "text": "Q",
         "picture": {
-          "key": "pig",
-          "label": "pig",
+          "key": "queen",
+          "label": "queen",
           "url": null
         },
         "listen": false
@@ -45,28 +45,28 @@
       "pick": {
         "options": [
           {
-            "id": "level-50-r1-o1",
-            "label": "p",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-50-r1-o2",
+            "id": "level-49-r1-o1",
             "label": "d",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-50-r1-o3",
-            "label": "b",
+            "id": "level-49-r1-o2",
+            "label": "p",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-50-r1-o4",
+            "id": "level-49-r1-o3",
+            "label": "g",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-49-r1-o4",
             "label": "q",
             "picture": null,
             "color": null,
@@ -75,7 +75,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "p"
+          "value": "q"
         },
         "shape": "shell",
         "layout": null,
@@ -85,26 +85,26 @@
       }
     },
     {
-      "id": "level-50-r2",
+      "id": "level-49-r2",
       "type": "write",
       "prompt": {
-        "text": "Trace small p",
-        "say": "Trace small {p|pˈiː}.",
-        "audio": "voice/line-31b4b55bf104edbe.m4a"
+        "text": "Trace small q",
+        "say": "Trace small {q|kjˈuː}.",
+        "audio": "voice/line-8f0deedd5de2cd11.m4a"
       },
       "card": {
-        "text": "p",
+        "text": "q",
         "picture": {
-          "key": "pig",
-          "label": "pig",
+          "key": "queen",
+          "label": "queen",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "trace",
-        "target": "p",
-        "guide": "p",
+        "target": "q",
+        "guide": "q",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -112,48 +112,48 @@
       }
     },
     {
-      "id": "level-50-r3",
+      "id": "level-49-r3",
       "type": "pick",
       "prompt": {
-        "text": "What starts with /p/?",
-        "say": "{p|pˈiː} says {/p/|pʌ}. Which one starts with {/p/|pʌ}?",
-        "audio": "voice/line-3f4758ddb5061779.m4a"
+        "text": "What starts with /q/?",
+        "say": "{q|kjˈuː} says {/q/|kwʌ}. Which one starts with {/q/|kwʌ}?",
+        "audio": "voice/line-c6b3c40ca4fab971.m4a"
       },
       "card": {
-        "text": "p",
+        "text": "q",
         "picture": null,
         "listen": true
       },
       "pick": {
         "options": [
           {
-            "id": "level-50-r3-o1",
-            "label": "moon",
+            "id": "level-49-r3-o1",
+            "label": "queen",
             "picture": {
-              "key": "moon",
-              "label": "moon",
+              "key": "queen",
+              "label": "queen",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-50-r3-o2",
-            "label": "dog",
+            "id": "level-49-r3-o2",
+            "label": "octopus",
             "picture": {
-              "key": "dog",
-              "label": "dog",
+              "key": "octopus",
+              "label": "octopus",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-50-r3-o3",
-            "label": "pig",
+            "id": "level-49-r3-o3",
+            "label": "violin",
             "picture": {
-              "key": "pig",
-              "label": "pig",
+              "key": "violin",
+              "label": "violin",
               "url": null
             },
             "color": null,
@@ -162,7 +162,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "pig"
+          "value": "queen"
         },
         "shape": "jar",
         "layout": null,
@@ -172,22 +172,22 @@
       }
     },
     {
-      "id": "level-50-r4",
+      "id": "level-49-r4",
       "type": "write",
       "prompt": {
-        "text": "Join the dots to make small p",
-        "say": "Join the dots to make small {p|pˈiː}.",
-        "audio": "voice/line-e4e62fc427aba5a1.m4a"
+        "text": "Join the dots to make small q",
+        "say": "Join the dots to make small {q|kjˈuː}.",
+        "audio": "voice/line-bb6443681332adde.m4a"
       },
       "card": {
-        "text": "p",
+        "text": "q",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "dots",
-        "target": "p",
-        "guide": "p",
+        "target": "q",
+        "guide": "q",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -195,47 +195,47 @@
       }
     },
     {
-      "id": "level-50-r5",
+      "id": "level-49-r5",
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote some small {p|pˈiː} the wrong way. Tap them to fix them!",
-        "audio": "voice/line-21991c8c8fd80af3.m4a"
+        "say": "Oops! Pencil wrote some small {q|kjˈuː} the wrong way. Tap them to fix them!",
+        "audio": "voice/line-6e12111961fa9291.m4a"
       },
       "card": {
-        "text": "p",
+        "text": "q",
         "picture": null,
         "listen": false
       },
       "fix": {
         "items": [
           {
-            "text": "p",
+            "text": "q",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "q",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "q",
             "wrong": "mirror",
             "at": null
           },
           {
-            "text": "p",
+            "text": "q",
             "wrong": null,
             "at": null
           },
           {
-            "text": "p",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "p",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "p",
+            "text": "q",
             "wrong": "mirror",
             "at": null
           },
           {
-            "text": "p",
+            "text": "q",
             "wrong": null,
             "at": null
           }
@@ -243,53 +243,53 @@
       }
     },
     {
-      "id": "level-50-r6",
+      "id": "level-49-r6",
       "type": "write",
       "prompt": {
         "text": "Finish the word!",
-        "say": "Pig! Write the missing letter.",
-        "audio": "voice/line-c031acb1c5729cfd.m4a"
+        "say": "Queen! Write the missing letter.",
+        "audio": "voice/line-b7ab90d97ec3ad41.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "pig",
-          "label": "pig",
+          "key": "queen",
+          "label": "queen",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "missing",
-        "target": "p",
-        "guide": "p",
-        "word": "pig",
+        "target": "q",
+        "guide": "q",
+        "word": "queen",
         "missingIndex": 0,
         "sentence": false,
         "story": false
       }
     },
     {
-      "id": "level-50-r7",
+      "id": "level-49-r7",
       "type": "write",
       "prompt": {
-        "text": "Look, then write small p",
-        "say": "Look at small {p|pˈiː}. Then write it from memory!",
-        "audio": "voice/line-fc43d784da1c826d.m4a"
+        "text": "Look, then write small q",
+        "say": "Look at small {q|kjˈuː}. Then write it from memory!",
+        "audio": "voice/line-38aa038608481194.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "pig",
-          "label": "pig",
+          "key": "queen",
+          "label": "queen",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "flash",
-        "target": "p",
-        "guide": "p",
+        "target": "q",
+        "guide": "q",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -297,24 +297,24 @@
       }
     },
     {
-      "id": "level-50-r8",
+      "id": "level-49-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: p says /p/ like pig!",
-        "say": "{p|pˈiː} says {/p/|pʌ}, like pig! Now you say it.",
-        "audio": "voice/line-6fb28eec69925fbf.m4a"
+        "text": "Say: q says /q/ like queen!",
+        "say": "{q|kjˈuː} says {/q/|kwʌ}, like queen! Now you say it.",
+        "audio": "voice/line-5dacdc878cd0907b.m4a"
       },
       "card": {
-        "text": "p says /p/ like pig!",
+        "text": "q says /q/ like queen!",
         "picture": {
-          "key": "pig",
-          "label": "pig",
+          "key": "queen",
+          "label": "queen",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "p says /p/ like pig!"
+        "expected": "q says /q/ like queen!"
       }
     }
   ]

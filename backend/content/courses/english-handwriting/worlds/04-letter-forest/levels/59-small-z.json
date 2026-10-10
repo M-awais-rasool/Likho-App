@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-61",
-  "number": 61,
+  "id": "level-59",
+  "number": 59,
   "name": "Small z",
   "skill": "Small z and its sound",
   "icon": "spa",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-61-r1",
+      "id": "level-59-r1",
       "type": "pop",
       "prompt": {
         "text": "Pop every small z!",
@@ -53,7 +53,7 @@
       }
     },
     {
-      "id": "level-61-r2",
+      "id": "level-59-r2",
       "type": "write",
       "prompt": {
         "text": "Trace small z",
@@ -80,55 +80,67 @@
       }
     },
     {
-      "id": "level-61-r3",
-      "type": "fix",
+      "id": "level-59-r3",
+      "type": "pick",
       "prompt": {
-        "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote some small {z|zˈiː} the wrong way. Tap them to fix them!",
-        "audio": "voice/line-f5ffed16e9e1aac5.m4a"
+        "text": "What starts with /z/?",
+        "say": "{z|zˈiː} says {/z/|zːː}. Which one starts with {/z/|zːː}?",
+        "audio": "voice/line-20791d7030802652.m4a"
       },
       "card": {
         "text": "z",
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "fix": {
-        "items": [
+      "pick": {
+        "options": [
           {
-            "text": "z",
-            "wrong": "mirror",
-            "at": null
+            "id": "level-59-r3-o1",
+            "label": "zebra",
+            "picture": {
+              "key": "zebra",
+              "label": "zebra",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
           },
           {
-            "text": "z",
-            "wrong": null,
-            "at": null
+            "id": "level-59-r3-o2",
+            "label": "jam",
+            "picture": {
+              "key": "jam",
+              "label": "jam",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
           },
           {
-            "text": "z",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "z",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "z",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "z",
-            "wrong": "mirror",
-            "at": null
+            "id": "level-59-r3-o3",
+            "label": "goat",
+            "picture": {
+              "key": "goat",
+              "label": "goat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
           }
-        ]
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "zebra"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
       }
     },
     {
-      "id": "level-61-r4",
+      "id": "level-59-r4",
       "type": "write",
       "prompt": {
         "text": "Join the dots to make small z",
@@ -151,68 +163,82 @@
       }
     },
     {
-      "id": "level-61-r5",
-      "type": "truth",
+      "id": "level-59-r5",
+      "type": "hunt",
       "prompt": {
-        "text": "True or silly?",
-        "say": "Goat starts with small {z|zˈiː}. True, or silly?",
-        "audio": "voice/line-300bf89a599eb924.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": null,
-        "listen": true
-      },
-      "truth": {
-        "text": "Goat starts with z.",
-        "picture": {
-          "key": "goat",
-          "label": "goat",
-          "url": null
-        },
-        "answer": false
-      }
-    },
-    {
-      "id": "level-61-r6",
-      "type": "order",
-      "prompt": {
-        "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "train",
-          "label": "train",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "x",
-          "y",
-          "z"
-        ]
-      }
-    },
-    {
-      "id": "level-61-r7",
-      "type": "write",
-      "prompt": {
-        "text": "Write small z by yourself",
-        "say": "Now write small {z|zˈiː} all by yourself!",
-        "audio": "voice/line-8d034e483ac22568.m4a"
+        "text": "Find every small z!",
+        "say": "Find every small {z|zˈiː}!",
+        "audio": "voice/line-09450078b1b5f291.m4a"
       },
       "card": {
         "text": "z",
         "picture": null,
         "listen": false
       },
+      "hunt": {
+        "target": "z",
+        "grid": [
+          "x",
+          "s",
+          "z",
+          "s",
+          "x",
+          "z",
+          "s",
+          "z",
+          "n",
+          "n",
+          "z",
+          "x"
+        ]
+      }
+    },
+    {
+      "id": "level-59-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Finish the word!",
+        "say": "Zebra! Write the missing letter.",
+        "audio": "voice/line-5ffbcc2c82c35443.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "zebra",
+          "label": "zebra",
+          "url": null
+        },
+        "listen": false
+      },
       "write": {
-        "mode": "free",
+        "mode": "missing",
+        "target": "z",
+        "guide": "z",
+        "word": "zebra",
+        "missingIndex": 0,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-59-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write small z",
+        "say": "Look at small {z|zˈiː}. Then write it from memory!",
+        "audio": "voice/line-d1cbb5256af73c02.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "zebra",
+          "label": "zebra",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
         "target": "z",
         "guide": "z",
         "word": null,
@@ -222,7 +248,7 @@
       }
     },
     {
-      "id": "level-61-r8",
+      "id": "level-59-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: z says /z/ like zebra!",
