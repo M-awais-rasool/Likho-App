@@ -17,7 +17,7 @@ fixed.
      This is the fastest way to launch.
    - A parent account that does not use Google, for example email plus a one-time code from our
      API, behind the parent gate. This keeps progress across phones.
-2. **Google Play Billing for Likho Plus.** Levels 32 to 144 are sold as the Likho Plus
+2. **Google Play Billing for Likho Plus.** Levels 31 to 210 are sold as the Likho Plus
    subscription (section 3), but "Store purchase is not wired yet" (`paywall_screen.dart`). The app
    needs:
    - Play Billing Library 8 or newer. Play has refused builds with older versions since
@@ -26,7 +26,7 @@ fixed.
    - The API checks each purchase with the Google Play Developer API and real-time developer
      notifications, then turns Plus on or off.
    - A paywall that shows the price, the billing period, the trial and how to cancel.
-   - The parent gate before the paywall. Today a child who taps level 32 sees it directly.
+   - The parent gate before the paywall. Today a child who taps level 31 sees it directly.
 3. **A public HTTPS server for the API.** Release builds now point to `http://192.168.18.20:8080`,
    an address on your home network. Android also blocks plain `http` by default. Deploy the
    backend with HTTPS (for example `https://api.likho.app`) and point release builds at it
@@ -96,8 +96,8 @@ free but takes time.
 | Offer | `free-trial-7d` on both base plans: a 7-day free trial, for new subscribers only |
 | Other countries | set the price in PKR; Play can fill in the other countries' prices for you |
 
-- Plus unlocks levels 32 to 144 (Small Letter Cove to Story Space). Letter Land (capitals A–Z,
-  levels 1–31) stays free. The free part is one constant, `FREE_UP_TO` in
+- Plus unlocks levels 31 to 210 (Small Letter Beach to Story Space). Letter Land and Alphabet Jungle
+  (capitals A–Z, levels 1–30) stay free. The free part is one constant, `FREE_UP_TO` in
   `tools/curriculum/build_levels.py`.
 - Google keeps 15% of subscription payments.
 - These prices are the ones in today's paywall. If you change them, change them in both places.
@@ -132,7 +132,7 @@ Other short descriptions:
 - `Letter tracing & handwriting practice: capital and small letters, phonics, words` (80)
 - `Learn to write ABC: letter tracing, phonics and word games for kids aged 5-8` (76)
 
-### Full description (3505 of 4,000)
+### Full description (3,733 of 4,000)
 
 ```
 Likho turns handwriting practice into a happy adventure. With Pencil, a cheerful talking pencil, your child learns to write every letter of the English alphabet: capital letters A to Z, then small letters a to z with their sounds, then phonics, words, sentences and short stories.
@@ -151,20 +151,22 @@ HOW KIDS LEARN TO WRITE
 10 KINDS OF GAMES
 Every level mixes writing with short games: pop the bubbles, find the picture, sort into baskets, match the pairs, build the word, hunt for the letter, true or silly, fix Pencil's mistakes, say it out loud and, of course, write it.
 
-12 WORLDS, 144 LEVELS
-1. Letter Land: capital letters A to Z
-2. Small Letter Cove: small letters a to z and their sounds
-3. Phonics Forest: words like cat, hen, pig, dog and bus
-4. Word Town: colours, numbers, animals, family and food
-5. Sound Mountain: sh, ch, th, ee, oo and more letter pairs
-6. Blend Beach: star, frog, flag and other blends
-7. Sight Word Garden: the, said, was, they and other words to know by sight
-8. Sentence Sky: capital letters, full stops and sentences such as "I see a cat."
-9. Action Jungle: doing words, describing words and in, on, under
-10. Question Island: who, what, where, and talking with friendly aliens
-11. Reading River: read sentences and little stories, then answer questions
-12. Story Space: put stories in order and write about me, my family and my day
-Each world ends with a sleepy boss that your child wakes up by finishing the level.
+14 WORLDS, 210 LEVELS
+1. Letter Land: capital letters A to M
+2. Alphabet Jungle: capital letters N to Z
+3. Small Letter Beach: small letters a to m and their sounds
+4. Letter Forest: small letters n to z and their sounds
+5. Phonics Island: words like cat, hen, pig, dog and bus, and word families
+6. Word Garden: colours, numbers, animals, clothes, fruit, toys and the weather
+7. Sound Castle: sh, ch, th, ee, oo, igh and more letter pairs
+8. Blend Mountain: star, frog, flag, long words and compound words
+9. Sight Word Town: the, said, was, they and other words to know by sight
+10. Sentence Sky: capital letters, full stops, commas and sentences such as "I see a cat."
+11. Action Cove: doing words, describing words, feelings and opposites
+12. Question River: who, what, where, when, why, and talking with friendly aliens
+13. Reading Bay: read signs, lists and little stories, then answer questions
+14. Story Space: put stories in order and write about me, my pet, my school and my day
+Every world has 15 levels and ends with a sleepy boss that your child wakes up by finishing the level.
 
 REWARDS THAT KEEP THEM GOING
 • Up to 3 stars in every level
@@ -183,7 +185,7 @@ FOR PARENTS
 • Works offline: once the course is downloaded, kids can keep practising without internet
 
 LIKHO PLUS
-Letter Land, with all 26 capital letters, is free to play. Likho Plus, a monthly or yearly subscription, unlocks all 12 worlds and 144 levels. New families can try it free for 7 days. The subscription renews automatically until you cancel it in Google Play.
+Letter Land and Alphabet Jungle, all 26 capital letters, are free to play. Likho Plus, a monthly or yearly subscription, unlocks all 14 worlds and 210 levels. New families can try it free for 7 days. The subscription renews automatically until you cancel it in Google Play.
 
 WALIDAIN KE LIYE
 Likho bachon ke liye English likhna seekhne wala game hai. Bachay ABC, capital aur small letters, phonics, alfaaz aur chhote jumlay likhna seekhte hain. Pencil har hidayat bol kar batata hai, is liye chhote bachay bhi khud khel sakte hain. Koi ads nahi, aur settings parent lock ke peeche mehfooz hain.
@@ -195,7 +197,7 @@ Notes on the full description:
 - Every feature in it exists in the app today. Two lines depend on the sign-in decision in part 1:
   "Progress is saved to your account" and the offline line. Update them if accounts change.
 - Checked against the course on 10 October 2026: children write all 26 capital and all 26 small
-  letters, every level mixes the 10 round types, and each of the 12 worlds ends with a boss.
+  letters, every level mixes the 10 round types, and each of the 14 worlds ends with a boss.
 - Not claimed on purpose:
   - speech checking (speak rounds do not listen yet)
   - left-handed mode (a stored setting that does not change the game yet)
@@ -216,7 +218,7 @@ Play Store search suggestions (Pakistan, 3 October 2026), and where the listing 
 | handwriting practice, handwriting app | short description, full description |
 | capital and small letters, alphabet capital and small letters | short description, full description (the Pakistani school wording) |
 | english writing practice app, kids english learning app | full description ("read and write in English") |
-| phonics learning app, phonics games for kids | short description, full description, Phonics Forest |
+| phonics learning app, phonics games for kids | short description, full description, Phonics Island |
 | kids learning apps offline, kids learning game offline | full description ("kids learning game", "Works offline") |
 | likhne wala game, sikho wali game (Roman Urdu) | "WALIDAIN KE LIYE" paragraph |
 
@@ -287,7 +289,8 @@ reviews from the first week.
 The screenshots frame real app screens (rebuild them with `design/store-screenshots/build.sh`):
 1. Tracing A: "Learn to write ABC"
 2. Picture games: "Phonics games kids love"
-3. The world map: "12 worlds to explore"
+3. The world map: "14 worlds to explore" (the image still says 12 worlds and 144 levels:
+   `design/store-screenshots/compose.html` needs the new numbers before it is rebuilt)
 4. Small letters and spelling: "Capital and small letters"
 5. Level complete: "Earn stars every day"
 6. Pencil's room: "Dress up Pencil"
@@ -298,10 +301,10 @@ The screenshots frame real app screens (rebuild them with `design/store-screensh
 
 - Version: `0.1.0+1` in `pubspec.yaml`; consider `1.0.0+1` for the public launch.
 - Build: `flutter build appbundle --release`, with the production API, then upload the `.aab` file.
-- Release notes (174 of 500):
+- Release notes (176 of 500):
 
 ```
-First release of Likho: 144 levels in 12 worlds. Trace and write capital and small letters, then phonics, words, sentences and stories, with Pencil reading every step out loud.
+First release of Likho: 210 levels in 14 worlds. Trace and write capital and small letters, then phonics, words, sentences and stories, with Pencil reading every step out loud.
 ```
 
 ## Sources
