@@ -29,7 +29,7 @@ fixed.
    - The parent gate before the paywall. Today a child who taps level 31 sees it directly.
 3. **A public HTTPS server for the API.** Release builds now point to `http://192.168.18.20:8080`,
    an address on your home network. Android also blocks plain `http` by default. Deploy the
-   backend with HTTPS (for example `https://api.likho.app`) and point release builds at it
+   backend with HTTPS (`https://api.likho.io`) and point release builds at it
    (`ApiConfig` in `app/lib/data/api/api_client.dart`).
 4. **Release signing key.** `android/app/build.gradle.kts` signs release builds with the debug key,
    and Play refuses those. Create an upload key and keep it backed up (losing it means asking
