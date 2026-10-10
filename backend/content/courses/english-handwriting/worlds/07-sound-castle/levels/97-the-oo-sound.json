@@ -1,20 +1,20 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-83",
-  "number": 83,
-  "name": "The ck Sound",
-  "skill": "ck words",
+  "id": "level-97",
+  "number": 97,
+  "name": "The oo Sound",
+  "skill": "oo words",
   "icon": "graphic_eq",
   "isBoss": false,
   "requiresSubscription": true,
   "intro": {
-    "text": "ck",
-    "word": "duck",
-    "say": "Two letters, one sound: {/ck/|kʌ}! Like duck.",
-    "audio": "voice/line-fb3dbecba2322c15.m4a",
+    "text": "oo",
+    "word": "moon",
+    "say": "Two letters, one sound: {/oo/|uː}! Like moon.",
+    "audio": "voice/line-898e34c86d766093.m4a",
     "picture": {
-      "key": "duck",
-      "label": "duck",
+      "key": "moon",
+      "label": "moon",
       "url": null
     }
   },
@@ -26,48 +26,48 @@
   },
   "rounds": [
     {
-      "id": "level-83-r1",
+      "id": "level-97-r1",
       "type": "pick",
       "prompt": {
-        "text": "Which picture is duck?",
-        "say": "Read the word. Which picture is duck?",
-        "audio": "voice/line-69974f80f137e0b2.m4a"
+        "text": "Which picture is moon?",
+        "say": "Read the word. Which picture is moon?",
+        "audio": "voice/line-8b6de1a997054403.m4a"
       },
       "card": {
-        "text": "duck",
+        "text": "moon",
         "picture": null,
         "listen": false
       },
       "pick": {
         "options": [
           {
-            "id": "level-83-r1-o1",
-            "label": "truck",
+            "id": "level-97-r1-o1",
+            "label": "zoo",
             "picture": {
-              "key": "truck",
-              "label": "truck",
+              "key": "zoo_bus",
+              "label": "zoo",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-83-r1-o2",
-            "label": "duck",
+            "id": "level-97-r1-o2",
+            "label": "moon",
             "picture": {
-              "key": "duck",
-              "label": "duck",
+              "key": "moon",
+              "label": "moon",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-83-r1-o3",
-            "label": "chick",
+            "id": "level-97-r1-o3",
+            "label": "food",
             "picture": {
-              "key": "chick",
-              "label": "chick",
+              "key": "food",
+              "label": "food",
               "url": null
             },
             "color": null,
@@ -76,9 +76,9 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "duck"
+          "value": "moon"
         },
-        "shape": "jar",
+        "shape": "card",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -86,7 +86,7 @@
       }
     },
     {
-      "id": "level-83-r2",
+      "id": "level-97-r2",
       "type": "match",
       "prompt": {
         "text": "Find the pairs!",
@@ -102,42 +102,42 @@
         "pairs": [
           {
             "a": {
-              "text": "duck",
+              "text": "moon",
               "picture": null
             },
             "b": {
               "text": null,
               "picture": {
-                "key": "duck",
-                "label": "duck",
+                "key": "moon",
+                "label": "moon",
                 "url": null
               }
             }
           },
           {
             "a": {
-              "text": "sock",
+              "text": "boot",
               "picture": null
             },
             "b": {
               "text": null,
               "picture": {
-                "key": "sock",
-                "label": "sock",
+                "key": "boot",
+                "label": "boot",
                 "url": null
               }
             }
           },
           {
             "a": {
-              "text": "clock",
+              "text": "book",
               "picture": null
             },
             "b": {
               "text": null,
               "picture": {
-                "key": "clock",
-                "label": "clock",
+                "key": "book",
+                "label": "book",
                 "url": null
               }
             }
@@ -146,38 +146,38 @@
       }
     },
     {
-      "id": "level-83-r3",
+      "id": "level-97-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
-        "say": "Duck! Build the word duck.",
-        "audio": "voice/line-6a0b31f1a743702f.m4a"
+        "say": "Moon! Build the word moon.",
+        "audio": "voice/line-7c139dddbaa5edf8.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "duck",
-          "label": "duck",
+          "key": "moon",
+          "label": "moon",
           "url": null
         },
         "listen": false
       },
       "order": {
         "tiles": [
-          "d",
-          "u",
-          "ck"
+          "m",
+          "oo",
+          "n"
         ],
-        "slot": "wagon"
+        "slot": "plank"
       }
     },
     {
-      "id": "level-83-r4",
+      "id": "level-97-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
-        "say": "Listen! Find the word sock.",
-        "audio": "voice/line-27118c85d5a28020.m4a"
+        "say": "Listen! Find the word boot.",
+        "audio": "voice/line-61f2e21df12b7185.m4a"
       },
       "card": {
         "text": null,
@@ -187,22 +187,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-83-r4-o1",
-            "label": "duck",
+            "id": "level-97-r4-o1",
+            "label": "boot",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-83-r4-o2",
-            "label": "sock",
+            "id": "level-97-r4-o2",
+            "label": "food",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-83-r4-o3",
-            "label": "truck",
+            "id": "level-97-r4-o3",
+            "label": "book",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -210,7 +210,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "sock"
+          "value": "boot"
         },
         "shape": "mushroom",
         "layout": null,
@@ -220,18 +220,18 @@
       }
     },
     {
-      "id": "level-83-r5",
+      "id": "level-97-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
-        "say": "Sock! Which letter is missing?",
-        "audio": "voice/line-d59fce04d353e41b.m4a"
+        "say": "Boot! Which letter is missing?",
+        "audio": "voice/line-2f688c1c27a4cbdf.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "sock",
-          "label": "sock",
+          "key": "boot",
+          "label": "boot",
           "url": null
         },
         "listen": false
@@ -240,14 +240,14 @@
         "mode": "missing",
         "target": "o",
         "guide": "o",
-        "word": "sock",
+        "word": "boot",
         "missingIndex": 1,
         "sentence": false,
         "story": false
       }
     },
     {
-      "id": "level-83-r6",
+      "id": "level-97-r6",
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
@@ -262,84 +262,84 @@
       "fix": {
         "items": [
           {
-            "text": "duck",
-            "wrong": "mirror",
-            "at": 0
-          },
-          {
-            "text": "sock",
+            "text": "moon",
             "wrong": null,
             "at": null
           },
           {
-            "text": "clock",
+            "text": "boot",
             "wrong": null,
             "at": null
           },
           {
-            "text": "rock",
+            "text": "book",
             "wrong": "mirror",
-            "at": 0
+            "at": 3
+          },
+          {
+            "text": "spoon",
+            "wrong": "mirror",
+            "at": 1
           }
         ]
       }
     },
     {
-      "id": "level-83-r7",
+      "id": "level-97-r7",
       "type": "hunt",
       "prompt": {
-        "text": "Find every rock!",
-        "say": "Find every word rock!",
-        "audio": "voice/line-87fb42d443239006.m4a"
+        "text": "Find every spoon!",
+        "say": "Find every word spoon!",
+        "audio": "voice/line-c225ba1e0bcd62cc.m4a"
       },
       "card": {
-        "text": "rock",
+        "text": "spoon",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "rock",
+        "target": "spoon",
         "grid": [
-          "rock",
-          "chick",
-          "clock",
-          "duck",
-          "rock",
+          "boot",
+          "book",
+          "spoon",
+          "spoon",
+          "zoo",
+          "moon",
+          "spoon",
           "pink",
-          "truck",
-          "sock",
-          "rock"
+          "food"
         ]
       }
     },
     {
-      "id": "level-83-r8",
+      "id": "level-97-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: duck, sock, clock, rock!",
-        "say": "Say them with me! duck, sock, clock, rock!",
-        "audio": "voice/line-565bf41e933e3b4c.m4a"
+        "text": "Say: moon, boot, book, spoon!",
+        "say": "Say them with me! moon, boot, book, spoon!",
+        "audio": "voice/line-f8dc73d77afb1261.m4a"
       },
       "card": {
-        "text": "duck, sock, clock, rock!",
+        "text": "moon, boot, book, spoon!",
         "picture": {
-          "key": "duck",
-          "label": "duck",
+          "key": "moon",
+          "label": "moon",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "duck, sock, clock, rock!"
+        "expected": "moon, boot, book, spoon!"
       }
     },
     {
-      "id": "level-83-r9",
+      "id": "level-97-r9",
       "type": "truth",
       "prompt": {
         "text": "True or silly?",
-        "say": "This is a brother. True, or silly?",
-        "audio": "voice/line-dc575af44a6100b8.m4a"
+        "say": "This is a moon. True, or silly?",
+        "audio": "voice/line-359fbd5f38ea55e2.m4a"
       },
       "card": {
         "text": null,
@@ -347,35 +347,35 @@
         "listen": true
       },
       "truth": {
-        "text": "This is a brother.",
+        "text": "This is a moon.",
         "picture": {
-          "key": "family_brother",
-          "label": "brother",
+          "key": "moon",
+          "label": "moon",
           "url": null
         },
         "answer": true
       }
     },
     {
-      "id": "level-83-r10",
+      "id": "level-97-r10",
       "type": "write",
       "prompt": {
-        "text": "Write clock",
-        "say": "Write the word clock.",
-        "audio": "voice/line-b398075f73381c2e.m4a"
+        "text": "Write book",
+        "say": "Write the word book.",
+        "audio": "voice/line-39318ea5675ec06a.m4a"
       },
       "card": {
-        "text": "clock",
+        "text": "book",
         "picture": {
-          "key": "clock",
-          "label": "clock",
+          "key": "book",
+          "label": "book",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "free",
-        "target": "clock",
+        "target": "book",
         "guide": null,
         "word": null,
         "missingIndex": null,

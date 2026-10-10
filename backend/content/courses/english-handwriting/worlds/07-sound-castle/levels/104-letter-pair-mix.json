@@ -1,0 +1,420 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-104",
+  "number": 104,
+  "name": "Letter Pair Mix",
+  "skill": "Review",
+  "icon": "auto_awesome",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "sh ch th",
+    "word": "ship",
+    "say": "Ship, chick, thumb, tree, moon, rain! Let's mix up our letter pairs.",
+    "audio": "voice/line-e4cb566a3b3e8000.m4a",
+    "picture": {
+      "key": "ship",
+      "label": "ship",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-104-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is ship?",
+        "say": "Read the word. Which picture is ship?",
+        "audio": "voice/line-ce785152aa14dbbc.m4a"
+      },
+      "card": {
+        "text": "ship",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-104-r1-o1",
+            "label": "tree",
+            "picture": {
+              "key": "tree",
+              "label": "tree",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-104-r1-o2",
+            "label": "ship",
+            "picture": {
+              "key": "ship",
+              "label": "ship",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-104-r1-o3",
+            "label": "rain",
+            "picture": {
+              "key": "rain",
+              "label": "rain",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "ship"
+        },
+        "shape": "bucket",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-104-r2",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "ship",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "ship",
+                "label": "ship",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "chick",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "chick",
+                "label": "chick",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "thumb",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "thumb",
+                "label": "thumb",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-104-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Ship! Build the word ship.",
+        "audio": "voice/line-3b1fd5e1837e0747.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "ship",
+          "label": "ship",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "s",
+          "h",
+          "i",
+          "p"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-104-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Chick! Which letter is missing?",
+        "audio": "voice/line-1736656e705443e2.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "chick",
+          "label": "chick",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "i",
+        "guide": "i",
+        "word": "chick",
+        "missingIndex": 2,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-104-r5",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "ship",
+            "wrong": "mirror",
+            "at": 3
+          },
+          {
+            "text": "chick",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "thumb",
+            "wrong": "mirror",
+            "at": 4
+          },
+          {
+            "text": "tree",
+            "wrong": null,
+            "at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-104-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every tree!",
+        "say": "Find every word tree!",
+        "audio": "voice/line-2f3013948625be39.m4a"
+      },
+      "card": {
+        "text": "tree",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "tree",
+        "grid": [
+          "tree",
+          "ship",
+          "rain",
+          "pink",
+          "chick",
+          "tree",
+          "tree",
+          "thumb",
+          "moon"
+        ]
+      }
+    },
+    {
+      "id": "level-104-r7",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the words: sh or ch or th?",
+        "say": "Read each word. Is it {s|ˈɛs} {h|ˈeɪʧ} or {c|sˈiː} {h|ˈeɪʧ} or {t|tˈiː} {h|ˈeɪʧ}?",
+        "audio": "voice/line-12869230f1b76c29.m4a"
+      },
+      "card": {
+        "text": "sh ch th",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "sh",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "ch",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "th",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "ship",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "chick",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "fish",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "thumb",
+            "picture": null,
+            "bin": 2
+          },
+          {
+            "label": "shop",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "chair",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "bath",
+            "picture": null,
+            "bin": 2
+          },
+          {
+            "label": "lunch",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "three",
+            "picture": null,
+            "bin": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-104-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: ship, chick, thumb, tree!",
+        "say": "Say them with me! ship, chick, thumb, tree!",
+        "audio": "voice/line-72168fc568c756c6.m4a"
+      },
+      "card": {
+        "text": "ship, chick, thumb, tree!",
+        "picture": {
+          "key": "ship",
+          "label": "ship",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "ship, chick, thumb, tree!"
+      }
+    },
+    {
+      "id": "level-104-r9",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a chick. True, or silly?",
+        "audio": "voice/line-8791aaedbbb194ac.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a chick.",
+        "picture": {
+          "key": "bus",
+          "label": "bus",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-104-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Write thumb",
+        "say": "Write the word thumb.",
+        "audio": "voice/line-5dea2be15a8c5af5.m4a"
+      },
+      "card": {
+        "text": "thumb",
+        "picture": {
+          "key": "thumb",
+          "label": "thumb",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "thumb",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

@@ -1,20 +1,20 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-85",
-  "number": 85,
-  "name": "The ee Sound",
-  "skill": "ee words",
+  "id": "level-92",
+  "number": 92,
+  "name": "The ch Sound",
+  "skill": "ch words",
   "icon": "graphic_eq",
   "isBoss": false,
   "requiresSubscription": true,
   "intro": {
-    "text": "ee",
-    "word": "tree",
-    "say": "Two letters, one sound: {/ee/|iː}! Like tree.",
-    "audio": "voice/line-30708de0e0cc477e.m4a",
+    "text": "ch",
+    "word": "chick",
+    "say": "Two letters, one sound: {/ch/|ʧʌ}! Like chick.",
+    "audio": "voice/line-77cf3f9d95ff071f.m4a",
     "picture": {
-      "key": "tree",
-      "label": "tree",
+      "key": "chick",
+      "label": "chick",
       "url": null
     }
   },
@@ -26,48 +26,48 @@
   },
   "rounds": [
     {
-      "id": "level-85-r1",
+      "id": "level-92-r1",
       "type": "pick",
       "prompt": {
-        "text": "Which picture is tree?",
-        "say": "Read the word. Which picture is tree?",
-        "audio": "voice/line-f01a1b4f6ac1a2bb.m4a"
+        "text": "Which picture is chick?",
+        "say": "Read the word. Which picture is chick?",
+        "audio": "voice/line-5d19be8023d6f311.m4a"
       },
       "card": {
-        "text": "tree",
+        "text": "chick",
         "picture": null,
         "listen": false
       },
       "pick": {
         "options": [
           {
-            "id": "level-85-r1-o1",
-            "label": "sheep",
+            "id": "level-92-r1-o1",
+            "label": "chick",
             "picture": {
-              "key": "sheep",
-              "label": "sheep",
+              "key": "chick",
+              "label": "chick",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-85-r1-o2",
-            "label": "tree",
+            "id": "level-92-r1-o2",
+            "label": "watch",
             "picture": {
-              "key": "tree",
-              "label": "tree",
+              "key": "watch",
+              "label": "watch",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-85-r1-o3",
-            "label": "teeth",
+            "id": "level-92-r1-o3",
+            "label": "cheese",
             "picture": {
-              "key": "tooth",
-              "label": "teeth",
+              "key": "cheese",
+              "label": "cheese",
               "url": null
             },
             "color": null,
@@ -76,9 +76,9 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "tree"
+          "value": "chick"
         },
-        "shape": "card",
+        "shape": "bucket",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -86,61 +86,62 @@
       }
     },
     {
-      "id": "level-85-r2",
+      "id": "level-92-r2",
       "type": "pop",
       "prompt": {
-        "text": "Pop every tree!",
-        "say": "Pop every bubble that says tree!",
-        "audio": "voice/line-d0f93beee2f512c6.m4a"
+        "text": "Pop every chair!",
+        "say": "Pop every bubble that says chair!",
+        "audio": "voice/line-a1502dc321f95cb1.m4a"
       },
       "card": {
-        "text": "tree",
+        "text": "chair",
         "picture": null,
         "listen": false
       },
       "pop": {
-        "target": "tree",
+        "target": "chair",
         "others": [
-          "feet",
-          "four",
-          "goat"
+          "chick",
+          "peach",
+          "watch"
         ],
         "count": 4
       }
     },
     {
-      "id": "level-85-r3",
+      "id": "level-92-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
-        "say": "Tree! Build the word tree.",
-        "audio": "voice/line-d8171fa75822a4db.m4a"
+        "say": "Chick! Build the word chick.",
+        "audio": "voice/line-b48a9ea51d056058.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "tree",
-          "label": "tree",
+          "key": "chick",
+          "label": "chick",
           "url": null
         },
         "listen": false
       },
       "order": {
         "tiles": [
-          "t",
-          "r",
-          "ee"
+          "ch",
+          "i",
+          "c",
+          "k"
         ],
-        "slot": "plank"
+        "slot": "stripe"
       }
     },
     {
-      "id": "level-85-r4",
+      "id": "level-92-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
-        "say": "Listen! Find the word bee.",
-        "audio": "voice/line-b11094d4e5932078.m4a"
+        "say": "Listen! Find the word chair.",
+        "audio": "voice/line-80ac30aad6d1bf11.m4a"
       },
       "card": {
         "text": null,
@@ -150,22 +151,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-85-r4-o1",
-            "label": "teeth",
+            "id": "level-92-r4-o1",
+            "label": "chick",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-85-r4-o2",
-            "label": "feet",
+            "id": "level-92-r4-o2",
+            "label": "chair",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-85-r4-o3",
-            "label": "bee",
+            "id": "level-92-r4-o3",
+            "label": "peach",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -173,7 +174,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "bee"
+          "value": "chair"
         },
         "shape": "balloon",
         "layout": null,
@@ -183,34 +184,34 @@
       }
     },
     {
-      "id": "level-85-r5",
+      "id": "level-92-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
-        "say": "Bee! Which letter is missing?",
-        "audio": "voice/line-9c4d71b6d9d625ee.m4a"
+        "say": "Chair! Which letter is missing?",
+        "audio": "voice/line-49ef7e27c527df8c.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "bee",
-          "label": "bee",
+          "key": "chair",
+          "label": "chair",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "missing",
-        "target": "e",
-        "guide": "e",
-        "word": "bee",
-        "missingIndex": 1,
+        "target": "a",
+        "guide": "a",
+        "word": "chair",
+        "missingIndex": 2,
         "sentence": false,
         "story": false
       }
     },
     {
-      "id": "level-85-r6",
+      "id": "level-92-r6",
       "type": "match",
       "prompt": {
         "text": "Find the pairs!",
@@ -226,42 +227,42 @@
         "pairs": [
           {
             "a": {
-              "text": "tree",
+              "text": "chick",
               "picture": null
             },
             "b": {
               "text": null,
               "picture": {
-                "key": "tree",
-                "label": "tree",
+                "key": "chick",
+                "label": "chick",
                 "url": null
               }
             }
           },
           {
             "a": {
-              "text": "bee",
+              "text": "chair",
               "picture": null
             },
             "b": {
               "text": null,
               "picture": {
-                "key": "bee",
-                "label": "bee",
+                "key": "chair",
+                "label": "chair",
                 "url": null
               }
             }
           },
           {
             "a": {
-              "text": "sheep",
+              "text": "cheese",
               "picture": null
             },
             "b": {
               "text": null,
               "picture": {
-                "key": "sheep",
-                "label": "sheep",
+                "key": "cheese",
+                "label": "cheese",
                 "url": null
               }
             }
@@ -270,56 +271,56 @@
       }
     },
     {
-      "id": "level-85-r7",
+      "id": "level-92-r7",
       "type": "hunt",
       "prompt": {
-        "text": "Find every feet!",
-        "say": "Find every word feet!",
-        "audio": "voice/line-51ab0aacd95c3924.m4a"
+        "text": "Find every cherry!",
+        "say": "Find every word cherry!",
+        "audio": "voice/line-d605ebc65a041dc5.m4a"
       },
       "card": {
-        "text": "feet",
+        "text": "cherry",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "feet",
+        "target": "cherry",
         "grid": [
-          "sheep",
-          "bee",
-          "feet",
-          "seed",
-          "feet",
-          "teeth",
-          "tree",
+          "chick",
           "pink",
-          "feet"
+          "chair",
+          "watch",
+          "cheese",
+          "cherry",
+          "cherry",
+          "peach",
+          "cherry"
         ]
       }
     },
     {
-      "id": "level-85-r8",
+      "id": "level-92-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: tree, bee, sheep, feet!",
-        "say": "Say them with me! tree, bee, sheep, feet!",
-        "audio": "voice/line-804309d93bba538f.m4a"
+        "text": "Say: chick, chair, cheese, cherry!",
+        "say": "Say them with me! chick, chair, cheese, cherry!",
+        "audio": "voice/line-2c4a8aad9eb502f4.m4a"
       },
       "card": {
-        "text": "tree, bee, sheep, feet!",
+        "text": "chick, chair, cheese, cherry!",
         "picture": {
-          "key": "tree",
-          "label": "tree",
+          "key": "chick",
+          "label": "chick",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "tree, bee, sheep, feet!"
+        "expected": "chick, chair, cheese, cherry!"
       }
     },
     {
-      "id": "level-85-r9",
+      "id": "level-92-r9",
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
@@ -334,48 +335,48 @@
       "fix": {
         "items": [
           {
-            "text": "tree",
-            "wrong": null,
-            "at": null
+            "text": "chick",
+            "wrong": "mirror",
+            "at": 0
           },
           {
-            "text": "bee",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "sheep",
+            "text": "chair",
             "wrong": "mirror",
             "at": 4
           },
           {
-            "text": "feet",
-            "wrong": "mirror",
-            "at": 1
+            "text": "cheese",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "cherry",
+            "wrong": null,
+            "at": null
           }
         ]
       }
     },
     {
-      "id": "level-85-r10",
+      "id": "level-92-r10",
       "type": "write",
       "prompt": {
-        "text": "Write sheep",
-        "say": "Write the word sheep.",
-        "audio": "voice/line-793a35a1396bfabf.m4a"
+        "text": "Write cheese",
+        "say": "Write the word cheese.",
+        "audio": "voice/line-4eb7362e2c13d033.m4a"
       },
       "card": {
-        "text": "sheep",
+        "text": "cheese",
         "picture": {
-          "key": "sheep",
-          "label": "sheep",
+          "key": "cheese",
+          "label": "cheese",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "free",
-        "target": "sheep",
+        "target": "cheese",
         "guide": null,
         "word": null,
         "missingIndex": null,

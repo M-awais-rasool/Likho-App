@@ -1,20 +1,20 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-81",
-  "number": 81,
-  "name": "The ch Sound",
-  "skill": "ch words",
+  "id": "level-95",
+  "number": 95,
+  "name": "The ng Sound",
+  "skill": "ng words",
   "icon": "graphic_eq",
   "isBoss": false,
   "requiresSubscription": true,
   "intro": {
-    "text": "ch",
-    "word": "chick",
-    "say": "Two letters, one sound: {/ch/|ʧʌ}! Like chick.",
-    "audio": "voice/line-77cf3f9d95ff071f.m4a",
+    "text": "ng",
+    "word": "ring",
+    "say": "Two letters, one sound: {/ng/|ŋːː}! Like ring.",
+    "audio": "voice/line-8b89d030eb250ace.m4a",
     "picture": {
-      "key": "chick",
-      "label": "chick",
+      "key": "ring",
+      "label": "ring",
       "url": null
     }
   },
@@ -26,48 +26,48 @@
   },
   "rounds": [
     {
-      "id": "level-81-r1",
+      "id": "level-95-r1",
       "type": "pick",
       "prompt": {
-        "text": "Which picture is chick?",
-        "say": "Read the word. Which picture is chick?",
-        "audio": "voice/line-5d19be8023d6f311.m4a"
+        "text": "Which picture is ring?",
+        "say": "Read the word. Which picture is ring?",
+        "audio": "voice/line-89d4c22777207bee.m4a"
       },
       "card": {
-        "text": "chick",
+        "text": "ring",
         "picture": null,
         "listen": false
       },
       "pick": {
         "options": [
           {
-            "id": "level-81-r1-o1",
-            "label": "chick",
+            "id": "level-95-r1-o1",
+            "label": "ring",
             "picture": {
-              "key": "chick",
-              "label": "chick",
+              "key": "ring",
+              "label": "ring",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-81-r1-o2",
-            "label": "chair",
+            "id": "level-95-r1-o2",
+            "label": "king",
             "picture": {
-              "key": "chair",
-              "label": "chair",
+              "key": "king",
+              "label": "king",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-81-r1-o3",
-            "label": "cheese",
+            "id": "level-95-r1-o3",
+            "label": "wing",
             "picture": {
-              "key": "cheese",
-              "label": "cheese",
+              "key": "wing",
+              "label": "wing",
               "url": null
             },
             "color": null,
@@ -76,9 +76,9 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "chick"
+          "value": "ring"
         },
-        "shape": "card",
+        "shape": "jar",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -86,7 +86,7 @@
       }
     },
     {
-      "id": "level-81-r2",
+      "id": "level-95-r2",
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
@@ -101,62 +101,61 @@
       "fix": {
         "items": [
           {
-            "text": "chick",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "chair",
+            "text": "ring",
             "wrong": "mirror",
-            "at": 2
+            "at": 0
           },
           {
-            "text": "cheese",
+            "text": "king",
             "wrong": null,
             "at": null
           },
           {
-            "text": "cherry",
+            "text": "wing",
             "wrong": "mirror",
             "at": 3
+          },
+          {
+            "text": "sing",
+            "wrong": null,
+            "at": null
           }
         ]
       }
     },
     {
-      "id": "level-81-r3",
+      "id": "level-95-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
-        "say": "Chick! Build the word chick.",
-        "audio": "voice/line-b48a9ea51d056058.m4a"
+        "say": "Ring! Build the word ring.",
+        "audio": "voice/line-548e6fdfaa945c9e.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "chick",
-          "label": "chick",
+          "key": "ring",
+          "label": "ring",
           "url": null
         },
         "listen": false
       },
       "order": {
         "tiles": [
-          "ch",
+          "r",
           "i",
-          "c",
-          "k"
+          "ng"
         ],
-        "slot": "plank"
+        "slot": "wagon"
       }
     },
     {
-      "id": "level-81-r4",
+      "id": "level-95-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
-        "say": "Listen! Find the word chair.",
-        "audio": "voice/line-80ac30aad6d1bf11.m4a"
+        "say": "Listen! Find the word king.",
+        "audio": "voice/line-524726e5bcafe71c.m4a"
       },
       "card": {
         "text": null,
@@ -166,22 +165,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-81-r4-o1",
-            "label": "chick",
+            "id": "level-95-r4-o1",
+            "label": "wing",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-81-r4-o2",
-            "label": "chair",
+            "id": "level-95-r4-o2",
+            "label": "song",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-81-r4-o3",
-            "label": "cheese",
+            "id": "level-95-r4-o3",
+            "label": "king",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -189,7 +188,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "chair"
+          "value": "king"
         },
         "shape": "fish",
         "layout": null,
@@ -199,39 +198,39 @@
       }
     },
     {
-      "id": "level-81-r5",
+      "id": "level-95-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
-        "say": "Chair! Which letter is missing?",
-        "audio": "voice/line-49ef7e27c527df8c.m4a"
+        "say": "King! Which letter is missing?",
+        "audio": "voice/line-33793554453314a3.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "chair",
-          "label": "chair",
+          "key": "king",
+          "label": "king",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "missing",
-        "target": "a",
-        "guide": "a",
-        "word": "chair",
-        "missingIndex": 2,
+        "target": "i",
+        "guide": "i",
+        "word": "king",
+        "missingIndex": 1,
         "sentence": false,
         "story": false
       }
     },
     {
-      "id": "level-81-r6",
+      "id": "level-95-r6",
       "type": "truth",
       "prompt": {
         "text": "True or silly?",
-        "say": "This is a cheese. True, or silly?",
-        "audio": "voice/line-67892eb6cb34e426.m4a"
+        "say": "This is a wing. True, or silly?",
+        "audio": "voice/line-4fde6a371ab44b89.m4a"
       },
       "card": {
         "text": null,
@@ -239,118 +238,109 @@
         "listen": true
       },
       "truth": {
-        "text": "This is a cheese.",
+        "text": "This is a wing.",
         "picture": {
-          "key": "cheese",
-          "label": "cheese",
+          "key": "wing",
+          "label": "wing",
           "url": null
         },
         "answer": true
       }
     },
     {
-      "id": "level-81-r7",
+      "id": "level-95-r7",
       "type": "hunt",
       "prompt": {
-        "text": "Find every cherry!",
-        "say": "Find every word cherry!",
-        "audio": "voice/line-d605ebc65a041dc5.m4a"
+        "text": "Find every sing!",
+        "say": "Find every word sing!",
+        "audio": "voice/line-9869131c1f01573d.m4a"
       },
       "card": {
-        "text": "cherry",
+        "text": "sing",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "cherry",
+        "target": "sing",
         "grid": [
-          "peach",
-          "chick",
-          "cherry",
-          "cheese",
           "pink",
-          "watch",
-          "cherry",
-          "cherry",
-          "chair"
+          "ring",
+          "wing",
+          "sing",
+          "king",
+          "four",
+          "sing",
+          "sing",
+          "song"
         ]
       }
     },
     {
-      "id": "level-81-r8",
+      "id": "level-95-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: chick, chair, cheese, cherry!",
-        "say": "Say them with me! chick, chair, cheese, cherry!",
-        "audio": "voice/line-2c4a8aad9eb502f4.m4a"
+        "text": "Say: ring, king, wing, sing!",
+        "say": "Say them with me! ring, king, wing, sing!",
+        "audio": "voice/line-b5fbceec84b35e05.m4a"
       },
       "card": {
-        "text": "chick, chair, cheese, cherry!",
+        "text": "ring, king, wing, sing!",
         "picture": {
-          "key": "chick",
-          "label": "chick",
+          "key": "ring",
+          "label": "ring",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "chick, chair, cheese, cherry!"
+        "expected": "ring, king, wing, sing!"
       }
     },
     {
-      "id": "level-81-r9",
+      "id": "level-95-r9",
       "type": "sort",
       "prompt": {
-        "text": "Feed it /ch/!",
-        "say": "This monster only eats words with {/ch/|ʧʌ}. Feed it!",
-        "audio": "voice/line-a627d0b1429e1c50.m4a"
+        "text": "Feed it /ng/!",
+        "say": "This monster only eats words with {/ng/|ŋːː}. Feed it!",
+        "audio": "voice/line-576eacf8595389b4.m4a"
       },
       "card": {
-        "text": "ch",
+        "text": "ng",
         "picture": null,
         "listen": false
       },
       "sort": {
         "bins": [
           {
-            "label": "ch",
+            "label": "ng",
             "picture": null,
             "bin": null
           }
         ],
         "items": [
           {
-            "label": "brother",
+            "label": "ring",
             "picture": {
-              "key": "family_brother",
-              "label": "brother",
-              "url": null
-            },
-            "bin": null
-          },
-          {
-            "label": "hand",
-            "picture": {
-              "key": "hand",
-              "label": "hand",
-              "url": null
-            },
-            "bin": null
-          },
-          {
-            "label": "chick",
-            "picture": {
-              "key": "chick",
-              "label": "chick",
+              "key": "ring",
+              "label": "ring",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "cheese",
+            "label": "king",
             "picture": {
-              "key": "cheese",
-              "label": "cheese",
+              "key": "king",
+              "label": "king",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "wing",
+            "picture": {
+              "key": "wing",
+              "label": "wing",
               "url": null
             },
             "bin": 0
@@ -365,37 +355,46 @@
             "bin": null
           },
           {
-            "label": "chair",
+            "label": "hand",
             "picture": {
-              "key": "chair",
-              "label": "chair",
+              "key": "hand",
+              "label": "hand",
               "url": null
             },
-            "bin": 0
+            "bin": null
+          },
+          {
+            "label": "brother",
+            "picture": {
+              "key": "family_brother",
+              "label": "brother",
+              "url": null
+            },
+            "bin": null
           }
         ]
       }
     },
     {
-      "id": "level-81-r10",
+      "id": "level-95-r10",
       "type": "write",
       "prompt": {
-        "text": "Write cheese",
-        "say": "Write the word cheese.",
-        "audio": "voice/line-4eb7362e2c13d033.m4a"
+        "text": "Write wing",
+        "say": "Write the word wing.",
+        "audio": "voice/line-5e31caabac4c8b87.m4a"
       },
       "card": {
-        "text": "cheese",
+        "text": "wing",
         "picture": {
-          "key": "cheese",
-          "label": "cheese",
+          "key": "wing",
+          "label": "wing",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "free",
-        "target": "cheese",
+        "target": "wing",
         "guide": null,
         "word": null,
         "missingIndex": null,

@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../../schema/world.schema.json",
+  "id": "world-7",
+  "order": 7,
+  "name": "Sound Castle",
+  "skill": "Letter pairs",
+  "icon": "castle",
+  "themeId": "alphabetCastle",
+  "boss": {
+    "id": "dragon",
+    "name": "Sleepy Dragon"
+  }
+}

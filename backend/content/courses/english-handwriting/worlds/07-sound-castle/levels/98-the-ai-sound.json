@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-87",
-  "number": 87,
+  "id": "level-98",
+  "number": 98,
   "name": "The ai Sound",
   "skill": "ai words",
   "icon": "graphic_eq",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-87-r1",
+      "id": "level-98-r1",
       "type": "pick",
       "prompt": {
         "text": "Which picture is rain?",
@@ -41,33 +41,33 @@
       "pick": {
         "options": [
           {
-            "id": "level-87-r1-o1",
+            "id": "level-98-r1-o1",
+            "label": "train",
+            "picture": {
+              "key": "train",
+              "label": "train",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-98-r1-o2",
+            "label": "snail",
+            "picture": {
+              "key": "snail",
+              "label": "snail",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-98-r1-o3",
             "label": "rain",
             "picture": {
               "key": "rain",
               "label": "rain",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-87-r1-o2",
-            "label": "chain",
-            "picture": {
-              "key": "chain",
-              "label": "chain",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-87-r1-o3",
-            "label": "nail",
-            "picture": {
-              "key": "nail",
-              "label": "nail",
               "url": null
             },
             "color": null,
@@ -78,7 +78,7 @@
           "kind": "label",
           "value": "rain"
         },
-        "shape": "jar",
+        "shape": "planet",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -86,34 +86,86 @@
       }
     },
     {
-      "id": "level-87-r2",
-      "type": "write",
+      "id": "level-98-r2",
+      "type": "sort",
       "prompt": {
-        "text": "Look, then write rain",
-        "say": "Look at the word rain. Then write it from memory!",
-        "audio": "voice/line-8f88c9f249281c31.m4a"
+        "text": "Feed it /ai/!",
+        "say": "This monster only eats words with {/ai/|eɪ}. Feed it!",
+        "audio": "voice/line-007934a46bcf6e01.m4a"
       },
       "card": {
-        "text": null,
-        "picture": {
-          "key": "rain",
-          "label": "rain",
-          "url": null
-        },
+        "text": "ai",
+        "picture": null,
         "listen": false
       },
-      "write": {
-        "mode": "flash",
-        "target": "rain",
-        "guide": null,
-        "word": null,
-        "missingIndex": null,
-        "sentence": false,
-        "story": false
+      "sort": {
+        "bins": [
+          {
+            "label": "ai",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "hand",
+            "picture": {
+              "key": "hand",
+              "label": "hand",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "rain",
+            "picture": {
+              "key": "rain",
+              "label": "rain",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "snail",
+            "picture": {
+              "key": "snail",
+              "label": "snail",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "brother",
+            "picture": {
+              "key": "family_brother",
+              "label": "brother",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "bus",
+            "picture": {
+              "key": "bus",
+              "label": "bus",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "train",
+            "picture": {
+              "key": "train",
+              "label": "train",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
       }
     },
     {
-      "id": "level-87-r3",
+      "id": "level-98-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -135,11 +187,11 @@
           "ai",
           "n"
         ],
-        "slot": "stripe"
+        "slot": "wagon"
       }
     },
     {
-      "id": "level-87-r4",
+      "id": "level-98-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -154,22 +206,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-87-r4-o1",
-            "label": "paint",
+            "id": "level-98-r4-o1",
+            "label": "chain",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-87-r4-o2",
-            "label": "snail",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-87-r4-o3",
+            "id": "level-98-r4-o2",
             "label": "nail",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-98-r4-o3",
+            "label": "snail",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -179,7 +231,7 @@
           "kind": "label",
           "value": "snail"
         },
-        "shape": "kite",
+        "shape": "cloud",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -187,7 +239,7 @@
       }
     },
     {
-      "id": "level-87-r5",
+      "id": "level-98-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
@@ -214,30 +266,34 @@
       }
     },
     {
-      "id": "level-87-r6",
-      "type": "pop",
+      "id": "level-98-r6",
+      "type": "write",
       "prompt": {
-        "text": "Pop every train!",
-        "say": "Pop every bubble that says train!",
-        "audio": "voice/line-2bbc7f86d3668ed5.m4a"
+        "text": "Look, then write nail",
+        "say": "Look at the word nail. Then write it from memory!",
+        "audio": "voice/line-ecda78d3368ae532.m4a"
       },
       "card": {
-        "text": "train",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "nail",
+          "label": "nail",
+          "url": null
+        },
         "listen": false
       },
-      "pop": {
-        "target": "train",
-        "others": [
-          "chain",
-          "paint",
-          "snail"
-        ],
-        "count": 4
+      "write": {
+        "mode": "flash",
+        "target": "nail",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
       }
     },
     {
-      "id": "level-87-r7",
+      "id": "level-98-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every nail!",
@@ -252,20 +308,20 @@
       "hunt": {
         "target": "nail",
         "grid": [
-          "paint",
           "rain",
+          "nail",
+          "nail",
+          "nail",
           "pink",
-          "nail",
-          "chain",
           "train",
-          "nail",
+          "chain",
           "snail",
-          "nail"
+          "paint"
         ]
       }
     },
     {
-      "id": "level-87-r8",
+      "id": "level-98-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: rain, snail, train, nail!",
@@ -286,67 +342,30 @@
       }
     },
     {
-      "id": "level-87-r9",
-      "type": "match",
+      "id": "level-98-r9",
+      "type": "pop",
       "prompt": {
-        "text": "Find the pairs!",
-        "say": "Find the pairs! Match each word to its picture.",
-        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+        "text": "Pop every snail!",
+        "say": "Pop every bubble that says snail!",
+        "audio": "voice/line-251853a2d86550a7.m4a"
       },
       "card": {
-        "text": "Find the pairs!",
+        "text": "snail",
         "picture": null,
         "listen": false
       },
-      "match": {
-        "pairs": [
-          {
-            "a": {
-              "text": "rain",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "rain",
-                "label": "rain",
-                "url": null
-              }
-            }
-          },
-          {
-            "a": {
-              "text": "snail",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "snail",
-                "label": "snail",
-                "url": null
-              }
-            }
-          },
-          {
-            "a": {
-              "text": "train",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "train",
-                "label": "train",
-                "url": null
-              }
-            }
-          }
-        ]
+      "pop": {
+        "target": "snail",
+        "others": [
+          "chain",
+          "paint",
+          "train"
+        ],
+        "count": 4
       }
     },
     {
-      "id": "level-87-r10",
+      "id": "level-98-r10",
       "type": "write",
       "prompt": {
         "text": "Write train",

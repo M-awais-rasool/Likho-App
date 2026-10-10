@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-82",
-  "number": 82,
+  "id": "level-93",
+  "number": 93,
   "name": "The th Sound",
   "skill": "th words",
   "icon": "graphic_eq",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-82-r1",
+      "id": "level-93-r1",
       "type": "pick",
       "prompt": {
         "text": "Which picture is thumb?",
@@ -41,7 +41,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-82-r1-o1",
+            "id": "level-93-r1-o1",
             "label": "thumb",
             "picture": {
               "key": "thumb",
@@ -52,22 +52,22 @@
             "hideLabel": true
           },
           {
-            "id": "level-82-r1-o2",
-            "label": "mouth",
+            "id": "level-93-r1-o2",
+            "label": "bath",
             "picture": {
-              "key": "mouth",
-              "label": "mouth",
+              "key": "bath",
+              "label": "bath",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-82-r1-o3",
-            "label": "three",
+            "id": "level-93-r1-o3",
+            "label": "tooth",
             "picture": {
-              "key": "three",
-              "label": "three",
+              "key": "tooth",
+              "label": "tooth",
               "url": null
             },
             "color": null,
@@ -78,7 +78,7 @@
           "kind": "label",
           "value": "thumb"
         },
-        "shape": "planet",
+        "shape": "card",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -86,91 +86,30 @@
       }
     },
     {
-      "id": "level-82-r2",
-      "type": "sort",
+      "id": "level-93-r2",
+      "type": "truth",
       "prompt": {
-        "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/t/|tʌ} or {/b/|bʌ}?",
-        "audio": "voice/line-f3ad469c54c4f13e.m4a"
+        "text": "True or silly?",
+        "say": "This is a tooth. True, or silly?",
+        "audio": "voice/line-bfd1786489ae3f66.m4a"
       },
       "card": {
-        "text": "t b",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "sort": {
-        "bins": [
-          {
-            "label": "t",
-            "picture": null,
-            "bin": null
-          },
-          {
-            "label": "b",
-            "picture": null,
-            "bin": null
-          }
-        ],
-        "items": [
-          {
-            "label": "bug",
-            "picture": {
-              "key": "bug",
-              "label": "bug",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "book",
-            "picture": {
-              "key": "book",
-              "label": "book",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "tent",
-            "picture": {
-              "key": "tent",
-              "label": "tent",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "turtle",
-            "picture": {
-              "key": "turtle",
-              "label": "turtle",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "tiger",
-            "picture": {
-              "key": "tiger",
-              "label": "tiger",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "bag",
-            "picture": {
-              "key": "bag",
-              "label": "bag",
-              "url": null
-            },
-            "bin": 1
-          }
-        ]
+      "truth": {
+        "text": "This is a tooth.",
+        "picture": {
+          "key": "tooth",
+          "label": "tooth",
+          "url": null
+        },
+        "answer": true
       }
     },
     {
-      "id": "level-82-r3",
+      "id": "level-93-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -193,11 +132,11 @@
           "m",
           "b"
         ],
-        "slot": "stripe"
+        "slot": "plank"
       }
     },
     {
-      "id": "level-82-r4",
+      "id": "level-93-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -212,22 +151,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-82-r4-o1",
+            "id": "level-93-r4-o1",
             "label": "thumb",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-82-r4-o2",
-            "label": "bath",
+            "id": "level-93-r4-o2",
+            "label": "teeth",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-82-r4-o3",
-            "label": "mouth",
+            "id": "level-93-r4-o3",
+            "label": "bath",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -237,7 +176,7 @@
           "kind": "label",
           "value": "bath"
         },
-        "shape": "shell",
+        "shape": "bubble",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -245,7 +184,7 @@
       }
     },
     {
-      "id": "level-82-r5",
+      "id": "level-93-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
@@ -272,7 +211,135 @@
       }
     },
     {
-      "id": "level-82-r6",
+      "id": "level-93-r6",
+      "type": "sort",
+      "prompt": {
+        "text": "Feed it /th/!",
+        "say": "This monster only eats words with {/th/|θːː}. Feed it!",
+        "audio": "voice/line-0ac8cbf692f7405a.m4a"
+      },
+      "card": {
+        "text": "th",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "th",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "tooth",
+            "picture": {
+              "key": "tooth",
+              "label": "tooth",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "goat",
+            "picture": {
+              "key": "goat",
+              "label": "goat",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "hand",
+            "picture": {
+              "key": "hand",
+              "label": "hand",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "thumb",
+            "picture": {
+              "key": "thumb",
+              "label": "thumb",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bus",
+            "picture": {
+              "key": "bus",
+              "label": "bus",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "bath",
+            "picture": {
+              "key": "bath",
+              "label": "bath",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-93-r7",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every three!",
+        "say": "Find every word three!",
+        "audio": "voice/line-dd4b889423260050.m4a"
+      },
+      "card": {
+        "text": "three",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "three",
+        "grid": [
+          "thumb",
+          "three",
+          "tooth",
+          "three",
+          "three",
+          "mouth",
+          "teeth",
+          "pink",
+          "bath"
+        ]
+      }
+    },
+    {
+      "id": "level-93-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: thumb, bath, tooth, three!",
+        "say": "Say them with me! thumb, bath, tooth, three!",
+        "audio": "voice/line-515ab6d56a084274.m4a"
+      },
+      "card": {
+        "text": "thumb, bath, tooth, three!",
+        "picture": {
+          "key": "thumb",
+          "label": "thumb",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "thumb, bath, tooth, three!"
+      }
+    },
+    {
+      "id": "level-93-r9",
       "type": "write",
       "prompt": {
         "text": "Look, then write bath",
@@ -299,79 +366,7 @@
       }
     },
     {
-      "id": "level-82-r7",
-      "type": "hunt",
-      "prompt": {
-        "text": "Find every three!",
-        "say": "Find every word three!",
-        "audio": "voice/line-dd4b889423260050.m4a"
-      },
-      "card": {
-        "text": "three",
-        "picture": null,
-        "listen": false
-      },
-      "hunt": {
-        "target": "three",
-        "grid": [
-          "pink",
-          "tooth",
-          "three",
-          "three",
-          "bath",
-          "teeth",
-          "thumb",
-          "three",
-          "mouth"
-        ]
-      }
-    },
-    {
-      "id": "level-82-r8",
-      "type": "speak",
-      "prompt": {
-        "text": "Say: thumb, bath, tooth, three!",
-        "say": "Say them with me! thumb, bath, tooth, three!",
-        "audio": "voice/line-515ab6d56a084274.m4a"
-      },
-      "card": {
-        "text": "thumb, bath, tooth, three!",
-        "picture": {
-          "key": "thumb",
-          "label": "thumb",
-          "url": null
-        },
-        "listen": true
-      },
-      "speak": {
-        "expected": "thumb, bath, tooth, three!"
-      }
-    },
-    {
-      "id": "level-82-r9",
-      "type": "pop",
-      "prompt": {
-        "text": "Pop every three!",
-        "say": "Pop every bubble that says three!",
-        "audio": "voice/line-864a9b24a6efcc32.m4a"
-      },
-      "card": {
-        "text": "three",
-        "picture": null,
-        "listen": false
-      },
-      "pop": {
-        "target": "three",
-        "others": [
-          "teeth",
-          "thumb",
-          "tooth"
-        ],
-        "count": 4
-      }
-    },
-    {
-      "id": "level-82-r10",
+      "id": "level-93-r10",
       "type": "write",
       "prompt": {
         "text": "Write tooth",
