@@ -11,7 +11,7 @@ import '../common/kid_widgets.dart';
 import '../common/pencil_figure.dart';
 
 /// 16 Child profile, from the prototype: Pencil, the child's name, three
-/// counters that count up (stars, levels, days), the six worlds of the
+/// counters that count up (stars, levels, days), every world of the
 /// journey, and the Sticker Book. Editing is for parents ([onEdit] goes
 /// through the parent gate).
 class ChildProfileScreen extends ConsumerStatefulWidget {
@@ -111,24 +111,27 @@ class _ChildProfileScreenState extends ConsumerState<ChildProfileScreen> with Si
                     child: Text('My journey', style: LikhoFonts.title(size: 22, weight: FontWeight.w800).copyWith(height: 1.6)),
                   ),
                   const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      for (final (w, world) in (course?.worlds ?? const <CourseWorld>[]).indexed) ...[
-                        if (w > 0) const SizedBox(width: 8),
-                        Expanded(
-                          child: Center(
-                            child: _WorldDot(
-                              world: w,
-                              icon: world.icon,
-                              themeId: world.themeId,
-                              done: course!.levelsOf(world).where((l) => r.isDone(l.number)).length,
-                              total: course.levelsOf(world).length,
-                            ),
+                  // one dot per world, seven to a row
+                  LayoutBuilder(builder: (context, box) {
+                    const gap = 8.0;
+                    final size = ((box.maxWidth - 6 * gap) / 7).clamp(28.0, 48.0);
+                    return Wrap(
+                      alignment: WrapAlignment.center,
+                      spacing: gap,
+                      runSpacing: gap,
+                      children: [
+                        for (final (w, world) in (course?.worlds ?? const <CourseWorld>[]).indexed)
+                          _WorldDot(
+                            world: w,
+                            icon: world.icon,
+                            themeId: world.themeId,
+                            done: course!.levelsOf(world).where((l) => r.isDone(l.number)).length,
+                            total: course.levelsOf(world).length,
+                            size: size,
                           ),
-                        ),
                       ],
-                    ],
-                  ),
+                    );
+                  }),
                   const SizedBox(height: 24),
                   _StickerBookCard(count: done, total: course?.levels.length ?? 36, onTap: widget.onStickers),
                 ],
@@ -166,9 +169,10 @@ class _Stat extends StatelessWidget {
 }
 
 class _WorldDot extends StatelessWidget {
-  const _WorldDot({required this.world, required this.icon, required this.themeId, required this.done, required this.total});
+  const _WorldDot({required this.world, required this.icon, required this.themeId, required this.done, required this.total, this.size = 48});
   final int world, done, total;
   final String icon, themeId;
+  final double size;
 
   @override
   Widget build(BuildContext context) {
@@ -177,14 +181,14 @@ class _WorldDot extends StatelessWidget {
     return Opacity(
       opacity: started ? 1 : .8,
       child: Container(
-        width: 48,
-        height: 48,
+        width: size,
+        height: size,
         decoration: BoxDecoration(
           color: started ? theme.accent : ChildProfileColors.worldOff,
           shape: BoxShape.circle,
           boxShadow: [if (done == total) const BoxShadow(color: LikhoColors.primary, spreadRadius: 3)],
         ),
-        child: Center(child: SymbolIcon(IconRegistry.of(icon), size: 26, fill: true, color: started ? LikhoColors.surface : UiColors.chevron)),
+        child: Center(child: SymbolIcon(IconRegistry.of(icon), size: size * .54, fill: true, color: started ? LikhoColors.surface : UiColors.chevron)),
       ),
     );
   }
