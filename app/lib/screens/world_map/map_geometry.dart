@@ -14,7 +14,7 @@ class MapGeometry {
       : contentWidth = math.min(width, 520),
         offsetX = (width - math.min(width, 520)) / 2,
         levelsPerWorld = List.unmodifiable(levelsPerWorld),
-        decoKinds = List.unmodifiable(decoKinds ?? [for (var w = 0; w < levelsPerWorld.length; w++) w % _kinds.length]) {
+        decoKinds = List.unmodifiable(decoKinds ?? [for (var w = 0; w < levelsPerWorld.length; w++) w % LikhoWorlds.all.length]) {
     var y = 0.0;
     for (final k in levelsPerWorld) {
       _blockStart.add(y);
@@ -33,8 +33,8 @@ class MapGeometry {
   final double offsetX;
   final List<int> levelsPerWorld;
 
-  /// Decoration set per world (index into the world themes' kinds), so a new
-  /// world looks like the world whose theme it borrows.
+  /// Theme per world (index into [LikhoWorlds.all]): picks the world's
+  /// decorations, so a new world looks like the world whose theme it borrows.
   final List<int> decoKinds;
 
   static const double block = 900; // one world of up to 6 levels
@@ -50,6 +50,17 @@ class MapGeometry {
   static double blockOf(int levels) => math.max(block, 110 + (levels - 1) * 128 + 12 + 138);
 
   int get worlds => levelsPerWorld.length;
+
+  /// Number of the first level of world [w].
+  int firstLevel(int w) => levelsPerWorld.take(w).fold(0, (a, b) => a + b) + 1;
+
+  /// Where the path crosses the bottom edge of world [w] (its cloud bank):
+  /// halfway between the last level below and the world's first level.
+  double crossingX(int w) {
+    final first = firstLevel(w);
+    if (first > levels) return width / 2;
+    return w == 0 || first == 1 ? node(first).dx : (node(first - 1).dx + node(first).dx) / 2;
+  }
   int get levels => _place.length;
 
   /// The whole canvas (5740 for six worlds of six levels).
@@ -92,7 +103,7 @@ class MapGeometry {
       (node(n.clamp(1, math.max(levels, 1))).dy - viewport * .55).clamp(0.0, math.max(0.0, height - viewport));
 
   /// Decorations: 12 per 900 px of world, placed by the prototype's seeded
-  /// generator.
+  /// generator, three kinds per world (see [kindsFor]).
   List<MapDeco> decorations() {
     var seed = 11;
     double rnd() {
@@ -105,7 +116,7 @@ class MapGeometry {
       final yb = worldBottom(i);
       final h = blockOf(levelsPerWorld[i]);
       final count = (12 * h / block).round();
-      final kinds = _kinds[decoKinds[i] % _kinds.length];
+      final kinds = kindsFor(LikhoWorlds.all[decoKinds[i] % LikhoWorlds.all.length]);
       for (var k = 0; k < count; k++) {
         final kind = kinds[k % 3];
         final left = k.isEven;
@@ -118,101 +129,100 @@ class MapGeometry {
     return out;
   }
 
-  static const _kinds = [
-    [
-      DecoKind(78, 48, DecoRadius.percent(50, 50, 40, 40), MapColors.bush, DecoAnim.sway, 6),
-      DecoKind(14, 14, DecoRadius.percent(50, 50, 50, 50), MapColors.flower, DecoAnim.sway, 4, ring: 5),
-      DecoKind(96, 30, DecoRadius.px(20, 20, 20, 20), MapColors.cloud, DecoAnim.drift, 8),
-    ],
-    [
-      DecoKind(84, 14, DecoRadius.px(10, 10, 10, 10), MapColors.wave, DecoAnim.waveBob, 4),
-      DecoKind(44, 30, DecoRadius.percent(50, 50, 50, 50), MapColors.sand, DecoAnim.none, 0),
-      DecoKind(26, 22, DecoRadius.percent(50, 50, 40, 40), MapColors.shell, DecoAnim.sway, 5),
-    ],
-    [
-      DecoKind(80, 80, DecoRadius.percent(50, 50, 50, 50), MapColors.treeLight, DecoAnim.sway, 7),
-      DecoKind(56, 56, DecoRadius.percent(50, 50, 50, 50), MapColors.treeDark, DecoAnim.sway, 6),
-      DecoKind(18, 11, DecoRadius.px(10, 0, 10, 0), MapColors.leaf, DecoAnim.drift, 5),
-    ],
-    [
-      DecoKind(54, 46, DecoRadius.px(10, 10, 4, 4), MapColors.houseRed, DecoAnim.none, 0),
-      DecoKind(46, 56, DecoRadius.px(10, 10, 4, 4), MapColors.houseBlue, DecoAnim.none, 0),
-      DecoKind(96, 30, DecoRadius.px(20, 20, 20, 20), MapColors.cloud, DecoAnim.drift, 8),
-    ],
-    [
-      DecoKind(110, 36, DecoRadius.px(22, 22, 22, 22), MapColors.cloudWhite, DecoAnim.drift, 9),
-      // rotate(45deg) is overridden by the sway animation in the prototype, so it only sways
-      DecoKind(28, 28, DecoRadius.px(5, 5, 5, 5), MapColors.kite, DecoAnim.sway, 4),
-      DecoKind(70, 26, DecoRadius.px(16, 16, 16, 16), MapColors.cloudSoft, DecoAnim.drift, 7),
-    ],
-    [
-      DecoKind(6, 6, DecoRadius.percent(50, 50, 50, 50), MapColors.starDot, DecoAnim.twinkle, 3),
-      DecoKind(48, 48, DecoRadius.percent(50, 50, 50, 50), MapColors.planet, DecoAnim.drift, 10, insetShade: true),
-      DecoKind(8, 8, DecoRadius.percent(50, 50, 50, 50), MapColors.cloudWhite, DecoAnim.twinkle, 4),
-    ],
-    // sound mountain: rocks and clouds
-    [
-      DecoKind(70, 44, DecoRadius.percent(50, 50, 30, 30), MapColors.rock, DecoAnim.none, 0),
-      DecoKind(34, 24, DecoRadius.percent(50, 50, 30, 30), MapColors.rockDark, DecoAnim.none, 0),
-      DecoKind(96, 30, DecoRadius.px(20, 20, 20, 20), MapColors.cloud, DecoAnim.drift, 8),
-    ],
-    // blend beach: beach balls, sand, waves
-    [
-      DecoKind(30, 30, DecoRadius.percent(50, 50, 50, 50), MapColors.beachBall, DecoAnim.sway, 5, ring: 4),
-      DecoKind(64, 26, DecoRadius.percent(50, 50, 50, 50), MapColors.sandWarm, DecoAnim.none, 0),
-      DecoKind(84, 14, DecoRadius.px(10, 10, 10, 10), MapColors.wave, DecoAnim.waveBob, 4),
-    ],
-    // sight word garden: blossoms and bushes
-    [
-      DecoKind(16, 16, DecoRadius.percent(50, 50, 50, 50), MapColors.blossom, DecoAnim.sway, 4, ring: 5),
-      DecoKind(76, 46, DecoRadius.percent(50, 50, 40, 40), MapColors.blossomBush, DecoAnim.sway, 6),
-      DecoKind(18, 11, DecoRadius.px(10, 0, 10, 0), MapColors.leaf, DecoAnim.drift, 5),
-    ],
-    // action jungle: big leaves
-    [
-      DecoKind(84, 60, DecoRadius.px(40, 4, 40, 4), MapColors.jungleLeaf, DecoAnim.sway, 6),
-      DecoKind(56, 40, DecoRadius.px(4, 30, 4, 30), MapColors.jungleLeafDark, DecoAnim.sway, 7),
-      DecoKind(18, 11, DecoRadius.px(10, 0, 10, 0), MapColors.leaf, DecoAnim.drift, 5),
-    ],
-    // question island: palms, sand, clouds
-    [
-      DecoKind(60, 60, DecoRadius.percent(50, 50, 50, 50), MapColors.palm, DecoAnim.sway, 7),
-      DecoKind(64, 26, DecoRadius.percent(50, 50, 50, 50), MapColors.sandWarm, DecoAnim.none, 0),
-      DecoKind(96, 30, DecoRadius.px(20, 20, 20, 20), MapColors.cloud, DecoAnim.drift, 8),
-    ],
-    // reading river: ripples, lily pads, stones
-    [
-      DecoKind(90, 14, DecoRadius.px(10, 10, 10, 10), MapColors.ripple, DecoAnim.waveBob, 4),
-      DecoKind(40, 26, DecoRadius.percent(50, 50, 50, 50), MapColors.lilyPad, DecoAnim.sway, 6),
-      DecoKind(30, 20, DecoRadius.percent(50, 50, 40, 40), MapColors.riverStone, DecoAnim.none, 0),
-    ],
-  ];
-}
-
-enum DecoAnim { none, sway, drift, waveBob, twinkle }
-
-/// CSS border-radius: corners TL, TR, BR, BL, either in px or % of the size.
-class DecoRadius {
-  const DecoRadius.px(this.tl, this.tr, this.br, this.bl) : percent = false;
-  const DecoRadius.percent(this.tl, this.tr, this.br, this.bl) : percent = true;
-  final double tl, tr, br, bl;
-  final bool percent;
-
-  RRect toRRect(Rect r) {
-    Radius c(double v) => percent ? Radius.elliptical(r.width * v / 100, r.height * v / 100) : Radius.circular(v);
-    return RRect.fromRectAndCorners(r, topLeft: c(tl), topRight: c(tr), bottomRight: c(br), bottomLeft: c(bl)).scaleRadii();
+  /// The three small animated decorations of a world, by its scenery.
+  static List<DecoKind> kindsFor(WorldTheme t) {
+    const white = MapColors.cloudWhite;
+    final soft = t.soft, pop = t.pop, accent = t.accent;
+    return switch (t.scene) {
+      WorldScene.meadow => [
+          DecoKind(78, 48, DecoMotif.bush, soft, accent, DecoAnim.sway, 6),
+          DecoKind(22, 22, DecoMotif.flower, pop, white, DecoAnim.sway, 4),
+          DecoKind(96, 34, DecoMotif.cloud, white, white, DecoAnim.drift, 8),
+        ],
+      WorldScene.castle => [
+          DecoKind(34, 44, DecoMotif.pennant, accent, pop, DecoAnim.sway, 3),
+          DecoKind(18, 18, DecoMotif.sparkle, pop, white, DecoAnim.twinkle, 3),
+          DecoKind(96, 34, DecoMotif.cloud, white, white, DecoAnim.drift, 9),
+        ],
+      WorldScene.cove => [
+          DecoKind(22, 22, DecoMotif.bubble, white, white, DecoAnim.waveBob, 4),
+          DecoKind(30, 26, DecoMotif.shell, pop, white, DecoAnim.sway, 5),
+          DecoKind(84, 16, DecoMotif.wave, white, white, DecoAnim.waveBob, 4),
+        ],
+      WorldScene.frost => [
+          DecoKind(20, 20, DecoMotif.snowflake, white, white, DecoAnim.fall, 7),
+          DecoKind(46, 62, DecoMotif.pine, const Color(0xFF2E6B7E), white, DecoAnim.none, 0),
+          DecoKind(10, 10, DecoMotif.sparkle, pop, white, DecoAnim.twinkle, 3),
+        ],
+      WorldScene.forest => [
+          DecoKind(62, 76, DecoMotif.tree, accent, const Color(0xFF9A6A44), DecoAnim.sway, 7),
+          DecoKind(34, 32, DecoMotif.mushroom, pop, white, DecoAnim.none, 0),
+          DecoKind(20, 14, DecoMotif.leaf, accent, pop, DecoAnim.fall, 6),
+        ],
+      WorldScene.town => [
+          DecoKind(52, 56, DecoMotif.house, soft, accent, DecoAnim.none, 0),
+          DecoKind(40, 54, DecoMotif.tree, const Color(0xFF7CC46A), const Color(0xFF9A6A44), DecoAnim.sway, 6),
+          DecoKind(96, 34, DecoMotif.cloud, white, white, DecoAnim.drift, 8),
+        ],
+      WorldScene.mountain => [
+          DecoKind(42, 58, DecoMotif.pine, const Color(0xFF6E8F7A), white, DecoAnim.sway, 8),
+          DecoKind(56, 34, DecoMotif.rock, soft, accent, DecoAnim.none, 0),
+          DecoKind(96, 34, DecoMotif.cloud, white, white, DecoAnim.drift, 9),
+        ],
+      WorldScene.beach => [
+          DecoKind(30, 30, DecoMotif.beachBall, const Color(0xFFFF6B6B), pop, DecoAnim.sway, 5),
+          DecoKind(30, 30, DecoMotif.starfish, const Color(0xFFFF8A5B), white, DecoAnim.sway, 6),
+          DecoKind(84, 16, DecoMotif.wave, white, white, DecoAnim.waveBob, 4),
+        ],
+      WorldScene.garden => [
+          DecoKind(26, 26, DecoMotif.flower, accent, const Color(0xFFFFE07A), DecoAnim.sway, 4),
+          DecoKind(28, 22, DecoMotif.butterfly, pop, accent, DecoAnim.flap, 1.2),
+          DecoKind(76, 46, DecoMotif.bush, pop, accent, DecoAnim.sway, 6),
+        ],
+      WorldScene.sky => [
+          DecoKind(110, 40, DecoMotif.cloud, white, white, DecoAnim.drift, 9),
+          DecoKind(30, 40, DecoMotif.kite, const Color(0xFFFF8A5B), pop, DecoAnim.sway, 4),
+          DecoKind(26, 12, DecoMotif.bird, accent, white, DecoAnim.drift, 6),
+        ],
+      WorldScene.jungle => [
+          DecoKind(84, 62, DecoMotif.fern, const Color(0xFF4E9A2E), accent, DecoAnim.sway, 6),
+          DecoKind(24, 24, DecoMotif.flower, pop, const Color(0xFFFFE07A), DecoAnim.sway, 4),
+          DecoKind(28, 22, DecoMotif.butterfly, const Color(0xFF3BA7E8), pop, DecoAnim.flap, 1),
+        ],
+      WorldScene.island => [
+          DecoKind(56, 72, DecoMotif.palm, const Color(0xFF3FAE5A), const Color(0xFFB0794A), DecoAnim.sway, 7),
+          DecoKind(30, 30, DecoMotif.starfish, accent, white, DecoAnim.sway, 6),
+          DecoKind(84, 16, DecoMotif.wave, white, white, DecoAnim.waveBob, 4),
+        ],
+      WorldScene.river => [
+          DecoKind(42, 26, DecoMotif.lilyPad, const Color(0xFF5CBF7A), const Color(0xFFFF9EC4), DecoAnim.sway, 6),
+          DecoKind(26, 54, DecoMotif.reed, const Color(0xFF5E9E4A), const Color(0xFF9A6A44), DecoAnim.sway, 5),
+          DecoKind(84, 16, DecoMotif.wave, white, white, DecoAnim.waveBob, 4),
+        ],
+      WorldScene.space => [
+          DecoKind(12, 12, DecoMotif.sparkle, pop, white, DecoAnim.twinkle, 3),
+          DecoKind(50, 50, DecoMotif.planet, accent, pop, DecoAnim.drift, 10),
+          DecoKind(9, 9, DecoMotif.sparkle, white, white, DecoAnim.twinkle, 4),
+        ],
+    };
   }
 }
 
+enum DecoAnim { none, sway, drift, waveBob, twinkle, fall, flap }
+
+/// What a decoration looks like (painted by paintMotif in map_painters.dart).
+enum DecoMotif {
+  bush, flower, cloud, pennant, sparkle, bubble, shell, wave, snowflake, pine, tree, mushroom, leaf, house, rock, //
+  beachBall, starfish, butterfly, kite, bird, fern, palm, lilyPad, reed, planet,
+}
+
 class DecoKind {
-  const DecoKind(this.w, this.h, this.radius, this.color, this.anim, this.seconds, {this.ring = 0, this.insetShade = false});
+  const DecoKind(this.w, this.h, this.motif, this.color, this.color2, this.anim, this.seconds);
   final double w, h;
-  final DecoRadius radius;
-  final Color color;
+  final DecoMotif motif;
+  final Color color, color2;
   final DecoAnim anim;
   final double seconds; // animation length
-  final double ring; // box-shadow 0 0 0 <ring>px #fff
-  final bool insetShade; // box-shadow inset -8px -8px 0 rgba(0,0,0,.18)
 }
 
 class MapDeco {
