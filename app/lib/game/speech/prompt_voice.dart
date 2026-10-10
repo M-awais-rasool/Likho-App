@@ -44,7 +44,7 @@ class PromptVoice {
   /// Speaks [prompt]; completes when done (or at once if speech is off).
   Future<void> speak(Prompt prompt, MascotController mascot, {required MascotState after}) async {
     final session = ++_session;
-    await stop();
+    await _silence();
     final audio = prompt.audio;
     final voice = audio == null ? null : await media.voice(audio);
     if (session != _session) return;
@@ -52,6 +52,7 @@ class PromptVoice {
       await mascot.say(voice.$1, lipFile: voice.$2);
     } else {
       await _init();
+      if (session != _session) return; // stopped (or the screen closed) meanwhile
       final tts = _tts;
       mascot.play(MascotState.talking);
       final started = DateTime.now();
@@ -67,7 +68,13 @@ class PromptVoice {
     if (session == _session && mascot.state == MascotState.talking) mascot.play(after);
   }
 
+  /// Stops speaking; a line still on its way is dropped.
   Future<void> stop() async {
+    _session++;
+    await _silence();
+  }
+
+  Future<void> _silence() async {
     try {
       await _tts?.stop();
     } catch (_) {}
