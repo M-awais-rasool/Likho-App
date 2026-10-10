@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-97",
-  "number": 97,
+  "id": "level-121",
+  "number": 121,
   "name": "Sight Word Kites",
   "skill": "Sight words",
   "icon": "air",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-97-r1",
+      "id": "level-121-r1",
       "type": "pick",
       "prompt": {
         "text": "the",
@@ -44,28 +44,28 @@
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-97-r1-o1"
+            "id": "level-121-r1-o1"
           },
           {
             "label": "is",
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-97-r1-o2"
+            "id": "level-121-r1-o2"
           },
           {
             "label": "and",
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-97-r1-o3"
+            "id": "level-121-r1-o3"
           },
           {
             "label": "see",
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-97-r1-o4"
+            "id": "level-121-r1-o4"
           }
         ],
         "answer": {
@@ -80,55 +80,30 @@
       }
     },
     {
-      "id": "level-97-r2",
-      "type": "match",
+      "id": "level-121-r2",
+      "type": "truth",
       "prompt": {
-        "text": "Find the pairs!",
-        "say": "Find the pairs! Match each word to the same word with a capital letter.",
-        "audio": "voice/line-d82ba5aa00efefb3.m4a"
+        "text": "True or silly?",
+        "say": "This is a pig. True, or silly?",
+        "audio": "voice/line-e85d5e5c14378d8e.m4a"
       },
       "card": {
-        "text": "the = The",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "match": {
-        "pairs": [
-          {
-            "a": {
-              "text": "the",
-              "picture": null
-            },
-            "b": {
-              "text": "The",
-              "picture": null
-            }
-          },
-          {
-            "a": {
-              "text": "a",
-              "picture": null
-            },
-            "b": {
-              "text": "A",
-              "picture": null
-            }
-          },
-          {
-            "a": {
-              "text": "is",
-              "picture": null
-            },
-            "b": {
-              "text": "Is",
-              "picture": null
-            }
-          }
-        ]
+      "truth": {
+        "text": "This is a pig.",
+        "picture": {
+          "key": "pig",
+          "label": "pig",
+          "url": null
+        },
+        "answer": true
       }
     },
     {
-      "id": "level-97-r3",
+      "id": "level-121-r3",
       "type": "hunt",
       "prompt": {
         "text": "Find every the!",
@@ -143,20 +118,20 @@
       "hunt": {
         "target": "the",
         "grid": [
+          "a",
+          "a",
+          "the",
+          "is",
+          "the",
+          "the",
           "he",
-          "a",
-          "a",
-          "the",
-          "the",
           "I",
-          "the",
-          "she",
-          "is"
+          "she"
         ]
       }
     },
     {
-      "id": "level-97-r4",
+      "id": "level-121-r4",
       "type": "write",
       "prompt": {
         "text": "Spell the",
@@ -179,7 +154,7 @@
       }
     },
     {
-      "id": "level-97-r5",
+      "id": "level-121-r5",
       "type": "pick",
       "prompt": {
         "text": "Which word fits?",
@@ -194,22 +169,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-97-r5-o1",
-            "label": "the",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-97-r5-o2",
+            "id": "level-121-r5-o1",
             "label": "is",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-97-r5-o3",
+            "id": "level-121-r5-o2",
             "label": "a",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-121-r5-o3",
+            "label": "the",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -227,45 +202,91 @@
       }
     },
     {
-      "id": "level-97-r6",
-      "type": "fix",
+      "id": "level-121-r6",
+      "type": "sort",
       "prompt": {
-        "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/f/|fːː}?",
+        "audio": "voice/line-7b4dba625cd77da5.m4a"
       },
       "card": {
-        "text": "Fix it!",
+        "text": "d f",
         "picture": null,
         "listen": false
       },
-      "fix": {
+      "sort": {
+        "bins": [
+          {
+            "label": "d",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "f",
+            "picture": null,
+            "bin": null
+          }
+        ],
         "items": [
           {
-            "text": "the",
-            "wrong": null,
-            "at": null
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 0
           },
           {
-            "text": "a",
-            "wrong": "mirror",
-            "at": 0
+            "label": "four",
+            "picture": {
+              "key": "four",
+              "label": "four",
+              "url": null
+            },
+            "bin": 1
           },
           {
-            "text": "I",
-            "wrong": null,
-            "at": null
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 0
           },
           {
-            "text": "is",
-            "wrong": "mirror",
-            "at": 1
+            "label": "foot",
+            "picture": {
+              "key": "foot",
+              "label": "foot",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 0
           }
         ]
       }
     },
     {
-      "id": "level-97-r7",
+      "id": "level-121-r7",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -292,7 +313,7 @@
       }
     },
     {
-      "id": "level-97-r8",
+      "id": "level-121-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: It is a dog.",
@@ -313,7 +334,7 @@
       }
     },
     {
-      "id": "level-97-r9",
+      "id": "level-121-r9",
       "type": "write",
       "prompt": {
         "text": "Write the",
@@ -336,26 +357,26 @@
       }
     },
     {
-      "id": "level-97-r10",
-      "type": "truth",
+      "id": "level-121-r10",
+      "type": "write",
       "prompt": {
-        "text": "True or silly?",
-        "say": "This is a pig. True, or silly?",
-        "audio": "voice/line-e85d5e5c14378d8e.m4a"
+        "text": "Look, then write the",
+        "say": "Look at the word the. Then write it from memory!",
+        "audio": "voice/line-9ca35a4f6e45755e.m4a"
       },
       "card": {
         "text": null,
         "picture": null,
         "listen": true
       },
-      "truth": {
-        "text": "This is a pig.",
-        "picture": {
-          "key": "pig",
-          "label": "pig",
-          "url": null
-        },
-        "answer": true
+      "write": {
+        "mode": "flash",
+        "target": "the",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
       }
     }
   ]

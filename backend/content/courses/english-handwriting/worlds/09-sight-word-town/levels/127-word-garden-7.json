@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-103",
-  "number": 103,
+  "id": "level-127",
+  "number": 127,
   "name": "Word Garden 7",
   "skill": "Sight words",
   "icon": "local_florist",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-103-r1",
+      "id": "level-127-r1",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -41,22 +41,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-103-r1-o1",
+            "id": "level-127-r1-o1",
             "label": "what",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-103-r1-o2",
-            "label": "like",
+            "id": "level-127-r1-o2",
+            "label": "you",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-103-r1-o3",
-            "label": "he",
+            "id": "level-127-r1-o3",
+            "label": "like",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -66,7 +66,7 @@
           "kind": "label",
           "value": "like"
         },
-        "shape": "shell",
+        "shape": "balloon",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -74,91 +74,30 @@
       }
     },
     {
-      "id": "level-103-r2",
-      "type": "sort",
+      "id": "level-127-r2",
+      "type": "pop",
       "prompt": {
-        "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/l/|lːː} or {/b/|bʌ}?",
-        "audio": "voice/line-9d0f05a15cfd7fdd.m4a"
+        "text": "Pop every big!",
+        "say": "Pop every bubble that says big!",
+        "audio": "voice/line-ca098d1cd188f0f6.m4a"
       },
       "card": {
-        "text": "l b",
+        "text": "big",
         "picture": null,
         "listen": false
       },
-      "sort": {
-        "bins": [
-          {
-            "label": "l",
-            "picture": null,
-            "bin": null
-          },
-          {
-            "label": "b",
-            "picture": null,
-            "bin": null
-          }
+      "pop": {
+        "target": "big",
+        "others": [
+          "bus",
+          "and",
+          "the"
         ],
-        "items": [
-          {
-            "label": "lamp",
-            "picture": {
-              "key": "lamp",
-              "label": "lamp",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "bat",
-            "picture": {
-              "key": "bat",
-              "label": "bat",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "book",
-            "picture": {
-              "key": "book",
-              "label": "book",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "bag",
-            "picture": {
-              "key": "bag",
-              "label": "bag",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "lion",
-            "picture": {
-              "key": "lion",
-              "label": "lion",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "lemon",
-            "picture": {
-              "key": "lemon",
-              "label": "lemon",
-              "url": null
-            },
-            "bin": 0
-          }
-        ]
+        "count": 4
       }
     },
     {
-      "id": "level-103-r3",
+      "id": "level-127-r3",
       "type": "hunt",
       "prompt": {
         "text": "Find every like!",
@@ -173,20 +112,20 @@
       "hunt": {
         "target": "like",
         "grid": [
-          "like",
-          "this",
           "what",
-          "the",
           "big",
+          "this",
           "and",
-          "little",
           "like",
-          "like"
+          "like",
+          "like",
+          "the",
+          "little"
         ]
       }
     },
     {
-      "id": "level-103-r4",
+      "id": "level-127-r4",
       "type": "write",
       "prompt": {
         "text": "Spell like",
@@ -209,7 +148,7 @@
       }
     },
     {
-      "id": "level-103-r5",
+      "id": "level-127-r5",
       "type": "pick",
       "prompt": {
         "text": "Which word fits?",
@@ -224,35 +163,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-103-r5-o1",
+            "id": "level-127-r5-o1",
             "label": "like",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-103-r5-o2",
-            "label": "little",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-103-r5-o3",
-            "label": "this",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-103-r5-o4",
+            "id": "level-127-r5-o2",
             "label": "what",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-103-r5-o5",
+            "id": "level-127-r5-o3",
             "label": "big",
             "picture": null,
             "color": null,
@@ -271,30 +196,55 @@
       }
     },
     {
-      "id": "level-103-r6",
-      "type": "write",
+      "id": "level-127-r6",
+      "type": "match",
       "prompt": {
-        "text": "Look, then write this",
-        "say": "Look at the word this. Then write it from memory!",
-        "audio": "voice/line-9747d64ee01aa102.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to the same word with a capital letter.",
+        "audio": "voice/line-d82ba5aa00efefb3.m4a"
       },
       "card": {
-        "text": null,
+        "text": "the = The",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "write": {
-        "mode": "flash",
-        "target": "this",
-        "guide": null,
-        "word": null,
-        "missingIndex": null,
-        "sentence": false,
-        "story": false
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "like",
+              "picture": null
+            },
+            "b": {
+              "text": "Like",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "big",
+              "picture": null
+            },
+            "b": {
+              "text": "Big",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "little",
+              "picture": null
+            },
+            "b": {
+              "text": "Little",
+              "picture": null
+            }
+          }
+        ]
       }
     },
     {
-      "id": "level-103-r7",
+      "id": "level-127-r7",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -321,7 +271,7 @@
       }
     },
     {
-      "id": "level-103-r8",
+      "id": "level-127-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: What is this?",
@@ -342,7 +292,7 @@
       }
     },
     {
-      "id": "level-103-r9",
+      "id": "level-127-r9",
       "type": "write",
       "prompt": {
         "text": "Write this",
@@ -365,26 +315,41 @@
       }
     },
     {
-      "id": "level-103-r10",
-      "type": "pop",
+      "id": "level-127-r10",
+      "type": "fix",
       "prompt": {
-        "text": "Pop every little!",
-        "say": "Pop every bubble that says little!",
-        "audio": "voice/line-4c43238c9ec19394.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
       },
       "card": {
-        "text": "little",
+        "text": "Fix it!",
         "picture": null,
         "listen": false
       },
-      "pop": {
-        "target": "little",
-        "others": [
-          "tiger",
-          "like",
-          "look"
-        ],
-        "count": 4
+      "fix": {
+        "items": [
+          {
+            "text": "like",
+            "wrong": "mirror",
+            "at": 2
+          },
+          {
+            "text": "big",
+            "wrong": "mirror",
+            "at": 2
+          },
+          {
+            "text": "little",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "this",
+            "wrong": null,
+            "at": null
+          }
+        ]
       }
     }
   ]

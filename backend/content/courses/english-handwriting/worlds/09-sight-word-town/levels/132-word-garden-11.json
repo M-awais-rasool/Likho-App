@@ -1,0 +1,355 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-132",
+  "number": 132,
+  "name": "Word Garden 11",
+  "skill": "Sight words",
+  "icon": "local_florist",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "out down over",
+    "word": "flower",
+    "say": "Words to know by sight: out, down, over, under, into!",
+    "audio": "voice/line-8093ffa527aca65c.m4a",
+    "picture": {
+      "key": "flower",
+      "label": "flower",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-132-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word out.",
+        "audio": "voice/line-cb7617359dee75e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-132-r1-o1",
+            "label": "like",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-132-r1-o2",
+            "label": "into",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-132-r1-o3",
+            "label": "out",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "out"
+        },
+        "shape": "mushroom",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-132-r2",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to the same word with a capital letter.",
+        "audio": "voice/line-d82ba5aa00efefb3.m4a"
+      },
+      "card": {
+        "text": "the = The",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "out",
+              "picture": null
+            },
+            "b": {
+              "text": "Out",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "down",
+              "picture": null
+            },
+            "b": {
+              "text": "Down",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "over",
+              "picture": null
+            },
+            "b": {
+              "text": "Over",
+              "picture": null
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-132-r3",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every out!",
+        "say": "Find every word out!",
+        "audio": "voice/line-c771db218b44c909.m4a"
+      },
+      "card": {
+        "text": "out",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "out",
+        "grid": [
+          "down",
+          "over",
+          "under",
+          "out",
+          "out",
+          "out",
+          "said",
+          "like",
+          "into"
+        ]
+      }
+    },
+    {
+      "id": "level-132-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Spell out",
+        "say": "Out! Write it one letter at a time.",
+        "audio": "voice/line-ca0c012f743cc910.m4a"
+      },
+      "card": {
+        "text": "out",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "out",
+        "guide": null,
+        "word": "out",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-132-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "Please sit what. Which word fits?",
+        "audio": "voice/line-58aa1df31ce56e7e.m4a"
+      },
+      "card": {
+        "text": "Please sit ___.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-132-r5-o1",
+            "label": "down",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-132-r5-o2",
+            "label": "over",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-132-r5-o3",
+            "label": "into",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "down"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-132-r6",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "out",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "down",
+            "wrong": "mirror",
+            "at": 0
+          },
+          {
+            "text": "over",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "under",
+            "wrong": "mirror",
+            "at": 4
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-132-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "Please sit down. Put the words in order.",
+        "audio": "voice/line-5de44fa0e8ee43b0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "chair",
+          "label": "chair",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "Please",
+          "sit",
+          "down"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-132-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: The cat is under the chair.",
+        "say": "The cat is under the chair. Now you say it!",
+        "audio": "voice/line-c4947f3e6dde3870.m4a"
+      },
+      "card": {
+        "text": "The cat is under the chair.",
+        "picture": {
+          "key": "cat_under_chair",
+          "label": "cat under chair",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "The cat is under the chair."
+      }
+    },
+    {
+      "id": "level-132-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Write under",
+        "say": "Write the word under.",
+        "audio": "voice/line-73e59f91f6ec8b4e.m4a"
+      },
+      "card": {
+        "text": "under",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "under",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-132-r10",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a star. True, or silly?",
+        "audio": "voice/line-ef41122bac3f4f2c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a star.",
+        "picture": {
+          "key": "down",
+          "label": "down",
+          "url": null
+        },
+        "answer": false
+      }
+    }
+  ]
+}

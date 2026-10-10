@@ -1,0 +1,393 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-130",
+  "number": 130,
+  "name": "Word Garden 9",
+  "skill": "Sight words",
+  "icon": "local_florist",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "for with but",
+    "word": "flower",
+    "say": "Words to know by sight: for, with, but, not, all!",
+    "audio": "voice/line-c93e53fcb33b0919.m4a",
+    "picture": {
+      "key": "flower",
+      "label": "flower",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-130-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word for.",
+        "audio": "voice/line-9cdd399f8e4b3757.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-130-r1-o1",
+            "label": "what",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-130-r1-o2",
+            "label": "for",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-130-r1-o3",
+            "label": "you",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "for"
+        },
+        "shape": "fish",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-130-r2",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "for",
+            "wrong": "mirror",
+            "at": 2
+          },
+          {
+            "text": "with",
+            "wrong": "mirror",
+            "at": 3
+          },
+          {
+            "text": "but",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "not",
+            "wrong": null,
+            "at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-130-r3",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every for!",
+        "say": "Find every word for!",
+        "audio": "voice/line-7c82e6d0e79611e8.m4a"
+      },
+      "card": {
+        "text": "for",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "for",
+        "grid": [
+          "for",
+          "but",
+          "with",
+          "all",
+          "for",
+          "look",
+          "not",
+          "you",
+          "for"
+        ]
+      }
+    },
+    {
+      "id": "level-130-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Spell for",
+        "say": "For! Write it one letter at a time.",
+        "audio": "voice/line-9da2335ef286d9f9.m4a"
+      },
+      "card": {
+        "text": "for",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "for",
+        "guide": null,
+        "word": "for",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-130-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "This gift is what you. Which word fits?",
+        "audio": "voice/line-22d2f1e8a85545ad.m4a"
+      },
+      "card": {
+        "text": "This gift is ___ you.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-130-r5-o1",
+            "label": "but",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-130-r5-o2",
+            "label": "all",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-130-r5-o3",
+            "label": "for",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "for"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-130-r6",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a ship. True, or silly?",
+        "audio": "voice/line-6bbae404d7a75471.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a ship.",
+        "picture": {
+          "key": "tiger",
+          "label": "tiger",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-130-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "This gift is for you. Put the words in order.",
+        "audio": "voice/line-3f1c2e60fe68f092.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "gift",
+          "label": "gift",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "This",
+          "gift",
+          "is",
+          "for",
+          "you"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-130-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: I play with my dog.",
+        "say": "I play with my dog. Now you say it!",
+        "audio": "voice/line-ca74e3d509d6dbe0.m4a"
+      },
+      "card": {
+        "text": "I play with my dog.",
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "I play with my dog."
+      }
+    },
+    {
+      "id": "level-130-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Write not",
+        "say": "Write the word not.",
+        "audio": "voice/line-338af4c4655ba721.m4a"
+      },
+      "card": {
+        "text": "not",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "not",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-130-r10",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/w/|wʌ} or {/b/|bʌ}?",
+        "audio": "voice/line-d3f336cf53f2aa60.m4a"
+      },
+      "card": {
+        "text": "w b",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "w",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "b",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "ball",
+            "picture": {
+              "key": "ball",
+              "label": "ball",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "wing",
+            "picture": {
+              "key": "wing",
+              "label": "wing",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bed",
+            "picture": {
+              "key": "bed",
+              "label": "bed",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "watch",
+            "picture": {
+              "key": "watch",
+              "label": "watch",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "web",
+            "picture": {
+              "key": "web",
+              "label": "web",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "boat",
+            "picture": {
+              "key": "boat",
+              "label": "boat",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,377 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-126",
+  "number": 126,
+  "name": "Word Garden 6",
+  "skill": "Sight words",
+  "icon": "local_florist",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "said was are",
+    "word": "flower",
+    "say": "Words to know by sight: said, was, are, they, have!",
+    "audio": "voice/line-433a12b33c740dc5.m4a",
+    "picture": {
+      "key": "flower",
+      "label": "flower",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-126-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word said.",
+        "audio": "voice/line-1737dc474958d86e.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-126-r1-o1",
+            "label": "said",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-126-r1-o2",
+            "label": "was",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-126-r1-o3",
+            "label": "are",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "said"
+        },
+        "shape": "cloud",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-126-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/l/|lːː} or {/s/|sːː}?",
+        "audio": "voice/line-b6c439fac7c04efd.m4a"
+      },
+      "card": {
+        "text": "l s",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "l",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "s",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "six",
+            "picture": {
+              "key": "six",
+              "label": "six",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "lemon",
+            "picture": {
+              "key": "lemon",
+              "label": "lemon",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "sock",
+            "picture": {
+              "key": "sock",
+              "label": "sock",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "lion",
+            "picture": {
+              "key": "lion",
+              "label": "lion",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "leg",
+            "picture": {
+              "key": "leg",
+              "label": "leg",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "seed",
+            "picture": {
+              "key": "seed",
+              "label": "seed",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-126-r3",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every said!",
+        "say": "Find every word said!",
+        "audio": "voice/line-6f89fb4b319f7b6e.m4a"
+      },
+      "card": {
+        "text": "said",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "said",
+        "grid": [
+          "said",
+          "said",
+          "are",
+          "the",
+          "said",
+          "they",
+          "was",
+          "star",
+          "have"
+        ]
+      }
+    },
+    {
+      "id": "level-126-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Spell said",
+        "say": "Said! Write it one letter at a time.",
+        "audio": "voice/line-604a037fd1f29408.m4a"
+      },
+      "card": {
+        "text": "said",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "said",
+        "guide": null,
+        "word": "said",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-126-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "what are my friends. Which word fits?",
+        "audio": "voice/line-353e6e2ccad81e74.m4a"
+      },
+      "card": {
+        "text": "___ are my friends.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-126-r5-o1",
+            "label": "Was",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-126-r5-o2",
+            "label": "Said",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-126-r5-o3",
+            "label": "They",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "They"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-126-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write said",
+        "say": "Look at the word said. Then write it from memory!",
+        "audio": "voice/line-951bc85a6398b9fd.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "said",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-126-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "They are my friends. Put the words in order.",
+        "audio": "voice/line-74be0d1d9189aa5b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "family",
+          "label": "family",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "They",
+          "are",
+          "my",
+          "friends"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-126-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: I have a red ball.",
+        "say": "I have a red ball. Now you say it!",
+        "audio": "voice/line-9615590e2da1c37e.m4a"
+      },
+      "card": {
+        "text": "I have a red ball.",
+        "picture": {
+          "key": "ball",
+          "label": "ball",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "I have a red ball."
+      }
+    },
+    {
+      "id": "level-126-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Write they",
+        "say": "Write the word they.",
+        "audio": "voice/line-527e1acad78d030f.m4a"
+      },
+      "card": {
+        "text": "they",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "they",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-126-r10",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every said!",
+        "say": "Pop every bubble that says said!",
+        "audio": "voice/line-0842a01b66c3fd47.m4a"
+      },
+      "card": {
+        "text": "said",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "said",
+        "others": [
+          "ship",
+          "star",
+          "goat"
+        ],
+        "count": 4
+      }
+    }
+  ]
+}

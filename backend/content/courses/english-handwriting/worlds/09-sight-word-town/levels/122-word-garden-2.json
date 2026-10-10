@@ -1,17 +1,17 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-101",
-  "number": 101,
-  "name": "Word Garden 5",
+  "id": "level-122",
+  "number": 122,
+  "name": "Word Garden 2",
   "skill": "Sight words",
   "icon": "local_florist",
   "isBoss": false,
   "requiresSubscription": true,
   "intro": {
-    "text": "look go come",
+    "text": "and to see",
     "word": "flower",
-    "say": "Words to know by sight: look, go, come, play, here!",
-    "audio": "voice/line-64c6d5dd579f6e2b.m4a",
+    "say": "Words to know by sight: and, to, see, can!",
+    "audio": "voice/line-32ce24106748bf3c.m4a",
     "picture": {
       "key": "flower",
       "label": "flower",
@@ -26,12 +26,12 @@
   },
   "rounds": [
     {
-      "id": "level-101-r1",
+      "id": "level-122-r1",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
-        "say": "Listen! Find the word look.",
-        "audio": "voice/line-93cbb96066e6eba9.m4a"
+        "say": "Listen! Find the word and.",
+        "audio": "voice/line-96b1d84f8f27b9b7.m4a"
       },
       "card": {
         "text": null,
@@ -41,22 +41,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-101-r1-o1",
-            "label": "look",
+            "id": "level-122-r1-o1",
+            "label": "star",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-101-r1-o2",
-            "label": "here",
+            "id": "level-122-r1-o2",
+            "label": "and",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-101-r1-o3",
-            "label": "come",
+            "id": "level-122-r1-o3",
+            "label": "bus",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -64,7 +64,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "look"
+          "value": "and"
         },
         "shape": "kite",
         "layout": null,
@@ -74,12 +74,12 @@
       }
     },
     {
-      "id": "level-101-r2",
+      "id": "level-122-r2",
       "type": "write",
       "prompt": {
-        "text": "Look, then write look",
-        "say": "Look at the word look. Then write it from memory!",
-        "audio": "voice/line-c6c8f27c36221a71.m4a"
+        "text": "Look, then write to",
+        "say": "Look at the word to. Then write it from memory!",
+        "audio": "voice/line-42a9fdb03c605aad.m4a"
       },
       "card": {
         "text": null,
@@ -88,7 +88,7 @@
       },
       "write": {
         "mode": "flash",
-        "target": "look",
+        "target": "to",
         "guide": null,
         "word": null,
         "missingIndex": null,
@@ -97,109 +97,88 @@
       }
     },
     {
-      "id": "level-101-r3",
+      "id": "level-122-r3",
       "type": "hunt",
       "prompt": {
-        "text": "Find every look!",
-        "say": "Find every word look!",
-        "audio": "voice/line-46b76c96594b7e12.m4a"
+        "text": "Find every and!",
+        "say": "Find every word and!",
+        "audio": "voice/line-3779725e51b55a1f.m4a"
       },
       "card": {
-        "text": "look",
+        "text": "and",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "look",
+        "target": "and",
         "grid": [
-          "play",
-          "come",
-          "star",
-          "go",
-          "look",
-          "look",
-          "tiger",
-          "here",
-          "look"
+          "see",
+          "brother",
+          "and",
+          "ship",
+          "and",
+          "and",
+          "to",
+          "bus",
+          "can"
         ]
       }
     },
     {
-      "id": "level-101-r4",
+      "id": "level-122-r4",
       "type": "write",
       "prompt": {
-        "text": "Spell look",
-        "say": "Look! Write it one letter at a time.",
-        "audio": "voice/line-137d664cb930fbf2.m4a"
+        "text": "Spell and",
+        "say": "And! Write it one letter at a time.",
+        "audio": "voice/line-368e2b288198aa15.m4a"
       },
       "card": {
-        "text": "look",
+        "text": "and",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "spell",
-        "target": "look",
+        "target": "and",
         "guide": null,
-        "word": "look",
+        "word": "and",
         "missingIndex": null,
         "sentence": false,
         "story": false
       }
     },
     {
-      "id": "level-101-r5",
+      "id": "level-122-r5",
       "type": "pick",
       "prompt": {
         "text": "Which word fits?",
-        "say": "what at the kite. Which word fits?",
-        "audio": "voice/line-0941902a315c139b.m4a"
+        "say": "I what see a bird. Which word fits?",
+        "audio": "voice/line-5acd681732dc6257.m4a"
       },
       "card": {
-        "text": "___ at the kite.",
+        "text": "I ___ see a bird.",
         "picture": null,
         "listen": false
       },
       "pick": {
         "options": [
           {
-            "id": "level-101-r5-o1",
-            "label": "look",
+            "id": "level-122-r5-o1",
+            "label": "and",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-101-r5-o2",
-            "label": "play",
+            "id": "level-122-r5-o2",
+            "label": "can",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-101-r5-o3",
-            "label": "Look",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-101-r5-o4",
-            "label": "come",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-101-r5-o5",
-            "label": "go",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-101-r5-o6",
-            "label": "here",
+            "id": "level-122-r5-o3",
+            "label": "to",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -207,7 +186,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "Look"
+          "value": "can"
         },
         "shape": "card",
         "layout": null,
@@ -217,96 +196,93 @@
       }
     },
     {
-      "id": "level-101-r6",
+      "id": "level-122-r6",
       "type": "pop",
       "prompt": {
-        "text": "Pop every look!",
-        "say": "Pop every bubble that says look!",
-        "audio": "voice/line-5f4f7927532f36b6.m4a"
+        "text": "Pop every to!",
+        "say": "Pop every bubble that says to!",
+        "audio": "voice/line-57cee49c9fcf251b.m4a"
       },
       "card": {
-        "text": "look",
+        "text": "to",
         "picture": null,
         "listen": false
       },
       "pop": {
-        "target": "look",
+        "target": "to",
         "others": [
-          "come",
-          "four",
-          "goat"
+          "the",
+          "and",
+          "bus"
         ],
         "count": 4
       }
     },
     {
-      "id": "level-101-r7",
+      "id": "level-122-r7",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
-        "say": "Look at the kite. Put the words in order.",
-        "audio": "voice/line-8e2d03bfe8a2db5d.m4a"
+        "say": "I can see a bird. Put the words in order.",
+        "audio": "voice/line-a00b0c3d58b67673.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "kite",
-          "label": "kite",
+          "key": "bird_in_sky",
+          "label": "bird in sky",
           "url": null
         },
         "listen": false
       },
       "order": {
         "tiles": [
-          "Look",
-          "at",
-          "the",
-          "kite"
+          "I",
+          "can",
+          "see",
+          "a",
+          "bird"
         ],
         "slot": "stripe"
       }
     },
     {
-      "id": "level-101-r8",
+      "id": "level-122-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: Come and play.",
-        "say": "Come and play. Now you say it!",
-        "audio": "voice/line-111956fee1ce5db8.m4a"
+        "text": "Say: A cat and a dog.",
+        "say": "A cat and a dog. Now you say it!",
+        "audio": "voice/line-a9402fd6f2dbda7d.m4a"
       },
       "card": {
-        "text": "Come and play.",
+        "text": "A cat and a dog.",
         "picture": {
-          "key": "play",
-          "label": "play",
+          "key": "cat_and_dog",
+          "label": "cat and dog",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "Come and play."
+        "expected": "A cat and a dog."
       }
     },
     {
-      "id": "level-101-r9",
+      "id": "level-122-r9",
       "type": "write",
       "prompt": {
-        "text": "Write play",
-        "say": "Write the word play.",
-        "audio": "voice/line-12c0b1660e39af61.m4a"
+        "text": "Write can",
+        "say": "Write the word can.",
+        "audio": "voice/line-135a7a105be63e2d.m4a"
       },
       "card": {
-        "text": "play",
-        "picture": {
-          "key": "play",
-          "label": "play",
-          "url": null
-        },
+        "text": "can",
+        "picture": null,
         "listen": false
       },
       "write": {
         "mode": "free",
-        "target": "play",
+        "target": "can",
         "guide": null,
         "word": null,
         "missingIndex": null,
@@ -315,7 +291,7 @@
       }
     },
     {
-      "id": "level-101-r10",
+      "id": "level-122-r10",
       "type": "match",
       "prompt": {
         "text": "Find the pairs!",
@@ -331,31 +307,31 @@
         "pairs": [
           {
             "a": {
-              "text": "look",
+              "text": "and",
               "picture": null
             },
             "b": {
-              "text": "Look",
+              "text": "And",
               "picture": null
             }
           },
           {
             "a": {
-              "text": "go",
+              "text": "to",
               "picture": null
             },
             "b": {
-              "text": "Go",
+              "text": "To",
               "picture": null
             }
           },
           {
             "a": {
-              "text": "come",
+              "text": "see",
               "picture": null
             },
             "b": {
-              "text": "Come",
+              "text": "See",
               "picture": null
             }
           }

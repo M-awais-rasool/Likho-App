@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-100",
-  "number": 100,
+  "id": "level-124",
+  "number": 124,
   "name": "Word Garden 4",
   "skill": "Sight words",
   "icon": "local_florist",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-100-r1",
+      "id": "level-124-r1",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -41,21 +41,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-100-r1-o1",
+            "id": "level-124-r1-o1",
             "label": "you",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-100-r1-o2",
-            "label": "up",
+            "id": "level-124-r1-o2",
+            "label": "it",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-100-r1-o3",
+            "id": "level-124-r1-o3",
             "label": "in",
             "picture": null,
             "color": null,
@@ -66,7 +66,7 @@
           "kind": "label",
           "value": "you"
         },
-        "shape": "bubble",
+        "shape": "shell",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -74,30 +74,91 @@
       }
     },
     {
-      "id": "level-100-r2",
-      "type": "truth",
+      "id": "level-124-r2",
+      "type": "sort",
       "prompt": {
-        "text": "True or silly?",
-        "say": "This is a star. True, or silly?",
-        "audio": "voice/line-ef41122bac3f4f2c.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/b/|bʌ} or {/s/|sːː}?",
+        "audio": "voice/line-3b89475e1ac5d27c.m4a"
       },
       "card": {
-        "text": null,
+        "text": "b s",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "truth": {
-        "text": "This is a star.",
-        "picture": {
-          "key": "up",
-          "label": "up",
-          "url": null
-        },
-        "answer": false
+      "sort": {
+        "bins": [
+          {
+            "label": "b",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "s",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "ball",
+            "picture": {
+              "key": "ball",
+              "label": "ball",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "seed",
+            "picture": {
+              "key": "seed",
+              "label": "seed",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "bag",
+            "picture": {
+              "key": "bag",
+              "label": "bag",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "book",
+            "picture": {
+              "key": "book",
+              "label": "book",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "six",
+            "picture": {
+              "key": "six",
+              "label": "six",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "sock",
+            "picture": {
+              "key": "sock",
+              "label": "sock",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
       }
     },
     {
-      "id": "level-100-r3",
+      "id": "level-124-r3",
       "type": "hunt",
       "prompt": {
         "text": "Find every you!",
@@ -112,20 +173,20 @@
       "hunt": {
         "target": "you",
         "grid": [
-          "up",
-          "in",
-          "it",
+          "you",
           "ship",
-          "you",
+          "up",
           "on",
+          "it",
           "you",
           "you",
+          "in",
           "tiger"
         ]
       }
     },
     {
-      "id": "level-100-r4",
+      "id": "level-124-r4",
       "type": "write",
       "prompt": {
         "text": "Spell you",
@@ -148,7 +209,7 @@
       }
     },
     {
-      "id": "level-100-r5",
+      "id": "level-124-r5",
       "type": "pick",
       "prompt": {
         "text": "Which word fits?",
@@ -163,43 +224,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-100-r5-o1",
-            "label": "on",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-100-r5-o2",
-            "label": "in",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-100-r5-o3",
-            "label": "it",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-100-r5-o4",
-            "label": "you",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-100-r5-o5",
-            "label": "up",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-100-r5-o6",
+            "id": "level-124-r5-o1",
             "label": "It",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-124-r5-o2",
+            "label": "In",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-124-r5-o3",
+            "label": "Up",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -217,82 +257,30 @@
       }
     },
     {
-      "id": "level-100-r6",
-      "type": "sort",
+      "id": "level-124-r6",
+      "type": "write",
       "prompt": {
-        "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/f/|fːː} or {/g/|ɡʌ}?",
-        "audio": "voice/line-50bc4e75f05dae0e.m4a"
+        "text": "Look, then write on",
+        "say": "Look at the word on. Then write it from memory!",
+        "audio": "voice/line-20d5f8acdb33ba9e.m4a"
       },
       "card": {
-        "text": "f g",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "sort": {
-        "bins": [
-          {
-            "label": "f",
-            "picture": null,
-            "bin": null
-          },
-          {
-            "label": "g",
-            "picture": null,
-            "bin": null
-          }
-        ],
-        "items": [
-          {
-            "label": "foot",
-            "picture": {
-              "key": "foot",
-              "label": "foot",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "gift",
-            "picture": {
-              "key": "gift",
-              "label": "gift",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "four",
-            "picture": {
-              "key": "four",
-              "label": "four",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "fish",
-            "picture": {
-              "key": "fish",
-              "label": "fish",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "goat",
-            "picture": {
-              "key": "goat",
-              "label": "goat",
-              "url": null
-            },
-            "bin": 1
-          }
-        ]
+      "write": {
+        "mode": "flash",
+        "target": "on",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
       }
     },
     {
-      "id": "level-100-r7",
+      "id": "level-124-r7",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -320,7 +308,7 @@
       }
     },
     {
-      "id": "level-100-r8",
+      "id": "level-124-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: The cat is on the box.",
@@ -341,7 +329,7 @@
       }
     },
     {
-      "id": "level-100-r9",
+      "id": "level-124-r9",
       "type": "write",
       "prompt": {
         "text": "Write on",
@@ -364,30 +352,26 @@
       }
     },
     {
-      "id": "level-100-r10",
-      "type": "write",
+      "id": "level-124-r10",
+      "type": "pop",
       "prompt": {
-        "text": "Look, then write up",
-        "say": "Look at the word up. Then write it from memory!",
-        "audio": "voice/line-27011a2c5b939e1c.m4a"
+        "text": "Pop every on!",
+        "say": "Pop every bubble that says on!",
+        "audio": "voice/line-26dff0fd51dade9d.m4a"
       },
       "card": {
-        "text": null,
-        "picture": {
-          "key": "up",
-          "label": "up",
-          "url": null
-        },
+        "text": "on",
+        "picture": null,
         "listen": false
       },
-      "write": {
-        "mode": "flash",
-        "target": "up",
-        "guide": null,
-        "word": null,
-        "missingIndex": null,
-        "sentence": false,
-        "story": false
+      "pop": {
+        "target": "on",
+        "others": [
+          "he",
+          "in",
+          "it"
+        ],
+        "count": 4
       }
     }
   ]

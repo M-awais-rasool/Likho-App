@@ -1,9 +1,9 @@
 {
   "$schema": "../../../../schema/world.schema.json",
-  "id": "world-4",
-  "order": 4,
-  "name": "Word Town",
-  "skill": "First words",
+  "id": "world-9",
+  "order": 9,
+  "name": "Sight Word Town",
+  "skill": "Sight words",
   "icon": "location_city",
   "themeId": "wordTown",
   "boss": {

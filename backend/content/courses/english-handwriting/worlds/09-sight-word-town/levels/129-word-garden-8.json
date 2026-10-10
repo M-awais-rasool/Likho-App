@@ -1,0 +1,342 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-129",
+  "number": 129,
+  "name": "Word Garden 8",
+  "skill": "Sight words",
+  "icon": "local_florist",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "help find make",
+    "word": "flower",
+    "say": "Words to know by sight: help, find, make, away, funny!",
+    "audio": "voice/line-beeed5345ff20c85.m4a",
+    "picture": {
+      "key": "flower",
+      "label": "flower",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-129-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word help.",
+        "audio": "voice/line-ded694cce386ba35.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-129-r1-o1",
+            "label": "you",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-129-r1-o2",
+            "label": "help",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-129-r1-o3",
+            "label": "make",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "help"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-129-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write help",
+        "say": "Look at the word help. Then write it from memory!",
+        "audio": "voice/line-207c41758edc94f3.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "help",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-129-r3",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every help!",
+        "say": "Find every word help!",
+        "audio": "voice/line-e7b88acf673ee20d.m4a"
+      },
+      "card": {
+        "text": "help",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "help",
+        "grid": [
+          "funny",
+          "away",
+          "he",
+          "help",
+          "find",
+          "make",
+          "help",
+          "you",
+          "help"
+        ]
+      }
+    },
+    {
+      "id": "level-129-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Spell help",
+        "say": "Help! Write it one letter at a time.",
+        "audio": "voice/line-f172ed82b0acca48.m4a"
+      },
+      "card": {
+        "text": "help",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "help",
+        "guide": null,
+        "word": "help",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-129-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "I can what a cake. Which word fits?",
+        "audio": "voice/line-cac78d52e0c2e205.m4a"
+      },
+      "card": {
+        "text": "I can ___ a cake.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-129-r5-o1",
+            "label": "funny",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-129-r5-o2",
+            "label": "away",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-129-r5-o3",
+            "label": "make",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "make"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-129-r6",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every away!",
+        "say": "Pop every bubble that says away!",
+        "audio": "voice/line-64fac62edeacc8f4.m4a"
+      },
+      "card": {
+        "text": "away",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "away",
+        "others": [
+          "find",
+          "help",
+          "like"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-129-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "I can make a cake. Put the words in order.",
+        "audio": "voice/line-80b8d33ab744ac9c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cake",
+          "label": "cake",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "I",
+          "can",
+          "make",
+          "a",
+          "cake"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-129-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Help me find my cat.",
+        "say": "Help me find my cat. Now you say it!",
+        "audio": "voice/line-e5dc9865b845f389.m4a"
+      },
+      "card": {
+        "text": "Help me find my cat.",
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Help me find my cat."
+      }
+    },
+    {
+      "id": "level-129-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Write away",
+        "say": "Write the word away.",
+        "audio": "voice/line-a1505d1e50dac2d5.m4a"
+      },
+      "card": {
+        "text": "away",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "away",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-129-r10",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to the same word with a capital letter.",
+        "audio": "voice/line-d82ba5aa00efefb3.m4a"
+      },
+      "card": {
+        "text": "the = The",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "help",
+              "picture": null
+            },
+            "b": {
+              "text": "Help",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "find",
+              "picture": null
+            },
+            "b": {
+              "text": "Find",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "make",
+              "picture": null
+            },
+            "b": {
+              "text": "Make",
+              "picture": null
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
