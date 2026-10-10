@@ -16,7 +16,8 @@ import 'common/toast.dart';
 /// step with the server:
 /// * a change that could not be saved shows as a toast
 /// * when the server ends the session, the app goes back to Welcome
-/// * finished levels still waiting are sent when the app comes back
+/// * when the app comes back, finished levels still waiting are sent and
+///   the account is reloaded if it was a while ago
 class AppShell extends ConsumerStatefulWidget {
   const AppShell({super.key, required this.navigatorKey, required this.child});
 
@@ -33,7 +34,7 @@ class _AppShellState extends ConsumerState<AppShell> {
   @override
   void initState() {
     super.initState();
-    _life = AppLifecycleListener(onResume: () => ref.read(familyProvider.notifier).flush());
+    _life = AppLifecycleListener(onResume: () => ref.read(familyProvider.notifier).resumed());
   }
 
   @override

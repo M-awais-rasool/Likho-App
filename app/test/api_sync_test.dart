@@ -104,6 +104,19 @@ void main() {
     expect(backend.calls.where((x) => x.endsWith('/results')).length, 2);
   });
 
+  test('back in the app after a while (or the next day), the account is reloaded', () async {
+    await c.read(authProvider.notifier).signInWithGoogle();
+    final n = c.read(familyProvider.notifier);
+    int meCalls() => backend.calls.where((x) => x == 'GET /v1/me').length;
+    final before = meCalls();
+    await n.resumed(now: DateTime.now());
+    expect(meCalls(), before, reason: 'just now: nothing to reload');
+    await n.resumed(now: DateTime.now().add(const Duration(minutes: 45)));
+    expect(meCalls(), before + 1);
+    await n.resumed(now: DateTime.now().add(const Duration(days: 1)));
+    expect(meCalls(), before + 2, reason: 'another day');
+  });
+
   test('results still waiting survive an app restart', () async {
     backend.addChild('Zara');
     await c.read(authProvider.notifier).signInWithGoogle();
