@@ -1,0 +1,434 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-175",
+  "number": 175,
+  "name": "Months of the Year",
+  "skill": "Months",
+  "icon": "calendar_month",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "January",
+    "word": "calendar",
+    "say": "January, February, March! There are twelve months in a year.",
+    "audio": "voice/line-d81bfe823129fe14.m4a",
+    "picture": {
+      "key": "calendar",
+      "label": "calendar",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-175-r1",
+      "type": "order",
+      "prompt": {
+        "text": "Put the months in order!",
+        "say": "January, February, March! Put the months in order.",
+        "audio": "voice/line-62310091c7121a27.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "calendar",
+          "label": "calendar",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "January",
+          "February",
+          "March"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-175-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/s/|sːː} or {/h/|hʌ}?",
+        "audio": "voice/line-f105ab757293d8af.m4a"
+      },
+      "card": {
+        "text": "s h",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "s",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "h",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "hen",
+            "picture": {
+              "key": "hen",
+              "label": "hen",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "hand",
+            "picture": {
+              "key": "hand",
+              "label": "hand",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "six",
+            "picture": {
+              "key": "six",
+              "label": "six",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "hut",
+            "picture": {
+              "key": "hut",
+              "label": "hut",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "seed",
+            "picture": {
+              "key": "seed",
+              "label": "seed",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-175-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "April, what, June. Which word fits?",
+        "audio": "voice/line-d10b7c663a3ece2c.m4a"
+      },
+      "card": {
+        "text": "April, ___, June.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-175-r3-o1",
+            "label": "May",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-175-r3-o2",
+            "label": "July",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-175-r3-o3",
+            "label": "March",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "May"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-175-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "When is the birthday?",
+        "say": "My birthday is in May. I have a big cake. When is the birthday?",
+        "audio": "voice/line-ec9f9d6611db6987.m4a"
+      },
+      "card": {
+        "text": "My birthday is in May. I have a big cake.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-175-r4-o1",
+            "label": "in May",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-175-r4-o2",
+            "label": "in June",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-175-r4-o3",
+            "label": "in March",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "in May"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-175-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "It is cold in December.",
+        "say": "It is cold in December. Find the picture!",
+        "audio": "voice/line-f268c6665620e8ac.m4a"
+      },
+      "card": {
+        "text": "It is cold in December.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-175-r5-o1",
+            "label": "flower",
+            "picture": {
+              "key": "flower",
+              "label": "flower",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-175-r5-o2",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-175-r5-o3",
+            "label": "snowman",
+            "picture": {
+              "key": "snowman",
+              "label": "snowman",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "snowman"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-175-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write May",
+        "say": "Look at the word May. Then write it from memory!",
+        "audio": "voice/line-94fff85ebf77368c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "May",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-175-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word July.",
+        "audio": "voice/line-1a796aa0272f1aa5.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-175-r7-o1",
+            "label": "March",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-175-r7-o2",
+            "label": "July",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-175-r7-o3",
+            "label": "June",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "July"
+        },
+        "shape": "cloud",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-175-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Spell June",
+        "say": "June! Write it one letter at a time.",
+        "audio": "voice/line-cf74bb35ec1081b5.m4a"
+      },
+      "card": {
+        "text": "June",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "June",
+        "guide": null,
+        "word": "June",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-175-r9",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: January, February, March, April, May, June!",
+        "say": "January, February, March, April, May, June! Now you say it!",
+        "audio": "voice/line-9b3c96b0b67b8c6c.m4a"
+      },
+      "card": {
+        "text": "January, February, March, April, May, June!",
+        "picture": {
+          "key": "calendar",
+          "label": "calendar",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "January, February, March, April, May, June!"
+      }
+    },
+    {
+      "id": "level-175-r10",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every July!",
+        "say": "Pop every bubble that says July!",
+        "audio": "voice/line-437220fcb008e0ec.m4a"
+      },
+      "card": {
+        "text": "July",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "July",
+        "others": [
+          "June",
+          "down",
+          "jump"
+        ],
+        "count": 4
+      }
+    }
+  ]
+}

@@ -1,0 +1,439 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-170",
+  "number": 170,
+  "name": "When?",
+  "skill": "Asking about time",
+  "icon": "calendar_month",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "When?",
+    "word": "night",
+    "say": "When do you sleep? At night! Let's ask about time.",
+    "audio": "voice/line-1ea30b0937a54156.m4a",
+    "picture": {
+      "key": "night",
+      "label": "night",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-170-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "When do you sleep?",
+        "audio": "voice/line-71f241ffdc05890f.m4a"
+      },
+      "card": {
+        "text": "When do you sleep?",
+        "picture": {
+          "key": "bed",
+          "label": "bed",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-170-r1-o1",
+            "label": "at school",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-170-r1-o2",
+            "label": "at lunch",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-170-r1-o3",
+            "label": "at night",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "at night"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-170-r2",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. I wake up in the morning. True, or silly?",
+        "audio": "voice/line-facbee8abf83141a.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "I wake up in the morning.",
+        "picture": {
+          "key": "night",
+          "label": "night",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-170-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "When does Ali sleep?",
+        "say": "Ali wakes up in the morning. He goes to school. At night, he sleeps. When does Ali sleep?",
+        "audio": "voice/line-b12b1afaf123f1b2.m4a"
+      },
+      "card": {
+        "text": "Ali wakes up in the morning. He goes to school. At night, he sleeps.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-170-r3-o1",
+            "label": "at school",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-170-r3-o2",
+            "label": "in the morning",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-170-r3-o3",
+            "label": "at night",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "at night"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-170-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "We see the moon at night.",
+        "say": "We see the moon at night. Find the picture!",
+        "audio": "voice/line-2dd417aa49248ccd.m4a"
+      },
+      "card": {
+        "text": "We see the moon at night.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-170-r4-o1",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-170-r4-o2",
+            "label": "night",
+            "picture": {
+              "key": "night",
+              "label": "night",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-170-r4-o3",
+            "label": "school",
+            "picture": {
+              "key": "school",
+              "label": "school",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "night"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-170-r5",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "When do you eat lunch? Put the words in order.",
+        "audio": "voice/line-a673f5f709fd2364.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "eat",
+          "label": "eat",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "When",
+          "do",
+          "you",
+          "eat",
+          "lunch"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-170-r6",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/b/|bʌ}?",
+        "audio": "voice/line-55e04600648a8763.m4a"
+      },
+      "card": {
+        "text": "d b",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "d",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "b",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "book",
+            "picture": {
+              "key": "book",
+              "label": "book",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bug",
+            "picture": {
+              "key": "bug",
+              "label": "bug",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "ball",
+            "picture": {
+              "key": "ball",
+              "label": "ball",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-170-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "I sleep at night. Now write it!",
+        "audio": "voice/line-1ef6b1f22cd020eb.m4a"
+      },
+      "card": {
+        "text": "I sleep at night.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I sleep at night.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-170-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: When do you wake up? In the morning!",
+        "say": "When do you wake up? In the morning! Now you say it!",
+        "audio": "voice/line-085936185b465cd6.m4a"
+      },
+      "card": {
+        "text": "When do you wake up? In the morning!",
+        "picture": {
+          "key": "wake_up",
+          "label": "wake up",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "When do you wake up? In the morning!"
+      }
+    },
+    {
+      "id": "level-170-r9",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word morning.",
+        "audio": "voice/line-9abda86f6c01894f.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-170-r9-o1",
+            "label": "today",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-170-r9-o2",
+            "label": "when",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-170-r9-o3",
+            "label": "morning",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "morning"
+        },
+        "shape": "bubble",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-170-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write when",
+        "say": "Look at the word when. Then write it from memory!",
+        "audio": "voice/line-4f253dfe1e05b435.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "when",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}

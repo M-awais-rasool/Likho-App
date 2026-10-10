@@ -1,0 +1,372 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-178",
+  "number": 178,
+  "name": "Answer Me",
+  "skill": "Answering in sentences",
+  "icon": "question_answer",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Yes, I can.",
+    "word": "robot",
+    "say": "Let's answer questions with a whole sentence.",
+    "audio": "voice/line-ef4414e6617f203c.m4a",
+    "picture": {
+      "key": "robot",
+      "label": "robot",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-178-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Can you jump?",
+        "say": "Can you jump? Pick the answer!",
+        "audio": "voice/line-6f28f930b6870a5d.m4a"
+      },
+      "card": {
+        "text": "Can you jump?",
+        "picture": {
+          "key": "jump",
+          "label": "jump",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-178-r1-o1",
+            "label": "I am red.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-178-r1-o2",
+            "label": "Yes, it is.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-178-r1-o3",
+            "label": "Yes, I can.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Yes, I can."
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-178-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write hop",
+        "say": "Look at the word hop. Then write it from memory!",
+        "audio": "voice/line-9cc3f318354f1260.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "hop",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-178-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "Yes, I can. Put the words in order.",
+        "audio": "voice/line-33b7c1830379111a.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "jump",
+          "label": "jump",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "Yes,",
+          "I",
+          "can"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-178-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "Yes, I can. Now write it!",
+        "audio": "voice/line-ed90e2fefdb1eb2a.m4a"
+      },
+      "card": {
+        "text": "Yes, I can.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "Yes, I can.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-178-r5",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Can you swim? Yes, I can!",
+        "say": "Can you swim? Yes, I can! Now you say it!",
+        "audio": "voice/line-42b1b841684e134d.m4a"
+      },
+      "card": {
+        "text": "Can you swim? Yes, I can!",
+        "picture": {
+          "key": "swim",
+          "label": "swim",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Can you swim? Yes, I can!"
+      }
+    },
+    {
+      "id": "level-178-r6",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every jump!",
+        "say": "Pop every bubble that says jump!",
+        "audio": "voice/line-985076bee30d7291.m4a"
+      },
+      "card": {
+        "text": "jump",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "jump",
+        "others": [
+          "down",
+          "some",
+          "his"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-178-r7",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every jumping!",
+        "say": "Find every word jumping!",
+        "audio": "voice/line-809ab75a3969324a.m4a"
+      },
+      "card": {
+        "text": "jumping",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "jumping",
+        "grid": [
+          "jumping",
+          "under",
+          "hop",
+          "sad",
+          "jumping",
+          "his",
+          "some",
+          "down",
+          "jumping"
+        ]
+      }
+    },
+    {
+      "id": "level-178-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Spell behind",
+        "say": "Behind! Write it one letter at a time.",
+        "audio": "voice/line-6de8f1c573b2b22b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cat_behind_box",
+          "label": "behind",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "behind",
+        "guide": null,
+        "word": "behind",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-178-r9",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-178-r9-o1",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-178-r9-o2",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-178-r9-o3",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-178-r10",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "sad",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "sad",
+                "label": "sad",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "down",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "down",
+                "label": "down",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "behind",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "cat_behind_box",
+                "label": "behind",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

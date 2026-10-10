@@ -1,0 +1,430 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-177",
+  "number": 177,
+  "name": "Asking Politely",
+  "skill": "Please and thank you",
+  "icon": "record_voice_over",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "please",
+    "word": "gift",
+    "say": "Please and thank you! Let's ask nicely.",
+    "audio": "voice/line-aa51968b1a760437.m4a",
+    "picture": {
+      "key": "gift",
+      "label": "gift",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-177-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which one is polite?",
+        "say": "Which one asks nicely?",
+        "audio": "voice/line-f28228c6f1b2789c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "milk",
+          "label": "milk",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-177-r1-o1",
+            "label": "Give me milk!",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-177-r1-o2",
+            "label": "May I have some milk, please?",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "May I have some milk, please?"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-177-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/j/|ʤʌ} or {/d/|dʌ}?",
+        "audio": "voice/line-14dbe49e4f932a3d.m4a"
+      },
+      "card": {
+        "text": "j d",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "j",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "d",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "jump",
+            "picture": {
+              "key": "jump",
+              "label": "jump",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "jam",
+            "picture": {
+              "key": "jam",
+              "label": "jam",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-177-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Thank you for the gift!",
+        "say": "Thank you for the gift! Find the picture!",
+        "audio": "voice/line-9f0fa8f2c873b1c1.m4a"
+      },
+      "card": {
+        "text": "Thank you for the gift!",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-177-r3-o1",
+            "label": "cake",
+            "picture": {
+              "key": "cake",
+              "label": "cake",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-177-r3-o2",
+            "label": "gift",
+            "picture": {
+              "key": "gift",
+              "label": "gift",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-177-r3-o3",
+            "label": "ball",
+            "picture": {
+              "key": "ball",
+              "label": "ball",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "gift"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-177-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Tap the polite word!",
+        "say": "Pass the salt, please. Tap the polite word!",
+        "audio": "voice/line-d4937bc92f7b5b67.m4a"
+      },
+      "card": {
+        "text": "Pass the salt please.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-177-r4-o1",
+            "label": "Pass",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-177-r4-o2",
+            "label": "the",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-177-r4-o3",
+            "label": "salt",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-177-r4-o4",
+            "label": "please",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "please"
+        },
+        "shape": null,
+        "layout": "flow",
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-177-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "What does Ali say next?",
+        "say": "Ali wants a pencil. He says, May I have a pencil, please? Sara gives him one. What does Ali say next?",
+        "audio": "voice/line-7c2e181aceaa315e.m4a"
+      },
+      "card": {
+        "text": "Ali wants a pencil. He says, May I have a pencil, please? Sara gives him one.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-177-r5-o1",
+            "label": "Go away!",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-177-r5-o2",
+            "label": "No!",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-177-r5-o3",
+            "label": "Thank you!",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Thank you!"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-177-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write may",
+        "say": "Look at the word may. Then write it from memory!",
+        "audio": "voice/line-94fff85ebf77368c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "may",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-177-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "May I play, please? Put the words in order.",
+        "audio": "voice/line-eda3b059ca9196f0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "play",
+          "label": "play",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "May",
+          "I",
+          "play,",
+          "please"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-177-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "Thank you very much. Now write it!",
+        "audio": "voice/line-1709c96d0c8f7804.m4a"
+      },
+      "card": {
+        "text": "Thank you very much.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "Thank you very much.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-177-r9",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Excuse me, may I come in?",
+        "say": "Excuse me, may I come in? Now you say it!",
+        "audio": "voice/line-4cdb7a6203d1784a.m4a"
+      },
+      "card": {
+        "text": "Excuse me, may I come in?",
+        "picture": {
+          "key": "door",
+          "label": "door",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Excuse me, may I come in?"
+      }
+    },
+    {
+      "id": "level-177-r10",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every please!",
+        "say": "Pop every bubble that says please!",
+        "audio": "voice/line-2079c5d8325eb28b.m4a"
+      },
+      "card": {
+        "text": "please",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "please",
+        "others": [
+          "sorry",
+          "thank",
+          "under"
+        ],
+        "count": 4
+      }
+    }
+  ]
+}

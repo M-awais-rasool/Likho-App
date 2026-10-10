@@ -1,0 +1,457 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-172",
+  "number": 172,
+  "name": "How Many?",
+  "skill": "Asking how many",
+  "icon": "cake",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "How many?",
+    "word": "many cats",
+    "say": "How many cats? Three cats! Let's count and ask.",
+    "audio": "voice/line-85f2f341c191e389.m4a",
+    "picture": {
+      "key": "many_cats",
+      "label": "many_cats",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-172-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "How many?",
+        "say": "How many cupcakes? Count them!",
+        "audio": "voice/line-7d4a6a40fc53f45c.m4a"
+      },
+      "card": {
+        "text": "How many?",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-172-r1-o1",
+            "label": "six",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-172-r1-o2",
+            "label": "nine",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-172-r1-o3",
+            "label": "seven",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "seven"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": 7,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "count"
+      }
+    },
+    {
+      "id": "level-172-r2",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "how",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "many",
+            "wrong": "mirror",
+            "at": 1
+          },
+          {
+            "text": "two",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "three",
+            "wrong": "mirror",
+            "at": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-172-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "How many legs?",
+        "say": "How many legs does a dog have?",
+        "audio": "voice/line-a1f763aacb6d2417.m4a"
+      },
+      "card": {
+        "text": "How many legs?",
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-172-r3-o1",
+            "label": "two",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-172-r3-o2",
+            "label": "four",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-172-r3-o3",
+            "label": "six",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "four"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-172-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "I see three cats.",
+        "say": "I see three cats. Find the picture!",
+        "audio": "voice/line-7477c835a00427fa.m4a"
+      },
+      "card": {
+        "text": "I see three cats.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-172-r4-o1",
+            "label": "many birds",
+            "picture": {
+              "key": "many_birds",
+              "label": "many birds",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-172-r4-o2",
+            "label": "many cats",
+            "picture": {
+              "key": "many_cats",
+              "label": "many cats",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-172-r4-o3",
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "many cats"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-172-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "How many balls does Sara have?",
+        "say": "Sara has two red balls and one blue ball. How many balls does Sara have?",
+        "audio": "voice/line-c071ef6d319da9a9.m4a"
+      },
+      "card": {
+        "text": "Sara has two red balls and one blue ball.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-172-r5-o1",
+            "label": "two",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-172-r5-o2",
+            "label": "three",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-172-r5-o3",
+            "label": "one",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "three"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-172-r6",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. I see three cats. True, or silly?",
+        "audio": "voice/line-0374ea9d4b954c05.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "I see three cats.",
+        "picture": {
+          "key": "many_hats",
+          "label": "many hats",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-172-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "How many birds can you see? Put the words in order.",
+        "audio": "voice/line-83910a8e4db23434.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "many_birds",
+          "label": "many birds",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "How",
+          "many",
+          "birds",
+          "can",
+          "you",
+          "see"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-172-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "I have two hands. Now write it!",
+        "audio": "voice/line-97c59990f36f3cf3.m4a"
+      },
+      "card": {
+        "text": "I have two hands.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I have two hands.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-172-r9",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: How many? One, two, three!",
+        "say": "How many? One, two, three! Now you say it!",
+        "audio": "voice/line-04feee1b00e2b81b.m4a"
+      },
+      "card": {
+        "text": "How many? One, two, three!",
+        "picture": {
+          "key": "many_cats",
+          "label": "many cats",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "How many? One, two, three!"
+      }
+    },
+    {
+      "id": "level-172-r10",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/h/|hʌ} or {/m/|mːː}?",
+        "audio": "voice/line-8ab30bcd9107681f.m4a"
+      },
+      "card": {
+        "text": "h m",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "h",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "m",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "mouse",
+            "picture": {
+              "key": "mouse",
+              "label": "mouse",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "milk",
+            "picture": {
+              "key": "milk",
+              "label": "milk",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "hand",
+            "picture": {
+              "key": "hand",
+              "label": "hand",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "hut",
+            "picture": {
+              "key": "hut",
+              "label": "hut",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "moon",
+            "picture": {
+              "key": "moon",
+              "label": "moon",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "hen",
+            "picture": {
+              "key": "hen",
+              "label": "hen",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    }
+  ]
+}

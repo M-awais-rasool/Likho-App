@@ -1,0 +1,478 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-179",
+  "number": 179,
+  "name": "Question or Telling?",
+  "skill": "Asking or telling",
+  "icon": "question_answer",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "? .",
+    "word": "question",
+    "say": "Is it a question, or a telling sentence? Let's find out!",
+    "audio": "voice/line-8a06349040901024.m4a",
+    "picture": {
+      "key": "question",
+      "label": "question",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-179-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which mark ends it?",
+        "say": "Where is my hat? Which mark goes at the end?",
+        "audio": "voice/line-140dc7644b660c01.m4a"
+      },
+      "card": {
+        "text": "Where is my hat ___",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-179-r1-o1",
+            "label": "?",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-179-r1-o2",
+            "label": ".",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-179-r1-o3",
+            "label": "!",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "?"
+        },
+        "shape": "shell",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-179-r2",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "some",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "his",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "hop",
+            "wrong": "mirror",
+            "at": 0
+          },
+          {
+            "text": "sad",
+            "wrong": "mirror",
+            "at": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-179-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Who asks a question?",
+        "say": "Ali asks, Can I play? Mia says, Yes, you can. Who asks a question?",
+        "audio": "voice/line-98f43be182b896ed.m4a"
+      },
+      "card": {
+        "text": "Ali asks, Can I play? Mia says, Yes, you can.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-179-r3-o1",
+            "label": "the dog",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-179-r3-o2",
+            "label": "Ali",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-179-r3-o3",
+            "label": "Mia",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Ali"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-179-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Asking or telling?",
+        "say": "Listen! Do you like cake? Is it asking, or telling?",
+        "audio": "voice/line-3d0df4595d5e2328.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-179-r4-o1",
+            "label": "asking",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-179-r4-o2",
+            "label": "telling",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "asking"
+        },
+        "shape": "fish",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-179-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "Tap the asking word!",
+        "say": "Where is my hat? Tap the word that asks!",
+        "audio": "voice/line-b7bd2d7caaff0228.m4a"
+      },
+      "card": {
+        "text": "Where is my hat?",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-179-r5-o1",
+            "label": "Where",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-179-r5-o2",
+            "label": "is",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-179-r5-o3",
+            "label": "my",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-179-r5-o4",
+            "label": "hat",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Where"
+        },
+        "shape": null,
+        "layout": "flow",
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-179-r6",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. The cat is in the bed. True, or silly?",
+        "audio": "voice/line-c07f05bc7a260180.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "The cat is in the bed.",
+        "picture": {
+          "key": "cat_in_bed",
+          "label": "cat in bed",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-179-r7",
+      "type": "pick",
+      "prompt": {
+        "text": "Is the cat on the box?",
+        "say": "Is the cat on the box? Find the picture!",
+        "audio": "voice/line-a7084fbf77c1a155.m4a"
+      },
+      "card": {
+        "text": "Is the cat on the box?",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-179-r7-o1",
+            "label": "dog on box",
+            "picture": {
+              "key": "dog_on_box",
+              "label": "dog on box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-179-r7-o2",
+            "label": "cat in bed",
+            "picture": {
+              "key": "cat_in_bed",
+              "label": "cat in bed",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-179-r7-o3",
+            "label": "cat on box",
+            "picture": {
+              "key": "cat_on_box",
+              "label": "cat on box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "cat on box"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-179-r8",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "Do you like the sea? Put the words in order.",
+        "audio": "voice/line-02873602df2b194c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "fish_in_sea",
+          "label": "fish in sea",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "Do",
+          "you",
+          "like",
+          "the",
+          "sea"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-179-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "Where is my bag? Now write it!",
+        "audio": "voice/line-d70cdf17876eb515.m4a"
+      },
+      "card": {
+        "text": "Where is my bag?",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "Where is my bag?",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-179-r10",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/b/|bʌ} or {/w/|wʌ}?",
+        "audio": "voice/line-0ff4e05d6c5560cb.m4a"
+      },
+      "card": {
+        "text": "b w",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "b",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "w",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "wing",
+            "picture": {
+              "key": "wing",
+              "label": "wing",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "watch",
+            "picture": {
+              "key": "watch",
+              "label": "watch",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "boat",
+            "picture": {
+              "key": "boat",
+              "label": "boat",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bat",
+            "picture": {
+              "key": "bat",
+              "label": "bat",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bag",
+            "picture": {
+              "key": "bag",
+              "label": "bag",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "web",
+            "picture": {
+              "key": "web",
+              "label": "web",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    }
+  ]
+}
