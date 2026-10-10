@@ -47,6 +47,10 @@ type Parent struct {
 	Events     []ActivityEvent `gorm:"constraint:OnDelete:CASCADE"`
 	ActiveDays []ActiveDay     `gorm:"constraint:OnDelete:CASCADE"`
 	Alerts     []AdminAlert    `gorm:"constraint:OnDelete:CASCADE"`
+
+	// Google Play closed test (admin panel)
+	TestAccount *ClosedTestAccount `gorm:"constraint:OnDelete:CASCADE"`
+	TestDays    []ClosedTestDay    `gorm:"constraint:OnDelete:CASCADE"`
 }
 
 func (p Parent) PlusActive(now time.Time) bool { return p.PlusUntil != nil && p.PlusUntil.After(now) }
@@ -260,11 +264,46 @@ type AdminSetting struct {
 	UpdatedAt time.Time
 }
 
+// Google Play closed test: before launch, a new Play account must have
+// testers opted in for 14 days in a row. The panel tracks them by the
+// Likho account each one uses (never by a device id): a tester may sign in
+// with another email than the one added in Play Console, so the team links
+// accounts to testers (an email match links on its own).
+
+// ClosedTester is a person in the closed test.
+type ClosedTester struct {
+	ID        string              `gorm:"type:uuid;primaryKey;default:gen_random_uuid()" json:"id"`
+	Name      string              `gorm:"not null;check:char_length(name) BETWEEN 1 AND 80" json:"name"`
+	Email     string              `gorm:"not null;default:''" json:"email"`                  // as added in Play Console
+	Phone     string              `gorm:"type:varchar(16);not null;default:''" json:"phone"` // WhatsApp: digits with the country code
+	Note      string              `gorm:"not null;default:''" json:"note"`
+	CreatedAt time.Time           `json:"createdAt"`
+	Accounts  []ClosedTestAccount `gorm:"foreignKey:TesterID;constraint:OnDelete:CASCADE" json:"-"`
+}
+
+// ClosedTestAccount says whose Likho account this is: a tester's, or
+// nobody's (TesterID nil: e.g. the team's own phone).
+type ClosedTestAccount struct {
+	ParentID string    `gorm:"type:uuid;primaryKey"`
+	TesterID *string   `gorm:"type:uuid;index"`
+	Auto     bool      `gorm:"not null;default:false"` // linked by its email
+	LinkedAt time.Time `gorm:"not null;default:now()"`
+}
+
+// ClosedTestDay is one row per account per day it used the app while the
+// closed test is set up. Days are in the test's time zone (active_days are
+// UTC days).
+type ClosedTestDay struct {
+	ParentID string    `gorm:"type:uuid;primaryKey"`
+	Day      time.Time `gorm:"type:date;primaryKey"`
+}
+
 // Tables, in the order GORM creates them.
 var Tables = []any{
 	&Parent{}, &Child{}, &LevelProgress{}, &ChildItem{}, &PlayDay{}, &Session{},
 	&ActivityEvent{}, &ActiveDay{}, &AdminUser{}, &AdminSession{}, &AdminAlert{}, &AuditEntry{},
 	&ContentLevel{}, &ContentWorld{}, &AdminSetting{},
+	&ClosedTester{}, &ClosedTestAccount{}, &ClosedTestDay{},
 }
 
 // Account, Settings and Subscription are the parent as the API shows it.
