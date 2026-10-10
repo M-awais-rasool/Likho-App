@@ -26,6 +26,8 @@ type Repositories struct {
 	Admin    *AdminRepository
 	Insights *InsightsRepository
 	Content  *ContentRepository
+
+	ClosedTest *ClosedTestRepository
 }
 
 func New(db *gorm.DB) Repositories {
@@ -39,6 +41,8 @@ func New(db *gorm.DB) Repositories {
 		Admin:    &AdminRepository{db: db},
 		Insights: &InsightsRepository{db: db},
 		Content:  &ContentRepository{db: db},
+
+		ClosedTest: &ClosedTestRepository{db: db},
 	}
 }
 
