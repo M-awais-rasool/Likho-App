@@ -1,0 +1,385 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-162",
+  "number": 162,
+  "name": "Behind, Next To, Between",
+  "skill": "Where things are",
+  "icon": "pets",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "behind",
+    "word": "cat behind box",
+    "say": "Behind, next to, between! Where is the cat?",
+    "audio": "voice/line-6cef6d734fff00d2.m4a",
+    "picture": {
+      "key": "cat_behind_box",
+      "label": "cat_behind_box",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-162-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "The cat is behind the box.",
+        "say": "The cat is behind the box. Find the picture!",
+        "audio": "voice/line-606c4f0c40ff8f06.m4a"
+      },
+      "card": {
+        "text": "The cat is behind the box.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-162-r1-o1",
+            "label": "cat next to box",
+            "picture": {
+              "key": "cat_next_to_box",
+              "label": "cat next to box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-162-r1-o2",
+            "label": "cat behind box",
+            "picture": {
+              "key": "cat_behind_box",
+              "label": "cat behind box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-162-r1-o3",
+            "label": "cat between boxes",
+            "picture": {
+              "key": "cat_between_boxes",
+              "label": "cat between boxes",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "cat behind box"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-162-r2",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every between!",
+        "say": "Pop every bubble that says between!",
+        "audio": "voice/line-3ec89abaecb449f1.m4a"
+      },
+      "card": {
+        "text": "between",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "between",
+        "others": [
+          "under",
+          "down",
+          "help"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-162-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Where is the dog?",
+        "say": "Look! Where is the dog?",
+        "audio": "voice/line-60145eddfb29fab0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "dog_next_to_box",
+          "label": "dog next to box",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-162-r3-o1",
+            "label": "behind the box",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-162-r3-o2",
+            "label": "next to the box",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-162-r3-o3",
+            "label": "on the box",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "next to the box"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-162-r4",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. The cat is between the boxes. True, or silly?",
+        "audio": "voice/line-448feaa30bf1094d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "The cat is between the boxes.",
+        "picture": {
+          "key": "cat_between_boxes",
+          "label": "cat between boxes",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-162-r5",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "The dog is behind the box. Put the words in order.",
+        "audio": "voice/line-92cb36ba54dd577c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "dog_behind_box",
+          "label": "dog behind box",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "The",
+          "dog",
+          "is",
+          "behind",
+          "the",
+          "box"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-162-r6",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "behind",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "cat_behind_box",
+                "label": "behind",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "between",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "cat_between_boxes",
+                "label": "between",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "box",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "box",
+                "label": "box",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-162-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "The cat is next to the box. Now write it!",
+        "audio": "voice/line-6057300f7167f83d.m4a"
+      },
+      "card": {
+        "text": "The cat is next to the box.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "The cat is next to the box.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-162-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Behind, next to, between!",
+        "say": "Behind, next to, between! Now you say it!",
+        "audio": "voice/line-61b6e0fc48508a76.m4a"
+      },
+      "card": {
+        "text": "Behind, next to, between!",
+        "picture": {
+          "key": "cat_between_boxes",
+          "label": "cat between boxes",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Behind, next to, between!"
+      }
+    },
+    {
+      "id": "level-162-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Spell behind",
+        "say": "Behind! Write it one letter at a time.",
+        "audio": "voice/line-6de8f1c573b2b22b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cat_behind_box",
+          "label": "behind",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "behind",
+        "guide": null,
+        "word": "behind",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-162-r10",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "behind",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "box",
+            "wrong": "mirror",
+            "at": 0
+          },
+          {
+            "text": "next",
+            "wrong": "mirror",
+            "at": 1
+          },
+          {
+            "text": "what",
+            "wrong": null,
+            "at": null
+          }
+        ]
+      }
+    }
+  ]
+}

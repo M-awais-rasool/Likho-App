@@ -1,20 +1,20 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-120",
-  "number": 120,
-  "name": "Wake the Monkey",
+  "id": "level-165",
+  "number": 165,
+  "name": "Wake the Fish",
   "skill": "Boss · action words",
   "icon": "bedtime",
   "isBoss": true,
   "requiresSubscription": true,
   "intro": {
     "text": "jump",
-    "word": "monkey",
-    "say": "The monkey is asleep in a tree. Let's wake it up!",
-    "audio": "voice/line-b041086ad56fc6a2.m4a",
+    "word": "fish",
+    "say": "The fish is asleep in the cove. Let's wake it up!",
+    "audio": "voice/line-2d790170cd0f50f1.m4a",
     "picture": {
-      "key": "monkey",
-      "label": "monkey",
+      "key": "fish",
+      "label": "fish",
       "url": null
     }
   },
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-120-r1",
+      "id": "level-165-r1",
       "type": "pick",
       "prompt": {
         "text": "What is this?",
@@ -45,22 +45,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-120-r1-o1",
+            "id": "level-165-r1-o1",
             "label": "fly",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-120-r1-o2",
-            "label": "eat",
+            "id": "level-165-r1-o2",
+            "label": "swim",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-120-r1-o3",
-            "label": "swim",
+            "id": "level-165-r1-o3",
+            "label": "eat",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -78,30 +78,45 @@
       }
     },
     {
-      "id": "level-120-r2",
-      "type": "pop",
+      "id": "level-165-r2",
+      "type": "fix",
       "prompt": {
-        "text": "Pop every jumping!",
-        "say": "Pop every bubble that says jumping!",
-        "audio": "voice/line-3d8127f8e2a80503.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
       },
       "card": {
-        "text": "jumping",
+        "text": "Fix it!",
         "picture": null,
         "listen": false
       },
-      "pop": {
-        "target": "jumping",
-        "others": [
-          "tiger",
-          "under",
-          "down"
-        ],
-        "count": 4
+      "fix": {
+        "items": [
+          {
+            "text": "for",
+            "wrong": "mirror",
+            "at": 0
+          },
+          {
+            "text": "do",
+            "wrong": "mirror",
+            "at": 0
+          },
+          {
+            "text": "out",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "some",
+            "wrong": null,
+            "at": null
+          }
+        ]
       }
     },
     {
-      "id": "level-120-r3",
+      "id": "level-165-r3",
       "type": "write",
       "prompt": {
         "text": "Spell jump",
@@ -128,7 +143,7 @@
       }
     },
     {
-      "id": "level-120-r4",
+      "id": "level-165-r4",
       "type": "pick",
       "prompt": {
         "text": "The cat is under the chair.",
@@ -143,7 +158,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-120-r4-o1",
+            "id": "level-165-r4-o1",
             "label": "cat in bed",
             "picture": {
               "key": "cat_in_bed",
@@ -154,22 +169,22 @@
             "hideLabel": true
           },
           {
-            "id": "level-120-r4-o2",
-            "label": "cat on box",
+            "id": "level-165-r4-o2",
+            "label": "cat under chair",
             "picture": {
-              "key": "cat_on_box",
-              "label": "cat on box",
+              "key": "cat_under_chair",
+              "label": "cat under chair",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-120-r4-o3",
-            "label": "cat under chair",
+            "id": "level-165-r4-o3",
+            "label": "cat on box",
             "picture": {
-              "key": "cat_under_chair",
-              "label": "cat under chair",
+              "key": "cat_on_box",
+              "label": "cat on box",
               "url": null
             },
             "color": null,
@@ -188,67 +203,30 @@
       }
     },
     {
-      "id": "level-120-r5",
-      "type": "match",
+      "id": "level-165-r5",
+      "type": "truth",
       "prompt": {
-        "text": "Find the pairs!",
-        "say": "Find the pairs! Match each word to its picture.",
-        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+        "text": "True or silly?",
+        "say": "The cat is behind the box. True, or silly?",
+        "audio": "voice/line-3348de1dc19eaffc.m4a"
       },
       "card": {
-        "text": "Find the pairs!",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "match": {
-        "pairs": [
-          {
-            "a": {
-              "text": "tiger",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "tiger",
-                "label": "tiger",
-                "url": null
-              }
-            }
-          },
-          {
-            "a": {
-              "text": "star",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "star",
-                "label": "star",
-                "url": null
-              }
-            }
-          },
-          {
-            "a": {
-              "text": "down",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "down",
-                "label": "down",
-                "url": null
-              }
-            }
-          }
-        ]
+      "truth": {
+        "text": "The cat is behind the box.",
+        "picture": {
+          "key": "cat_behind_box",
+          "label": "behind",
+          "url": null
+        },
+        "answer": true
       }
     },
     {
-      "id": "level-120-r6",
+      "id": "level-165-r6",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -271,7 +249,7 @@
       }
     },
     {
-      "id": "level-120-r7",
+      "id": "level-165-r7",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -298,7 +276,7 @@
       }
     },
     {
-      "id": "level-120-r8",
+      "id": "level-165-r8",
       "type": "hunt",
       "prompt": {
         "text": "Find every run!",
@@ -313,58 +291,104 @@
       "hunt": {
         "target": "run",
         "grid": [
+          "fun",
+          "run",
           "run",
           "fun",
           "rug",
-          "fun",
-          "sun",
-          "run",
           "sun",
           "ran",
-          "run"
+          "run",
+          "sun"
         ]
       }
     },
     {
-      "id": "level-120-r9",
-      "type": "fix",
+      "id": "level-165-r9",
+      "type": "sort",
       "prompt": {
-        "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/s/|sːː} or {/h/|hʌ}?",
+        "audio": "voice/line-f105ab757293d8af.m4a"
       },
       "card": {
-        "text": "Fix it!",
+        "text": "s h",
         "picture": null,
         "listen": false
       },
-      "fix": {
+      "sort": {
+        "bins": [
+          {
+            "label": "s",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "h",
+            "picture": null,
+            "bin": null
+          }
+        ],
         "items": [
           {
-            "text": "tiger",
-            "wrong": "mirror",
-            "at": 2
+            "label": "six",
+            "picture": {
+              "key": "six",
+              "label": "six",
+              "url": null
+            },
+            "bin": 0
           },
           {
-            "text": "star",
-            "wrong": "mirror",
-            "at": 2
+            "label": "seed",
+            "picture": {
+              "key": "seed",
+              "label": "seed",
+              "url": null
+            },
+            "bin": 0
           },
           {
-            "text": "the",
-            "wrong": null,
-            "at": null
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            },
+            "bin": 0
           },
           {
-            "text": "and",
-            "wrong": null,
-            "at": null
+            "label": "hut",
+            "picture": {
+              "key": "hut",
+              "label": "hut",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "hen",
+            "picture": {
+              "key": "hen",
+              "label": "hen",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "hand",
+            "picture": {
+              "key": "hand",
+              "label": "hand",
+              "url": null
+            },
+            "bin": 1
           }
         ]
       }
     },
     {
-      "id": "level-120-r10",
+      "id": "level-165-r10",
       "type": "speak",
       "prompt": {
         "text": "Say: I can run, jump and swim!",

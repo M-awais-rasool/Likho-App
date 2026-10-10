@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-115",
-  "number": 115,
+  "id": "level-156",
+  "number": 156,
   "name": "Describing Words",
   "skill": "Big, small, hot, cold",
   "icon": "zoom_out_map",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-115-r1",
+      "id": "level-156-r1",
       "type": "pick",
       "prompt": {
         "text": "Which picture is big?",
@@ -41,7 +41,18 @@
       "pick": {
         "options": [
           {
-            "id": "level-115-r1-o1",
+            "id": "level-156-r1-o1",
+            "label": "cold",
+            "picture": {
+              "key": "snowman",
+              "label": "cold",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-156-r1-o2",
             "label": "big",
             "picture": {
               "key": "elephant",
@@ -52,18 +63,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-115-r1-o2",
-            "label": "sad",
-            "picture": {
-              "key": "sad",
-              "label": "sad",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-115-r1-o3",
+            "id": "level-156-r1-o3",
             "label": "hot",
             "picture": {
               "key": "hot",
@@ -78,7 +78,7 @@
           "kind": "label",
           "value": "big"
         },
-        "shape": "jar",
+        "shape": "bucket",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -86,30 +86,30 @@
       }
     },
     {
-      "id": "level-115-r2",
-      "type": "write",
+      "id": "level-156-r2",
+      "type": "truth",
       "prompt": {
-        "text": "Look, then write cold",
-        "say": "Look at the word cold. Then write it from memory!",
-        "audio": "voice/line-fec89d16b0d7db83.m4a"
+        "text": "True or silly?",
+        "say": "It is sad. True, or silly?",
+        "audio": "voice/line-97fa47f731059e0c.m4a"
       },
       "card": {
         "text": null,
         "picture": null,
         "listen": true
       },
-      "write": {
-        "mode": "flash",
-        "target": "cold",
-        "guide": null,
-        "word": null,
-        "missingIndex": null,
-        "sentence": false,
-        "story": false
+      "truth": {
+        "text": "It is sad.",
+        "picture": {
+          "key": "elephant",
+          "label": "big",
+          "url": null
+        },
+        "answer": false
       }
     },
     {
-      "id": "level-115-r3",
+      "id": "level-156-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -131,11 +131,11 @@
           "i",
           "g"
         ],
-        "slot": "plank"
+        "slot": "stripe"
       }
     },
     {
-      "id": "level-115-r4",
+      "id": "level-156-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -150,22 +150,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-115-r4-o1",
-            "label": "small",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-115-r4-o2",
-            "label": "happy",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-115-r4-o3",
+            "id": "level-156-r4-o1",
             "label": "cold",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-156-r4-o2",
+            "label": "sad",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-156-r4-o3",
+            "label": "small",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -175,7 +175,7 @@
           "kind": "label",
           "value": "small"
         },
-        "shape": "kite",
+        "shape": "bubble",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -183,7 +183,7 @@
       }
     },
     {
-      "id": "level-115-r5",
+      "id": "level-156-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
@@ -210,30 +210,91 @@
       }
     },
     {
-      "id": "level-115-r6",
-      "type": "pop",
+      "id": "level-156-r6",
+      "type": "sort",
       "prompt": {
-        "text": "Pop every big!",
-        "say": "Pop every bubble that says big!",
-        "audio": "voice/line-ca098d1cd188f0f6.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/h/|hʌ} or {/c/|kʌ}?",
+        "audio": "voice/line-6e7f1708b63f993d.m4a"
       },
       "card": {
-        "text": "big",
+        "text": "h c",
         "picture": null,
         "listen": false
       },
-      "pop": {
-        "target": "big",
-        "others": [
-          "bus",
-          "and",
-          "hot"
+      "sort": {
+        "bins": [
+          {
+            "label": "h",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "c",
+            "picture": null,
+            "bin": null
+          }
         ],
-        "count": 4
+        "items": [
+          {
+            "label": "car",
+            "picture": {
+              "key": "car",
+              "label": "car",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "hut",
+            "picture": {
+              "key": "hut",
+              "label": "hut",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "hen",
+            "picture": {
+              "key": "hen",
+              "label": "hen",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "cow",
+            "picture": {
+              "key": "cow",
+              "label": "cow",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "hand",
+            "picture": {
+              "key": "hand",
+              "label": "hand",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "corn",
+            "picture": {
+              "key": "corn",
+              "label": "corn",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
       }
     },
     {
-      "id": "level-115-r7",
+      "id": "level-156-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every cold!",
@@ -248,20 +309,20 @@
       "hunt": {
         "target": "cold",
         "grid": [
+          "happy",
+          "cold",
           "big",
           "cold",
-          "cold",
-          "cold",
-          "small",
-          "hot",
-          "happy",
           "sad",
-          "and"
+          "small",
+          "do",
+          "hot",
+          "cold"
         ]
       }
     },
     {
-      "id": "level-115-r8",
+      "id": "level-156-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: big, small, hot, cold!",
@@ -282,67 +343,34 @@
       }
     },
     {
-      "id": "level-115-r9",
-      "type": "match",
+      "id": "level-156-r9",
+      "type": "write",
       "prompt": {
-        "text": "Find the pairs!",
-        "say": "Find the pairs! Match each word to its picture.",
-        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+        "text": "Look, then write sad",
+        "say": "Look at the word sad. Then write it from memory!",
+        "audio": "voice/line-70f4ea11e3eb63bd.m4a"
       },
       "card": {
-        "text": "Find the pairs!",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "sad",
+          "label": "sad",
+          "url": null
+        },
         "listen": false
       },
-      "match": {
-        "pairs": [
-          {
-            "a": {
-              "text": "big",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "elephant",
-                "label": "big",
-                "url": null
-              }
-            }
-          },
-          {
-            "a": {
-              "text": "small",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "mouse",
-                "label": "small",
-                "url": null
-              }
-            }
-          },
-          {
-            "a": {
-              "text": "hot",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "hot",
-                "label": "hot",
-                "url": null
-              }
-            }
-          }
-        ]
+      "write": {
+        "mode": "flash",
+        "target": "sad",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
       }
     },
     {
-      "id": "level-115-r10",
+      "id": "level-156-r10",
       "type": "write",
       "prompt": {
         "text": "Write hot",

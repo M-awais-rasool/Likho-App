@@ -1,0 +1,433 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-160",
+  "number": 160,
+  "name": "More Opposites",
+  "skill": "Opposites",
+  "icon": "swap_horiz",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "open closed",
+    "word": "open",
+    "say": "Open and closed, loud and quiet! More opposites.",
+    "audio": "voice/line-69561c7fdb105ede.m4a",
+    "picture": {
+      "key": "story",
+      "label": "open",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-160-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "The opposite of open?",
+        "say": "Open! What is the opposite of open?",
+        "audio": "voice/line-44899a4742e04f90.m4a"
+      },
+      "card": {
+        "text": "open",
+        "picture": {
+          "key": "story",
+          "label": "story",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-160-r1-o1",
+            "label": "open",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-160-r1-o2",
+            "label": "closed",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-160-r1-o3",
+            "label": "red",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "closed"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-160-r2",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "open",
+            "wrong": "mirror",
+            "at": 1
+          },
+          {
+            "text": "closed",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "loud",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "quiet",
+            "wrong": "mirror",
+            "at": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-160-r3",
+      "type": "match",
+      "prompt": {
+        "text": "Find the opposites!",
+        "say": "Find the pairs! Match each word to its opposite.",
+        "audio": "voice/line-421f04261ff5531b.m4a"
+      },
+      "card": {
+        "text": "open closed",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "open",
+              "picture": null
+            },
+            "b": {
+              "text": "closed",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "loud",
+              "picture": null
+            },
+            "b": {
+              "text": "quiet",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "sweet",
+              "picture": null
+            },
+            "b": {
+              "text": "sour",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "young",
+              "picture": null
+            },
+            "b": {
+              "text": "old",
+              "picture": null
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-160-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is loud?",
+        "say": "Read the word. Which picture is loud?",
+        "audio": "voice/line-dd45bbb165d33447.m4a"
+      },
+      "card": {
+        "text": "loud",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-160-r4-o1",
+            "label": "loud",
+            "picture": {
+              "key": "loud",
+              "label": "loud",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-160-r4-o2",
+            "label": "sweet",
+            "picture": {
+              "key": "sweet",
+              "label": "sweet",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-160-r4-o3",
+            "label": "sour",
+            "picture": {
+              "key": "lemon",
+              "label": "sour",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "loud"
+        },
+        "shape": "bucket",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-160-r5",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. The lemon is sweet. True, or silly?",
+        "audio": "voice/line-8a9cbea0bf6caa4e.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "The lemon is sweet.",
+        "picture": {
+          "key": "lemon",
+          "label": "lemon",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-160-r6",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/j/|ʤʌ} or {/c/|kʌ}?",
+        "audio": "voice/line-b86f46949ea87bb0.m4a"
+      },
+      "card": {
+        "text": "j c",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "j",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "c",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "jam",
+            "picture": {
+              "key": "jam",
+              "label": "jam",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "jump",
+            "picture": {
+              "key": "jump",
+              "label": "jump",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "car",
+            "picture": {
+              "key": "car",
+              "label": "car",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "cup",
+            "picture": {
+              "key": "cup",
+              "label": "cup",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "cow",
+            "picture": {
+              "key": "cow",
+              "label": "cow",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-160-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "The door is open. Put the words in order.",
+        "audio": "voice/line-4288b96af43a6c6b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "door",
+          "label": "door",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "The",
+          "door",
+          "is",
+          "open"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-160-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "The lemon is sour. Now write it!",
+        "audio": "voice/line-521059eb439cb8c6.m4a"
+      },
+      "card": {
+        "text": "The lemon is sour.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "The lemon is sour.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-160-r9",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Open and closed, loud and quiet!",
+        "say": "Open and closed, loud and quiet! Now you say it!",
+        "audio": "voice/line-f856b663c986718f.m4a"
+      },
+      "card": {
+        "text": "Open and closed, loud and quiet!",
+        "picture": {
+          "key": "loud",
+          "label": "loud",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Open and closed, loud and quiet!"
+      }
+    },
+    {
+      "id": "level-160-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write old",
+        "say": "Look at the word old. Then write it from memory!",
+        "audio": "voice/line-bdb82f1b9ee36723.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "old",
+          "label": "old",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "old",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}
