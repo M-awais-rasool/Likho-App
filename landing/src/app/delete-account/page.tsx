@@ -35,9 +35,10 @@ export default function DeleteAccountPage() {
 
       <LegalSection title="What is deleted">
         <ul>
-          <li>The parent account: name, email address and profile photo link.</li>
+          <li>The parent account: name, email address, profile photo link, country, device type and app version.</li>
           <li>Every child profile: names, ages and Pencil&apos;s colours.</li>
           <li>All progress: levels, stars, stickers, outfits and room items, and play days.</li>
+          <li>Likho Plus details on our side (the store keeps its own purchase records).</li>
           <li>Settings and signed-in sessions on every device.</li>
         </ul>
         <p>This can&apos;t be undone.</p>

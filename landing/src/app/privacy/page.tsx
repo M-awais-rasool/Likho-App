@@ -45,20 +45,32 @@ export default function PrivacyPage() {
           a child played, and the family&apos;s settings (such as sound, vibration and session length).
         </p>
         <p>
-          <strong>Subscription status.</strong> Whether the family has Likho Plus, as reported by Google Play or the App Store. Payment
-          details are handled by the store; we never see card details.
+          <strong>Subscription status.</strong> Whether the family has Likho Plus, which plan and until when, as reported by Google Play or
+          the App Store when a parent buys it. Payment details are handled by the store; we never see card details.
         </p>
         <p>
           <strong>Sign-in sessions.</strong> A security token and a device label for each signed-in device, so we can keep you signed in and
           let you sign out of other devices.
         </p>
-        <p>We do not collect location, contacts, photos, voice recordings, advertising IDs or anything children draw.</p>
+        <p>
+          <strong>Country, device type and app version.</strong> When the app talks to our servers, we note the country it is used from
+          (worked out from the internet address of the request, or from the phone&apos;s region setting), whether the phone runs Android or
+          iOS, and which version of Likho it has. We keep only the country, never the internet (IP) address.
+        </p>
+        <p>
+          We do not collect precise location, contacts, photos, voice recordings, advertising IDs or other device identifiers, or anything
+          children draw.
+        </p>
       </LegalSection>
 
       <LegalSection title="How we use it">
         <ul>
           <li>To run Likho: show the right levels, save progress and sync it across the family&apos;s devices.</li>
           <li>To show parents each child&apos;s progress, and to give access to Likho Plus.</li>
+          <li>
+            To understand how Likho is used, inside our team only: for example how many families play each day, which levels children
+            find hard, and which countries and app versions are in use.
+          </li>
           <li>To keep accounts secure and to answer messages you send us.</li>
         </ul>
         <p>We never use children&apos;s information for advertising, and we do not build profiles for marketing.</p>
