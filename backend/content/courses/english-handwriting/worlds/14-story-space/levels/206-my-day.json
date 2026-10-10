@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-142",
-  "number": 142,
+  "id": "level-206",
+  "number": 206,
   "name": "My Day",
   "skill": "Writing about my day",
   "icon": "wb_sunny",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-142-r1",
+      "id": "level-206-r1",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -52,308 +52,7 @@
       }
     },
     {
-      "id": "level-142-r2",
-      "type": "truth",
-      "prompt": {
-        "text": "True or silly?",
-        "say": "This is a down. True, or silly?",
-        "audio": "voice/line-4a9b4311660d87fc.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": null,
-        "listen": true
-      },
-      "truth": {
-        "text": "This is a down.",
-        "picture": {
-          "key": "jump",
-          "label": "jump",
-          "url": null
-        },
-        "answer": false
-      }
-    },
-    {
-      "id": "level-142-r3",
-      "type": "write",
-      "prompt": {
-        "text": "Write the sentence",
-        "say": "I wake up. Now write it!",
-        "audio": "voice/line-bc01b4aaff150d0a.m4a"
-      },
-      "card": {
-        "text": "I wake up.",
-        "picture": null,
-        "listen": false
-      },
-      "write": {
-        "mode": "free",
-        "target": "I wake up.",
-        "guide": null,
-        "word": null,
-        "missingIndex": null,
-        "sentence": true,
-        "story": false
-      }
-    },
-    {
-      "id": "level-142-r4",
-      "type": "speak",
-      "prompt": {
-        "text": "Say: I wake up.",
-        "say": "I wake up. Now you say it!",
-        "audio": "voice/line-7f1c1effa32eceb7.m4a"
-      },
-      "card": {
-        "text": "I wake up.",
-        "picture": {
-          "key": "wake_up",
-          "label": "wake up",
-          "url": null
-        },
-        "listen": true
-      },
-      "speak": {
-        "expected": "I wake up."
-      }
-    },
-    {
-      "id": "level-142-r5",
-      "type": "hunt",
-      "prompt": {
-        "text": "Find every under!",
-        "say": "Find every word under!",
-        "audio": "voice/line-66aed6e407dccf1e.m4a"
-      },
-      "card": {
-        "text": "under",
-        "picture": null,
-        "listen": false
-      },
-      "hunt": {
-        "target": "under",
-        "grid": [
-          "under",
-          "under",
-          "said",
-          "down",
-          "jump",
-          "under",
-          "like",
-          "who",
-          "jumping"
-        ]
-      }
-    },
-    {
-      "id": "level-142-r6",
-      "type": "sort",
-      "prompt": {
-        "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/j/|ʤʌ} or {/w/|wʌ}?",
-        "audio": "voice/line-e48ccae55ea807d9.m4a"
-      },
-      "card": {
-        "text": "j w",
-        "picture": null,
-        "listen": false
-      },
-      "sort": {
-        "bins": [
-          {
-            "label": "j",
-            "picture": null,
-            "bin": null
-          },
-          {
-            "label": "w",
-            "picture": null,
-            "bin": null
-          }
-        ],
-        "items": [
-          {
-            "label": "web",
-            "picture": {
-              "key": "web",
-              "label": "web",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "watch",
-            "picture": {
-              "key": "watch",
-              "label": "watch",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "jump",
-            "picture": {
-              "key": "jump",
-              "label": "jump",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "whale",
-            "picture": {
-              "key": "whale",
-              "label": "whale",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "jam",
-            "picture": {
-              "key": "jam",
-              "label": "jam",
-              "url": null
-            },
-            "bin": 0
-          }
-        ]
-      }
-    },
-    {
-      "id": "level-142-r7",
-      "type": "write",
-      "prompt": {
-        "text": "Spell what",
-        "say": "What! Write it one letter at a time.",
-        "audio": "voice/line-93fc4e40497990fc.m4a"
-      },
-      "card": {
-        "text": "what",
-        "picture": null,
-        "listen": false
-      },
-      "write": {
-        "mode": "spell",
-        "target": "what",
-        "guide": null,
-        "word": "what",
-        "missingIndex": null,
-        "sentence": false,
-        "story": false
-      }
-    },
-    {
-      "id": "level-142-r8",
-      "type": "pick",
-      "prompt": {
-        "text": "I see a red car.",
-        "say": "I see a red car. Find the picture!",
-        "audio": "voice/line-8f06ca97b8d110b3.m4a"
-      },
-      "card": {
-        "text": "I see a red car.",
-        "picture": null,
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-142-r8-o1",
-            "label": "dog running",
-            "picture": {
-              "key": "dog_running",
-              "label": "dog running",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-142-r8-o2",
-            "label": "red car",
-            "picture": {
-              "key": "red_car",
-              "label": "red car",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-142-r8-o3",
-            "label": "hot sun",
-            "picture": {
-              "key": "hot_sun",
-              "label": "hot sun",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "red car"
-        },
-        "shape": "planet",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-142-r9",
-      "type": "pick",
-      "prompt": {
-        "text": "Find the word you hear",
-        "say": "Listen! Find the word forest.",
-        "audio": "voice/line-db23ac20f1b403d0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": null,
-        "listen": true
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-142-r9-o1",
-            "label": "forest",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-142-r9-o2",
-            "label": "under",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-142-r9-o3",
-            "label": "what",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "forest"
-        },
-        "shape": "balloon",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-142-r10",
+      "id": "level-206-r2",
       "type": "write",
       "prompt": {
         "text": "Look, then write jump",
@@ -377,6 +76,292 @@
         "missingIndex": null,
         "sentence": false,
         "story": false
+      }
+    },
+    {
+      "id": "level-206-r3",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "I wake up. Now write it!",
+        "audio": "voice/line-bc01b4aaff150d0a.m4a"
+      },
+      "card": {
+        "text": "I wake up.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I wake up.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-206-r4",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: I wake up.",
+        "say": "I wake up. Now you say it!",
+        "audio": "voice/line-7f1c1effa32eceb7.m4a"
+      },
+      "card": {
+        "text": "I wake up.",
+        "picture": {
+          "key": "wake_up",
+          "label": "wake up",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "I wake up."
+      }
+    },
+    {
+      "id": "level-206-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every jump!",
+        "say": "Find every word jump!",
+        "audio": "voice/line-bfc374f0da48ec34.m4a"
+      },
+      "card": {
+        "text": "jump",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "jump",
+        "grid": [
+          "bigger",
+          "jump",
+          "nest",
+          "who",
+          "jump",
+          "jump",
+          "where",
+          "under",
+          "behind"
+        ]
+      }
+    },
+    {
+      "id": "level-206-r6",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every behind!",
+        "say": "Pop every bubble that says behind!",
+        "audio": "voice/line-5e522ced2f1b457b.m4a"
+      },
+      "card": {
+        "text": "behind",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "behind",
+        "others": [
+          "first",
+          "under",
+          "where"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-206-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Spell first",
+        "say": "First! Write it one letter at a time.",
+        "audio": "voice/line-f73836d9a4557c3d.m4a"
+      },
+      "card": {
+        "text": "first",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "first",
+        "guide": null,
+        "word": "first",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-206-r8",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-206-r8-o1",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-206-r8-o2",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-206-r8-o3",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-206-r9",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word food.",
+        "audio": "voice/line-c3f9255b60821f66.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-206-r9-o1",
+            "label": "where",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-206-r9-o2",
+            "label": "behind",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-206-r9-o3",
+            "label": "food",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "food"
+        },
+        "shape": "bubble",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-206-r10",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "behind",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "cat_behind_box",
+                "label": "behind",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "jump",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "jump",
+                "label": "jump",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "nest",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "nest",
+                "label": "nest",
+                "url": null
+              }
+            }
+          }
+        ]
       }
     }
   ]

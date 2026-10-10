@@ -1,0 +1,380 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-199",
+  "number": 199,
+  "name": "Once Upon a Time",
+  "skill": "Starting and ending a story",
+  "icon": "auto_stories",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Once upon a time",
+    "word": "storybook",
+    "say": "Once upon a time... Let's start a story, and end it!",
+    "audio": "voice/line-02d5b7cf4db1c80c.m4a",
+    "picture": {
+      "key": "storybook",
+      "label": "storybook",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-199-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "How does a story start?",
+        "say": "Which words start a story?",
+        "audio": "voice/line-028795e33831aacf.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "storybook",
+          "label": "storybook",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-199-r1-o1",
+            "label": "Once upon a time",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-199-r1-o2",
+            "label": "Goodbye",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-199-r1-o3",
+            "label": "The End",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Once upon a time"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-199-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write time",
+        "say": "Look at the word time. Then write it from memory!",
+        "audio": "voice/line-38deb325f821af9b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "time",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-199-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Who is the story about?",
+        "say": "Once upon a time, a little dragon lived in a cave. One day, it made a friend. Who is the story about?",
+        "audio": "voice/line-1da346113ac1bd1a.m4a"
+      },
+      "card": {
+        "text": "Once upon a time, a little dragon lived in a cave. One day, it made a friend.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-199-r3-o1",
+            "label": "a big fish",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-199-r3-o2",
+            "label": "a robot",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-199-r3-o3",
+            "label": "a little dragon",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "a little dragon"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-199-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Once upon a time, there was a king.",
+        "say": "Once upon a time, there was a king. Find the picture!",
+        "audio": "voice/line-541bac24280eb047.m4a"
+      },
+      "card": {
+        "text": "Once upon a time, there was a king.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-199-r4-o1",
+            "label": "king",
+            "picture": {
+              "key": "king",
+              "label": "king",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-199-r4-o2",
+            "label": "dragon",
+            "picture": {
+              "key": "dragon",
+              "label": "dragon",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-199-r4-o3",
+            "label": "queen",
+            "picture": {
+              "key": "queen",
+              "label": "queen",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "king"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-199-r5",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "One day, the fox went out. Put the words in order.",
+        "audio": "voice/line-42d513f1e2c47000.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "fox",
+          "label": "fox",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "One",
+          "day,",
+          "the",
+          "fox",
+          "went",
+          "out"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-199-r6",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every time!",
+        "say": "Pop every bubble that says time!",
+        "audio": "voice/line-a40fc19bf45afcbc.m4a"
+      },
+      "card": {
+        "text": "time",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "time",
+        "others": [
+          "down",
+          "jump",
+          "nest"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-199-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "Long ago, there was a king. Now write it!",
+        "audio": "voice/line-eee95960175d5ac2.m4a"
+      },
+      "card": {
+        "text": "Long ago, there was a king.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "Long ago, there was a king.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-199-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Once upon a time... The End!",
+        "say": "Once upon a time... The End! Now you say it!",
+        "audio": "voice/line-040330a34a74d1c9.m4a"
+      },
+      "card": {
+        "text": "Once upon a time... The End!",
+        "picture": {
+          "key": "storybook",
+          "label": "storybook",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Once upon a time... The End!"
+      }
+    },
+    {
+      "id": "level-199-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Spell once",
+        "say": "Once! Write it one letter at a time.",
+        "audio": "voice/line-365f59ec6cd1f221.m4a"
+      },
+      "card": {
+        "text": "once",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "once",
+        "guide": null,
+        "word": "once",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-199-r10",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to the same word with a capital letter.",
+        "audio": "voice/line-d82ba5aa00efefb3.m4a"
+      },
+      "card": {
+        "text": "the = The",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "once",
+              "picture": null
+            },
+            "b": {
+              "text": "Once",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "upon",
+              "picture": null
+            },
+            "b": {
+              "text": "Upon",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "time",
+              "picture": null
+            },
+            "b": {
+              "text": "Time",
+              "picture": null
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

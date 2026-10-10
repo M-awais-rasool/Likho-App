@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-138",
-  "number": 138,
+  "id": "level-197",
+  "number": 197,
   "name": "First, Next, Last",
   "skill": "Story words",
   "icon": "format_list_numbered",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-138-r1",
+      "id": "level-197-r1",
       "type": "pick",
       "prompt": {
         "text": "Which word fits?",
@@ -41,22 +41,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-138-r1-o1",
+            "id": "level-197-r1-o1",
             "label": "Last",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-138-r1-o2",
-            "label": "Next",
+            "id": "level-197-r1-o2",
+            "label": "First",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-138-r1-o3",
-            "label": "First",
+            "id": "level-197-r1-o3",
+            "label": "Next",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -74,82 +74,30 @@
       }
     },
     {
-      "id": "level-138-r2",
-      "type": "sort",
+      "id": "level-197-r2",
+      "type": "pop",
       "prompt": {
-        "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/j/|ʤʌ}?",
-        "audio": "voice/line-ad0f5467c4b713b8.m4a"
+        "text": "Pop every down!",
+        "say": "Pop every bubble that says down!",
+        "audio": "voice/line-d47eaa0b249debf9.m4a"
       },
       "card": {
-        "text": "d j",
+        "text": "down",
         "picture": null,
         "listen": false
       },
-      "sort": {
-        "bins": [
-          {
-            "label": "d",
-            "picture": null,
-            "bin": null
-          },
-          {
-            "label": "j",
-            "picture": null,
-            "bin": null
-          }
+      "pop": {
+        "target": "down",
+        "others": [
+          "jump",
+          "nest",
+          "his"
         ],
-        "items": [
-          {
-            "label": "jump",
-            "picture": {
-              "key": "jump",
-              "label": "jump",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "jam",
-            "picture": {
-              "key": "jam",
-              "label": "jam",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "dog",
-            "picture": {
-              "key": "dog",
-              "label": "dog",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "duck",
-            "picture": {
-              "key": "duck",
-              "label": "duck",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "doctor",
-            "picture": {
-              "key": "doctor",
-              "label": "doctor",
-              "url": null
-            },
-            "bin": 0
-          }
-        ]
+        "count": 4
       }
     },
     {
-      "id": "level-138-r3",
+      "id": "level-197-r3",
       "type": "write",
       "prompt": {
         "text": "Spell first",
@@ -172,7 +120,7 @@
       }
     },
     {
-      "id": "level-138-r4",
+      "id": "level-197-r4",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -195,7 +143,7 @@
       }
     },
     {
-      "id": "level-138-r5",
+      "id": "level-197-r5",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -223,30 +171,67 @@
       }
     },
     {
-      "id": "level-138-r6",
-      "type": "write",
+      "id": "level-197-r6",
+      "type": "match",
       "prompt": {
-        "text": "Look, then write look",
-        "say": "Look at the word look. Then write it from memory!",
-        "audio": "voice/line-c6c8f27c36221a71.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
       },
       "card": {
-        "text": null,
+        "text": "Find the pairs!",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "write": {
-        "mode": "flash",
-        "target": "look",
-        "guide": null,
-        "word": null,
-        "missingIndex": null,
-        "sentence": false,
-        "story": false
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "sad",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "sad",
+                "label": "sad",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "down",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "down",
+                "label": "down",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "behind",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "cat_behind_box",
+                "label": "behind",
+                "url": null
+              }
+            }
+          }
+        ]
       }
     },
     {
-      "id": "level-138-r7",
+      "id": "level-197-r7",
       "type": "speak",
       "prompt": {
         "text": "Say: First, next, last!",
@@ -267,35 +252,35 @@
       }
     },
     {
-      "id": "level-138-r8",
+      "id": "level-197-r8",
       "type": "hunt",
       "prompt": {
-        "text": "Find every like!",
-        "say": "Find every word like!",
-        "audio": "voice/line-ef09687e3c13ecc5.m4a"
+        "text": "Find every sad!",
+        "say": "Find every word sad!",
+        "audio": "voice/line-29f9f3600528429a.m4a"
       },
       "card": {
-        "text": "like",
+        "text": "sad",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "like",
+        "target": "sad",
         "grid": [
-          "down",
-          "look",
-          "under",
-          "like",
-          "like",
-          "you",
           "jumping",
-          "said",
-          "like"
+          "under",
+          "behind",
+          "sad",
+          "his",
+          "sad",
+          "hop",
+          "sad",
+          "down"
         ]
       }
     },
     {
-      "id": "level-138-r9",
+      "id": "level-197-r9",
       "type": "pick",
       "prompt": {
         "text": "I see a red car.",
@@ -310,18 +295,18 @@
       "pick": {
         "options": [
           {
-            "id": "level-138-r9-o1",
-            "label": "red car",
+            "id": "level-197-r9-o1",
+            "label": "dog running",
             "picture": {
-              "key": "red_car",
-              "label": "red car",
+              "key": "dog_running",
+              "label": "dog running",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-138-r9-o2",
+            "id": "level-197-r9-o2",
             "label": "hot sun",
             "picture": {
               "key": "hot_sun",
@@ -332,11 +317,11 @@
             "hideLabel": true
           },
           {
-            "id": "level-138-r9-o3",
-            "label": "dog running",
+            "id": "level-197-r9-o3",
+            "label": "red car",
             "picture": {
-              "key": "dog_running",
-              "label": "dog running",
+              "key": "red_car",
+              "label": "red car",
               "url": null
             },
             "color": null,
@@ -355,26 +340,41 @@
       }
     },
     {
-      "id": "level-138-r10",
-      "type": "pop",
+      "id": "level-197-r10",
+      "type": "fix",
       "prompt": {
-        "text": "Pop every under!",
-        "say": "Pop every bubble that says under!",
-        "audio": "voice/line-06c2f94d5d1fdada.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
       },
       "card": {
-        "text": "under",
+        "text": "Fix it!",
         "picture": null,
         "listen": false
       },
-      "pop": {
-        "target": "under",
-        "others": [
-          "where",
-          "down",
-          "jump"
-        ],
-        "count": 4
+      "fix": {
+        "items": [
+          {
+            "text": "his",
+            "wrong": "mirror",
+            "at": 2
+          },
+          {
+            "text": "hop",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "sad",
+            "wrong": "mirror",
+            "at": 0
+          },
+          {
+            "text": "down",
+            "wrong": null,
+            "at": null
+          }
+        ]
       }
     }
   ]

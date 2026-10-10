@@ -1,0 +1,476 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-204",
+  "number": 204,
+  "name": "My School",
+  "skill": "Writing about school",
+  "icon": "backpack",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "My school",
+    "word": "school",
+    "say": "Let's write about your school!",
+    "audio": "voice/line-20d34a2f61880bb7.m4a",
+    "picture": {
+      "key": "school",
+      "label": "school",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-204-r1",
+      "type": "sort",
+      "prompt": {
+        "text": "School or home?",
+        "say": "Do we use it at school, or at home? Sort the pictures!",
+        "audio": "voice/line-3de5c60b99d16f42.m4a"
+      },
+      "card": {
+        "text": "school home",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "school",
+            "picture": {
+              "key": "school",
+              "label": "school",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "home",
+            "picture": {
+              "key": "house",
+              "label": "home",
+              "url": null
+            },
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "book",
+            "picture": {
+              "key": "book",
+              "label": "book",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "crayon",
+            "picture": {
+              "key": "crayon",
+              "label": "crayon",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "spoon",
+            "picture": {
+              "key": "spoon",
+              "label": "spoon",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "bed",
+            "picture": {
+              "key": "bed",
+              "label": "bed",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "pencil",
+            "picture": {
+              "key": "pencil",
+              "label": "pencil",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bath",
+            "picture": {
+              "key": "bath",
+              "label": "bath",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-204-r2",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every pencil!",
+        "say": "Pop every bubble that says pencil!",
+        "audio": "voice/line-3f5169d7ae5020d5.m4a"
+      },
+      "card": {
+        "text": "pencil",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "pencil",
+        "others": [
+          "class",
+          "first",
+          "under"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-204-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "My teacher reads to us.",
+        "say": "My teacher reads to us. Find the picture!",
+        "audio": "voice/line-18b356259574fa96.m4a"
+      },
+      "card": {
+        "text": "My teacher reads to us.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-204-r3-o1",
+            "label": "family baby",
+            "picture": {
+              "key": "family_baby",
+              "label": "family baby",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-204-r3-o2",
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-204-r3-o3",
+            "label": "teacher",
+            "picture": {
+              "key": "teacher",
+              "label": "teacher",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "teacher"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-204-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "What do we write with?",
+        "say": "At school, what do we write with?",
+        "audio": "voice/line-618c967b190e301a.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "school",
+          "label": "school",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-204-r4-o1",
+            "label": "a pencil",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-204-r4-o2",
+            "label": "a sock",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-204-r4-o3",
+            "label": "a spoon",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "a pencil"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-204-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "What do I do at break?",
+        "say": "At school, I read books. I write with my pencil. At break, I play with my friends. What do I do at break?",
+        "audio": "voice/line-30c36c9224baff01.m4a"
+      },
+      "card": {
+        "text": "At school, I read books. I write with my pencil. At break, I play with my friends.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-204-r5-o1",
+            "label": "go to sleep",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-204-r5-o2",
+            "label": "read books",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-204-r5-o3",
+            "label": "play with my friends",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "play with my friends"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-204-r6",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "school",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "school",
+                "label": "school",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "teacher",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "teacher",
+                "label": "teacher",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "book",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "book",
+                "label": "book",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-204-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "I go to school by bus. Put the words in order.",
+        "audio": "voice/line-277fe8063c07215f.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bus",
+          "label": "bus",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "I",
+          "go",
+          "to",
+          "school",
+          "by",
+          "bus"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-204-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "My teacher is kind. Now write it!",
+        "audio": "voice/line-659dc74f88dee296.m4a"
+      },
+      "card": {
+        "text": "My teacher is kind.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "My teacher is kind.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-204-r9",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: I read, I write, I play at school!",
+        "say": "I read, I write, I play at school! Now you say it!",
+        "audio": "voice/line-f2e227a3eb23b193.m4a"
+      },
+      "card": {
+        "text": "I read, I write, I play at school!",
+        "picture": {
+          "key": "school",
+          "label": "school",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "I read, I write, I play at school!"
+      }
+    },
+    {
+      "id": "level-204-r10",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "school",
+            "wrong": "mirror",
+            "at": 1
+          },
+          {
+            "text": "book",
+            "wrong": "mirror",
+            "at": 3
+          },
+          {
+            "text": "pencil",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "class",
+            "wrong": null,
+            "at": null
+          }
+        ]
+      }
+    }
+  ]
+}

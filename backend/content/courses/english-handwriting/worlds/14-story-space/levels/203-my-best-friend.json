@@ -1,0 +1,410 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-203",
+  "number": 203,
+  "name": "My Best Friend",
+  "skill": "Writing about a friend",
+  "icon": "person",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "My friend",
+    "word": "hug",
+    "say": "Let's write about your best friend!",
+    "audio": "voice/line-f80a0f8f0ebd27ef.m4a",
+    "picture": {
+      "key": "hug",
+      "label": "hug",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-203-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "My best friend is what. Which word fits?",
+        "audio": "voice/line-71b63465c60ac10c.m4a"
+      },
+      "card": {
+        "text": "My best friend is ___.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-203-r1-o1",
+            "label": "cold",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-203-r1-o2",
+            "label": "wet",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-203-r1-o3",
+            "label": "kind",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "kind"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-203-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/b/|bʌ}?",
+        "audio": "voice/line-55e04600648a8763.m4a"
+      },
+      "card": {
+        "text": "d b",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "d",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "b",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bus",
+            "picture": {
+              "key": "bus",
+              "label": "bus",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "bag",
+            "picture": {
+              "key": "bag",
+              "label": "bag",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "bug",
+            "picture": {
+              "key": "bug",
+              "label": "bug",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-203-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What does Hina like to do?",
+        "say": "My best friend is Hina. She likes to draw. We play together at school. What does Hina like to do?",
+        "audio": "voice/line-dcf7329a224799a3.m4a"
+      },
+      "card": {
+        "text": "My best friend is Hina. She likes to draw. We play together at school.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-203-r3-o1",
+            "label": "draw",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-203-r3-o2",
+            "label": "cook",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-203-r3-o3",
+            "label": "swim",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "draw"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-203-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "We play together.",
+        "say": "We play together. Find the picture!",
+        "audio": "voice/line-4693dee01245bec4.m4a"
+      },
+      "card": {
+        "text": "We play together.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-203-r4-o1",
+            "label": "play",
+            "picture": {
+              "key": "play",
+              "label": "play",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-203-r4-o2",
+            "label": "sleep",
+            "picture": {
+              "key": "sleep",
+              "label": "sleep",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-203-r4-o3",
+            "label": "eat",
+            "picture": {
+              "key": "eat",
+              "label": "eat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "play"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-203-r5",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "We share our toys. Put the words in order.",
+        "audio": "voice/line-8b8de52812abbe55.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "teddy",
+          "label": "teddy",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "We",
+          "share",
+          "our",
+          "toys"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-203-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write kind",
+        "say": "Look at the word kind. Then write it from memory!",
+        "audio": "voice/line-cbd8c58bd7dd699c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "kind",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-203-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "My best friend is Ali. Now write it!",
+        "audio": "voice/line-c85fb6df00a5259f.m4a"
+      },
+      "card": {
+        "text": "My best friend is Ali.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "My best friend is Ali.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-203-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: A good friend is kind and helps you.",
+        "say": "A good friend is kind and helps you. Now you say it!",
+        "audio": "voice/line-66a1a59f655fec1e.m4a"
+      },
+      "card": {
+        "text": "A good friend is kind and helps you.",
+        "picture": {
+          "key": "hug",
+          "label": "hug",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "A good friend is kind and helps you."
+      }
+    },
+    {
+      "id": "level-203-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Spell friend",
+        "say": "Friend! Write it one letter at a time.",
+        "audio": "voice/line-4a05e85d55fe7e51.m4a"
+      },
+      "card": {
+        "text": "friend",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "friend",
+        "guide": null,
+        "word": "friend",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-203-r10",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every share!",
+        "say": "Pop every bubble that says share!",
+        "audio": "voice/line-0fc56af9c34bdd21.m4a"
+      },
+      "card": {
+        "text": "share",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "share",
+        "others": [
+          "first",
+          "under",
+          "where"
+        ],
+        "count": 4
+      }
+    }
+  ]
+}

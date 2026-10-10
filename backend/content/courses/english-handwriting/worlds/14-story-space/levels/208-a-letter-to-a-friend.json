@@ -1,0 +1,410 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-208",
+  "number": 208,
+  "name": "A Letter to a Friend",
+  "skill": "Writing a letter",
+  "icon": "mail",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Dear Ali,",
+    "word": "envelope",
+    "say": "Dear Ali! Let's write a letter to a friend.",
+    "audio": "voice/line-891dd83df6468ce4.m4a",
+    "picture": {
+      "key": "envelope",
+      "label": "envelope",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-208-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Who wrote the letter?",
+        "say": "Dear Sara, I am at the sea. The water is blue. I miss you! Love, Hina. Who wrote the letter?",
+        "audio": "voice/line-3f8e6386d487e106.m4a"
+      },
+      "card": {
+        "text": "Dear Sara, I am at the sea. The water is blue. I miss you! Love, Hina",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-208-r1-o1",
+            "label": "Hina",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-208-r1-o2",
+            "label": "Mia",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-208-r1-o3",
+            "label": "Sara",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Hina"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-208-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/j/|ʤʌ} or {/w/|wʌ}?",
+        "audio": "voice/line-e48ccae55ea807d9.m4a"
+      },
+      "card": {
+        "text": "j w",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "j",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "w",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "jump",
+            "picture": {
+              "key": "jump",
+              "label": "jump",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "wing",
+            "picture": {
+              "key": "wing",
+              "label": "wing",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "whale",
+            "picture": {
+              "key": "whale",
+              "label": "whale",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "jam",
+            "picture": {
+              "key": "jam",
+              "label": "jam",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "web",
+            "picture": {
+              "key": "web",
+              "label": "web",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-208-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "How does a letter start?",
+        "say": "Which words start a letter?",
+        "audio": "voice/line-e87bd412515b4495.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "envelope",
+          "label": "envelope",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-208-r3-o1",
+            "label": "Goodbye!",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-208-r3-o2",
+            "label": "Dear Sara,",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-208-r3-o3",
+            "label": "The End.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Dear Sara,"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-208-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Where does a letter go?",
+        "say": "Where do we post a letter?",
+        "audio": "voice/line-da2b4b328aad4270.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "envelope",
+          "label": "envelope",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-208-r4-o1",
+            "label": "bin",
+            "picture": {
+              "key": "bin",
+              "label": "bin",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-208-r4-o2",
+            "label": "postbox",
+            "picture": {
+              "key": "postbox",
+              "label": "postbox",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-208-r4-o3",
+            "label": "bath",
+            "picture": {
+              "key": "bath",
+              "label": "bath",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "postbox"
+        },
+        "shape": "bucket",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-208-r5",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. A letter goes in an envelope. True, or silly?",
+        "audio": "voice/line-6f7035f5f0a37bbc.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "A letter goes in an envelope.",
+        "picture": {
+          "key": "envelope",
+          "label": "envelope",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-208-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write dear",
+        "say": "Look at the word dear. Then write it from memory!",
+        "audio": "voice/line-8e353b35e4862c3c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "dear",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-208-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "Dear Ali, how are you? Put the words in order.",
+        "audio": "voice/line-5fdb2c5ef8215b14.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "envelope",
+          "label": "envelope",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "Dear",
+          "Ali,",
+          "how",
+          "are",
+          "you"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-208-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "Dear Sara, how are you? Now write it!",
+        "audio": "voice/line-91cbe00cff453aa9.m4a"
+      },
+      "card": {
+        "text": "Dear Sara, how are you?",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "Dear Sara, how are you?",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-208-r9",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Dear Ali, thank you for the gift!",
+        "say": "Dear Ali, thank you for the gift! Now you say it!",
+        "audio": "voice/line-9b25d6c7f1f0eb9d.m4a"
+      },
+      "card": {
+        "text": "Dear Ali, thank you for the gift!",
+        "picture": {
+          "key": "gift",
+          "label": "gift",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Dear Ali, thank you for the gift!"
+      }
+    },
+    {
+      "id": "level-208-r10",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every letter!",
+        "say": "Pop every bubble that says letter!",
+        "audio": "voice/line-4fbc044356732685.m4a"
+      },
+      "card": {
+        "text": "letter",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "letter",
+        "others": [
+          "first",
+          "under",
+          "where"
+        ],
+        "count": 4
+      }
+    }
+  ]
+}

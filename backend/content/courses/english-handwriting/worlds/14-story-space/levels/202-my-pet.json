@@ -1,0 +1,463 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-202",
+  "number": 202,
+  "name": "My Pet",
+  "skill": "Writing about a pet",
+  "icon": "pets",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "My pet",
+    "word": "rabbit",
+    "say": "Do you have a pet? Let's write about pets!",
+    "audio": "voice/line-d6434bd6792254a5.m4a",
+    "picture": {
+      "key": "rabbit",
+      "label": "rabbit",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-202-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "My pet has long ears.",
+        "say": "My pet has long ears. Find the picture!",
+        "audio": "voice/line-73c9dca1fd47b039.m4a"
+      },
+      "card": {
+        "text": "My pet has long ears.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-202-r1-o1",
+            "label": "rabbit",
+            "picture": {
+              "key": "rabbit",
+              "label": "rabbit",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-202-r1-o2",
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-202-r1-o3",
+            "label": "parrot",
+            "picture": {
+              "key": "parrot",
+              "label": "parrot",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "rabbit"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-202-r2",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "cat",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "cat",
+                "label": "cat",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "dog",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "dog",
+                "label": "dog",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "fish",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "fish",
+                "label": "fish",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-202-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "My cat likes to drink what. Which word fits?",
+        "audio": "voice/line-91a39c07db9461ab.m4a"
+      },
+      "card": {
+        "text": "My cat likes to drink ___.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-202-r3-o1",
+            "label": "jam",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-202-r3-o2",
+            "label": "rice",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-202-r3-o3",
+            "label": "milk",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "milk"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-202-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "What colour is the fish?",
+        "say": "I have a pet fish. It is orange. It swims in a bowl. What colour is the fish?",
+        "audio": "voice/line-be2451fd546d9650.m4a"
+      },
+      "card": {
+        "text": "I have a pet fish. It is orange. It swims in a bowl.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-202-r4-o1",
+            "label": "green",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-202-r4-o2",
+            "label": "orange",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-202-r4-o3",
+            "label": "pink",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "orange"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-202-r5",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. A parrot can talk. True, or silly?",
+        "audio": "voice/line-d4b5158ea16ea747.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "A parrot can talk.",
+        "picture": {
+          "key": "parrot",
+          "label": "parrot",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-202-r6",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "cat",
+            "wrong": "mirror",
+            "at": 0
+          },
+          {
+            "text": "dog",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "fish",
+            "wrong": "mirror",
+            "at": 3
+          },
+          {
+            "text": "rabbit",
+            "wrong": null,
+            "at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-202-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "My pet cat is fluffy. Put the words in order.",
+        "audio": "voice/line-b2e4ecdc3d8c0a77.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "My",
+          "pet",
+          "cat",
+          "is",
+          "fluffy"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-202-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "I have a pet rabbit. Now write it!",
+        "audio": "voice/line-5d0ecc656572c869.m4a"
+      },
+      "card": {
+        "text": "I have a pet rabbit.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "I have a pet rabbit.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-202-r9",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: My pet is a dog. His name is Max.",
+        "say": "My pet is a dog. His name is Max. Now you say it!",
+        "audio": "voice/line-66fdea383013d367.m4a"
+      },
+      "card": {
+        "text": "My pet is a dog. His name is Max.",
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "My pet is a dog. His name is Max."
+      }
+    },
+    {
+      "id": "level-202-r10",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/f/|fːː}?",
+        "audio": "voice/line-7b4dba625cd77da5.m4a"
+      },
+      "card": {
+        "text": "d f",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "d",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "f",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "foot",
+            "picture": {
+              "key": "foot",
+              "label": "foot",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "four",
+            "picture": {
+              "key": "four",
+              "label": "four",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    }
+  ]
+}

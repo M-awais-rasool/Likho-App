@@ -1,20 +1,20 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-126",
-  "number": 126,
-  "name": "Talk to Aliens",
-  "skill": "Speaking",
-  "icon": "record_voice_over",
+  "id": "level-196",
+  "number": 196,
+  "name": "Story Order",
+  "skill": "Sequencing",
+  "icon": "view_carousel",
   "isBoss": false,
   "requiresSubscription": true,
   "intro": {
-    "text": "Hi!",
-    "word": "alien",
-    "say": "Hi! Let's talk to the friendly aliens.",
-    "audio": "voice/line-76da4c3be4a265e4.m4a",
+    "text": "1 2 3",
+    "word": "storybook",
+    "say": "First, next, last! Let's put the story in order.",
+    "audio": "voice/line-d002cb8441132aa4.m4a",
     "picture": {
-      "key": "alien",
-      "label": "alien",
+      "key": "storybook",
+      "label": "storybook",
       "url": null
     }
   },
@@ -26,98 +26,103 @@
   },
   "rounds": [
     {
-      "id": "level-126-r1",
-      "type": "speak",
+      "id": "level-196-r1",
+      "type": "order",
       "prompt": {
-        "text": "What is your name?",
-        "audio": "voice/line-83fafdb33504dfb4.m4a"
+        "text": "Put in order",
+        "audio": "voice/line-292a8b7a827e169a.m4a"
       },
       "card": {
-        "text": "What is your name?",
+        "text": "1 · 2 · 3",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "speak": {
-        "expected": null
+      "order": {
+        "tiles": [
+          "seed",
+          "sprout",
+          "flower"
+        ],
+        "slot": "panel"
       }
     },
     {
-      "id": "level-126-r2",
+      "id": "level-196-r2",
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/l/|lːː} or {/s/|sːː}?",
-        "audio": "voice/line-b6c439fac7c04efd.m4a"
+        "say": "Sort the pictures! Do they start with {/n/|nːː} or {/h/|hʌ}?",
+        "audio": "voice/line-d6290dbc7593a0f4.m4a"
       },
       "card": {
-        "text": "l s",
+        "text": "n h",
         "picture": null,
         "listen": false
       },
       "sort": {
         "bins": [
           {
-            "label": "l",
+            "label": "n",
             "picture": null,
             "bin": null
           },
           {
-            "label": "s",
+            "label": "h",
             "picture": null,
             "bin": null
           }
         ],
         "items": [
           {
-            "label": "leg",
+            "label": "hen",
             "picture": {
-              "key": "leg",
-              "label": "leg",
+              "key": "hen",
+              "label": "hen",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "nail",
+            "picture": {
+              "key": "nail",
+              "label": "nail",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "seed",
+            "label": "hand",
             "picture": {
-              "key": "seed",
-              "label": "seed",
+              "key": "hand",
+              "label": "hand",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "sun",
+            "label": "nose",
             "picture": {
-              "key": "sun",
-              "label": "sun",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "lamp",
-            "picture": {
-              "key": "lamp",
-              "label": "lamp",
+              "key": "nose",
+              "label": "nose",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "sock",
+            "label": "nut",
             "picture": {
-              "key": "sock",
-              "label": "sock",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "lemon",
-            "picture": {
-              "key": "lemon",
-              "label": "lemon",
+              "key": "nut",
+              "label": "nut",
               "url": null
             },
             "bin": 0
@@ -126,48 +131,21 @@
       }
     },
     {
-      "id": "level-126-r3",
-      "type": "order",
-      "prompt": {
-        "text": "Put the words in order!",
-        "say": "My name is Ali. Put the words in order.",
-        "audio": "voice/line-45e2b73af3753303.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "alien",
-          "label": "alien",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "My",
-          "name",
-          "is",
-          "Ali"
-        ],
-        "slot": "stripe"
-      }
-    },
-    {
-      "id": "level-126-r4",
+      "id": "level-196-r3",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
-        "say": "I am six. Now write it!",
-        "audio": "voice/line-440b17958585a53c.m4a"
+        "say": "The egg cracks. Now write it!",
+        "audio": "voice/line-33ee5643e0632c84.m4a"
       },
       "card": {
-        "text": "I am six.",
+        "text": "The egg cracks.",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "free",
-        "target": "I am six.",
+        "target": "The egg cracks.",
         "guide": null,
         "word": null,
         "missingIndex": null,
@@ -176,41 +154,58 @@
       }
     },
     {
-      "id": "level-126-r5",
-      "type": "pick",
+      "id": "level-196-r4",
+      "type": "speak",
       "prompt": {
-        "text": "Answer: How old are you?",
-        "say": "How old are you? Pick the answer!",
-        "audio": "voice/line-febea97b6441db48.m4a"
+        "text": "Say: First, next, last!",
+        "say": "First, next, last! Now you say it!",
+        "audio": "voice/line-2dc1b654a9513c16.m4a"
       },
       "card": {
-        "text": "How old are you?",
+        "text": "First, next, last!",
         "picture": {
-          "key": "alien",
-          "label": "alien",
+          "key": "chick",
+          "label": "chick",
           "url": null
         },
+        "listen": true
+      },
+      "speak": {
+        "expected": "First, next, last!"
+      }
+    },
+    {
+      "id": "level-196-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "First the egg, then the what. Which word fits?",
+        "audio": "voice/line-fabd24c7ad56cddf.m4a"
+      },
+      "card": {
+        "text": "First the egg, then the ___.",
+        "picture": null,
         "listen": false
       },
       "pick": {
         "options": [
           {
-            "id": "level-126-r5-o1",
-            "label": "It is red.",
+            "id": "level-196-r5-o1",
+            "label": "bus",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-126-r5-o2",
-            "label": "I am a cat.",
+            "id": "level-196-r5-o2",
+            "label": "cake",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-126-r5-o3",
-            "label": "I am six.",
+            "id": "level-196-r5-o3",
+            "label": "chick",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -218,7 +213,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "I am six."
+          "value": "chick"
         },
         "shape": "card",
         "layout": null,
@@ -228,25 +223,25 @@
       }
     },
     {
-      "id": "level-126-r6",
+      "id": "level-196-r6",
       "type": "write",
       "prompt": {
-        "text": "Look, then write jump",
-        "say": "Look at the word jump. Then write it from memory!",
-        "audio": "voice/line-db2df7e90ad5e116.m4a"
+        "text": "Look, then write nest",
+        "say": "Look at the word nest. Then write it from memory!",
+        "audio": "voice/line-ed53318ca1f53e0c.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "jump",
-          "label": "jump",
+          "key": "nest",
+          "label": "nest",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "flash",
-        "target": "jump",
+        "target": "nest",
         "guide": null,
         "word": null,
         "missingIndex": null,
@@ -255,62 +250,58 @@
       }
     },
     {
-      "id": "level-126-r7",
+      "id": "level-196-r7",
       "type": "hunt",
       "prompt": {
-        "text": "Find every like!",
-        "say": "Find every word like!",
-        "audio": "voice/line-ef09687e3c13ecc5.m4a"
+        "text": "Find every sad!",
+        "say": "Find every word sad!",
+        "audio": "voice/line-29f9f3600528429a.m4a"
       },
       "card": {
-        "text": "like",
+        "text": "sad",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "like",
+        "target": "sad",
         "grid": [
-          "said",
-          "like",
-          "like",
+          "hop",
+          "down",
           "under",
-          "you",
-          "like",
-          "look",
+          "his",
+          "sad",
           "jumping",
-          "down"
+          "behind",
+          "sad",
+          "sad"
         ]
       }
     },
     {
-      "id": "level-126-r8",
+      "id": "level-196-r8",
       "type": "write",
       "prompt": {
-        "text": "Spell jump",
-        "say": "Jump! Write it one letter at a time.",
-        "audio": "voice/line-cc81fb1811517725.m4a"
+        "text": "Spell bigger",
+        "say": "Bigger! Write it one letter at a time.",
+        "audio": "voice/line-8c966f453dba84c2.m4a"
       },
       "card": {
-        "text": null,
-        "picture": {
-          "key": "jump",
-          "label": "jump",
-          "url": null
-        },
+        "text": "bigger",
+        "picture": null,
         "listen": false
       },
       "write": {
         "mode": "spell",
-        "target": "jump",
+        "target": "bigger",
         "guide": null,
-        "word": "jump",
+        "word": "bigger",
         "missingIndex": null,
         "sentence": false,
         "story": false
       }
     },
     {
-      "id": "level-126-r9",
+      "id": "level-196-r9",
       "type": "pick",
       "prompt": {
         "text": "I see a red car.",
@@ -325,7 +316,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-126-r9-o1",
+            "id": "level-196-r9-o1",
             "label": "dog running",
             "picture": {
               "key": "dog_running",
@@ -336,22 +327,22 @@
             "hideLabel": true
           },
           {
-            "id": "level-126-r9-o2",
-            "label": "red car",
+            "id": "level-196-r9-o2",
+            "label": "hot sun",
             "picture": {
-              "key": "red_car",
-              "label": "red car",
+              "key": "hot_sun",
+              "label": "hot sun",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-126-r9-o3",
-            "label": "hot sun",
+            "id": "level-196-r9-o3",
+            "label": "red car",
             "picture": {
-              "key": "hot_sun",
-              "label": "hot sun",
+              "key": "red_car",
+              "label": "red car",
               "url": null
             },
             "color": null,
@@ -370,24 +361,24 @@
       }
     },
     {
-      "id": "level-126-r10",
+      "id": "level-196-r10",
       "type": "pop",
       "prompt": {
-        "text": "Pop every under!",
-        "say": "Pop every bubble that says under!",
-        "audio": "voice/line-06c2f94d5d1fdada.m4a"
+        "text": "Pop every sad!",
+        "say": "Pop every bubble that says sad!",
+        "audio": "voice/line-38b5ee39f05630c4.m4a"
       },
       "card": {
-        "text": "under",
+        "text": "sad",
         "picture": null,
         "listen": false
       },
       "pop": {
-        "target": "under",
+        "target": "sad",
         "others": [
-          "where",
-          "down",
-          "jump"
+          "his",
+          "hop",
+          "who"
         ],
         "count": 4
       }

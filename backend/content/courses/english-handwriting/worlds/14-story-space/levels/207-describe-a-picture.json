@@ -1,0 +1,431 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-207",
+  "number": 207,
+  "name": "Describe a Picture",
+  "skill": "Describing what we see",
+  "icon": "image",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "I see...",
+    "word": "red bus",
+    "say": "What do you see? Let's tell about the picture!",
+    "audio": "voice/line-e1e776b20dc62236.m4a",
+    "picture": {
+      "key": "red_bus",
+      "label": "red_bus",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-207-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which words tell about it?",
+        "say": "Look at the picture. Which words tell about it?",
+        "audio": "voice/line-a824e18e3abe11c2.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "red_bus",
+          "label": "red bus",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-207-r1-o1",
+            "label": "a pink cake",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-207-r1-o2",
+            "label": "a little green frog",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-207-r1-o3",
+            "label": "a big red bus",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "a big red bus"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-207-r2",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "big",
+            "wrong": "mirror",
+            "at": 2
+          },
+          {
+            "text": "red",
+            "wrong": "mirror",
+            "at": 2
+          },
+          {
+            "text": "little",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "green",
+            "wrong": null,
+            "at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-207-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a little yellow chick.",
+        "say": "I see a little yellow chick. Find the picture!",
+        "audio": "voice/line-e420213df58c366c.m4a"
+      },
+      "card": {
+        "text": "I see a little yellow chick.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-207-r3-o1",
+            "label": "chick",
+            "picture": {
+              "key": "chick",
+              "label": "chick",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-207-r3-o2",
+            "label": "frog",
+            "picture": {
+              "key": "frog",
+              "label": "frog",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-207-r3-o3",
+            "label": "red bus",
+            "picture": {
+              "key": "red_bus",
+              "label": "red bus",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "chick"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-207-r4",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. The elephant is big and grey. True, or silly?",
+        "audio": "voice/line-c764caec1e886ebf.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "The elephant is big and grey.",
+        "picture": {
+          "key": "elephant",
+          "label": "elephant",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-207-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "What colour is the box?",
+        "say": "In the picture, a black cat sits on a red box. What colour is the box?",
+        "audio": "voice/line-70fbac1dda0e2290.m4a"
+      },
+      "card": {
+        "text": "In the picture, a black cat sits on a red box.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-207-r5-o1",
+            "label": "red",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-207-r5-o2",
+            "label": "blue",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-207-r5-o3",
+            "label": "black",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-207-r6",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/f/|fːː} or {/b/|bʌ}?",
+        "audio": "voice/line-7e2ab78f7a6e6e84.m4a"
+      },
+      "card": {
+        "text": "f b",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "f",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "b",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "foot",
+            "picture": {
+              "key": "foot",
+              "label": "foot",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bus",
+            "picture": {
+              "key": "bus",
+              "label": "bus",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "ball",
+            "picture": {
+              "key": "ball",
+              "label": "ball",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "bag",
+            "picture": {
+              "key": "bag",
+              "label": "bag",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "four",
+            "picture": {
+              "key": "four",
+              "label": "four",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-207-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "I see a big red bus. Put the words in order.",
+        "audio": "voice/line-694025bf888f59d5.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "red_bus",
+          "label": "red bus",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "I",
+          "see",
+          "a",
+          "big",
+          "red",
+          "bus"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-207-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "The sun is big and yellow. Now write it!",
+        "audio": "voice/line-737d9a693aeba44c.m4a"
+      },
+      "card": {
+        "text": "The sun is big and yellow.",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "The sun is big and yellow.",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-207-r9",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: I see a tall green tree.",
+        "say": "I see a tall green tree. Now you say it!",
+        "audio": "voice/line-4a7e09c74222e37c.m4a"
+      },
+      "card": {
+        "text": "I see a tall green tree.",
+        "picture": {
+          "key": "tree",
+          "label": "tree",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "I see a tall green tree."
+      }
+    },
+    {
+      "id": "level-207-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write tall",
+        "say": "Look at the word tall. Then write it from memory!",
+        "audio": "voice/line-392289d4ee5f255f.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "tall",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}
