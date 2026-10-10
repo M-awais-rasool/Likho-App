@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-73",
-  "number": 73,
+  "id": "level-77",
+  "number": 77,
   "name": "Cupcake Count",
   "skill": "Numbers",
   "icon": "cake",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-73-r1",
+      "id": "level-77-r1",
       "type": "pick",
       "prompt": {
         "text": "How many?",
@@ -44,21 +44,21 @@
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-73-r1-o1"
+            "id": "level-77-r1-o1"
           },
           {
             "label": "three",
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-73-r1-o2"
+            "id": "level-77-r1-o2"
           },
           {
             "label": "five",
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-73-r1-o3"
+            "id": "level-77-r1-o3"
           }
         ],
         "answer": {
@@ -74,34 +74,91 @@
       }
     },
     {
-      "id": "level-73-r2",
-      "type": "write",
+      "id": "level-77-r2",
+      "type": "sort",
       "prompt": {
-        "text": "Look, then write four",
-        "say": "Look at the word four. Then write it from memory!",
-        "audio": "voice/line-575bfe760fd30760.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/l/|lːː} or {/d/|dʌ}?",
+        "audio": "voice/line-5f8f3ed64cb22854.m4a"
       },
       "card": {
-        "text": null,
-        "picture": {
-          "key": "four",
-          "label": "four",
-          "url": null
-        },
+        "text": "l d",
+        "picture": null,
         "listen": false
       },
-      "write": {
-        "mode": "flash",
-        "target": "four",
-        "guide": null,
-        "word": null,
-        "missingIndex": null,
-        "sentence": false,
-        "story": false
+      "sort": {
+        "bins": [
+          {
+            "label": "l",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "d",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "leg",
+            "picture": {
+              "key": "leg",
+              "label": "leg",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "log",
+            "picture": {
+              "key": "log",
+              "label": "log",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "lion",
+            "picture": {
+              "key": "lion",
+              "label": "lion",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
       }
     },
     {
-      "id": "level-73-r3",
+      "id": "level-77-r3",
       "type": "pick",
       "prompt": {
         "text": "Which picture is one?",
@@ -116,33 +173,33 @@
       "pick": {
         "options": [
           {
-            "id": "level-73-r3-o1",
-            "label": "four",
+            "id": "level-77-r3-o1",
+            "label": "six",
             "picture": {
-              "key": "four",
-              "label": "four",
+              "key": "six",
+              "label": "six",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-73-r3-o2",
-            "label": "two",
-            "picture": {
-              "key": "two",
-              "label": "two",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-73-r3-o3",
+            "id": "level-77-r3-o2",
             "label": "one",
             "picture": {
               "key": "one",
               "label": "one",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-77-r3-o3",
+            "label": "two",
+            "picture": {
+              "key": "two",
+              "label": "two",
               "url": null
             },
             "color": null,
@@ -161,7 +218,7 @@
       }
     },
     {
-      "id": "level-73-r4",
+      "id": "level-77-r4",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -183,34 +240,38 @@
           "w",
           "o"
         ],
-        "slot": "plank"
+        "slot": "wagon"
       }
     },
     {
-      "id": "level-73-r5",
-      "type": "pop",
+      "id": "level-77-r5",
+      "type": "write",
       "prompt": {
-        "text": "Pop every one!",
-        "say": "Pop every bubble that says one!",
-        "audio": "voice/line-2d11c374dd11e495.m4a"
+        "text": "Look, then write two",
+        "say": "Look at the word two. Then write it from memory!",
+        "audio": "voice/line-0951ea3183f2fa69.m4a"
       },
       "card": {
-        "text": "one",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "two",
+          "label": "two",
+          "url": null
+        },
         "listen": false
       },
-      "pop": {
-        "target": "one",
-        "others": [
-          "dog",
-          "log",
-          "pig"
-        ],
-        "count": 4
+      "write": {
+        "mode": "flash",
+        "target": "two",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
       }
     },
     {
-      "id": "level-73-r6",
+      "id": "level-77-r6",
       "type": "write",
       "prompt": {
         "text": "Spell four",
@@ -237,7 +298,7 @@
       }
     },
     {
-      "id": "level-73-r7",
+      "id": "level-77-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every five!",
@@ -252,20 +313,20 @@
       "hunt": {
         "target": "five",
         "grid": [
-          "two",
+          "six",
+          "five",
+          "three",
+          "one",
           "four",
           "pig",
-          "one",
-          "three",
+          "two",
           "five",
-          "five",
-          "five",
-          "six"
+          "five"
         ]
       }
     },
     {
-      "id": "level-73-r8",
+      "id": "level-77-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: one, two, three, four!",
@@ -286,67 +347,30 @@
       }
     },
     {
-      "id": "level-73-r9",
-      "type": "match",
+      "id": "level-77-r9",
+      "type": "pop",
       "prompt": {
-        "text": "Find the pairs!",
-        "say": "Find the pairs! Match each word to its picture.",
-        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+        "text": "Pop every five!",
+        "say": "Pop every bubble that says five!",
+        "audio": "voice/line-6fbd65f135e5a125.m4a"
       },
       "card": {
-        "text": "Find the pairs!",
+        "text": "five",
         "picture": null,
         "listen": false
       },
-      "match": {
-        "pairs": [
-          {
-            "a": {
-              "text": "one",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "one",
-                "label": "one",
-                "url": null
-              }
-            }
-          },
-          {
-            "a": {
-              "text": "two",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "two",
-                "label": "two",
-                "url": null
-              }
-            }
-          },
-          {
-            "a": {
-              "text": "three",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "three",
-                "label": "three",
-                "url": null
-              }
-            }
-          }
-        ]
+      "pop": {
+        "target": "five",
+        "others": [
+          "four",
+          "pink",
+          "dog"
+        ],
+        "count": 4
       }
     },
     {
-      "id": "level-73-r10",
+      "id": "level-77-r10",
       "type": "write",
       "prompt": {
         "text": "Write three",

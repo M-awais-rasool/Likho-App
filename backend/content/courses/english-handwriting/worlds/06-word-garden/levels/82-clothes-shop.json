@@ -1,20 +1,20 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-77",
-  "number": 77,
-  "name": "Lunch Time",
-  "skill": "Food",
-  "icon": "restaurant",
+  "id": "level-82",
+  "number": 82,
+  "name": "Clothes Shop",
+  "skill": "Clothes",
+  "icon": "shopping_basket",
   "isBoss": false,
   "requiresSubscription": true,
   "intro": {
-    "text": "food",
-    "word": "bread",
-    "say": "Yum! Let's read the names of food.",
-    "audio": "voice/line-ab39707a65af4440.m4a",
+    "text": "coat",
+    "word": "coat",
+    "say": "Coat, dress, shirt, shoe! Let's get dressed.",
+    "audio": "voice/line-b35a30c67a29a5fd.m4a",
     "picture": {
-      "key": "bread",
-      "label": "bread",
+      "key": "coat",
+      "label": "coat",
       "url": null
     }
   },
@@ -26,48 +26,48 @@
   },
   "rounds": [
     {
-      "id": "level-77-r1",
+      "id": "level-82-r1",
       "type": "pick",
       "prompt": {
-        "text": "Which picture is egg?",
-        "say": "Read the word. Which picture is egg?",
-        "audio": "voice/line-6aa6141ea57334c1.m4a"
+        "text": "Which picture is coat?",
+        "say": "Read the word. Which picture is coat?",
+        "audio": "voice/line-a2da1c6bb430d89a.m4a"
       },
       "card": {
-        "text": "egg",
+        "text": "coat",
         "picture": null,
         "listen": false
       },
       "pick": {
         "options": [
           {
-            "id": "level-77-r1-o1",
-            "label": "egg",
+            "id": "level-82-r1-o1",
+            "label": "coat",
             "picture": {
-              "key": "egg",
-              "label": "egg",
+              "key": "coat",
+              "label": "coat",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-77-r1-o2",
-            "label": "milk",
+            "id": "level-82-r1-o2",
+            "label": "sock",
             "picture": {
-              "key": "milk",
-              "label": "milk",
+              "key": "sock",
+              "label": "sock",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-77-r1-o3",
-            "label": "rice",
+            "id": "level-82-r1-o3",
+            "label": "dress",
             "picture": {
-              "key": "rice",
-              "label": "rice",
+              "key": "dress",
+              "label": "dress",
               "url": null
             },
             "color": null,
@@ -76,9 +76,9 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "egg"
+          "value": "coat"
         },
-        "shape": "card",
+        "shape": "planet",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -86,67 +86,58 @@
       }
     },
     {
-      "id": "level-77-r2",
+      "id": "level-82-r2",
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/h/|hʌ} or {/e/|ɛ}?",
-        "audio": "voice/line-621af20737131615.m4a"
+        "say": "Sort the pictures! Do they start with {/s/|sːː} or {/h/|hʌ}?",
+        "audio": "voice/line-f105ab757293d8af.m4a"
       },
       "card": {
-        "text": "h e",
+        "text": "s h",
         "picture": null,
         "listen": false
       },
       "sort": {
         "bins": [
           {
-            "label": "h",
+            "label": "s",
             "picture": null,
             "bin": null
           },
           {
-            "label": "e",
+            "label": "h",
             "picture": null,
             "bin": null
           }
         ],
         "items": [
           {
-            "label": "hut",
+            "label": "hand",
             "picture": {
-              "key": "hut",
-              "label": "hut",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "elephant",
-            "picture": {
-              "key": "elephant",
-              "label": "elephant",
+              "key": "hand",
+              "label": "hand",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "hat",
+            "label": "sun",
             "picture": {
-              "key": "hat",
-              "label": "hat",
+              "key": "sun",
+              "label": "sun",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "egg",
+            "label": "six",
             "picture": {
-              "key": "egg",
-              "label": "egg",
+              "key": "six",
+              "label": "six",
               "url": null
             },
-            "bin": 1
+            "bin": 0
           },
           {
             "label": "hen",
@@ -155,44 +146,63 @@
               "label": "hen",
               "url": null
             },
+            "bin": 1
+          },
+          {
+            "label": "hut",
+            "picture": {
+              "key": "hut",
+              "label": "hut",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "seed",
+            "picture": {
+              "key": "seed",
+              "label": "seed",
+              "url": null
+            },
             "bin": 0
           }
         ]
       }
     },
     {
-      "id": "level-77-r3",
+      "id": "level-82-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
-        "say": "Egg! Build the word egg.",
-        "audio": "voice/line-5f76ed514afd9e69.m4a"
+        "say": "Coat! Build the word coat.",
+        "audio": "voice/line-0533c0be720036ba.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "egg",
-          "label": "egg",
+          "key": "coat",
+          "label": "coat",
           "url": null
         },
         "listen": false
       },
       "order": {
         "tiles": [
-          "e",
-          "g",
-          "g"
+          "c",
+          "o",
+          "a",
+          "t"
         ],
-        "slot": "wagon"
+        "slot": "stripe"
       }
     },
     {
-      "id": "level-77-r4",
+      "id": "level-82-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
-        "say": "Listen! Find the word milk.",
-        "audio": "voice/line-66d1a4f3431fc5de.m4a"
+        "say": "Listen! Find the word shoe.",
+        "audio": "voice/line-6100e5f5ffce46c5.m4a"
       },
       "card": {
         "text": null,
@@ -202,22 +212,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-77-r4-o1",
-            "label": "egg",
+            "id": "level-82-r4-o1",
+            "label": "coat",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-77-r4-o2",
-            "label": "milk",
+            "id": "level-82-r4-o2",
+            "label": "shoe",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-77-r4-o3",
-            "label": "bread",
+            "id": "level-82-r4-o3",
+            "label": "sock",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -225,9 +235,9 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "milk"
+          "value": "shoe"
         },
-        "shape": "cloud",
+        "shape": "shell",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -235,52 +245,52 @@
       }
     },
     {
-      "id": "level-77-r5",
+      "id": "level-82-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
-        "say": "Milk! Which letter is missing?",
-        "audio": "voice/line-4426f8d3605ea186.m4a"
+        "say": "Shoe! Which letter is missing?",
+        "audio": "voice/line-1ca482fcc6753da0.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "milk",
-          "label": "milk",
+          "key": "shoe",
+          "label": "shoe",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "missing",
-        "target": "i",
-        "guide": "i",
-        "word": "milk",
-        "missingIndex": 1,
+        "target": "o",
+        "guide": "o",
+        "word": "shoe",
+        "missingIndex": 2,
         "sentence": false,
         "story": false
       }
     },
     {
-      "id": "level-77-r6",
+      "id": "level-82-r6",
       "type": "write",
       "prompt": {
-        "text": "Look, then write egg",
-        "say": "Look at the word egg. Then write it from memory!",
-        "audio": "voice/line-19b43e650dca4732.m4a"
+        "text": "Look, then write shoe",
+        "say": "Look at the word shoe. Then write it from memory!",
+        "audio": "voice/line-951723cdceed9b27.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "egg",
-          "label": "egg",
+          "key": "shoe",
+          "label": "shoe",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "flash",
-        "target": "egg",
+        "target": "shoe",
         "guide": null,
         "word": null,
         "missingIndex": null,
@@ -289,97 +299,97 @@
       }
     },
     {
-      "id": "level-77-r7",
+      "id": "level-82-r7",
       "type": "hunt",
       "prompt": {
-        "text": "Find every cake!",
-        "say": "Find every word cake!",
-        "audio": "voice/line-5141f349ad04d42b.m4a"
+        "text": "Find every dress!",
+        "say": "Find every word dress!",
+        "audio": "voice/line-8516ccfbee655a29.m4a"
       },
       "card": {
-        "text": "cake",
+        "text": "dress",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "cake",
+        "target": "dress",
         "grid": [
-          "cake",
-          "rice",
-          "bread",
-          "milk",
-          "cake",
-          "dog",
-          "cake",
-          "apple",
-          "egg"
+          "log",
+          "hat",
+          "dress",
+          "dress",
+          "shoe",
+          "shirt",
+          "coat",
+          "dress",
+          "sock"
         ]
       }
     },
     {
-      "id": "level-77-r8",
+      "id": "level-82-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: egg, milk, rice, cake!",
-        "say": "Say them with me! egg, milk, rice, cake!",
-        "audio": "voice/line-97b6a23a5f32604b.m4a"
+        "text": "Say: coat, shoe, hat, dress!",
+        "say": "Say them with me! coat, shoe, hat, dress!",
+        "audio": "voice/line-2ed7990f7ab0de95.m4a"
       },
       "card": {
-        "text": "egg, milk, rice, cake!",
+        "text": "coat, shoe, hat, dress!",
         "picture": {
-          "key": "egg",
-          "label": "egg",
+          "key": "coat",
+          "label": "coat",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "egg, milk, rice, cake!"
+        "expected": "coat, shoe, hat, dress!"
       }
     },
     {
-      "id": "level-77-r9",
+      "id": "level-82-r9",
       "type": "pop",
       "prompt": {
-        "text": "Pop every bread!",
-        "say": "Pop every bubble that says bread!",
-        "audio": "voice/line-97880fba867a308e.m4a"
+        "text": "Pop every dress!",
+        "say": "Pop every bubble that says dress!",
+        "audio": "voice/line-5fc7f65e97a0a684.m4a"
       },
       "card": {
-        "text": "bread",
+        "text": "dress",
         "picture": null,
         "listen": false
       },
       "pop": {
-        "target": "bread",
+        "target": "dress",
         "others": [
-          "apple",
-          "cake",
+          "shirt",
+          "coat",
           "four"
         ],
         "count": 4
       }
     },
     {
-      "id": "level-77-r10",
+      "id": "level-82-r10",
       "type": "write",
       "prompt": {
-        "text": "Write rice",
-        "say": "Write the word rice.",
-        "audio": "voice/line-55b579e3a5676331.m4a"
+        "text": "Write hat",
+        "say": "Write the word hat.",
+        "audio": "voice/line-1e1845bf1c94d484.m4a"
       },
       "card": {
-        "text": "rice",
+        "text": "hat",
         "picture": {
-          "key": "rice",
-          "label": "rice",
+          "key": "hat",
+          "label": "hat",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "free",
-        "target": "rice",
+        "target": "hat",
         "guide": null,
         "word": null,
         "missingIndex": null,

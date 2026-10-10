@@ -1,9 +1,9 @@
 {
   "$schema": "../../../../schema/world.schema.json",
-  "id": "world-7",
-  "order": 7,
-  "name": "Sight Word Garden",
-  "skill": "Sight words",
+  "id": "world-6",
+  "order": 6,
+  "name": "Word Garden",
+  "skill": "First words",
   "icon": "local_florist",
   "themeId": "sightGarden",
   "boss": {

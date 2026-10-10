@@ -1,0 +1,430 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-78",
+  "number": 78,
+  "name": "More Numbers",
+  "skill": "Numbers to ten",
+  "icon": "cake",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "7 8 9 10",
+    "word": "ten",
+    "say": "Seven, eight, nine, ten! Let's count all the way to ten.",
+    "audio": "voice/line-2d3295ec00c4e402.m4a",
+    "picture": {
+      "key": "ten",
+      "label": "ten",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-78-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "How many?",
+        "say": "How many cupcakes? Count them!",
+        "audio": "voice/line-7d4a6a40fc53f45c.m4a"
+      },
+      "card": {
+        "text": "How many?",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-78-r1-o1",
+            "label": "ten",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-78-r1-o2",
+            "label": "six",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-78-r1-o3",
+            "label": "eight",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "eight"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": 8,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "count"
+      }
+    },
+    {
+      "id": "level-78-r2",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every eight!",
+        "say": "Pop every bubble that says eight!",
+        "audio": "voice/line-b99fd8a439d83d8f.m4a"
+      },
+      "card": {
+        "text": "eight",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "eight",
+        "others": [
+          "seven",
+          "four",
+          "nine"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-78-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Put the numbers in order!",
+        "say": "Seven, eight, nine, ten! Put the numbers in order.",
+        "audio": "voice/line-23cb553aa3f51656.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "ten",
+          "label": "ten",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "seven",
+          "eight",
+          "nine",
+          "ten"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-78-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is nine?",
+        "say": "Read the word. Which picture is nine?",
+        "audio": "voice/line-37935f04a2003652.m4a"
+      },
+      "card": {
+        "text": "nine",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-78-r4-o1",
+            "label": "nine",
+            "picture": {
+              "key": "nine",
+              "label": "nine",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-78-r4-o2",
+            "label": "seven",
+            "picture": {
+              "key": "seven",
+              "label": "seven",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-78-r4-o3",
+            "label": "eight",
+            "picture": {
+              "key": "eight",
+              "label": "eight",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "nine"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-78-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "Six, seven, what, nine. Which word fits?",
+        "audio": "voice/line-1433b08df83afb86.m4a"
+      },
+      "card": {
+        "text": "Six, seven, ___, nine.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-78-r5-o1",
+            "label": "ten",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-78-r5-o2",
+            "label": "eight",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-78-r5-o3",
+            "label": "five",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "eight"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-78-r6",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "seven",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "seven",
+                "label": "seven",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "eight",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "eight",
+                "label": "eight",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "nine",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "nine",
+                "label": "nine",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-78-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Seven, eight, nine, ten!",
+        "say": "Seven, eight, nine, ten! Now you say it!",
+        "audio": "voice/line-305f1c362ca65099.m4a"
+      },
+      "card": {
+        "text": "Seven, eight, nine, ten!",
+        "picture": {
+          "key": "ten",
+          "label": "ten",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Seven, eight, nine, ten!"
+      }
+    },
+    {
+      "id": "level-78-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write seven",
+        "say": "Write the word seven.",
+        "audio": "voice/line-b1e40032acc720c3.m4a"
+      },
+      "card": {
+        "text": "seven",
+        "picture": {
+          "key": "seven",
+          "label": "seven",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "seven",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-78-r9",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word ten.",
+        "audio": "voice/line-9aa1cdceddb87409.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-78-r9-o1",
+            "label": "eight",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-78-r9-o2",
+            "label": "ten",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-78-r9-o3",
+            "label": "nine",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "ten"
+        },
+        "shape": "balloon",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-78-r10",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "seven",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "eight",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "nine",
+            "wrong": "mirror",
+            "at": 3
+          },
+          {
+            "text": "ten",
+            "wrong": "mirror",
+            "at": 1
+          }
+        ]
+      }
+    }
+  ]
+}
