@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-32",
-  "number": 32,
+  "id": "level-31",
+  "number": 31,
   "name": "Small a",
   "skill": "Small a and its sound",
   "icon": "spa",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-32-r1",
+      "id": "level-31-r1",
       "type": "pick",
       "prompt": {
         "text": "Find small a!",
@@ -45,29 +45,29 @@
       "pick": {
         "options": [
           {
-            "id": "level-32-r1-o1",
-            "label": "d",
+            "id": "level-31-r1-o1",
+            "label": "e",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-32-r1-o2",
-            "label": "a",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-32-r1-o3",
+            "id": "level-31-r1-o2",
             "label": "o",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-32-r1-o4",
-            "label": "e",
+            "id": "level-31-r1-o3",
+            "label": "d",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-31-r1-o4",
+            "label": "a",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -85,7 +85,7 @@
       }
     },
     {
-      "id": "level-32-r2",
+      "id": "level-31-r2",
       "type": "write",
       "prompt": {
         "text": "Trace small a",
@@ -112,7 +112,7 @@
       }
     },
     {
-      "id": "level-32-r3",
+      "id": "level-31-r3",
       "type": "pick",
       "prompt": {
         "text": "What starts with /a/?",
@@ -127,18 +127,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-32-r3-o1",
-            "label": "hat",
-            "picture": {
-              "key": "hat",
-              "label": "hat",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-32-r3-o2",
+            "id": "level-31-r3-o1",
             "label": "apple",
             "picture": {
               "key": "apple",
@@ -149,11 +138,22 @@
             "hideLabel": true
           },
           {
-            "id": "level-32-r3-o3",
-            "label": "sun",
+            "id": "level-31-r3-o2",
+            "label": "moon",
             "picture": {
-              "key": "sun",
-              "label": "sun",
+              "key": "moon",
+              "label": "moon",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-31-r3-o3",
+            "label": "jam",
+            "picture": {
+              "key": "jam",
+              "label": "jam",
               "url": null
             },
             "color": null,
@@ -172,7 +172,7 @@
       }
     },
     {
-      "id": "level-32-r4",
+      "id": "level-31-r4",
       "type": "write",
       "prompt": {
         "text": "Join the dots to make small a",
@@ -195,7 +195,7 @@
       }
     },
     {
-      "id": "level-32-r5",
+      "id": "level-31-r5",
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
@@ -211,7 +211,7 @@
         "items": [
           {
             "text": "a",
-            "wrong": "mirror",
+            "wrong": null,
             "at": null
           },
           {
@@ -226,7 +226,7 @@
           },
           {
             "text": "a",
-            "wrong": null,
+            "wrong": "mirror",
             "at": null
           },
           {
@@ -243,7 +243,7 @@
       }
     },
     {
-      "id": "level-32-r6",
+      "id": "level-31-r6",
       "type": "write",
       "prompt": {
         "text": "Finish the word!",
@@ -270,7 +270,7 @@
       }
     },
     {
-      "id": "level-32-r7",
+      "id": "level-31-r7",
       "type": "write",
       "prompt": {
         "text": "Look, then write small a",
@@ -297,7 +297,7 @@
       }
     },
     {
-      "id": "level-32-r8",
+      "id": "level-31-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: a says /a/ like apple!",

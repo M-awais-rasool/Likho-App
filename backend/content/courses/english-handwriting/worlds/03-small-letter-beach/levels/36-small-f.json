@@ -1,20 +1,20 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-45",
-  "number": 45,
-  "name": "Small l",
-  "skill": "Small l and its sound",
+  "id": "level-36",
+  "number": 36,
+  "name": "Small f",
+  "skill": "Small f and its sound",
   "icon": "spa",
   "isBoss": false,
   "requiresSubscription": true,
   "intro": {
-    "text": "Ll",
-    "word": "lion",
-    "say": "Big {L|ˈɛl}, small {l|ˈɛl}! Small {l|ˈɛl} says {/l/|lːː}, like lion.",
-    "audio": "voice/line-7321b9ae0630c601.m4a",
+    "text": "Ff",
+    "word": "fish",
+    "say": "Big {F|ˈɛf}, small {f|ˈɛf}! Small {f|ˈɛf} says {/f/|fːː}, like fish.",
+    "audio": "voice/line-cd4f8fd3adc2947a.m4a",
     "picture": {
-      "key": "lion",
-      "label": "lion",
+      "key": "fish",
+      "label": "fish",
       "url": null
     }
   },
@@ -26,53 +26,53 @@
   },
   "rounds": [
     {
-      "id": "level-45-r1",
+      "id": "level-36-r1",
       "type": "pop",
       "prompt": {
-        "text": "Pop every small l!",
-        "say": "Pop every small {l|ˈɛl} bubble!",
-        "audio": "voice/line-6b9e878107dfce87.m4a"
+        "text": "Pop every small f!",
+        "say": "Pop every small {f|ˈɛf} bubble!",
+        "audio": "voice/line-5ed7753cfa11b1ee.m4a"
       },
       "card": {
-        "text": "l",
+        "text": "f",
         "picture": {
-          "key": "lion",
-          "label": "lion",
+          "key": "fish",
+          "label": "fish",
           "url": null
         },
         "listen": false
       },
       "pop": {
-        "target": "l",
+        "target": "f",
         "others": [
-          "i",
           "t",
-          "k"
+          "l",
+          "j"
         ],
         "count": 5
       }
     },
     {
-      "id": "level-45-r2",
+      "id": "level-36-r2",
       "type": "write",
       "prompt": {
-        "text": "Trace small l",
-        "say": "Trace small {l|ˈɛl}.",
-        "audio": "voice/line-f9fc7f065419df99.m4a"
+        "text": "Trace small f",
+        "say": "Trace small {f|ˈɛf}.",
+        "audio": "voice/line-7ebac3654999016e.m4a"
       },
       "card": {
-        "text": "l",
+        "text": "f",
         "picture": {
-          "key": "lion",
-          "label": "lion",
+          "key": "fish",
+          "label": "fish",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "trace",
-        "target": "l",
-        "guide": "l",
+        "target": "f",
+        "guide": "f",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -80,53 +80,53 @@
       }
     },
     {
-      "id": "level-45-r3",
+      "id": "level-36-r3",
       "type": "hunt",
       "prompt": {
-        "text": "Find every small l!",
-        "say": "Find every small {l|ˈɛl}!",
-        "audio": "voice/line-c15b3a01c3d72c00.m4a"
+        "text": "Find every small f!",
+        "say": "Find every small {f|ˈɛf}!",
+        "audio": "voice/line-3e4ed3fe66d95cc4.m4a"
       },
       "card": {
-        "text": "l",
+        "text": "f",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "l",
+        "target": "f",
         "grid": [
           "t",
-          "k",
+          "f",
           "l",
-          "k",
           "l",
+          "j",
+          "f",
+          "j",
+          "f",
+          "t",
           "t",
           "l",
-          "i",
-          "t",
-          "i",
-          "i",
-          "l"
+          "f"
         ]
       }
     },
     {
-      "id": "level-45-r4",
+      "id": "level-36-r4",
       "type": "write",
       "prompt": {
-        "text": "Join the dots to make small l",
-        "say": "Join the dots to make small {l|ˈɛl}.",
-        "audio": "voice/line-93175fefa3a3a02f.m4a"
+        "text": "Join the dots to make small f",
+        "say": "Join the dots to make small {f|ˈɛf}.",
+        "audio": "voice/line-daf8442e69934bca.m4a"
       },
       "card": {
-        "text": "l",
+        "text": "f",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "dots",
-        "target": "l",
-        "guide": "l",
+        "target": "f",
+        "guide": "f",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -134,12 +134,12 @@
       }
     },
     {
-      "id": "level-45-r5",
+      "id": "level-36-r5",
       "type": "truth",
       "prompt": {
         "text": "True or silly?",
-        "say": "Apple starts with small {l|ˈɛl}. True, or silly?",
-        "audio": "voice/line-c11e5f418e73dcdd.m4a"
+        "say": "Ball starts with small {f|ˈɛf}. True, or silly?",
+        "audio": "voice/line-3417e63b61550dcc.m4a"
       },
       "card": {
         "text": null,
@@ -147,107 +147,107 @@
         "listen": true
       },
       "truth": {
-        "text": "Apple starts with l.",
+        "text": "Ball starts with f.",
         "picture": {
-          "key": "apple",
-          "label": "apple",
+          "key": "ball",
+          "label": "ball",
           "url": null
         },
         "answer": false
       }
     },
     {
-      "id": "level-45-r6",
+      "id": "level-36-r6",
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/l/|lːː} or {/k/|kʌ}?",
-        "audio": "voice/line-dd8583dbbe71adcd.m4a"
+        "say": "Sort the pictures! Do they start with {/f/|fːː} or {/e/|ɛ}?",
+        "audio": "voice/line-720432df76aad235.m4a"
       },
       "card": {
-        "text": "l k",
+        "text": "f e",
         "picture": null,
         "listen": false
       },
       "sort": {
         "bins": [
           {
-            "label": "l",
+            "label": "f",
             "picture": null,
             "bin": null
           },
           {
-            "label": "k",
+            "label": "e",
             "picture": null,
             "bin": null
           }
         ],
         "items": [
           {
-            "label": "king",
+            "label": "four",
             "picture": {
-              "key": "king",
-              "label": "king",
+              "key": "four",
+              "label": "four",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "elephant",
+            "picture": {
+              "key": "elephant",
+              "label": "elephant",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "lamp",
+            "label": "foot",
             "picture": {
-              "key": "lamp",
-              "label": "lamp",
+              "key": "foot",
+              "label": "foot",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "kite",
+            "label": "egg",
             "picture": {
-              "key": "kite",
-              "label": "kite",
+              "key": "egg",
+              "label": "egg",
               "url": null
             },
             "bin": 1
-          },
-          {
-            "label": "lemon",
-            "picture": {
-              "key": "lemon",
-              "label": "lemon",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "lion",
-            "picture": {
-              "key": "lion",
-              "label": "lion",
-              "url": null
-            },
-            "bin": 0
           }
         ]
       }
     },
     {
-      "id": "level-45-r7",
+      "id": "level-36-r7",
       "type": "write",
       "prompt": {
-        "text": "Write small l by yourself",
-        "say": "Now write small {l|ˈɛl} all by yourself!",
-        "audio": "voice/line-a510a1f7678d14ca.m4a"
+        "text": "Write small f by yourself",
+        "say": "Now write small {f|ˈɛf} all by yourself!",
+        "audio": "voice/line-1da585c75d966b62.m4a"
       },
       "card": {
-        "text": "l",
+        "text": "f",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "free",
-        "target": "l",
-        "guide": "l",
+        "target": "f",
+        "guide": "f",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -255,24 +255,24 @@
       }
     },
     {
-      "id": "level-45-r8",
+      "id": "level-36-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: l says /l/ like lion!",
-        "say": "{l|ˈɛl} says {/l/|lːː}, like lion! Now you say it.",
-        "audio": "voice/line-555b44aaabb3c908.m4a"
+        "text": "Say: f says /f/ like fish!",
+        "say": "{f|ˈɛf} says {/f/|fːː}, like fish! Now you say it.",
+        "audio": "voice/line-504a01d8f890d2e5.m4a"
       },
       "card": {
-        "text": "l says /l/ like lion!",
+        "text": "f says /f/ like fish!",
         "picture": {
-          "key": "lion",
-          "label": "lion",
+          "key": "fish",
+          "label": "fish",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "l says /l/ like lion!"
+        "expected": "f says /f/ like fish!"
       }
     }
   ]

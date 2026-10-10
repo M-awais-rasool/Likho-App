@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-33",
-  "number": 33,
+  "id": "level-32",
+  "number": 32,
   "name": "Small b",
   "skill": "Small b and its sound",
   "icon": "spa",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-33-r1",
+      "id": "level-32-r1",
       "type": "pop",
       "prompt": {
         "text": "Pop every small b!",
@@ -53,7 +53,7 @@
       }
     },
     {
-      "id": "level-33-r2",
+      "id": "level-32-r2",
       "type": "write",
       "prompt": {
         "text": "Trace small b",
@@ -80,7 +80,7 @@
       }
     },
     {
-      "id": "level-33-r3",
+      "id": "level-32-r3",
       "type": "match",
       "prompt": {
         "text": "Find the pairs!",
@@ -128,7 +128,7 @@
       }
     },
     {
-      "id": "level-33-r4",
+      "id": "level-32-r4",
       "type": "write",
       "prompt": {
         "text": "Join the dots to make small b",
@@ -151,7 +151,7 @@
       }
     },
     {
-      "id": "level-33-r5",
+      "id": "level-32-r5",
       "type": "sort",
       "prompt": {
         "text": "Feed it /b/!",
@@ -182,13 +182,31 @@
             "bin": 0
           },
           {
-            "label": "egg",
+            "label": "dog",
             "picture": {
-              "key": "egg",
-              "label": "egg",
+              "key": "dog",
+              "label": "dog",
               "url": null
             },
             "bin": null
+          },
+          {
+            "label": "goat",
+            "picture": {
+              "key": "goat",
+              "label": "goat",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "bag",
+            "picture": {
+              "key": "bag",
+              "label": "bag",
+              "url": null
+            },
+            "bin": 0
           },
           {
             "label": "ball",
@@ -200,28 +218,10 @@
             "bin": 0
           },
           {
-            "label": "pig",
+            "label": "octopus",
             "picture": {
-              "key": "pig",
-              "label": "pig",
-              "url": null
-            },
-            "bin": null
-          },
-          {
-            "label": "bat",
-            "picture": {
-              "key": "bat",
-              "label": "bat",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "jam",
-            "picture": {
-              "key": "jam",
-              "label": "jam",
+              "key": "octopus",
+              "label": "octopus",
               "url": null
             },
             "bin": null
@@ -230,7 +230,7 @@
       }
     },
     {
-      "id": "level-33-r6",
+      "id": "level-32-r6",
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
@@ -255,7 +255,7 @@
       }
     },
     {
-      "id": "level-33-r7",
+      "id": "level-32-r7",
       "type": "write",
       "prompt": {
         "text": "Write small b by yourself",
@@ -278,7 +278,7 @@
       }
     },
     {
-      "id": "level-33-r8",
+      "id": "level-32-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: b says /b/ like ball!",

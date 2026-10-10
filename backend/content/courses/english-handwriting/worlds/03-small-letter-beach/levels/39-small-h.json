@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-40",
-  "number": 40,
+  "id": "level-39",
+  "number": 39,
   "name": "Small h",
   "skill": "Small h and its sound",
   "icon": "spa",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-40-r1",
+      "id": "level-39-r1",
       "type": "pick",
       "prompt": {
         "text": "Find small h!",
@@ -45,29 +45,29 @@
       "pick": {
         "options": [
           {
-            "id": "level-40-r1-o1",
+            "id": "level-39-r1-o1",
             "label": "n",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-40-r1-o2",
-            "label": "h",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-40-r1-o3",
+            "id": "level-39-r1-o2",
             "label": "b",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-40-r1-o4",
+            "id": "level-39-r1-o3",
             "label": "k",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-39-r1-o4",
+            "label": "h",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -85,7 +85,7 @@
       }
     },
     {
-      "id": "level-40-r2",
+      "id": "level-39-r2",
       "type": "write",
       "prompt": {
         "text": "Trace small h",
@@ -112,7 +112,7 @@
       }
     },
     {
-      "id": "level-40-r3",
+      "id": "level-39-r3",
       "type": "sort",
       "prompt": {
         "text": "Feed it /h/!",
@@ -134,15 +134,6 @@
         ],
         "items": [
           {
-            "label": "goat",
-            "picture": {
-              "key": "goat",
-              "label": "goat",
-              "url": null
-            },
-            "bin": null
-          },
-          {
             "label": "hand",
             "picture": {
               "key": "hand",
@@ -152,19 +143,19 @@
             "bin": 0
           },
           {
-            "label": "hen",
+            "label": "goat",
             "picture": {
-              "key": "hen",
-              "label": "hen",
+              "key": "goat",
+              "label": "goat",
               "url": null
             },
-            "bin": 0
+            "bin": null
           },
           {
-            "label": "jam",
+            "label": "apple",
             "picture": {
-              "key": "jam",
-              "label": "jam",
+              "key": "apple",
+              "label": "apple",
               "url": null
             },
             "bin": null
@@ -186,12 +177,21 @@
               "url": null
             },
             "bin": null
+          },
+          {
+            "label": "hen",
+            "picture": {
+              "key": "hen",
+              "label": "hen",
+              "url": null
+            },
+            "bin": 0
           }
         ]
       }
     },
     {
-      "id": "level-40-r4",
+      "id": "level-39-r4",
       "type": "write",
       "prompt": {
         "text": "Join the dots to make small h",
@@ -214,7 +214,7 @@
       }
     },
     {
-      "id": "level-40-r5",
+      "id": "level-39-r5",
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
@@ -235,34 +235,34 @@
           },
           {
             "text": "h",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "h",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "h",
             "wrong": "mirror",
             "at": null
           },
           {
             "text": "h",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "h",
             "wrong": "mirror",
-            "at": null
-          },
-          {
-            "text": "h",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "h",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "h",
-            "wrong": null,
             "at": null
           }
         ]
       }
     },
     {
-      "id": "level-40-r6",
+      "id": "level-39-r6",
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
@@ -287,7 +287,7 @@
       }
     },
     {
-      "id": "level-40-r7",
+      "id": "level-39-r7",
       "type": "write",
       "prompt": {
         "text": "Look, then write small h",
@@ -314,7 +314,7 @@
       }
     },
     {
-      "id": "level-40-r8",
+      "id": "level-39-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: h says /h/ like hat!",
