@@ -6,7 +6,7 @@ import 'package:material_symbols_icons/symbols.dart';
 
 import '../../../data/models/course_models.dart';
 import '../../../design/tokens.dart';
-import '../../world_map/boss_painter.dart';
+import '../../common/clock.dart';
 import 'illustration.dart';
 
 /// Round progress: done = green, current = wide yellow, rest = faint.
@@ -344,12 +344,12 @@ class _BubbleTail extends CustomPainter {
 }
 
 /// Boss levels: the sleeping boss plus one bubble per round that pops when
-/// the round is won. The boss wakes up and dances after the last round.
+/// the round is won. Every won round startles the boss (it stirs, yawns and
+/// dozes off again); after the last round it wakes up and dances.
 class BossStrip extends StatelessWidget {
-  const BossStrip({super.key, required this.world, required this.rounds, required this.done, required this.awake, required this.time});
+  const BossStrip({super.key, required this.world, required this.rounds, required this.done, required this.awake});
   final int world, rounds, done;
   final bool awake;
-  final ValueNotifier<double> time;
 
   @override
   Widget build(BuildContext context) {
@@ -362,13 +362,8 @@ class BossStrip extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          SizedBox(
-            width: 100,
-            height: 84,
-            child: CustomPaint(
-              painter: BossPainter(world: world, awake: awake, time: time, dance: awake),
-            ),
-          ),
+          // stirs at every won round; wakes up with a yawn and a stretch, then dances
+          BossFigure(world: world, awake: awake, dance: awake, dozing: true, pokes: done, width: 100, height: 84),
           const SizedBox(width: 14),
           Flexible(
             child: Padding(
