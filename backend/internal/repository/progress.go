@@ -27,14 +27,12 @@ func (r *ProgressRepository) Record(ctx context.Context, parentID, childID, cour
 		if err != nil {
 			return err
 		}
-		if needsPlus {
-			var p model.Parent
-			if err := tx.Select("plus_until").Take(&p, "id = ?", parentID).Error; err != nil {
-				return notFound(err)
-			}
-			if !p.PlusActive(time.Now()) {
-				return domain.ErrPlusRequired
-			}
+		var p model.Parent
+		if err := tx.Select("plus_until", "tester").Take(&p, "id = ?", parentID).Error; err != nil {
+			return notFound(err)
+		}
+		if needsPlus && !p.PlusActive(time.Now()) {
+			return domain.ErrPlusRequired
 		}
 
 		// this level and the one before it (unlock rule)
@@ -46,7 +44,8 @@ func (r *ProgressRepository) Record(ctx context.Context, parentID, childID, cour
 		for _, r := range rows {
 			best[r.Level] = r.BestStars
 		}
-		if !domain.Unlocked(in.Level, func(n int) bool { _, ok := best[n]; return ok }) {
+		// a test account plays any level
+		if !p.Tester && !domain.Unlocked(in.Level, func(n int) bool { _, ok := best[n]; return ok }) {
 			return domain.ErrLevelLocked
 		}
 		var old *int

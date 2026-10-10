@@ -27,6 +27,10 @@ type Parent struct {
 	PlusUntil *time.Time
 	TrialUsed bool `gorm:"not null;default:false"`
 
+	// Tester: a test account; every level is open (set in the database or
+	// the admin panel, never by the app).
+	Tester bool `gorm:"not null;default:false"`
+
 	CreatedAt   time.Time
 	LastLoginAt time.Time `gorm:"not null;default:now()"`
 
@@ -266,7 +270,7 @@ var Tables = []any{
 // Account, Settings and Subscription are the parent as the API shows it.
 
 func (p Parent) Account() Account {
-	return Account{ID: p.ID, Email: p.Email, Name: p.Name, PictureURL: p.PictureURL}
+	return Account{ID: p.ID, Email: p.Email, Name: p.Name, PictureURL: p.PictureURL, Tester: p.Tester}
 }
 
 func (p Parent) Settings() Settings {

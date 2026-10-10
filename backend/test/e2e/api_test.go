@@ -24,6 +24,7 @@ import (
 	"github.com/alicebob/miniredis/v2"
 	"github.com/gin-gonic/gin"
 	"github.com/redis/go-redis/v9"
+	"gorm.io/gorm"
 
 	"likho/backend/content"
 	"likho/backend/internal/api/handler"
@@ -41,6 +42,7 @@ type testApp struct {
 	r     http.Handler
 	redis *miniredis.Miniredis
 	built *app.Built
+	db    *gorm.DB
 }
 
 // newTestApp builds the API on a fresh database; [cat] replaces the real
@@ -81,7 +83,7 @@ func newTestApp(t *testing.T, cat ...*catalog.Catalog) *testApp {
 	}
 	tokens := service.Tokens{Secret: []byte("test-secret-test-secret-test-secret"), AccessTTL: 15 * time.Minute, RefreshTTL: time.Hour}
 	built := app.BuildApp(app.Deps{DB: db, Redis: rdb, Catalog: cat[0], Google: service.DevGoogle{}, Tokens: tokens, System: handler.SystemInfo{StartedAt: time.Now()}})
-	return &testApp{t: t, r: built.Handler, redis: mr, built: built}
+	return &testApp{t: t, r: built.Handler, redis: mr, built: built, db: db}
 }
 
 type res struct {
@@ -163,6 +165,27 @@ func TestGoogleSignInCreatesOrContinues(t *testing.T) {
 	want(t, a.do("GET", "/v1/me", "nope", nil), http.StatusUnauthorized, "token_expired")
 }
 
+// A test account (parents.tester) plays any level, in any order; it is
+// shown to the app in /me.
+func TestTesterAccountOpensEveryLevel(t *testing.T) {
+	a := newTestApp(t)
+	tok, _, _ := a.signIn("tester@likho.app")
+	kid := a.do("POST", "/v1/children", tok, map[string]any{"name": "Tess", "age": 6, "color": "#B79CED"})
+	want(t, kid, http.StatusCreated)
+	path := "/v1/children/" + kid.json()["id"].(string) + "/courses/" + course + "/results"
+	want(t, a.do("POST", path, tok, map[string]any{"level": 5, "stars": 3}), http.StatusConflict, "level_locked")
+	if err := a.db.Exec("UPDATE parents SET tester = true").Error; err != nil {
+		t.Fatal(err)
+	}
+	want(t, a.do("POST", path, tok, map[string]any{"level": 5, "stars": 3}), 200)
+	// Plus levels still need Plus
+	want(t, a.do("POST", path, tok, map[string]any{"level": 40, "stars": 3}), http.StatusPaymentRequired, "plus_required")
+	me := a.do("GET", "/v1/me", tok, nil).json()
+	if me["account"].(map[string]any)["tester"] != true {
+		t.Fatalf("/me shows the test account: %v", me["account"])
+	}
+}
+
 func TestChildrenProgressAndRoom(t *testing.T) {
 	a := newTestApp(t)
 	tok, _, _ := a.signIn("ammi@gmail.com")
@@ -231,7 +254,7 @@ func TestChildrenProgressAndRoom(t *testing.T) {
 		t.Fatalf("progress in /me: %v", ayaan)
 	}
 
-	// Plus levels (world 2 on, 32+) need the subscription; with it they
+	// Plus levels (world 3 on, 31+) need the subscription; with it they
 	// still unlock one after another
 	for lvl := 3; lvl <= 12; lvl++ {
 		outcome(lvl, 3)
@@ -356,7 +379,7 @@ func TestCoursesRateLimitAndRedisDown(t *testing.T) {
 	list := a.do("GET", "/v1/courses", "", nil)
 	want(t, list, 200)
 	courses := list.json()["courses"].([]any)
-	if len(courses) != 1 || courses[0].(map[string]any)["id"] != course || courses[0].(map[string]any)["levels"] != 144.0 {
+	if len(courses) != 1 || courses[0].(map[string]any)["id"] != course || courses[0].(map[string]any)["levels"] != 210.0 {
 		t.Fatalf("catalog: %s", list.body)
 	}
 	want(t, a.do("GET", "/v1/courses/nope", "", nil), 404, "course_not_found")
