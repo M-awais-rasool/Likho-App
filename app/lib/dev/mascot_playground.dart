@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../data/course_providers.dart';
+import '../data/models/course_models.dart';
 import '../design/likho_widgets.dart';
 import '../design/tokens.dart';
 import '../mascot/mascot.dart';
@@ -265,6 +267,9 @@ class _Panel extends ConsumerWidget {
               runSpacing: LikhoSpace.s1,
               children: [
                 for (var n = 1; n <= 36; n++) LikhoButton(label: '$n', onTap: () => AppFlow.openLevel(context, n, skipIntro: true)),
+                // every world's boss level
+                for (final l in ref.watch(courseProvider).value?.levels.where((l) => l.isBoss) ?? const <CourseLevel>[])
+                  LikhoButton(label: 'Boss ${l.number}', onTap: () => AppFlow.openLevel(context, l.number, skipIntro: true)),
               ],
             ),
             Row(

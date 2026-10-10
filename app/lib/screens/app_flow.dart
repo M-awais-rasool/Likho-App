@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/api/api_client.dart';
+import '../dev/boss_playground.dart';
 import '../data/auth.dart';
 import '../data/course_providers.dart';
 import '../data/media.dart';
@@ -429,7 +430,7 @@ abstract final class AppFlow {
 abstract final class AppFlowJump {
   static const screens = [
     'welcome', 'signIn', 'offline', 'whos', 'onb', 'edit', 'placement', 'placementDone', //
-    'map', 'complete', 'complete1', 'boss', 'sessionEnd', 'certificate', 'room', 'profile', 'stickers', //
+    'map', 'complete', 'complete1', 'boss', 'bosses', 'sessionEnd', 'certificate', 'room', 'profile', 'stickers', //
     'gate', 'dashboard', 'course', 'settings', 'paywall',
   ];
 
@@ -475,7 +476,11 @@ abstract final class AppFlowJump {
       case 'complete1':
         complete(cur, 1, 1);
       case 'boss':
-        complete(6, 3, 5);
+        // the first world's boss level
+        final boss = course?.levels.where((l) => l.isBoss).firstOrNull;
+        if (boss != null) complete(boss.number, 3, 5);
+      case 'bosses':
+        push((c) => BossPlayground(onBack: () => Navigator.of(c).pop()), rise: false);
       case 'sessionEnd':
         push((c) => SessionEndScreen(stars: container.read(playSessionProvider).stars, onHome: () => Navigator.of(c).pop()), rise: false);
       case 'certificate':
