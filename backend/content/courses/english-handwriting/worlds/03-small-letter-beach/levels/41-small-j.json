@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-42",
-  "number": 42,
+  "id": "level-41",
+  "number": 41,
   "name": "Small j",
   "skill": "Small j and its sound",
   "icon": "spa",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-42-r1",
+      "id": "level-41-r1",
       "type": "pop",
       "prompt": {
         "text": "Pop every small j!",
@@ -53,7 +53,7 @@
       }
     },
     {
-      "id": "level-42-r2",
+      "id": "level-41-r2",
       "type": "write",
       "prompt": {
         "text": "Trace small j",
@@ -80,7 +80,7 @@
       }
     },
     {
-      "id": "level-42-r3",
+      "id": "level-41-r3",
       "type": "pick",
       "prompt": {
         "text": "What starts with /j/?",
@@ -95,18 +95,18 @@
       "pick": {
         "options": [
           {
-            "id": "level-42-r3-o1",
-            "label": "violin",
+            "id": "level-41-r3-o1",
+            "label": "robot",
             "picture": {
-              "key": "violin",
-              "label": "violin",
+              "key": "robot",
+              "label": "robot",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-42-r3-o2",
+            "id": "level-41-r3-o2",
             "label": "jam",
             "picture": {
               "key": "jam",
@@ -117,11 +117,11 @@
             "hideLabel": true
           },
           {
-            "id": "level-42-r3-o3",
-            "label": "lion",
+            "id": "level-41-r3-o3",
+            "label": "violin",
             "picture": {
-              "key": "lion",
-              "label": "lion",
+              "key": "violin",
+              "label": "violin",
               "url": null
             },
             "color": null,
@@ -140,7 +140,7 @@
       }
     },
     {
-      "id": "level-42-r4",
+      "id": "level-41-r4",
       "type": "write",
       "prompt": {
         "text": "Join the dots to make small j",
@@ -163,7 +163,7 @@
       }
     },
     {
-      "id": "level-42-r5",
+      "id": "level-41-r5",
       "type": "hunt",
       "prompt": {
         "text": "Find every small j!",
@@ -182,19 +182,19 @@
           "j",
           "g",
           "i",
-          "i",
-          "i",
+          "j",
           "y",
           "j",
           "y",
+          "i",
+          "i",
           "g",
-          "g",
-          "j"
+          "g"
         ]
       }
     },
     {
-      "id": "level-42-r6",
+      "id": "level-41-r6",
       "type": "write",
       "prompt": {
         "text": "Finish the word!",
@@ -221,7 +221,7 @@
       }
     },
     {
-      "id": "level-42-r7",
+      "id": "level-41-r7",
       "type": "write",
       "prompt": {
         "text": "Look, then write small j",
@@ -248,7 +248,7 @@
       }
     },
     {
-      "id": "level-42-r8",
+      "id": "level-41-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: j says /j/ like jam!",

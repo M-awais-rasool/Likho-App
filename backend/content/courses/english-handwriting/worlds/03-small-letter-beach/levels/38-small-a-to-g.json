@@ -1,17 +1,17 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-43",
-  "number": 43,
-  "name": "Small f to j",
+  "id": "level-38",
+  "number": 38,
+  "name": "Small a to g",
   "skill": "Review",
   "icon": "auto_awesome",
   "isBoss": false,
   "requiresSubscription": true,
   "intro": {
-    "text": "f g h i j",
+    "text": "a b c d e f g",
     "word": "star",
-    "say": "f to j! Let's play with small {f|ˈɛf}, small {g|ʤˈiː}, small {h|ˈeɪʧ}, small {i|ˈaɪ}, small {j|ʤˈeɪ}.",
-    "audio": "voice/line-02b3792402242fe1.m4a",
+    "say": "a to g! Let's play with small {a|ˈeɪ}, small {b|bˈiː}, small {c|sˈiː}, small {d|dˈiː}, small {e|ˈiː}, small {f|ˈɛf}, small {g|ʤˈiː}.",
+    "audio": "voice/line-e7da45cd3c9a621a.m4a",
     "picture": {
       "key": "star",
       "label": "star",
@@ -26,12 +26,12 @@
   },
   "rounds": [
     {
-      "id": "level-43-r1",
+      "id": "level-38-r1",
       "type": "pick",
       "prompt": {
         "text": "Which letter do you hear?",
-        "say": "Listen! Find small {j|ʤˈeɪ}.",
-        "audio": "voice/line-969aaf309e7b35c7.m4a"
+        "say": "Listen! Find small {g|ʤˈiː}.",
+        "audio": "voice/line-23c1be3f9e5e4647.m4a"
       },
       "card": {
         "text": null,
@@ -41,29 +41,29 @@
       "pick": {
         "options": [
           {
-            "id": "level-43-r1-o1",
+            "id": "level-38-r1-o1",
+            "label": "c",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-38-r1-o2",
             "label": "g",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-43-r1-o2",
-            "label": "f",
+            "id": "level-38-r1-o3",
+            "label": "b",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-43-r1-o3",
-            "label": "j",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-43-r1-o4",
-            "label": "h",
+            "id": "level-38-r1-o4",
+            "label": "a",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -71,9 +71,9 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "j"
+          "value": "g"
         },
-        "shape": "shell",
+        "shape": "balloon",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -81,26 +81,26 @@
       }
     },
     {
-      "id": "level-43-r2",
+      "id": "level-38-r2",
       "type": "write",
       "prompt": {
-        "text": "Trace small g",
-        "say": "Trace small {g|ʤˈiː}.",
-        "audio": "voice/line-61397de5c6ac8728.m4a"
+        "text": "Trace small b",
+        "say": "Trace small {b|bˈiː}.",
+        "audio": "voice/line-94a7b65ea666b15a.m4a"
       },
       "card": {
-        "text": "g",
+        "text": "b",
         "picture": {
-          "key": "goat",
-          "label": "goat",
+          "key": "ball",
+          "label": "ball",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "trace",
-        "target": "g",
-        "guide": "g",
+        "target": "b",
+        "guide": "b",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -108,97 +108,106 @@
       }
     },
     {
-      "id": "level-43-r3",
+      "id": "level-38-r3",
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/f/|fːː} or {/g/|ɡʌ}?",
-        "audio": "voice/line-50bc4e75f05dae0e.m4a"
+        "say": "Sort the pictures! Do they start with {/b/|bʌ} or {/c/|kʌ}?",
+        "audio": "voice/line-5eb8aa7012d026dc.m4a"
       },
       "card": {
-        "text": "f g",
+        "text": "b c",
         "picture": null,
         "listen": false
       },
       "sort": {
         "bins": [
           {
-            "label": "f",
+            "label": "b",
             "picture": null,
             "bin": null
           },
           {
-            "label": "g",
+            "label": "c",
             "picture": null,
             "bin": null
           }
         ],
         "items": [
           {
-            "label": "four",
+            "label": "car",
             "picture": {
-              "key": "four",
-              "label": "four",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "goat",
-            "picture": {
-              "key": "goat",
-              "label": "goat",
+              "key": "car",
+              "label": "car",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "gift",
+            "label": "bus",
             "picture": {
-              "key": "gift",
-              "label": "gift",
+              "key": "bus",
+              "label": "bus",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "ball",
+            "picture": {
+              "key": "ball",
+              "label": "ball",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "foot",
+            "label": "bag",
             "picture": {
-              "key": "foot",
-              "label": "foot",
+              "key": "bag",
+              "label": "bag",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "fish",
+            "label": "cake",
             "picture": {
-              "key": "fish",
-              "label": "fish",
+              "key": "cake",
+              "label": "cake",
               "url": null
             },
-            "bin": 0
+            "bin": 1
           }
         ]
       }
     },
     {
-      "id": "level-43-r4",
+      "id": "level-38-r4",
       "type": "write",
       "prompt": {
-        "text": "Join the dots to make small i",
-        "say": "Join the dots to make small {i|ˈaɪ}.",
-        "audio": "voice/line-981ce3ba0d7cab70.m4a"
+        "text": "Join the dots to make small d",
+        "say": "Join the dots to make small {d|dˈiː}.",
+        "audio": "voice/line-22b586edf4de97db.m4a"
       },
       "card": {
-        "text": "i",
+        "text": "d",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "dots",
-        "target": "i",
-        "guide": "i",
+        "target": "d",
+        "guide": "d",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -206,57 +215,79 @@
       }
     },
     {
-      "id": "level-43-r5",
-      "type": "hunt",
+      "id": "level-38-r5",
+      "type": "fix",
       "prompt": {
-        "text": "Find every small f!",
-        "say": "Find every small {f|ˈɛf}!",
-        "audio": "voice/line-3e4ed3fe66d95cc4.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote some letters the wrong way. Tap them to fix them!",
+        "audio": "voice/line-5b61022a0ee7b93d.m4a"
       },
       "card": {
-        "text": "f",
+        "text": "a b c d e f g",
         "picture": null,
         "listen": false
       },
-      "hunt": {
-        "target": "f",
-        "grid": [
-          "l",
-          "f",
-          "f",
-          "t",
-          "j",
-          "g",
-          "f",
-          "g",
-          "i",
-          "f",
-          "h",
-          "j"
+      "fix": {
+        "items": [
+          {
+            "text": "a",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "b",
+            "wrong": "mirror",
+            "at": null
+          },
+          {
+            "text": "c",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "d",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "e",
+            "wrong": "mirror",
+            "at": null
+          },
+          {
+            "text": "f",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "g",
+            "wrong": null,
+            "at": null
+          }
         ]
       }
     },
     {
-      "id": "level-43-r6",
+      "id": "level-38-r6",
       "type": "write",
       "prompt": {
-        "text": "Look, then write small j",
-        "say": "Look at small {j|ʤˈeɪ}. Then write it from memory!",
-        "audio": "voice/line-701d02930ef12ca0.m4a"
+        "text": "Look, then write small e",
+        "say": "Look at small {e|ˈiː}. Then write it from memory!",
+        "audio": "voice/line-143e48e6cca862ee.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "jam",
-          "label": "jam",
+          "key": "egg",
+          "label": "egg",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "flash",
-        "target": "j",
-        "guide": "j",
+        "target": "e",
+        "guide": "e",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -264,7 +295,7 @@
       }
     },
     {
-      "id": "level-43-r7",
+      "id": "level-38-r7",
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
@@ -282,31 +313,31 @@
       },
       "order": {
         "tiles": [
-          "f",
-          "g",
-          "h"
+          "a",
+          "b",
+          "c"
         ]
       }
     },
     {
-      "id": "level-43-r8",
+      "id": "level-38-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: f, g, h, i, j!",
-        "say": "Say all the letters with me! {f|ˈɛf}, {g|ʤˈiː}, {h|ˈeɪʧ}, {i|ˈaɪ}, {j|ʤˈeɪ}!",
-        "audio": "voice/line-f301712eb3bf8fac.m4a"
+        "text": "Say: a, b, c, d, e, f, g!",
+        "say": "Say all the letters with me! {a|ˈeɪ}, {b|bˈiː}, {c|sˈiː}, {d|dˈiː}, {e|ˈiː}, {f|ˈɛf}, {g|ʤˈiː}!",
+        "audio": "voice/line-8815a20b48fa3208.m4a"
       },
       "card": {
-        "text": "f, g, h, i, j!",
+        "text": "a, b, c, d, e, f, g!",
         "picture": null,
         "listen": true
       },
       "speak": {
-        "expected": "f, g, h, i, j!"
+        "expected": "a, b, c, d, e, f, g!"
       }
     },
     {
-      "id": "level-43-r9",
+      "id": "level-38-r9",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
@@ -323,9 +354,9 @@
       },
       "write": {
         "mode": "missing",
-        "target": "g",
-        "guide": "g",
-        "word": "fgh",
+        "target": "b",
+        "guide": "b",
+        "word": "abc",
         "missingIndex": 1,
         "sentence": false,
         "story": false

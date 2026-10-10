@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-36",
-  "number": 36,
+  "id": "level-35",
+  "number": 35,
   "name": "Small e",
   "skill": "Small e and its sound",
   "icon": "spa",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-36-r1",
+      "id": "level-35-r1",
       "type": "pick",
       "prompt": {
         "text": "Find small e!",
@@ -45,28 +45,28 @@
       "pick": {
         "options": [
           {
-            "id": "level-36-r1-o1",
-            "label": "c",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-36-r1-o2",
-            "label": "o",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-36-r1-o3",
+            "id": "level-35-r1-o1",
             "label": "e",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-36-r1-o4",
+            "id": "level-35-r1-o2",
+            "label": "c",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-35-r1-o3",
+            "label": "o",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-35-r1-o4",
             "label": "a",
             "picture": null,
             "color": null,
@@ -85,7 +85,7 @@
       }
     },
     {
-      "id": "level-36-r2",
+      "id": "level-35-r2",
       "type": "write",
       "prompt": {
         "text": "Trace small e",
@@ -112,7 +112,7 @@
       }
     },
     {
-      "id": "level-36-r3",
+      "id": "level-35-r3",
       "type": "sort",
       "prompt": {
         "text": "Feed it /e/!",
@@ -143,28 +143,10 @@
             "bin": 0
           },
           {
-            "label": "hat",
+            "label": "goat",
             "picture": {
-              "key": "hat",
-              "label": "hat",
-              "url": null
-            },
-            "bin": null
-          },
-          {
-            "label": "apple",
-            "picture": {
-              "key": "apple",
-              "label": "apple",
-              "url": null
-            },
-            "bin": null
-          },
-          {
-            "label": "violin",
-            "picture": {
-              "key": "violin",
-              "label": "violin",
+              "key": "goat",
+              "label": "goat",
               "url": null
             },
             "bin": null
@@ -177,12 +159,30 @@
               "url": null
             },
             "bin": 0
+          },
+          {
+            "label": "yo-yo",
+            "picture": {
+              "key": "yoyo",
+              "label": "yo-yo",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "queen",
+            "picture": {
+              "key": "queen",
+              "label": "queen",
+              "url": null
+            },
+            "bin": null
           }
         ]
       }
     },
     {
-      "id": "level-36-r4",
+      "id": "level-35-r4",
       "type": "write",
       "prompt": {
         "text": "Join the dots to make small e",
@@ -205,7 +205,7 @@
       }
     },
     {
-      "id": "level-36-r5",
+      "id": "level-35-r5",
       "type": "match",
       "prompt": {
         "text": "Find the pairs!",
@@ -253,7 +253,7 @@
       }
     },
     {
-      "id": "level-36-r6",
+      "id": "level-35-r6",
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
@@ -278,7 +278,7 @@
       }
     },
     {
-      "id": "level-36-r7",
+      "id": "level-35-r7",
       "type": "write",
       "prompt": {
         "text": "Look, then write small e",
@@ -305,7 +305,7 @@
       }
     },
     {
-      "id": "level-36-r8",
+      "id": "level-35-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: e says /e/ like egg!",

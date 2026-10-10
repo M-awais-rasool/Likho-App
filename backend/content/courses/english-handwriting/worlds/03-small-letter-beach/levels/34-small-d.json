@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-35",
-  "number": 35,
+  "id": "level-34",
+  "number": 34,
   "name": "Small d",
   "skill": "Small d and its sound",
   "icon": "spa",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-35-r1",
+      "id": "level-34-r1",
       "type": "pop",
       "prompt": {
         "text": "Pop every small d!",
@@ -53,7 +53,7 @@
       }
     },
     {
-      "id": "level-35-r2",
+      "id": "level-34-r2",
       "type": "write",
       "prompt": {
         "text": "Trace small d",
@@ -80,7 +80,7 @@
       }
     },
     {
-      "id": "level-35-r3",
+      "id": "level-34-r3",
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
@@ -106,17 +106,17 @@
           },
           {
             "text": "d",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "d",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "d",
             "wrong": "mirror",
+            "at": null
+          },
+          {
+            "text": "d",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "d",
+            "wrong": null,
             "at": null
           },
           {
@@ -128,7 +128,7 @@
       }
     },
     {
-      "id": "level-35-r4",
+      "id": "level-34-r4",
       "type": "write",
       "prompt": {
         "text": "Join the dots to make small d",
@@ -151,7 +151,7 @@
       }
     },
     {
-      "id": "level-35-r5",
+      "id": "level-34-r5",
       "type": "pick",
       "prompt": {
         "text": "What starts with /d/?",
@@ -166,7 +166,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-35-r5-o1",
+            "id": "level-34-r5-o1",
             "label": "dog",
             "picture": {
               "key": "dog",
@@ -177,22 +177,22 @@
             "hideLabel": true
           },
           {
-            "id": "level-35-r5-o2",
-            "label": "goat",
+            "id": "level-34-r5-o2",
+            "label": "queen",
             "picture": {
-              "key": "goat",
-              "label": "goat",
+              "key": "queen",
+              "label": "queen",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-35-r5-o3",
-            "label": "insect",
+            "id": "level-34-r5-o3",
+            "label": "hat",
             "picture": {
-              "key": "insect",
-              "label": "insect",
+              "key": "hat",
+              "label": "hat",
               "url": null
             },
             "color": null,
@@ -211,7 +211,7 @@
       }
     },
     {
-      "id": "level-35-r6",
+      "id": "level-34-r6",
       "type": "write",
       "prompt": {
         "text": "Finish the word!",
@@ -238,7 +238,7 @@
       }
     },
     {
-      "id": "level-35-r7",
+      "id": "level-34-r7",
       "type": "write",
       "prompt": {
         "text": "Write small d by yourself",
@@ -261,7 +261,7 @@
       }
     },
     {
-      "id": "level-35-r8",
+      "id": "level-34-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: d says /d/ like dog!",

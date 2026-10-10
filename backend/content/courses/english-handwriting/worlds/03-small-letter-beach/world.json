@@ -1,9 +1,9 @@
 {
   "$schema": "../../../../schema/world.schema.json",
-  "id": "world-6",
-  "order": 6,
-  "name": "Blend Beach",
-  "skill": "Blends",
+  "id": "world-3",
+  "order": 3,
+  "name": "Small Letter Beach",
+  "skill": "Small a to m & sounds",
   "icon": "beach_access",
   "themeId": "blendBeach",
   "boss": {

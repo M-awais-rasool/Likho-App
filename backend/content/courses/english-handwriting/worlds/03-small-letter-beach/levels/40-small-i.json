@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-41",
-  "number": 41,
+  "id": "level-40",
+  "number": 40,
   "name": "Small i",
   "skill": "Small i and its sound",
   "icon": "spa",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-41-r1",
+      "id": "level-40-r1",
       "type": "pop",
       "prompt": {
         "text": "Pop every small i!",
@@ -53,7 +53,7 @@
       }
     },
     {
-      "id": "level-41-r2",
+      "id": "level-40-r2",
       "type": "write",
       "prompt": {
         "text": "Trace small i",
@@ -80,7 +80,7 @@
       }
     },
     {
-      "id": "level-41-r3",
+      "id": "level-40-r3",
       "type": "match",
       "prompt": {
         "text": "Find the pairs!",
@@ -128,7 +128,7 @@
       }
     },
     {
-      "id": "level-41-r4",
+      "id": "level-40-r4",
       "type": "write",
       "prompt": {
         "text": "Join the dots to make small i",
@@ -151,12 +151,12 @@
       }
     },
     {
-      "id": "level-41-r5",
+      "id": "level-40-r5",
       "type": "truth",
       "prompt": {
         "text": "True or silly?",
-        "say": "Hat starts with small {i|ˈaɪ}. True, or silly?",
-        "audio": "voice/line-b41879c8a889ddfe.m4a"
+        "say": "Lion starts with small {i|ˈaɪ}. True, or silly?",
+        "audio": "voice/line-6f73c401292fd162.m4a"
       },
       "card": {
         "text": null,
@@ -164,17 +164,17 @@
         "listen": true
       },
       "truth": {
-        "text": "Hat starts with i.",
+        "text": "Lion starts with i.",
         "picture": {
-          "key": "hat",
-          "label": "hat",
+          "key": "lion",
+          "label": "lion",
           "url": null
         },
         "answer": false
       }
     },
     {
-      "id": "level-41-r6",
+      "id": "level-40-r6",
       "type": "sort",
       "prompt": {
         "text": "Sort the letters!",
@@ -201,16 +201,6 @@
         ],
         "items": [
           {
-            "label": "j",
-            "picture": null,
-            "bin": 1
-          },
-          {
-            "label": "i",
-            "picture": null,
-            "bin": 0
-          },
-          {
             "label": "i",
             "picture": null,
             "bin": 0
@@ -229,12 +219,22 @@
             "label": "j",
             "picture": null,
             "bin": 1
+          },
+          {
+            "label": "j",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "i",
+            "picture": null,
+            "bin": 0
           }
         ]
       }
     },
     {
-      "id": "level-41-r7",
+      "id": "level-40-r7",
       "type": "write",
       "prompt": {
         "text": "Write small i by yourself",
@@ -257,7 +257,7 @@
       }
     },
     {
-      "id": "level-41-r8",
+      "id": "level-40-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: i says /i/ like insect!",

@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-34",
-  "number": 34,
+  "id": "level-33",
+  "number": 33,
   "name": "Small c",
   "skill": "Small c and its sound",
   "icon": "spa",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-34-r1",
+      "id": "level-33-r1",
       "type": "pick",
       "prompt": {
         "text": "Find small c!",
@@ -45,29 +45,29 @@
       "pick": {
         "options": [
           {
-            "id": "level-34-r1-o1",
-            "label": "c",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-34-r1-o2",
+            "id": "level-33-r1-o1",
             "label": "o",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-34-r1-o3",
+            "id": "level-33-r1-o2",
+            "label": "e",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-33-r1-o3",
             "label": "a",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-34-r1-o4",
-            "label": "e",
+            "id": "level-33-r1-o4",
+            "label": "c",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -85,7 +85,7 @@
       }
     },
     {
-      "id": "level-34-r2",
+      "id": "level-33-r2",
       "type": "write",
       "prompt": {
         "text": "Trace small c",
@@ -112,7 +112,7 @@
       }
     },
     {
-      "id": "level-34-r3",
+      "id": "level-33-r3",
       "type": "truth",
       "prompt": {
         "text": "True or silly?",
@@ -135,7 +135,7 @@
       }
     },
     {
-      "id": "level-34-r4",
+      "id": "level-33-r4",
       "type": "write",
       "prompt": {
         "text": "Join the dots to make small c",
@@ -158,7 +158,7 @@
       }
     },
     {
-      "id": "level-34-r5",
+      "id": "level-33-r5",
       "type": "hunt",
       "prompt": {
         "text": "Find every small c!",
@@ -173,23 +173,23 @@
       "hunt": {
         "target": "c",
         "grid": [
+          "e",
+          "a",
           "o",
           "c",
           "c",
-          "c",
+          "a",
           "e",
+          "e",
+          "c",
+          "c",
           "o",
-          "c",
-          "e",
-          "a",
-          "e",
-          "a",
           "o"
         ]
       }
     },
     {
-      "id": "level-34-r6",
+      "id": "level-33-r6",
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
@@ -216,13 +216,31 @@
         ],
         "items": [
           {
-            "label": "cup",
+            "label": "bus",
             "picture": {
-              "key": "cup",
-              "label": "cup",
+              "key": "bus",
+              "label": "bus",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "car",
+            "picture": {
+              "key": "car",
+              "label": "car",
               "url": null
             },
             "bin": 0
+          },
+          {
+            "label": "bat",
+            "picture": {
+              "key": "bat",
+              "label": "bat",
+              "url": null
+            },
+            "bin": 1
           },
           {
             "label": "cow",
@@ -234,37 +252,19 @@
             "bin": 0
           },
           {
-            "label": "bag",
+            "label": "cake",
             "picture": {
-              "key": "bag",
-              "label": "bag",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "cat",
-            "picture": {
-              "key": "cat",
-              "label": "cat",
+              "key": "cake",
+              "label": "cake",
               "url": null
             },
             "bin": 0
-          },
-          {
-            "label": "bug",
-            "picture": {
-              "key": "bug",
-              "label": "bug",
-              "url": null
-            },
-            "bin": 1
           }
         ]
       }
     },
     {
-      "id": "level-34-r7",
+      "id": "level-33-r7",
       "type": "write",
       "prompt": {
         "text": "Look, then write small c",
@@ -291,7 +291,7 @@
       }
     },
     {
-      "id": "level-34-r8",
+      "id": "level-33-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: c says /c/ like cat!",

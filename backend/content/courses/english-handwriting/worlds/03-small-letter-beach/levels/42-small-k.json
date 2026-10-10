@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-44",
-  "number": 44,
+  "id": "level-42",
+  "number": 42,
   "name": "Small k",
   "skill": "Small k and its sound",
   "icon": "spa",
@@ -26,15 +26,15 @@
   },
   "rounds": [
     {
-      "id": "level-44-r1",
-      "type": "pick",
+      "id": "level-42-r1",
+      "type": "pop",
       "prompt": {
-        "text": "Find small k!",
-        "say": "Big {K|kˈeɪ}, small {k|kˈeɪ}! Find small {k|kˈeɪ}.",
-        "audio": "voice/line-dc673136f31f3ff8.m4a"
+        "text": "Pop every small k!",
+        "say": "Pop every small {k|kˈeɪ} bubble!",
+        "audio": "voice/line-0612cdc73e50e10d.m4a"
       },
       "card": {
-        "text": "K",
+        "text": "k",
         "picture": {
           "key": "kite",
           "label": "kite",
@@ -42,50 +42,18 @@
         },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-44-r1-o1",
-            "label": "k",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-44-r1-o2",
-            "label": "h",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-44-r1-o3",
-            "label": "l",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-44-r1-o4",
-            "label": "x",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "k",
+        "others": [
+          "h",
+          "x",
+          "l"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "k"
-        },
-        "shape": "mushroom",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 5
       }
     },
     {
-      "id": "level-44-r2",
+      "id": "level-42-r2",
       "type": "write",
       "prompt": {
         "text": "Trace small k",
@@ -112,77 +80,55 @@
       }
     },
     {
-      "id": "level-44-r3",
-      "type": "sort",
+      "id": "level-42-r3",
+      "type": "fix",
       "prompt": {
-        "text": "Feed it /k/!",
-        "say": "This monster only eats things that start with {/k/|kʌ}. Feed it!",
-        "audio": "voice/line-e10cafb53ca96c00.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote some small {k|kˈeɪ} the wrong way. Tap them to fix them!",
+        "audio": "voice/line-80e4f800a7f7f937.m4a"
       },
       "card": {
         "text": "k",
         "picture": null,
         "listen": false
       },
-      "sort": {
-        "bins": [
-          {
-            "label": "k",
-            "picture": null,
-            "bin": null
-          }
-        ],
+      "fix": {
         "items": [
           {
-            "label": "hat",
-            "picture": {
-              "key": "hat",
-              "label": "hat",
-              "url": null
-            },
-            "bin": null
+            "text": "k",
+            "wrong": null,
+            "at": null
           },
           {
-            "label": "kite",
-            "picture": {
-              "key": "kite",
-              "label": "kite",
-              "url": null
-            },
-            "bin": 0
+            "text": "k",
+            "wrong": null,
+            "at": null
           },
           {
-            "label": "jam",
-            "picture": {
-              "key": "jam",
-              "label": "jam",
-              "url": null
-            },
-            "bin": null
+            "text": "k",
+            "wrong": null,
+            "at": null
           },
           {
-            "label": "king",
-            "picture": {
-              "key": "king",
-              "label": "king",
-              "url": null
-            },
-            "bin": 0
+            "text": "k",
+            "wrong": "mirror",
+            "at": null
           },
           {
-            "label": "egg",
-            "picture": {
-              "key": "egg",
-              "label": "egg",
-              "url": null
-            },
-            "bin": null
+            "text": "k",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "k",
+            "wrong": "mirror",
+            "at": null
           }
         ]
       }
     },
     {
-      "id": "level-44-r4",
+      "id": "level-42-r4",
       "type": "write",
       "prompt": {
         "text": "Join the dots to make small k",
@@ -205,38 +151,77 @@
       }
     },
     {
-      "id": "level-44-r5",
-      "type": "hunt",
+      "id": "level-42-r5",
+      "type": "sort",
       "prompt": {
-        "text": "Find every small k!",
-        "say": "Find every small {k|kˈeɪ}!",
-        "audio": "voice/line-554aa446cbc4f4bc.m4a"
+        "text": "Feed it /k/!",
+        "say": "This monster only eats things that start with {/k/|kʌ}. Feed it!",
+        "audio": "voice/line-e10cafb53ca96c00.m4a"
       },
       "card": {
         "text": "k",
         "picture": null,
         "listen": false
       },
-      "hunt": {
-        "target": "k",
-        "grid": [
-          "k",
-          "h",
-          "x",
-          "k",
-          "k",
-          "x",
-          "h",
-          "l",
-          "h",
-          "l",
-          "x",
-          "k"
+      "sort": {
+        "bins": [
+          {
+            "label": "k",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "robot",
+            "picture": {
+              "key": "robot",
+              "label": "robot",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "kite",
+            "picture": {
+              "key": "kite",
+              "label": "kite",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "insect",
+            "picture": {
+              "key": "insect",
+              "label": "insect",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "king",
+            "picture": {
+              "key": "king",
+              "label": "king",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "apple",
+            "picture": {
+              "key": "apple",
+              "label": "apple",
+              "url": null
+            },
+            "bin": null
+          }
         ]
       }
     },
     {
-      "id": "level-44-r6",
+      "id": "level-42-r6",
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
@@ -261,24 +246,20 @@
       }
     },
     {
-      "id": "level-44-r7",
+      "id": "level-42-r7",
       "type": "write",
       "prompt": {
-        "text": "Look, then write small k",
-        "say": "Look at small {k|kˈeɪ}. Then write it from memory!",
-        "audio": "voice/line-7713c9b205ce7836.m4a"
+        "text": "Write small k by yourself",
+        "say": "Now write small {k|kˈeɪ} all by yourself!",
+        "audio": "voice/line-4cacc2192f921341.m4a"
       },
       "card": {
-        "text": null,
-        "picture": {
-          "key": "kite",
-          "label": "kite",
-          "url": null
-        },
+        "text": "k",
+        "picture": null,
         "listen": false
       },
       "write": {
-        "mode": "flash",
+        "mode": "free",
         "target": "k",
         "guide": "k",
         "word": null,
@@ -288,7 +269,7 @@
       }
     },
     {
-      "id": "level-44-r8",
+      "id": "level-42-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: k says /k/ like kite!",
