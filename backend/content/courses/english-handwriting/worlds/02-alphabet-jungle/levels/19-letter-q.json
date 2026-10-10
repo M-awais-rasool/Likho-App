@@ -2,19 +2,19 @@
   "$schema": "../../../../../schema/level.schema.json",
   "id": "level-19",
   "number": 19,
-  "name": "Letter P",
-  "skill": "Capital P",
+  "name": "Letter Q",
+  "skill": "Capital Q",
   "icon": "edit",
   "isBoss": false,
   "requiresSubscription": false,
   "intro": {
-    "text": "P",
-    "word": "pig",
-    "say": "{P|pˈiː}! {P|pˈiː} is for pig. Let's learn {P|pˈiː}!",
-    "audio": "voice/line-2f6e06f57d5b71ea.m4a",
+    "text": "Q",
+    "word": "queen",
+    "say": "{Q|kjˈuː}! {Q|kjˈuː} is for queen. Let's learn {Q|kjˈuː}!",
+    "audio": "voice/line-e5307e30ecd5b284.m4a",
     "picture": {
-      "key": "pig",
-      "label": "pig",
+      "key": "queen",
+      "label": "queen",
       "url": null
     }
   },
@@ -29,15 +29,15 @@
       "id": "level-19-r1",
       "type": "pick",
       "prompt": {
-        "text": "Find P!",
-        "say": "Find {P|pˈiː}!",
-        "audio": "voice/line-45b216284d2baded.m4a"
+        "text": "Find Q!",
+        "say": "Find {Q|kjˈuː}!",
+        "audio": "voice/line-92ca34c1cedcb892.m4a"
       },
       "card": {
-        "text": "P",
+        "text": "Q",
         "picture": {
-          "key": "pig",
-          "label": "pig",
+          "key": "queen",
+          "label": "queen",
           "url": null
         },
         "listen": false
@@ -46,28 +46,28 @@
         "options": [
           {
             "id": "level-19-r1-o1",
-            "label": "R",
+            "label": "G",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
             "id": "level-19-r1-o2",
-            "label": "B",
+            "label": "Q",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
             "id": "level-19-r1-o3",
-            "label": "D",
+            "label": "O",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
             "id": "level-19-r1-o4",
-            "label": "P",
+            "label": "C",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -75,7 +75,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "P"
+          "value": "Q"
         },
         "shape": "shell",
         "layout": null,
@@ -88,23 +88,23 @@
       "id": "level-19-r2",
       "type": "write",
       "prompt": {
-        "text": "Trace P",
-        "say": "Trace {P|pˈiː}.",
-        "audio": "voice/line-fb8eba8a0a1afed7.m4a"
+        "text": "Trace Q",
+        "say": "Trace {Q|kjˈuː}.",
+        "audio": "voice/line-7ec629db633296bc.m4a"
       },
       "card": {
-        "text": "P",
+        "text": "Q",
         "picture": {
-          "key": "pig",
-          "label": "pig",
+          "key": "queen",
+          "label": "queen",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "trace",
-        "target": "P",
-        "guide": "P",
+        "target": "Q",
+        "guide": "Q",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -115,12 +115,12 @@
       "id": "level-19-r3",
       "type": "pick",
       "prompt": {
-        "text": "What starts with /p/?",
-        "say": "{P|pˈiː} says {/p/|pʌ}. Which one starts with {/p/|pʌ}?",
-        "audio": "voice/line-3f4758ddb5061779.m4a"
+        "text": "What starts with /q/?",
+        "say": "{Q|kjˈuː} says {/q/|kwʌ}. Which one starts with {/q/|kwʌ}?",
+        "audio": "voice/line-c6b3c40ca4fab971.m4a"
       },
       "card": {
-        "text": "P",
+        "text": "Q",
         "picture": null,
         "listen": true
       },
@@ -128,10 +128,10 @@
         "options": [
           {
             "id": "level-19-r3-o1",
-            "label": "pig",
+            "label": "jam",
             "picture": {
-              "key": "pig",
-              "label": "pig",
+              "key": "jam",
+              "label": "jam",
               "url": null
             },
             "color": null,
@@ -139,10 +139,10 @@
           },
           {
             "id": "level-19-r3-o2",
-            "label": "violin",
+            "label": "fish",
             "picture": {
-              "key": "violin",
-              "label": "violin",
+              "key": "fish",
+              "label": "fish",
               "url": null
             },
             "color": null,
@@ -150,10 +150,10 @@
           },
           {
             "id": "level-19-r3-o3",
-            "label": "nest",
+            "label": "queen",
             "picture": {
-              "key": "nest",
-              "label": "nest",
+              "key": "queen",
+              "label": "queen",
               "url": null
             },
             "color": null,
@@ -162,7 +162,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "pig"
+          "value": "queen"
         },
         "shape": "jar",
         "layout": null,
@@ -175,19 +175,19 @@
       "id": "level-19-r4",
       "type": "write",
       "prompt": {
-        "text": "Join the dots to make P",
-        "say": "Join the dots to make {P|pˈiː}.",
-        "audio": "voice/line-81f6c00decb2d0c6.m4a"
+        "text": "Join the dots to make Q",
+        "say": "Join the dots to make {Q|kjˈuː}.",
+        "audio": "voice/line-79030f28d87d84e1.m4a"
       },
       "card": {
-        "text": "P",
+        "text": "Q",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "dots",
-        "target": "P",
-        "guide": "P",
+        "target": "Q",
+        "guide": "Q",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -199,43 +199,43 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote some {P|pˈiː} the wrong way. Tap them to fix them!",
-        "audio": "voice/line-e74d65e356dd8c89.m4a"
+        "say": "Oops! Pencil wrote some {Q|kjˈuː} the wrong way. Tap them to fix them!",
+        "audio": "voice/line-838b1a7d48d39bb1.m4a"
       },
       "card": {
-        "text": "P",
+        "text": "Q",
         "picture": null,
         "listen": false
       },
       "fix": {
         "items": [
           {
-            "text": "P",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "P",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "P",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "P",
+            "text": "Q",
             "wrong": "mirror",
             "at": null
           },
           {
-            "text": "P",
+            "text": "Q",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "Q",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "Q",
             "wrong": "mirror",
             "at": null
           },
           {
-            "text": "P",
+            "text": "Q",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "Q",
             "wrong": null,
             "at": null
           }
@@ -247,8 +247,8 @@
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
-        "say": "{O|ˈoʊ}, ..., {Q|kjˈuː}! Which letter is missing?",
-        "audio": "voice/line-828842d34271cdb4.m4a"
+        "say": "{P|pˈiː}, ..., {R|ˈɑːɹ}! Which letter is missing?",
+        "audio": "voice/line-a2a5716e87267e92.m4a"
       },
       "card": {
         "text": null,
@@ -261,9 +261,9 @@
       },
       "write": {
         "mode": "missing",
-        "target": "P",
-        "guide": "P",
-        "word": "OPQ",
+        "target": "Q",
+        "guide": "Q",
+        "word": "PQR",
         "missingIndex": 1,
         "sentence": false,
         "story": false
@@ -273,23 +273,23 @@
       "id": "level-19-r7",
       "type": "write",
       "prompt": {
-        "text": "Look, then write P",
-        "say": "Look at {P|pˈiː}. Then write it from memory!",
-        "audio": "voice/line-956ba9d946db1d84.m4a"
+        "text": "Look, then write Q",
+        "say": "Look at {Q|kjˈuː}. Then write it from memory!",
+        "audio": "voice/line-31819b7a2196e880.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "pig",
-          "label": "pig",
+          "key": "queen",
+          "label": "queen",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "flash",
-        "target": "P",
-        "guide": "P",
+        "target": "Q",
+        "guide": "Q",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -300,21 +300,21 @@
       "id": "level-19-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: P is for pig!",
-        "say": "{P|pˈiː} is for pig! Now you say it.",
-        "audio": "voice/line-213d9eb62e49a995.m4a"
+        "text": "Say: Q is for queen!",
+        "say": "{Q|kjˈuː} is for queen! Now you say it.",
+        "audio": "voice/line-a18feb1e29e19ad4.m4a"
       },
       "card": {
-        "text": "P is for pig!",
+        "text": "Q is for queen!",
         "picture": {
-          "key": "pig",
-          "label": "pig",
+          "key": "queen",
+          "label": "queen",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "P is for pig!"
+        "expected": "Q is for queen!"
       }
     }
   ]

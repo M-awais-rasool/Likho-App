@@ -1,20 +1,20 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-24",
-  "number": 24,
-  "name": "P to T",
-  "skill": "Review",
-  "icon": "auto_awesome",
-  "isBoss": false,
+  "id": "level-30",
+  "number": 30,
+  "name": "Wake the Monkey",
+  "skill": "Boss · capitals",
+  "icon": "bedtime",
+  "isBoss": true,
   "requiresSubscription": false,
   "intro": {
-    "text": "P Q R S T",
-    "word": "star",
-    "say": "P to T! Let's play with {P|pˈiː}, {Q|kjˈuː}, {R|ˈɑːɹ}, {S|ˈɛs}, {T|tˈiː}.",
-    "audio": "voice/line-ff36b165aa1b3d23.m4a",
+    "text": "N O P",
+    "word": "monkey",
+    "say": "The little monkey is fast asleep in the jungle. Let's write our capital letters to wake it up!",
+    "audio": "voice/line-25fc7a659390d3d4.m4a",
     "picture": {
-      "key": "star",
-      "label": "star",
+      "key": "monkey",
+      "label": "monkey",
       "url": null
     }
   },
@@ -26,12 +26,12 @@
   },
   "rounds": [
     {
-      "id": "level-24-r1",
+      "id": "level-30-r1",
       "type": "pick",
       "prompt": {
         "text": "Which letter do you hear?",
-        "say": "Listen! Find {T|tˈiː}.",
-        "audio": "voice/line-3a92ca373c45a67c.m4a"
+        "say": "Listen! Find {Z|zˈiː}.",
+        "audio": "voice/line-05d8cbcbccfd4e06.m4a"
       },
       "card": {
         "text": null,
@@ -41,29 +41,29 @@
       "pick": {
         "options": [
           {
-            "id": "level-24-r1-o1",
+            "id": "level-30-r1-o1",
             "label": "R",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-24-r1-o2",
-            "label": "T",
+            "id": "level-30-r1-o2",
+            "label": "S",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-24-r1-o3",
-            "label": "Q",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-24-r1-o4",
+            "id": "level-30-r1-o3",
             "label": "P",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-30-r1-o4",
+            "label": "Z",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -71,9 +71,9 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "T"
+          "value": "Z"
         },
-        "shape": "kite",
+        "shape": "bubble",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -81,26 +81,26 @@
       }
     },
     {
-      "id": "level-24-r2",
+      "id": "level-30-r2",
       "type": "write",
       "prompt": {
-        "text": "Trace Q",
-        "say": "Trace {Q|kjˈuː}.",
-        "audio": "voice/line-7ec629db633296bc.m4a"
+        "text": "Trace R",
+        "say": "Trace {R|ˈɑːɹ}.",
+        "audio": "voice/line-d9f6651bd4a5c5cb.m4a"
       },
       "card": {
-        "text": "Q",
+        "text": "R",
         "picture": {
-          "key": "queen",
-          "label": "queen",
+          "key": "robot",
+          "label": "robot",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "trace",
-        "target": "Q",
-        "guide": "Q",
+        "target": "R",
+        "guide": "R",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -108,7 +108,7 @@
       }
     },
     {
-      "id": "level-24-r3",
+      "id": "level-30-r3",
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
@@ -135,28 +135,10 @@
         ],
         "items": [
           {
-            "label": "pig",
+            "label": "rabbit",
             "picture": {
-              "key": "pig",
-              "label": "pig",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "rain",
-            "picture": {
-              "key": "rain",
-              "label": "rain",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "ring",
-            "picture": {
-              "key": "ring",
-              "label": "ring",
+              "key": "rabbit",
+              "label": "rabbit",
               "url": null
             },
             "bin": 1
@@ -171,6 +153,33 @@
             "bin": 0
           },
           {
+            "label": "rain",
+            "picture": {
+              "key": "rain",
+              "label": "rain",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "pencil",
+            "picture": {
+              "key": "pencil",
+              "label": "pencil",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "pin",
+            "picture": {
+              "key": "pin",
+              "label": "pin",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
             "label": "robot",
             "picture": {
               "key": "robot",
@@ -178,36 +187,27 @@
               "url": null
             },
             "bin": 1
-          },
-          {
-            "label": "pot",
-            "picture": {
-              "key": "pot",
-              "label": "pot",
-              "url": null
-            },
-            "bin": 0
           }
         ]
       }
     },
     {
-      "id": "level-24-r4",
+      "id": "level-30-r4",
       "type": "write",
       "prompt": {
-        "text": "Join the dots to make S",
-        "say": "Join the dots to make {S|ˈɛs}.",
-        "audio": "voice/line-fd870b687f98f97c.m4a"
+        "text": "Join the dots to make U",
+        "say": "Join the dots to make {U|jˈuː}.",
+        "audio": "voice/line-b64ec31a76ad4d41.m4a"
       },
       "card": {
-        "text": "S",
+        "text": "U",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "dots",
-        "target": "S",
-        "guide": "S",
+        "target": "U",
+        "guide": "U",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -215,69 +215,57 @@
       }
     },
     {
-      "id": "level-24-r5",
-      "type": "fix",
+      "id": "level-30-r5",
+      "type": "hunt",
       "prompt": {
-        "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote some letters the wrong way. Tap them to fix them!",
-        "audio": "voice/line-5b61022a0ee7b93d.m4a"
+        "text": "Find every P!",
+        "say": "Find every {P|pˈiː}!",
+        "audio": "voice/line-925ad0c9b535f1c0.m4a"
       },
       "card": {
-        "text": "P Q R S T",
+        "text": "P",
         "picture": null,
         "listen": false
       },
-      "fix": {
-        "items": [
-          {
-            "text": "P",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "Q",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "R",
-            "wrong": "mirror",
-            "at": null
-          },
-          {
-            "text": "S",
-            "wrong": "mirror",
-            "at": null
-          },
-          {
-            "text": "T",
-            "wrong": null,
-            "at": null
-          }
+      "hunt": {
+        "target": "P",
+        "grid": [
+          "P",
+          "P",
+          "S",
+          "P",
+          "R",
+          "U",
+          "B",
+          "Z",
+          "R",
+          "W",
+          "P",
+          "D"
         ]
       }
     },
     {
-      "id": "level-24-r6",
+      "id": "level-30-r6",
       "type": "write",
       "prompt": {
-        "text": "Look, then write T",
-        "say": "Look at {T|tˈiː}. Then write it from memory!",
-        "audio": "voice/line-dbf6d311b9f83c4f.m4a"
+        "text": "Look, then write W",
+        "say": "Look at {W|dˈʌbəljuː}. Then write it from memory!",
+        "audio": "voice/line-b63e89bc58218b5a.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "tiger",
-          "label": "tiger",
+          "key": "whale",
+          "label": "whale",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "flash",
-        "target": "T",
-        "guide": "T",
+        "target": "W",
+        "guide": "W",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -285,7 +273,7 @@
       }
     },
     {
-      "id": "level-24-r7",
+      "id": "level-30-r7",
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
@@ -304,50 +292,51 @@
       "order": {
         "tiles": [
           "P",
-          "Q",
-          "R"
+          "R",
+          "S"
         ]
       }
     },
     {
-      "id": "level-24-r8",
+      "id": "level-30-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: P, Q, R, S, T!",
-        "say": "Say all the letters with me! {P|pˈiː}, {Q|kjˈuː}, {R|ˈɑːɹ}, {S|ˈɛs}, {T|tˈiː}!",
-        "audio": "voice/line-3b7e8e12691e5b3b.m4a"
+        "text": "Say: P, R, S, U, W, Z!",
+        "say": "Say all the letters with me! {P|pˈiː}, {R|ˈɑːɹ}, {S|ˈɛs}, {U|jˈuː}, {W|dˈʌbəljuː}, {Z|zˈiː}!",
+        "audio": "voice/line-015b15c910f9ceca.m4a"
       },
       "card": {
-        "text": "P, Q, R, S, T!",
+        "text": "P, R, S, U, W, Z!",
         "picture": null,
         "listen": true
       },
       "speak": {
-        "expected": "P, Q, R, S, T!"
+        "expected": "P, R, S, U, W, Z!"
       }
     },
     {
-      "id": "level-24-r9",
+      "id": "level-30-r9",
       "type": "write",
       "prompt": {
-        "text": "Which letter is missing?",
-        "audio": "voice/line-ab7242535fe9991a.m4a"
+        "text": "Finish the word!",
+        "say": "Sun! Write the missing letter to wake it up!",
+        "audio": "voice/line-449621b98448dc88.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "bottle_message",
-          "label": "bottle message",
+          "key": "sun",
+          "label": "sun",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "missing",
-        "target": "Q",
-        "guide": "Q",
-        "word": "PQR",
-        "missingIndex": 1,
+        "target": "S",
+        "guide": "S",
+        "word": "SUN",
+        "missingIndex": 0,
         "sentence": false,
         "story": false
       }
