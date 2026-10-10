@@ -16,13 +16,20 @@ abstract interface class GoogleIdentity {
   Future<void> signOut();
 }
 
-/// Google Sign-In with the OAuth client IDs given at build time:
-///   --dart-define=GOOGLE_IOS_CLIENT_ID=…apps.googleusercontent.com
-///   --dart-define=GOOGLE_SERVER_CLIENT_ID=…(the Web client)
-/// The server client ID makes Android return an ID token the backend accepts.
+/// Google Sign-In with Likho's OAuth clients (Google Cloud project "Likho").
+/// The server client ID is the Web client: Android returns an ID token for
+/// it, which the backend accepts (GOOGLE_CLIENT_IDS). Android itself is
+/// matched by package name + signing SHA-1 (one Android client per key:
+/// debug, upload, Play app signing). Client IDs are public, not secrets.
+/// Both can be replaced at build time:
+///   --dart-define=GOOGLE_SERVER_CLIENT_ID=…apps.googleusercontent.com
+///   --dart-define=GOOGLE_IOS_CLIENT_ID=…apps.googleusercontent.com (iOS: not set up yet)
 class GoogleSignInIdentity implements GoogleIdentity {
   static const iosClientId = String.fromEnvironment('GOOGLE_IOS_CLIENT_ID');
-  static const serverClientId = String.fromEnvironment('GOOGLE_SERVER_CLIENT_ID');
+  static const serverClientId = String.fromEnvironment(
+    'GOOGLE_SERVER_CLIENT_ID',
+    defaultValue: '816545304415-8r86g90icsijfbt7gn258b8mt85vldmk.apps.googleusercontent.com',
+  );
 
   Future<void>? _init;
   Future<void> _ready() => _init ??= GoogleSignIn.instance.initialize(
