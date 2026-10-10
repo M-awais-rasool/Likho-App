@@ -1,0 +1,377 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-131",
+  "number": 131,
+  "name": "Word Garden 10",
+  "skill": "Sight words",
+  "icon": "local_florist",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "do no yes",
+    "word": "flower",
+    "say": "Words to know by sight: do, no, yes, so, did!",
+    "audio": "voice/line-da2adcf0f79086e0.m4a",
+    "picture": {
+      "key": "flower",
+      "label": "flower",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-131-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word do.",
+        "audio": "voice/line-076d6ef663c3a53e.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-131-r1-o1",
+            "label": "look",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-131-r1-o2",
+            "label": "do",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-131-r1-o3",
+            "label": "for",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "do"
+        },
+        "shape": "shell",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-131-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/s/|sːː} or {/t/|tʌ}?",
+        "audio": "voice/line-780408637d318bc0.m4a"
+      },
+      "card": {
+        "text": "s t",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "s",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "t",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "sock",
+            "picture": {
+              "key": "sock",
+              "label": "sock",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "turtle",
+            "picture": {
+              "key": "turtle",
+              "label": "turtle",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "tent",
+            "picture": {
+              "key": "tent",
+              "label": "tent",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "tooth",
+            "picture": {
+              "key": "tooth",
+              "label": "tooth",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "six",
+            "picture": {
+              "key": "six",
+              "label": "six",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-131-r3",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every do!",
+        "say": "Find every word do!",
+        "audio": "voice/line-83445911da3a2998.m4a"
+      },
+      "card": {
+        "text": "do",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "do",
+        "grid": [
+          "said",
+          "no",
+          "do",
+          "did",
+          "do",
+          "yes",
+          "so",
+          "look",
+          "do"
+        ]
+      }
+    },
+    {
+      "id": "level-131-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Spell do",
+        "say": "Do! Write it one letter at a time.",
+        "audio": "voice/line-e9fcb94eb3852d18.m4a"
+      },
+      "card": {
+        "text": "do",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "do",
+        "guide": null,
+        "word": "do",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-131-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "Which word fits?",
+        "say": "I am what happy. Which word fits?",
+        "audio": "voice/line-77b3c4e7cf8d5ea0.m4a"
+      },
+      "card": {
+        "text": "I am ___ happy.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-131-r5-o1",
+            "label": "do",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-131-r5-o2",
+            "label": "did",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-131-r5-o3",
+            "label": "so",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "so"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-131-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write do",
+        "say": "Look at the word do. Then write it from memory!",
+        "audio": "voice/line-bb36c585222cff12.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "do",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-131-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "I am so happy. Put the words in order.",
+        "audio": "voice/line-21e6abf7941ba344.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "happy",
+          "label": "happy",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "I",
+          "am",
+          "so",
+          "happy"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-131-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Yes, I did it!",
+        "say": "Yes, I did it! Now you say it!",
+        "audio": "voice/line-d62a383061d2e54e.m4a"
+      },
+      "card": {
+        "text": "Yes, I did it!",
+        "picture": {
+          "key": "prize",
+          "label": "prize",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Yes, I did it!"
+      }
+    },
+    {
+      "id": "level-131-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Write so",
+        "say": "Write the word so.",
+        "audio": "voice/line-26ffdb7e4846e377.m4a"
+      },
+      "card": {
+        "text": "so",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "so",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-131-r10",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every do!",
+        "say": "Pop every bubble that says do!",
+        "audio": "voice/line-76d8c065b4d1f9f3.m4a"
+      },
+      "card": {
+        "text": "do",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "do",
+        "others": [
+          "he",
+          "no",
+          "so"
+        ],
+        "count": 4
+      }
+    }
+  ]
+}

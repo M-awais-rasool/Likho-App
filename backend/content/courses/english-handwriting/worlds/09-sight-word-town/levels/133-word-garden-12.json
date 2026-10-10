@@ -1,17 +1,17 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-98",
-  "number": 98,
-  "name": "Word Garden 2",
+  "id": "level-133",
+  "number": 133,
+  "name": "Word Garden 12",
   "skill": "Sight words",
   "icon": "local_florist",
   "isBoss": false,
   "requiresSubscription": true,
   "intro": {
-    "text": "and to see",
+    "text": "some any many",
     "word": "flower",
-    "say": "Words to know by sight: and, to, see, can!",
-    "audio": "voice/line-32ce24106748bf3c.m4a",
+    "say": "Words to know by sight: some, any, many, very, every!",
+    "audio": "voice/line-416633991c56b1ab.m4a",
     "picture": {
       "key": "flower",
       "label": "flower",
@@ -26,12 +26,12 @@
   },
   "rounds": [
     {
-      "id": "level-98-r1",
+      "id": "level-133-r1",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
-        "say": "Listen! Find the word and.",
-        "audio": "voice/line-96b1d84f8f27b9b7.m4a"
+        "say": "Listen! Find the word some.",
+        "audio": "voice/line-a3218a7037d48e8a.m4a"
       },
       "card": {
         "text": null,
@@ -41,22 +41,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-98-r1-o1",
-            "label": "brother",
+            "id": "level-133-r1-o1",
+            "label": "every",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-98-r1-o2",
-            "label": "and",
+            "id": "level-133-r1-o2",
+            "label": "some",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-98-r1-o3",
-            "label": "star",
+            "id": "level-133-r1-o3",
+            "label": "very",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -64,7 +64,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "and"
+          "value": "some"
         },
         "shape": "cloud",
         "layout": null,
@@ -74,170 +74,172 @@
       }
     },
     {
-      "id": "level-98-r2",
+      "id": "level-133-r2",
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/g/|ɡʌ} or {/h/|hʌ}?",
-        "audio": "voice/line-3a5448a6011a54ca.m4a"
+        "say": "Sort the pictures! Do they start with {/w/|wʌ} or {/f/|fːː}?",
+        "audio": "voice/line-07f3d6eb3760666e.m4a"
       },
       "card": {
-        "text": "g h",
+        "text": "w f",
         "picture": null,
         "listen": false
       },
       "sort": {
         "bins": [
           {
-            "label": "g",
+            "label": "w",
             "picture": null,
             "bin": null
           },
           {
-            "label": "h",
+            "label": "f",
             "picture": null,
             "bin": null
           }
         ],
         "items": [
           {
-            "label": "gift",
+            "label": "four",
             "picture": {
-              "key": "gift",
-              "label": "gift",
+              "key": "four",
+              "label": "four",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "whale",
+            "picture": {
+              "key": "whale",
+              "label": "whale",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "hut",
+            "label": "fish",
             "picture": {
-              "key": "hut",
-              "label": "hut",
+              "key": "fish",
+              "label": "fish",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "goat",
+            "label": "foot",
             "picture": {
-              "key": "goat",
-              "label": "goat",
+              "key": "foot",
+              "label": "foot",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "wing",
+            "picture": {
+              "key": "wing",
+              "label": "wing",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "hen",
+            "label": "watch",
             "picture": {
-              "key": "hen",
-              "label": "hen",
+              "key": "watch",
+              "label": "watch",
               "url": null
             },
-            "bin": 1
-          },
-          {
-            "label": "hat",
-            "picture": {
-              "key": "hat",
-              "label": "hat",
-              "url": null
-            },
-            "bin": 1
+            "bin": 0
           }
         ]
       }
     },
     {
-      "id": "level-98-r3",
+      "id": "level-133-r3",
       "type": "hunt",
       "prompt": {
-        "text": "Find every and!",
-        "say": "Find every word and!",
-        "audio": "voice/line-3779725e51b55a1f.m4a"
+        "text": "Find every some!",
+        "say": "Find every word some!",
+        "audio": "voice/line-754c13b9440d77de.m4a"
       },
       "card": {
-        "text": "and",
+        "text": "some",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "and",
+        "target": "some",
         "grid": [
-          "brother",
-          "and",
-          "bus",
-          "can",
-          "and",
-          "ship",
-          "to",
-          "see",
-          "and"
+          "some",
+          "very",
+          "some",
+          "like",
+          "some",
+          "many",
+          "what",
+          "any",
+          "every"
         ]
       }
     },
     {
-      "id": "level-98-r4",
+      "id": "level-133-r4",
       "type": "write",
       "prompt": {
-        "text": "Spell and",
-        "say": "And! Write it one letter at a time.",
-        "audio": "voice/line-368e2b288198aa15.m4a"
+        "text": "Spell some",
+        "say": "Some! Write it one letter at a time.",
+        "audio": "voice/line-703883d1f3610fd6.m4a"
       },
       "card": {
-        "text": "and",
+        "text": "some",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "spell",
-        "target": "and",
+        "target": "some",
         "guide": null,
-        "word": "and",
+        "word": "some",
         "missingIndex": null,
         "sentence": false,
         "story": false
       }
     },
     {
-      "id": "level-98-r5",
+      "id": "level-133-r5",
       "type": "pick",
       "prompt": {
         "text": "Which word fits?",
-        "say": "I what see a bird. Which word fits?",
-        "audio": "voice/line-5acd681732dc6257.m4a"
+        "say": "I see what birds. Which word fits?",
+        "audio": "voice/line-5687e288da017ea4.m4a"
       },
       "card": {
-        "text": "I ___ see a bird.",
+        "text": "I see ___ birds.",
         "picture": null,
         "listen": false
       },
       "pick": {
         "options": [
           {
-            "id": "level-98-r5-o1",
-            "label": "see",
+            "id": "level-133-r5-o1",
+            "label": "many",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-98-r5-o2",
-            "label": "can",
+            "id": "level-133-r5-o2",
+            "label": "very",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-98-r5-o3",
-            "label": "to",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-98-r5-o4",
-            "label": "and",
+            "id": "level-133-r5-o3",
+            "label": "every",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -245,7 +247,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "can"
+          "value": "many"
         },
         "shape": "card",
         "layout": null,
@@ -255,12 +257,12 @@
       }
     },
     {
-      "id": "level-98-r6",
+      "id": "level-133-r6",
       "type": "write",
       "prompt": {
-        "text": "Look, then write to",
-        "say": "Look at the word to. Then write it from memory!",
-        "audio": "voice/line-42a9fdb03c605aad.m4a"
+        "text": "Look, then write some",
+        "say": "Look at the word some. Then write it from memory!",
+        "audio": "voice/line-ad078854ad99be58.m4a"
       },
       "card": {
         "text": null,
@@ -269,7 +271,7 @@
       },
       "write": {
         "mode": "flash",
-        "target": "to",
+        "target": "some",
         "guide": null,
         "word": null,
         "missingIndex": null,
@@ -278,18 +280,18 @@
       }
     },
     {
-      "id": "level-98-r7",
+      "id": "level-133-r7",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
-        "say": "I can see a bird. Put the words in order.",
-        "audio": "voice/line-a00b0c3d58b67673.m4a"
+        "say": "I see many birds. Put the words in order.",
+        "audio": "voice/line-459d02cc440502f8.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "bird_in_sky",
-          "label": "bird in sky",
+          "key": "many_birds",
+          "label": "many birds",
           "url": null
         },
         "listen": false
@@ -297,51 +299,50 @@
       "order": {
         "tiles": [
           "I",
-          "can",
           "see",
-          "a",
-          "bird"
+          "many",
+          "birds"
         ],
         "slot": "stripe"
       }
     },
     {
-      "id": "level-98-r8",
+      "id": "level-133-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: A cat and a dog.",
-        "say": "A cat and a dog. Now you say it!",
-        "audio": "voice/line-a9402fd6f2dbda7d.m4a"
+        "text": "Say: It is very hot.",
+        "say": "It is very hot. Now you say it!",
+        "audio": "voice/line-7ee8bc8bd11e4bf8.m4a"
       },
       "card": {
-        "text": "A cat and a dog.",
+        "text": "It is very hot.",
         "picture": {
-          "key": "cat_on_box",
-          "label": "cat on box",
+          "key": "hot_sun",
+          "label": "hot sun",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "A cat and a dog."
+        "expected": "It is very hot."
       }
     },
     {
-      "id": "level-98-r9",
+      "id": "level-133-r9",
       "type": "write",
       "prompt": {
-        "text": "Write can",
-        "say": "Write the word can.",
-        "audio": "voice/line-135a7a105be63e2d.m4a"
+        "text": "Write very",
+        "say": "Write the word very.",
+        "audio": "voice/line-086676e9406eb2dc.m4a"
       },
       "card": {
-        "text": "can",
+        "text": "very",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "free",
-        "target": "can",
+        "target": "very",
         "guide": null,
         "word": null,
         "missingIndex": null,
@@ -350,24 +351,24 @@
       }
     },
     {
-      "id": "level-98-r10",
+      "id": "level-133-r10",
       "type": "pop",
       "prompt": {
-        "text": "Pop every to!",
-        "say": "Pop every bubble that says to!",
-        "audio": "voice/line-57cee49c9fcf251b.m4a"
+        "text": "Pop every many!",
+        "say": "Pop every bubble that says many!",
+        "audio": "voice/line-0da86ddebd40219b.m4a"
       },
       "card": {
-        "text": "to",
+        "text": "many",
         "picture": null,
         "listen": false
       },
       "pop": {
-        "target": "to",
+        "target": "many",
         "others": [
-          "the",
-          "and",
-          "bus"
+          "help",
+          "like",
+          "look"
         ],
         "count": 4
       }

@@ -1,0 +1,368 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-135",
+  "number": 135,
+  "name": "Wake the Robot-Bus",
+  "skill": "Boss · sight words",
+  "icon": "bedtime",
+  "isBoss": true,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "the said they",
+    "word": "star",
+    "say": "The robot bus is sleeping in the town. Let's read sight words to wake it up!",
+    "audio": "voice/line-12df32a14610d8f5.m4a",
+    "picture": {
+      "key": "star",
+      "label": "star",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-135-r1",
+      "type": "write",
+      "prompt": {
+        "text": "Spell the",
+        "say": "The! Write it one letter at a time.",
+        "audio": "voice/line-61ac95545babdf16.m4a"
+      },
+      "card": {
+        "text": "the",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "the",
+        "guide": null,
+        "word": "the",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-135-r2",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Look at the picture. I see a red car. True, or silly?",
+        "audio": "voice/line-2c187fa2803a599d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "I see a red car.",
+        "picture": {
+          "key": "red_car",
+          "label": "red car",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-135-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word said.",
+        "audio": "voice/line-1737dc474958d86e.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-135-r3-o1",
+            "label": "said",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-135-r3-o2",
+            "label": "what",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-135-r3-o3",
+            "label": "help",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "said"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-135-r4",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every they!",
+        "say": "Find every word they!",
+        "audio": "voice/line-b20b4cb5865f0671.m4a"
+      },
+      "card": {
+        "text": "they",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "they",
+        "grid": [
+          "said",
+          "many",
+          "your",
+          "they",
+          "like",
+          "they",
+          "the",
+          "with",
+          "they"
+        ]
+      }
+    },
+    {
+      "id": "level-135-r5",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/f/|fːː} or {/d/|dʌ}?",
+        "audio": "voice/line-27f67eb9d3dcde7f.m4a"
+      },
+      "card": {
+        "text": "f d",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "f",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "d",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "four",
+            "picture": {
+              "key": "four",
+              "label": "four",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "foot",
+            "picture": {
+              "key": "foot",
+              "label": "foot",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-135-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "audio": "voice/line-7a2c7d4750e1443e.m4a"
+      },
+      "card": {
+        "text": "with",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-135-r6-o1",
+            "label": "the",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-135-r6-o2",
+            "label": "like",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-135-r6-o3",
+            "label": "with",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "with"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-135-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write many",
+        "say": "Write the word many.",
+        "audio": "voice/line-8dddb8ac7132ee3b.m4a"
+      },
+      "card": {
+        "text": "many",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "many",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-135-r8",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Your! Build the word your.",
+        "audio": "voice/line-e2dbdcb72a2a02f8.m4a"
+      },
+      "card": {
+        "text": "your",
+        "picture": null,
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "y",
+          "o",
+          "u",
+          "r"
+        ],
+        "slot": "plank"
+      }
+    },
+    {
+      "id": "level-135-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write they",
+        "say": "Look at the word they. Then write it from memory!",
+        "audio": "voice/line-61c10e8813fda106.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "they",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-135-r10",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: the, said, they, with!",
+        "say": "Say them with me! the, said, they, with!",
+        "audio": "voice/line-89e5f771b974babe.m4a"
+      },
+      "card": {
+        "text": "the, said, they, with!",
+        "picture": null,
+        "listen": true
+      },
+      "speak": {
+        "expected": "the, said, they, with!"
+      }
+    }
+  ]
+}

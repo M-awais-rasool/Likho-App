@@ -1,17 +1,17 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-102",
-  "number": 102,
-  "name": "Word Garden 6",
+  "id": "level-123",
+  "number": 123,
+  "name": "Word Garden 3",
   "skill": "Sight words",
   "icon": "local_florist",
   "isBoss": false,
   "requiresSubscription": true,
   "intro": {
-    "text": "said was are",
+    "text": "he she we",
     "word": "flower",
-    "say": "Words to know by sight: said, was, are, they, have!",
-    "audio": "voice/line-433a12b33c740dc5.m4a",
+    "say": "Words to know by sight: he, she, we, me, my!",
+    "audio": "voice/line-f093ad18f80b074b.m4a",
     "picture": {
       "key": "flower",
       "label": "flower",
@@ -26,12 +26,12 @@
   },
   "rounds": [
     {
-      "id": "level-102-r1",
+      "id": "level-123-r1",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
-        "say": "Listen! Find the word said.",
-        "audio": "voice/line-1737dc474958d86e.m4a"
+        "say": "Listen! Find the word he.",
+        "audio": "voice/line-500e7a0205a51c5f.m4a"
       },
       "card": {
         "text": null,
@@ -41,22 +41,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-102-r1-o1",
-            "label": "star",
+            "id": "level-123-r1-o1",
+            "label": "bus",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-102-r1-o2",
-            "label": "said",
+            "id": "level-123-r1-o2",
+            "label": "my",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-102-r1-o3",
-            "label": "have",
+            "id": "level-123-r1-o3",
+            "label": "he",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -64,7 +64,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "said"
+          "value": "he"
         },
         "shape": "fish",
         "layout": null,
@@ -74,7 +74,7 @@
       }
     },
     {
-      "id": "level-102-r2",
+      "id": "level-123-r2",
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
@@ -89,132 +89,111 @@
       "fix": {
         "items": [
           {
-            "text": "said",
+            "text": "he",
+            "wrong": "mirror",
+            "at": 0
+          },
+          {
+            "text": "she",
             "wrong": null,
             "at": null
           },
           {
-            "text": "was",
+            "text": "we",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "me",
             "wrong": "mirror",
             "at": 1
-          },
-          {
-            "text": "are",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "they",
-            "wrong": "mirror",
-            "at": 2
           }
         ]
       }
     },
     {
-      "id": "level-102-r3",
+      "id": "level-123-r3",
       "type": "hunt",
       "prompt": {
-        "text": "Find every said!",
-        "say": "Find every word said!",
-        "audio": "voice/line-6f89fb4b319f7b6e.m4a"
+        "text": "Find every he!",
+        "say": "Find every word he!",
+        "audio": "voice/line-d8a2f9b648b0fd57.m4a"
       },
       "card": {
-        "text": "said",
+        "text": "he",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "said",
+        "target": "he",
         "grid": [
-          "the",
-          "star",
-          "they",
-          "have",
-          "said",
-          "was",
-          "said",
-          "are",
-          "said"
+          "we",
+          "he",
+          "my",
+          "she",
+          "ship",
+          "bus",
+          "me",
+          "he",
+          "he"
         ]
       }
     },
     {
-      "id": "level-102-r4",
+      "id": "level-123-r4",
       "type": "write",
       "prompt": {
-        "text": "Spell said",
-        "say": "Said! Write it one letter at a time.",
-        "audio": "voice/line-604a037fd1f29408.m4a"
+        "text": "Spell he",
+        "say": "He! Write it one letter at a time.",
+        "audio": "voice/line-487d7956bd61835e.m4a"
       },
       "card": {
-        "text": "said",
+        "text": "he",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "spell",
-        "target": "said",
+        "target": "he",
         "guide": null,
-        "word": "said",
+        "word": "he",
         "missingIndex": null,
         "sentence": false,
         "story": false
       }
     },
     {
-      "id": "level-102-r5",
+      "id": "level-123-r5",
       "type": "pick",
       "prompt": {
         "text": "Which word fits?",
-        "say": "what are my friends. Which word fits?",
-        "audio": "voice/line-353e6e2ccad81e74.m4a"
+        "say": "what is my brother. Which word fits?",
+        "audio": "voice/line-ebe94eef02724cf5.m4a"
       },
       "card": {
-        "text": "___ are my friends.",
+        "text": "___ is my brother.",
         "picture": null,
         "listen": false
       },
       "pick": {
         "options": [
           {
-            "id": "level-102-r5-o1",
-            "label": "said",
+            "id": "level-123-r5-o1",
+            "label": "My",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-102-r5-o2",
-            "label": "was",
+            "id": "level-123-r5-o2",
+            "label": "He",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-102-r5-o3",
-            "label": "they",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-102-r5-o4",
-            "label": "have",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-102-r5-o5",
-            "label": "are",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-102-r5-o6",
-            "label": "They",
+            "id": "level-123-r5-o3",
+            "label": "Me",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -222,7 +201,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "They"
+          "value": "He"
         },
         "shape": "card",
         "layout": null,
@@ -232,12 +211,12 @@
       }
     },
     {
-      "id": "level-102-r6",
+      "id": "level-123-r6",
       "type": "truth",
       "prompt": {
         "text": "True or silly?",
-        "say": "This is a bus. True, or silly?",
-        "audio": "voice/line-6a9ebaa8a238af23.m4a"
+        "say": "This is four. True, or silly?",
+        "audio": "voice/line-8621fcc77a4e068f.m4a"
       },
       "card": {
         "text": null,
@@ -245,79 +224,79 @@
         "listen": true
       },
       "truth": {
-        "text": "This is a bus.",
+        "text": "This is four.",
         "picture": {
-          "key": "ship",
-          "label": "ship",
+          "key": "four",
+          "label": "four",
           "url": null
         },
-        "answer": false
+        "answer": true
       }
     },
     {
-      "id": "level-102-r7",
+      "id": "level-123-r7",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
-        "say": "They are my friends. Put the words in order.",
-        "audio": "voice/line-74be0d1d9189aa5b.m4a"
+        "say": "He is my brother. Put the words in order.",
+        "audio": "voice/line-a0afcf0461a59022.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "family",
-          "label": "family",
+          "key": "family_brother",
+          "label": "family brother",
           "url": null
         },
         "listen": false
       },
       "order": {
         "tiles": [
-          "They",
-          "are",
+          "He",
+          "is",
           "my",
-          "friends"
+          "brother"
         ],
         "slot": "stripe"
       }
     },
     {
-      "id": "level-102-r8",
+      "id": "level-123-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: I have a red ball.",
-        "say": "I have a red ball. Now you say it!",
-        "audio": "voice/line-9615590e2da1c37e.m4a"
+        "text": "Say: She is my sister.",
+        "say": "She is my sister. Now you say it!",
+        "audio": "voice/line-a8a8ea7130692b1a.m4a"
       },
       "card": {
-        "text": "I have a red ball.",
+        "text": "She is my sister.",
         "picture": {
-          "key": "ball",
-          "label": "ball",
+          "key": "family_sister",
+          "label": "family sister",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "I have a red ball."
+        "expected": "She is my sister."
       }
     },
     {
-      "id": "level-102-r9",
+      "id": "level-123-r9",
       "type": "write",
       "prompt": {
-        "text": "Write they",
-        "say": "Write the word they.",
-        "audio": "voice/line-527e1acad78d030f.m4a"
+        "text": "Write me",
+        "say": "Write the word me.",
+        "audio": "voice/line-2da177094cd01f35.m4a"
       },
       "card": {
-        "text": "they",
+        "text": "me",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "free",
-        "target": "they",
+        "target": "me",
         "guide": null,
         "word": null,
         "missingIndex": null,
@@ -326,73 +305,82 @@
       }
     },
     {
-      "id": "level-102-r10",
+      "id": "level-123-r10",
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/h/|hʌ} or {/g/|ɡʌ}?",
-        "audio": "voice/line-c3057fb0f75d5614.m4a"
+        "say": "Sort the pictures! Do they start with {/w/|wʌ} or {/m/|mːː}?",
+        "audio": "voice/line-26719b59d349ebd0.m4a"
       },
       "card": {
-        "text": "h g",
+        "text": "w m",
         "picture": null,
         "listen": false
       },
       "sort": {
         "bins": [
           {
-            "label": "h",
+            "label": "w",
             "picture": null,
             "bin": null
           },
           {
-            "label": "g",
+            "label": "m",
             "picture": null,
             "bin": null
           }
         ],
         "items": [
           {
-            "label": "gift",
+            "label": "whale",
             "picture": {
-              "key": "gift",
-              "label": "gift",
+              "key": "whale",
+              "label": "whale",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "web",
+            "picture": {
+              "key": "web",
+              "label": "web",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "monkey",
+            "picture": {
+              "key": "monkey",
+              "label": "monkey",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "hat",
+            "label": "milk",
             "picture": {
-              "key": "hat",
-              "label": "hat",
+              "key": "milk",
+              "label": "milk",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "watch",
+            "picture": {
+              "key": "watch",
+              "label": "watch",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "hand",
+            "label": "moon",
             "picture": {
-              "key": "hand",
-              "label": "hand",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "hut",
-            "picture": {
-              "key": "hut",
-              "label": "hut",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "goat",
-            "picture": {
-              "key": "goat",
-              "label": "goat",
+              "key": "moon",
+              "label": "moon",
               "url": null
             },
             "bin": 1
