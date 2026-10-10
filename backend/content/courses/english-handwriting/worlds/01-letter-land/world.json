@@ -3,7 +3,7 @@
   "id": "world-1",
   "order": 1,
   "name": "Letter Land",
-  "skill": "Capital letters",
+  "skill": "Capitals A to M",
   "icon": "grass",
   "themeId": "letterLand",
   "boss": {

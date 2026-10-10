@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-31",
-  "number": 31,
+  "id": "level-15",
+  "number": 15,
   "name": "Wake the Snail",
   "skill": "Boss · capitals",
   "icon": "bedtime",
@@ -26,12 +26,12 @@
   },
   "rounds": [
     {
-      "id": "level-31-r1",
+      "id": "level-15-r1",
       "type": "pop",
       "prompt": {
-        "text": "Pop every Z!",
-        "say": "Listen! Pop every {Z|zˈiː} bubble!",
-        "audio": "voice/line-b82f81a751c70260.m4a"
+        "text": "Pop every M!",
+        "say": "Listen! Pop every {M|ˈɛm} bubble!",
+        "audio": "voice/line-be66418077a06a67.m4a"
       },
       "card": {
         "text": null,
@@ -39,36 +39,36 @@
         "listen": true
       },
       "pop": {
-        "target": "Z",
+        "target": "M",
         "others": [
-          "U",
-          "V",
-          "W"
+          "C",
+          "F",
+          "H"
         ],
         "count": 5
       }
     },
     {
-      "id": "level-31-r2",
+      "id": "level-15-r2",
       "type": "write",
       "prompt": {
-        "text": "Trace V",
-        "say": "Trace {V|vˈiː}.",
-        "audio": "voice/line-d2fca6ac9fca853a.m4a"
+        "text": "Trace F",
+        "say": "Trace {F|ˈɛf}.",
+        "audio": "voice/line-f3d1fbe87e31b4d6.m4a"
       },
       "card": {
-        "text": "V",
+        "text": "F",
         "picture": {
-          "key": "violin",
-          "label": "violin",
+          "key": "fish",
+          "label": "fish",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "trace",
-        "target": "V",
-        "guide": "V",
+        "target": "F",
+        "guide": "F",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -76,12 +76,12 @@
       }
     },
     {
-      "id": "level-31-r3",
+      "id": "level-15-r3",
       "type": "pick",
       "prompt": {
-        "text": "What starts with /w/?",
-        "say": "Which one starts with {/w/|wʌ}?",
-        "audio": "voice/line-a152a50f4b5f0f7f.m4a"
+        "text": "What starts with /h/?",
+        "say": "Which one starts with {/h/|hʌ}?",
+        "audio": "voice/line-3ca1c5cda30a7224.m4a"
       },
       "card": {
         "text": null,
@@ -91,18 +91,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-31-r3-o1",
-            "label": "whale",
-            "picture": {
-              "key": "whale",
-              "label": "whale",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-31-r3-o2",
+            "id": "level-15-r3-o1",
             "label": "queen",
             "picture": {
               "key": "queen",
@@ -113,11 +102,22 @@
             "hideLabel": true
           },
           {
-            "id": "level-31-r3-o3",
-            "label": "egg",
+            "id": "level-15-r3-o2",
+            "label": "hat",
             "picture": {
-              "key": "egg",
-              "label": "egg",
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-15-r3-o3",
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
               "url": null
             },
             "color": null,
@@ -126,7 +126,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "whale"
+          "value": "hat"
         },
         "shape": "jar",
         "layout": null,
@@ -136,22 +136,22 @@
       }
     },
     {
-      "id": "level-31-r4",
+      "id": "level-15-r4",
       "type": "write",
       "prompt": {
-        "text": "Join the dots to make X",
-        "say": "Join the dots to make {X|ˈɛks}.",
-        "audio": "voice/line-ddd872d0efd1cf56.m4a"
+        "text": "Join the dots to make J",
+        "say": "Join the dots to make {J|ʤˈeɪ}.",
+        "audio": "voice/line-03a1b035db237173.m4a"
       },
       "card": {
-        "text": "X",
+        "text": "J",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "dots",
-        "target": "X",
-        "guide": "X",
+        "target": "J",
+        "guide": "J",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -159,60 +159,86 @@
       }
     },
     {
-      "id": "level-31-r5",
-      "type": "fix",
+      "id": "level-15-r5",
+      "type": "match",
       "prompt": {
-        "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote some letters the wrong way. Tap them to fix them!",
-        "audio": "voice/line-5b61022a0ee7b93d.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each letter to its picture.",
+        "audio": "voice/line-5bbaa5b0c4fb6512.m4a"
       },
       "card": {
-        "text": "U V W X Y Z",
+        "text": "C F H J",
         "picture": null,
         "listen": false
       },
-      "fix": {
-        "items": [
+      "match": {
+        "pairs": [
           {
-            "text": "U",
-            "wrong": "upside",
-            "at": null
+            "a": {
+              "text": "C",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "cat",
+                "label": "cat",
+                "url": null
+              }
+            }
           },
           {
-            "text": "V",
-            "wrong": null,
-            "at": null
+            "a": {
+              "text": "F",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "fish",
+                "label": "fish",
+                "url": null
+              }
+            }
           },
           {
-            "text": "W",
-            "wrong": null,
-            "at": null
+            "a": {
+              "text": "H",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "hat",
+                "label": "hat",
+                "url": null
+              }
+            }
           },
           {
-            "text": "X",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "Y",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "Z",
-            "wrong": "mirror",
-            "at": null
+            "a": {
+              "text": "J",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "jam",
+                "label": "jam",
+                "url": null
+              }
+            }
           }
         ]
       }
     },
     {
-      "id": "level-31-r6",
+      "id": "level-15-r6",
       "type": "write",
       "prompt": {
         "text": "Write the letter you hear",
-        "say": "Listen, then write it! {Y|wˈaɪ}.",
-        "audio": "voice/line-3407e3569bf0bd5a.m4a"
+        "say": "Listen, then write it! {L|ˈɛl}.",
+        "audio": "voice/line-9aac91c7485b8534.m4a"
       },
       "card": {
         "text": null,
@@ -221,8 +247,8 @@
       },
       "write": {
         "mode": "free",
-        "target": "Y",
-        "guide": "Y",
+        "target": "L",
+        "guide": "L",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -230,7 +256,7 @@
       }
     },
     {
-      "id": "level-31-r7",
+      "id": "level-15-r7",
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
@@ -248,31 +274,31 @@
       },
       "order": {
         "tiles": [
-          "U",
-          "V",
-          "W"
+          "C",
+          "F",
+          "H"
         ]
       }
     },
     {
-      "id": "level-31-r8",
+      "id": "level-15-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: U, V, W, X, Y, Z!",
-        "say": "Say all the letters with me! {U|jˈuː}, {V|vˈiː}, {W|dˈʌbəljuː}, {X|ˈɛks}, {Y|wˈaɪ}, {Z|zˈiː}!",
-        "audio": "voice/line-06adeab1004cbac3.m4a"
+        "text": "Say: C, F, H, J, L, M!",
+        "say": "Say all the letters with me! {C|sˈiː}, {F|ˈɛf}, {H|ˈeɪʧ}, {J|ʤˈeɪ}, {L|ˈɛl}, {M|ˈɛm}!",
+        "audio": "voice/line-bd22782240c1a9aa.m4a"
       },
       "card": {
-        "text": "U, V, W, X, Y, Z!",
+        "text": "C, F, H, J, L, M!",
         "picture": null,
         "listen": true
       },
       "speak": {
-        "expected": "U, V, W, X, Y, Z!"
+        "expected": "C, F, H, J, L, M!"
       }
     },
     {
-      "id": "level-31-r9",
+      "id": "level-15-r9",
       "type": "write",
       "prompt": {
         "text": "Finish the word!",

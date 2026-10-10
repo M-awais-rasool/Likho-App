@@ -1,0 +1,293 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-12",
+  "number": 12,
+  "name": "Letter K",
+  "skill": "Capital K",
+  "icon": "edit",
+  "isBoss": false,
+  "requiresSubscription": false,
+  "intro": {
+    "text": "K",
+    "word": "kite",
+    "say": "{K|kˈeɪ}! {K|kˈeɪ} is for kite. Let's learn {K|kˈeɪ}!",
+    "audio": "voice/line-62b318695b1602b2.m4a",
+    "picture": {
+      "key": "kite",
+      "label": "kite",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-12-r1",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every K!",
+        "say": "Pop every {K|kˈeɪ} bubble!",
+        "audio": "voice/line-ef652b3ca0b8d519.m4a"
+      },
+      "card": {
+        "text": "K",
+        "picture": {
+          "key": "kite",
+          "label": "kite",
+          "url": null
+        },
+        "listen": false
+      },
+      "pop": {
+        "target": "K",
+        "others": [
+          "X",
+          "R",
+          "H"
+        ],
+        "count": 5
+      }
+    },
+    {
+      "id": "level-12-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace K",
+        "say": "Trace {K|kˈeɪ}.",
+        "audio": "voice/line-3c20dbd1abf9567b.m4a"
+      },
+      "card": {
+        "text": "K",
+        "picture": {
+          "key": "kite",
+          "label": "kite",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "K",
+        "guide": "K",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-12-r3",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote some {K|kˈeɪ} the wrong way. Tap them to fix them!",
+        "audio": "voice/line-52b2808a563cf96a.m4a"
+      },
+      "card": {
+        "text": "K",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "K",
+            "wrong": "mirror",
+            "at": null
+          },
+          {
+            "text": "K",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "K",
+            "wrong": "mirror",
+            "at": null
+          },
+          {
+            "text": "K",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "K",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "K",
+            "wrong": null,
+            "at": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-12-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make K",
+        "say": "Join the dots to make {K|kˈeɪ}.",
+        "audio": "voice/line-72cc4d733297636c.m4a"
+      },
+      "card": {
+        "text": "K",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "K",
+        "guide": "K",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-12-r5",
+      "type": "sort",
+      "prompt": {
+        "text": "Feed it /k/!",
+        "say": "This monster only eats things that start with {/k/|kʌ}. Feed it!",
+        "audio": "voice/line-e10cafb53ca96c00.m4a"
+      },
+      "card": {
+        "text": "K",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "K",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "apple",
+            "picture": {
+              "key": "apple",
+              "label": "apple",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "kite",
+            "picture": {
+              "key": "kite",
+              "label": "kite",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "king",
+            "picture": {
+              "key": "king",
+              "label": "king",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "moon",
+            "picture": {
+              "key": "moon",
+              "label": "moon",
+              "url": null
+            },
+            "bin": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-12-r6",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "J",
+          "K",
+          "L"
+        ]
+      }
+    },
+    {
+      "id": "level-12-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write K by yourself",
+        "say": "Now write {K|kˈeɪ} all by yourself!",
+        "audio": "voice/line-c43b3f643b1ef3be.m4a"
+      },
+      "card": {
+        "text": "K",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "K",
+        "guide": "K",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-12-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: K is for kite!",
+        "say": "{K|kˈeɪ} is for kite! Now you say it.",
+        "audio": "voice/line-b4482efb31946154.m4a"
+      },
+      "card": {
+        "text": "K is for kite!",
+        "picture": {
+          "key": "kite",
+          "label": "kite",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "K is for kite!"
+      }
+    }
+  ]
+}

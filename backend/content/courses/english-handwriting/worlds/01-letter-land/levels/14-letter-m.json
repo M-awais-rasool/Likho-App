@@ -2,19 +2,19 @@
   "$schema": "../../../../../schema/level.schema.json",
   "id": "level-14",
   "number": 14,
-  "name": "Letter L",
-  "skill": "Capital L",
+  "name": "Letter M",
+  "skill": "Capital M",
   "icon": "edit",
   "isBoss": false,
   "requiresSubscription": false,
   "intro": {
-    "text": "L",
-    "word": "lion",
-    "say": "{L|ˈɛl}! {L|ˈɛl} is for lion. Let's learn {L|ˈɛl}!",
-    "audio": "voice/line-df09e275fe4bb99f.m4a",
+    "text": "M",
+    "word": "moon",
+    "say": "{M|ˈɛm}! {M|ˈɛm} is for moon. Let's learn {M|ˈɛm}!",
+    "audio": "voice/line-571ae428f0793ea4.m4a",
     "picture": {
-      "key": "lion",
-      "label": "lion",
+      "key": "moon",
+      "label": "moon",
       "url": null
     }
   },
@@ -29,25 +29,25 @@
       "id": "level-14-r1",
       "type": "pop",
       "prompt": {
-        "text": "Pop every L!",
-        "say": "Pop every {L|ˈɛl} bubble!",
-        "audio": "voice/line-3645f9d7c7234105.m4a"
+        "text": "Pop every M!",
+        "say": "Pop every {M|ˈɛm} bubble!",
+        "audio": "voice/line-ec8c5608448f7f9b.m4a"
       },
       "card": {
-        "text": "L",
+        "text": "M",
         "picture": {
-          "key": "lion",
-          "label": "lion",
+          "key": "moon",
+          "label": "moon",
           "url": null
         },
         "listen": false
       },
       "pop": {
-        "target": "L",
+        "target": "M",
         "others": [
-          "T",
-          "I",
-          "E"
+          "N",
+          "W",
+          "H"
         ],
         "count": 5
       }
@@ -56,23 +56,23 @@
       "id": "level-14-r2",
       "type": "write",
       "prompt": {
-        "text": "Trace L",
-        "say": "Trace {L|ˈɛl}.",
-        "audio": "voice/line-2a8255fb782d36f0.m4a"
+        "text": "Trace M",
+        "say": "Trace {M|ˈɛm}.",
+        "audio": "voice/line-0bfbe582bcd52ec3.m4a"
       },
       "card": {
-        "text": "L",
+        "text": "M",
         "picture": {
-          "key": "lion",
-          "label": "lion",
+          "key": "moon",
+          "label": "moon",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "trace",
-        "target": "L",
-        "guide": "L",
+        "target": "M",
+        "guide": "M",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -81,49 +81,32 @@
     },
     {
       "id": "level-14-r3",
-      "type": "fix",
+      "type": "hunt",
       "prompt": {
-        "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote some {L|ˈɛl} the wrong way. Tap them to fix them!",
-        "audio": "voice/line-39b9213cd394b840.m4a"
+        "text": "Find every M!",
+        "say": "Find every {M|ˈɛm}!",
+        "audio": "voice/line-f2496f43c7a8a65e.m4a"
       },
       "card": {
-        "text": "L",
+        "text": "M",
         "picture": null,
         "listen": false
       },
-      "fix": {
-        "items": [
-          {
-            "text": "L",
-            "wrong": "mirror",
-            "at": null
-          },
-          {
-            "text": "L",
-            "wrong": "mirror",
-            "at": null
-          },
-          {
-            "text": "L",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "L",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "L",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "L",
-            "wrong": null,
-            "at": null
-          }
+      "hunt": {
+        "target": "M",
+        "grid": [
+          "M",
+          "M",
+          "W",
+          "W",
+          "M",
+          "N",
+          "H",
+          "W",
+          "M",
+          "N",
+          "H",
+          "N"
         ]
       }
     },
@@ -131,19 +114,19 @@
       "id": "level-14-r4",
       "type": "write",
       "prompt": {
-        "text": "Join the dots to make L",
-        "say": "Join the dots to make {L|ˈɛl}.",
-        "audio": "voice/line-70032248f64a71e7.m4a"
+        "text": "Join the dots to make M",
+        "say": "Join the dots to make {M|ˈɛm}.",
+        "audio": "voice/line-7d10857edea2b6ab.m4a"
       },
       "card": {
-        "text": "L",
+        "text": "M",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "dots",
-        "target": "L",
-        "guide": "L",
+        "target": "M",
+        "guide": "M",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -155,8 +138,8 @@
       "type": "truth",
       "prompt": {
         "text": "True or silly?",
-        "say": "Dog starts with {L|ˈɛl}. True, or silly?",
-        "audio": "voice/line-04f028651bf7c916.m4a"
+        "say": "Pig starts with {M|ˈɛm}. True, or silly?",
+        "audio": "voice/line-d3d256f79091deb6.m4a"
       },
       "card": {
         "text": null,
@@ -164,10 +147,10 @@
         "listen": true
       },
       "truth": {
-        "text": "Dog starts with L.",
+        "text": "Pig starts with M.",
         "picture": {
-          "key": "dog",
-          "label": "dog",
+          "key": "pig",
+          "label": "pig",
           "url": null
         },
         "answer": false
@@ -178,72 +161,72 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/l/|lːː} or {/k/|kʌ}?",
-        "audio": "voice/line-dd8583dbbe71adcd.m4a"
+        "say": "Sort the pictures! Do they start with {/m/|mːː} or {/l/|lːː}?",
+        "audio": "voice/line-2802c9b9f7cc68b4.m4a"
       },
       "card": {
-        "text": "L K",
+        "text": "M L",
         "picture": null,
         "listen": false
       },
       "sort": {
         "bins": [
           {
-            "label": "L",
+            "label": "M",
             "picture": null,
             "bin": null
           },
           {
-            "label": "K",
+            "label": "L",
             "picture": null,
             "bin": null
           }
         ],
         "items": [
           {
-            "label": "lamp",
+            "label": "lemon",
             "picture": {
-              "key": "lamp",
-              "label": "lamp",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "king",
-            "picture": {
-              "key": "king",
-              "label": "king",
+              "key": "lemon",
+              "label": "lemon",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "log",
+            "label": "leg",
             "picture": {
-              "key": "log",
-              "label": "log",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "lion",
-            "picture": {
-              "key": "lion",
-              "label": "lion",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "kite",
-            "picture": {
-              "key": "kite",
-              "label": "kite",
+              "key": "leg",
+              "label": "leg",
               "url": null
             },
             "bin": 1
+          },
+          {
+            "label": "milk",
+            "picture": {
+              "key": "milk",
+              "label": "milk",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "moon",
+            "picture": {
+              "key": "moon",
+              "label": "moon",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "mouse",
+            "picture": {
+              "key": "mouse",
+              "label": "mouse",
+              "url": null
+            },
+            "bin": 0
           }
         ]
       }
@@ -252,19 +235,19 @@
       "id": "level-14-r7",
       "type": "write",
       "prompt": {
-        "text": "Write L by yourself",
-        "say": "Now write {L|ˈɛl} all by yourself!",
-        "audio": "voice/line-4801445464d046c2.m4a"
+        "text": "Write M by yourself",
+        "say": "Now write {M|ˈɛm} all by yourself!",
+        "audio": "voice/line-2941e34234cf2112.m4a"
       },
       "card": {
-        "text": "L",
+        "text": "M",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "free",
-        "target": "L",
-        "guide": "L",
+        "target": "M",
+        "guide": "M",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -275,21 +258,21 @@
       "id": "level-14-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: L is for lion!",
-        "say": "{L|ˈɛl} is for lion! Now you say it.",
-        "audio": "voice/line-4bf8e272e2a69cfe.m4a"
+        "text": "Say: M is for moon!",
+        "say": "{M|ˈɛm} is for moon! Now you say it.",
+        "audio": "voice/line-6d16e49a008ad2a6.m4a"
       },
       "card": {
-        "text": "L is for lion!",
+        "text": "M is for moon!",
         "picture": {
-          "key": "lion",
-          "label": "lion",
+          "key": "moon",
+          "label": "moon",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "L is for lion!"
+        "expected": "M is for moon!"
       }
     }
   ]

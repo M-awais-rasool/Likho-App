@@ -2,19 +2,19 @@
   "$schema": "../../../../../schema/level.schema.json",
   "id": "level-07",
   "number": 7,
-  "name": "Letter F",
-  "skill": "Capital F",
+  "name": "Letter G",
+  "skill": "Capital G",
   "icon": "edit",
   "isBoss": false,
   "requiresSubscription": false,
   "intro": {
-    "text": "F",
-    "word": "fish",
-    "say": "{F|ˈɛf}! {F|ˈɛf} is for fish. Let's learn {F|ˈɛf}!",
-    "audio": "voice/line-0437183819fbff19.m4a",
+    "text": "G",
+    "word": "goat",
+    "say": "{G|ʤˈiː}! {G|ʤˈiː} is for goat. Let's learn {G|ʤˈiː}!",
+    "audio": "voice/line-e39a39d4bab2ef16.m4a",
     "picture": {
-      "key": "fish",
-      "label": "fish",
+      "key": "goat",
+      "label": "goat",
       "url": null
     }
   },
@@ -29,15 +29,15 @@
       "id": "level-07-r1",
       "type": "pick",
       "prompt": {
-        "text": "Find F!",
-        "say": "Find {F|ˈɛf}!",
-        "audio": "voice/line-a1abcb05c22bab3d.m4a"
+        "text": "Find G!",
+        "say": "Find {G|ʤˈiː}!",
+        "audio": "voice/line-e773d8696699a1a4.m4a"
       },
       "card": {
-        "text": "F",
+        "text": "G",
         "picture": {
-          "key": "fish",
-          "label": "fish",
+          "key": "goat",
+          "label": "goat",
           "url": null
         },
         "listen": false
@@ -46,28 +46,28 @@
         "options": [
           {
             "id": "level-07-r1-o1",
-            "label": "T",
+            "label": "Q",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
             "id": "level-07-r1-o2",
-            "label": "P",
+            "label": "C",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
             "id": "level-07-r1-o3",
-            "label": "F",
+            "label": "O",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
             "id": "level-07-r1-o4",
-            "label": "E",
+            "label": "G",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -75,7 +75,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "F"
+          "value": "G"
         },
         "shape": "cloud",
         "layout": null,
@@ -88,23 +88,23 @@
       "id": "level-07-r2",
       "type": "write",
       "prompt": {
-        "text": "Trace F",
-        "say": "Trace {F|ˈɛf}.",
-        "audio": "voice/line-f3d1fbe87e31b4d6.m4a"
+        "text": "Trace G",
+        "say": "Trace {G|ʤˈiː}.",
+        "audio": "voice/line-c6ba34fad34b8bed.m4a"
       },
       "card": {
-        "text": "F",
+        "text": "G",
         "picture": {
-          "key": "fish",
-          "label": "fish",
+          "key": "goat",
+          "label": "goat",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "trace",
-        "target": "F",
-        "guide": "F",
+        "target": "G",
+        "guide": "G",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -116,8 +116,8 @@
       "type": "truth",
       "prompt": {
         "text": "True or silly?",
-        "say": "Fish starts with {F|ˈɛf}. True, or silly?",
-        "audio": "voice/line-ee5313a7ac7ae422.m4a"
+        "say": "Goat starts with {G|ʤˈiː}. True, or silly?",
+        "audio": "voice/line-e3fdb73448017f19.m4a"
       },
       "card": {
         "text": null,
@@ -125,10 +125,10 @@
         "listen": true
       },
       "truth": {
-        "text": "Fish starts with F.",
+        "text": "Goat starts with G.",
         "picture": {
-          "key": "fish",
-          "label": "fish",
+          "key": "goat",
+          "label": "goat",
           "url": null
         },
         "answer": true
@@ -138,19 +138,19 @@
       "id": "level-07-r4",
       "type": "write",
       "prompt": {
-        "text": "Join the dots to make F",
-        "say": "Join the dots to make {F|ˈɛf}.",
-        "audio": "voice/line-8a13767b05851e3a.m4a"
+        "text": "Join the dots to make G",
+        "say": "Join the dots to make {G|ʤˈiː}.",
+        "audio": "voice/line-5123f67aa0a3b552.m4a"
       },
       "card": {
-        "text": "F",
+        "text": "G",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "dots",
-        "target": "F",
-        "guide": "F",
+        "target": "G",
+        "guide": "G",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -166,30 +166,16 @@
         "audio": "voice/line-5bbaa5b0c4fb6512.m4a"
       },
       "card": {
-        "text": "F",
+        "text": "G",
         "picture": {
-          "key": "fish",
-          "label": "fish",
+          "key": "goat",
+          "label": "goat",
           "url": null
         },
         "listen": false
       },
       "match": {
         "pairs": [
-          {
-            "a": {
-              "text": "E",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "egg",
-                "label": "egg",
-                "url": null
-              }
-            }
-          },
           {
             "a": {
               "text": "F",
@@ -217,6 +203,20 @@
                 "url": null
               }
             }
+          },
+          {
+            "a": {
+              "text": "H",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "hat",
+                "label": "hat",
+                "url": null
+              }
+            }
           }
         ]
       }
@@ -226,33 +226,33 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/f/|fːː} or {/e/|ɛ}?",
-        "audio": "voice/line-720432df76aad235.m4a"
+        "say": "Sort the pictures! Do they start with {/g/|ɡʌ} or {/f/|fːː}?",
+        "audio": "voice/line-06d60b0b1e61c1ac.m4a"
       },
       "card": {
-        "text": "F E",
+        "text": "G F",
         "picture": null,
         "listen": false
       },
       "sort": {
         "bins": [
           {
-            "label": "F",
+            "label": "G",
             "picture": null,
             "bin": null
           },
           {
-            "label": "E",
+            "label": "F",
             "picture": null,
             "bin": null
           }
         ],
         "items": [
           {
-            "label": "foot",
+            "label": "goat",
             "picture": {
-              "key": "foot",
-              "label": "foot",
+              "key": "goat",
+              "label": "goat",
               "url": null
             },
             "bin": 0
@@ -264,7 +264,7 @@
               "label": "four",
               "url": null
             },
-            "bin": 0
+            "bin": 1
           },
           {
             "label": "fish",
@@ -273,25 +273,16 @@
               "label": "fish",
               "url": null
             },
+            "bin": 1
+          },
+          {
+            "label": "gift",
+            "picture": {
+              "key": "gift",
+              "label": "gift",
+              "url": null
+            },
             "bin": 0
-          },
-          {
-            "label": "egg",
-            "picture": {
-              "key": "egg",
-              "label": "egg",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "elephant",
-            "picture": {
-              "key": "elephant",
-              "label": "elephant",
-              "url": null
-            },
-            "bin": 1
           }
         ]
       }
@@ -300,23 +291,23 @@
       "id": "level-07-r7",
       "type": "write",
       "prompt": {
-        "text": "Look, then write F",
-        "say": "Look at {F|ˈɛf}. Then write it from memory!",
-        "audio": "voice/line-c39447e54a466729.m4a"
+        "text": "Look, then write G",
+        "say": "Look at {G|ʤˈiː}. Then write it from memory!",
+        "audio": "voice/line-dfb8e9cc92aaddc7.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "fish",
-          "label": "fish",
+          "key": "goat",
+          "label": "goat",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "flash",
-        "target": "F",
-        "guide": "F",
+        "target": "G",
+        "guide": "G",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -327,21 +318,21 @@
       "id": "level-07-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: F is for fish!",
-        "say": "{F|ˈɛf} is for fish! Now you say it.",
-        "audio": "voice/line-6cd66694d9140c8f.m4a"
+        "text": "Say: G is for goat!",
+        "say": "{G|ʤˈiː} is for goat! Now you say it.",
+        "audio": "voice/line-952ba1047d5f6168.m4a"
       },
       "card": {
-        "text": "F is for fish!",
+        "text": "G is for goat!",
         "picture": {
-          "key": "fish",
-          "label": "fish",
+          "key": "goat",
+          "label": "goat",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "F is for fish!"
+        "expected": "G is for goat!"
       }
     }
   ]

@@ -2,19 +2,19 @@
   "$schema": "../../../../../schema/level.schema.json",
   "id": "level-13",
   "number": 13,
-  "name": "Letter K",
-  "skill": "Capital K",
+  "name": "Letter L",
+  "skill": "Capital L",
   "icon": "edit",
   "isBoss": false,
   "requiresSubscription": false,
   "intro": {
-    "text": "K",
-    "word": "kite",
-    "say": "{K|kˈeɪ}! {K|kˈeɪ} is for kite. Let's learn {K|kˈeɪ}!",
-    "audio": "voice/line-62b318695b1602b2.m4a",
+    "text": "L",
+    "word": "lion",
+    "say": "{L|ˈɛl}! {L|ˈɛl} is for lion. Let's learn {L|ˈɛl}!",
+    "audio": "voice/line-df09e275fe4bb99f.m4a",
     "picture": {
-      "key": "kite",
-      "label": "kite",
+      "key": "lion",
+      "label": "lion",
       "url": null
     }
   },
@@ -29,15 +29,15 @@
       "id": "level-13-r1",
       "type": "pick",
       "prompt": {
-        "text": "Find K!",
-        "say": "Find {K|kˈeɪ}!",
-        "audio": "voice/line-9cf02b52d80722c3.m4a"
+        "text": "Find L!",
+        "say": "Find {L|ˈɛl}!",
+        "audio": "voice/line-14f7e91621126d72.m4a"
       },
       "card": {
-        "text": "K",
+        "text": "L",
         "picture": {
-          "key": "kite",
-          "label": "kite",
+          "key": "lion",
+          "label": "lion",
           "url": null
         },
         "listen": false
@@ -46,28 +46,28 @@
         "options": [
           {
             "id": "level-13-r1-o1",
-            "label": "R",
+            "label": "L",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
             "id": "level-13-r1-o2",
-            "label": "H",
+            "label": "I",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
             "id": "level-13-r1-o3",
-            "label": "X",
+            "label": "T",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
             "id": "level-13-r1-o4",
-            "label": "K",
+            "label": "E",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -75,7 +75,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "K"
+          "value": "L"
         },
         "shape": "mushroom",
         "layout": null,
@@ -88,23 +88,23 @@
       "id": "level-13-r2",
       "type": "write",
       "prompt": {
-        "text": "Trace K",
-        "say": "Trace {K|kˈeɪ}.",
-        "audio": "voice/line-3c20dbd1abf9567b.m4a"
+        "text": "Trace L",
+        "say": "Trace {L|ˈɛl}.",
+        "audio": "voice/line-2a8255fb782d36f0.m4a"
       },
       "card": {
-        "text": "K",
+        "text": "L",
         "picture": {
-          "key": "kite",
-          "label": "kite",
+          "key": "lion",
+          "label": "lion",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "trace",
-        "target": "K",
-        "guide": "K",
+        "target": "L",
+        "guide": "L",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -115,24 +115,33 @@
       "id": "level-13-r3",
       "type": "sort",
       "prompt": {
-        "text": "Feed it /k/!",
-        "say": "This monster only eats things that start with {/k/|kʌ}. Feed it!",
-        "audio": "voice/line-e10cafb53ca96c00.m4a"
+        "text": "Feed it /l/!",
+        "say": "This monster only eats things that start with {/l/|lːː}. Feed it!",
+        "audio": "voice/line-20e2be1ecd963863.m4a"
       },
       "card": {
-        "text": "K",
+        "text": "L",
         "picture": null,
         "listen": false
       },
       "sort": {
         "bins": [
           {
-            "label": "K",
+            "label": "L",
             "picture": null,
             "bin": null
           }
         ],
         "items": [
+          {
+            "label": "ball",
+            "picture": {
+              "key": "ball",
+              "label": "ball",
+              "url": null
+            },
+            "bin": null
+          },
           {
             "label": "lion",
             "picture": {
@@ -140,7 +149,34 @@
               "label": "lion",
               "url": null
             },
+            "bin": 0
+          },
+          {
+            "label": "insect",
+            "picture": {
+              "key": "insect",
+              "label": "insect",
+              "url": null
+            },
             "bin": null
+          },
+          {
+            "label": "log",
+            "picture": {
+              "key": "log",
+              "label": "log",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "lemon",
+            "picture": {
+              "key": "lemon",
+              "label": "lemon",
+              "url": null
+            },
+            "bin": 0
           },
           {
             "label": "jam",
@@ -150,33 +186,6 @@
               "url": null
             },
             "bin": null
-          },
-          {
-            "label": "kite",
-            "picture": {
-              "key": "kite",
-              "label": "kite",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "apple",
-            "picture": {
-              "key": "apple",
-              "label": "apple",
-              "url": null
-            },
-            "bin": null
-          },
-          {
-            "label": "king",
-            "picture": {
-              "key": "king",
-              "label": "king",
-              "url": null
-            },
-            "bin": 0
           }
         ]
       }
@@ -185,19 +194,19 @@
       "id": "level-13-r4",
       "type": "write",
       "prompt": {
-        "text": "Join the dots to make K",
-        "say": "Join the dots to make {K|kˈeɪ}.",
-        "audio": "voice/line-72cc4d733297636c.m4a"
+        "text": "Join the dots to make L",
+        "say": "Join the dots to make {L|ˈɛl}.",
+        "audio": "voice/line-70032248f64a71e7.m4a"
       },
       "card": {
-        "text": "K",
+        "text": "L",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "dots",
-        "target": "K",
-        "guide": "K",
+        "target": "L",
+        "guide": "L",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -208,30 +217,30 @@
       "id": "level-13-r5",
       "type": "hunt",
       "prompt": {
-        "text": "Find every K!",
-        "say": "Find every {K|kˈeɪ}!",
-        "audio": "voice/line-2b85f773443593f6.m4a"
+        "text": "Find every L!",
+        "say": "Find every {L|ˈɛl}!",
+        "audio": "voice/line-da6b7e02cab888a0.m4a"
       },
       "card": {
-        "text": "K",
+        "text": "L",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "K",
+        "target": "L",
         "grid": [
-          "R",
-          "H",
-          "X",
-          "K",
-          "K",
-          "H",
-          "R",
-          "K",
-          "K",
-          "X",
-          "X",
-          "R"
+          "I",
+          "T",
+          "L",
+          "T",
+          "I",
+          "E",
+          "L",
+          "T",
+          "L",
+          "L",
+          "I",
+          "E"
         ]
       }
     },
@@ -254,9 +263,9 @@
       },
       "order": {
         "tiles": [
-          "J",
           "K",
-          "L"
+          "L",
+          "M"
         ]
       }
     },
@@ -264,23 +273,23 @@
       "id": "level-13-r7",
       "type": "write",
       "prompt": {
-        "text": "Look, then write K",
-        "say": "Look at {K|kˈeɪ}. Then write it from memory!",
-        "audio": "voice/line-304d577110ee9b23.m4a"
+        "text": "Look, then write L",
+        "say": "Look at {L|ˈɛl}. Then write it from memory!",
+        "audio": "voice/line-993fb377030860f2.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "kite",
-          "label": "kite",
+          "key": "lion",
+          "label": "lion",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "flash",
-        "target": "K",
-        "guide": "K",
+        "target": "L",
+        "guide": "L",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -291,21 +300,21 @@
       "id": "level-13-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: K is for kite!",
-        "say": "{K|kˈeɪ} is for kite! Now you say it.",
-        "audio": "voice/line-b4482efb31946154.m4a"
+        "text": "Say: L is for lion!",
+        "say": "{L|ˈɛl} is for lion! Now you say it.",
+        "audio": "voice/line-4bf8e272e2a69cfe.m4a"
       },
       "card": {
-        "text": "K is for kite!",
+        "text": "L is for lion!",
         "picture": {
-          "key": "kite",
-          "label": "kite",
+          "key": "lion",
+          "label": "lion",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "K is for kite!"
+        "expected": "L is for lion!"
       }
     }
   ]
