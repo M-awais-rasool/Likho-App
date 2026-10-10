@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"compress/gzip"
 	"encoding/json"
+	"fmt"
 	"io"
 	"strings"
 	"testing"
@@ -21,21 +22,24 @@ func TestLoadsTheRealContent(t *testing.T) {
 	if !ok || len(cat.Courses()) != 1 {
 		t.Fatalf("courses: %v", cat.Courses())
 	}
-	if c.Stats.Worlds != 12 || c.Stats.Levels != 144 || !c.Stats.Placement || c.Stats.Rounds < 144*8 {
+	if c.Stats.Worlds != 14 || c.Stats.Levels != 210 || !c.Stats.Placement || c.Stats.Rounds < 210*8 {
 		t.Errorf("stats: %+v", c.Stats)
 	}
-	// world 1 (strokes and capitals) is free, Likho Plus from world 2
-	if l, ok := c.Level(31); !ok || l.RequiresSubscription || l.WorldID != "world-1" || !l.IsBoss {
+	// worlds 1 and 2 (capitals A-Z) are free, Likho Plus from world 3
+	if l, ok := c.Level(30); !ok || l.RequiresSubscription || l.WorldID != "world-2" || !l.IsBoss {
+		t.Errorf("level 30: %+v", l)
+	}
+	if l, ok := c.Level(31); !ok || !l.RequiresSubscription || l.WorldID != "world-3" {
 		t.Errorf("level 31: %+v", l)
 	}
-	if l, ok := c.Level(32); !ok || !l.RequiresSubscription || l.WorldID != "world-2" {
-		t.Errorf("level 32: %+v", l)
-	}
-	if l, _ := c.Level(62); !l.IsBoss || l.WorldID != "world-2" {
-		t.Error("level 62 is the small letters boss")
+	// every world is 15 levels, its boss last
+	for w := 1; w <= 14; w++ {
+		if l, _ := c.Level(15 * w); !l.IsBoss || l.WorldID != fmt.Sprintf("world-%d", w) {
+			t.Errorf("level %d is the boss of world %d", 15*w, w)
+		}
 	}
 	// every level is 8 to 10 games long
-	for n := 1; n <= 144; n++ {
+	for n := 1; n <= 210; n++ {
 		if l, _ := c.Level(n); l.Rounds < 8 || l.Rounds > 10 {
 			t.Errorf("level %d has %d rounds", n, l.Rounds)
 		}
@@ -55,7 +59,7 @@ func TestLoadsTheRealContent(t *testing.T) {
 	if err := json.Unmarshal(c.JSON, &doc); err != nil {
 		t.Fatal(err)
 	}
-	if doc.SchemaVersion != 1 || doc.CourseID != "english-handwriting" || len(doc.Worlds) != 12 || len(doc.Levels) != 145 || len(doc.Glyphs) == 0 {
+	if doc.SchemaVersion != 1 || doc.CourseID != "english-handwriting" || len(doc.Worlds) != 14 || len(doc.Levels) != 211 || len(doc.Glyphs) == 0 {
 		t.Fatalf("document: v%d %s %d worlds %d levels", doc.SchemaVersion, doc.CourseID, len(doc.Worlds), len(doc.Levels))
 	}
 	first, second := doc.Levels[0], doc.Levels[1]
