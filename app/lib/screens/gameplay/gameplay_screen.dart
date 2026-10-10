@@ -6,12 +6,18 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../boss_battle/battle_state.dart';
+import '../boss_battle/boss_more_rounds.dart';
+import '../boss_battle/boss_overlays.dart';
+import '../boss_battle/boss_rounds.dart';
+import '../boss_battle/boss_stage.dart';
 import '../world_map/boss_painter.dart';
 import '../../data/course_providers.dart';
 import '../../data/family.dart';
 import '../../data/models/course_models.dart';
 import '../../data/progress.dart';
 import '../../design/tokens.dart';
+import '../../feedback/app_feedback.dart';
 import '../../game/level_resume.dart';
 import '../../game/level_session.dart';
 import '../../game/speech/prompt_voice.dart';
@@ -69,6 +75,19 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
   int _burst = 0;
   bool _done = false;
 
+  // ---- boss battle (boss levels only)
+  BossBattle? _battle;
+  final _rootKey = GlobalKey();
+  final _bossKey = GlobalKey();
+  final _shots = <Shot>[];
+  double? _introAt; // clock time the boss intro began; null when it is over
+  int _roundStartMistakes = 0;
+  SessionState? _finishedState; // the won level, held back for the finale
+  int _alarmTaps = 0;
+  double? _alarmTapAt, _alarmRangAt, _kidTapAt;
+  static const _alarmNeeded = 8;
+  late final AppFeedback _fb = ref.read(feedbackProvider);
+
   CourseLevel get level => widget.level;
 
   @override
@@ -79,10 +98,27 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
     _voice; // resolve while mounted (ref is not usable in dispose)
     final back = _resume();
     _view = ref.read(levelSessionProvider(level));
+    _fb; // resolve while mounted
+    if (level.isBoss) {
+      _battle = BossBattle(rounds: _view.roundCount, hits: _view.round);
+      _roundStartMistakes = _view.mistakes;
+      _introAt = 0;
+      _later(Duration(milliseconds: (BossIntro.stampAt * 1000).round()), _fb.bossStamp);
+      _later(Duration(milliseconds: (BossIntro.drumAt * 1000).round()), _fb.bossDrum);
+      _later(Duration(milliseconds: (BossIntro.seconds * 1000).round()), _endIntro);
+      return;
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _startRound();
       if (back) _say('Welcome back!', const Duration(milliseconds: 1600));
     });
+  }
+
+  /// The boss intro is over (or skipped): the first round begins.
+  void _endIntro() {
+    if (_introAt == null) return;
+    setState(() => _introAt = null);
+    _startRound();
   }
 
   /// The active child; null in the placement warm-up (never resumed).
@@ -111,6 +147,7 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
     _pad?.dispose();
     _voice.stop();
     _mascot.dispose();
+    _battle?.dispose();
     super.dispose();
   }
 
@@ -228,6 +265,7 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
       ref.read(levelResumeProvider.notifier).save(child, level, round: next.round, mistakes: next.mistakes, choices: next.choices);
     }
     if (next.round != prev.round) {
+      _roundStartMistakes = next.mistakes;
       // flip the old round away, then flip the new one in (prototype next())
       _flipOut = true;
       _flip.duration = const Duration(milliseconds: 260);
@@ -240,7 +278,7 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
         _flip.duration = const Duration(milliseconds: 320);
         _flip.forward(from: 0);
         _startRound();
-        if (_view.isHalfway) _halfway();
+        if (_view.isHalfway && _battle == null) _halfway();
       });
       return;
     }
@@ -253,7 +291,13 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
           _mascot.play(MascotState.happy);
           _say(_praise[next.round % 4], const Duration(milliseconds: 1350));
           HapticFeedback.lightImpact();
+          if (_battle != null) _attack(next, clean: next.mistakes == _roundStartMistakes);
         case RoundFeedback.wrong:
+          final battle = _battle;
+          if (battle != null) {
+            battle.missed(_time.value);
+            _fb.bossSnore();
+          }
           _shake.forward(from: 0);
           _mascot.play(MascotState.encourage);
           _say('Try again!', const Duration(milliseconds: 1300));
@@ -277,8 +321,102 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
     if (next.finished && !_done) {
       _done = true;
       if (child != null) ref.read(levelResumeProvider.notifier).clear(child, level);
-      widget.onFinished(LevelResult(level: level, stars: next.stars, mistakes: next.mistakes));
+      if (_battle != null) {
+        _startFinale(next);
+      } else {
+        widget.onFinished(LevelResult(level: level, stars: next.stars, mistakes: next.mistakes));
+      }
     }
+  }
+
+  // ------------------------------------------------------------ boss battle
+
+  /// A won round in a boss battle: a wake-up shot flies from the play area
+  /// to the boss and lands a hit (a combo hit after three clean rounds).
+  void _attack(SessionState s, {required bool clean}) {
+    final battle = _battle!;
+    battle.won(clean: clean);
+    if (battle.combo >= 2) _later(const Duration(milliseconds: 120), _fb.bossCombo);
+    final root = _rootKey.currentContext?.findRenderObject() as RenderBox?;
+    final area = _areaKey.currentContext?.findRenderObject() as RenderBox?;
+    final boss = _bossKey.currentContext?.findRenderObject() as RenderBox?;
+    final big = battle.combo >= 3;
+    void land() {
+      if (battle.hit(_time.value, big: big)) {
+        _fb.bossPhase();
+        _mascot.play(MascotState.happy);
+        _say(battle.phase == 1 ? "It's waking up!" : 'Almost there!', const Duration(milliseconds: 1500));
+      }
+      _fb.bossHit(big: big);
+      if (big) _burst++;
+    }
+
+    if (root == null || area == null || boss == null) {
+      _later(const Duration(milliseconds: 500), () => setState(land));
+      return;
+    }
+    final r = s.current;
+    final kind = switch (r) {
+      PickRound() || SortRound() => ShotKind.pillow,
+      PopRound() => ShotKind.bubble,
+      OrderRound() => ShotKind.bell,
+      WriteRound() => ShotKind.letter,
+      SpeakRound() => ShotKind.wave,
+      TruthRound() => ShotKind.sun,
+      _ => battle.hits.isEven ? ShotKind.star : ShotKind.bell,
+    };
+    final text = r is WriteRound ? (r.target ?? r.word ?? '') : '';
+    final from = root.globalToLocal(area.localToGlobal(Offset(area.size.width / 2, r is PickRound ? 20 : area.size.height * .4)));
+    final to = root.globalToLocal(boss.localToGlobal(boss.size.center(Offset.zero)));
+    final shot = Shot(from: from, to: to, start: _time.value, kind: kind, big: big, label: text.length <= 3 ? text : text.substring(0, 1));
+    setState(() => _shots.add(shot));
+    _later(Duration(milliseconds: (Shot.seconds * 1000).round()), () {
+      setState(() {
+        _shots.remove(shot);
+        land();
+      });
+    });
+  }
+
+  /// All rounds won: the alarm clock comes out. The child rings it (or it
+  /// rings itself when nobody taps), then the boss wakes up.
+  void _startFinale(SessionState s) {
+    _voice.stop();
+    setState(() => _finishedState = s);
+    _mascot.play(MascotState.happy);
+    _say('Ring the alarm!', const Duration(milliseconds: 2200));
+    _autoRing(_time.value);
+  }
+
+  /// Rings the alarm for the child after a few quiet seconds.
+  void _autoRing(double since) {
+    _later(const Duration(milliseconds: 900), () {
+      if (_alarmRangAt != null) return;
+      final last = _kidTapAt ?? since;
+      if (_time.value - last > 4.5) _ringAlarm(auto: true);
+      _autoRing(since);
+    });
+  }
+
+  void _ringAlarm({bool auto = false}) {
+    if (_alarmRangAt != null || _finishedState == null) return;
+    final now = _time.value;
+    if (!auto) _kidTapAt = now;
+    _fb.alarmRing();
+    _battle?.poke(now);
+    setState(() {
+      _alarmTaps++;
+      _alarmTapAt = now;
+    });
+    if (_alarmTaps < _alarmNeeded) return;
+    // ring ring: the boss is awake!
+    setState(() => _alarmRangAt = now);
+    _battle?.wake(now + .15);
+    _burst++;
+    _later(const Duration(milliseconds: 150), _fb.bossWake);
+    _later(const Duration(milliseconds: 400), () => _mascot.play(MascotState.dance));
+    final s = _finishedState!;
+    _later(const Duration(milliseconds: 3600), () => widget.onFinished(LevelResult(level: level, stars: s.stars, mistakes: s.mistakes)));
   }
 
   /// Halfway through a long level: Pencil cheers and confetti flies.
@@ -301,6 +439,8 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
     final pad = MediaQuery.paddingOf(context);
     final write = s.current is WriteRound ? s.current as WriteRound : null;
     final hasBoxes = write != null && (write.mode == WriteMode.missing || write.mode == WriteMode.spell);
+    final battle = _battle;
+    if (battle != null) return _bossBuild(battle, world, theme, s, write, hasBoxes);
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: (theme.dark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark).copyWith(statusBarColor: LikhoColors.clear),
@@ -380,7 +520,6 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
                             rounds: s.roundCount,
                             done: s.round + (s.correct ? 1 : 0),
                             awake: s.correct && s.isLastRound,
-                            time: _time,
                           ),
                           const SizedBox(height: 12),
                         ],
@@ -408,12 +547,130 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
     );
   }
 
+  /// A boss level: the boss arena. The sleep meter on top, the stage with
+  /// Pencil facing the boss, the prompt, then the round as a boss game. Wake-up
+  /// shots fly over everything; the intro covers the screen at the start and
+  /// the alarm finale covers the play area at the end.
+  Widget _bossBuild(BossBattle battle, CourseWorld? world, WorldTheme theme, SessionState s, WriteRound? write, bool hasBoxes) {
+    final pad = MediaQuery.paddingOf(context);
+    final bossIndex = BossPainter.indexOf(world?.bossId ?? '');
+    final bossName = world?.bossName ?? 'The boss';
+    final stageH = (MediaQuery.sizeOf(context).height * .23).clamp(150.0, 200.0);
+    final finale = _finishedState != null;
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: (theme.dark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark).copyWith(statusBarColor: LikhoColors.clear),
+      child: Material(
+        color: theme.bg,
+        child: Stack(
+          key: _rootKey,
+          children: [
+            Positioned(left: -60, bottom: -60, width: 220, height: 220, child: _SoftCircle(color: theme.soft, opacity: .7)),
+            Padding(
+              padding: EdgeInsets.fromLTRB(20, pad.top + 7, 20, 26),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  SizedBox(
+                    height: 52,
+                    child: Row(
+                      children: [
+                        HomeButton(onTap: widget.onExit),
+                        const SizedBox(width: 12),
+                        Expanded(child: SleepMeter(battle: battle, bossName: bossName, dark: theme.dark)),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  SizedBox(
+                    height: stageH,
+                    child: ListenableBuilder(
+                      listenable: battle,
+                      builder: (context, _) => BossStage(
+                        battle: battle,
+                        theme: theme,
+                        boss: bossIndex,
+                        time: _time,
+                        pencilKey: _mascotKey,
+                        bossKey: _bossKey,
+                        pencil: OverflowBox(maxWidth: 100, maxHeight: 120, child: PencilMascot(controller: _mascot, size: 104)),
+                        bubble: switch (_speech) {
+                          (final text, final step) => SpeechBubble(text: text, step: step),
+                          null => null,
+                        },
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  if (finale)
+                    const FinalMoveCard()
+                  else
+                    Row(
+                      children: [
+                        Expanded(child: PromptCardView(key: ValueKey(s.current.id), card: s.current.card)),
+                        const SizedBox(width: 12),
+                        ReplayButton(onTap: _replay),
+                      ],
+                    ),
+                  const SizedBox(height: 12),
+                  if (hasBoxes) ...[LetterBoxes(round: write!, spellFilled: s.spellFilled, correct: s.correct), const SizedBox(height: 12)],
+                  Expanded(
+                    child: Stack(
+                      children: [
+                        // the round starts after the intro (pillows and bubbles start moving on build)
+                        Positioned.fill(child: _introAt == null && !finale ? _animatedArea(s, boss: theme) : const SizedBox.shrink()),
+                        if (finale)
+                          Positioned.fill(
+                            child: AlarmFinale(
+                              time: _time,
+                              taps: _alarmTaps,
+                              needed: _alarmNeeded,
+                              lastTapAt: _alarmTapAt,
+                              rangAt: _alarmRangAt,
+                              bossName: bossName,
+                              onTap: _ringAlarm,
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                  if (write != null && !finale) ...[
+                    const SizedBox(height: 12),
+                    WriteBar(
+                      onErase: () => setState(() => _pad?.erase()),
+                      onDone: () {
+                        final p = _pad;
+                        if (p != null) ref.read(levelSessionProvider(level).notifier).submitWriting(p.judge());
+                      },
+                    ),
+                  ],
+                ],
+              ),
+            ),
+            Positioned.fill(
+              child: IgnorePointer(
+                child: ValueListenableBuilder<double>(
+                  valueListenable: _time,
+                  builder: (context, t, _) => CustomPaint(painter: ShotPainter(shots: _shots, t: t)),
+                ),
+              ),
+            ),
+            if (_introAt != null)
+              Positioned.fill(
+                child: BossIntro(time: _time, start: _introAt!, boss: bossIndex, bossName: bossName, theme: theme, onSkip: _endIntro),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
   /// Play area with the round flip (rotateX from the top edge) and the
-  /// wrong-answer shake; confetti bursts from its centre.
-  Widget _animatedArea(SessionState s) {
+  /// wrong-answer shake; confetti bursts from its centre. In a boss battle
+  /// ([boss]: the world's theme) rounds play as boss games.
+  Widget _animatedArea(SessionState s, {WorldTheme? boss}) {
     final area = KeyedSubtree(
       key: _areaKey,
-      child: _RoundArea(state: s, pad: _pad, glyphs: _glyphs, time: _time, onPen: _mascot.lookAt),
+      child: _RoundArea(state: s, pad: _pad, glyphs: _glyphs, time: _time, onPen: _mascot.lookAt, boss: boss),
     );
     return ConfettiBurst(
       trigger: _burst,
@@ -452,16 +709,54 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
 /// Chooses the view for the round type. Sealed [Round] makes this switch
 /// exhaustive: a new round type does not compile until it has a view here.
 class _RoundArea extends ConsumerWidget {
-  const _RoundArea({required this.state, required this.pad, required this.glyphs, required this.time, required this.onPen});
+  const _RoundArea({required this.state, required this.pad, required this.glyphs, required this.time, required this.onPen, this.boss});
   final SessionState state;
   final WritePadController? pad;
   final Map<String, List<String>> glyphs;
   final ValueNotifier<double> time;
   final ValueChanged<Offset> onPen;
 
+  /// The world's theme in a boss battle: rounds play as boss games.
+  final WorldTheme? boss;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final session = ref.read(levelSessionProvider(state.level).notifier);
+    final theme = boss;
+    if (theme != null) {
+      final r = state.current;
+      switch (r) {
+        case PickRound() when PillowFightView.fits(r):
+          return PillowFightView(key: ValueKey(r.id), state: state, round: r, onPick: session.pick, time: time);
+        case PopRound():
+          return SnoreBubblesView(key: ValueKey(r.id), state: state, round: r, onPop: session.popBubble, time: time);
+        case SpeakRound():
+          return ShoutView(key: ValueKey(r.id), state: state, onMic: session.listen, time: time);
+        case TruthRound():
+          return SunMoonView(key: ValueKey(r.id), state: state, round: r, onAnswer: session.answerTruth, time: time);
+        case HuntRound():
+          return DreamHuntView(key: ValueKey(r.id), state: state, round: r, onTap: session.tapCell, time: time);
+        case MatchRound():
+          return DreamCardsView(key: ValueKey(r.id), state: state, round: r, onFlip: session.flipCard);
+        case OrderRound():
+          return WakeWordView(key: ValueKey(r.id), state: state, round: r, onTile: session.placeTile, time: time);
+        case SortRound():
+          return PillowPilesView(key: ValueKey(r.id), state: state, round: r, onSort: session.sortItem, time: time);
+        case FixRound():
+          return SleepNotesView(key: ValueKey(r.id), state: state, round: r, onTap: session.fixItem, time: time);
+        case WriteRound():
+          final p = pad;
+          if (p != null) {
+            return MagicFrame(
+              theme: theme,
+              time: time,
+              child: WritePad(key: ValueKey(r.id), controller: p, state: state, round: r, glyphs: glyphs, time: time, onPen: onPen),
+            );
+          }
+        default:
+          break;
+      }
+    }
     return switch (state.current) {
       final PickRound r => PickRoundView(key: ValueKey(r.id), state: state, round: r, onPick: session.pick, time: time),
       final OrderRound r => OrderRoundView(key: ValueKey(r.id), state: state, round: r, onTile: session.placeTile, time: time),
