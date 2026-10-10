@@ -24,7 +24,7 @@ source "$conf"
 dir=/srv/likho
 target="$SSH_USER@$SERVER_IP"
 
-ctl="$(mktemp -d)"
+ctl="$(mktemp -d /tmp/likho.XXXXXX)" # short: a socket path must stay under 104 bytes (macOS)
 ssh_opts=(-i "$SSH_KEY" -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new
   -o ControlMaster=auto -o "ControlPath=$ctl/%C" -o ControlPersist=120)
 ssh "${ssh_opts[@]}" -fN "$target"
@@ -49,9 +49,11 @@ if [[ "$what" != "media" ]]; then
   (cd "$root/admin" && npm run -s build)
   "${rs[@]}" "$root/admin/dist/" "$target:$dir/admin/"
 
-  echo "▸ website"
-  (cd "$root/landing" && NEXT_PUBLIC_SITE_URL="https://$SITE_DOMAIN" npm run -s build)
-  "${rs[@]}" "$root/landing/out/" "$target:$dir/site/"
+  if [[ -n "${SITE_DOMAIN:-}" ]]; then
+    echo "▸ website"
+    (cd "$root/landing" && NEXT_PUBLIC_SITE_URL="https://$SITE_DOMAIN" npm run -s build)
+    "${rs[@]}" "$root/landing/out/" "$target:$dir/site/"
+  fi
 
   if [[ -f "$root/backend/geoip/country.mmdb" ]]; then
     "${rs[@]}" "$root/backend/geoip/country.mmdb" "$target:$dir/geoip/"
@@ -62,7 +64,7 @@ if [[ "$what" != "media" ]]; then
   "${rs[@]}" --exclude .env --exclude server.env --exclude terraform/ "$root/deploy" "$target:$dir/src/"
 
   echo "▸ secrets, nginx and HTTPS"
-  on "sudo API_DOMAIN='$API_DOMAIN' SITE_DOMAIN='$SITE_DOMAIN' LETSENCRYPT_EMAIL='$LETSENCRYPT_EMAIL' GOOGLE_CLIENT_IDS='$GOOGLE_CLIENT_IDS' ADMIN_EMAIL='$ADMIN_EMAIL' bash $dir/src/deploy/server-setup.sh"
+  on "sudo API_DOMAIN='$API_DOMAIN' SITE_DOMAIN='${SITE_DOMAIN:-}' LETSENCRYPT_EMAIL='$LETSENCRYPT_EMAIL' GOOGLE_CLIENT_IDS='$GOOGLE_CLIENT_IDS' ADMIN_EMAIL='$ADMIN_EMAIL' bash $dir/src/deploy/server-setup.sh"
 
   echo "▸ build and start"
   on "cd $dir/src/deploy && docker compose up -d --build --remove-orphans && docker image prune -f >/dev/null"
@@ -72,4 +74,4 @@ fi
 echo "▸ restart the API"
 on "cd $dir/src/deploy && docker compose restart api >/dev/null && for i in \$(seq 1 30); do docker compose exec -T api /likho-api health && exit 0; sleep 1; done; echo 'API not ready: docker compose logs api'; exit 1"
 
-curl -fsS --max-time 10 "https://$API_DOMAIN/healthz" >/dev/null && echo "✓ deployed: https://$API_DOMAIN and https://$SITE_DOMAIN"
+curl -fsS --max-time 10 "https://$API_DOMAIN/healthz" >/dev/null && echo "✓ deployed: https://$API_DOMAIN${SITE_DOMAIN:+ and https://$SITE_DOMAIN}"
