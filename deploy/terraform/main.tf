@@ -99,15 +99,22 @@ resource "vultr_instance" "likho" {
 }
 
 # ------------------------------------------------------------------ DNS
-# Vultr runs the domain's DNS: set the registrar's nameservers to
-# ns1.vultr.com and ns2.vultr.com.
+# Only with dns_on_vultr: Vultr runs the domain's DNS (set the registrar's
+# nameservers to ns1.vultr.com and ns2.vultr.com). Otherwise the DNS stays
+# where it is (e.g. Vercel) and you add the records in output "dns_records"
+# there.
+locals {
+  dns_names = var.website_on_server ? ["", "www", "api"] : ["api"]
+}
+
 resource "vultr_dns_domain" "likho" {
+  count  = var.dns_on_vultr ? 1 : 0
   domain = var.domain
 }
 
 resource "vultr_dns_record" "a" {
-  for_each = toset(["", "www", "api"])
-  domain   = vultr_dns_domain.likho.id
+  for_each = var.dns_on_vultr ? toset(local.dns_names) : toset([])
+  domain   = vultr_dns_domain.likho[0].id
   name     = each.value
   type     = "A"
   data     = vultr_instance.likho.main_ip
@@ -115,8 +122,8 @@ resource "vultr_dns_record" "a" {
 }
 
 resource "vultr_dns_record" "aaaa" {
-  for_each = toset(["", "www", "api"])
-  domain   = vultr_dns_domain.likho.id
+  for_each = var.dns_on_vultr ? toset(local.dns_names) : toset([])
+  domain   = vultr_dns_domain.likho[0].id
   name     = each.value
   type     = "AAAA"
   data     = vultr_instance.likho.v6_main_ip
@@ -125,7 +132,8 @@ resource "vultr_dns_record" "aaaa" {
 
 # only Let's Encrypt may issue certificates for the domain
 resource "vultr_dns_record" "caa" {
-  domain = vultr_dns_domain.likho.id
+  count  = var.dns_on_vultr ? 1 : 0
+  domain = vultr_dns_domain.likho[0].id
   name   = ""
   type   = "CAA"
   data   = "0 issue \"letsencrypt.org\""
@@ -135,7 +143,8 @@ resource "vultr_dns_record" "caa" {
 # the domain sends no email: receivers reject mail that pretends to be from
 # it (remove these two if you set up email on the domain)
 resource "vultr_dns_record" "spf" {
-  domain = vultr_dns_domain.likho.id
+  count  = var.dns_on_vultr ? 1 : 0
+  domain = vultr_dns_domain.likho[0].id
   name   = ""
   type   = "TXT"
   data   = "\"v=spf1 -all\""
@@ -143,7 +152,8 @@ resource "vultr_dns_record" "spf" {
 }
 
 resource "vultr_dns_record" "dmarc" {
-  domain = vultr_dns_domain.likho.id
+  count  = var.dns_on_vultr ? 1 : 0
+  domain = vultr_dns_domain.likho[0].id
   name   = "_dmarc"
   type   = "TXT"
   data   = "\"v=DMARC1; p=reject; adkim=s; aspf=s\""
@@ -161,7 +171,7 @@ resource "local_file" "server_env" {
     SSH_USER=deploy
     SSH_KEY=${replace(pathexpand(var.ssh_public_key_path), "/\\.pub$/", "")}
     API_DOMAIN=${local.api_domain}
-    SITE_DOMAIN=${var.domain}
+    SITE_DOMAIN=${var.website_on_server ? var.domain : ""}
     LETSENCRYPT_EMAIL=${var.letsencrypt_email}
     GOOGLE_CLIENT_IDS=${var.google_client_ids}
     ADMIN_EMAIL=${var.admin_email}

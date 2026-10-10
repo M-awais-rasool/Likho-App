@@ -1,15 +1,18 @@
 # Deploying Likho (Vultr + Terraform)
 
-One Ubuntu 24.04 server on Vultr runs everything:
+One Ubuntu 24.04 server on Vultr runs the API. Likho's domain is `likho.io`; its website
+(`landing/`, privacy and deletion pages) and its DNS are on Vercel.
 
 | Address | What | Served by |
 |---|---|---|
-| `https://<domain>` (and `www.`) | the website (`landing/`, privacy and deletion pages) | nginx, static files |
-| `https://api.<domain>` | the API the app talks to, and `/media/` | nginx → API container |
+| `https://api.likho.io` | the API the app talks to, and `/media/` | nginx → API container (Vultr) |
+| `https://likho.io` (and `www.`) | the website | Vercel |
 | admin panel | never on the internet | SSH tunnel (`admin-tunnel.sh`) |
 
-Terraform (`terraform/`) creates the server, its firewall, its DNS and its daily backups.
-`deploy.sh` puts Likho on it. Both run from your computer.
+Terraform (`terraform/`) creates the server, its firewall and its daily backups. `deploy.sh` puts
+Likho on it. Both run from your computer. (With `website_on_server = true` the server serves the
+website too, and with `dns_on_vultr = true` Vultr runs the DNS: then set the registrar's
+nameservers to `ns1.vultr.com` and `ns2.vultr.com` instead of adding records by hand.)
 
 ## What to get first
 
@@ -22,8 +25,8 @@ Terraform (`terraform/`) creates the server, its firewall, its DNS and its daily
    mkdir -p ~/.config/likho && printf 'export VULTR_API_KEY=%s\n' 'PASTE-KEY-HERE' > ~/.config/likho/vultr.env && chmod 600 ~/.config/likho/vultr.env
    ```
 
-3. **A domain**, from any registrar (Namecheap, for example). Turn on two-factor login, the
-   registrar lock and WHOIS privacy there.
+3. **The domain** (`likho.io`, bought at Name.com, DNS on Vercel). Turn on two-factor login, the
+   registrar lock and WHOIS privacy at the registrar, and two-factor login on Vercel.
 4. **A deploy SSH key with a passphrase** (used for nothing else):
 
    ```bash
@@ -44,8 +47,9 @@ terraform apply
 
 Then:
 
-1. At your registrar, set the domain's nameservers to `ns1.vultr.com` and `ns2.vultr.com`
-   (`terraform output nameservers`). DNS can take from minutes to a few hours.
+1. In Vercel → the `likho.io` domain → DNS Records, add the records from
+   `terraform output dns_records`: `api` A (the server's IPv4) and `api` AAAA (its IPv6). DNS can
+   take from minutes to an hour.
 2. Run `deploy/deploy.sh` from the repository root. It waits for the server's first-boot setup,
    then sends everything and starts it. On the first run it prints the admin panel password once:
    save it, then change it in the panel. If DNS does not point to the server yet, it says so; run
@@ -88,7 +92,7 @@ Running `deploy.sh` accepts the Let's Encrypt subscriber agreement for the certi
 **HTTPS**
 - Let's Encrypt certificate with TLS 1.2 and 1.3 only, renewed automatically.
 - HSTS for two years.
-- A DNS CAA record: only Let's Encrypt may issue certificates for the domain.
+- CAA records limit who may issue certificates for the domain (on Vercel: Let's Encrypt, Google and Sectigo; with `dns_on_vultr`, only Let's Encrypt).
 
 **Abuse and scraping**
 - nginx limits each IP:

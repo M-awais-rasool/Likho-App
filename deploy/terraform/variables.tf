@@ -1,6 +1,18 @@
 variable "domain" {
-  description = "The domain you bought, without www (e.g. likho.app). The website is served at it and www, the API at api.<domain>."
+  description = "The domain you bought, without www (e.g. likho.io). The API is served at api.<domain>; the website at it and www when website_on_server."
   type        = string
+}
+
+variable "website_on_server" {
+  description = "Serve the website (landing/) from this server too. false = it lives elsewhere (e.g. Vercel) and the server only runs the API."
+  type        = bool
+  default     = false
+}
+
+variable "dns_on_vultr" {
+  description = "Vultr runs the domain's DNS (nameservers ns1.vultr.com, ns2.vultr.com). false = the DNS stays where it is (e.g. Vercel): add the records in output dns_records there."
+  type        = bool
+  default     = false
 }
 
 variable "region" {

@@ -6,6 +6,11 @@ admin_email       = "you@example.com"
 # Google OAuth client IDs (iOS, Android, Web), comma separated.
 google_client_ids = ""
 
+# The website stays on Vercel and so does the DNS: the server only runs the
+# API; add the records from `terraform output dns_records` in Vercel.
+# website_on_server = false
+# dns_on_vultr      = false
+
 # region = "sgp"          # sgp Singapore, fra Frankfurt, bom Mumbai, del Delhi
 # plan   = "vc2-1c-2gb"
 # ssh_allowed_cidrs = ["203.0.113.7/32"]   # default: this computer's IP now
