@@ -91,9 +91,9 @@ Build settings (`--dart-define`):
 
 | name | what |
 |---|---|
-| `LIKHO_API` | API address. Debug default: `http://localhost:8080` (Android emulator `http://10.0.2.2:8080`); release: `https://api.likho.app` (placeholder) |
-| `GOOGLE_IOS_CLIENT_ID` | iOS OAuth client ID (also put its reversed ID in `ios/Runner/Info.plist`) |
-| `GOOGLE_SERVER_CLIENT_ID` | Web OAuth client ID (Android needs it for an ID token) |
+| `LIKHO_API` | API address. Debug default: `http://localhost:8080` (Android emulator `http://10.0.2.2:8080`); release: `https://api.likho.io` |
+| `GOOGLE_IOS_CLIENT_ID` | iOS OAuth client ID (also put its reversed ID in `ios/Runner/Info.plist`); not set up yet |
+| `GOOGLE_SERVER_CLIENT_ID` | Web OAuth client ID (Android needs it for an ID token); default: Likho's Web client |
 | `LIKHO_DEV_EMAIL` | debug only: sign in as this email through the API's `DEV_LOGIN`, without Google |
 | `LIKHO_TEST_EMAIL` | the account behind the Welcome screen's "Sign in as Test User" button (default `test.user@likho.app`); signs in through the API's `DEV_LOGIN` like a Google account |
 | `LIKHO_TEST_LOGIN` | `true` shows the "Test User" button in a release build too (debug and profile builds always show it) |
@@ -724,9 +724,17 @@ Docker's network (a Linux server is several times faster, and nginx serves the m
 
 ## Before production
 
-* Google OAuth client IDs: `GOOGLE_CLIENT_IDS` (API), `GOOGLE_IOS_CLIENT_ID` /
-  `GOOGLE_SERVER_CLIENT_ID` (app build), the iOS URL scheme in `app/ios/Runner/Info.plist`.
-* The API address for release builds (`ApiConfig` in `app/lib/data/api/api_client.dart`).
+* Google Sign-In (Google Cloud project "Likho", Google Auth Platform → Clients): the Web client is
+  the app's `GOOGLE_SERVER_CLIENT_ID` and goes into the API's `GOOGLE_CLIENT_IDS`. Android is
+  matched by package `com.likho.abcwriting` + the signing key's SHA-1: one Android client each for
+  the debug key, the upload key and Play's app signing key (Play Console → Protected with Play →
+  Play Store distribution → Play app signing, after the first upload). Without the right SHA-1,
+  sign-in ends as "canceled". iOS: an iOS client, `GOOGLE_IOS_CLIENT_ID` and the URL scheme in
+  `app/ios/Runner/Info.plist` (not set up yet).
+* Play upload key: `keytool -genkey -v -keystore ~/likho-upload.jks -keyalg RSA -keysize 2048
+  -validity 10000 -alias upload`, then `app/android/key.properties` (git-ignored) with
+  `storePassword`, `keyPassword`, `keyAlias=upload` and `storeFile=/Users/<you>/likho-upload.jks`.
+  Back up both. Without it release builds are signed with the debug key, which Play refuses.
 * Store purchases for Likho Plus (the 7-day trial works today).
 * Admin panel: change the password the first deploy prints; countries come from `GEOIP_DB`
   (`make geoip`, sent by `deploy.sh`).
