@@ -5,17 +5,18 @@ The course teaches one new thing per level in 8 to 10 games, and no two
 games of a level are of the same kind (a child notices a repeat; a shorter
 level is better than a repeated game). This script writes the levels from
 the tables here and in later_worlds.py, so a change to the plan is one edit,
-not 144 hand-edited files:
+not 210 hand-edited files. Every world has 15 levels and ends in its boss:
 
-    world 1  Letter Land        1-31  capitals A-Z in alphabet order, nine games a
-                                      letter, a review after every five, the
-                                      Sleepy Snail boss at 31
-    world 2  Small Letter Cove  32-62 small a-z with their sounds, the same way,
-                                      the Sleepy Fish boss at 62
-    worlds 3-12                 63 on phonics, first words, letter pairs, blends,
-                                      sight words, sentences, doing words,
-                                      questions, reading, stories (later_worlds.py)
+    world 1  Letter Land        1-15   capitals A-M in alphabet order, nine games a
+                                       letter, a review after G, the Sleepy Snail boss
+    world 2  Alphabet Jungle    16-30  capitals N-Z, a review after T, the Sleepy Monkey
+    world 3  Small Letter Beach 31-45  small a-m with their sounds, the Sleepy Crab
+    world 4  Letter Forest      46-60  small n-z with their sounds, the Sleepy Bear
+    worlds 5-14                 61-210 phonics, first words, letter pairs, blends,
+                                       sight words, sentences, doing words,
+                                       questions, reading, stories (later_worlds.py)
 
+Worlds 1 and 2 (all 26 capitals) are free; Likho Plus from world 3 on.
 Writing is always on the one paper pad.
 
     python3 tools/curriculum/build_levels.py          # write the levels
@@ -39,7 +40,7 @@ COURSE = ROOT / "backend" / "content" / "courses" / "english-handwriting"
 WORLDS = COURSE / "worlds"
 SCHEMA = "../../../../../schema/level.schema.json"
 
-FREE_UP_TO = 31  # world 1 (capitals A-Z) is free; Likho Plus from world 2 on
+FREE_UP_TO = 30  # worlds 1 and 2 (capitals A-Z) are free; Likho Plus from world 3 on
 
 # ------------------------------------------------------------------ letters
 
@@ -99,11 +100,34 @@ LOOKALIKE = {
     "s": "zce", "t": "fli", "u": "nvy", "v": "wuy", "w": "mvu", "x": "kzy", "y": "gvj", "z": "sxn",
 }
 
-# Capitals A to Z, then small a to z, in alphabet order (the order children
-# and parents know). A review level follows every five letters; the last
-# group ends in the world's boss.
-CAPITAL_GROUPS = [("A to E", "ABCDE"), ("F to J", "FGHIJ"), ("K to O", "KLMNO"), ("P to T", "PQRST"), (None, "UVWXYZ")]
-SMALL_GROUPS = [("a to e", "abcde"), ("f to j", "fghij"), ("k to o", "klmno"), ("p to t", "pqrst"), (None, "uvwxyz")]
+# The alphabet worlds: capitals A to Z, then small a to z, in alphabet order
+# (the order children and parents know), thirteen letters a world. A review
+# follows the world's seventh letter and the world ends in its boss, which
+# plays six letters from across the world and wakes on a word to finish.
+#   folder, world.json fields, small letters?, letters before the review, the
+#   review's name, letters after it, boss: (name, its letters, the word, the
+#   word's picture, what Pencil says, intro text, intro picture)
+ALPHABET = [
+    ("01-letter-land", {"name": "Letter Land", "skill": "Capitals A to M", "icon": "grass", "themeId": "letterLand",
+                        "boss": {"id": "snail", "name": "Sleepy Snail"}},
+     False, "ABCDEFG", "A to G", "HIJKLM",
+     ("Wake the Snail", "CFHJLM", "CAT", "cat", "{Shh|ʃːː}, the snail is sleeping. Let's wake it up with our capital letters!",
+      "A B C", "snail")),
+    ("02-alphabet-jungle", {"name": "Alphabet Jungle", "skill": "Capitals N to Z", "icon": "spa", "themeId": "actionJungle",
+                            "boss": {"id": "monkey", "name": "Sleepy Monkey"}},
+     False, "NOPQRST", "N to T", "UVWXYZ",
+     ("Wake the Monkey", "PRSUWZ", "SUN", "sun",
+      "The little monkey is fast asleep in the jungle. Let's write our capital letters to wake it up!", "N O P", "monkey")),
+    ("03-small-letter-beach", {"name": "Small Letter Beach", "skill": "Small a to m & sounds", "icon": "beach_access", "themeId": "blendBeach",
+                               "boss": {"id": "crab", "name": "Sleepy Crab"}},
+     True, "abcdefg", "a to g", "hijklm",
+     ("Wake the Crab", "bdghkm", "cat", "cat", "The crab is fast asleep on the beach. Let's write our small letters to wake it up!", "a b c", "crab")),
+    ("04-letter-forest", {"name": "Letter Forest", "skill": "Small n to z & sounds", "icon": "forest", "themeId": "phonicsForest",
+                          "boss": {"id": "bear", "name": "Sleepy Bear"}},
+     True, "nopqrst", "n to t", "uvwxyz",
+     ("Wake the Bear", "npqsuy", "nest", "nest", "The bear is fast asleep in the forest. Let's write our small letters to wake it up!",
+      "n o p", "bear")),
+]
 
 # Pick shapes (letters float on the first four), taken in turn so
 # neighbouring levels look different. Writing is always on the paper pad.
@@ -150,9 +174,10 @@ class Level:
                 o["id"] = f"{rid}-o{i + 1}"
         self.rounds.append(r)
 
-    def pick(self, text, say, crd, labels, answer, shape=None, pictures=None, hide=False):
+    def pick(self, text, say, crd, labels, answer, shape=None, pictures=None, hide=False, keep_order=False):
         order = list(labels)
-        self.rnd.shuffle(order)
+        if not keep_order:  # the words of a sentence to tap stay in order
+            self.rnd.shuffle(order)
         options = [{"id": "", "label": lab, "picture": (pictures or {}).get(lab), "color": None, "hideLabel": hide} for lab in order]
         self._add("pick", text, say, crd, {
             "options": options, "answer": {"kind": "label", "value": answer}, "shape": shape, "layout": None,
@@ -414,8 +439,9 @@ def letter_level(number, ch, small, step):
     return L
 
 
-def review_level(number, letters, small, step, boss=False):
-    """The group's letters again, one game each, every game a different kind (turning like the letters)."""
+def review_level(number, letters, small, step, boss=None):
+    """The group's letters again, one game each, every game a different kind (turning like the letters).
+    boss: (word, picture key) the boss wakes up on, a word to finish."""
     L = Level(number, seed=f"review{number}")
     say_small = "small " if small else ""
     g = [letter_case(c, small) for c in letters]
@@ -483,8 +509,9 @@ def review_level(number, letters, small, step, boss=False):
 
     def last():  # fill a box (the boss wakes up on this one)
         if boss:
-            w = "cat" if small else "CAT"
-            L.write("Finish the word!", "Cat! Write the missing letter to wake it up!", card(None, pic("cat")), "missing", w[0], word=w, missing=0)
+            w, key = boss
+            L.write("Finish the word!", f"{w.capitalize()}! Write the missing letter to wake it up!", card(None, pic(key)), "missing", w[0],
+                    word=w, missing=0)
         else:
             run = alphabet_run(g[1], 3, small)
             L.write("Which letter is missing?", "Which letter is missing?", card(None, pic("bottle_message", "bottle message")), "missing", g[1],
@@ -544,13 +571,14 @@ def slug(s):
 
 
 def plan():
-    """(world folder, level doc) for worlds 1 and 2, in order."""
+    """(world folder, level doc) for the alphabet worlds (1 to 4), in order."""
     out = []
-    n = 0
-    for world, groups, small, boss_name in (("01-letter-land", CAPITAL_GROUPS, False, "Wake the Snail"),
-                                            ("02-small-letter-cove", SMALL_GROUPS, True, "Wake the Fish")):
-        step = 0
-        for gi, (review, letters) in enumerate(groups):
+    n = step = 0
+    was_small = False
+    for world, _, small, first, review, rest, (boss_name, boss_letters, boss_word, boss_pic, boss_say, boss_text, boss_key) in ALPHABET:
+        if small != was_small:  # the small letters turn through the games from the start again, like the capitals
+            step, was_small = 0, small
+        for letters, after in ((first, "review"), (rest, "boss")):
             for ch in letters:
                 n += 1
                 word = WORDS[ch.lower()][0]
@@ -563,19 +591,15 @@ def plan():
                 out.append((world, level_doc(L, title, skill, "spa" if small else "edit", intro(shown, word, say, WORDS[ch.lower()][1]))))
                 step += 1
             n += 1
-            group = list(letters)
-            if gi == len(groups) - 1:
-                L = review_level(n, letters, small, step, boss=True)
-                say = ("The fish is fast asleep. Let's write our small letters to wake it up!" if small
-                       else "{Shh|ʃːː}, the snail is sleeping. Let's wake it up with our capital letters!")
-                out.append((world, level_doc(L, boss_name, "Boss · small letters" if small else "Boss · capitals", "bedtime",
-                                             intro("a b c" if small else "A B C", "fish" if small else "snail", say, "fish" if small else "snail"),
-                                             boss=True)))
-            else:
+            if after == "review":
                 L = review_level(n, letters, small, step)
-                say = f"{review}! Let's play with " + ", ".join(("small " if small else "") + name(c) for c in group) + "."
+                say = f"{review}! Let's play with " + ", ".join(("small " if small else "") + name(c) for c in letters) + "."
                 out.append((world, level_doc(L, f"Small {review}" if small else review, "Review", "auto_awesome",
-                                             intro(" ".join(group), "star", say, "star"))))
+                                             intro(" ".join(letters), "star", say, "star"))))
+            else:
+                L = review_level(n, boss_letters, small, step, boss=(boss_word, boss_pic))
+                out.append((world, level_doc(L, boss_name, "Boss · small letters" if small else "Boss · capitals", "bedtime",
+                                             intro(boss_text, boss_key, boss_say, boss_key), boss=True)))
             step += 1
     return out
 
@@ -606,26 +630,26 @@ def main():
         print("pictures to draw (tools/illustrations):", ", ".join(missing) or "none")
         return
 
-    # every world's levels are written from scratch
+    # every world is written from scratch: folders of an older plan go too
     for wdir in WORLDS.iterdir():
-        if wdir.name >= "03":
+        if wdir.is_dir():
             shutil.rmtree(wdir)
-    for world in ("01-letter-land", "02-small-letter-cove"):
-        shutil.rmtree(WORLDS / world / "levels", ignore_errors=True)
-        (WORLDS / world / "levels").mkdir(parents=True)
+    for folder, world, *_ in ALPHABET:
+        (WORLDS / folder / "levels").mkdir(parents=True)
+        write_json(WORLDS / folder / "world.json", world_doc(folder, world))
     for world, d in levels:
         write_json(WORLDS / world / "levels" / f"{d['number']:02d}-{slug(d['name'])}.json", d)
-
-    w2 = WORLDS / "02-small-letter-cove" / "world.json"
-    wd = json.loads(w2.read_text(encoding="utf-8"))
-    wd["skill"] = "Small letters & sounds"
-    write_json(w2, wd)
 
     for folder, wdoc, d in later:
         (WORLDS / folder / "levels").mkdir(parents=True, exist_ok=True)
         write_json(WORLDS / folder / "world.json", wdoc)
         write_json(WORLDS / folder / "levels" / f"{d['number']:02d}-{slug(d['name'])}.json", d)
-    print(f"{len(levels) + len(later)} levels in {len({f for f, _, _ in later}) + 2} worlds written")
+    print(f"{len(levels) + len(later)} levels in {len({f for f, _, _ in later}) + len(ALPHABET)} worlds written")
+
+
+def world_doc(folder, fields):
+    """world.json: the world's order is the number its folder starts with."""
+    return {"$schema": "../../../../schema/world.schema.json", "id": f"world-{int(folder[:2])}", "order": int(folder[:2]), **fields}
 
 
 def picture_keys(docs):
