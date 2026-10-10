@@ -1,10 +1,10 @@
 {
   "$schema": "../../../../schema/world.schema.json",
-  "id": "world-9",
-  "order": 9,
-  "name": "Action Jungle",
-  "skill": "Doing & describing words",
-  "icon": "directions_run",
+  "id": "world-2",
+  "order": 2,
+  "name": "Alphabet Jungle",
+  "skill": "Capitals N to Z",
+  "icon": "spa",
   "themeId": "actionJungle",
   "boss": {
     "id": "monkey",

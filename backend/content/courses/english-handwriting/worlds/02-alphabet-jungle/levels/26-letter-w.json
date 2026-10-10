@@ -2,19 +2,19 @@
   "$schema": "../../../../../schema/level.schema.json",
   "id": "level-26",
   "number": 26,
-  "name": "Letter V",
-  "skill": "Capital V",
+  "name": "Letter W",
+  "skill": "Capital W",
   "icon": "edit",
   "isBoss": false,
   "requiresSubscription": false,
   "intro": {
-    "text": "V",
-    "word": "violin",
-    "say": "{V|vˈiː}! {V|vˈiː} is for violin. Let's learn {V|vˈiː}!",
-    "audio": "voice/line-a2ad0a2189b1f169.m4a",
+    "text": "W",
+    "word": "whale",
+    "say": "{W|dˈʌbəljuː}! {W|dˈʌbəljuː} is for whale. Let's learn {W|dˈʌbəljuː}!",
+    "audio": "voice/line-f0d9f59d0772c071.m4a",
     "picture": {
-      "key": "violin",
-      "label": "violin",
+      "key": "whale",
+      "label": "whale",
       "url": null
     }
   },
@@ -29,25 +29,25 @@
       "id": "level-26-r1",
       "type": "pop",
       "prompt": {
-        "text": "Pop every V!",
-        "say": "Pop every {V|vˈiː} bubble!",
-        "audio": "voice/line-53ab0fced9372479.m4a"
+        "text": "Pop every W!",
+        "say": "Pop every {W|dˈʌbəljuː} bubble!",
+        "audio": "voice/line-746ef82cfe137322.m4a"
       },
       "card": {
-        "text": "V",
+        "text": "W",
         "picture": {
-          "key": "violin",
-          "label": "violin",
+          "key": "whale",
+          "label": "whale",
           "url": null
         },
         "listen": false
       },
       "pop": {
-        "target": "V",
+        "target": "W",
         "others": [
-          "W",
-          "Y",
-          "U"
+          "M",
+          "V",
+          "N"
         ],
         "count": 5
       }
@@ -56,23 +56,23 @@
       "id": "level-26-r2",
       "type": "write",
       "prompt": {
-        "text": "Trace V",
-        "say": "Trace {V|vˈiː}.",
-        "audio": "voice/line-d2fca6ac9fca853a.m4a"
+        "text": "Trace W",
+        "say": "Trace {W|dˈʌbəljuː}.",
+        "audio": "voice/line-d47f9a99dfaaf058.m4a"
       },
       "card": {
-        "text": "V",
+        "text": "W",
         "picture": {
-          "key": "violin",
-          "label": "violin",
+          "key": "whale",
+          "label": "whale",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "trace",
-        "target": "V",
-        "guide": "V",
+        "target": "W",
+        "guide": "W",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -83,30 +83,30 @@
       "id": "level-26-r3",
       "type": "hunt",
       "prompt": {
-        "text": "Find every V!",
-        "say": "Find every {V|vˈiː}!",
-        "audio": "voice/line-cf714231fb9ca570.m4a"
+        "text": "Find every W!",
+        "say": "Find every {W|dˈʌbəljuː}!",
+        "audio": "voice/line-7f853839370a3fd3.m4a"
       },
       "card": {
-        "text": "V",
+        "text": "W",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "V",
+        "target": "W",
         "grid": [
-          "Y",
-          "Y",
           "W",
-          "V",
-          "V",
           "W",
-          "Y",
-          "U",
+          "W",
+          "M",
+          "V",
+          "N",
           "V",
           "W",
-          "V",
-          "U"
+          "N",
+          "M",
+          "M",
+          "V"
         ]
       }
     },
@@ -114,19 +114,19 @@
       "id": "level-26-r4",
       "type": "write",
       "prompt": {
-        "text": "Join the dots to make V",
-        "say": "Join the dots to make {V|vˈiː}.",
-        "audio": "voice/line-9528676938f2e478.m4a"
+        "text": "Join the dots to make W",
+        "say": "Join the dots to make {W|dˈʌbəljuː}.",
+        "audio": "voice/line-b69ab2c0347f5aff.m4a"
       },
       "card": {
-        "text": "V",
+        "text": "W",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "dots",
-        "target": "V",
-        "guide": "V",
+        "target": "W",
+        "guide": "W",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -138,8 +138,8 @@
       "type": "truth",
       "prompt": {
         "text": "True or silly?",
-        "say": "Goat starts with {V|vˈiː}. True, or silly?",
-        "audio": "voice/line-db35f2a2a7b3d3df.m4a"
+        "say": "Octopus starts with {W|dˈʌbəljuː}. True, or silly?",
+        "audio": "voice/line-3f880ccc57505234.m4a"
       },
       "card": {
         "text": null,
@@ -147,10 +147,10 @@
         "listen": true
       },
       "truth": {
-        "text": "Goat starts with V.",
+        "text": "Octopus starts with W.",
         "picture": {
-          "key": "goat",
-          "label": "goat",
+          "key": "octopus",
+          "label": "octopus",
           "url": null
         },
         "answer": false
@@ -161,8 +161,8 @@
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
-        "say": "{U|jˈuː}, ..., {W|dˈʌbəljuː}! Which letter is missing?",
-        "audio": "voice/line-8ce200b56d5e604e.m4a"
+        "say": "{V|vˈiː}, ..., {X|ˈɛks}! Which letter is missing?",
+        "audio": "voice/line-c28f7119c547fd52.m4a"
       },
       "card": {
         "text": null,
@@ -175,9 +175,9 @@
       },
       "write": {
         "mode": "missing",
-        "target": "V",
-        "guide": "V",
-        "word": "UVW",
+        "target": "W",
+        "guide": "W",
+        "word": "VWX",
         "missingIndex": 1,
         "sentence": false,
         "story": false
@@ -187,19 +187,19 @@
       "id": "level-26-r7",
       "type": "write",
       "prompt": {
-        "text": "Write V by yourself",
-        "say": "Now write {V|vˈiː} all by yourself!",
-        "audio": "voice/line-361ebc78f88da482.m4a"
+        "text": "Write W by yourself",
+        "say": "Now write {W|dˈʌbəljuː} all by yourself!",
+        "audio": "voice/line-0852798cfb4b3576.m4a"
       },
       "card": {
-        "text": "V",
+        "text": "W",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "free",
-        "target": "V",
-        "guide": "V",
+        "target": "W",
+        "guide": "W",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -210,21 +210,21 @@
       "id": "level-26-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: V is for violin!",
-        "say": "{V|vˈiː} is for violin! Now you say it.",
-        "audio": "voice/line-72f08a24f323a74d.m4a"
+        "text": "Say: W is for whale!",
+        "say": "{W|dˈʌbəljuː} is for whale! Now you say it.",
+        "audio": "voice/line-f2c446ee2306dd06.m4a"
       },
       "card": {
-        "text": "V is for violin!",
+        "text": "W is for whale!",
         "picture": {
-          "key": "violin",
-          "label": "violin",
+          "key": "whale",
+          "label": "whale",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "V is for violin!"
+        "expected": "W is for whale!"
       }
     }
   ]

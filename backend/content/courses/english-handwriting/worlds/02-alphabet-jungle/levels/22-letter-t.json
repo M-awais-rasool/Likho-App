@@ -2,19 +2,19 @@
   "$schema": "../../../../../schema/level.schema.json",
   "id": "level-22",
   "number": 22,
-  "name": "Letter S",
-  "skill": "Capital S",
+  "name": "Letter T",
+  "skill": "Capital T",
   "icon": "edit",
   "isBoss": false,
   "requiresSubscription": false,
   "intro": {
-    "text": "S",
-    "word": "sun",
-    "say": "{S|ˈɛs}! {S|ˈɛs} is for sun. Let's learn {S|ˈɛs}!",
-    "audio": "voice/line-4ad7cfad9b89c0fe.m4a",
+    "text": "T",
+    "word": "tiger",
+    "say": "{T|tˈiː}! {T|tˈiː} is for tiger. Let's learn {T|tˈiː}!",
+    "audio": "voice/line-bb3b867ec105f29b.m4a",
     "picture": {
-      "key": "sun",
-      "label": "sun",
+      "key": "tiger",
+      "label": "tiger",
       "url": null
     }
   },
@@ -29,25 +29,25 @@
       "id": "level-22-r1",
       "type": "pop",
       "prompt": {
-        "text": "Pop every S!",
-        "say": "Pop every {S|ˈɛs} bubble!",
-        "audio": "voice/line-f3880511928e42cb.m4a"
+        "text": "Pop every T!",
+        "say": "Pop every {T|tˈiː} bubble!",
+        "audio": "voice/line-93e42fd4ff8334d4.m4a"
       },
       "card": {
-        "text": "S",
+        "text": "T",
         "picture": {
-          "key": "sun",
-          "label": "sun",
+          "key": "tiger",
+          "label": "tiger",
           "url": null
         },
         "listen": false
       },
       "pop": {
-        "target": "S",
+        "target": "T",
         "others": [
-          "Z",
-          "G",
-          "C"
+          "I",
+          "L",
+          "F"
         ],
         "count": 5
       }
@@ -56,23 +56,23 @@
       "id": "level-22-r2",
       "type": "write",
       "prompt": {
-        "text": "Trace S",
-        "say": "Trace {S|ˈɛs}.",
-        "audio": "voice/line-13864f0f02f9b1b0.m4a"
+        "text": "Trace T",
+        "say": "Trace {T|tˈiː}.",
+        "audio": "voice/line-d9e53d0bc158855e.m4a"
       },
       "card": {
-        "text": "S",
+        "text": "T",
         "picture": {
-          "key": "sun",
-          "label": "sun",
+          "key": "tiger",
+          "label": "tiger",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "trace",
-        "target": "S",
-        "guide": "S",
+        "target": "T",
+        "guide": "T",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -84,43 +84,43 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote some {S|ˈɛs} the wrong way. Tap them to fix them!",
-        "audio": "voice/line-5aeeea8c36a497b9.m4a"
+        "say": "Oops! Pencil wrote some {T|tˈiː} the wrong way. Tap them to fix them!",
+        "audio": "voice/line-95ebe731573b061f.m4a"
       },
       "card": {
-        "text": "S",
+        "text": "T",
         "picture": null,
         "listen": false
       },
       "fix": {
         "items": [
           {
-            "text": "S",
-            "wrong": "mirror",
-            "at": null
-          },
-          {
-            "text": "S",
-            "wrong": "mirror",
-            "at": null
-          },
-          {
-            "text": "S",
+            "text": "T",
             "wrong": null,
             "at": null
           },
           {
-            "text": "S",
+            "text": "T",
             "wrong": null,
             "at": null
           },
           {
-            "text": "S",
+            "text": "T",
+            "wrong": "upside",
+            "at": null
+          },
+          {
+            "text": "T",
             "wrong": null,
             "at": null
           },
           {
-            "text": "S",
+            "text": "T",
+            "wrong": "upside",
+            "at": null
+          },
+          {
+            "text": "T",
             "wrong": null,
             "at": null
           }
@@ -131,19 +131,19 @@
       "id": "level-22-r4",
       "type": "write",
       "prompt": {
-        "text": "Join the dots to make S",
-        "say": "Join the dots to make {S|ˈɛs}.",
-        "audio": "voice/line-fd870b687f98f97c.m4a"
+        "text": "Join the dots to make T",
+        "say": "Join the dots to make {T|tˈiː}.",
+        "audio": "voice/line-085590b023179288.m4a"
       },
       "card": {
-        "text": "S",
+        "text": "T",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "dots",
-        "target": "S",
-        "guide": "S",
+        "target": "T",
+        "guide": "T",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -154,12 +154,12 @@
       "id": "level-22-r5",
       "type": "pick",
       "prompt": {
-        "text": "What starts with /s/?",
-        "say": "{S|ˈɛs} says {/s/|sːː}. Which one starts with {/s/|sːː}?",
-        "audio": "voice/line-9374f15561604097.m4a"
+        "text": "What starts with /t/?",
+        "say": "{T|tˈiː} says {/t/|tʌ}. Which one starts with {/t/|tʌ}?",
+        "audio": "voice/line-9335f1ac7a21afb4.m4a"
       },
       "card": {
-        "text": "S",
+        "text": "T",
         "picture": null,
         "listen": true
       },
@@ -167,10 +167,10 @@
         "options": [
           {
             "id": "level-22-r5-o1",
-            "label": "insect",
+            "label": "tiger",
             "picture": {
-              "key": "insect",
-              "label": "insect",
+              "key": "tiger",
+              "label": "tiger",
               "url": null
             },
             "color": null,
@@ -178,10 +178,10 @@
           },
           {
             "id": "level-22-r5-o2",
-            "label": "yo-yo",
+            "label": "umbrella",
             "picture": {
-              "key": "yoyo",
-              "label": "yo-yo",
+              "key": "umbrella",
+              "label": "umbrella",
               "url": null
             },
             "color": null,
@@ -189,10 +189,10 @@
           },
           {
             "id": "level-22-r5-o3",
-            "label": "sun",
+            "label": "egg",
             "picture": {
-              "key": "sun",
-              "label": "sun",
+              "key": "egg",
+              "label": "egg",
               "url": null
             },
             "color": null,
@@ -201,7 +201,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "sun"
+          "value": "tiger"
         },
         "shape": "planet",
         "layout": null,
@@ -215,8 +215,8 @@
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
-        "say": "{R|ˈɑːɹ}, ..., {T|tˈiː}! Which letter is missing?",
-        "audio": "voice/line-e82d51d6682fd54b.m4a"
+        "say": "{S|ˈɛs}, ..., {U|jˈuː}! Which letter is missing?",
+        "audio": "voice/line-d3f4c5a238fc98e0.m4a"
       },
       "card": {
         "text": null,
@@ -229,9 +229,9 @@
       },
       "write": {
         "mode": "missing",
-        "target": "S",
-        "guide": "S",
-        "word": "RST",
+        "target": "T",
+        "guide": "T",
+        "word": "STU",
         "missingIndex": 1,
         "sentence": false,
         "story": false
@@ -241,19 +241,19 @@
       "id": "level-22-r7",
       "type": "write",
       "prompt": {
-        "text": "Write S by yourself",
-        "say": "Now write {S|ˈɛs} all by yourself!",
-        "audio": "voice/line-d0e40bd3b84442a4.m4a"
+        "text": "Write T by yourself",
+        "say": "Now write {T|tˈiː} all by yourself!",
+        "audio": "voice/line-296980e327386706.m4a"
       },
       "card": {
-        "text": "S",
+        "text": "T",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "free",
-        "target": "S",
-        "guide": "S",
+        "target": "T",
+        "guide": "T",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -264,21 +264,21 @@
       "id": "level-22-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: S is for sun!",
-        "say": "{S|ˈɛs} is for sun! Now you say it.",
-        "audio": "voice/line-4507e719e9fdcba3.m4a"
+        "text": "Say: T is for tiger!",
+        "say": "{T|tˈiː} is for tiger! Now you say it.",
+        "audio": "voice/line-cf0603cb513cbe7a.m4a"
       },
       "card": {
-        "text": "S is for sun!",
+        "text": "T is for tiger!",
         "picture": {
-          "key": "sun",
-          "label": "sun",
+          "key": "tiger",
+          "label": "tiger",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "S is for sun!"
+        "expected": "T is for tiger!"
       }
     }
   ]

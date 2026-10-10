@@ -1,0 +1,315 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-21",
+  "number": 21,
+  "name": "Letter S",
+  "skill": "Capital S",
+  "icon": "edit",
+  "isBoss": false,
+  "requiresSubscription": false,
+  "intro": {
+    "text": "S",
+    "word": "sun",
+    "say": "{S|ˈɛs}! {S|ˈɛs} is for sun. Let's learn {S|ˈɛs}!",
+    "audio": "voice/line-4ad7cfad9b89c0fe.m4a",
+    "picture": {
+      "key": "sun",
+      "label": "sun",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-21-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find S!",
+        "say": "Find {S|ˈɛs}!",
+        "audio": "voice/line-6de6ac254fa9aaac.m4a"
+      },
+      "card": {
+        "text": "S",
+        "picture": {
+          "key": "sun",
+          "label": "sun",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-21-r1-o1",
+            "label": "Z",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-21-r1-o2",
+            "label": "G",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-21-r1-o3",
+            "label": "C",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-21-r1-o4",
+            "label": "S",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "S"
+        },
+        "shape": "cloud",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-21-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace S",
+        "say": "Trace {S|ˈɛs}.",
+        "audio": "voice/line-13864f0f02f9b1b0.m4a"
+      },
+      "card": {
+        "text": "S",
+        "picture": {
+          "key": "sun",
+          "label": "sun",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "S",
+        "guide": "S",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-21-r3",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Sun starts with {S|ˈɛs}. True, or silly?",
+        "audio": "voice/line-c7b3cc9344d11020.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "Sun starts with S.",
+        "picture": {
+          "key": "sun",
+          "label": "sun",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-21-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make S",
+        "say": "Join the dots to make {S|ˈɛs}.",
+        "audio": "voice/line-fd870b687f98f97c.m4a"
+      },
+      "card": {
+        "text": "S",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "S",
+        "guide": "S",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-21-r5",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every S!",
+        "say": "Find every {S|ˈɛs}!",
+        "audio": "voice/line-c25d139f8be607d9.m4a"
+      },
+      "card": {
+        "text": "S",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "S",
+        "grid": [
+          "G",
+          "Z",
+          "S",
+          "C",
+          "S",
+          "G",
+          "Z",
+          "G",
+          "S",
+          "S",
+          "Z",
+          "C"
+        ]
+      }
+    },
+    {
+      "id": "level-21-r6",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/s/|sːː} or {/r/|ɹːː}?",
+        "audio": "voice/line-1fed2d6421905a62.m4a"
+      },
+      "card": {
+        "text": "S R",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "S",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "R",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "six",
+            "picture": {
+              "key": "six",
+              "label": "six",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "seed",
+            "picture": {
+              "key": "seed",
+              "label": "seed",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "rain",
+            "picture": {
+              "key": "rain",
+              "label": "rain",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "rabbit",
+            "picture": {
+              "key": "rabbit",
+              "label": "rabbit",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-21-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write S",
+        "say": "Look at {S|ˈɛs}. Then write it from memory!",
+        "audio": "voice/line-deb7d804846b2275.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "sun",
+          "label": "sun",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "S",
+        "guide": "S",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-21-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: S is for sun!",
+        "say": "{S|ˈɛs} is for sun! Now you say it.",
+        "audio": "voice/line-4507e719e9fdcba3.m4a"
+      },
+      "card": {
+        "text": "S is for sun!",
+        "picture": {
+          "key": "sun",
+          "label": "sun",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "S is for sun!"
+      }
+    }
+  ]
+}

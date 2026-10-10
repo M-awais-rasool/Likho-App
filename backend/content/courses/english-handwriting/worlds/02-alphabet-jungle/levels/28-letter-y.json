@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-29",
-  "number": 29,
+  "id": "level-28",
+  "number": 28,
   "name": "Letter Y",
   "skill": "Capital Y",
   "icon": "edit",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-29-r1",
+      "id": "level-28-r1",
       "type": "pop",
       "prompt": {
         "text": "Pop every Y!",
@@ -53,7 +53,7 @@
       }
     },
     {
-      "id": "level-29-r2",
+      "id": "level-28-r2",
       "type": "write",
       "prompt": {
         "text": "Trace Y",
@@ -80,67 +80,71 @@
       }
     },
     {
-      "id": "level-29-r3",
-      "type": "pick",
+      "id": "level-28-r3",
+      "type": "match",
       "prompt": {
-        "text": "What starts with /y/?",
-        "say": "{Y|wˈaɪ} says {/y/|jʌ}. Which one starts with {/y/|jʌ}?",
-        "audio": "voice/line-61a570d3be495165.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each letter to its picture.",
+        "audio": "voice/line-5bbaa5b0c4fb6512.m4a"
       },
       "card": {
         "text": "Y",
-        "picture": null,
-        "listen": true
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-29-r3-o1",
-            "label": "yo-yo",
-            "picture": {
-              "key": "yoyo",
-              "label": "yo-yo",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-29-r3-o2",
-            "label": "cat",
-            "picture": {
-              "key": "cat",
-              "label": "cat",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-29-r3-o3",
-            "label": "insect",
-            "picture": {
-              "key": "insect",
-              "label": "insect",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "yo-yo"
+        "picture": {
+          "key": "yoyo",
+          "label": "yo-yo",
+          "url": null
         },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "X",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "box",
+                "label": "box",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "Y",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "yoyo",
+                "label": "yo-yo",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "Z",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "zebra",
+                "label": "zebra",
+                "url": null
+              }
+            }
+          }
+        ]
       }
     },
     {
-      "id": "level-29-r4",
+      "id": "level-28-r4",
       "type": "write",
       "prompt": {
         "text": "Join the dots to make Y",
@@ -163,82 +167,103 @@
       }
     },
     {
-      "id": "level-29-r5",
-      "type": "hunt",
+      "id": "level-28-r5",
+      "type": "truth",
       "prompt": {
-        "text": "Find every Y!",
-        "say": "Find every {Y|wˈaɪ}!",
-        "audio": "voice/line-a55ff441e15029c1.m4a"
+        "text": "True or silly?",
+        "say": "Goat starts with {Y|wˈaɪ}. True, or silly?",
+        "audio": "voice/line-43f0d3f365197724.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "Goat starts with Y.",
+        "picture": {
+          "key": "goat",
+          "label": "goat",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-28-r6",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the letters!",
+        "say": "Put each letter in its basket: {Y|wˈaɪ} or {V|vˈiː}!",
+        "audio": "voice/line-4c564d370e68e0dd.m4a"
+      },
+      "card": {
+        "text": "Y V",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "Y",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "V",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "Y",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "V",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "V",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "Y",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "Y",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "V",
+            "picture": null,
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-28-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write Y by yourself",
+        "say": "Now write {Y|wˈaɪ} all by yourself!",
+        "audio": "voice/line-4438ecabe3a7aa9a.m4a"
       },
       "card": {
         "text": "Y",
         "picture": null,
         "listen": false
       },
-      "hunt": {
-        "target": "Y",
-        "grid": [
-          "V",
-          "T",
-          "Y",
-          "Y",
-          "V",
-          "X",
-          "V",
-          "Y",
-          "X",
-          "T",
-          "Y",
-          "X"
-        ]
-      }
-    },
-    {
-      "id": "level-29-r6",
-      "type": "write",
-      "prompt": {
-        "text": "Which letter is missing?",
-        "say": "{X|ˈɛks}, ..., {Z|zˈiː}! Which letter is missing?",
-        "audio": "voice/line-5daae88c0e8937df.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "bottle_message",
-          "label": "bottle message",
-          "url": null
-        },
-        "listen": false
-      },
       "write": {
-        "mode": "missing",
-        "target": "Y",
-        "guide": "Y",
-        "word": "XYZ",
-        "missingIndex": 1,
-        "sentence": false,
-        "story": false
-      }
-    },
-    {
-      "id": "level-29-r7",
-      "type": "write",
-      "prompt": {
-        "text": "Look, then write Y",
-        "say": "Look at {Y|wˈaɪ}. Then write it from memory!",
-        "audio": "voice/line-818489e194490954.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "yoyo",
-          "label": "yo-yo",
-          "url": null
-        },
-        "listen": false
-      },
-      "write": {
-        "mode": "flash",
+        "mode": "free",
         "target": "Y",
         "guide": "Y",
         "word": null,
@@ -248,7 +273,7 @@
       }
     },
     {
-      "id": "level-29-r8",
+      "id": "level-28-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: Y is for yo-yo!",

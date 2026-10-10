@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-21",
-  "number": 21,
+  "id": "level-20",
+  "number": 20,
   "name": "Letter R",
   "skill": "Capital R",
   "icon": "edit",
@@ -26,12 +26,12 @@
   },
   "rounds": [
     {
-      "id": "level-21-r1",
-      "type": "pick",
+      "id": "level-20-r1",
+      "type": "pop",
       "prompt": {
-        "text": "Find R!",
-        "say": "Find {R|ˈɑːɹ}!",
-        "audio": "voice/line-c99f3f5a6a4f9612.m4a"
+        "text": "Pop every R!",
+        "say": "Pop every {R|ˈɑːɹ} bubble!",
+        "audio": "voice/line-20e4957e305dcb7c.m4a"
       },
       "card": {
         "text": "R",
@@ -42,50 +42,18 @@
         },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-21-r1-o1",
-            "label": "P",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-21-r1-o2",
-            "label": "R",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-21-r1-o3",
-            "label": "K",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-21-r1-o4",
-            "label": "B",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
+      "pop": {
+        "target": "R",
+        "others": [
+          "P",
+          "B",
+          "K"
         ],
-        "answer": {
-          "kind": "label",
-          "value": "R"
-        },
-        "shape": "cloud",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+        "count": 5
       }
     },
     {
-      "id": "level-21-r2",
+      "id": "level-20-r2",
       "type": "write",
       "prompt": {
         "text": "Trace R",
@@ -112,30 +80,71 @@
       }
     },
     {
-      "id": "level-21-r3",
-      "type": "truth",
+      "id": "level-20-r3",
+      "type": "match",
       "prompt": {
-        "text": "True or silly?",
-        "say": "Robot starts with {R|ˈɑːɹ}. True, or silly?",
-        "audio": "voice/line-5d1ad054893fb42b.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each letter to its picture.",
+        "audio": "voice/line-5bbaa5b0c4fb6512.m4a"
       },
       "card": {
-        "text": null,
-        "picture": null,
-        "listen": true
-      },
-      "truth": {
-        "text": "Robot starts with R.",
+        "text": "R",
         "picture": {
           "key": "robot",
           "label": "robot",
           "url": null
         },
-        "answer": true
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "Q",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "queen",
+                "label": "queen",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "R",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "robot",
+                "label": "robot",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "S",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "sun",
+                "label": "sun",
+                "url": null
+              }
+            }
+          }
+        ]
       }
     },
     {
-      "id": "level-21-r4",
+      "id": "level-20-r4",
       "type": "write",
       "prompt": {
         "text": "Join the dots to make R",
@@ -158,46 +167,15 @@
       }
     },
     {
-      "id": "level-21-r5",
-      "type": "hunt",
+      "id": "level-20-r5",
+      "type": "sort",
       "prompt": {
-        "text": "Find every R!",
-        "say": "Find every {R|ˈɑːɹ}!",
-        "audio": "voice/line-d8eee37da33557db.m4a"
+        "text": "Feed it /r/!",
+        "say": "This monster only eats things that start with {/r/|ɹːː}. Feed it!",
+        "audio": "voice/line-bb87e167b1dc2d85.m4a"
       },
       "card": {
         "text": "R",
-        "picture": null,
-        "listen": false
-      },
-      "hunt": {
-        "target": "R",
-        "grid": [
-          "B",
-          "R",
-          "K",
-          "P",
-          "R",
-          "R",
-          "K",
-          "B",
-          "P",
-          "R",
-          "B",
-          "P"
-        ]
-      }
-    },
-    {
-      "id": "level-21-r6",
-      "type": "sort",
-      "prompt": {
-        "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/r/|ɹːː} or {/s/|sːː}?",
-        "audio": "voice/line-aa79ce459328a0fe.m4a"
-      },
-      "card": {
-        "text": "R S",
         "picture": null,
         "listen": false
       },
@@ -207,23 +185,9 @@
             "label": "R",
             "picture": null,
             "bin": null
-          },
-          {
-            "label": "S",
-            "picture": null,
-            "bin": null
           }
         ],
         "items": [
-          {
-            "label": "rain",
-            "picture": {
-              "key": "rain",
-              "label": "rain",
-              "url": null
-            },
-            "bin": 0
-          },
           {
             "label": "ring",
             "picture": {
@@ -234,54 +198,93 @@
             "bin": 0
           },
           {
-            "label": "sun",
+            "label": "lion",
             "picture": {
-              "key": "sun",
-              "label": "sun",
+              "key": "lion",
+              "label": "lion",
               "url": null
             },
-            "bin": 1
+            "bin": null
           },
           {
-            "label": "six",
+            "label": "rabbit",
             "picture": {
-              "key": "six",
-              "label": "six",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "robot",
-            "picture": {
-              "key": "robot",
-              "label": "robot",
+              "key": "rabbit",
+              "label": "rabbit",
               "url": null
             },
             "bin": 0
+          },
+          {
+            "label": "rain",
+            "picture": {
+              "key": "rain",
+              "label": "rain",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "tiger",
+            "picture": {
+              "key": "tiger",
+              "label": "tiger",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "yo-yo",
+            "picture": {
+              "key": "yoyo",
+              "label": "yo-yo",
+              "url": null
+            },
+            "bin": null
           }
         ]
       }
     },
     {
-      "id": "level-21-r7",
-      "type": "write",
+      "id": "level-20-r6",
+      "type": "order",
       "prompt": {
-        "text": "Look, then write R",
-        "say": "Look at {R|ˈɑːɹ}. Then write it from memory!",
-        "audio": "voice/line-c98336618c5af177.m4a"
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "robot",
-          "label": "robot",
+          "key": "train",
+          "label": "train",
           "url": null
         },
         "listen": false
       },
+      "order": {
+        "tiles": [
+          "Q",
+          "R",
+          "S"
+        ]
+      }
+    },
+    {
+      "id": "level-20-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write R by yourself",
+        "say": "Now write {R|ˈɑːɹ} all by yourself!",
+        "audio": "voice/line-1aeadc51e31d68d3.m4a"
+      },
+      "card": {
+        "text": "R",
+        "picture": null,
+        "listen": false
+      },
       "write": {
-        "mode": "flash",
+        "mode": "free",
         "target": "R",
         "guide": "R",
         "word": null,
@@ -291,7 +294,7 @@
       }
     },
     {
-      "id": "level-21-r8",
+      "id": "level-20-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: R is for robot!",

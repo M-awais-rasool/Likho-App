@@ -1,20 +1,20 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-28",
-  "number": 28,
-  "name": "Letter X",
-  "skill": "Capital X",
+  "id": "level-24",
+  "number": 24,
+  "name": "Letter U",
+  "skill": "Capital U",
   "icon": "edit",
   "isBoss": false,
   "requiresSubscription": false,
   "intro": {
-    "text": "X",
-    "word": "box",
-    "say": "{X|ˈɛks}! {X|ˈɛks} is for box. Let's learn {X|ˈɛks}!",
-    "audio": "voice/line-d5ea5cf761db27cc.m4a",
+    "text": "U",
+    "word": "umbrella",
+    "say": "{U|jˈuː}! {U|jˈuː} is for umbrella. Let's learn {U|jˈuː}!",
+    "audio": "voice/line-9604a36052b04e89.m4a",
     "picture": {
-      "key": "box",
-      "label": "box",
+      "key": "umbrella",
+      "label": "umbrella",
       "url": null
     }
   },
@@ -26,53 +26,53 @@
   },
   "rounds": [
     {
-      "id": "level-28-r1",
+      "id": "level-24-r1",
       "type": "pop",
       "prompt": {
-        "text": "Pop every X!",
-        "say": "Pop every {X|ˈɛks} bubble!",
-        "audio": "voice/line-b19b87ccf4654846.m4a"
+        "text": "Pop every U!",
+        "say": "Pop every {U|jˈuː} bubble!",
+        "audio": "voice/line-2e9466058915c9f5.m4a"
       },
       "card": {
-        "text": "X",
+        "text": "U",
         "picture": {
-          "key": "box",
-          "label": "box",
+          "key": "umbrella",
+          "label": "umbrella",
           "url": null
         },
         "listen": false
       },
       "pop": {
-        "target": "X",
+        "target": "U",
         "others": [
-          "Y",
-          "K",
-          "V"
+          "V",
+          "J",
+          "O"
         ],
         "count": 5
       }
     },
     {
-      "id": "level-28-r2",
+      "id": "level-24-r2",
       "type": "write",
       "prompt": {
-        "text": "Trace X",
-        "say": "Trace {X|ˈɛks}.",
-        "audio": "voice/line-5f4edf787dc6bf08.m4a"
+        "text": "Trace U",
+        "say": "Trace {U|jˈuː}.",
+        "audio": "voice/line-5dbfa247c8a10144.m4a"
       },
       "card": {
-        "text": "X",
+        "text": "U",
         "picture": {
-          "key": "box",
-          "label": "box",
+          "key": "umbrella",
+          "label": "umbrella",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "trace",
-        "target": "X",
-        "guide": "X",
+        "target": "U",
+        "guide": "U",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -80,53 +80,53 @@
       }
     },
     {
-      "id": "level-28-r3",
+      "id": "level-24-r3",
       "type": "hunt",
       "prompt": {
-        "text": "Find every X!",
-        "say": "Find every {X|ˈɛks}!",
-        "audio": "voice/line-2defcb46acfe6631.m4a"
+        "text": "Find every U!",
+        "say": "Find every {U|jˈuː}!",
+        "audio": "voice/line-b4b35e2d31a7d6dc.m4a"
       },
       "card": {
-        "text": "X",
+        "text": "U",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "X",
+        "target": "U",
         "grid": [
+          "O",
           "V",
-          "Y",
-          "K",
-          "Y",
-          "X",
-          "Y",
-          "X",
-          "X",
-          "K",
-          "K",
-          "X",
-          "V"
+          "J",
+          "U",
+          "U",
+          "U",
+          "J",
+          "V",
+          "O",
+          "V",
+          "J",
+          "U"
         ]
       }
     },
     {
-      "id": "level-28-r4",
+      "id": "level-24-r4",
       "type": "write",
       "prompt": {
-        "text": "Join the dots to make X",
-        "say": "Join the dots to make {X|ˈɛks}.",
-        "audio": "voice/line-ddd872d0efd1cf56.m4a"
+        "text": "Join the dots to make U",
+        "say": "Join the dots to make {U|jˈuː}.",
+        "audio": "voice/line-b64ec31a76ad4d41.m4a"
       },
       "card": {
-        "text": "X",
+        "text": "U",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "dots",
-        "target": "X",
-        "guide": "X",
+        "target": "U",
+        "guide": "U",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -134,12 +134,12 @@
       }
     },
     {
-      "id": "level-28-r5",
+      "id": "level-24-r5",
       "type": "truth",
       "prompt": {
         "text": "True or silly?",
-        "say": "Yo-yo has {X|ˈɛks}. True, or silly?",
-        "audio": "voice/line-504d79b2518ca3e4.m4a"
+        "say": "Dog starts with {U|jˈuː}. True, or silly?",
+        "audio": "voice/line-3a34bc5de3ef2ee3.m4a"
       },
       "card": {
         "text": null,
@@ -147,92 +147,92 @@
         "listen": true
       },
       "truth": {
-        "text": "Yo-yo has X.",
+        "text": "Dog starts with U.",
         "picture": {
-          "key": "yoyo",
-          "label": "yo-yo",
+          "key": "dog",
+          "label": "dog",
           "url": null
         },
         "answer": false
       }
     },
     {
-      "id": "level-28-r6",
+      "id": "level-24-r6",
       "type": "sort",
       "prompt": {
         "text": "Sort the letters!",
-        "say": "Put each letter in its basket: {X|ˈɛks} or {Y|wˈaɪ}!",
-        "audio": "voice/line-e4e50da6f9927af3.m4a"
+        "say": "Put each letter in its basket: {U|jˈuː} or {V|vˈiː}!",
+        "audio": "voice/line-2ef18279f834a06a.m4a"
       },
       "card": {
-        "text": "X Y",
+        "text": "U V",
         "picture": null,
         "listen": false
       },
       "sort": {
         "bins": [
           {
-            "label": "X",
+            "label": "U",
             "picture": null,
             "bin": null
           },
           {
-            "label": "Y",
+            "label": "V",
             "picture": null,
             "bin": null
           }
         ],
         "items": [
           {
-            "label": "X",
-            "picture": null,
-            "bin": 0
-          },
-          {
-            "label": "X",
-            "picture": null,
-            "bin": 0
-          },
-          {
-            "label": "Y",
+            "label": "V",
             "picture": null,
             "bin": 1
           },
           {
-            "label": "Y",
+            "label": "V",
             "picture": null,
             "bin": 1
           },
           {
-            "label": "X",
+            "label": "U",
             "picture": null,
             "bin": 0
           },
           {
-            "label": "Y",
+            "label": "U",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "V",
             "picture": null,
             "bin": 1
+          },
+          {
+            "label": "U",
+            "picture": null,
+            "bin": 0
           }
         ]
       }
     },
     {
-      "id": "level-28-r7",
+      "id": "level-24-r7",
       "type": "write",
       "prompt": {
-        "text": "Write X by yourself",
-        "say": "Now write {X|ˈɛks} all by yourself!",
-        "audio": "voice/line-a3cefe13f4ad6a50.m4a"
+        "text": "Write U by yourself",
+        "say": "Now write {U|jˈuː} all by yourself!",
+        "audio": "voice/line-7f6c800bf5f67d41.m4a"
       },
       "card": {
-        "text": "X",
+        "text": "U",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "free",
-        "target": "X",
-        "guide": "X",
+        "target": "U",
+        "guide": "U",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -240,24 +240,24 @@
       }
     },
     {
-      "id": "level-28-r8",
+      "id": "level-24-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: X is for box!",
-        "say": "{X|ˈɛks} is for box! Now you say it.",
-        "audio": "voice/line-69b37cf99fa7a6eb.m4a"
+        "text": "Say: U is for umbrella!",
+        "say": "{U|jˈuː} is for umbrella! Now you say it.",
+        "audio": "voice/line-b595a4e48e70b3c9.m4a"
       },
       "card": {
-        "text": "X is for box!",
+        "text": "U is for umbrella!",
         "picture": {
-          "key": "box",
-          "label": "box",
+          "key": "umbrella",
+          "label": "umbrella",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "X is for box!"
+        "expected": "U is for umbrella!"
       }
     }
   ]

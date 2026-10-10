@@ -2,19 +2,19 @@
   "$schema": "../../../../../schema/level.schema.json",
   "id": "level-27",
   "number": 27,
-  "name": "Letter W",
-  "skill": "Capital W",
+  "name": "Letter X",
+  "skill": "Capital X",
   "icon": "edit",
   "isBoss": false,
   "requiresSubscription": false,
   "intro": {
-    "text": "W",
-    "word": "whale",
-    "say": "{W|dˈʌbəljuː}! {W|dˈʌbəljuː} is for whale. Let's learn {W|dˈʌbəljuː}!",
-    "audio": "voice/line-f0d9f59d0772c071.m4a",
+    "text": "X",
+    "word": "box",
+    "say": "{X|ˈɛks}! {X|ˈɛks} is for box. Let's learn {X|ˈɛks}!",
+    "audio": "voice/line-d5ea5cf761db27cc.m4a",
     "picture": {
-      "key": "whale",
-      "label": "whale",
+      "key": "box",
+      "label": "box",
       "url": null
     }
   },
@@ -29,15 +29,15 @@
       "id": "level-27-r1",
       "type": "pick",
       "prompt": {
-        "text": "Find W!",
-        "say": "Find {W|dˈʌbəljuː}!",
-        "audio": "voice/line-5942369580872edf.m4a"
+        "text": "Find X!",
+        "say": "Find {X|ˈɛks}!",
+        "audio": "voice/line-4e1e3e943477e652.m4a"
       },
       "card": {
-        "text": "W",
+        "text": "X",
         "picture": {
-          "key": "whale",
-          "label": "whale",
+          "key": "box",
+          "label": "box",
           "url": null
         },
         "listen": false
@@ -46,28 +46,28 @@
         "options": [
           {
             "id": "level-27-r1-o1",
-            "label": "W",
+            "label": "X",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
             "id": "level-27-r1-o2",
-            "label": "N",
+            "label": "K",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
             "id": "level-27-r1-o3",
-            "label": "M",
+            "label": "V",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
             "id": "level-27-r1-o4",
-            "label": "V",
+            "label": "Y",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -75,7 +75,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "W"
+          "value": "X"
         },
         "shape": "mushroom",
         "layout": null,
@@ -88,23 +88,23 @@
       "id": "level-27-r2",
       "type": "write",
       "prompt": {
-        "text": "Trace W",
-        "say": "Trace {W|dˈʌbəljuː}.",
-        "audio": "voice/line-d47f9a99dfaaf058.m4a"
+        "text": "Trace X",
+        "say": "Trace {X|ˈɛks}.",
+        "audio": "voice/line-5f4edf787dc6bf08.m4a"
       },
       "card": {
-        "text": "W",
+        "text": "X",
         "picture": {
-          "key": "whale",
-          "label": "whale",
+          "key": "box",
+          "label": "box",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "trace",
-        "target": "W",
-        "guide": "W",
+        "target": "X",
+        "guide": "X",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -113,100 +113,81 @@
     },
     {
       "id": "level-27-r3",
-      "type": "sort",
+      "type": "pick",
       "prompt": {
-        "text": "Feed it /w/!",
-        "say": "This monster only eats things that start with {/w/|wʌ}. Feed it!",
-        "audio": "voice/line-408f02f27abad061.m4a"
+        "text": "Which one has /x/?",
+        "say": "{X|ˈɛks} says {/x/|ks}. Which one has {/x/|ks}?",
+        "audio": "voice/line-f489ff6b944404ed.m4a"
       },
       "card": {
-        "text": "W",
+        "text": "X",
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "sort": {
-        "bins": [
+      "pick": {
+        "options": [
           {
-            "label": "W",
-            "picture": null,
-            "bin": null
+            "id": "level-27-r3-o1",
+            "label": "nest",
+            "picture": {
+              "key": "nest",
+              "label": "nest",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-27-r3-o2",
+            "label": "box",
+            "picture": {
+              "key": "box",
+              "label": "box",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-27-r3-o3",
+            "label": "lion",
+            "picture": {
+              "key": "lion",
+              "label": "lion",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
           }
         ],
-        "items": [
-          {
-            "label": "watch",
-            "picture": {
-              "key": "watch",
-              "label": "watch",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "wing",
-            "picture": {
-              "key": "wing",
-              "label": "wing",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "whale",
-            "picture": {
-              "key": "whale",
-              "label": "whale",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "fish",
-            "picture": {
-              "key": "fish",
-              "label": "fish",
-              "url": null
-            },
-            "bin": null
-          },
-          {
-            "label": "dog",
-            "picture": {
-              "key": "dog",
-              "label": "dog",
-              "url": null
-            },
-            "bin": null
-          },
-          {
-            "label": "moon",
-            "picture": {
-              "key": "moon",
-              "label": "moon",
-              "url": null
-            },
-            "bin": null
-          }
-        ]
+        "answer": {
+          "kind": "label",
+          "value": "box"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
       }
     },
     {
       "id": "level-27-r4",
       "type": "write",
       "prompt": {
-        "text": "Join the dots to make W",
-        "say": "Join the dots to make {W|dˈʌbəljuː}.",
-        "audio": "voice/line-b69ab2c0347f5aff.m4a"
+        "text": "Join the dots to make X",
+        "say": "Join the dots to make {X|ˈɛks}.",
+        "audio": "voice/line-ddd872d0efd1cf56.m4a"
       },
       "card": {
-        "text": "W",
+        "text": "X",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "dots",
-        "target": "W",
-        "guide": "W",
+        "target": "X",
+        "guide": "X",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -222,30 +203,16 @@
         "audio": "voice/line-5bbaa5b0c4fb6512.m4a"
       },
       "card": {
-        "text": "W",
+        "text": "X",
         "picture": {
-          "key": "whale",
-          "label": "whale",
+          "key": "box",
+          "label": "box",
           "url": null
         },
         "listen": false
       },
       "match": {
         "pairs": [
-          {
-            "a": {
-              "text": "V",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "violin",
-                "label": "violin",
-                "url": null
-              }
-            }
-          },
           {
             "a": {
               "text": "W",
@@ -273,6 +240,20 @@
                 "url": null
               }
             }
+          },
+          {
+            "a": {
+              "text": "Y",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "yoyo",
+                "label": "yo-yo",
+                "url": null
+              }
+            }
           }
         ]
       }
@@ -296,9 +277,9 @@
       },
       "order": {
         "tiles": [
-          "V",
           "W",
-          "X"
+          "X",
+          "Y"
         ]
       }
     },
@@ -306,23 +287,23 @@
       "id": "level-27-r7",
       "type": "write",
       "prompt": {
-        "text": "Look, then write W",
-        "say": "Look at {W|dˈʌbəljuː}. Then write it from memory!",
-        "audio": "voice/line-b63e89bc58218b5a.m4a"
+        "text": "Look, then write X",
+        "say": "Look at {X|ˈɛks}. Then write it from memory!",
+        "audio": "voice/line-eeeb63fad16d581d.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "whale",
-          "label": "whale",
+          "key": "box",
+          "label": "box",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "flash",
-        "target": "W",
-        "guide": "W",
+        "target": "X",
+        "guide": "X",
         "word": null,
         "missingIndex": null,
         "sentence": false,
@@ -333,21 +314,21 @@
       "id": "level-27-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: W is for whale!",
-        "say": "{W|dˈʌbəljuː} is for whale! Now you say it.",
-        "audio": "voice/line-f2c446ee2306dd06.m4a"
+        "text": "Say: X is for box!",
+        "say": "{X|ˈɛks} is for box! Now you say it.",
+        "audio": "voice/line-69b37cf99fa7a6eb.m4a"
       },
       "card": {
-        "text": "W is for whale!",
+        "text": "X is for box!",
         "picture": {
-          "key": "whale",
-          "label": "whale",
+          "key": "box",
+          "label": "box",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "W is for whale!"
+        "expected": "X is for box!"
       }
     }
   ]

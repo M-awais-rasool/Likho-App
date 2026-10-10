@@ -1,0 +1,301 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-18",
+  "number": 18,
+  "name": "Letter P",
+  "skill": "Capital P",
+  "icon": "edit",
+  "isBoss": false,
+  "requiresSubscription": false,
+  "intro": {
+    "text": "P",
+    "word": "pig",
+    "say": "{P|pˈiː}! {P|pˈiː} is for pig. Let's learn {P|pˈiː}!",
+    "audio": "voice/line-2f6e06f57d5b71ea.m4a",
+    "picture": {
+      "key": "pig",
+      "label": "pig",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-18-r1",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every P!",
+        "say": "Pop every {P|pˈiː} bubble!",
+        "audio": "voice/line-6b98568a95521a08.m4a"
+      },
+      "card": {
+        "text": "P",
+        "picture": {
+          "key": "pig",
+          "label": "pig",
+          "url": null
+        },
+        "listen": false
+      },
+      "pop": {
+        "target": "P",
+        "others": [
+          "R",
+          "B",
+          "D"
+        ],
+        "count": 5
+      }
+    },
+    {
+      "id": "level-18-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace P",
+        "say": "Trace {P|pˈiː}.",
+        "audio": "voice/line-fb8eba8a0a1afed7.m4a"
+      },
+      "card": {
+        "text": "P",
+        "picture": {
+          "key": "pig",
+          "label": "pig",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "P",
+        "guide": "P",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-18-r3",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each letter to its picture.",
+        "audio": "voice/line-5bbaa5b0c4fb6512.m4a"
+      },
+      "card": {
+        "text": "P",
+        "picture": {
+          "key": "pig",
+          "label": "pig",
+          "url": null
+        },
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "O",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "octopus",
+                "label": "octopus",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "P",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "pig",
+                "label": "pig",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "Q",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "queen",
+                "label": "queen",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-18-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make P",
+        "say": "Join the dots to make {P|pˈiː}.",
+        "audio": "voice/line-81f6c00decb2d0c6.m4a"
+      },
+      "card": {
+        "text": "P",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "P",
+        "guide": "P",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-18-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /p/?",
+        "say": "{P|pˈiː} says {/p/|pʌ}. Which one starts with {/p/|pʌ}?",
+        "audio": "voice/line-3f4758ddb5061779.m4a"
+      },
+      "card": {
+        "text": "P",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-18-r5-o1",
+            "label": "pig",
+            "picture": {
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-18-r5-o2",
+            "label": "insect",
+            "picture": {
+              "key": "insect",
+              "label": "insect",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-18-r5-o3",
+            "label": "whale",
+            "picture": {
+              "key": "whale",
+              "label": "whale",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "pig"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-18-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "{O|ˈoʊ}, ..., {Q|kjˈuː}! Which letter is missing?",
+        "audio": "voice/line-828842d34271cdb4.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bottle_message",
+          "label": "bottle message",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "P",
+        "guide": "P",
+        "word": "OPQ",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-18-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write P by yourself",
+        "say": "Now write {P|pˈiː} all by yourself!",
+        "audio": "voice/line-7a01fb71d546441a.m4a"
+      },
+      "card": {
+        "text": "P",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "P",
+        "guide": "P",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-18-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: P is for pig!",
+        "say": "{P|pˈiː} is for pig! Now you say it.",
+        "audio": "voice/line-213d9eb62e49a995.m4a"
+      },
+      "card": {
+        "text": "P is for pig!",
+        "picture": {
+          "key": "pig",
+          "label": "pig",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "P is for pig!"
+      }
+    }
+  ]
+}
