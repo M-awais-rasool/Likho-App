@@ -145,6 +145,7 @@ func adminRoutes(r *gin.Engine, h *handler.AdminHandler, c *cache.Cache) {
 	in.POST("/content/courses/:courseId/levels/validate", h.ValidateLevel)
 	in.GET("/audit", h.Audit)
 	in.GET("/system", h.System)
+	in.GET("/closed-test", h.ClosedTestBoard)
 
 	edit := in.Group("", middleware.RequireRole(model.RoleEditor))
 	edit.POST("/families/:parentId/plus", h.GrantPlus)
@@ -161,6 +162,12 @@ func adminRoutes(r *gin.Engine, h *handler.AdminHandler, c *cache.Cache) {
 	edit.POST("/content/courses/:courseId/worlds", h.SaveWorld)
 	edit.PUT("/content/courses/:courseId/worlds/:folder", h.SaveWorld)
 	edit.DELETE("/content/courses/:courseId/worlds/:folder", h.DeleteWorld)
+	edit.PUT("/closed-test/settings", h.SetClosedTestSettings)
+	edit.POST("/closed-test/testers", h.AddTesters)
+	edit.PATCH("/closed-test/testers/:id", h.UpdateTester)
+	edit.DELETE("/closed-test/testers/:id", h.DeleteTester)
+	edit.PUT("/closed-test/accounts/:parentId", h.LinkTestAccount)
+	edit.DELETE("/closed-test/accounts/:parentId", h.UnlinkTestAccount)
 
 	own := in.Group("", middleware.RequireRole(model.RoleOwner))
 	own.DELETE("/families/:parentId", h.DeleteFamily)

@@ -21,12 +21,13 @@ import (
 
 // AdminHandler is the admin panel's API (/admin/api/v1).
 type AdminHandler struct {
-	Auth    *service.AdminAuthService
-	Admin   *service.AdminService
-	Content *service.ContentService
-	Health  *HealthHandler
-	Info    SystemInfo
-	Secure  bool // cookie only over HTTPS (production)
+	Auth       *service.AdminAuthService
+	Admin      *service.AdminService
+	Content    *service.ContentService
+	ClosedTest *service.ClosedTestService
+	Health     *HealthHandler
+	Info       SystemInfo
+	Secure     bool // cookie only over HTTPS (production)
 }
 
 // SystemInfo is shown on the panel's system page.
