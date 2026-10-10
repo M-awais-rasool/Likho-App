@@ -19,7 +19,8 @@ import 'app_feedback.dart';
 /// * mic opens: a "ready" blip; next round: a paper swish (also halfway
 ///   through a long level: Pencil cheers on screen, but no fanfare, so it
 ///   never sounds like the level is over)
-/// * the boss wakes after the last round of a boss level
+/// * (boss levels: the battle plays its own hits and the wake-up, see
+///   GameplayScreen's boss battle)
 /// * writing: a soft pencil-on-paper texture while the finger moves
 class GameFeedback extends ConsumerStatefulWidget {
   const GameFeedback({super.key, required this.level, required this.child});
@@ -33,14 +34,12 @@ class GameFeedback extends ConsumerStatefulWidget {
 class _GameFeedbackState extends ConsumerState<GameFeedback> {
   late final AppFeedback _fb = ref.read(feedbackProvider);
   int _streak = 0;
-  Timer? _boss;
   int? _pointer;
   Offset _down = Offset.zero;
   bool _writing = false;
 
   @override
   void dispose() {
-    _boss?.cancel();
     if (_writing) _fb.stopWriting();
     super.dispose();
   }
@@ -69,9 +68,6 @@ class _GameFeedbackState extends ConsumerState<GameFeedback> {
       _streak++;
       final r = next.current;
       _fb.correct(streak: _streak, balloon: r is PickRound && (r.shape ?? widget.level.presentation.shape) == 'balloon');
-      if (widget.level.isBoss && next.isLastRound) {
-        _boss = Timer(const Duration(milliseconds: 280), _fb.bossWake);
-      }
     }
   }
 

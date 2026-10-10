@@ -173,8 +173,8 @@ void main() {
         container: c,
         child: MaterialApp(
           home: LevelCompleteScreen(
-            level: testCourse.level(31),
-            outcome: const LevelOutcome(level: 31, stars: 3, gain: 5, firstTime: true),
+            level: testCourse.level(15),
+            outcome: const LevelOutcome(level: 15, stars: 3, gain: 5, firstTime: true),
             onAgain: () {},
             onNext: () {},
           ),
