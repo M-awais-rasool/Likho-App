@@ -1,8 +1,8 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-96",
-  "number": 96,
-  "name": "Wake the Crab",
+  "id": "level-120",
+  "number": 120,
+  "name": "Wake the Goat",
   "skill": "Boss · blends",
   "icon": "bedtime",
   "isBoss": true,
@@ -10,8 +10,8 @@
   "intro": {
     "text": "star flag frog",
     "word": "star",
-    "say": "The crab is sleeping in the sand. Let's spell words to wake it up!",
-    "audio": "voice/line-1c1b7faa5ea01ded.m4a",
+    "say": "The goat is sleeping on the mountain. Let's spell words to wake it up!",
+    "audio": "voice/line-af2f248026e144f7.m4a",
     "picture": {
       "key": "star",
       "label": "star",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-96-r1",
+      "id": "level-120-r1",
       "type": "write",
       "prompt": {
         "text": "Spell star",
@@ -53,91 +53,30 @@
       }
     },
     {
-      "id": "level-96-r2",
-      "type": "sort",
+      "id": "level-120-r2",
+      "type": "pop",
       "prompt": {
-        "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/p/|pʌ} or {/l/|lːː}?",
-        "audio": "voice/line-c9ad72c6fafa9726.m4a"
+        "text": "Pop every tent!",
+        "say": "Pop every bubble that says tent!",
+        "audio": "voice/line-9e0c8e8049c690c9.m4a"
       },
       "card": {
-        "text": "p l",
+        "text": "tent",
         "picture": null,
         "listen": false
       },
-      "sort": {
-        "bins": [
-          {
-            "label": "p",
-            "picture": null,
-            "bin": null
-          },
-          {
-            "label": "l",
-            "picture": null,
-            "bin": null
-          }
+      "pop": {
+        "target": "tent",
+        "others": [
+          "flag",
+          "four",
+          "frog"
         ],
-        "items": [
-          {
-            "label": "lamp",
-            "picture": {
-              "key": "lamp",
-              "label": "lamp",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "pot",
-            "picture": {
-              "key": "pot",
-              "label": "pot",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "pencil",
-            "picture": {
-              "key": "pencil",
-              "label": "pencil",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "lemon",
-            "picture": {
-              "key": "lemon",
-              "label": "lemon",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "lion",
-            "picture": {
-              "key": "lion",
-              "label": "lion",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "pig",
-            "picture": {
-              "key": "pig",
-              "label": "pig",
-              "url": null
-            },
-            "bin": 0
-          }
-        ]
+        "count": 4
       }
     },
     {
-      "id": "level-96-r3",
+      "id": "level-120-r3",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -152,22 +91,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-96-r3-o1",
+            "id": "level-120-r3-o1",
+            "label": "tiger",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-120-r3-o2",
             "label": "flag",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-96-r3-o2",
-            "label": "frog",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-96-r3-o3",
-            "label": "tiger",
+            "id": "level-120-r3-o3",
+            "label": "ship",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -177,7 +116,7 @@
           "kind": "label",
           "value": "flag"
         },
-        "shape": "mushroom",
+        "shape": "bubble",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -185,7 +124,7 @@
       }
     },
     {
-      "id": "level-96-r4",
+      "id": "level-120-r4",
       "type": "hunt",
       "prompt": {
         "text": "Find every frog!",
@@ -200,52 +139,164 @@
       "hunt": {
         "target": "frog",
         "grid": [
-          "frog",
+          "star",
+          "tent",
           "frog",
           "pink",
-          "tent",
-          "star",
-          "hand",
-          "flag",
           "frog",
-          "drum"
+          "sled",
+          "skate",
+          "frog",
+          "flag"
         ]
       }
     },
     {
-      "id": "level-96-r5",
-      "type": "write",
+      "id": "level-120-r5",
+      "type": "match",
       "prompt": {
-        "text": "Look, then write drum",
-        "say": "Look at the word drum. Then write it from memory!",
-        "audio": "voice/line-4ba89b6c436290ea.m4a"
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
       },
       "card": {
-        "text": null,
-        "picture": {
-          "key": "drum",
-          "label": "drum",
-          "url": null
-        },
+        "text": "Find the pairs!",
+        "picture": null,
         "listen": false
       },
-      "write": {
-        "mode": "flash",
-        "target": "drum",
-        "guide": null,
-        "word": null,
-        "missingIndex": null,
-        "sentence": false,
-        "story": false
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "star",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "star",
+                "label": "star",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "flag",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "flag",
+                "label": "flag",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "frog",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "frog",
+                "label": "frog",
+                "url": null
+              }
+            }
+          }
+        ]
       }
     },
     {
-      "id": "level-96-r6",
+      "id": "level-120-r6",
       "type": "pick",
       "prompt": {
         "text": "What is this?",
         "say": "What is this? Find the word!",
         "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "sled",
+          "label": "sled",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-120-r6-o1",
+            "label": "star",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-120-r6-o2",
+            "label": "sled",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-120-r6-o3",
+            "label": "frog",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "sled"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-120-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write skate",
+        "say": "Write the word skate.",
+        "audio": "voice/line-4e3db1008521a4c9.m4a"
+      },
+      "card": {
+        "text": "skate",
+        "picture": {
+          "key": "skate",
+          "label": "skate",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "skate",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-120-r8",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Tent! Build the word tent.",
+        "audio": "voice/line-d53fa3f8f5fafc7c.m4a"
       },
       "card": {
         "text": null,
@@ -256,128 +307,64 @@
         },
         "listen": false
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-96-r6-o1",
-            "label": "ship",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-96-r6-o2",
-            "label": "tent",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-96-r6-o3",
-            "label": "flag",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "tent"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-96-r7",
-      "type": "write",
-      "prompt": {
-        "text": "Write hand",
-        "say": "Write the word hand.",
-        "audio": "voice/line-5cf8d8e62216dc56.m4a"
-      },
-      "card": {
-        "text": "hand",
-        "picture": {
-          "key": "hand",
-          "label": "hand",
-          "url": null
-        },
-        "listen": false
-      },
-      "write": {
-        "mode": "free",
-        "target": "hand",
-        "guide": null,
-        "word": null,
-        "missingIndex": null,
-        "sentence": true,
-        "story": false
-      }
-    },
-    {
-      "id": "level-96-r8",
-      "type": "order",
-      "prompt": {
-        "text": "Build the word!",
-        "say": "Drum! Build the word drum.",
-        "audio": "voice/line-39562e042badbb45.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "drum",
-          "label": "drum",
-          "url": null
-        },
-        "listen": false
-      },
       "order": {
         "tiles": [
-          "d",
-          "r",
-          "u",
-          "m"
+          "t",
+          "e",
+          "n",
+          "t"
         ],
         "slot": "stripe"
       }
     },
     {
-      "id": "level-96-r9",
-      "type": "pop",
+      "id": "level-120-r9",
+      "type": "fix",
       "prompt": {
-        "text": "Pop every drum!",
-        "say": "Pop every bubble that says drum!",
-        "audio": "voice/line-8a4572927dea8895.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
       },
       "card": {
-        "text": "drum",
+        "text": "Fix it!",
         "picture": null,
         "listen": false
       },
-      "pop": {
-        "target": "drum",
-        "others": [
-          "flag",
-          "four",
-          "frog"
-        ],
-        "count": 4
+      "fix": {
+        "items": [
+          {
+            "text": "star",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "flag",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "frog",
+            "wrong": "mirror",
+            "at": 1
+          },
+          {
+            "text": "sled",
+            "wrong": "mirror",
+            "at": 3
+          }
+        ]
       }
     },
     {
-      "id": "level-96-r10",
+      "id": "level-120-r10",
       "type": "speak",
       "prompt": {
-        "text": "Say: star, flag, frog, tent!",
-        "say": "Say them with me! star, flag, frog, tent!",
-        "audio": "voice/line-128361d35bb68115.m4a"
+        "text": "Say: star, flag, frog, sled!",
+        "say": "Say them with me! star, flag, frog, sled!",
+        "audio": "voice/line-04c75ebc416aac8b.m4a"
       },
       "card": {
-        "text": "star, flag, frog, tent!",
+        "text": "star, flag, frog, sled!",
         "picture": {
           "key": "star",
           "label": "star",
@@ -386,7 +373,7 @@
         "listen": true
       },
       "speak": {
-        "expected": "star, flag, frog, tent!"
+        "expected": "star, flag, frog, sled!"
       }
     }
   ]

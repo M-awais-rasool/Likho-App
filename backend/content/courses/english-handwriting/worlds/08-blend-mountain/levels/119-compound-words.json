@@ -1,0 +1,440 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-119",
+  "number": 119,
+  "name": "Compound Words",
+  "skill": "Two words in one",
+  "icon": "auto_awesome",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "sun + flower",
+    "word": "sunflower",
+    "say": "Sun and flower make sunflower! Two words make one.",
+    "audio": "voice/line-80f3df702ade00bd.m4a",
+    "picture": {
+      "key": "flower",
+      "label": "sunflower",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-119-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "sun + flower = ?",
+        "say": "Sun and flower. What word do they make?",
+        "audio": "voice/line-3ae69f7212364667.m4a"
+      },
+      "card": {
+        "text": "sun + flower",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-119-r1-o1",
+            "label": "sunflower",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-119-r1-o2",
+            "label": "flowerpot",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-119-r1-o3",
+            "label": "sunhat",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "sunflower"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-119-r2",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/h/|hʌ} or {/b/|bʌ}?",
+        "audio": "voice/line-3ed5a497a2c0ae72.m4a"
+      },
+      "card": {
+        "text": "h b",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "h",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "b",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "hut",
+            "picture": {
+              "key": "hut",
+              "label": "hut",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "ball",
+            "picture": {
+              "key": "ball",
+              "label": "ball",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "bus",
+            "picture": {
+              "key": "bus",
+              "label": "bus",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "hand",
+            "picture": {
+              "key": "hand",
+              "label": "hand",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "boat",
+            "picture": {
+              "key": "boat",
+              "label": "boat",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-119-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Join the words!",
+        "say": "Cup and cake make cupcake! Put the two words together.",
+        "audio": "voice/line-a84811d675d01791.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cupcake",
+          "label": "cupcake",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "cup",
+          "cake"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-119-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is snowman?",
+        "say": "Read the word. Which picture is snowman?",
+        "audio": "voice/line-38ee83d49ba53ea1.m4a"
+      },
+      "card": {
+        "text": "snowman",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-119-r4-o1",
+            "label": "snowman",
+            "picture": {
+              "key": "snowman",
+              "label": "snowman",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-119-r4-o2",
+            "label": "football",
+            "picture": {
+              "key": "ball",
+              "label": "football",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-119-r4-o3",
+            "label": "popcorn",
+            "picture": {
+              "key": "popcorn",
+              "label": "popcorn",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "snowman"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-119-r5",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match the two words that make one.",
+        "audio": "voice/line-c01d74934fb7e29d.m4a"
+      },
+      "card": {
+        "text": "rain + bow",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "rain",
+              "picture": null
+            },
+            "b": {
+              "text": "bow",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "foot",
+              "picture": null
+            },
+            "b": {
+              "text": "ball",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "pop",
+              "picture": null
+            },
+            "b": {
+              "text": "corn",
+              "picture": null
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-119-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write log",
+        "say": "Look at the word log. Then write it from memory!",
+        "audio": "voice/line-674662177fd859f4.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "log",
+          "label": "log",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "log",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-119-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Sun and flower make sunflower!",
+        "say": "Sun and flower make sunflower! Now you say it!",
+        "audio": "voice/line-4d7ea882c0d5c9c8.m4a"
+      },
+      "card": {
+        "text": "Sun and flower make sunflower!",
+        "picture": {
+          "key": "flower",
+          "label": "flower",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Sun and flower make sunflower!"
+      }
+    },
+    {
+      "id": "level-119-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write cupcake",
+        "say": "Write the word cupcake.",
+        "audio": "voice/line-f4c1e4cc201b8c1c.m4a"
+      },
+      "card": {
+        "text": "cupcake",
+        "picture": {
+          "key": "cupcake",
+          "label": "cupcake",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "cupcake",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-119-r9",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word popcorn.",
+        "audio": "voice/line-54ca72c4bcea6d7c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-119-r9-o1",
+            "label": "popcorn",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-119-r9-o2",
+            "label": "rainbow",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-119-r9-o3",
+            "label": "snowman",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "popcorn"
+        },
+        "shape": "cloud",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-119-r10",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every popcorn!",
+        "say": "Pop every bubble that says popcorn!",
+        "audio": "voice/line-de03e2968e255a6b.m4a"
+      },
+      "card": {
+        "text": "popcorn",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "popcorn",
+        "others": [
+          "tiger",
+          "pink",
+          "four"
+        ],
+        "count": 4
+      }
+    }
+  ]
+}

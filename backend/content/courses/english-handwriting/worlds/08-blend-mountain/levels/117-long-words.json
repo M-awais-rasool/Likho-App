@@ -1,20 +1,20 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-91",
-  "number": 91,
-  "name": "Flying Flags",
-  "skill": "fl cl pl gl",
-  "icon": "beach_access",
+  "id": "level-117",
+  "number": 117,
+  "name": "Long Words",
+  "skill": "Words of two beats",
+  "icon": "auto_awesome",
   "isBoss": false,
   "requiresSubscription": true,
   "intro": {
-    "text": "flag",
-    "word": "flag",
-    "say": "Flag, clock, plane! Let's blend the sounds.",
-    "audio": "voice/line-cd84dd6f57388c68.m4a",
+    "text": "rainbow",
+    "word": "rainbow",
+    "say": "Rain, bow... rainbow! Let's read longer words.",
+    "audio": "voice/line-e2518afd69becf94.m4a",
     "picture": {
-      "key": "flag",
-      "label": "flag",
+      "key": "rainbow",
+      "label": "rainbow",
       "url": null
     }
   },
@@ -26,48 +26,48 @@
   },
   "rounds": [
     {
-      "id": "level-91-r1",
+      "id": "level-117-r1",
       "type": "pick",
       "prompt": {
-        "text": "Which picture is flag?",
-        "say": "Read the word. Which picture is flag?",
-        "audio": "voice/line-a4035c5e7fa14ff3.m4a"
+        "text": "Which picture is rabbit?",
+        "say": "Read the word. Which picture is rabbit?",
+        "audio": "voice/line-f8f24a9ca13ba994.m4a"
       },
       "card": {
-        "text": "flag",
+        "text": "rabbit",
         "picture": null,
         "listen": false
       },
       "pick": {
         "options": [
           {
-            "id": "level-91-r1-o1",
-            "label": "flower",
+            "id": "level-117-r1-o1",
+            "label": "rabbit",
             "picture": {
-              "key": "flower",
-              "label": "flower",
+              "key": "rabbit",
+              "label": "rabbit",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-91-r1-o2",
-            "label": "flag",
+            "id": "level-117-r1-o2",
+            "label": "robot",
             "picture": {
-              "key": "flag",
-              "label": "flag",
+              "key": "robot",
+              "label": "robot",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-91-r1-o3",
-            "label": "clock",
+            "id": "level-117-r1-o3",
+            "label": "tiger",
             "picture": {
-              "key": "clock",
-              "label": "clock",
+              "key": "tiger",
+              "label": "tiger",
               "url": null
             },
             "color": null,
@@ -76,9 +76,9 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "flag"
+          "value": "rabbit"
         },
-        "shape": "jar",
+        "shape": "card",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -86,82 +86,73 @@
       }
     },
     {
-      "id": "level-91-r2",
+      "id": "level-117-r2",
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/f/|fːː} or {/c/|kʌ}?",
-        "audio": "voice/line-b932be9cb19c7efc.m4a"
+        "say": "Sort the pictures! Do they start with {/g/|ɡʌ} or {/h/|hʌ}?",
+        "audio": "voice/line-3a5448a6011a54ca.m4a"
       },
       "card": {
-        "text": "f c",
+        "text": "g h",
         "picture": null,
         "listen": false
       },
       "sort": {
         "bins": [
           {
-            "label": "f",
+            "label": "g",
             "picture": null,
             "bin": null
           },
           {
-            "label": "c",
+            "label": "h",
             "picture": null,
             "bin": null
           }
         ],
         "items": [
           {
-            "label": "cow",
+            "label": "goat",
             "picture": {
-              "key": "cow",
-              "label": "cow",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "cup",
-            "picture": {
-              "key": "cup",
-              "label": "cup",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "four",
-            "picture": {
-              "key": "four",
-              "label": "four",
+              "key": "goat",
+              "label": "goat",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "corn",
+            "label": "hand",
             "picture": {
-              "key": "corn",
-              "label": "corn",
+              "key": "hand",
+              "label": "hand",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "fish",
+            "label": "hut",
             "picture": {
-              "key": "fish",
-              "label": "fish",
+              "key": "hut",
+              "label": "hut",
               "url": null
             },
-            "bin": 0
+            "bin": 1
           },
           {
-            "label": "foot",
+            "label": "hat",
             "picture": {
-              "key": "foot",
-              "label": "foot",
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "gift",
+            "picture": {
+              "key": "gift",
+              "label": "gift",
               "url": null
             },
             "bin": 0
@@ -170,39 +161,41 @@
       }
     },
     {
-      "id": "level-91-r3",
+      "id": "level-117-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
-        "say": "Flag! Build the word flag.",
-        "audio": "voice/line-d98b103fe2c3a873.m4a"
+        "say": "Rabbit! Build the word rabbit.",
+        "audio": "voice/line-396f5df90236059c.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "flag",
-          "label": "flag",
+          "key": "rabbit",
+          "label": "rabbit",
           "url": null
         },
         "listen": false
       },
       "order": {
         "tiles": [
-          "f",
-          "l",
+          "r",
           "a",
-          "g"
+          "b",
+          "b",
+          "i",
+          "t"
         ],
-        "slot": "plank"
+        "slot": "stripe"
       }
     },
     {
-      "id": "level-91-r4",
+      "id": "level-117-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
-        "say": "Listen! Find the word clock.",
-        "audio": "voice/line-0fd6ee9851a27cc5.m4a"
+        "say": "Listen! Find the word robot.",
+        "audio": "voice/line-025afb086db2b08a.m4a"
       },
       "card": {
         "text": null,
@@ -212,22 +205,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-91-r4-o1",
-            "label": "glove",
+            "id": "level-117-r4-o1",
+            "label": "robot",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-91-r4-o2",
-            "label": "flag",
+            "id": "level-117-r4-o2",
+            "label": "lemon",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-91-r4-o3",
-            "label": "clock",
+            "id": "level-117-r4-o3",
+            "label": "tiger",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -235,9 +228,9 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "clock"
+          "value": "robot"
         },
-        "shape": "cloud",
+        "shape": "shell",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -245,18 +238,18 @@
       }
     },
     {
-      "id": "level-91-r5",
+      "id": "level-117-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
-        "say": "Clock! Which letter is missing?",
-        "audio": "voice/line-b0394c4774df8024.m4a"
+        "say": "Robot! Which letter is missing?",
+        "audio": "voice/line-58c2a405cbea682b.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "clock",
-          "label": "clock",
+          "key": "robot",
+          "label": "robot",
           "url": null
         },
         "listen": false
@@ -265,32 +258,32 @@
         "mode": "missing",
         "target": "o",
         "guide": "o",
-        "word": "clock",
-        "missingIndex": 2,
+        "word": "robot",
+        "missingIndex": 1,
         "sentence": false,
         "story": false
       }
     },
     {
-      "id": "level-91-r6",
+      "id": "level-117-r6",
       "type": "write",
       "prompt": {
-        "text": "Look, then write flag",
-        "say": "Look at the word flag. Then write it from memory!",
-        "audio": "voice/line-a5b7ad26333d5d8f.m4a"
+        "text": "Look, then write lemon",
+        "say": "Look at the word lemon. Then write it from memory!",
+        "audio": "voice/line-2c6768d6b4c1995e.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "flag",
-          "label": "flag",
+          "key": "lemon",
+          "label": "lemon",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "flash",
-        "target": "flag",
+        "target": "lemon",
         "guide": null,
         "word": null,
         "missingIndex": null,
@@ -299,97 +292,97 @@
       }
     },
     {
-      "id": "level-91-r7",
+      "id": "level-117-r7",
       "type": "hunt",
       "prompt": {
-        "text": "Find every flower!",
-        "say": "Find every word flower!",
-        "audio": "voice/line-9dbd7ca962813e8a.m4a"
+        "text": "Find every pencil!",
+        "say": "Find every word pencil!",
+        "audio": "voice/line-a04168b49c390b8b.m4a"
       },
       "card": {
-        "text": "flower",
+        "text": "pencil",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "flower",
+        "target": "pencil",
         "grid": [
-          "four",
-          "clock",
-          "flower",
-          "glass",
-          "plane",
-          "flag",
-          "glove",
-          "flower",
-          "flower"
+          "pencil",
+          "pencil",
+          "lemon",
+          "pencil",
+          "rabbit",
+          "goat",
+          "robot",
+          "rainbow",
+          "tiger"
         ]
       }
     },
     {
-      "id": "level-91-r8",
+      "id": "level-117-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: flag, clock, plane, flower!",
-        "say": "Say them with me! flag, clock, plane, flower!",
-        "audio": "voice/line-384a7074bcd79b28.m4a"
+        "text": "Say: rabbit, robot, rainbow, pencil!",
+        "say": "Say them with me! rabbit, robot, rainbow, pencil!",
+        "audio": "voice/line-cf8e254b98a7082d.m4a"
       },
       "card": {
-        "text": "flag, clock, plane, flower!",
+        "text": "rabbit, robot, rainbow, pencil!",
         "picture": {
-          "key": "flag",
-          "label": "flag",
+          "key": "rabbit",
+          "label": "rabbit",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "flag, clock, plane, flower!"
+        "expected": "rabbit, robot, rainbow, pencil!"
       }
     },
     {
-      "id": "level-91-r9",
+      "id": "level-117-r9",
       "type": "pop",
       "prompt": {
-        "text": "Pop every flag!",
-        "say": "Pop every bubble that says flag!",
-        "audio": "voice/line-3fa41449f4217fa6.m4a"
+        "text": "Pop every rainbow!",
+        "say": "Pop every bubble that says rainbow!",
+        "audio": "voice/line-d2f764214ccc98d6.m4a"
       },
       "card": {
-        "text": "flag",
+        "text": "rainbow",
         "picture": null,
         "listen": false
       },
       "pop": {
-        "target": "flag",
+        "target": "rainbow",
         "others": [
-          "four",
-          "goat",
-          "hand"
+          "robot",
+          "lemon",
+          "tiger"
         ],
         "count": 4
       }
     },
     {
-      "id": "level-91-r10",
+      "id": "level-117-r10",
       "type": "write",
       "prompt": {
-        "text": "Write plane",
-        "say": "Write the word plane.",
-        "audio": "voice/line-4cedaf74cba33598.m4a"
+        "text": "Write rainbow",
+        "say": "Write the word rainbow.",
+        "audio": "voice/line-54d7723a240c4378.m4a"
       },
       "card": {
-        "text": "plane",
+        "text": "rainbow",
         "picture": {
-          "key": "plane",
-          "label": "plane",
+          "key": "rainbow",
+          "label": "rainbow",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "free",
-        "target": "plane",
+        "target": "rainbow",
         "guide": null,
         "word": null,
         "missingIndex": null,

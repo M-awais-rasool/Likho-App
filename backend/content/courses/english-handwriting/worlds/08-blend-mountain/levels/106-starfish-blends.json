@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-90",
-  "number": 90,
+  "id": "level-106",
+  "number": 106,
   "name": "Starfish Blends",
   "skill": "st sn sp sw",
   "icon": "beach_access",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-90-r1",
+      "id": "level-106-r1",
       "type": "pick",
       "prompt": {
         "text": "Which picture is star?",
@@ -41,18 +41,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-90-r1-o1",
-            "label": "stop",
-            "picture": {
-              "key": "stop",
-              "label": "stop",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-90-r1-o2",
+            "id": "level-106-r1-o1",
             "label": "star",
             "picture": {
               "key": "star",
@@ -63,11 +52,22 @@
             "hideLabel": true
           },
           {
-            "id": "level-90-r1-o3",
-            "label": "spoon",
+            "id": "level-106-r1-o2",
+            "label": "snake",
             "picture": {
-              "key": "spoon",
-              "label": "spoon",
+              "key": "snake",
+              "label": "snake",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-106-r1-o3",
+            "label": "stop",
+            "picture": {
+              "key": "stop",
+              "label": "stop",
               "url": null
             },
             "color": null,
@@ -86,7 +86,132 @@
       }
     },
     {
-      "id": "level-90-r2",
+      "id": "level-106-r2",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every spoon!",
+        "say": "Pop every bubble that says spoon!",
+        "audio": "voice/line-ca995a6c5f5b98fb.m4a"
+      },
+      "card": {
+        "text": "spoon",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "spoon",
+        "others": [
+          "snail",
+          "snake",
+          "ship"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-106-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Star! Build the word star.",
+        "audio": "voice/line-0a5495d2ed6b797b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "star",
+          "label": "star",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "s",
+          "t",
+          "a",
+          "r"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-106-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word stop.",
+        "audio": "voice/line-ae4bb5db35bb2858.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-106-r4-o1",
+            "label": "star",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-106-r4-o2",
+            "label": "stop",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-106-r4-o3",
+            "label": "snake",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "stop"
+        },
+        "shape": "balloon",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-106-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Stop! Which letter is missing?",
+        "audio": "voice/line-6d514706e60082e3.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "stop",
+          "label": "stop",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "o",
+        "guide": "o",
+        "word": "stop",
+        "missingIndex": 2,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-106-r6",
       "type": "match",
       "prompt": {
         "text": "Find the pairs!",
@@ -146,109 +271,56 @@
       }
     },
     {
-      "id": "level-90-r3",
-      "type": "order",
+      "id": "level-106-r7",
+      "type": "hunt",
       "prompt": {
-        "text": "Build the word!",
-        "say": "Star! Build the word star.",
-        "audio": "voice/line-0a5495d2ed6b797b.m4a"
+        "text": "Find every spoon!",
+        "say": "Find every word spoon!",
+        "audio": "voice/line-c225ba1e0bcd62cc.m4a"
       },
       "card": {
-        "text": null,
+        "text": "spoon",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "spoon",
+        "grid": [
+          "snail",
+          "four",
+          "spoon",
+          "spoon",
+          "swim",
+          "star",
+          "stop",
+          "spoon",
+          "snake"
+        ]
+      }
+    },
+    {
+      "id": "level-106-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: star, stop, snake, spoon!",
+        "say": "Say them with me! star, stop, snake, spoon!",
+        "audio": "voice/line-d9e47d94f0c037ab.m4a"
+      },
+      "card": {
+        "text": "star, stop, snake, spoon!",
         "picture": {
           "key": "star",
           "label": "star",
           "url": null
         },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "s",
-          "t",
-          "a",
-          "r"
-        ],
-        "slot": "stripe"
-      }
-    },
-    {
-      "id": "level-90-r4",
-      "type": "pick",
-      "prompt": {
-        "text": "Find the word you hear",
-        "say": "Listen! Find the word stop.",
-        "audio": "voice/line-ae4bb5db35bb2858.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": null,
         "listen": true
       },
-      "pick": {
-        "options": [
-          {
-            "id": "level-90-r4-o1",
-            "label": "stop",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-90-r4-o2",
-            "label": "swim",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-90-r4-o3",
-            "label": "snail",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "stop"
-        },
-        "shape": "mushroom",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
+      "speak": {
+        "expected": "star, stop, snake, spoon!"
       }
     },
     {
-      "id": "level-90-r5",
-      "type": "write",
-      "prompt": {
-        "text": "Which letter is missing?",
-        "say": "Stop! Which letter is missing?",
-        "audio": "voice/line-6d514706e60082e3.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "stop",
-          "label": "stop",
-          "url": null
-        },
-        "listen": false
-      },
-      "write": {
-        "mode": "missing",
-        "target": "o",
-        "guide": "o",
-        "word": "stop",
-        "missingIndex": 2,
-        "sentence": false,
-        "story": false
-      }
-    },
-    {
-      "id": "level-90-r6",
+      "id": "level-106-r9",
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
@@ -275,7 +347,7 @@
           {
             "text": "snake",
             "wrong": "mirror",
-            "at": 4
+            "at": 0
           },
           {
             "text": "spoon",
@@ -286,79 +358,7 @@
       }
     },
     {
-      "id": "level-90-r7",
-      "type": "hunt",
-      "prompt": {
-        "text": "Find every spoon!",
-        "say": "Find every word spoon!",
-        "audio": "voice/line-c225ba1e0bcd62cc.m4a"
-      },
-      "card": {
-        "text": "spoon",
-        "picture": null,
-        "listen": false
-      },
-      "hunt": {
-        "target": "spoon",
-        "grid": [
-          "snake",
-          "snail",
-          "spoon",
-          "spoon",
-          "four",
-          "star",
-          "stop",
-          "spoon",
-          "swim"
-        ]
-      }
-    },
-    {
-      "id": "level-90-r8",
-      "type": "speak",
-      "prompt": {
-        "text": "Say: star, stop, snake, spoon!",
-        "say": "Say them with me! star, stop, snake, spoon!",
-        "audio": "voice/line-d9e47d94f0c037ab.m4a"
-      },
-      "card": {
-        "text": "star, stop, snake, spoon!",
-        "picture": {
-          "key": "star",
-          "label": "star",
-          "url": null
-        },
-        "listen": true
-      },
-      "speak": {
-        "expected": "star, stop, snake, spoon!"
-      }
-    },
-    {
-      "id": "level-90-r9",
-      "type": "truth",
-      "prompt": {
-        "text": "True or silly?",
-        "say": "This is a pink. True, or silly?",
-        "audio": "voice/line-b98e1d6830fd0433.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": null,
-        "listen": true
-      },
-      "truth": {
-        "text": "This is a pink.",
-        "picture": {
-          "key": "four",
-          "label": "four",
-          "url": null
-        },
-        "answer": false
-      }
-    },
-    {
-      "id": "level-90-r10",
+      "id": "level-106-r10",
       "type": "write",
       "prompt": {
         "text": "Write snake",

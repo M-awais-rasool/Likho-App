@@ -1,20 +1,20 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-92",
-  "number": 92,
-  "name": "Frog Pond",
-  "skill": "fr tr dr cr gr",
+  "id": "level-113",
+  "number": 113,
+  "name": "Diving Masks",
+  "skill": "sk lt lk ft at the end",
   "icon": "beach_access",
   "isBoss": false,
   "requiresSubscription": true,
   "intro": {
-    "text": "frog",
-    "word": "frog",
-    "say": "Frog, tree, drum! Hear the two sounds at the start.",
-    "audio": "voice/line-5990e852bd368b62.m4a",
+    "text": "mask",
+    "word": "mask",
+    "say": "Mask, salt, milk, soft! Two sounds at the end.",
+    "audio": "voice/line-5755c947aaae8d31.m4a",
     "picture": {
-      "key": "frog",
-      "label": "frog",
+      "key": "mask",
+      "label": "mask",
       "url": null
     }
   },
@@ -26,48 +26,48 @@
   },
   "rounds": [
     {
-      "id": "level-92-r1",
+      "id": "level-113-r1",
       "type": "pick",
       "prompt": {
-        "text": "Which picture is frog?",
-        "say": "Read the word. Which picture is frog?",
-        "audio": "voice/line-995ec315a88936db.m4a"
+        "text": "Which picture is mask?",
+        "say": "Read the word. Which picture is mask?",
+        "audio": "voice/line-e36b0e8ea0ddafd7.m4a"
       },
       "card": {
-        "text": "frog",
+        "text": "mask",
         "picture": null,
         "listen": false
       },
       "pick": {
         "options": [
           {
-            "id": "level-92-r1-o1",
-            "label": "frog",
+            "id": "level-113-r1-o1",
+            "label": "salt",
             "picture": {
-              "key": "frog",
-              "label": "frog",
+              "key": "salt",
+              "label": "salt",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-92-r1-o2",
-            "label": "train",
+            "id": "level-113-r1-o2",
+            "label": "milk",
             "picture": {
-              "key": "train",
-              "label": "train",
+              "key": "milk",
+              "label": "milk",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-92-r1-o3",
-            "label": "drum",
+            "id": "level-113-r1-o3",
+            "label": "mask",
             "picture": {
-              "key": "drum",
-              "label": "drum",
+              "key": "mask",
+              "label": "mask",
               "url": null
             },
             "color": null,
@@ -76,9 +76,9 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "frog"
+          "value": "mask"
         },
-        "shape": "bucket",
+        "shape": "card",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -86,62 +86,62 @@
       }
     },
     {
-      "id": "level-92-r2",
+      "id": "level-113-r2",
       "type": "pop",
       "prompt": {
-        "text": "Pop every tree!",
-        "say": "Pop every bubble that says tree!",
-        "audio": "voice/line-d0f93beee2f512c6.m4a"
+        "text": "Pop every desk!",
+        "say": "Pop every bubble that says desk!",
+        "audio": "voice/line-1c5a6e8cd3a7f8ca.m4a"
       },
       "card": {
-        "text": "tree",
+        "text": "desk",
         "picture": null,
         "listen": false
       },
       "pop": {
-        "target": "tree",
+        "target": "desk",
         "others": [
-          "crab",
-          "drum",
-          "four"
+          "belt",
+          "four",
+          "goat"
         ],
         "count": 4
       }
     },
     {
-      "id": "level-92-r3",
+      "id": "level-113-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
-        "say": "Frog! Build the word frog.",
-        "audio": "voice/line-5da10ac5ddde6121.m4a"
+        "say": "Mask! Build the word mask.",
+        "audio": "voice/line-eb5d95f416eeffef.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "frog",
-          "label": "frog",
+          "key": "mask",
+          "label": "mask",
           "url": null
         },
         "listen": false
       },
       "order": {
         "tiles": [
-          "f",
-          "r",
-          "o",
-          "g"
+          "m",
+          "a",
+          "s",
+          "k"
         ],
-        "slot": "stripe"
+        "slot": "plank"
       }
     },
     {
-      "id": "level-92-r4",
+      "id": "level-113-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
-        "say": "Listen! Find the word tree.",
-        "audio": "voice/line-c7d303a69c28897a.m4a"
+        "say": "Listen! Find the word salt.",
+        "audio": "voice/line-dda58ddc4e9eb625.m4a"
       },
       "card": {
         "text": null,
@@ -151,22 +151,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-92-r4-o1",
-            "label": "frog",
+            "id": "level-113-r4-o1",
+            "label": "salt",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-92-r4-o2",
-            "label": "tree",
+            "id": "level-113-r4-o2",
+            "label": "desk",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-92-r4-o3",
-            "label": "grapes",
+            "id": "level-113-r4-o3",
+            "label": "mask",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -174,7 +174,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "tree"
+          "value": "salt"
         },
         "shape": "balloon",
         "layout": null,
@@ -184,34 +184,34 @@
       }
     },
     {
-      "id": "level-92-r5",
+      "id": "level-113-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
-        "say": "Tree! Which letter is missing?",
-        "audio": "voice/line-c2762eda42a98556.m4a"
+        "say": "Salt! Which letter is missing?",
+        "audio": "voice/line-16ad0123b143699d.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "tree",
-          "label": "tree",
+          "key": "salt",
+          "label": "salt",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "missing",
-        "target": "e",
-        "guide": "e",
-        "word": "tree",
-        "missingIndex": 2,
+        "target": "a",
+        "guide": "a",
+        "word": "salt",
+        "missingIndex": 1,
         "sentence": false,
         "story": false
       }
     },
     {
-      "id": "level-92-r6",
+      "id": "level-113-r6",
       "type": "match",
       "prompt": {
         "text": "Find the pairs!",
@@ -227,42 +227,42 @@
         "pairs": [
           {
             "a": {
-              "text": "frog",
+              "text": "mask",
               "picture": null
             },
             "b": {
               "text": null,
               "picture": {
-                "key": "frog",
-                "label": "frog",
+                "key": "mask",
+                "label": "mask",
                 "url": null
               }
             }
           },
           {
             "a": {
-              "text": "tree",
+              "text": "salt",
               "picture": null
             },
             "b": {
               "text": null,
               "picture": {
-                "key": "tree",
-                "label": "tree",
+                "key": "salt",
+                "label": "salt",
                 "url": null
               }
             }
           },
           {
             "a": {
-              "text": "drum",
+              "text": "milk",
               "picture": null
             },
             "b": {
               "text": null,
               "picture": {
-                "key": "drum",
-                "label": "drum",
+                "key": "milk",
+                "label": "milk",
                 "url": null
               }
             }
@@ -271,56 +271,79 @@
       }
     },
     {
-      "id": "level-92-r7",
+      "id": "level-113-r7",
       "type": "hunt",
       "prompt": {
-        "text": "Find every crab!",
-        "say": "Find every word crab!",
-        "audio": "voice/line-c7b4a5bfb670f61e.m4a"
+        "text": "Find every milk!",
+        "say": "Find every word milk!",
+        "audio": "voice/line-89e322225b968c3c.m4a"
       },
       "card": {
-        "text": "crab",
+        "text": "milk",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "crab",
+        "target": "milk",
         "grid": [
-          "frog",
+          "belt",
+          "soft",
+          "milk",
+          "milk",
+          "salt",
+          "desk",
           "four",
-          "tree",
-          "train",
-          "drum",
-          "crab",
-          "crab",
-          "grapes",
-          "crab"
+          "mask",
+          "milk"
         ]
       }
     },
     {
-      "id": "level-92-r8",
+      "id": "level-113-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: frog, tree, drum, crab!",
-        "say": "Say them with me! frog, tree, drum, crab!",
-        "audio": "voice/line-4614fd5baf667952.m4a"
+        "text": "Say: mask, salt, belt, milk!",
+        "say": "Say them with me! mask, salt, belt, milk!",
+        "audio": "voice/line-bae83b415bd7135b.m4a"
       },
       "card": {
-        "text": "frog, tree, drum, crab!",
+        "text": "mask, salt, belt, milk!",
         "picture": {
-          "key": "frog",
-          "label": "frog",
+          "key": "mask",
+          "label": "mask",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "frog, tree, drum, crab!"
+        "expected": "mask, salt, belt, milk!"
       }
     },
     {
-      "id": "level-92-r9",
+      "id": "level-113-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Write belt",
+        "say": "Write the word belt.",
+        "audio": "voice/line-7f422236dc169a27.m4a"
+      },
+      "card": {
+        "text": "belt",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "belt",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-113-r10",
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
@@ -335,53 +358,26 @@
       "fix": {
         "items": [
           {
-            "text": "frog",
+            "text": "mask",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "salt",
             "wrong": "mirror",
             "at": 0
           },
           {
-            "text": "tree",
+            "text": "belt",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "milk",
             "wrong": "mirror",
-            "at": 2
-          },
-          {
-            "text": "drum",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "crab",
-            "wrong": null,
-            "at": null
+            "at": 3
           }
         ]
-      }
-    },
-    {
-      "id": "level-92-r10",
-      "type": "write",
-      "prompt": {
-        "text": "Write drum",
-        "say": "Write the word drum.",
-        "audio": "voice/line-f77b3d21e850b99a.m4a"
-      },
-      "card": {
-        "text": "drum",
-        "picture": {
-          "key": "drum",
-          "label": "drum",
-          "url": null
-        },
-        "listen": false
-      },
-      "write": {
-        "mode": "free",
-        "target": "drum",
-        "guide": null,
-        "word": null,
-        "missingIndex": null,
-        "sentence": true,
-        "story": false
       }
     }
   ]

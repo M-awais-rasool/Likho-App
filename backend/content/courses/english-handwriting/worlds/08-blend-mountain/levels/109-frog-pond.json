@@ -1,20 +1,20 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-95",
-  "number": 95,
-  "name": "Long Words",
-  "skill": "Words of two beats",
-  "icon": "auto_awesome",
+  "id": "level-109",
+  "number": 109,
+  "name": "Frog Pond",
+  "skill": "fr tr dr cr gr",
+  "icon": "beach_access",
   "isBoss": false,
   "requiresSubscription": true,
   "intro": {
-    "text": "rainbow",
-    "word": "rainbow",
-    "say": "Rain, bow... rainbow! Let's read longer words.",
-    "audio": "voice/line-e2518afd69becf94.m4a",
+    "text": "frog",
+    "word": "frog",
+    "say": "Frog, tree, drum! Hear the two sounds at the start.",
+    "audio": "voice/line-5990e852bd368b62.m4a",
     "picture": {
-      "key": "rainbow",
-      "label": "rainbow",
+      "key": "frog",
+      "label": "frog",
       "url": null
     }
   },
@@ -26,48 +26,48 @@
   },
   "rounds": [
     {
-      "id": "level-95-r1",
+      "id": "level-109-r1",
       "type": "pick",
       "prompt": {
-        "text": "Which picture is rabbit?",
-        "say": "Read the word. Which picture is rabbit?",
-        "audio": "voice/line-f8f24a9ca13ba994.m4a"
+        "text": "Which picture is frog?",
+        "say": "Read the word. Which picture is frog?",
+        "audio": "voice/line-995ec315a88936db.m4a"
       },
       "card": {
-        "text": "rabbit",
+        "text": "frog",
         "picture": null,
         "listen": false
       },
       "pick": {
         "options": [
           {
-            "id": "level-95-r1-o1",
-            "label": "rainbow",
+            "id": "level-109-r1-o1",
+            "label": "drum",
             "picture": {
-              "key": "rainbow",
-              "label": "rainbow",
+              "key": "drum",
+              "label": "drum",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-95-r1-o2",
-            "label": "pencil",
+            "id": "level-109-r1-o2",
+            "label": "crab",
             "picture": {
-              "key": "pencil",
-              "label": "pencil",
+              "key": "crab",
+              "label": "crab",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-95-r1-o3",
-            "label": "rabbit",
+            "id": "level-109-r1-o3",
+            "label": "frog",
             "picture": {
-              "key": "rabbit",
-              "label": "rabbit",
+              "key": "frog",
+              "label": "frog",
               "url": null
             },
             "color": null,
@@ -76,9 +76,9 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "rabbit"
+          "value": "frog"
         },
-        "shape": "jar",
+        "shape": "card",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -86,7 +86,7 @@
       }
     },
     {
-      "id": "level-95-r2",
+      "id": "level-109-r2",
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
@@ -101,64 +101,62 @@
       "fix": {
         "items": [
           {
-            "text": "rabbit",
+            "text": "frog",
             "wrong": null,
             "at": null
           },
           {
-            "text": "robot",
+            "text": "tree",
             "wrong": null,
             "at": null
           },
           {
-            "text": "pencil",
+            "text": "drum",
             "wrong": "mirror",
-            "at": 0
+            "at": 1
           },
           {
-            "text": "tiger",
+            "text": "crab",
             "wrong": "mirror",
-            "at": 3
+            "at": 2
           }
         ]
       }
     },
     {
-      "id": "level-95-r3",
+      "id": "level-109-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
-        "say": "Rabbit! Build the word rabbit.",
-        "audio": "voice/line-396f5df90236059c.m4a"
+        "say": "Frog! Build the word frog.",
+        "audio": "voice/line-5da10ac5ddde6121.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "rabbit",
-          "label": "rabbit",
+          "key": "frog",
+          "label": "frog",
           "url": null
         },
         "listen": false
       },
       "order": {
         "tiles": [
+          "f",
           "r",
-          "a",
-          "b",
-          "b",
-          "i",
-          "t"
+          "o",
+          "g"
         ],
-        "slot": "stripe"
+        "slot": "plank"
       }
     },
     {
-      "id": "level-95-r4",
+      "id": "level-109-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
-        "say": "Listen! Find the word robot.",
-        "audio": "voice/line-025afb086db2b08a.m4a"
+        "say": "Listen! Find the word tree.",
+        "audio": "voice/line-c7d303a69c28897a.m4a"
       },
       "card": {
         "text": null,
@@ -168,22 +166,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-95-r4-o1",
-            "label": "robot",
+            "id": "level-109-r4-o1",
+            "label": "train",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-95-r4-o2",
-            "label": "rainbow",
+            "id": "level-109-r4-o2",
+            "label": "grapes",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-95-r4-o3",
-            "label": "pencil",
+            "id": "level-109-r4-o3",
+            "label": "tree",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -191,7 +189,7 @@
         ],
         "answer": {
           "kind": "label",
-          "value": "robot"
+          "value": "tree"
         },
         "shape": "fish",
         "layout": null,
@@ -201,39 +199,39 @@
       }
     },
     {
-      "id": "level-95-r5",
+      "id": "level-109-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
-        "say": "Robot! Which letter is missing?",
-        "audio": "voice/line-58c2a405cbea682b.m4a"
+        "say": "Tree! Which letter is missing?",
+        "audio": "voice/line-c2762eda42a98556.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "robot",
-          "label": "robot",
+          "key": "tree",
+          "label": "tree",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "missing",
-        "target": "o",
-        "guide": "o",
-        "word": "robot",
-        "missingIndex": 1,
+        "target": "e",
+        "guide": "e",
+        "word": "tree",
+        "missingIndex": 2,
         "sentence": false,
         "story": false
       }
     },
     {
-      "id": "level-95-r6",
+      "id": "level-109-r6",
       "type": "truth",
       "prompt": {
         "text": "True or silly?",
-        "say": "This is a bus. True, or silly?",
-        "audio": "voice/line-6a9ebaa8a238af23.m4a"
+        "say": "This is a frog. True, or silly?",
+        "audio": "voice/line-3ffa688218996dd2.m4a"
       },
       "card": {
         "text": null,
@@ -241,141 +239,141 @@
         "listen": true
       },
       "truth": {
-        "text": "This is a bus.",
+        "text": "This is a frog.",
         "picture": {
-          "key": "bus",
-          "label": "bus",
+          "key": "frog",
+          "label": "frog",
           "url": null
         },
         "answer": true
       }
     },
     {
-      "id": "level-95-r7",
+      "id": "level-109-r7",
       "type": "hunt",
       "prompt": {
-        "text": "Find every pencil!",
-        "say": "Find every word pencil!",
-        "audio": "voice/line-a04168b49c390b8b.m4a"
+        "text": "Find every crab!",
+        "say": "Find every word crab!",
+        "audio": "voice/line-c7b4a5bfb670f61e.m4a"
       },
       "card": {
-        "text": "pencil",
+        "text": "crab",
         "picture": null,
         "listen": false
       },
       "hunt": {
-        "target": "pencil",
+        "target": "crab",
         "grid": [
-          "rabbit",
-          "pencil",
-          "robot",
-          "tiger",
-          "pencil",
-          "pencil",
-          "lemon",
-          "goat",
-          "rainbow"
+          "crab",
+          "grapes",
+          "train",
+          "four",
+          "drum",
+          "crab",
+          "frog",
+          "tree",
+          "crab"
         ]
       }
     },
     {
-      "id": "level-95-r8",
+      "id": "level-109-r8",
       "type": "speak",
       "prompt": {
-        "text": "Say: rabbit, robot, rainbow, pencil!",
-        "say": "Say them with me! rabbit, robot, rainbow, pencil!",
-        "audio": "voice/line-cf8e254b98a7082d.m4a"
+        "text": "Say: frog, tree, drum, crab!",
+        "say": "Say them with me! frog, tree, drum, crab!",
+        "audio": "voice/line-4614fd5baf667952.m4a"
       },
       "card": {
-        "text": "rabbit, robot, rainbow, pencil!",
+        "text": "frog, tree, drum, crab!",
         "picture": {
-          "key": "rabbit",
-          "label": "rabbit",
+          "key": "frog",
+          "label": "frog",
           "url": null
         },
         "listen": true
       },
       "speak": {
-        "expected": "rabbit, robot, rainbow, pencil!"
+        "expected": "frog, tree, drum, crab!"
       }
     },
     {
-      "id": "level-95-r9",
+      "id": "level-109-r9",
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/f/|fːː}?",
-        "audio": "voice/line-7b4dba625cd77da5.m4a"
+        "say": "Sort the pictures! Do they start with {/b/|bʌ} or {/s/|sːː}?",
+        "audio": "voice/line-3b89475e1ac5d27c.m4a"
       },
       "card": {
-        "text": "d f",
+        "text": "b s",
         "picture": null,
         "listen": false
       },
       "sort": {
         "bins": [
           {
-            "label": "d",
+            "label": "b",
             "picture": null,
             "bin": null
           },
           {
-            "label": "f",
+            "label": "s",
             "picture": null,
             "bin": null
           }
         ],
         "items": [
           {
-            "label": "four",
+            "label": "sock",
             "picture": {
-              "key": "four",
-              "label": "four",
+              "key": "sock",
+              "label": "sock",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "doctor",
+            "label": "seed",
             "picture": {
-              "key": "doctor",
-              "label": "doctor",
+              "key": "seed",
+              "label": "seed",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "bed",
+            "picture": {
+              "key": "bed",
+              "label": "bed",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "duck",
+            "label": "bag",
             "picture": {
-              "key": "duck",
-              "label": "duck",
+              "key": "bag",
+              "label": "bag",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "fish",
+            "label": "six",
             "picture": {
-              "key": "fish",
-              "label": "fish",
+              "key": "six",
+              "label": "six",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "foot",
+            "label": "bat",
             "picture": {
-              "key": "foot",
-              "label": "foot",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "dog",
-            "picture": {
-              "key": "dog",
-              "label": "dog",
+              "key": "bat",
+              "label": "bat",
               "url": null
             },
             "bin": 0
@@ -384,25 +382,25 @@
       }
     },
     {
-      "id": "level-95-r10",
+      "id": "level-109-r10",
       "type": "write",
       "prompt": {
-        "text": "Write rainbow",
-        "say": "Write the word rainbow.",
-        "audio": "voice/line-54d7723a240c4378.m4a"
+        "text": "Write drum",
+        "say": "Write the word drum.",
+        "audio": "voice/line-f77b3d21e850b99a.m4a"
       },
       "card": {
-        "text": "rainbow",
+        "text": "drum",
         "picture": {
-          "key": "rainbow",
-          "label": "rainbow",
+          "key": "drum",
+          "label": "drum",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "free",
-        "target": "rainbow",
+        "target": "drum",
         "guide": null,
         "word": null,
         "missingIndex": null,

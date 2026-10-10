@@ -1,0 +1,409 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-115",
+  "number": 115,
+  "name": "Blend Mix",
+  "skill": "Review",
+  "icon": "auto_awesome",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "st fl tr",
+    "word": "star",
+    "say": "Star, flag, tree, sled! Let's mix up our blends.",
+    "audio": "voice/line-0a2de7799699ba8e.m4a",
+    "picture": {
+      "key": "star",
+      "label": "star",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-115-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is star?",
+        "say": "Read the word. Which picture is star?",
+        "audio": "voice/line-d7d5745f7cc7528d.m4a"
+      },
+      "card": {
+        "text": "star",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-115-r1-o1",
+            "label": "flag",
+            "picture": {
+              "key": "flag",
+              "label": "flag",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-115-r1-o2",
+            "label": "sled",
+            "picture": {
+              "key": "sled",
+              "label": "sled",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-115-r1-o3",
+            "label": "star",
+            "picture": {
+              "key": "star",
+              "label": "star",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "star"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-115-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write drum",
+        "say": "Look at the word drum. Then write it from memory!",
+        "audio": "voice/line-4ba89b6c436290ea.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "drum",
+          "label": "drum",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "drum",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-115-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Star! Build the word star.",
+        "audio": "voice/line-0a5495d2ed6b797b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "star",
+          "label": "star",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "s",
+          "t",
+          "a",
+          "r"
+        ],
+        "slot": "plank"
+      }
+    },
+    {
+      "id": "level-115-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Flag! Which letter is missing?",
+        "audio": "voice/line-d427ee6c6a009585.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "flag",
+          "label": "flag",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "a",
+        "guide": "a",
+        "word": "flag",
+        "missingIndex": 2,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-115-r5",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every star!",
+        "say": "Pop every bubble that says star!",
+        "audio": "voice/line-ddcc8aa88585e8b3.m4a"
+      },
+      "card": {
+        "text": "star",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "star",
+        "others": [
+          "ship",
+          "sled",
+          "drum"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-115-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every sled!",
+        "say": "Find every word sled!",
+        "audio": "voice/line-53eb053629d18974.m4a"
+      },
+      "card": {
+        "text": "sled",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "sled",
+        "grid": [
+          "tree",
+          "star",
+          "sled",
+          "drum",
+          "skate",
+          "sled",
+          "sled",
+          "flag",
+          "four"
+        ]
+      }
+    },
+    {
+      "id": "level-115-r7",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the words: st or fl or tr?",
+        "say": "Read each word. Is it {s|ˈɛs} {t|tˈiː} or {f|ˈɛf} {l|ˈɛl} or {t|tˈiː} {r|ˈɑːɹ}?",
+        "audio": "voice/line-0d2f6f855b3bb11b.m4a"
+      },
+      "card": {
+        "text": "st fl tr",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "st",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "fl",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "tr",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "truck",
+            "picture": null,
+            "bin": 2
+          },
+          {
+            "label": "train",
+            "picture": null,
+            "bin": 2
+          },
+          {
+            "label": "flag",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "stop",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "star",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "fly",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "step",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "tree",
+            "picture": null,
+            "bin": 2
+          },
+          {
+            "label": "flower",
+            "picture": null,
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-115-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: star, flag, tree, sled!",
+        "say": "Say them with me! star, flag, tree, sled!",
+        "audio": "voice/line-81f3de9b48ae85ac.m4a"
+      },
+      "card": {
+        "text": "star, flag, tree, sled!",
+        "picture": {
+          "key": "star",
+          "label": "star",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "star, flag, tree, sled!"
+      }
+    },
+    {
+      "id": "level-115-r9",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "star",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "star",
+                "label": "star",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "flag",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "flag",
+                "label": "flag",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "tree",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "tree",
+                "label": "tree",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-115-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Write tree",
+        "say": "Write the word tree.",
+        "audio": "voice/line-b78eeb92372e6b39.m4a"
+      },
+      "card": {
+        "text": "tree",
+        "picture": {
+          "key": "tree",
+          "label": "tree",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "tree",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

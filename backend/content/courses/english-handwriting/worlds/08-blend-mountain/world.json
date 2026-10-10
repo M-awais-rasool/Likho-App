@@ -1,9 +1,9 @@
 {
   "$schema": "../../../../schema/world.schema.json",
-  "id": "world-5",
-  "order": 5,
-  "name": "Sound Mountain",
-  "skill": "Letter pairs",
+  "id": "world-8",
+  "order": 8,
+  "name": "Blend Mountain",
+  "skill": "Blends & long words",
   "icon": "landscape",
   "themeId": "soundMountain",
   "boss": {
