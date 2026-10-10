@@ -9,6 +9,7 @@ import '../data/auth.dart';
 import '../data/course_providers.dart';
 import '../data/media.dart';
 import '../data/family.dart';
+import '../data/links.dart';
 import '../data/models/course_models.dart';
 import '../feedback/app_feedback.dart';
 import '../feedback/game_feedback.dart';
@@ -253,6 +254,9 @@ abstract final class AppFlow {
       onManageChildren: () => toWhos(ctx),
       onPlan: () => Navigator.of(ctx).push(_paywall()),
       onHelp: () => Toast.show(ctx, 'Help center coming soon'),
+      onPrivacy: () async {
+        if (!await LikhoLinks.open(LikhoLinks.privacy) && ctx.mounted) Toast.show(ctx, 'Could not open the page. Visit likho.io/privacy');
+      },
       onDeleteAccount: () => _deleteAccount(ctx),
     ),
   );

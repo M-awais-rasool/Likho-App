@@ -18,10 +18,11 @@ class SettingsScreen extends ConsumerWidget {
     required this.onManageChildren,
     required this.onPlan,
     required this.onHelp,
+    required this.onPrivacy,
     required this.onDeleteAccount,
   });
 
-  final VoidCallback onBack, onLogOut, onManageChildren, onPlan, onHelp, onDeleteAccount;
+  final VoidCallback onBack, onLogOut, onManageChildren, onPlan, onHelp, onPrivacy, onDeleteAccount;
 
   /// Shown when nobody is signed in (sample data in tests / dev tools).
   static const demoEmail = 'parent@likho.app';
@@ -157,7 +158,7 @@ class SettingsScreen extends ConsumerWidget {
         card([
           SettingsRow(label: 'FAQ', trailing: chevron, onTap: onHelp),
           SettingsRow(label: 'Contact us', trailing: chevron, onTap: onHelp),
-          SettingsRow(label: 'Privacy policy', trailing: chevron, onTap: onHelp, last: true),
+          SettingsRow(label: 'Privacy policy', trailing: chevron, onTap: onPrivacy, last: true),
         ]),
       ],
     );
