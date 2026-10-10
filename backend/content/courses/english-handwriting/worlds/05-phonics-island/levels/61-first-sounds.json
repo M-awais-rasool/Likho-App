@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-63",
-  "number": 63,
+  "id": "level-61",
+  "number": 61,
   "name": "First Sounds",
   "skill": "Sounds at the start",
   "icon": "phishing",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-63-r1",
+      "id": "level-61-r1",
       "type": "pick",
       "prompt": {
         "text": "apple",
@@ -48,28 +48,28 @@
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-63-r1-o1"
+            "id": "level-61-r1-o1"
           },
           {
             "label": "m",
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-63-r1-o2"
+            "id": "level-61-r1-o2"
           },
           {
             "label": "s",
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-63-r1-o3"
+            "id": "level-61-r1-o3"
           },
           {
             "label": "t",
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-63-r1-o4"
+            "id": "level-61-r1-o4"
           }
         ],
         "answer": {
@@ -84,82 +84,82 @@
       }
     },
     {
-      "id": "level-63-r2",
+      "id": "level-61-r2",
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/s/|sːː} or {/p/|pʌ}?",
-        "audio": "voice/line-d89f0ad41a31fa75.m4a"
+        "say": "Sort the pictures! Do they start with {/c/|kʌ} or {/d/|dʌ}?",
+        "audio": "voice/line-90dbd022dea91b70.m4a"
       },
       "card": {
-        "text": "s p",
+        "text": "c d",
         "picture": null,
         "listen": false
       },
       "sort": {
         "bins": [
           {
-            "label": "s",
+            "label": "c",
             "picture": null,
             "bin": null
           },
           {
-            "label": "p",
+            "label": "d",
             "picture": null,
             "bin": null
           }
         ],
         "items": [
           {
-            "label": "pig",
+            "label": "doctor",
             "picture": {
-              "key": "pig",
-              "label": "pig",
+              "key": "doctor",
+              "label": "doctor",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "pin",
+            "label": "dog",
             "picture": {
-              "key": "pin",
-              "label": "pin",
+              "key": "dog",
+              "label": "dog",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "pot",
+            "label": "cow",
             "picture": {
-              "key": "pot",
-              "label": "pot",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "seed",
-            "picture": {
-              "key": "seed",
-              "label": "seed",
+              "key": "cow",
+              "label": "cow",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "six",
+            "label": "car",
             "picture": {
-              "key": "six",
-              "label": "six",
+              "key": "car",
+              "label": "car",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "sun",
+            "label": "duck",
             "picture": {
-              "key": "sun",
-              "label": "sun",
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
               "url": null
             },
             "bin": 0
@@ -168,7 +168,7 @@
       }
     },
     {
-      "id": "level-63-r3",
+      "id": "level-61-r3",
       "type": "pick",
       "prompt": {
         "text": "Which picture is cat?",
@@ -183,33 +183,33 @@
       "pick": {
         "options": [
           {
-            "id": "level-63-r3-o1",
-            "label": "dog",
+            "id": "level-61-r3-o1",
+            "label": "pig",
             "picture": {
-              "key": "dog",
-              "label": "dog",
+              "key": "pig",
+              "label": "pig",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-63-r3-o2",
+            "id": "level-61-r3-o2",
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-61-r3-o3",
             "label": "cat",
             "picture": {
               "key": "cat",
               "label": "cat",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-63-r3-o3",
-            "label": "hen",
-            "picture": {
-              "key": "hen",
-              "label": "hen",
               "url": null
             },
             "color": null,
@@ -220,7 +220,7 @@
           "kind": "label",
           "value": "cat"
         },
-        "shape": "jar",
+        "shape": "card",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -228,7 +228,7 @@
       }
     },
     {
-      "id": "level-63-r4",
+      "id": "level-61-r4",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -250,29 +250,29 @@
           "o",
           "g"
         ],
-        "slot": "stripe"
+        "slot": "plank"
       }
     },
     {
-      "id": "level-63-r5",
+      "id": "level-61-r5",
       "type": "write",
       "prompt": {
-        "text": "Look, then write sun",
-        "say": "Look at the word sun. Then write it from memory!",
-        "audio": "voice/line-b826f034d5d868d2.m4a"
+        "text": "Look, then write cat",
+        "say": "Look at the word cat. Then write it from memory!",
+        "audio": "voice/line-1287718e1719c23c.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "sun",
-          "label": "sun",
+          "key": "cat",
+          "label": "cat",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "flash",
-        "target": "sun",
+        "target": "cat",
         "guide": null,
         "word": null,
         "missingIndex": null,
@@ -281,7 +281,7 @@
       }
     },
     {
-      "id": "level-63-r6",
+      "id": "level-61-r6",
       "type": "write",
       "prompt": {
         "text": "Spell pig",
@@ -308,7 +308,7 @@
       }
     },
     {
-      "id": "level-63-r7",
+      "id": "level-61-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every hen!",
@@ -323,20 +323,20 @@
       "hunt": {
         "target": "hen",
         "grid": [
+          "dog",
           "sun",
-          "hen",
-          "dog",
-          "cat",
-          "cat",
           "pig",
-          "dog",
           "hen",
-          "hen"
+          "hen",
+          "hen",
+          "cat",
+          "dog",
+          "cat"
         ]
       }
     },
     {
-      "id": "level-63-r8",
+      "id": "level-61-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: cat, dog, sun, pig!",
@@ -357,30 +357,30 @@
       }
     },
     {
-      "id": "level-63-r9",
+      "id": "level-61-r9",
       "type": "pop",
       "prompt": {
-        "text": "Pop every sun!",
-        "say": "Pop every bubble that says sun!",
-        "audio": "voice/line-2635d6999a5b027e.m4a"
+        "text": "Pop every cat!",
+        "say": "Pop every bubble that says cat!",
+        "audio": "voice/line-c08d01b05ab44259.m4a"
       },
       "card": {
-        "text": "sun",
+        "text": "cat",
         "picture": null,
         "listen": false
       },
       "pop": {
-        "target": "sun",
+        "target": "cat",
         "others": [
-          "cat",
           "dog",
-          "hen"
+          "hen",
+          "pig"
         ],
         "count": 4
       }
     },
     {
-      "id": "level-63-r10",
+      "id": "level-61-r10",
       "type": "write",
       "prompt": {
         "text": "Write sun",

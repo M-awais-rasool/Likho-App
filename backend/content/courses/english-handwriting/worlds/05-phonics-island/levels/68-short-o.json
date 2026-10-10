@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-67",
-  "number": 67,
+  "id": "level-68",
+  "number": 68,
   "name": "Short o",
   "skill": "d-o-g words",
   "icon": "pets",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-67-r1",
+      "id": "level-68-r1",
       "type": "pick",
       "prompt": {
         "text": "Which picture is dog?",
@@ -41,7 +41,18 @@
       "pick": {
         "options": [
           {
-            "id": "level-67-r1-o1",
+            "id": "level-68-r1-o1",
+            "label": "log",
+            "picture": {
+              "key": "log",
+              "label": "log",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-68-r1-o2",
             "label": "dog",
             "picture": {
               "key": "dog",
@@ -52,22 +63,11 @@
             "hideLabel": true
           },
           {
-            "id": "level-67-r1-o2",
-            "label": "pot",
+            "id": "level-68-r1-o3",
+            "label": "fox",
             "picture": {
-              "key": "pot",
-              "label": "pot",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-67-r1-o3",
-            "label": "log",
-            "picture": {
-              "key": "log",
-              "label": "log",
+              "key": "fox",
+              "label": "fox",
               "url": null
             },
             "color": null,
@@ -78,7 +78,7 @@
           "kind": "label",
           "value": "dog"
         },
-        "shape": "jar",
+        "shape": "bucket",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -86,45 +86,91 @@
       }
     },
     {
-      "id": "level-67-r2",
-      "type": "fix",
+      "id": "level-68-r2",
+      "type": "sort",
       "prompt": {
-        "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/p/|pʌ} or {/f/|fːː}?",
+        "audio": "voice/line-30e167af2e0d4319.m4a"
       },
       "card": {
-        "text": "Fix it!",
+        "text": "p f",
         "picture": null,
         "listen": false
       },
-      "fix": {
+      "sort": {
+        "bins": [
+          {
+            "label": "p",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "f",
+            "picture": null,
+            "bin": null
+          }
+        ],
         "items": [
           {
-            "text": "dog",
-            "wrong": null,
-            "at": null
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "bin": 1
           },
           {
-            "text": "box",
-            "wrong": "mirror",
-            "at": 0
+            "label": "four",
+            "picture": {
+              "key": "four",
+              "label": "four",
+              "url": null
+            },
+            "bin": 1
           },
           {
-            "text": "pot",
-            "wrong": null,
-            "at": null
+            "label": "pencil",
+            "picture": {
+              "key": "pencil",
+              "label": "pencil",
+              "url": null
+            },
+            "bin": 0
           },
           {
-            "text": "fox",
-            "wrong": "mirror",
-            "at": 0
+            "label": "pin",
+            "picture": {
+              "key": "pin",
+              "label": "pin",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "foot",
+            "picture": {
+              "key": "foot",
+              "label": "foot",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "pen",
+            "picture": {
+              "key": "pen",
+              "label": "pen",
+              "url": null
+            },
+            "bin": 0
           }
         ]
       }
     },
     {
-      "id": "level-67-r3",
+      "id": "level-68-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -146,11 +192,11 @@
           "o",
           "g"
         ],
-        "slot": "plank"
+        "slot": "wagon"
       }
     },
     {
-      "id": "level-67-r4",
+      "id": "level-68-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -165,21 +211,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-67-r4-o1",
+            "id": "level-68-r4-o1",
             "label": "fox",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-67-r4-o2",
+            "id": "level-68-r4-o2",
             "label": "pot",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-67-r4-o3",
+            "id": "level-68-r4-o3",
             "label": "box",
             "picture": null,
             "color": null,
@@ -190,7 +236,7 @@
           "kind": "label",
           "value": "box"
         },
-        "shape": "fish",
+        "shape": "shell",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -198,7 +244,7 @@
       }
     },
     {
-      "id": "level-67-r5",
+      "id": "level-68-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
@@ -225,30 +271,34 @@
       }
     },
     {
-      "id": "level-67-r6",
-      "type": "truth",
+      "id": "level-68-r6",
+      "type": "write",
       "prompt": {
-        "text": "True or silly?",
-        "say": "This is a box. True, or silly?",
-        "audio": "voice/line-44a6bae39138b5e3.m4a"
+        "text": "Look, then write pot",
+        "say": "Look at the word pot. Then write it from memory!",
+        "audio": "voice/line-c572ae0c9011cbe9.m4a"
       },
       "card": {
         "text": null,
-        "picture": null,
-        "listen": true
-      },
-      "truth": {
-        "text": "This is a box.",
         "picture": {
-          "key": "box",
-          "label": "box",
+          "key": "pot",
+          "label": "pot",
           "url": null
         },
-        "answer": true
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "pot",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
       }
     },
     {
-      "id": "level-67-r7",
+      "id": "level-68-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every fox!",
@@ -263,20 +313,20 @@
       "hunt": {
         "target": "fox",
         "grid": [
-          "dog",
-          "log",
           "pig",
-          "box",
           "dog",
+          "dog",
+          "fox",
+          "box",
+          "fox",
           "pot",
-          "fox",
-          "fox",
+          "log",
           "fox"
         ]
       }
     },
     {
-      "id": "level-67-r8",
+      "id": "level-68-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: dog, box, pot, fox!",
@@ -297,91 +347,30 @@
       }
     },
     {
-      "id": "level-67-r9",
-      "type": "sort",
+      "id": "level-68-r9",
+      "type": "pop",
       "prompt": {
-        "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/b/|bʌ} or {/p/|pʌ}?",
-        "audio": "voice/line-f38ab05abe375144.m4a"
+        "text": "Pop every pot!",
+        "say": "Pop every bubble that says pot!",
+        "audio": "voice/line-c6a315329f69cbf0.m4a"
       },
       "card": {
-        "text": "b p",
+        "text": "pot",
         "picture": null,
         "listen": false
       },
-      "sort": {
-        "bins": [
-          {
-            "label": "b",
-            "picture": null,
-            "bin": null
-          },
-          {
-            "label": "p",
-            "picture": null,
-            "bin": null
-          }
+      "pop": {
+        "target": "pot",
+        "others": [
+          "pig",
+          "box",
+          "dog"
         ],
-        "items": [
-          {
-            "label": "bee",
-            "picture": {
-              "key": "bee",
-              "label": "bee",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "pin",
-            "picture": {
-              "key": "pin",
-              "label": "pin",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "pencil",
-            "picture": {
-              "key": "pencil",
-              "label": "pencil",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "bag",
-            "picture": {
-              "key": "bag",
-              "label": "bag",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "bus",
-            "picture": {
-              "key": "bus",
-              "label": "bus",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "pen",
-            "picture": {
-              "key": "pen",
-              "label": "pen",
-              "url": null
-            },
-            "bin": 1
-          }
-        ]
+        "count": 4
       }
     },
     {
-      "id": "level-67-r10",
+      "id": "level-68-r10",
       "type": "write",
       "prompt": {
         "text": "Write pot",

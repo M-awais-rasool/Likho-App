@@ -1,10 +1,10 @@
 {
   "$schema": "../../../../schema/world.schema.json",
-  "id": "world-10",
-  "order": 10,
-  "name": "Question Island",
-  "skill": "Questions",
-  "icon": "help",
+  "id": "world-5",
+  "order": 5,
+  "name": "Phonics Island",
+  "skill": "Sounds & words",
+  "icon": "sailing",
   "themeId": "questionIsland",
   "boss": {
     "id": "turtle",

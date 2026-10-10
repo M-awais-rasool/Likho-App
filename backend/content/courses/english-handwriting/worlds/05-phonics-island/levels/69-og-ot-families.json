@@ -1,0 +1,409 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-69",
+  "number": 69,
+  "name": "-og & -ot Families",
+  "skill": "Word families",
+  "icon": "pets",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "-og -ot",
+    "word": "frog",
+    "say": "Dog, log, frog: the {og|ɑɡ} family! Pot, hot, dot: the {ot|ɑt} family!",
+    "audio": "voice/line-92d569d45fed1cf6.m4a",
+    "picture": {
+      "key": "frog",
+      "label": "frog",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-69-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is hot?",
+        "say": "Read the word. Which picture is hot?",
+        "audio": "voice/line-c451b41ab13fa4a2.m4a"
+      },
+      "card": {
+        "text": "hot",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-69-r1-o1",
+            "label": "hot",
+            "picture": {
+              "key": "hot",
+              "label": "hot",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-69-r1-o2",
+            "label": "log",
+            "picture": {
+              "key": "log",
+              "label": "log",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-69-r1-o3",
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "hot"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-69-r2",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "hot",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "hot",
+                "label": "hot",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "log",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "log",
+                "label": "log",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "pot",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "pot",
+                "label": "pot",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-69-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Hot! Build the word hot.",
+        "audio": "voice/line-e7403287f2c1f836.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "hot",
+          "label": "hot",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "h",
+          "o",
+          "t"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-69-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Log! Which letter is missing?",
+        "audio": "voice/line-e77f6e1a234107ae.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "log",
+          "label": "log",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "o",
+        "guide": "o",
+        "word": "log",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-69-r5",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "hot",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "log",
+            "wrong": "mirror",
+            "at": 2
+          },
+          {
+            "text": "pot",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "dog",
+            "wrong": "mirror",
+            "at": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-69-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every dog!",
+        "say": "Find every word dog!",
+        "audio": "voice/line-d195c254685f1426.m4a"
+      },
+      "card": {
+        "text": "dog",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "dog",
+        "grid": [
+          "dog",
+          "frog",
+          "dog",
+          "pig",
+          "dot",
+          "dog",
+          "log",
+          "pot",
+          "hot"
+        ]
+      }
+    },
+    {
+      "id": "level-69-r7",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the words: -og or -ot?",
+        "say": "Read each word. Does it end in {og|ɑɡ} or {ot|ɑt}?",
+        "audio": "voice/line-4b560f906ea09725.m4a"
+      },
+      "card": {
+        "text": "-og -ot",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "-og",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "-ot",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "dot",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "frog",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "pot",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "dog",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "hot",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "cot",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "fog",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "log",
+            "picture": null,
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-69-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: hot, log, pot, dog!",
+        "say": "Say them with me! hot, log, pot, dog!",
+        "audio": "voice/line-33f8c9e952b57ea3.m4a"
+      },
+      "card": {
+        "text": "hot, log, pot, dog!",
+        "picture": {
+          "key": "hot",
+          "label": "hot",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "hot, log, pot, dog!"
+      }
+    },
+    {
+      "id": "level-69-r9",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a pot. True, or silly?",
+        "audio": "voice/line-877ff70e6e2843f7.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a pot.",
+        "picture": {
+          "key": "pot",
+          "label": "pot",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-69-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Write pot",
+        "say": "Write the word pot.",
+        "audio": "voice/line-9af47c7fd9bf17cc.m4a"
+      },
+      "card": {
+        "text": "pot",
+        "picture": {
+          "key": "pot",
+          "label": "pot",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "pot",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}
