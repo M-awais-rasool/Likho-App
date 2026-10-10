@@ -151,34 +151,86 @@ class BodySwatch {
   }
 }
 
-/// Colours of one world on the map (prototype LIKHO.WORLDS).
+/// The scenery a world's map section is painted with (see SceneryPainter).
+enum WorldScene { meadow, castle, cove, frost, forest, town, mountain, beach, garden, sky, jungle, island, river, space }
+
+/// Colours of one world: the map section fades from [bg] at the bottom to
+/// [sky] at the top; done levels are [accent] on a [deep] edge; scenery is
+/// drawn in [soft] and [pop]. Gameplay, level intro and level complete use
+/// [bg], [soft] and [accent] too.
 class WorldTheme {
-  const WorldTheme({required this.bg, required this.accent, required this.deep, required this.soft, this.dark = false});
-  final Color bg, accent, deep, soft;
+  const WorldTheme({
+    required this.bg,
+    required this.accent,
+    required this.deep,
+    required this.soft,
+    Color? sky,
+    Color? pop,
+    this.scene = WorldScene.meadow,
+    this.dark = false,
+  })  : sky = sky ?? bg,
+        pop = pop ?? accent;
+  final Color bg, accent, deep, soft, sky, pop;
+  final WorldScene scene;
   final bool dark;
 }
 
+/// The fourteen world themes. Theme ids are the look, not the world: in the
+/// course they go round the colour wheel (green, lime, gold, orange, coral,
+/// pink, magenta, lavender, blue, sky, teal, mint) and end in the two night
+/// worlds, so each world's colours are close to the one before. [all] is in
+/// that course order.
 abstract final class LikhoWorlds {
-  static const letterLand = WorldTheme(bg: Color(0xFFEAF5DE), accent: Color(0xFF5DAE3B), deep: Color(0xFF3F8A26), soft: Color(0xFFD3ECBF));
-  static const smallLetterCove = WorldTheme(bg: Color(0xFFDFF3F1), accent: Color(0xFF20A39D), deep: Color(0xFF157C77), soft: Color(0xFFBDE8E4));
-  static const phonicsForest = WorldTheme(bg: Color(0xFFE3EEDB), accent: Color(0xFF3F8F5A), deep: Color(0xFF2C6B41), soft: Color(0xFFC6DDB8));
-  static const wordTown = WorldTheme(bg: Color(0xFFFBEDE3), accent: Color(0xFFDB7453), deep: Color(0xFFB4573A), soft: Color(0xFFF6D6C6));
-  static const sentenceSky = WorldTheme(bg: Color(0xFFE3F0FC), accent: Color(0xFF3B89D2), deep: Color(0xFF2767A5), soft: Color(0xFFC8E1F7));
-  static const storySpace = WorldTheme(bg: Color(0xFF252950), accent: Color(0xFFA08BF0), deep: Color(0xFF7A63D4), soft: Color(0xFF3A4077), dark: true);
-  static const soundMountain = WorldTheme(bg: Color(0xFFEFEAF8), accent: Color(0xFF8A6FD1), deep: Color(0xFF6A51B0), soft: Color(0xFFDCD3F0));
-  static const blendBeach = WorldTheme(bg: Color(0xFFFFF2DE), accent: Color(0xFFEE9A32), deep: Color(0xFFC27A1A), soft: Color(0xFFFBE0B4));
-  static const sightGarden = WorldTheme(bg: Color(0xFFFCEAF2), accent: Color(0xFFDD5E8C), deep: Color(0xFFB4436D), soft: Color(0xFFF7CFE0));
-  static const actionJungle = WorldTheme(bg: Color(0xFFF1F5DA), accent: Color(0xFF86A321), deep: Color(0xFF657D14), soft: Color(0xFFE1EAB2));
-  static const questionIsland = WorldTheme(bg: Color(0xFFFFF7D9), accent: Color(0xFFD4A20A), deep: Color(0xFFA67C00), soft: Color(0xFFFBEAA6));
-  static const readingRiver = WorldTheme(bg: Color(0xFFE0F3F8), accent: Color(0xFF1897B9), deep: Color(0xFF0F7591), soft: Color(0xFFBDE5F0));
+  static const letterLand = WorldTheme(
+      bg: Color(0xFFE6F5D8), sky: Color(0xFFF4FBEA), accent: Color(0xFF5BB13C), deep: Color(0xFF3F8A26), soft: Color(0xFFCDEAB4), pop: Color(0xFFFFC93C));
+  static const alphabetCastle = WorldTheme(
+      bg: Color(0xFFF6E4F5), sky: Color(0xFFFDF2F9), accent: Color(0xFFC752C0), deep: Color(0xFF9A3594), soft: Color(0xFFEBC9EA), pop: Color(0xFFFFC23D),
+      scene: WorldScene.castle);
+  static const smallLetterCove = WorldTheme(
+      bg: Color(0xFFD6F2EF), sky: Color(0xFFEDFAF8), accent: Color(0xFF11A7A0), deep: Color(0xFF0B7F7A), soft: Color(0xFFB2E5E0), pop: Color(0xFFFF8A6B),
+      scene: WorldScene.cove);
+  static const frostyBay = WorldTheme(
+      bg: Color(0xFF17344F), sky: Color(0xFF0D2036), accent: Color(0xFF56C2EE), deep: Color(0xFF2C8DC0), soft: Color(0xFF26507A), pop: Color(0xFF7CF0C4),
+      scene: WorldScene.frost, dark: true);
+  static const phonicsForest = WorldTheme(
+      bg: Color(0xFFFCE4CE), sky: Color(0xFFFFF4E6), accent: Color(0xFFE8702A), deep: Color(0xFFBB521A), soft: Color(0xFFF6C9A4), pop: Color(0xFFD9472B),
+      scene: WorldScene.forest);
+  static const wordTown = WorldTheme(
+      bg: Color(0xFFE1E8FC), sky: Color(0xFFF2F5FF), accent: Color(0xFF3D63DD), deep: Color(0xFF2847B0), soft: Color(0xFFC5D2F6), pop: Color(0xFFFFC23D),
+      scene: WorldScene.town);
+  static const soundMountain = WorldTheme(
+      bg: Color(0xFFEAE2FA), sky: Color(0xFFFBF0F7), accent: Color(0xFF8C67DB), deep: Color(0xFF6A49B8), soft: Color(0xFFD6C8F2), pop: Color(0xFFFF9EC4),
+      scene: WorldScene.mountain);
+  static const blendBeach = WorldTheme(
+      bg: Color(0xFFFFEDC8), sky: Color(0xFFE2F5FB), accent: Color(0xFFF0A417), deep: Color(0xFFC27F06), soft: Color(0xFFF8DB9C), pop: Color(0xFF2EC4D6),
+      scene: WorldScene.beach);
+  static const sightGarden = WorldTheme(
+      bg: Color(0xFFFCE2EB), sky: Color(0xFFFFF3F7), accent: Color(0xFFEE5F8F), deep: Color(0xFFC43F6E), soft: Color(0xFFF6C3D5), pop: Color(0xFF6CC04A),
+      scene: WorldScene.garden);
+  static const sentenceSky = WorldTheme(
+      bg: Color(0xFFD8EEFC), sky: Color(0xFFF2FAFF), accent: Color(0xFF2EA3E6), deep: Color(0xFF1A7DB8), soft: Color(0xFFB9DFF7), pop: Color(0xFFFFFFFF),
+      scene: WorldScene.sky);
+  static const actionJungle = WorldTheme(
+      bg: Color(0xFFEBF4CC), sky: Color(0xFFF7FAE4), accent: Color(0xFF8DB51E), deep: Color(0xFF6A8C0E), soft: Color(0xFFD3E69C), pop: Color(0xFFFF8F3C),
+      scene: WorldScene.jungle);
+  static const questionIsland = WorldTheme(
+      bg: Color(0xFFFFE3DA), sky: Color(0xFFE0F5F6), accent: Color(0xFFF05A4F), deep: Color(0xFFC73D33), soft: Color(0xFFF9C2B6), pop: Color(0xFF2FC2B0),
+      scene: WorldScene.island);
+  static const readingRiver = WorldTheme(
+      bg: Color(0xFFD6F2E5), sky: Color(0xFFEDFAF4), accent: Color(0xFF22B07D), deep: Color(0xFF15875D), soft: Color(0xFFB3E3CD), pop: Color(0xFF4BA8E8),
+      scene: WorldScene.river);
+  static const storySpace = WorldTheme(
+      bg: Color(0xFF252950), sky: Color(0xFF181B3B), accent: Color(0xFFA08BF0), deep: Color(0xFF7A63D4), soft: Color(0xFF3A4077), pop: Color(0xFFFFE38A),
+      scene: WorldScene.space, dark: true);
+
   static const all = [
-    letterLand, smallLetterCove, phonicsForest, wordTown, sentenceSky, storySpace, //
-    soundMountain, blendBeach, sightGarden, actionJungle, questionIsland, readingRiver,
+    letterLand, actionJungle, blendBeach, phonicsForest, questionIsland, sightGarden, alphabetCastle, //
+    soundMountain, wordTown, sentenceSky, smallLetterCove, readingRiver, frostyBay, storySpace,
   ];
 
   static const ids = [
-    'letterLand', 'smallLetterCove', 'phonicsForest', 'wordTown', 'sentenceSky', 'storySpace', //
-    'soundMountain', 'blendBeach', 'sightGarden', 'actionJungle', 'questionIsland', 'readingRiver',
+    'letterLand', 'actionJungle', 'blendBeach', 'phonicsForest', 'questionIsland', 'sightGarden', 'alphabetCastle', //
+    'soundMountain', 'wordTown', 'sentenceSky', 'smallLetterCove', 'readingRiver', 'frostyBay', 'storySpace',
   ];
 
   /// Position of a `themeId` in [all] (0 when unknown), e.g. for the map's
@@ -221,6 +273,7 @@ abstract final class MapColors {
   static const houseRed = Color(0xFFF7C9B5);
   static const houseBlue = Color(0xFFCFE3F3);
   static const cloudWhite = Color(0xFFFFFFFF);
+  static const cloudShade = Color(0xFFDCE2F0); // the belly of the cloud bank between worlds
   static const kite = Color(0xFFFFC83D);
   static const cloudSoft = Color(0xE6FFFFFF); // .9
   static const rock = Color(0xFFD9D1EA);
@@ -240,48 +293,91 @@ abstract final class MapColors {
   static const planetShade = Color(0x2E000000); // inset rgba(0,0,0,.18)
 }
 
-/// Sleeping world bosses (prototype Boss component).
+/// World bosses (lib/bosses): shared face colours (Pencil's), then each
+/// boss's own colours. Shades and outlines are derived (Shade.of).
 abstract final class BossColors {
   static const shadow = Color(0x1A000000);
-  static const snailBody = Color(0xFFBFDC93);
-  static const snailStalk = Color(0xFF98BD6C);
-  static const snailShell = Color(0xFFF2B36B);
-  static const snailShellLine = Color(0xFFD38E43);
-  static const fishFin = Color(0xFFF07F5E);
-  static const fishBody = Color(0xFFFF9E80);
-  static const shine = Color(0x4DFFFFFF); // white .3
-  static const bearEar = Color(0xFFA97B55);
-  static const bearEarInner = Color(0xFFE3BF98);
-  static const bearBody = Color(0xFFB98A62);
-  static const bearMuzzle = Color(0xFFE8C9A6);
+  static const shine = Color(0xFFFFFFFF); // drawn at .55
+  static const cheek = Color(0x8CFF8FA3); // .55
+  static const eyeWhite = Color(0xFFFFFFFF);
+  static const pupil = Color(0xFF2A2E4A);
+  static const happyEye = Color(0xFF4A3434); // closed "^ ^" and sleeping eyes
+  static const mouth = Color(0xFF6E3227);
+  static const tongue = Color(0xFFEF8882);
+  static const faceLight = Color(0xFFFFD1DA); // smile on a dark face (ladybug)
+  static const bubble = Color(0xFFE8F6FF);
+  static const bubbleRim = Color(0xFF9CCBEA);
+  static const zzz = Color(0xFF7C7FA8);
+  static const zzzNight = Color(0xFFE6E0FF);
+
+  static const snailBody = Color(0xFFFFD47A);
+  static const snailShell = Color(0xFFFF8C9E);
+  static const fishBody = Color(0xFFFF9233);
+  static const fishBand = Color(0xFFFFFFFF);
+  static const fishBandShade = Color(0xFFE4ECF5);
+  static const fishLine = Color(0xFF3A2D3F);
+  static const bearFur = Color(0xFFB07A4E);
+  static const bearCream = Color(0xFFF5D7B2);
   static const bearNose = Color(0xFF4A3A30);
+  static const pawPad = Color(0xFFF2B0A6);
+  static const autumnLeaf = Color(0xFFEE6A2E);
+  static const busBody = Color(0xFFFFC83D);
   static const busDark = Color(0xFF3A3D5C);
+  static const busWindow = Color(0xFFCFE8F8);
+  static const busWindowLight = Color(0xFFE6F4FC);
+  static const busWindowShade = Color(0xFFB4D6EE);
+  static const busWindowLine = Color(0xFF6E9CC2);
   static const busLightOn = Color(0xFFFFF4B8);
   static const busLightOff = Color(0xFF9A9CB8);
-  static const busWindow = Color(0xFFCFE8F8);
+  static const robotArm = Color(0xFFA9B4C6);
   static const cloudBody = Color(0xFFFFFFFF);
-  static const cloudLine = Color(0xFFCFE3F7);
-  static const moon = Color(0xFFFFE08A);
-  static const moonCrater = Color(0xB3F5CB60); // .7
-  static const moonShine = Color(0x59FFFFFF); // .35
-  static const cheek = Color(0x80FF8FA3); // .5
-  static const face = Color(0xFF2B2D42);
-  static const goatBody = Color(0xFFF4F1EA);
-  static const goatHorn = Color(0xFFC9B79C);
-  static const goatEar = Color(0xFFE2DACB);
-  static const crabBody = Color(0xFFF2735B);
-  static const crabClaw = Color(0xFFE05A43);
-  static const ladybugBody = Color(0xFFE94B4B);
-  static const ladybugSpot = Color(0xFF3A3D5C);
-  static const monkeyBody = Color(0xFFA9774E);
-  static const monkeyFace = Color(0xFFF1D2AE);
-  static const turtleShell = Color(0xFF5EAA5A);
-  static const turtleShellLine = Color(0xFF3F8A3C);
-  static const turtleSkin = Color(0xFFA9D88C);
-  static const frogBody = Color(0xFF7CCB5B);
-  static const frogBelly = Color(0xFFC8EBA9);
-  static const zzz = Color(0xFF7C7FA8);
-  static const zzzSpace = Color(0xFFE6E0FF);
+  static const cloudShade = Color(0xFFD9E9F8);
+  static const cloudLine = Color(0xFF8FB8E2);
+  static const rainbow = [Color(0xFFFF6B6B), Color(0xFFFFA94D), Color(0xFFFFD43B), Color(0xFF69DB7C), Color(0xFF4DABF7), Color(0xFF9775FA)];
+  static const moon = Color(0xFFFFE07A);
+  static const moonCrater = Color(0xFFF2C85A);
+  static const moonCraterShade = Color(0xFFE5B544);
+  static const nightcap = Color(0xFF5C6CF2);
+  static const nightcapLine = Color(0xFF3B47A8);
+  static const starGold = Color(0xFFFFE38A);
+  static const goatFur = Color(0xFFF7F2E8);
+  static const goatLine = Color(0xFFA8977C);
+  static const goatHorn = Color(0xFFD9BA8E);
+  static const goatEarInner = Color(0xFFF7B5B0);
+  static const goatMuzzle = Color(0xFFFBE1D6);
+  static const goatHoof = Color(0xFF6B5B4E);
+  static const collar = Color(0xFFEE5A5F);
+  static const bell = Color(0xFFFFC93C);
+  static const crabShell = Color(0xFFF2604B);
+  static const ladybugShell = Color(0xFFF0434B);
+  static const ladybugHead = Color(0xFF34375A);
+  static const ladybugHeadLight = Color(0xFF474B75);
+  static const ladybugHeadDark = Color(0xFF2A2C49);
+  static const ladybugHeadLine = Color(0xFF1C1E33);
+  static const ladybugWing = Color(0xFFDDF0FF);
+  static const ladybugWingLine = Color(0xFF9CC3E6);
+  static const monkeyFur = Color(0xFF9C6A44);
+  static const monkeyFace = Color(0xFFF6D4AE);
+  static const turtleShell = Color(0xFF3FA45F);
+  static const turtlePlate = Color(0xFF7CCB82);
+  static const turtleRim = Color(0xFFF2D27A);
+  static const turtleSkin = Color(0xFFA3D97F);
+  static const hibiscus = Color(0xFFFF6F91);
+  static const hibiscusCentre = Color(0xFFFFD43B);
+  static const frogSkin = Color(0xFF8ACF4E);
+  static const frogBelly = Color(0xFFEAF6BD);
+  static const lilyPad = Color(0xFF3BAA78);
+  static const crown = Color(0xFFFFC93C);
+  static const gem = Color(0xFFFF5A6E);
+  static const dragonBody = Color(0xFF5FD0A8);
+  static const dragonBelly = Color(0xFFFFE6A0);
+  static const dragonWing = Color(0xFFFF9BC0);
+  static const dragonHorn = Color(0xFFFFF0C8);
+  static const penguinBody = Color(0xFF86A0C4);
+  static const penguinWhite = Color(0xFFFAFCFF);
+  static const penguinWhiteShade = Color(0xFFDCE6F2);
+  static const penguinBeak = Color(0xFFFFA63D);
+  static const penguinScarf = Color(0xFFFF5C72);
 }
 
 /// Named colours used by course content (e.g. Paint Shop: "red").
