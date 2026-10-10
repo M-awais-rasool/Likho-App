@@ -112,7 +112,7 @@ services:
       start_period: 10s
     deploy:
       resources:
-        limits: { cpus: "1.5", memory: 384M }
+        limits: { cpus: "1.0", memory: 384M } # the 1-CPU plan has no more (Docker refuses > 1)
     <<: *logs
 
 volumes:
