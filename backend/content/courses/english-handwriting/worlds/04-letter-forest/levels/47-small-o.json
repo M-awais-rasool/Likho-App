@@ -1,0 +1,354 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-47",
+  "number": 47,
+  "name": "Small o",
+  "skill": "Small o and its sound",
+  "icon": "spa",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Oo",
+    "word": "octopus",
+    "say": "Big {O|ˈoʊ}, small {o|ˈoʊ}! Small {o|ˈoʊ} says {/o/|ɑ}, like octopus.",
+    "audio": "voice/line-3ab5a6bbaf475db3.m4a",
+    "picture": {
+      "key": "octopus",
+      "label": "octopus",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-47-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Find small o!",
+        "say": "Big {O|ˈoʊ}, small {o|ˈoʊ}! Find small {o|ˈoʊ}.",
+        "audio": "voice/line-a23cf1fb0219e6cf.m4a"
+      },
+      "card": {
+        "text": "O",
+        "picture": {
+          "key": "octopus",
+          "label": "octopus",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-47-r1-o1",
+            "label": "o",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-47-r1-o2",
+            "label": "c",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-47-r1-o3",
+            "label": "e",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-47-r1-o4",
+            "label": "a",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "o"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-47-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace small o",
+        "say": "Trace small {o|ˈoʊ}.",
+        "audio": "voice/line-51122d1c7da2ae27.m4a"
+      },
+      "card": {
+        "text": "o",
+        "picture": {
+          "key": "octopus",
+          "label": "octopus",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "o",
+        "guide": "o",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-47-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /o/?",
+        "say": "{o|ˈoʊ} says {/o/|ɑ}. Which one starts with {/o/|ɑ}?",
+        "audio": "voice/line-a488d47b0b46e2b8.m4a"
+      },
+      "card": {
+        "text": "o",
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-47-r3-o1",
+            "label": "lion",
+            "picture": {
+              "key": "lion",
+              "label": "lion",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-47-r3-o2",
+            "label": "octopus",
+            "picture": {
+              "key": "octopus",
+              "label": "octopus",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-47-r3-o3",
+            "label": "zebra",
+            "picture": {
+              "key": "zebra",
+              "label": "zebra",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "octopus"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-47-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make small o",
+        "say": "Join the dots to make small {o|ˈoʊ}.",
+        "audio": "voice/line-de27538789f550ba.m4a"
+      },
+      "card": {
+        "text": "o",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "o",
+        "guide": "o",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-47-r5",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each big letter to its small letter.",
+        "audio": "voice/line-4140f52a5074e7c8.m4a"
+      },
+      "card": {
+        "text": "Oo",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "N",
+              "picture": null
+            },
+            "b": {
+              "text": "n",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "O",
+              "picture": null
+            },
+            "b": {
+              "text": "o",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "P",
+              "picture": null
+            },
+            "b": {
+              "text": "p",
+              "picture": null
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-47-r6",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the letters!",
+        "say": "Put each letter in its basket: small {o|ˈoʊ} or {a|ˈeɪ}!",
+        "audio": "voice/line-face5765e7aa9bce.m4a"
+      },
+      "card": {
+        "text": "o a",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "o",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "a",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "a",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "o",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "a",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "o",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "a",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "o",
+            "picture": null,
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-47-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write small o",
+        "say": "Look at small {o|ˈoʊ}. Then write it from memory!",
+        "audio": "voice/line-d4fd529667275275.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "octopus",
+          "label": "octopus",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "o",
+        "guide": "o",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-47-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: o says /o/ like octopus!",
+        "say": "{o|ˈoʊ} says {/o/|ɑ}, like octopus! Now you say it.",
+        "audio": "voice/line-890c2ca7ad273891.m4a"
+      },
+      "card": {
+        "text": "o says /o/ like octopus!",
+        "picture": {
+          "key": "octopus",
+          "label": "octopus",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "o says /o/ like octopus!"
+      }
+    }
+  ]
+}

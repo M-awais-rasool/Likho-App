@@ -1,0 +1,231 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-56",
+  "number": 56,
+  "name": "Small w",
+  "skill": "Small w and its sound",
+  "icon": "spa",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Ww",
+    "word": "whale",
+    "say": "Big {W|dˈʌbəljuː}, small {w|dˈʌbəljuː}! Small {w|dˈʌbəljuː} says {/w/|wʌ}, like whale.",
+    "audio": "voice/line-3a5da6a65c796e93.m4a",
+    "picture": {
+      "key": "whale",
+      "label": "whale",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-56-r1",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every small w!",
+        "say": "Pop every small {w|dˈʌbəljuː} bubble!",
+        "audio": "voice/line-a4bc373c24b577db.m4a"
+      },
+      "card": {
+        "text": "w",
+        "picture": {
+          "key": "whale",
+          "label": "whale",
+          "url": null
+        },
+        "listen": false
+      },
+      "pop": {
+        "target": "w",
+        "others": [
+          "m",
+          "v",
+          "u"
+        ],
+        "count": 5
+      }
+    },
+    {
+      "id": "level-56-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace small w",
+        "say": "Trace small {w|dˈʌbəljuː}.",
+        "audio": "voice/line-804afe30be06962b.m4a"
+      },
+      "card": {
+        "text": "w",
+        "picture": {
+          "key": "whale",
+          "label": "whale",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "w",
+        "guide": "w",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-56-r3",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every small w!",
+        "say": "Find every small {w|dˈʌbəljuː}!",
+        "audio": "voice/line-e3b4b2d540510ab7.m4a"
+      },
+      "card": {
+        "text": "w",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "w",
+        "grid": [
+          "m",
+          "v",
+          "w",
+          "v",
+          "u",
+          "w",
+          "m",
+          "v",
+          "w",
+          "m",
+          "w",
+          "u"
+        ]
+      }
+    },
+    {
+      "id": "level-56-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make small w",
+        "say": "Join the dots to make small {w|dˈʌbəljuː}.",
+        "audio": "voice/line-24458835c22da651.m4a"
+      },
+      "card": {
+        "text": "w",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "w",
+        "guide": "w",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-56-r5",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "Cat starts with small {w|dˈʌbəljuː}. True, or silly?",
+        "audio": "voice/line-b91987f43767f567.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "Cat starts with w.",
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-56-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Finish the word!",
+        "say": "Whale! Write the missing letter.",
+        "audio": "voice/line-54b91d4f0454a142.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "whale",
+          "label": "whale",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "w",
+        "guide": "w",
+        "word": "whale",
+        "missingIndex": 0,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-56-r7",
+      "type": "write",
+      "prompt": {
+        "text": "Write small w by yourself",
+        "say": "Now write small {w|dˈʌbəljuː} all by yourself!",
+        "audio": "voice/line-ec4677b0d71db4c9.m4a"
+      },
+      "card": {
+        "text": "w",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "w",
+        "guide": "w",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-56-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: w says /w/ like whale!",
+        "say": "{w|dˈʌbəljuː} says {/w/|wʌ}, like whale! Now you say it.",
+        "audio": "voice/line-2a924d3613b48824.m4a"
+      },
+      "card": {
+        "text": "w says /w/ like whale!",
+        "picture": {
+          "key": "whale",
+          "label": "whale",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "w says /w/ like whale!"
+      }
+    }
+  ]
+}

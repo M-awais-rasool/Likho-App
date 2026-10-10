@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-47",
-  "number": 47,
+  "id": "level-46",
+  "number": 46,
   "name": "Small n",
   "skill": "Small n and its sound",
   "icon": "spa",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-47-r1",
+      "id": "level-46-r1",
       "type": "pop",
       "prompt": {
         "text": "Pop every small n!",
@@ -53,7 +53,7 @@
       }
     },
     {
-      "id": "level-47-r2",
+      "id": "level-46-r2",
       "type": "write",
       "prompt": {
         "text": "Trace small n",
@@ -80,7 +80,7 @@
       }
     },
     {
-      "id": "level-47-r3",
+      "id": "level-46-r3",
       "type": "hunt",
       "prompt": {
         "text": "Find every small n!",
@@ -95,23 +95,23 @@
       "hunt": {
         "target": "n",
         "grid": [
-          "n",
-          "n",
-          "h",
           "m",
-          "m",
-          "h",
-          "h",
           "n",
           "u",
-          "m",
           "n",
-          "u"
+          "u",
+          "h",
+          "h",
+          "h",
+          "n",
+          "n",
+          "m",
+          "m"
         ]
       }
     },
     {
-      "id": "level-47-r4",
+      "id": "level-46-r4",
       "type": "write",
       "prompt": {
         "text": "Join the dots to make small n",
@@ -134,7 +134,7 @@
       }
     },
     {
-      "id": "level-47-r5",
+      "id": "level-46-r5",
       "type": "sort",
       "prompt": {
         "text": "Feed it /n/!",
@@ -156,19 +156,37 @@
         ],
         "items": [
           {
-            "label": "nest",
+            "label": "apple",
             "picture": {
-              "key": "nest",
-              "label": "nest",
+              "key": "apple",
+              "label": "apple",
               "url": null
             },
-            "bin": 0
+            "bin": null
           },
           {
             "label": "nose",
             "picture": {
               "key": "nose",
               "label": "nose",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "ball",
+            "picture": {
+              "key": "ball",
+              "label": "ball",
+              "url": null
+            },
+            "bin": null
+          },
+          {
+            "label": "nest",
+            "picture": {
+              "key": "nest",
+              "label": "nest",
               "url": null
             },
             "bin": 0
@@ -183,28 +201,10 @@
             "bin": 0
           },
           {
-            "label": "insect",
+            "label": "yo-yo",
             "picture": {
-              "key": "insect",
-              "label": "insect",
-              "url": null
-            },
-            "bin": null
-          },
-          {
-            "label": "hat",
-            "picture": {
-              "key": "hat",
-              "label": "hat",
-              "url": null
-            },
-            "bin": null
-          },
-          {
-            "label": "cat",
-            "picture": {
-              "key": "cat",
-              "label": "cat",
+              "key": "yoyo",
+              "label": "yo-yo",
               "url": null
             },
             "bin": null
@@ -213,7 +213,7 @@
       }
     },
     {
-      "id": "level-47-r6",
+      "id": "level-46-r6",
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
@@ -238,7 +238,7 @@
       }
     },
     {
-      "id": "level-47-r7",
+      "id": "level-46-r7",
       "type": "write",
       "prompt": {
         "text": "Write small n by yourself",
@@ -261,7 +261,7 @@
       }
     },
     {
-      "id": "level-47-r8",
+      "id": "level-46-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: n says /n/ like nest!",

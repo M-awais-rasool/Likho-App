@@ -1,0 +1,311 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-53",
+  "number": 53,
+  "name": "Small n to t",
+  "skill": "Review",
+  "icon": "auto_awesome",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "n o p q r s t",
+    "word": "star",
+    "say": "n to t! Let's play with small {n|ˈɛn}, small {o|ˈoʊ}, small {p|pˈiː}, small {q|kjˈuː}, small {r|ˈɑːɹ}, small {s|ˈɛs}, small {t|tˈiː}.",
+    "audio": "voice/line-a39934fe7767c1ad.m4a",
+    "picture": {
+      "key": "star",
+      "label": "star",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-53-r1",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every small t!",
+        "say": "Listen! Pop every small {t|tˈiː} bubble!",
+        "audio": "voice/line-88c60a0c0c459cf8.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pop": {
+        "target": "t",
+        "others": [
+          "n",
+          "o",
+          "p"
+        ],
+        "count": 5
+      }
+    },
+    {
+      "id": "level-53-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Trace small o",
+        "say": "Trace small {o|ˈoʊ}.",
+        "audio": "voice/line-51122d1c7da2ae27.m4a"
+      },
+      "card": {
+        "text": "o",
+        "picture": {
+          "key": "octopus",
+          "label": "octopus",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "trace",
+        "target": "o",
+        "guide": "o",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-53-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "What starts with /p/?",
+        "say": "Which one starts with {/p/|pʌ}?",
+        "audio": "voice/line-2dd20a31652d675b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-53-r3-o1",
+            "label": "pig",
+            "picture": {
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-53-r3-o2",
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-53-r3-o3",
+            "label": "apple",
+            "picture": {
+              "key": "apple",
+              "label": "apple",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "pig"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-53-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Join the dots to make small q",
+        "say": "Join the dots to make small {q|kjˈuː}.",
+        "audio": "voice/line-bb6443681332adde.m4a"
+      },
+      "card": {
+        "text": "q",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "dots",
+        "target": "q",
+        "guide": "q",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-53-r5",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each big letter to its small letter.",
+        "audio": "voice/line-4140f52a5074e7c8.m4a"
+      },
+      "card": {
+        "text": "n o p q",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "N",
+              "picture": null
+            },
+            "b": {
+              "text": "n",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "O",
+              "picture": null
+            },
+            "b": {
+              "text": "o",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "P",
+              "picture": null
+            },
+            "b": {
+              "text": "p",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "Q",
+              "picture": null
+            },
+            "b": {
+              "text": "q",
+              "picture": null
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-53-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Write the letter you hear",
+        "say": "Listen, then write it! small {r|ˈɑːɹ}.",
+        "audio": "voice/line-aae31f0926ef3121.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "free",
+        "target": "r",
+        "guide": "r",
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-53-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the letters in ABC order!",
+        "say": "Put the letters in A B C order!",
+        "audio": "voice/line-536b4806363a47e0.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "train",
+          "label": "train",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "n",
+          "o",
+          "p"
+        ]
+      }
+    },
+    {
+      "id": "level-53-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: n, o, p, q, r, s, t!",
+        "say": "Say all the letters with me! {n|ˈɛn}, {o|ˈoʊ}, {p|pˈiː}, {q|kjˈuː}, {r|ˈɑːɹ}, {s|ˈɛs}, {t|tˈiː}!",
+        "audio": "voice/line-b0eb5c4f47023532.m4a"
+      },
+      "card": {
+        "text": "n, o, p, q, r, s, t!",
+        "picture": null,
+        "listen": true
+      },
+      "speak": {
+        "expected": "n, o, p, q, r, s, t!"
+      }
+    },
+    {
+      "id": "level-53-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "audio": "voice/line-ab7242535fe9991a.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bottle_message",
+          "label": "bottle message",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "o",
+        "guide": "o",
+        "word": "nop",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    }
+  ]
+}
