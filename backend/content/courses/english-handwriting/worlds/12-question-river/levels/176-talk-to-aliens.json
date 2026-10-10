@@ -1,20 +1,20 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-141",
-  "number": 141,
-  "name": "My Family",
-  "skill": "Writing about family",
-  "icon": "family_restroom",
+  "id": "level-176",
+  "number": 176,
+  "name": "Talk to Aliens",
+  "skill": "Speaking",
+  "icon": "record_voice_over",
   "isBoss": false,
   "requiresSubscription": true,
   "intro": {
-    "text": "My family",
-    "word": "family",
-    "say": "Let's write about your family!",
-    "audio": "voice/line-82da6fc593de8132.m4a",
+    "text": "Hi!",
+    "word": "alien",
+    "say": "Hi! Let's talk to the friendly aliens.",
+    "audio": "voice/line-76da4c3be4a265e4.m4a",
     "picture": {
-      "key": "family",
-      "label": "family",
+      "key": "alien",
+      "label": "alien",
       "url": null
     }
   },
@@ -26,71 +26,87 @@
   },
   "rounds": [
     {
-      "id": "level-141-r1",
+      "id": "level-176-r1",
+      "type": "speak",
+      "prompt": {
+        "text": "What is your name?",
+        "audio": "voice/line-83fafdb33504dfb4.m4a"
+      },
+      "card": {
+        "text": "What is your name?",
+        "picture": null,
+        "listen": true
+      },
+      "speak": {
+        "expected": null
+      }
+    },
+    {
+      "id": "level-176-r2",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every behind!",
+        "say": "Pop every bubble that says behind!",
+        "audio": "voice/line-5e522ced2f1b457b.m4a"
+      },
+      "card": {
+        "text": "behind",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "behind",
+        "others": [
+          "under",
+          "where",
+          "down"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-176-r3",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
-        "say": "This is my mother. Put the words in order.",
-        "audio": "voice/line-dbf1022097bd5ce7.m4a"
+        "say": "My name is Ali. Put the words in order.",
+        "audio": "voice/line-45e2b73af3753303.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "family_mother",
-          "label": "family mother",
+          "key": "alien",
+          "label": "alien",
           "url": null
         },
         "listen": false
       },
       "order": {
         "tiles": [
-          "This",
+          "My",
+          "name",
           "is",
-          "my",
-          "mother"
+          "Ali"
         ],
         "slot": "stripe"
       }
     },
     {
-      "id": "level-141-r2",
-      "type": "pop",
-      "prompt": {
-        "text": "Pop every where!",
-        "say": "Pop every bubble that says where!",
-        "audio": "voice/line-454bdc114d0d625d.m4a"
-      },
-      "card": {
-        "text": "where",
-        "picture": null,
-        "listen": false
-      },
-      "pop": {
-        "target": "where",
-        "others": [
-          "first",
-          "under",
-          "what"
-        ],
-        "count": 4
-      }
-    },
-    {
-      "id": "level-141-r3",
+      "id": "level-176-r4",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
-        "say": "This is my mother. Now write it!",
-        "audio": "voice/line-2fcceb794ee9736f.m4a"
+        "say": "I am six. Now write it!",
+        "audio": "voice/line-440b17958585a53c.m4a"
       },
       "card": {
-        "text": "This is my mother.",
+        "text": "I am six.",
         "picture": null,
         "listen": false
       },
       "write": {
         "mode": "free",
-        "target": "This is my mother.",
+        "target": "I am six.",
         "guide": null,
         "word": null,
         "missingIndex": null,
@@ -99,56 +115,59 @@
       }
     },
     {
-      "id": "level-141-r4",
-      "type": "speak",
+      "id": "level-176-r5",
+      "type": "pick",
       "prompt": {
-        "text": "Say: This is my mother.",
-        "say": "This is my mother. Now you say it!",
-        "audio": "voice/line-293cf15ad9243df9.m4a"
+        "text": "Answer: How old are you?",
+        "say": "How old are you? Pick the answer!",
+        "audio": "voice/line-febea97b6441db48.m4a"
       },
       "card": {
-        "text": "This is my mother.",
+        "text": "How old are you?",
         "picture": {
-          "key": "family_mother",
-          "label": "family mother",
+          "key": "alien",
+          "label": "alien",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "This is my mother."
-      }
-    },
-    {
-      "id": "level-141-r5",
-      "type": "hunt",
-      "prompt": {
-        "text": "Find every under!",
-        "say": "Find every word under!",
-        "audio": "voice/line-66aed6e407dccf1e.m4a"
-      },
-      "card": {
-        "text": "under",
-        "picture": null,
         "listen": false
       },
-      "hunt": {
-        "target": "under",
-        "grid": [
-          "under",
-          "under",
-          "like",
-          "under",
-          "down",
-          "said",
-          "who",
-          "jump",
-          "jumping"
-        ]
+      "pick": {
+        "options": [
+          {
+            "id": "level-176-r5-o1",
+            "label": "I am six.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-176-r5-o2",
+            "label": "I am a cat.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-176-r5-o3",
+            "label": "It is red.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "I am six."
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
       }
     },
     {
-      "id": "level-141-r6",
+      "id": "level-176-r6",
       "type": "match",
       "prompt": {
         "text": "Find the pairs!",
@@ -162,6 +181,20 @@
       },
       "match": {
         "pairs": [
+          {
+            "a": {
+              "text": "sad",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "sad",
+                "label": "sad",
+                "url": null
+              }
+            }
+          },
           {
             "a": {
               "text": "down",
@@ -178,28 +211,14 @@
           },
           {
             "a": {
-              "text": "jump",
+              "text": "behind",
               "picture": null
             },
             "b": {
               "text": null,
               "picture": {
-                "key": "jump",
-                "label": "jump",
-                "url": null
-              }
-            }
-          },
-          {
-            "a": {
-              "text": "forest",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "forest",
-                "label": "forest",
+                "key": "cat_behind_box",
+                "label": "behind",
                 "url": null
               }
             }
@@ -208,30 +227,62 @@
       }
     },
     {
-      "id": "level-141-r7",
-      "type": "write",
+      "id": "level-176-r7",
+      "type": "hunt",
       "prompt": {
-        "text": "Spell what",
-        "say": "What! Write it one letter at a time.",
-        "audio": "voice/line-93fc4e40497990fc.m4a"
+        "text": "Find every jumping!",
+        "say": "Find every word jumping!",
+        "audio": "voice/line-809ab75a3969324a.m4a"
       },
       "card": {
-        "text": "what",
+        "text": "jumping",
         "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "jumping",
+        "grid": [
+          "under",
+          "jumping",
+          "down",
+          "jumping",
+          "sad",
+          "his",
+          "hop",
+          "jumping",
+          "some"
+        ]
+      }
+    },
+    {
+      "id": "level-176-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Spell behind",
+        "say": "Behind! Write it one letter at a time.",
+        "audio": "voice/line-6de8f1c573b2b22b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cat_behind_box",
+          "label": "behind",
+          "url": null
+        },
         "listen": false
       },
       "write": {
         "mode": "spell",
-        "target": "what",
+        "target": "behind",
         "guide": null,
-        "word": "what",
+        "word": "behind",
         "missingIndex": null,
         "sentence": false,
         "story": false
       }
     },
     {
-      "id": "level-141-r8",
+      "id": "level-176-r9",
       "type": "pick",
       "prompt": {
         "text": "I see a red car.",
@@ -246,7 +297,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-141-r8-o1",
+            "id": "level-176-r9-o1",
             "label": "red car",
             "picture": {
               "key": "red_car",
@@ -257,7 +308,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-141-r8-o2",
+            "id": "level-176-r9-o2",
             "label": "hot sun",
             "picture": {
               "key": "hot_sun",
@@ -268,7 +319,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-141-r8-o3",
+            "id": "level-176-r9-o3",
             "label": "dog running",
             "picture": {
               "key": "dog_running",
@@ -291,55 +342,7 @@
       }
     },
     {
-      "id": "level-141-r9",
-      "type": "pick",
-      "prompt": {
-        "text": "Find the word you hear",
-        "say": "Listen! Find the word forest.",
-        "audio": "voice/line-db23ac20f1b403d0.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": null,
-        "listen": true
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-141-r9-o1",
-            "label": "Monday",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-141-r9-o2",
-            "label": "forest",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-141-r9-o3",
-            "label": "down",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "forest"
-        },
-        "shape": "cloud",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-141-r10",
+      "id": "level-176-r10",
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
@@ -354,24 +357,24 @@
       "fix": {
         "items": [
           {
-            "text": "said",
-            "wrong": "mirror",
-            "at": 1
-          },
-          {
-            "text": "like",
+            "text": "some",
             "wrong": null,
             "at": null
           },
           {
-            "text": "down",
+            "text": "his",
             "wrong": "mirror",
             "at": 0
           },
           {
-            "text": "under",
+            "text": "hop",
             "wrong": null,
             "at": null
+          },
+          {
+            "text": "sad",
+            "wrong": "mirror",
+            "at": 2
           }
         ]
       }

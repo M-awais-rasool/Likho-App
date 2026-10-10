@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-123",
-  "number": 123,
+  "id": "level-168",
+  "number": 168,
   "name": "What?",
   "skill": "Asking about things",
   "icon": "category",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-123-r1",
+      "id": "level-168-r1",
       "type": "pick",
       "prompt": {
         "text": "What is this?",
@@ -45,21 +45,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-123-r1-o1",
-            "label": "hat",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-123-r1-o2",
+            "id": "level-168-r1-o1",
             "label": "box",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-123-r1-o3",
+            "id": "level-168-r1-o2",
+            "label": "hat",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-168-r1-o3",
             "label": "cup",
             "picture": null,
             "color": null,
@@ -78,45 +78,91 @@
       }
     },
     {
-      "id": "level-123-r2",
-      "type": "fix",
+      "id": "level-168-r2",
+      "type": "sort",
       "prompt": {
-        "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/w/|wʌ} or {/s/|sːː}?",
+        "audio": "voice/line-1eb89568f87268cd.m4a"
       },
       "card": {
-        "text": "Fix it!",
+        "text": "w s",
         "picture": null,
         "listen": false
       },
-      "fix": {
+      "sort": {
+        "bins": [
+          {
+            "label": "w",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "s",
+            "picture": null,
+            "bin": null
+          }
+        ],
         "items": [
           {
-            "text": "the",
-            "wrong": "mirror",
-            "at": 2
+            "label": "seed",
+            "picture": {
+              "key": "seed",
+              "label": "seed",
+              "url": null
+            },
+            "bin": 1
           },
           {
-            "text": "and",
-            "wrong": null,
-            "at": null
+            "label": "whale",
+            "picture": {
+              "key": "whale",
+              "label": "whale",
+              "url": null
+            },
+            "bin": 0
           },
           {
-            "text": "he",
-            "wrong": null,
-            "at": null
+            "label": "sock",
+            "picture": {
+              "key": "sock",
+              "label": "sock",
+              "url": null
+            },
+            "bin": 1
           },
           {
-            "text": "you",
-            "wrong": "mirror",
-            "at": 0
+            "label": "web",
+            "picture": {
+              "key": "web",
+              "label": "web",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "watch",
+            "picture": {
+              "key": "watch",
+              "label": "watch",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "six",
+            "picture": {
+              "key": "six",
+              "label": "six",
+              "url": null
+            },
+            "bin": 1
           }
         ]
       }
     },
     {
-      "id": "level-123-r3",
+      "id": "level-168-r3",
       "type": "order",
       "prompt": {
         "text": "Put the words in order!",
@@ -143,7 +189,7 @@
       }
     },
     {
-      "id": "level-123-r4",
+      "id": "level-168-r4",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -166,7 +212,7 @@
       }
     },
     {
-      "id": "level-123-r5",
+      "id": "level-168-r5",
       "type": "speak",
       "prompt": {
         "text": "Say: It is a cup.",
@@ -187,30 +233,30 @@
       }
     },
     {
-      "id": "level-123-r6",
-      "type": "truth",
+      "id": "level-168-r6",
+      "type": "write",
       "prompt": {
-        "text": "True or silly?",
-        "say": "This is a down. True, or silly?",
-        "audio": "voice/line-4a9b4311660d87fc.m4a"
+        "text": "Look, then write who",
+        "say": "Look at the word who. Then write it from memory!",
+        "audio": "voice/line-4563f325ff6fe97c.m4a"
       },
       "card": {
         "text": null,
         "picture": null,
         "listen": true
       },
-      "truth": {
-        "text": "This is a down.",
-        "picture": {
-          "key": "down",
-          "label": "down",
-          "url": null
-        },
-        "answer": true
+      "write": {
+        "mode": "flash",
+        "target": "who",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
       }
     },
     {
-      "id": "level-123-r7",
+      "id": "level-168-r7",
       "type": "write",
       "prompt": {
         "text": "Spell what",
@@ -233,7 +279,7 @@
       }
     },
     {
-      "id": "level-123-r8",
+      "id": "level-168-r8",
       "type": "hunt",
       "prompt": {
         "text": "Find every what!",
@@ -248,20 +294,20 @@
       "hunt": {
         "target": "what",
         "grid": [
-          "what",
-          "what",
           "where",
-          "who",
           "what",
           "who",
-          "where",
           "when",
+          "who",
+          "what",
+          "what",
+          "where",
           "why"
         ]
       }
     },
     {
-      "id": "level-123-r9",
+      "id": "level-168-r9",
       "type": "pick",
       "prompt": {
         "text": "I see a red car.",
@@ -276,7 +322,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-123-r9-o1",
+            "id": "level-168-r9-o1",
             "label": "dog running",
             "picture": {
               "key": "dog_running",
@@ -287,22 +333,22 @@
             "hideLabel": true
           },
           {
-            "id": "level-123-r9-o2",
-            "label": "red car",
+            "id": "level-168-r9-o2",
+            "label": "hot sun",
             "picture": {
-              "key": "red_car",
-              "label": "red car",
+              "key": "hot_sun",
+              "label": "hot sun",
               "url": null
             },
             "color": null,
             "hideLabel": true
           },
           {
-            "id": "level-123-r9-o3",
-            "label": "hot sun",
+            "id": "level-168-r9-o3",
+            "label": "red car",
             "picture": {
-              "key": "hot_sun",
-              "label": "hot sun",
+              "key": "red_car",
+              "label": "red car",
               "url": null
             },
             "color": null,
@@ -321,87 +367,26 @@
       }
     },
     {
-      "id": "level-123-r10",
-      "type": "sort",
+      "id": "level-168-r10",
+      "type": "pop",
       "prompt": {
-        "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/s/|sːː} or {/d/|dʌ}?",
-        "audio": "voice/line-b506d5a2b1764767.m4a"
+        "text": "Pop every who!",
+        "say": "Pop every bubble that says who!",
+        "audio": "voice/line-d026c8911811d112.m4a"
       },
       "card": {
-        "text": "s d",
+        "text": "who",
         "picture": null,
         "listen": false
       },
-      "sort": {
-        "bins": [
-          {
-            "label": "s",
-            "picture": null,
-            "bin": null
-          },
-          {
-            "label": "d",
-            "picture": null,
-            "bin": null
-          }
+      "pop": {
+        "target": "who",
+        "others": [
+          "his",
+          "hop",
+          "out"
         ],
-        "items": [
-          {
-            "label": "doctor",
-            "picture": {
-              "key": "doctor",
-              "label": "doctor",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "dog",
-            "picture": {
-              "key": "dog",
-              "label": "dog",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "seed",
-            "picture": {
-              "key": "seed",
-              "label": "seed",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "six",
-            "picture": {
-              "key": "six",
-              "label": "six",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "sun",
-            "picture": {
-              "key": "sun",
-              "label": "sun",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "duck",
-            "picture": {
-              "key": "duck",
-              "label": "duck",
-              "url": null
-            },
-            "bin": 1
-          }
-        ]
+        "count": 4
       }
     }
   ]

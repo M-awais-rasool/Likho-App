@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-125",
-  "number": 125,
+  "id": "level-174",
+  "number": 174,
   "name": "Days of the Week",
   "skill": "Days",
   "icon": "calendar_month",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-125-r1",
+      "id": "level-174-r1",
       "type": "order",
       "prompt": {
         "text": "Put the days in order!",
@@ -52,15 +52,15 @@
       }
     },
     {
-      "id": "level-125-r2",
+      "id": "level-174-r2",
       "type": "match",
       "prompt": {
         "text": "Find the pairs!",
-        "say": "Find the pairs! Match each word to the same word with a capital letter.",
-        "audio": "voice/line-d82ba5aa00efefb3.m4a"
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
       },
       "card": {
-        "text": "the = The",
+        "text": "Find the pairs!",
         "picture": null,
         "listen": false
       },
@@ -68,39 +68,51 @@
         "pairs": [
           {
             "a": {
-              "text": "he",
+              "text": "sad",
               "picture": null
             },
             "b": {
-              "text": "He",
-              "picture": null
+              "text": null,
+              "picture": {
+                "key": "sad",
+                "label": "sad",
+                "url": null
+              }
             }
           },
           {
             "a": {
-              "text": "you",
+              "text": "down",
               "picture": null
             },
             "b": {
-              "text": "You",
-              "picture": null
+              "text": null,
+              "picture": {
+                "key": "down",
+                "label": "down",
+                "url": null
+              }
             }
           },
           {
             "a": {
-              "text": "look",
+              "text": "behind",
               "picture": null
             },
             "b": {
-              "text": "Look",
-              "picture": null
+              "text": null,
+              "picture": {
+                "key": "cat_behind_box",
+                "label": "behind",
+                "url": null
+              }
             }
           }
         ]
       }
     },
     {
-      "id": "level-125-r3",
+      "id": "level-174-r3",
       "type": "pick",
       "prompt": {
         "text": "Which word fits?",
@@ -115,21 +127,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-125-r3-o1",
+            "id": "level-174-r3-o1",
             "label": "Sunday",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-125-r3-o2",
+            "id": "level-174-r3-o2",
             "label": "Friday",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-125-r3-o3",
+            "id": "level-174-r3-o3",
             "label": "Tuesday",
             "picture": null,
             "color": null,
@@ -148,7 +160,7 @@
       }
     },
     {
-      "id": "level-125-r4",
+      "id": "level-174-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -163,21 +175,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-125-r4-o1",
+            "id": "level-174-r4-o1",
             "label": "Friday",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-125-r4-o2",
-            "label": "Tuesday",
+            "id": "level-174-r4-o2",
+            "label": "Wednesday",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-125-r4-o3",
+            "id": "level-174-r4-o3",
             "label": "Saturday",
             "picture": null,
             "color": null,
@@ -196,7 +208,7 @@
       }
     },
     {
-      "id": "level-125-r5",
+      "id": "level-174-r5",
       "type": "write",
       "prompt": {
         "text": "Spell Monday",
@@ -219,7 +231,7 @@
       }
     },
     {
-      "id": "level-125-r6",
+      "id": "level-174-r6",
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
@@ -234,22 +246,22 @@
       "fix": {
         "items": [
           {
-            "text": "he",
+            "text": "some",
             "wrong": null,
             "at": null
           },
           {
-            "text": "you",
+            "text": "his",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "hop",
             "wrong": "mirror",
-            "at": 0
+            "at": 2
           },
           {
-            "text": "look",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "said",
+            "text": "sad",
             "wrong": "mirror",
             "at": 0
           }
@@ -257,7 +269,7 @@
       }
     },
     {
-      "id": "level-125-r7",
+      "id": "level-174-r7",
       "type": "speak",
       "prompt": {
         "text": "Say: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday!",
@@ -278,7 +290,7 @@
       }
     },
     {
-      "id": "level-125-r8",
+      "id": "level-174-r8",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -301,7 +313,7 @@
       }
     },
     {
-      "id": "level-125-r9",
+      "id": "level-174-r9",
       "type": "hunt",
       "prompt": {
         "text": "Find every Sunday!",
@@ -316,20 +328,20 @@
       "hunt": {
         "target": "Sunday",
         "grid": [
+          "Monday",
+          "sun",
+          "Sunday",
+          "Friday",
           "Friday",
           "Sunday",
           "sun",
-          "Monday",
-          "Monday",
           "Sunday",
-          "Sunday",
-          "Friday",
-          "sun"
+          "Monday"
         ]
       }
     },
     {
-      "id": "level-125-r10",
+      "id": "level-174-r10",
       "type": "truth",
       "prompt": {
         "text": "True or silly?",
@@ -344,11 +356,11 @@
       "truth": {
         "text": "This is a down.",
         "picture": {
-          "key": "down",
-          "label": "down",
+          "key": "cat_behind_box",
+          "label": "behind",
           "url": null
         },
-        "answer": true
+        "answer": false
       }
     }
   ]

@@ -1,0 +1,414 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-173",
+  "number": 173,
+  "name": "Can You? Is It?",
+  "skill": "Yes or no questions",
+  "icon": "check_circle",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "Can you?",
+    "word": "jump",
+    "say": "Can you jump? Yes, I can! Let's ask yes or no questions.",
+    "audio": "voice/line-8d57431937c24c9e.m4a",
+    "picture": {
+      "key": "jump",
+      "label": "jump",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-173-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Is the sun hot?",
+        "say": "Is the sun hot? Pick the answer!",
+        "audio": "voice/line-2afd74054a4685af.m4a"
+      },
+      "card": {
+        "text": "Is the sun hot?",
+        "picture": {
+          "key": "hot_sun",
+          "label": "hot sun",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-173-r1-o1",
+            "label": "No, it is not.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-173-r1-o2",
+            "label": "Yes, it is.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Yes, it is."
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-173-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write do",
+        "say": "Look at the word do. Then write it from memory!",
+        "audio": "voice/line-bb36c585222cff12.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "write": {
+        "mode": "flash",
+        "target": "do",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-173-r3",
+      "type": "sort",
+      "prompt": {
+        "text": "Can it fly?",
+        "say": "Can it fly? Sort the pictures into yes and no!",
+        "audio": "voice/line-f20878213c66c496.m4a"
+      },
+      "card": {
+        "text": "Can it fly?",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "Yes",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "No",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "plane",
+            "picture": {
+              "key": "plane",
+              "label": "plane",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "bird",
+            "picture": {
+              "key": "bird",
+              "label": "bird",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "kite",
+            "picture": {
+              "key": "kite",
+              "label": "kite",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "cow",
+            "picture": {
+              "key": "cow",
+              "label": "cow",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-173-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Tap the asking word!",
+        "say": "Can you swim? Tap the word that asks!",
+        "audio": "voice/line-7bdc35d67a184619.m4a"
+      },
+      "card": {
+        "text": "Can you swim?",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-173-r4-o1",
+            "label": "Can",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-173-r4-o2",
+            "label": "you",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-173-r4-o3",
+            "label": "swim",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Can"
+        },
+        "shape": null,
+        "layout": "flow",
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-173-r5",
+      "type": "pick",
+      "prompt": {
+        "text": "Is Ali's dog brown?",
+        "say": "Ali has a dog. It is brown and it likes to run. Is Ali's dog brown?",
+        "audio": "voice/line-8a6f628f97a60598.m4a"
+      },
+      "card": {
+        "text": "Ali has a dog. It is brown and it likes to run.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-173-r5-o1",
+            "label": "Yes, it is.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-173-r5-o2",
+            "label": "No, it is not.",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Yes, it is."
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false,
+        "stage": "stars"
+      }
+    },
+    {
+      "id": "level-173-r6",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every do!",
+        "say": "Pop every bubble that says do!",
+        "audio": "voice/line-76d8c065b4d1f9f3.m4a"
+      },
+      "card": {
+        "text": "do",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "do",
+        "others": [
+          "is",
+          "no",
+          "can"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-173-r7",
+      "type": "order",
+      "prompt": {
+        "text": "Put the words in order!",
+        "say": "Is it a big dog? Put the words in order.",
+        "audio": "voice/line-42660a2fefdfcd0e.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "Is",
+          "it",
+          "a",
+          "big",
+          "dog"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-173-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write the sentence",
+        "say": "Do you like rice? Now write it!",
+        "audio": "voice/line-e19f1304ac07d7a0.m4a"
+      },
+      "card": {
+        "text": "Do you like rice?",
+        "picture": null,
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "Do you like rice?",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-173-r9",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Can you jump? Yes, I can!",
+        "say": "Can you jump? Yes, I can! Now you say it!",
+        "audio": "voice/line-97a32c05cf64b86f.m4a"
+      },
+      "card": {
+        "text": "Can you jump? Yes, I can!",
+        "picture": {
+          "key": "jump",
+          "label": "jump",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Can you jump? Yes, I can!"
+      }
+    },
+    {
+      "id": "level-173-r10",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to the same word with a capital letter.",
+        "audio": "voice/line-d82ba5aa00efefb3.m4a"
+      },
+      "card": {
+        "text": "the = The",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "can",
+              "picture": null
+            },
+            "b": {
+              "text": "Can",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "is",
+              "picture": null
+            },
+            "b": {
+              "text": "Is",
+              "picture": null
+            }
+          },
+          {
+            "a": {
+              "text": "do",
+              "picture": null
+            },
+            "b": {
+              "text": "Do",
+              "picture": null
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
