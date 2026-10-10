@@ -15,19 +15,19 @@ void main() {
   final course = testCourse;
 
   group('course.json (API-shaped static content)', () {
-    test('12 worlds, ABC first, every level playable', () {
+    test('14 worlds of 15 levels, ABC first, every level playable', () {
       expect(course.schemaVersion, 1);
-      expect(course.worlds.length, 12);
-      expect(course.levels.length, 144);
-      expect([for (final w in course.worlds) course.levelsOf(w).length], [31, 31, 9, 8, 10, 7, 8, 8, 8, 8, 8, 8]);
-      expect([for (final n in [1, 2, 30, 32]) course.level(n).name], ['Letter A', 'Letter B', 'Letter Z', 'Small a']);
+      expect(course.worlds.length, 14);
+      expect(course.levels.length, 210);
+      expect([for (final w in course.worlds) course.levelsOf(w).length], List.filled(14, 15), reason: 'a new world every 15 levels');
+      expect([for (final n in [1, 2, 29, 31]) course.level(n).name], ['Letter A', 'Letter B', 'Letter Z', 'Small a']);
       for (final l in course.levels) {
         expect(l.rounds, isNotEmpty, reason: l.id);
         expect(course.worlds.any((w) => w.id == l.worldId), isTrue, reason: l.id);
         // a world's boss is its last level
         expect(l.isBoss, course.levelsOf(course.worldOf(l)).last == l, reason: '${l.id}: the boss ends its world');
         expect(l.rounds.length, inInclusiveRange(8, 10), reason: '${l.id}: 8 to 10 games');
-        expect(l.requiresSubscription, l.number > 31, reason: '${l.id}: world 1 is free');
+        expect(l.requiresSubscription, l.number > 30, reason: '${l.id}: worlds 1 and 2 (the capitals) are free');
       }
       final ids = [for (final l in course.levels) for (final r in l.rounds) r.id];
       expect(ids.toSet().length, ids.length, reason: 'round ids are unique');
@@ -48,7 +48,7 @@ void main() {
     });
 
     test('a letter level plays its letter in many different games, never like the letter before', () {
-      final letters = course.levels.where((l) => l.name.startsWith('Letter ') || l.name.startsWith('Small ')).toList();
+      final letters = course.levels.where((l) => RegExp(r'^(Letter [A-Z]|Small [a-z])$').hasMatch(l.name)).toList();
       String recipe(CourseLevel l) => [for (final r in l.rounds) r is WriteRound ? 'write ${r.mode.name}' : r.type].join(', ');
       for (final (i, l) in letters.indexed) {
         final modes = l.rounds.whereType<WriteRound>().map((r) => r.mode).toSet();
@@ -70,7 +70,7 @@ void main() {
         numberOf('Small l'): 2, // L: strong
         numberOf('Letter T'): 3,
         numberOf('Small t'): 1, // T: its small letter needs practice
-        numberOf('K to O'): 1, // a review is not one letter
+        numberOf('A to G'): 1, // a review is not one letter
       });
       final s = DashboardScreen.letterStatus(r, course);
       expect((s['L'], s['T'], s['A']), (0, 1, 2));
