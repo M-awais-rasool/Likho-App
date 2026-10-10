@@ -8,19 +8,18 @@ export const site = {
   description:
     "Likho turns handwriting practice into a happy adventure. With Pencil, a cheerful talking pencil, children aged 5 to 8 trace capital and small letters, then learn phonics, words, sentences and short stories.",
 
-  /** Public address of this site, for links in shared previews (set NEXT_PUBLIC_SITE_URL when deploying). */
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  /** Public address of this site, for canonical links, the sitemap and shared previews. */
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://likho.io",
 
-  // TODO(owner): fill these in before going live.
-  /** Who publishes the app (your name, or your business once registered). */
-  developer: "Likho",
+  /** Who publishes the app (the Google Play developer account's owner). */
+  developer: "Muhammad Awais Rasool",
   /** Where parents can write to you; also used on the privacy and deletion pages. */
-  email: "hello@example.com",
+  email: "awais.rasool.tech@gmail.com",
   /** Store pages; null shows "Coming soon". */
   playStoreUrl: null as string | null,
   appStoreUrl: null as string | null,
   /** When the legal pages last changed. */
-  updated: "10 October 2026",
+  updated: "11 October 2026",
 
   /** From the course: levels leave out the placement warm-up; activities are the rounds in those levels. */
   course: { worlds: 14, levels: 210, activities: 1988, freeWorlds: "Letter Land and Alphabet Jungle", freeLevels: 30, ages: "5–8" },
