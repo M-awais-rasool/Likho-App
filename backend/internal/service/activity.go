@@ -27,16 +27,18 @@ type ActivityService struct {
 	seenTTL  time.Duration
 	rulesTTL time.Duration
 
+	closedTest *ClosedTestService // counts the testers' days (nil: none)
+
 	mu      sync.Mutex
 	rules   AlertRules
 	rulesAt time.Time
 }
 
-func NewActivityService(repo *repository.ActivityRepository, admin *repository.AdminRepository, c *cache.Cache, g *geo.Resolver) *ActivityService {
+func NewActivityService(repo *repository.ActivityRepository, admin *repository.AdminRepository, c *cache.Cache, g *geo.Resolver, closedTest *ClosedTestService) *ActivityService {
 	if g == nil {
 		g = &geo.Resolver{}
 	}
-	return &ActivityService{repo: repo, admin: admin, cache: c, geo: g, seenTTL: 5 * time.Minute, rulesTTL: 30 * time.Second}
+	return &ActivityService{repo: repo, admin: admin, cache: c, geo: g, seenTTL: 5 * time.Minute, rulesTTL: 30 * time.Second, closedTest: closedTest}
 }
 
 // AlertRules says which alerts the team gets (admin panel settings).
@@ -101,6 +103,9 @@ func (s *ActivityService) Seen(ctx context.Context, parentID string, info model.
 	}
 	if err := s.repo.Touch(ctx, parentID, seen); err != nil {
 		slog.Warn("activity: seen", "parent", parentID, "err", err)
+	}
+	if s.closedTest != nil {
+		s.closedTest.Seen(ctx, parentID)
 	}
 }
 
