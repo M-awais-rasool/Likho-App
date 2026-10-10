@@ -282,6 +282,7 @@ class FamilyNotifier extends Notifier<FamilyState> {
 
   final List<PendingResult> _outbox = [];
   bool _flushing = false;
+  DateTime _loadedAt = DateTime.now(); // when the account last came from the server
 
   LikhoApi get _api => ref.read(apiProvider);
 
@@ -290,6 +291,7 @@ class FamilyNotifier extends Notifier<FamilyState> {
     final auth = ref.watch(authProvider);
     if (auth.signedIn && auth.me != null) {
       Future.microtask(_loadOutbox);
+      _loadedAt = DateTime.now();
       return FamilyState.fromMe(auth.me!);
     }
     return FamilyState.guest();
@@ -311,10 +313,24 @@ class FamilyNotifier extends Notifier<FamilyState> {
       await MeSnapshot.save(ref.read(localFilesProvider), me);
       if (!ref.mounted) return;
       state = FamilyState.fromMe(me, activeId: state.activeId);
+      _loadedAt = DateTime.now();
       _applyPendingLocally();
     } on ApiException catch (e) {
       debugPrint('refreshMe: $e');
     }
+  }
+
+  /// The app is back in front: sends the results still waiting and, when
+  /// the account came from the server a while ago (or on another day),
+  /// reloads it. So changes made meanwhile show (e.g. Likho Plus given by
+  /// the team), and the server knows the family used the app today.
+  Future<void> resumed({DateTime? now}) async {
+    await flush();
+    if (!ref.mounted || !state.online) return;
+    now ??= DateTime.now();
+    final sameDay = now.year == _loadedAt.year && now.month == _loadedAt.month && now.day == _loadedAt.day;
+    if (sameDay && now.difference(_loadedAt) < const Duration(minutes: 30)) return;
+    await refreshMe();
   }
 
   // ------------------------------------------------------------ children
