@@ -708,6 +708,88 @@ Map<String, Snd Function()> palette() {
 
     // ---------------------------------------------------------- writing pad loop
     'scribble_loop': () => master(houseEq(scribble(1.26, 301, loopable: true)), ui - 3),
+
+    // ---------------------------------------------------------- boss battle
+    // (last, so the shared noise source gives every older sound the same take)
+    // the BOSS stamp: a big soft thud and a ring, "here it comes"
+    'boss_stamp': () {
+      final x = Snd(1.3)
+        ..mix(thump(f0: 150, f1: 55, dur: .35, amp: 1))
+        ..mix(strike(.05, 700, .8, q: .7))
+        ..mix(bell(d5, dur: 1.0, amp: .5, bright: .6), at: .02)
+        ..mix(bell(a5, dur: .9, amp: .35, bright: .6), at: .02);
+      return master(houseEq(room(x, wet: .3, tail: .9)), celebrate);
+    },
+    // drum roll speeding up into the countdown's "go"
+    'boss_drum': () {
+      final x = Snd(1.6);
+      var t = 0.0, gap = .11;
+      var k = 0;
+      while (t < 1.15) {
+        x.mix(thump(f0: 190 + (k.isEven ? 0 : 20), f1: 110, dur: .07, amp: .45 + t * .4), at: t);
+        x.mix(strike(.012, 2400, .25 + t * .2, q: .9), at: t);
+        t += gap;
+        gap = math.max(.035, gap * .9);
+        k++;
+      }
+      x.mix(thump(f0: 160, f1: 60, dur: .3, amp: 1), at: 1.2);
+      x.mix(strike(.08, 1400, .9, q: .6), at: 1.2);
+      x.mix(bell(d6, dur: .5, amp: .6), at: 1.2);
+      return master(houseEq(room(x, wet: .2)), celebrate);
+    },
+    // a wake-up hit lands on the boss: a cartoon "bonk" and a twinkle
+    'boss_hit': () {
+      final x = Snd(.8)
+        ..mix(wood(hz('A4'), dur: .12, amp: .9, bright: 1.2))
+        ..mix(boing(f0: 300, f1: 160, dur: .32, amp: .7), at: .01)
+        ..mix(pop(900, 400, dur: .06, amp: .6))
+        ..mix(sparkle(.35, count: 4, seed: 111, amp: .25), at: .08);
+      return master(houseEq(room(x, wet: .12)), feedback);
+    },
+    // a combo hit: bigger, with a bright rising chord
+    'boss_super': () {
+      final x = Snd(1.2)
+        ..mix(thump(f0: 180, f1: 70, dur: .2, amp: .9))
+        ..mix(boing(f0: 260, f1: 520, dur: .4, amp: .6), at: .02);
+      for (final (i, f) in [d6, fs6, a6, d7].indexed) {
+        x.mix(bell(f, dur: .45, amp: .55, bright: .9), at: .06 + i * .05);
+      }
+      x.mix(sparkle(.7, count: 8, seed: 121, amp: .3), at: .1);
+      return master(houseEq(room(x, wet: .18)), celebrate);
+    },
+    // the combo counter ticks up
+    'boss_combo': () {
+      final x = Snd(.5);
+      for (final (i, f) in [a5, d6, fs6].indexed) {
+        x.mix(blip(f, dur: .07, amp: .7), at: i * .055);
+      }
+      return master(houseEq(room(x, wet: .1)), feedback - 1);
+    },
+    // the next phase: a swoosh up into two bells
+    'boss_phase': () {
+      final x = Snd(1.3)
+        ..mix(whoosh(.5, 500, 6000, amp: .7, q: 1.2))
+        ..mix(bell(a5, dur: .6, amp: .6), at: .42)
+        ..mix(bell(d6, dur: .9, amp: .7), at: .54)
+        ..mix(pad([d5, a5, d6], dur: .9, amp: .3), at: .5);
+      return master(houseEq(room(x, wet: .24)), celebrate - 1);
+    },
+    // a sleepy snore when an answer misses: breathe in, rumble out
+    'boss_snore': () {
+      final x = Snd(1.2)
+        ..mix(whoosh(.45, 300, 900, amp: .5, q: 2.5, peakAt: .7))
+        ..mix(filter(Snd(.55)..mix(boing(f0: 95, f1: 80, dur: .55, amp: .8)), (b) => b.lowpass(500, .7)), at: .5);
+      return master(houseEq(x), soft);
+    },
+    // the alarm clock rings (one tap of the finale)
+    'alarm_ring': () {
+      final x = Snd(.5);
+      for (var k = 0; k < 6; k++) {
+        x.mix(bell(k.isEven ? b6 : d7, dur: .12, amp: .7, bright: 1.4), at: k * .045);
+      }
+      x.mix(strike(.02, 3500, .4, q: 1.5));
+      return master(houseEq(room(x, wet: .08)), feedback);
+    },
   };
 }
 

@@ -114,6 +114,15 @@ class AppFeedback {
 
   void lullaby() => _go(Sfx.lullaby, null);
 
+  // boss battle
+  void bossStamp() => _go(Sfx.bossStamp, HapticCue.landBig);
+  void bossDrum() => _go(Sfx.bossDrum, null);
+  void bossHit({bool big = false}) => _go(big ? Sfx.bossSuper : Sfx.bossHit, big ? HapticCue.landBig : HapticCue.land);
+  void bossCombo() => _go(Sfx.bossCombo, null);
+  void bossPhase() => _go(Sfx.bossPhase, HapticCue.celebrate);
+  void bossSnore() => _go(Sfx.bossSnore, null, volume: .9);
+  void alarmRing() => _go(Sfx.alarmRing, HapticCue.tick);
+
   // ---------------------------------------------------------- rewards
   /// Something bought with stars.
   void reward() => _go(Sfx.reward, HapticCue.reward);

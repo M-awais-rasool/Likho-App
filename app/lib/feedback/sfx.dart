@@ -45,6 +45,16 @@ class Sfx {
   static const bossWake = Sfx('boss_wake');
   static const lullaby = Sfx('lullaby');
 
+  // boss battle
+  static const bossStamp = Sfx('boss_stamp');
+  static const bossDrum = Sfx('boss_drum');
+  static const bossHit = Sfx('boss_hit');
+  static const bossSuper = Sfx('boss_super');
+  static const bossCombo = Sfx('boss_combo');
+  static const bossPhase = Sfx('boss_phase');
+  static const bossSnore = Sfx('boss_snore');
+  static const alarmRing = Sfx('alarm_ring');
+
   // rewards, room, profiles
   static const reward = Sfx('reward');
   static const wear = Sfx('wear');
@@ -73,6 +83,7 @@ class Sfx {
     wrong, nope, balloonPop, listen,
     for (var k = 1; k <= 6; k++) step(k),
     levelStart, introReveal, completeTada, coin, confetti, perfect, milestone, bossWake, lullaby,
+    bossStamp, bossDrum, bossHit, bossSuper, bossCombo, bossPhase, bossSnore, alarmRing,
     for (var k = 1; k <= 3; k++) star(k),
     reward, wear, sticker, unlock, successSoft, send, paint, candle, catchLetter,
     splashLand, splashSwish, splashChime, scribbleLoop,
