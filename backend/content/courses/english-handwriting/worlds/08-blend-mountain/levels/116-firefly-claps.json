@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-94",
-  "number": 94,
+  "id": "level-116",
+  "number": 116,
   "name": "Firefly Claps",
   "skill": "Syllables",
   "icon": "flutter_dash",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-94-r1",
+      "id": "level-116-r1",
       "type": "pick",
       "prompt": {
         "text": "banana",
@@ -48,21 +48,21 @@
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-94-r1-o1"
+            "id": "level-116-r1-o1"
           },
           {
             "label": "2",
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-94-r1-o2"
+            "id": "level-116-r1-o2"
           },
           {
             "label": "3",
             "picture": null,
             "color": null,
             "hideLabel": false,
-            "id": "level-94-r1-o3"
+            "id": "level-116-r1-o3"
           }
         ],
         "answer": {
@@ -77,34 +77,45 @@
       }
     },
     {
-      "id": "level-94-r2",
-      "type": "write",
+      "id": "level-116-r2",
+      "type": "fix",
       "prompt": {
-        "text": "Look, then write pink",
-        "say": "Look at the word pink. Then write it from memory!",
-        "audio": "voice/line-f145c7d52270d0d3.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
       },
       "card": {
-        "text": null,
-        "picture": {
-          "key": "pink",
-          "label": "pink",
-          "url": null
-        },
+        "text": "Fix it!",
+        "picture": null,
         "listen": false
       },
-      "write": {
-        "mode": "flash",
-        "target": "pink",
-        "guide": null,
-        "word": null,
-        "missingIndex": null,
-        "sentence": false,
-        "story": false
+      "fix": {
+        "items": [
+          {
+            "text": "rabbit",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "robot",
+            "wrong": "mirror",
+            "at": 2
+          },
+          {
+            "text": "pencil",
+            "wrong": "mirror",
+            "at": 1
+          },
+          {
+            "text": "tiger",
+            "wrong": null,
+            "at": null
+          }
+        ]
       }
     },
     {
-      "id": "level-94-r3",
+      "id": "level-116-r3",
       "type": "pick",
       "prompt": {
         "text": "Which picture is rabbit?",
@@ -119,18 +130,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-94-r3-o1",
-            "label": "robot",
-            "picture": {
-              "key": "robot",
-              "label": "robot",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-94-r3-o2",
+            "id": "level-116-r3-o1",
             "label": "rabbit",
             "picture": {
               "key": "rabbit",
@@ -141,11 +141,22 @@
             "hideLabel": true
           },
           {
-            "id": "level-94-r3-o3",
-            "label": "rainbow",
+            "id": "level-116-r3-o2",
+            "label": "robot",
             "picture": {
-              "key": "rainbow",
-              "label": "rainbow",
+              "key": "robot",
+              "label": "robot",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-116-r3-o3",
+            "label": "tiger",
+            "picture": {
+              "key": "tiger",
+              "label": "tiger",
               "url": null
             },
             "color": null,
@@ -156,7 +167,7 @@
           "kind": "label",
           "value": "rabbit"
         },
-        "shape": "planet",
+        "shape": "bucket",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -164,7 +175,7 @@
       }
     },
     {
-      "id": "level-94-r4",
+      "id": "level-116-r4",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -192,30 +203,30 @@
       }
     },
     {
-      "id": "level-94-r5",
-      "type": "pop",
+      "id": "level-116-r5",
+      "type": "truth",
       "prompt": {
-        "text": "Pop every tiger!",
-        "say": "Pop every bubble that says tiger!",
-        "audio": "voice/line-cc8a41821360e925.m4a"
+        "text": "True or silly?",
+        "say": "This is a robot. True, or silly?",
+        "audio": "voice/line-e593eee743aafddc.m4a"
       },
       "card": {
-        "text": "tiger",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "pop": {
-        "target": "tiger",
-        "others": [
-          "robot",
-          "four",
-          "goat"
-        ],
-        "count": 4
+      "truth": {
+        "text": "This is a robot.",
+        "picture": {
+          "key": "rainbow",
+          "label": "rainbow",
+          "url": null
+        },
+        "answer": false
       }
     },
     {
-      "id": "level-94-r6",
+      "id": "level-116-r6",
       "type": "write",
       "prompt": {
         "text": "Spell tiger",
@@ -242,7 +253,7 @@
       }
     },
     {
-      "id": "level-94-r7",
+      "id": "level-116-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every rainbow!",
@@ -258,19 +269,19 @@
         "target": "rainbow",
         "grid": [
           "robot",
+          "rainbow",
+          "rainbow",
           "four",
-          "rainbow",
+          "banana",
           "tiger",
-          "rainbow",
-          "rainbow",
-          "pencil",
           "rabbit",
-          "banana"
+          "rainbow",
+          "pencil"
         ]
       }
     },
     {
-      "id": "level-94-r8",
+      "id": "level-116-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: rabbit, robot, pencil, tiger!",
@@ -291,67 +302,91 @@
       }
     },
     {
-      "id": "level-94-r9",
-      "type": "match",
+      "id": "level-116-r9",
+      "type": "sort",
       "prompt": {
-        "text": "Find the pairs!",
-        "say": "Find the pairs! Match each word to its picture.",
-        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/f/|fːː}?",
+        "audio": "voice/line-7b4dba625cd77da5.m4a"
       },
       "card": {
-        "text": "Find the pairs!",
+        "text": "d f",
         "picture": null,
         "listen": false
       },
-      "match": {
-        "pairs": [
+      "sort": {
+        "bins": [
           {
-            "a": {
-              "text": "rabbit",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "rabbit",
-                "label": "rabbit",
-                "url": null
-              }
-            }
+            "label": "d",
+            "picture": null,
+            "bin": null
           },
           {
-            "a": {
-              "text": "robot",
-              "picture": null
+            "label": "f",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
             },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "robot",
-                "label": "robot",
-                "url": null
-              }
-            }
+            "bin": 0
           },
           {
-            "a": {
-              "text": "pencil",
-              "picture": null
+            "label": "four",
+            "picture": {
+              "key": "four",
+              "label": "four",
+              "url": null
             },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "pencil",
-                "label": "pencil",
-                "url": null
-              }
-            }
+            "bin": 1
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "foot",
+            "picture": {
+              "key": "foot",
+              "label": "foot",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 0
           }
         ]
       }
     },
     {
-      "id": "level-94-r10",
+      "id": "level-116-r10",
       "type": "write",
       "prompt": {
         "text": "Write pencil",

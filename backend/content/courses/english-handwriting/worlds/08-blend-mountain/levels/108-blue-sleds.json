@@ -1,0 +1,377 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-108",
+  "number": 108,
+  "name": "Blue Sleds",
+  "skill": "bl sl",
+  "icon": "beach_access",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "sled",
+    "word": "sled",
+    "say": "Blue, black, sled, slide! Two sounds at the start.",
+    "audio": "voice/line-1385db06add13f47.m4a",
+    "picture": {
+      "key": "sled",
+      "label": "sled",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-108-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is sled?",
+        "say": "Read the word. Which picture is sled?",
+        "audio": "voice/line-954801e45a4f29d2.m4a"
+      },
+      "card": {
+        "text": "sled",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-108-r1-o1",
+            "label": "sled",
+            "picture": {
+              "key": "sled",
+              "label": "sled",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-108-r1-o2",
+            "label": "black",
+            "picture": {
+              "key": "black",
+              "label": "black",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-108-r1-o3",
+            "label": "blue",
+            "picture": {
+              "key": "blue",
+              "label": "blue",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "sled"
+        },
+        "shape": "bucket",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-108-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write blue",
+        "say": "Look at the word blue. Then write it from memory!",
+        "audio": "voice/line-d751542f6a831381.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "blue",
+          "label": "blue",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "blue",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-108-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Sled! Build the word sled.",
+        "audio": "voice/line-acd6a89ec1d88a11.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "sled",
+          "label": "sled",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "s",
+          "l",
+          "e",
+          "d"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-108-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word blue.",
+        "audio": "voice/line-38cdc3bfe9885f4f.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-108-r4-o1",
+            "label": "slide",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-108-r4-o2",
+            "label": "blue",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-108-r4-o3",
+            "label": "black",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "blue"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-108-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Blue! Which letter is missing?",
+        "audio": "voice/line-152174672ff3cfee.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "blue",
+          "label": "blue",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "u",
+        "guide": "u",
+        "word": "blue",
+        "missingIndex": 2,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-108-r6",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every slide!",
+        "say": "Pop every bubble that says slide!",
+        "audio": "voice/line-4ad9b3345c8a240b.m4a"
+      },
+      "card": {
+        "text": "slide",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "slide",
+        "others": [
+          "sleep",
+          "black",
+          "ship"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-108-r7",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every black!",
+        "say": "Find every word black!",
+        "audio": "voice/line-a287ab3e3297d066.m4a"
+      },
+      "card": {
+        "text": "black",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "black",
+        "grid": [
+          "four",
+          "sleep",
+          "slide",
+          "sled",
+          "black",
+          "black",
+          "blue",
+          "goat",
+          "black"
+        ]
+      }
+    },
+    {
+      "id": "level-108-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: sled, blue, slide, black!",
+        "say": "Say them with me! sled, blue, slide, black!",
+        "audio": "voice/line-d444abbf7d840fef.m4a"
+      },
+      "card": {
+        "text": "sled, blue, slide, black!",
+        "picture": {
+          "key": "sled",
+          "label": "sled",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "sled, blue, slide, black!"
+      }
+    },
+    {
+      "id": "level-108-r9",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "sled",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "sled",
+                "label": "sled",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "blue",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "blue",
+                "label": "blue",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "slide",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "play",
+                "label": "slide",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-108-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Write slide",
+        "say": "Write the word slide.",
+        "audio": "voice/line-4730a2e4c92cf4a8.m4a"
+      },
+      "card": {
+        "text": "slide",
+        "picture": {
+          "key": "play",
+          "label": "slide",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "slide",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,468 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-118",
+  "number": 118,
+  "name": "Three Beats",
+  "skill": "Words of three beats",
+  "icon": "flutter_dash",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "po-ta-to",
+    "word": "butterfly",
+    "say": "But, ter, fly... butterfly! Let's clap three beats.",
+    "audio": "voice/line-8f73a454a36dea4d.m4a",
+    "picture": {
+      "key": "butterfly",
+      "label": "butterfly",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-118-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "How many beats?",
+        "say": "Elephant! Clap it with me. How many beats?",
+        "audio": "voice/line-19c8d255bf06966f.m4a"
+      },
+      "card": {
+        "text": "elephant",
+        "picture": {
+          "key": "elephant",
+          "label": "elephant",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-118-r1-o1",
+            "label": "2",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-118-r1-o2",
+            "label": "3",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-118-r1-o3",
+            "label": "1",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "3"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-118-r2",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "banana",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "banana",
+                "label": "banana",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "potato",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "potato",
+                "label": "potato",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "dinosaur",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "dinosaur",
+                "label": "dinosaur",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-118-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Po, ta, to... potato! Put the beats in order.",
+        "audio": "voice/line-8437794e1a737edd.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "potato",
+          "label": "potato",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "po",
+          "ta",
+          "to"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-118-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is butterfly?",
+        "say": "Read the word. Which picture is butterfly?",
+        "audio": "voice/line-6739b44d1372e258.m4a"
+      },
+      "card": {
+        "text": "butterfly",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-118-r4-o1",
+            "label": "kangaroo",
+            "picture": {
+              "key": "kangaroo",
+              "label": "kangaroo",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-118-r4-o2",
+            "label": "butterfly",
+            "picture": {
+              "key": "butterfly",
+              "label": "butterfly",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-118-r4-o3",
+            "label": "dinosaur",
+            "picture": {
+              "key": "dinosaur",
+              "label": "dinosaur",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "butterfly"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-118-r5",
+      "type": "sort",
+      "prompt": {
+        "text": "Two beats or three?",
+        "say": "Clap each word! Does it have two beats, or three?",
+        "audio": "voice/line-79936f2a7603650e.m4a"
+      },
+      "card": {
+        "text": "2 3",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "2",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "3",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "rabbit",
+            "picture": {
+              "key": "rabbit",
+              "label": "rabbit",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "elephant",
+            "picture": {
+              "key": "elephant",
+              "label": "elephant",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "tiger",
+            "picture": {
+              "key": "tiger",
+              "label": "tiger",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "banana",
+            "picture": {
+              "key": "banana",
+              "label": "banana",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "potato",
+            "picture": {
+              "key": "potato",
+              "label": "potato",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "pencil",
+            "picture": {
+              "key": "pencil",
+              "label": "pencil",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-118-r6",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "banana",
+            "wrong": "mirror",
+            "at": 1
+          },
+          {
+            "text": "potato",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "pig",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "log",
+            "wrong": "mirror",
+            "at": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-118-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: But, ter, fly! Butterfly!",
+        "say": "But, ter, fly! Butterfly! Now you say it!",
+        "audio": "voice/line-0f87f3e71ff68b15.m4a"
+      },
+      "card": {
+        "text": "But, ter, fly! Butterfly!",
+        "picture": {
+          "key": "butterfly",
+          "label": "butterfly",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "But, ter, fly! Butterfly!"
+      }
+    },
+    {
+      "id": "level-118-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write banana",
+        "say": "Write the word banana.",
+        "audio": "voice/line-33319aab521df5f6.m4a"
+      },
+      "card": {
+        "text": "banana",
+        "picture": {
+          "key": "banana",
+          "label": "banana",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "banana",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-118-r9",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word kangaroo.",
+        "audio": "voice/line-4381a8b3a1590ed9.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-118-r9-o1",
+            "label": "elephant",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-118-r9-o2",
+            "label": "dinosaur",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-118-r9-o3",
+            "label": "kangaroo",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "kangaroo"
+        },
+        "shape": "mushroom",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-118-r10",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a butterfly. True, or silly?",
+        "audio": "voice/line-a5003b007c3722a4.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a butterfly.",
+        "picture": {
+          "key": "tiger",
+          "label": "tiger",
+          "url": null
+        },
+        "answer": false
+      }
+    }
+  ]
+}

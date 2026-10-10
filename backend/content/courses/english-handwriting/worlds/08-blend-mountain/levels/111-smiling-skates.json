@@ -1,0 +1,389 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-111",
+  "number": 111,
+  "name": "Smiling Skates",
+  "skill": "sk sm sc",
+  "icon": "beach_access",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "skate",
+    "word": "skate",
+    "say": "Skate, smile, scarf! Two sounds at the start.",
+    "audio": "voice/line-4964745b1cb58dd3.m4a",
+    "picture": {
+      "key": "skate",
+      "label": "skate",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-111-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is skate?",
+        "say": "Read the word. Which picture is skate?",
+        "audio": "voice/line-4c0a4db8ed849e5a.m4a"
+      },
+      "card": {
+        "text": "skate",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-111-r1-o1",
+            "label": "skunk",
+            "picture": {
+              "key": "skunk",
+              "label": "skunk",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-111-r1-o2",
+            "label": "skate",
+            "picture": {
+              "key": "skate",
+              "label": "skate",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-111-r1-o3",
+            "label": "scarf",
+            "picture": {
+              "key": "scarf",
+              "label": "scarf",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "skate"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-111-r2",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "skate",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "skate",
+                "label": "skate",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "smile",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "smile",
+                "label": "smile",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "scarf",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "scarf",
+                "label": "scarf",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-111-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Skate! Build the word skate.",
+        "audio": "voice/line-bdacffb5bbe34f1a.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "skate",
+          "label": "skate",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "s",
+          "k",
+          "a",
+          "t",
+          "e"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-111-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word smile.",
+        "audio": "voice/line-ece1d4d28cd5a4f4.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-111-r4-o1",
+            "label": "skate",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-111-r4-o2",
+            "label": "smile",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-111-r4-o3",
+            "label": "scooter",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "smile"
+        },
+        "shape": "mushroom",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-111-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Smile! Which letter is missing?",
+        "audio": "voice/line-957d8591a445c7a4.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "smile",
+          "label": "smile",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "i",
+        "guide": "i",
+        "word": "smile",
+        "missingIndex": 2,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-111-r6",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "skate",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "smile",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "scarf",
+            "wrong": "mirror",
+            "at": 2
+          },
+          {
+            "text": "skunk",
+            "wrong": "mirror",
+            "at": 4
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-111-r7",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every skunk!",
+        "say": "Find every word skunk!",
+        "audio": "voice/line-74649994f6f536c1.m4a"
+      },
+      "card": {
+        "text": "skunk",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "skunk",
+        "grid": [
+          "four",
+          "scarf",
+          "goat",
+          "skunk",
+          "skunk",
+          "smile",
+          "skunk",
+          "scooter",
+          "skate"
+        ]
+      }
+    },
+    {
+      "id": "level-111-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: skate, smile, scarf, skunk!",
+        "say": "Say them with me! skate, smile, scarf, skunk!",
+        "audio": "voice/line-a61e7c8b69f92c4b.m4a"
+      },
+      "card": {
+        "text": "skate, smile, scarf, skunk!",
+        "picture": {
+          "key": "skate",
+          "label": "skate",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "skate, smile, scarf, skunk!"
+      }
+    },
+    {
+      "id": "level-111-r9",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a skate. True, or silly?",
+        "audio": "voice/line-d5097be66289f84c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a skate.",
+        "picture": {
+          "key": "skate",
+          "label": "skate",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-111-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Write scarf",
+        "say": "Write the word scarf.",
+        "audio": "voice/line-aed18777088bb104.m4a"
+      },
+      "card": {
+        "text": "scarf",
+        "picture": {
+          "key": "scarf",
+          "label": "scarf",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "scarf",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

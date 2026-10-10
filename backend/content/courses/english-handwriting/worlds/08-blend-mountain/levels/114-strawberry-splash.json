@@ -1,0 +1,373 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-114",
+  "number": 114,
+  "name": "Strawberry Splash",
+  "skill": "str spr scr",
+  "icon": "beach_access",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "straw",
+    "word": "straw",
+    "say": "Straw, sprout, scroll! Three sounds at the start.",
+    "audio": "voice/line-a5f1edf15985019f.m4a",
+    "picture": {
+      "key": "straw",
+      "label": "straw",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-114-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is straw?",
+        "say": "Read the word. Which picture is straw?",
+        "audio": "voice/line-37aa80fbd8afbb0d.m4a"
+      },
+      "card": {
+        "text": "straw",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-114-r1-o1",
+            "label": "straw",
+            "picture": {
+              "key": "straw",
+              "label": "straw",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-114-r1-o2",
+            "label": "scroll",
+            "picture": {
+              "key": "scroll",
+              "label": "scroll",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-114-r1-o3",
+            "label": "sprout",
+            "picture": {
+              "key": "sprout",
+              "label": "sprout",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "straw"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-114-r2",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a splash. True, or silly?",
+        "audio": "voice/line-d8efc7af4e2655f5.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a splash.",
+        "picture": {
+          "key": "four",
+          "label": "four",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-114-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Straw! Build the word straw.",
+        "audio": "voice/line-246f36d5faca7d86.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "straw",
+          "label": "straw",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "s",
+          "t",
+          "r",
+          "a",
+          "w"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-114-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Sprout! Which letter is missing?",
+        "audio": "voice/line-bd53e819ba365e40.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "sprout",
+          "label": "sprout",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "o",
+        "guide": "o",
+        "word": "sprout",
+        "missingIndex": 3,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-114-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write straw",
+        "say": "Look at the word straw. Then write it from memory!",
+        "audio": "voice/line-e6cad1f3045a658d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "straw",
+          "label": "straw",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "straw",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-114-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every splash!",
+        "say": "Find every word splash!",
+        "audio": "voice/line-8f3fac2db47d2854.m4a"
+      },
+      "card": {
+        "text": "splash",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "splash",
+        "grid": [
+          "straw",
+          "scroll",
+          "scream",
+          "goat",
+          "splash",
+          "splash",
+          "splash",
+          "four",
+          "sprout"
+        ]
+      }
+    },
+    {
+      "id": "level-114-r7",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the words: str or spr or scr?",
+        "say": "Read each word. Is it {s|ˈɛs} {t|tˈiː} {r|ˈɑːɹ} or {s|ˈɛs} {p|pˈiː} {r|ˈɑːɹ} or {s|ˈɛs} {c|sˈiː} {r|ˈɑːɹ}?",
+        "audio": "voice/line-3d84f1a91850830c.m4a"
+      },
+      "card": {
+        "text": "str spr scr",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "str",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "spr",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "scr",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "scroll",
+            "picture": null,
+            "bin": 2
+          },
+          {
+            "label": "straw",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "spring",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "scream",
+            "picture": null,
+            "bin": 2
+          },
+          {
+            "label": "street",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "spray",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "string",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "sprout",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "scrub",
+            "picture": null,
+            "bin": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-114-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: straw, sprout, scroll, splash!",
+        "say": "Say them with me! straw, sprout, scroll, splash!",
+        "audio": "voice/line-97a6503f967f3505.m4a"
+      },
+      "card": {
+        "text": "straw, sprout, scroll, splash!",
+        "picture": {
+          "key": "straw",
+          "label": "straw",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "straw, sprout, scroll, splash!"
+      }
+    },
+    {
+      "id": "level-114-r9",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every splash!",
+        "say": "Pop every bubble that says splash!",
+        "audio": "voice/line-41f10ed003b562d1.m4a"
+      },
+      "card": {
+        "text": "splash",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "splash",
+        "others": [
+          "straw",
+          "ship",
+          "four"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-114-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Write scroll",
+        "say": "Write the word scroll.",
+        "audio": "voice/line-0931551310470330.m4a"
+      },
+      "card": {
+        "text": "scroll",
+        "picture": {
+          "key": "scroll",
+          "label": "scroll",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "scroll",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

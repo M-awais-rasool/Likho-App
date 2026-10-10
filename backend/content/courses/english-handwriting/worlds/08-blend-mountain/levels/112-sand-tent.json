@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-93",
-  "number": 93,
+  "id": "level-112",
+  "number": 112,
   "name": "Sand Tent",
   "skill": "nd nt mp st at the end",
   "icon": "beach_access",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-93-r1",
+      "id": "level-112-r1",
       "type": "pick",
       "prompt": {
         "text": "Which picture is hand?",
@@ -41,33 +41,33 @@
       "pick": {
         "options": [
           {
-            "id": "level-93-r1-o1",
-            "label": "hand",
-            "picture": {
-              "key": "hand",
-              "label": "hand",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-93-r1-o2",
-            "label": "tent",
-            "picture": {
-              "key": "tent",
-              "label": "tent",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-93-r1-o3",
+            "id": "level-112-r1-o1",
             "label": "lamp",
             "picture": {
               "key": "lamp",
               "label": "lamp",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-112-r1-o2",
+            "label": "gift",
+            "picture": {
+              "key": "gift",
+              "label": "gift",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-112-r1-o3",
+            "label": "hand",
+            "picture": {
+              "key": "hand",
+              "label": "hand",
               "url": null
             },
             "color": null,
@@ -78,7 +78,7 @@
           "kind": "label",
           "value": "hand"
         },
-        "shape": "card",
+        "shape": "bucket",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -86,30 +86,91 @@
       }
     },
     {
-      "id": "level-93-r2",
-      "type": "truth",
+      "id": "level-112-r2",
+      "type": "sort",
       "prompt": {
-        "text": "True or silly?",
-        "say": "This is a lamp. True, or silly?",
-        "audio": "voice/line-ad270c8f58fe77fd.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/t/|tʌ} or {/l/|lːː}?",
+        "audio": "voice/line-4d800cb2f76f529e.m4a"
       },
       "card": {
-        "text": null,
+        "text": "t l",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "truth": {
-        "text": "This is a lamp.",
-        "picture": {
-          "key": "lamp",
-          "label": "lamp",
-          "url": null
-        },
-        "answer": true
+      "sort": {
+        "bins": [
+          {
+            "label": "t",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "l",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "tooth",
+            "picture": {
+              "key": "tooth",
+              "label": "tooth",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "lion",
+            "picture": {
+              "key": "lion",
+              "label": "lion",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "turtle",
+            "picture": {
+              "key": "turtle",
+              "label": "turtle",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "tent",
+            "picture": {
+              "key": "tent",
+              "label": "tent",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "lemon",
+            "picture": {
+              "key": "lemon",
+              "label": "lemon",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "log",
+            "picture": {
+              "key": "log",
+              "label": "log",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
       }
     },
     {
-      "id": "level-93-r3",
+      "id": "level-112-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -132,11 +193,11 @@
           "n",
           "d"
         ],
-        "slot": "plank"
+        "slot": "stripe"
       }
     },
     {
-      "id": "level-93-r4",
+      "id": "level-112-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -151,21 +212,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-93-r4-o1",
-            "label": "hand",
+            "id": "level-112-r4-o1",
+            "label": "lamp",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-93-r4-o2",
-            "label": "gift",
+            "id": "level-112-r4-o2",
+            "label": "nest",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-93-r4-o3",
+            "id": "level-112-r4-o3",
             "label": "tent",
             "picture": null,
             "color": null,
@@ -176,7 +237,7 @@
           "kind": "label",
           "value": "tent"
         },
-        "shape": "bubble",
+        "shape": "cloud",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -184,7 +245,7 @@
       }
     },
     {
-      "id": "level-93-r5",
+      "id": "level-112-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
@@ -211,82 +272,34 @@
       }
     },
     {
-      "id": "level-93-r6",
-      "type": "sort",
+      "id": "level-112-r6",
+      "type": "write",
       "prompt": {
-        "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/m/|mːː} or {/g/|ɡʌ}?",
-        "audio": "voice/line-8512138493f9a364.m4a"
+        "text": "Look, then write nest",
+        "say": "Look at the word nest. Then write it from memory!",
+        "audio": "voice/line-ed53318ca1f53e0c.m4a"
       },
       "card": {
-        "text": "m g",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "nest",
+          "label": "nest",
+          "url": null
+        },
         "listen": false
       },
-      "sort": {
-        "bins": [
-          {
-            "label": "m",
-            "picture": null,
-            "bin": null
-          },
-          {
-            "label": "g",
-            "picture": null,
-            "bin": null
-          }
-        ],
-        "items": [
-          {
-            "label": "goat",
-            "picture": {
-              "key": "goat",
-              "label": "goat",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "gift",
-            "picture": {
-              "key": "gift",
-              "label": "gift",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "monkey",
-            "picture": {
-              "key": "monkey",
-              "label": "monkey",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "moon",
-            "picture": {
-              "key": "moon",
-              "label": "moon",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "mouse",
-            "picture": {
-              "key": "mouse",
-              "label": "mouse",
-              "url": null
-            },
-            "bin": 0
-          }
-        ]
+      "write": {
+        "mode": "flash",
+        "target": "nest",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
       }
     },
     {
-      "id": "level-93-r7",
+      "id": "level-112-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every nest!",
@@ -301,20 +314,20 @@
       "hunt": {
         "target": "nest",
         "grid": [
-          "hand",
+          "four",
           "nest",
+          "tent",
           "lamp",
           "nest",
+          "hand",
           "nest",
           "milk",
-          "gift",
-          "four",
-          "tent"
+          "gift"
         ]
       }
     },
     {
-      "id": "level-93-r8",
+      "id": "level-112-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: hand, tent, lamp, nest!",
@@ -335,34 +348,30 @@
       }
     },
     {
-      "id": "level-93-r9",
-      "type": "write",
+      "id": "level-112-r9",
+      "type": "pop",
       "prompt": {
-        "text": "Look, then write lamp",
-        "say": "Look at the word lamp. Then write it from memory!",
-        "audio": "voice/line-784d1806fee5f83b.m4a"
+        "text": "Pop every nest!",
+        "say": "Pop every bubble that says nest!",
+        "audio": "voice/line-1a617fa6b7737492.m4a"
       },
       "card": {
-        "text": null,
-        "picture": {
-          "key": "lamp",
-          "label": "lamp",
-          "url": null
-        },
+        "text": "nest",
+        "picture": null,
         "listen": false
       },
-      "write": {
-        "mode": "flash",
-        "target": "lamp",
-        "guide": null,
-        "word": null,
-        "missingIndex": null,
-        "sentence": false,
-        "story": false
+      "pop": {
+        "target": "nest",
+        "others": [
+          "four",
+          "gift",
+          "goat"
+        ],
+        "count": 4
       }
     },
     {
-      "id": "level-93-r10",
+      "id": "level-112-r10",
       "type": "write",
       "prompt": {
         "text": "Write lamp",
