@@ -1,0 +1,398 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-63",
+  "number": 63,
+  "name": "-at & -an Families",
+  "skill": "Word families",
+  "icon": "pets",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "-at -an",
+    "word": "van",
+    "say": "Cat, hat, bat, rat: the {at|æt} family! Van, fan, pan, man: the {an|æn} family!",
+    "audio": "voice/line-a70ea7ee66fb3d67.m4a",
+    "picture": {
+      "key": "van",
+      "label": "van",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-63-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is rat?",
+        "say": "Read the word. Which picture is rat?",
+        "audio": "voice/line-4bfe68be86c99f08.m4a"
+      },
+      "card": {
+        "text": "rat",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-63-r1-o1",
+            "label": "rat",
+            "picture": {
+              "key": "rat",
+              "label": "rat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-63-r1-o2",
+            "label": "man",
+            "picture": {
+              "key": "family_father",
+              "label": "man",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-63-r1-o3",
+            "label": "bat",
+            "picture": {
+              "key": "bat",
+              "label": "bat",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "rat"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-63-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write fan",
+        "say": "Look at the word fan. Then write it from memory!",
+        "audio": "voice/line-f50bdcb7097a3cdb.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "fan",
+          "label": "fan",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "fan",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-63-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Rat! Build the word rat.",
+        "audio": "voice/line-d019df3757d270cf.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "rat",
+          "label": "rat",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "r",
+          "a",
+          "t"
+        ],
+        "slot": "stripe"
+      }
+    },
+    {
+      "id": "level-63-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Van! Which letter is missing?",
+        "audio": "voice/line-9c71ea87a15b7187.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "van",
+          "label": "van",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "a",
+        "guide": "a",
+        "word": "van",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-63-r5",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every fan!",
+        "say": "Pop every bubble that says fan!",
+        "audio": "voice/line-f9e68eb69ce8b98b.m4a"
+      },
+      "card": {
+        "text": "fan",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "fan",
+        "others": [
+          "bat",
+          "man",
+          "pan"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-63-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every bat!",
+        "say": "Find every word bat!",
+        "audio": "voice/line-983a5e936b8d061e.m4a"
+      },
+      "card": {
+        "text": "bat",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "bat",
+        "grid": [
+          "man",
+          "van",
+          "bat",
+          "rat",
+          "bat",
+          "pig",
+          "pan",
+          "bat",
+          "fan"
+        ]
+      }
+    },
+    {
+      "id": "level-63-r7",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the words: -at or -an?",
+        "say": "Read each word. Does it end in {at|æt} or {an|æn}?",
+        "audio": "voice/line-3239bc63ff3fde67.m4a"
+      },
+      "card": {
+        "text": "-at -an",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "-at",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "-an",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "cat",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "man",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "pan",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "hat",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "van",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "rat",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "bat",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "fan",
+            "picture": null,
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-63-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: rat, van, fan, bat!",
+        "say": "Say them with me! rat, van, fan, bat!",
+        "audio": "voice/line-1b683eb3be2a2edd.m4a"
+      },
+      "card": {
+        "text": "rat, van, fan, bat!",
+        "picture": {
+          "key": "rat",
+          "label": "rat",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "rat, van, fan, bat!"
+      }
+    },
+    {
+      "id": "level-63-r9",
+      "type": "match",
+      "prompt": {
+        "text": "Find the pairs!",
+        "say": "Find the pairs! Match each word to its picture.",
+        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+      },
+      "card": {
+        "text": "Find the pairs!",
+        "picture": null,
+        "listen": false
+      },
+      "match": {
+        "pairs": [
+          {
+            "a": {
+              "text": "rat",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "rat",
+                "label": "rat",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "van",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "van",
+                "label": "van",
+                "url": null
+              }
+            }
+          },
+          {
+            "a": {
+              "text": "fan",
+              "picture": null
+            },
+            "b": {
+              "text": null,
+              "picture": {
+                "key": "fan",
+                "label": "fan",
+                "url": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-63-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Write fan",
+        "say": "Write the word fan.",
+        "audio": "voice/line-444289dca4a73854.m4a"
+      },
+      "card": {
+        "text": "fan",
+        "picture": {
+          "key": "fan",
+          "label": "fan",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "fan",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

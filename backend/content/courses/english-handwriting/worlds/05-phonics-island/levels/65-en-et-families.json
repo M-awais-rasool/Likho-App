@@ -1,0 +1,361 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-65",
+  "number": 65,
+  "name": "-en & -et Families",
+  "skill": "Word families",
+  "icon": "egg",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "-en -et",
+    "word": "net",
+    "say": "Hen, pen, ten: the {en|ɛn} family! Net, jet, wet: the {et|ɛt} family!",
+    "audio": "voice/line-d3a7b820bff39252.m4a",
+    "picture": {
+      "key": "net",
+      "label": "net",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-65-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is wet?",
+        "say": "Read the word. Which picture is wet?",
+        "audio": "voice/line-8f18570d14828c13.m4a"
+      },
+      "card": {
+        "text": "wet",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-65-r1-o1",
+            "label": "wet",
+            "picture": {
+              "key": "wet",
+              "label": "wet",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-65-r1-o2",
+            "label": "pen",
+            "picture": {
+              "key": "pen",
+              "label": "pen",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-65-r1-o3",
+            "label": "ten",
+            "picture": {
+              "key": "ten",
+              "label": "ten",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "wet"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-65-r2",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a pen. True, or silly?",
+        "audio": "voice/line-a40a3a40c235e67c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a pen.",
+        "picture": {
+          "key": "pen",
+          "label": "pen",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-65-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Wet! Build the word wet.",
+        "audio": "voice/line-be7ad75228f3e278.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "wet",
+          "label": "wet",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "w",
+          "e",
+          "t"
+        ],
+        "slot": "wagon"
+      }
+    },
+    {
+      "id": "level-65-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Net! Which letter is missing?",
+        "audio": "voice/line-40a300efddc3e712.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "net",
+          "label": "net",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "e",
+        "guide": "e",
+        "word": "net",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-65-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write pen",
+        "say": "Look at the word pen. Then write it from memory!",
+        "audio": "voice/line-f7dbaf5a0b70b8d4.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "pen",
+          "label": "pen",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "pen",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-65-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every jet!",
+        "say": "Find every word jet!",
+        "audio": "voice/line-ae7e2bc84fadb984.m4a"
+      },
+      "card": {
+        "text": "jet",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "jet",
+        "grid": [
+          "jet",
+          "jet",
+          "hen",
+          "pen",
+          "net",
+          "wet",
+          "ten",
+          "jet",
+          "pig"
+        ]
+      }
+    },
+    {
+      "id": "level-65-r7",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the words: -en or -et?",
+        "say": "Read each word. Does it end in {en|ɛn} or {et|ɛt}?",
+        "audio": "voice/line-2d0a73fc395ad8c9.m4a"
+      },
+      "card": {
+        "text": "-en -et",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "-en",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "-et",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "jet",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "hen",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "ten",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "men",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "pet",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "pen",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "net",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "wet",
+            "picture": null,
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-65-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: wet, net, ten, jet!",
+        "say": "Say them with me! wet, net, ten, jet!",
+        "audio": "voice/line-f207c996a68d0b16.m4a"
+      },
+      "card": {
+        "text": "wet, net, ten, jet!",
+        "picture": {
+          "key": "wet",
+          "label": "wet",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "wet, net, ten, jet!"
+      }
+    },
+    {
+      "id": "level-65-r9",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every pen!",
+        "say": "Pop every bubble that says pen!",
+        "audio": "voice/line-8ce4b843aea5a53b.m4a"
+      },
+      "card": {
+        "text": "pen",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "pen",
+        "others": [
+          "pig",
+          "hen",
+          "jet"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-65-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Write ten",
+        "say": "Write the word ten.",
+        "audio": "voice/line-cf14028cc581ad96.m4a"
+      },
+      "card": {
+        "text": "ten",
+        "picture": {
+          "key": "ten",
+          "label": "ten",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "ten",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

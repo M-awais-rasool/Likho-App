@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-69",
-  "number": 69,
+  "id": "level-73",
+  "number": 73,
   "name": "Rhyme Frogs",
   "skill": "Rhyming words",
   "icon": "flutter_dash",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-69-r1",
+      "id": "level-73-r1",
       "type": "pick",
       "prompt": {
         "text": "cat",
@@ -52,7 +52,7 @@
             },
             "color": null,
             "hideLabel": false,
-            "id": "level-69-r1-o1"
+            "id": "level-73-r1-o1"
           },
           {
             "label": "dog",
@@ -63,7 +63,7 @@
             },
             "color": null,
             "hideLabel": false,
-            "id": "level-69-r1-o2"
+            "id": "level-73-r1-o2"
           },
           {
             "label": "sun",
@@ -74,7 +74,7 @@
             },
             "color": null,
             "hideLabel": false,
-            "id": "level-69-r1-o3"
+            "id": "level-73-r1-o3"
           }
         ],
         "answer": {
@@ -89,7 +89,207 @@
       }
     },
     {
-      "id": "level-69-r2",
+      "id": "level-73-r2",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write cat",
+        "say": "Look at the word cat. Then write it from memory!",
+        "audio": "voice/line-1287718e1719c23c.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "cat",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-73-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Hat! Build the word hat.",
+        "audio": "voice/line-035f6fafa3fa4013.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "hat",
+          "label": "hat",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "h",
+          "a",
+          "t"
+        ],
+        "slot": "plank"
+      }
+    },
+    {
+      "id": "level-73-r4",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word dog.",
+        "audio": "voice/line-305bd6b6bd2811e9.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-73-r4-o1",
+            "label": "bun",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-73-r4-o2",
+            "label": "hat",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-73-r4-o3",
+            "label": "dog",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "dog"
+        },
+        "shape": "kite",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-73-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Spell log",
+        "say": "Log! Write it one letter at a time.",
+        "audio": "voice/line-ed8d031f4f739906.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "log",
+          "label": "log",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "spell",
+        "target": "log",
+        "guide": null,
+        "word": "log",
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-73-r6",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every cat!",
+        "say": "Pop every bubble that says cat!",
+        "audio": "voice/line-c08d01b05ab44259.m4a"
+      },
+      "card": {
+        "text": "cat",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "cat",
+        "others": [
+          "bun",
+          "dog",
+          "hat"
+        ],
+        "count": 4
+      }
+    },
+    {
+      "id": "level-73-r7",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every sun!",
+        "say": "Find every word sun!",
+        "audio": "voice/line-182ae71a36b0f9f5.m4a"
+      },
+      "card": {
+        "text": "sun",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "sun",
+        "grid": [
+          "bun",
+          "sun",
+          "pig",
+          "sun",
+          "sun",
+          "cat",
+          "dog",
+          "hat",
+          "log"
+        ]
+      }
+    },
+    {
+      "id": "level-73-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: cat, hat, dog, log!",
+        "say": "Say them with me! cat, hat, dog, log!",
+        "audio": "voice/line-01a686777634bc89.m4a"
+      },
+      "card": {
+        "text": "cat, hat, dog, log!",
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "cat, hat, dog, log!"
+      }
+    },
+    {
+      "id": "level-73-r9",
       "type": "match",
       "prompt": {
         "text": "Find the pairs!",
@@ -149,218 +349,7 @@
       }
     },
     {
-      "id": "level-69-r3",
-      "type": "order",
-      "prompt": {
-        "text": "Build the word!",
-        "say": "Hat! Build the word hat.",
-        "audio": "voice/line-035f6fafa3fa4013.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "hat",
-          "label": "hat",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "h",
-          "a",
-          "t"
-        ],
-        "slot": "stripe"
-      }
-    },
-    {
-      "id": "level-69-r4",
-      "type": "pick",
-      "prompt": {
-        "text": "Find the word you hear",
-        "say": "Listen! Find the word dog.",
-        "audio": "voice/line-305bd6b6bd2811e9.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": null,
-        "listen": true
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-69-r4-o1",
-            "label": "hat",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-69-r4-o2",
-            "label": "dog",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-69-r4-o3",
-            "label": "pig",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "dog"
-        },
-        "shape": "mushroom",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-69-r5",
-      "type": "write",
-      "prompt": {
-        "text": "Spell log",
-        "say": "Log! Write it one letter at a time.",
-        "audio": "voice/line-ed8d031f4f739906.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "log",
-          "label": "log",
-          "url": null
-        },
-        "listen": false
-      },
-      "write": {
-        "mode": "spell",
-        "target": "log",
-        "guide": null,
-        "word": "log",
-        "missingIndex": null,
-        "sentence": false,
-        "story": false
-      }
-    },
-    {
-      "id": "level-69-r6",
-      "type": "fix",
-      "prompt": {
-        "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
-      },
-      "card": {
-        "text": "Fix it!",
-        "picture": null,
-        "listen": false
-      },
-      "fix": {
-        "items": [
-          {
-            "text": "cat",
-            "wrong": "mirror",
-            "at": 1
-          },
-          {
-            "text": "hat",
-            "wrong": "mirror",
-            "at": 0
-          },
-          {
-            "text": "dog",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "log",
-            "wrong": null,
-            "at": null
-          }
-        ]
-      }
-    },
-    {
-      "id": "level-69-r7",
-      "type": "hunt",
-      "prompt": {
-        "text": "Find every sun!",
-        "say": "Find every word sun!",
-        "audio": "voice/line-182ae71a36b0f9f5.m4a"
-      },
-      "card": {
-        "text": "sun",
-        "picture": null,
-        "listen": false
-      },
-      "hunt": {
-        "target": "sun",
-        "grid": [
-          "bun",
-          "pig",
-          "sun",
-          "hat",
-          "sun",
-          "dog",
-          "cat",
-          "log",
-          "sun"
-        ]
-      }
-    },
-    {
-      "id": "level-69-r8",
-      "type": "speak",
-      "prompt": {
-        "text": "Say: cat, hat, dog, log!",
-        "say": "Say them with me! cat, hat, dog, log!",
-        "audio": "voice/line-01a686777634bc89.m4a"
-      },
-      "card": {
-        "text": "cat, hat, dog, log!",
-        "picture": {
-          "key": "cat",
-          "label": "cat",
-          "url": null
-        },
-        "listen": true
-      },
-      "speak": {
-        "expected": "cat, hat, dog, log!"
-      }
-    },
-    {
-      "id": "level-69-r9",
-      "type": "truth",
-      "prompt": {
-        "text": "True or silly?",
-        "say": "This is a bun. True, or silly?",
-        "audio": "voice/line-0af75220994151aa.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": null,
-        "listen": true
-      },
-      "truth": {
-        "text": "This is a bun.",
-        "picture": {
-          "key": "bun",
-          "label": "bun",
-          "url": null
-        },
-        "answer": true
-      }
-    },
-    {
-      "id": "level-69-r10",
+      "id": "level-73-r10",
       "type": "write",
       "prompt": {
         "text": "Write dog",

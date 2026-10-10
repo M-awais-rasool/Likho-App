@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-70",
-  "number": 70,
+  "id": "level-74",
+  "number": 74,
   "name": "Vowel Owl",
   "skill": "a e i o u",
   "icon": "visibility",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-70-r1",
+      "id": "level-74-r1",
       "type": "write",
       "prompt": {
         "text": "c _ t",
@@ -53,91 +53,45 @@
       }
     },
     {
-      "id": "level-70-r2",
-      "type": "sort",
+      "id": "level-74-r2",
+      "type": "fix",
       "prompt": {
-        "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/h/|hʌ}?",
-        "audio": "voice/line-c7ac37372e7b32ac.m4a"
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
       },
       "card": {
-        "text": "d h",
+        "text": "Fix it!",
         "picture": null,
         "listen": false
       },
-      "sort": {
-        "bins": [
-          {
-            "label": "d",
-            "picture": null,
-            "bin": null
-          },
-          {
-            "label": "h",
-            "picture": null,
-            "bin": null
-          }
-        ],
+      "fix": {
         "items": [
           {
-            "label": "hat",
-            "picture": {
-              "key": "hat",
-              "label": "hat",
-              "url": null
-            },
-            "bin": 1
+            "text": "cat",
+            "wrong": null,
+            "at": null
           },
           {
-            "label": "dog",
-            "picture": {
-              "key": "dog",
-              "label": "dog",
-              "url": null
-            },
-            "bin": 0
+            "text": "bed",
+            "wrong": null,
+            "at": null
           },
           {
-            "label": "hand",
-            "picture": {
-              "key": "hand",
-              "label": "hand",
-              "url": null
-            },
-            "bin": 1
+            "text": "pig",
+            "wrong": "mirror",
+            "at": 2
           },
           {
-            "label": "hut",
-            "picture": {
-              "key": "hut",
-              "label": "hut",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "duck",
-            "picture": {
-              "key": "duck",
-              "label": "duck",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "doctor",
-            "picture": {
-              "key": "doctor",
-              "label": "doctor",
-              "url": null
-            },
-            "bin": 0
+            "text": "dog",
+            "wrong": "mirror",
+            "at": 2
           }
         ]
       }
     },
     {
-      "id": "level-70-r3",
+      "id": "level-74-r3",
       "type": "pick",
       "prompt": {
         "text": "Which picture is cat?",
@@ -152,7 +106,18 @@
       "pick": {
         "options": [
           {
-            "id": "level-70-r3-o1",
+            "id": "level-74-r3-o1",
+            "label": "cup",
+            "picture": {
+              "key": "cup",
+              "label": "cup",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-74-r3-o2",
             "label": "bed",
             "picture": {
               "key": "bed",
@@ -163,18 +128,7 @@
             "hideLabel": true
           },
           {
-            "id": "level-70-r3-o2",
-            "label": "hen",
-            "picture": {
-              "key": "hen",
-              "label": "hen",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-70-r3-o3",
+            "id": "level-74-r3-o3",
             "label": "cat",
             "picture": {
               "key": "cat",
@@ -197,7 +151,7 @@
       }
     },
     {
-      "id": "level-70-r4",
+      "id": "level-74-r4",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -219,11 +173,11 @@
           "e",
           "d"
         ],
-        "slot": "plank"
+        "slot": "wagon"
       }
     },
     {
-      "id": "level-70-r5",
+      "id": "level-74-r5",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -238,22 +192,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-70-r5-o1",
-            "label": "dog",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-70-r5-o2",
+            "id": "level-74-r5-o1",
             "label": "pig",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-70-r5-o3",
+            "id": "level-74-r5-o2",
             "label": "bed",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-74-r5-o3",
+            "label": "log",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -263,7 +217,7 @@
           "kind": "label",
           "value": "pig"
         },
-        "shape": "cloud",
+        "shape": "fish",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -271,34 +225,30 @@
       }
     },
     {
-      "id": "level-70-r6",
-      "type": "write",
+      "id": "level-74-r6",
+      "type": "truth",
       "prompt": {
-        "text": "Look, then write dog",
-        "say": "Look at the word dog. Then write it from memory!",
-        "audio": "voice/line-cea7cf2d92dba27b.m4a"
+        "text": "True or silly?",
+        "say": "This is a bed. True, or silly?",
+        "audio": "voice/line-7cf028fe0766a0dd.m4a"
       },
       "card": {
         "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a bed.",
         "picture": {
-          "key": "dog",
-          "label": "dog",
+          "key": "cup",
+          "label": "cup",
           "url": null
         },
-        "listen": false
-      },
-      "write": {
-        "mode": "flash",
-        "target": "dog",
-        "guide": null,
-        "word": null,
-        "missingIndex": null,
-        "sentence": false,
-        "story": false
+        "answer": false
       }
     },
     {
-      "id": "level-70-r7",
+      "id": "level-74-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every cup!",
@@ -313,20 +263,20 @@
       "hunt": {
         "target": "cup",
         "grid": [
-          "hen",
+          "cup",
+          "log",
+          "pig",
+          "dog",
           "cup",
           "bed",
           "cup",
-          "dog",
-          "log",
-          "pig",
-          "cat",
-          "cup"
+          "hen",
+          "cat"
         ]
       }
     },
     {
-      "id": "level-70-r8",
+      "id": "level-74-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: cat, bed, pig, dog!",
@@ -347,30 +297,91 @@
       }
     },
     {
-      "id": "level-70-r9",
-      "type": "pop",
+      "id": "level-74-r9",
+      "type": "sort",
       "prompt": {
-        "text": "Pop every dog!",
-        "say": "Pop every bubble that says dog!",
-        "audio": "voice/line-dcf798d03713a778.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/b/|bʌ} or {/p/|pʌ}?",
+        "audio": "voice/line-f38ab05abe375144.m4a"
       },
       "card": {
-        "text": "dog",
+        "text": "b p",
         "picture": null,
         "listen": false
       },
-      "pop": {
-        "target": "dog",
-        "others": [
-          "bed",
-          "cat",
-          "cup"
+      "sort": {
+        "bins": [
+          {
+            "label": "b",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "p",
+            "picture": null,
+            "bin": null
+          }
         ],
-        "count": 4
+        "items": [
+          {
+            "label": "bag",
+            "picture": {
+              "key": "bag",
+              "label": "bag",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "pig",
+            "picture": {
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "bat",
+            "picture": {
+              "key": "bat",
+              "label": "bat",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "pot",
+            "picture": {
+              "key": "pot",
+              "label": "pot",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "bus",
+            "picture": {
+              "key": "bus",
+              "label": "bus",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "pen",
+            "picture": {
+              "key": "pen",
+              "label": "pen",
+              "url": null
+            },
+            "bin": 1
+          }
+        ]
       }
     },
     {
-      "id": "level-70-r10",
+      "id": "level-74-r10",
       "type": "write",
       "prompt": {
         "text": "Write pig",

@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-68",
-  "number": 68,
+  "id": "level-70",
+  "number": 70,
   "name": "Short u",
   "skill": "b-u-s words",
   "icon": "directions_bus",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-68-r1",
+      "id": "level-70-r1",
       "type": "pick",
       "prompt": {
         "text": "Which picture is bus?",
@@ -41,18 +41,7 @@
       "pick": {
         "options": [
           {
-            "id": "level-68-r1-o1",
-            "label": "hut",
-            "picture": {
-              "key": "hut",
-              "label": "hut",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-68-r1-o2",
+            "id": "level-70-r1-o1",
             "label": "bus",
             "picture": {
               "key": "bus",
@@ -63,11 +52,22 @@
             "hideLabel": true
           },
           {
-            "id": "level-68-r1-o3",
-            "label": "bug",
+            "id": "level-70-r1-o2",
+            "label": "hut",
             "picture": {
-              "key": "bug",
-              "label": "bug",
+              "key": "hut",
+              "label": "hut",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-70-r1-o3",
+            "label": "cup",
+            "picture": {
+              "key": "cup",
+              "label": "cup",
               "url": null
             },
             "color": null,
@@ -78,7 +78,7 @@
           "kind": "label",
           "value": "bus"
         },
-        "shape": "bucket",
+        "shape": "planet",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -86,82 +86,82 @@
       }
     },
     {
-      "id": "level-68-r2",
+      "id": "level-70-r2",
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/s/|sːː} or {/c/|kʌ}?",
-        "audio": "voice/line-292c0046fc556067.m4a"
+        "say": "Sort the pictures! Do they start with {/h/|hʌ} or {/n/|nːː}?",
+        "audio": "voice/line-983d4c135ee07a2c.m4a"
       },
       "card": {
-        "text": "s c",
+        "text": "h n",
         "picture": null,
         "listen": false
       },
       "sort": {
         "bins": [
           {
-            "label": "s",
+            "label": "h",
             "picture": null,
             "bin": null
           },
           {
-            "label": "c",
+            "label": "n",
             "picture": null,
             "bin": null
           }
         ],
         "items": [
           {
-            "label": "corn",
+            "label": "nest",
             "picture": {
-              "key": "corn",
-              "label": "corn",
+              "key": "nest",
+              "label": "nest",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "cat",
+            "label": "hut",
             "picture": {
-              "key": "cat",
-              "label": "cat",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "sock",
-            "picture": {
-              "key": "sock",
-              "label": "sock",
+              "key": "hut",
+              "label": "hut",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "six",
+            "label": "hat",
             "picture": {
-              "key": "six",
-              "label": "six",
+              "key": "hat",
+              "label": "hat",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "cow",
+            "label": "nut",
             "picture": {
-              "key": "cow",
-              "label": "cow",
+              "key": "nut",
+              "label": "nut",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "sun",
+            "label": "nose",
             "picture": {
-              "key": "sun",
-              "label": "sun",
+              "key": "nose",
+              "label": "nose",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "hand",
+            "picture": {
+              "key": "hand",
+              "label": "hand",
               "url": null
             },
             "bin": 0
@@ -170,7 +170,7 @@
       }
     },
     {
-      "id": "level-68-r3",
+      "id": "level-70-r3",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -192,11 +192,11 @@
           "u",
           "s"
         ],
-        "slot": "wagon"
+        "slot": "plank"
       }
     },
     {
-      "id": "level-68-r4",
+      "id": "level-70-r4",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -211,22 +211,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-68-r4-o1",
+            "id": "level-70-r4-o1",
             "label": "sun",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-68-r4-o2",
-            "label": "hut",
+            "id": "level-70-r4-o2",
+            "label": "bug",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-68-r4-o3",
-            "label": "bug",
+            "id": "level-70-r4-o3",
+            "label": "cup",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -236,7 +236,7 @@
           "kind": "label",
           "value": "sun"
         },
-        "shape": "shell",
+        "shape": "cloud",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -244,7 +244,7 @@
       }
     },
     {
-      "id": "level-68-r5",
+      "id": "level-70-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
@@ -271,25 +271,25 @@
       }
     },
     {
-      "id": "level-68-r6",
+      "id": "level-70-r6",
       "type": "write",
       "prompt": {
-        "text": "Look, then write sun",
-        "say": "Look at the word sun. Then write it from memory!",
-        "audio": "voice/line-b826f034d5d868d2.m4a"
+        "text": "Look, then write bug",
+        "say": "Look at the word bug. Then write it from memory!",
+        "audio": "voice/line-d02e4561cd0660d8.m4a"
       },
       "card": {
         "text": null,
         "picture": {
-          "key": "sun",
-          "label": "sun",
+          "key": "bug",
+          "label": "bug",
           "url": null
         },
         "listen": false
       },
       "write": {
         "mode": "flash",
-        "target": "sun",
+        "target": "bug",
         "guide": null,
         "word": null,
         "missingIndex": null,
@@ -298,7 +298,7 @@
       }
     },
     {
-      "id": "level-68-r7",
+      "id": "level-70-r7",
       "type": "hunt",
       "prompt": {
         "text": "Find every bug!",
@@ -313,20 +313,20 @@
       "hunt": {
         "target": "bug",
         "grid": [
-          "nut",
-          "pig",
-          "bus",
-          "bug",
           "sun",
-          "bug",
           "cup",
           "hut",
-          "bug"
+          "pig",
+          "bug",
+          "bug",
+          "nut",
+          "bug",
+          "bus"
         ]
       }
     },
     {
-      "id": "level-68-r8",
+      "id": "level-70-r8",
       "type": "speak",
       "prompt": {
         "text": "Say: bus, sun, cup, bug!",
@@ -347,30 +347,30 @@
       }
     },
     {
-      "id": "level-68-r9",
+      "id": "level-70-r9",
       "type": "pop",
       "prompt": {
-        "text": "Pop every sun!",
-        "say": "Pop every bubble that says sun!",
-        "audio": "voice/line-2635d6999a5b027e.m4a"
+        "text": "Pop every bug!",
+        "say": "Pop every bubble that says bug!",
+        "audio": "voice/line-92411fb6343de8e2.m4a"
       },
       "card": {
-        "text": "sun",
+        "text": "bug",
         "picture": null,
         "listen": false
       },
       "pop": {
-        "target": "sun",
+        "target": "bug",
         "others": [
-          "bug",
           "bus",
-          "cup"
+          "cup",
+          "hut"
         ],
         "count": 4
       }
     },
     {
-      "id": "level-68-r10",
+      "id": "level-70-r10",
       "type": "write",
       "prompt": {
         "text": "Write cup",

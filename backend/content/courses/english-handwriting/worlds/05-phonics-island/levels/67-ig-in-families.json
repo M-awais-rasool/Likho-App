@@ -1,0 +1,376 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-67",
+  "number": 67,
+  "name": "-ig & -in Families",
+  "skill": "Word families",
+  "icon": "pets",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "-ig -in",
+    "word": "pin",
+    "say": "Pig, big, dig: the {ig|ɪɡ} family! Pin, bin, tin, win: the {in|ɪn} family!",
+    "audio": "voice/line-69c3746a4507bc21.m4a",
+    "picture": {
+      "key": "pin",
+      "label": "pin",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-67-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "Which picture is win?",
+        "say": "Read the word. Which picture is win?",
+        "audio": "voice/line-865a8327ffe48db1.m4a"
+      },
+      "card": {
+        "text": "win",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-67-r1-o1",
+            "label": "pin",
+            "picture": {
+              "key": "pin",
+              "label": "pin",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-67-r1-o2",
+            "label": "big",
+            "picture": {
+              "key": "elephant",
+              "label": "big",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-67-r1-o3",
+            "label": "win",
+            "picture": {
+              "key": "prize",
+              "label": "win",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "win"
+        },
+        "shape": "jar",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-67-r2",
+      "type": "fix",
+      "prompt": {
+        "text": "Fix Pencil's mistakes!",
+        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
+        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+      },
+      "card": {
+        "text": "Fix it!",
+        "picture": null,
+        "listen": false
+      },
+      "fix": {
+        "items": [
+          {
+            "text": "win",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "pig",
+            "wrong": "mirror",
+            "at": 2
+          },
+          {
+            "text": "tin",
+            "wrong": null,
+            "at": null
+          },
+          {
+            "text": "big",
+            "wrong": "mirror",
+            "at": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-67-r3",
+      "type": "order",
+      "prompt": {
+        "text": "Build the word!",
+        "say": "Win! Build the word win.",
+        "audio": "voice/line-7edfa0ebae707429.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "prize",
+          "label": "win",
+          "url": null
+        },
+        "listen": false
+      },
+      "order": {
+        "tiles": [
+          "w",
+          "i",
+          "n"
+        ],
+        "slot": "plank"
+      }
+    },
+    {
+      "id": "level-67-r4",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Pig! Which letter is missing?",
+        "audio": "voice/line-9bbfae86e5006741.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "pig",
+          "label": "pig",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "i",
+        "guide": "i",
+        "word": "pig",
+        "missingIndex": 1,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-67-r5",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "I can win. True, or silly?",
+        "audio": "voice/line-f88e8c8b8f9b1d04.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "I can win.",
+        "picture": {
+          "key": "prize",
+          "label": "win",
+          "url": null
+        },
+        "answer": true
+      }
+    },
+    {
+      "id": "level-67-r6",
+      "type": "hunt",
+      "prompt": {
+        "text": "Find every big!",
+        "say": "Find every word big!",
+        "audio": "voice/line-20ea45cfe890c0ac.m4a"
+      },
+      "card": {
+        "text": "big",
+        "picture": null,
+        "listen": false
+      },
+      "hunt": {
+        "target": "big",
+        "grid": [
+          "big",
+          "big",
+          "win",
+          "big",
+          "tin",
+          "win",
+          "pig",
+          "bin",
+          "pin"
+        ]
+      }
+    },
+    {
+      "id": "level-67-r7",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the words: -ig or -in?",
+        "say": "Read each word. Does it end in {ig|ɪɡ} or {in|ɪn}?",
+        "audio": "voice/line-5c6f2154e425a878.m4a"
+      },
+      "card": {
+        "text": "-ig -in",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "-ig",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "-in",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "pin",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "pig",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "dig",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "win",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "big",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "bin",
+            "picture": null,
+            "bin": 1
+          },
+          {
+            "label": "wig",
+            "picture": null,
+            "bin": 0
+          },
+          {
+            "label": "tin",
+            "picture": null,
+            "bin": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-67-r8",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: win, pig, tin, big!",
+        "say": "Say them with me! win, pig, tin, big!",
+        "audio": "voice/line-8150f259246ce325.m4a"
+      },
+      "card": {
+        "text": "win, pig, tin, big!",
+        "picture": {
+          "key": "prize",
+          "label": "win",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "win, pig, tin, big!"
+      }
+    },
+    {
+      "id": "level-67-r9",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write win",
+        "say": "Look at the word win. Then write it from memory!",
+        "audio": "voice/line-1993eeedd496576b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "prize",
+          "label": "win",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "win",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-67-r10",
+      "type": "write",
+      "prompt": {
+        "text": "Write tin",
+        "say": "Write the word tin.",
+        "audio": "voice/line-5914106420b74d87.m4a"
+      },
+      "card": {
+        "text": "tin",
+        "picture": {
+          "key": "tin",
+          "label": "tin",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "tin",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 {
   "$schema": "../../../../../schema/level.schema.json",
-  "id": "level-71",
-  "number": 71,
-  "name": "Wake the Bear",
+  "id": "level-75",
+  "number": 75,
+  "name": "Wake the Turtle",
   "skill": "Boss · words",
   "icon": "bedtime",
   "isBoss": true,
@@ -10,8 +10,8 @@
   "intro": {
     "text": "cat hen pig",
     "word": "star",
-    "say": "The bear is fast asleep. Let's spell words to wake it up!",
-    "audio": "voice/line-fda0387a011241c7.m4a",
+    "say": "The turtle is fast asleep on the island. Let's spell words to wake it up!",
+    "audio": "voice/line-555c9abbe21ada74.m4a",
     "picture": {
       "key": "star",
       "label": "star",
@@ -26,7 +26,7 @@
   },
   "rounds": [
     {
-      "id": "level-71-r1",
+      "id": "level-75-r1",
       "type": "write",
       "prompt": {
         "text": "dog",
@@ -52,30 +52,82 @@
       }
     },
     {
-      "id": "level-71-r2",
-      "type": "pop",
+      "id": "level-75-r2",
+      "type": "sort",
       "prompt": {
-        "text": "Pop every bus!",
-        "say": "Pop every bubble that says bus!",
-        "audio": "voice/line-d8fa58b86a94481f.m4a"
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they start with {/b/|bʌ} or {/j/|ʤʌ}?",
+        "audio": "voice/line-7fb14b51a11df96a.m4a"
       },
       "card": {
-        "text": "bus",
+        "text": "b j",
         "picture": null,
         "listen": false
       },
-      "pop": {
-        "target": "bus",
-        "others": [
-          "cat",
-          "dog",
-          "hen"
+      "sort": {
+        "bins": [
+          {
+            "label": "b",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "j",
+            "picture": null,
+            "bin": null
+          }
         ],
-        "count": 4
+        "items": [
+          {
+            "label": "jump",
+            "picture": {
+              "key": "jump",
+              "label": "jump",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "ball",
+            "picture": {
+              "key": "ball",
+              "label": "ball",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "jam",
+            "picture": {
+              "key": "jam",
+              "label": "jam",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "boat",
+            "picture": {
+              "key": "boat",
+              "label": "boat",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bag",
+            "picture": {
+              "key": "bag",
+              "label": "bag",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
       }
     },
     {
-      "id": "level-71-r3",
+      "id": "level-75-r3",
       "type": "pick",
       "prompt": {
         "text": "Find the word you hear",
@@ -90,22 +142,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-71-r3-o1",
+            "id": "level-75-r3-o1",
             "label": "jam",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-71-r3-o2",
-            "label": "hen",
+            "id": "level-75-r3-o2",
+            "label": "bus",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-71-r3-o3",
-            "label": "dog",
+            "id": "level-75-r3-o3",
+            "label": "hen",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -115,7 +167,7 @@
           "kind": "label",
           "value": "hen"
         },
-        "shape": "bubble",
+        "shape": "mushroom",
         "layout": null,
         "count": null,
         "choiceKey": null,
@@ -123,7 +175,7 @@
       }
     },
     {
-      "id": "level-71-r4",
+      "id": "level-75-r4",
       "type": "hunt",
       "prompt": {
         "text": "Find every pig!",
@@ -140,78 +192,45 @@
         "grid": [
           "pig",
           "pig",
+          "dog",
+          "bus",
           "jam",
           "cat",
           "log",
-          "dog",
-          "bus",
-          "hen",
-          "pig"
+          "pig",
+          "hen"
         ]
       }
     },
     {
-      "id": "level-71-r5",
-      "type": "match",
+      "id": "level-75-r5",
+      "type": "write",
       "prompt": {
-        "text": "Find the pairs!",
-        "say": "Find the pairs! Match each word to its picture.",
-        "audio": "voice/line-a6f8a004d85f9ec7.m4a"
+        "text": "Look, then write pig",
+        "say": "Look at the word pig. Then write it from memory!",
+        "audio": "voice/line-a132d4699f254e7b.m4a"
       },
       "card": {
-        "text": "Find the pairs!",
-        "picture": null,
+        "text": null,
+        "picture": {
+          "key": "pig",
+          "label": "pig",
+          "url": null
+        },
         "listen": false
       },
-      "match": {
-        "pairs": [
-          {
-            "a": {
-              "text": "cat",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "cat",
-                "label": "cat",
-                "url": null
-              }
-            }
-          },
-          {
-            "a": {
-              "text": "hen",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "hen",
-                "label": "hen",
-                "url": null
-              }
-            }
-          },
-          {
-            "a": {
-              "text": "pig",
-              "picture": null
-            },
-            "b": {
-              "text": null,
-              "picture": {
-                "key": "pig",
-                "label": "pig",
-                "url": null
-              }
-            }
-          }
-        ]
+      "write": {
+        "mode": "flash",
+        "target": "pig",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
       }
     },
     {
-      "id": "level-71-r6",
+      "id": "level-75-r6",
       "type": "pick",
       "prompt": {
         "text": "What is this?",
@@ -230,22 +249,22 @@
       "pick": {
         "options": [
           {
-            "id": "level-71-r6-o1",
-            "label": "jam",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-71-r6-o2",
+            "id": "level-75-r6-o1",
             "label": "dog",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-71-r6-o3",
-            "label": "log",
+            "id": "level-75-r6-o2",
+            "label": "jam",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-75-r6-o3",
+            "label": "cat",
             "picture": null,
             "color": null,
             "hideLabel": false
@@ -263,7 +282,7 @@
       }
     },
     {
-      "id": "level-71-r7",
+      "id": "level-75-r7",
       "type": "write",
       "prompt": {
         "text": "Write bus",
@@ -290,7 +309,7 @@
       }
     },
     {
-      "id": "level-71-r8",
+      "id": "level-75-r8",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -312,49 +331,34 @@
           "a",
           "m"
         ],
-        "slot": "wagon"
+        "slot": "stripe"
       }
     },
     {
-      "id": "level-71-r9",
-      "type": "fix",
+      "id": "level-75-r9",
+      "type": "pop",
       "prompt": {
-        "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "text": "Pop every pig!",
+        "say": "Pop every bubble that says pig!",
+        "audio": "voice/line-496b9838463285bc.m4a"
       },
       "card": {
-        "text": "Fix it!",
+        "text": "pig",
         "picture": null,
         "listen": false
       },
-      "fix": {
-        "items": [
-          {
-            "text": "cat",
-            "wrong": "mirror",
-            "at": 0
-          },
-          {
-            "text": "hen",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "pig",
-            "wrong": null,
-            "at": null
-          },
-          {
-            "text": "dog",
-            "wrong": "mirror",
-            "at": 2
-          }
-        ]
+      "pop": {
+        "target": "pig",
+        "others": [
+          "bus",
+          "cat",
+          "dog"
+        ],
+        "count": 4
       }
     },
     {
-      "id": "level-71-r10",
+      "id": "level-75-r10",
       "type": "speak",
       "prompt": {
         "text": "Say: cat, hen, pig, dog!",

@@ -1,0 +1,421 @@
+{
+  "$schema": "../../../../../schema/level.schema.json",
+  "id": "level-72",
+  "number": 72,
+  "name": "Ending Sounds",
+  "skill": "Sounds at the end",
+  "icon": "graphic_eq",
+  "isBoss": false,
+  "requiresSubscription": true,
+  "intro": {
+    "text": "cat",
+    "word": "cat",
+    "say": "Cat ends with {t|tʌ}! Let's hear the last sounds.",
+    "audio": "voice/line-794ec04427ac50bb.m4a",
+    "picture": {
+      "key": "cat",
+      "label": "cat",
+      "url": null
+    }
+  },
+  "presentation": {
+    "shape": null,
+    "slot": null,
+    "layout": null,
+    "stage": null
+  },
+  "rounds": [
+    {
+      "id": "level-72-r1",
+      "type": "pick",
+      "prompt": {
+        "text": "What sound is at the end?",
+        "say": "Cat! Which letter makes the sound at the end of cat?",
+        "audio": "voice/line-097f278d1ff3d292.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-72-r1-o1",
+            "label": "c",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-72-r1-o2",
+            "label": "t",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-72-r1-o3",
+            "label": "a",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "t"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-72-r2",
+      "type": "truth",
+      "prompt": {
+        "text": "True or silly?",
+        "say": "This is a pig. True, or silly?",
+        "audio": "voice/line-e85d5e5c14378d8e.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "truth": {
+        "text": "This is a pig.",
+        "picture": {
+          "key": "cat",
+          "label": "cat",
+          "url": null
+        },
+        "answer": false
+      }
+    },
+    {
+      "id": "level-72-r3",
+      "type": "pick",
+      "prompt": {
+        "text": "Which one ends with /n/?",
+        "say": "Which one ends with {/n/|nːː}?",
+        "audio": "voice/line-bef4f8120cf6256b.m4a"
+      },
+      "card": {
+        "text": "n",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-72-r3-o1",
+            "label": "cup",
+            "picture": {
+              "key": "cup",
+              "label": "cup",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-72-r3-o2",
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-72-r3-o3",
+            "label": "hen",
+            "picture": {
+              "key": "hen",
+              "label": "hen",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "hen"
+        },
+        "shape": "bucket",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-72-r4",
+      "type": "sort",
+      "prompt": {
+        "text": "Sort the pictures!",
+        "say": "Sort the pictures! Do they end with {/t/|tʌ} or {/g/|ɡʌ}?",
+        "audio": "voice/line-7aec805ebc7eb920.m4a"
+      },
+      "card": {
+        "text": "t g",
+        "picture": null,
+        "listen": false
+      },
+      "sort": {
+        "bins": [
+          {
+            "label": "t",
+            "picture": null,
+            "bin": null
+          },
+          {
+            "label": "g",
+            "picture": null,
+            "bin": null
+          }
+        ],
+        "items": [
+          {
+            "label": "pig",
+            "picture": {
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bat",
+            "picture": {
+              "key": "bat",
+              "label": "bat",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bag",
+            "picture": {
+              "key": "bag",
+              "label": "bag",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "bin": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "level-72-r5",
+      "type": "write",
+      "prompt": {
+        "text": "Which letter is missing?",
+        "say": "Bus! Which letter is missing?",
+        "audio": "voice/line-5d1b6c9e3bdbb014.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "bus",
+          "label": "bus",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "missing",
+        "target": "s",
+        "guide": "s",
+        "word": "bus",
+        "missingIndex": 2,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-72-r6",
+      "type": "write",
+      "prompt": {
+        "text": "Look, then write pig",
+        "say": "Look at the word pig. Then write it from memory!",
+        "audio": "voice/line-a132d4699f254e7b.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "pig",
+          "label": "pig",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "flash",
+        "target": "pig",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": false,
+        "story": false
+      }
+    },
+    {
+      "id": "level-72-r7",
+      "type": "speak",
+      "prompt": {
+        "text": "Say: Cat, hat, bat! They all end the same.",
+        "say": "Cat, hat, bat! They all end the same. Now you say it!",
+        "audio": "voice/line-6381adacec53ef02.m4a"
+      },
+      "card": {
+        "text": "Cat, hat, bat! They all end the same.",
+        "picture": {
+          "key": "hat",
+          "label": "hat",
+          "url": null
+        },
+        "listen": true
+      },
+      "speak": {
+        "expected": "Cat, hat, bat! They all end the same."
+      }
+    },
+    {
+      "id": "level-72-r8",
+      "type": "write",
+      "prompt": {
+        "text": "Write dog",
+        "say": "Write the word dog.",
+        "audio": "voice/line-f5f4013efb03ea73.m4a"
+      },
+      "card": {
+        "text": "dog",
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": false
+      },
+      "write": {
+        "mode": "free",
+        "target": "dog",
+        "guide": null,
+        "word": null,
+        "missingIndex": null,
+        "sentence": true,
+        "story": false
+      }
+    },
+    {
+      "id": "level-72-r9",
+      "type": "pick",
+      "prompt": {
+        "text": "Find the word you hear",
+        "say": "Listen! Find the word pin.",
+        "audio": "voice/line-c085205bcf85be38.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-72-r9-o1",
+            "label": "pit",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-72-r9-o2",
+            "label": "pig",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-72-r9-o3",
+            "label": "pin",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "pin"
+        },
+        "shape": "bubble",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-72-r10",
+      "type": "pop",
+      "prompt": {
+        "text": "Pop every pig!",
+        "say": "Pop every bubble that says pig!",
+        "audio": "voice/line-496b9838463285bc.m4a"
+      },
+      "card": {
+        "text": "pig",
+        "picture": null,
+        "listen": false
+      },
+      "pop": {
+        "target": "pig",
+        "others": [
+          "bus",
+          "cat",
+          "dog"
+        ],
+        "count": 4
+      }
+    }
+  ]
+}
