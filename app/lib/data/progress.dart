@@ -16,6 +16,7 @@ class ChildProgress {
     required this.levelStars,
     this.accessory,
     this.total = 36,
+    this.unlockAll = false,
   });
 
   final String name;
@@ -27,8 +28,11 @@ class ChildProgress {
   /// Map levels in the course (the last level's number).
   final int total;
 
+  /// A test account: every level is open.
+  final bool unlockAll;
+
   bool isDone(int n) => levelStars.containsKey(n);
-  bool isUnlocked(int n) => n <= 1 || isDone(n - 1) || isDone(n);
+  bool isUnlocked(int n) => unlockAll || n <= 1 || isDone(n - 1) || isDone(n);
 
   /// First level without stars (the prototype's current()).
   int get current {
@@ -54,6 +58,7 @@ class ProgressNotifier extends Notifier<ChildProgress> {
       stars: r.stars,
       levelStars: r.levelStars,
       accessory: ShopItem.byId(r.wearing)?.accessory,
+      unlockAll: f.account?.tester ?? false,
     );
   }
 
