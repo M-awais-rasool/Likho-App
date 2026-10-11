@@ -145,7 +145,13 @@ class SettingsScreen extends ConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  family.subscribed ? 'Likho Plus · trial' : 'Free plan',
+                  !family.subscribed
+                      ? 'Free plan'
+                      : switch (family.plusPlan) {
+                          'monthly' => 'Likho Plus · monthly',
+                          'yearly' => 'Likho Plus · yearly',
+                          _ => 'Likho Plus',
+                        },
                   style: LikhoFonts.parent(size: 15, weight: FontWeight.w600, color: UiColors.inkLabel),
                 ),
                 const SizedBox(width: 4),

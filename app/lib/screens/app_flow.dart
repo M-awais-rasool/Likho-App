@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../data/api/api_client.dart';
 import '../dev/boss_playground.dart';
 import '../data/auth.dart';
+import '../data/billing.dart';
 import '../data/course_providers.dart';
 import '../data/media.dart';
 import '../data/family.dart';
@@ -241,7 +242,9 @@ abstract final class AppFlow {
       onSwitchChild: () => toWhos(ctx),
       onCourse: () => Navigator.of(ctx).push(LikhoRoute<void>(builder: (c) => CourseProgressScreen(onBack: () => Navigator.of(c).pop()))),
       onPlans: () => Navigator.of(ctx).push(_paywall()),
-      onRestore: () => Toast.show(ctx, 'No previous purchases found.'),
+      onRestore: () => _c(ctx).read(storeProvider) == null
+          ? Toast.show(ctx, 'No previous purchases found.')
+          : unawaited(_c(ctx).read(billingProvider.notifier).restore()),
       onShare: () => Toast.show(ctx, 'Share card copied.'),
     ),
   );
@@ -276,36 +279,59 @@ abstract final class AppFlow {
     }
   }
 
-  /// Likho Plus. After the trial starts it closes, then opens [pendingLevel]
-  /// (a locked level the child tapped) if there is one.
+  /// Likho Plus. With Google Play, the chosen plan is bought there and the
+  /// server turns Plus on; elsewhere (no store) the server's free trial
+  /// starts. Once Plus is on it closes, then opens [pendingLevel] (a
+  /// locked level the child tapped) if there is one.
   static Route<void> _paywall({int? pendingLevel}) => LikhoRoute<void>(
-    builder: (ctx) => PaywallScreen(
-      onClose: () => Navigator.of(ctx).pop(),
-      onRestore: () => Toast.show(ctx, 'No previous purchases found.'),
-      onStartTrial: (_) async {
-        final container = _c(ctx);
-        final family = container.read(familyProvider.notifier);
-        try {
-          await family.subscribe();
-        } on ApiException catch (e) {
-          if (!ctx.mounted) return;
-          Toast.show(ctx, switch (e.code) {
-            'trial_used' => 'The free trial has already been used.',
-            'offline' => 'No internet connection. Please try again.',
-            _ => "Couldn't start the trial. Please try again.",
+    builder: (ctx) => Consumer(
+      builder: (ctx, ref, _) {
+        void unlocked() {
+          ref.read(feedbackProvider).unlock();
+          Future.delayed(const Duration(milliseconds: 700), () {
+            if (!ctx.mounted) return;
+            final nav = Navigator.of(ctx);
+            nav.pop();
+            if (pendingLevel != null && nav.mounted) openLevel(nav.context, pendingLevel);
           });
-          if (e.code == 'trial_used') unawaited(family.refreshMe());
-          return;
         }
-        if (!ctx.mounted) return;
-        container.read(feedbackProvider).unlock();
-        Toast.show(ctx, 'Your 7-day free trial has started!');
-        Future.delayed(const Duration(milliseconds: 700), () {
-          if (!ctx.mounted) return;
-          final nav = Navigator.of(ctx);
-          nav.pop();
-          if (pendingLevel != null && nav.mounted) openLevel(nav.context, pendingLevel);
+
+        // a store purchase the server confirmed
+        ref.listen(billingProvider.select((b) => b.activated), (before, now) {
+          if (before != null && now > before) unlocked();
         });
+        final store = ref.watch(storeProvider) != null;
+        final billing = ref.watch(billingProvider);
+        return PaywallScreen(
+          store: store,
+          plans: billing.plans,
+          busy: billing.busy,
+          onClose: () => Navigator.of(ctx).pop(),
+          onRestore: () => store ? _member(ctx, () => unawaited(ref.read(billingProvider.notifier).restore())) : Toast.show(ctx, 'No previous purchases found.'),
+          onStartTrial: (plan) async {
+            if (store) {
+              // a purchase belongs to an account: sign in first
+              await _member(ctx, () => unawaited(ref.read(billingProvider.notifier).buy(plan)));
+              return;
+            }
+            final family = ref.read(familyProvider.notifier);
+            try {
+              await family.subscribe();
+            } on ApiException catch (e) {
+              if (!ctx.mounted) return;
+              Toast.show(ctx, switch (e.code) {
+                'trial_used' => 'The free trial has already been used.',
+                'offline' => 'No internet connection. Please try again.',
+                _ => "Couldn't start the trial. Please try again.",
+              });
+              if (e.code == 'trial_used') unawaited(family.refreshMe());
+              return;
+            }
+            if (!ctx.mounted) return;
+            Toast.show(ctx, 'Your 7-day free trial has started!');
+            unlocked();
+          },
+        );
       },
     ),
   );

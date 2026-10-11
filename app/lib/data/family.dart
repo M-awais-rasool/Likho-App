@@ -141,6 +141,8 @@ class FamilyState {
     required this.records,
     this.settings = const AppSettings(),
     this.subscribed = false,
+    this.plusPlan,
+    this.storeAccountId = '',
     this.account,
     this.mode = FamilyMode.demo,
   });
@@ -150,6 +152,13 @@ class FamilyState {
   final Map<String, ChildRecord> records;
   final AppSettings settings;
   final bool subscribed; // Likho Plus (trial or paid)
+
+  /// The Google Play plan behind Likho Plus ("monthly" / "yearly"), or null
+  /// (a trial, a grant, or no Plus).
+  final String? plusPlan;
+
+  /// The account's ID for the store (the server's hash), sent with a purchase.
+  final String storeAccountId;
   final Account? account;
   final FamilyMode mode;
 
@@ -170,6 +179,8 @@ class FamilyState {
         records: records ?? this.records,
         settings: settings ?? this.settings,
         subscribed: subscribed ?? this.subscribed,
+        plusPlan: plusPlan,
+        storeAccountId: storeAccountId,
         account: account,
         mode: mode,
       );
@@ -185,6 +196,8 @@ class FamilyState {
       records: {for (final c in kids) c['id'] as String: childRecordFromJson(c)},
       settings: AppSettings.fromJson((me['settings'] as Map).cast<String, dynamic>()),
       subscribed: (me['subscription'] as Map?)?['active'] == true,
+      plusPlan: (me['subscription'] as Map?)?['active'] == true ? (me['subscription'] as Map)['plan'] as String? : null,
+      storeAccountId: (me['subscription'] as Map?)?['storeAccountId'] as String? ?? '',
       account: Account(
         id: acc['id'] as String,
         email: acc['email'] as String? ?? '',

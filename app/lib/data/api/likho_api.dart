@@ -40,6 +40,12 @@ class LikhoApi {
 
   Future<Map<String, dynamic>> startTrial() async => _map(await client.request('POST', '/v1/me/trial'));
 
+  /// Sends a Google Play purchase (bought or restored) to be checked and
+  /// linked to the account: POST /v1/me/purchases/google -> {"subscription"}.
+  Future<Map<String, dynamic>> verifyGooglePurchase({required String productId, required String purchaseToken}) async => _map(
+    await client.request('POST', '/v1/me/purchases/google', body: {'productId': productId, 'purchaseToken': purchaseToken}),
+  );
+
   Future<void> deleteAccount() async {
     await client.request('DELETE', '/v1/me');
     await client.clearTokens();
