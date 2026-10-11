@@ -97,6 +97,9 @@ services:
       - ${LIKHO_DIR:-/srv/likho}/media:/media:ro # pictures and recordings (deploy.sh copies them)
       - ${LIKHO_DIR:-/srv/likho}/admin:/admin:ro # the admin panel's build
       - ${LIKHO_DIR:-/srv/likho}/geoip:/geoip:ro
+      # the Google Play service account key (server-setup.sh installs it,
+      # readable by the API's user only)
+      - ${LIKHO_DIR:-/srv/likho}/secrets:/run/secrets/likho:ro
     ports: ["127.0.0.1:${LIKHO_PORT:-8080}:8080"]
     read_only: true
     cap_drop: [ALL]

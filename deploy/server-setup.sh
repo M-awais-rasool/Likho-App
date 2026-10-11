@@ -43,6 +43,31 @@ elif [[ -n "${GOOGLE_CLIENT_IDS:-}" ]]; then
   sed -i "s|^GOOGLE_CLIENT_IDS=.*|GOOGLE_CLIENT_IDS=$GOOGLE_CLIENT_IDS|" "$env_file"
 fi
 
+# ------------------------------------------------------------------ Google Play Billing
+# The key in the notifications' push URL, made here once and kept in .env.
+if ! grep -q '^PLAY_NOTIFY_KEY=' "$env_file"; then
+  echo "PLAY_NOTIFY_KEY=$(secret 32 32)" >> "$env_file"
+  echo "▸ new Google Play notifications key in $env_file"
+fi
+notify_key="$(grep '^PLAY_NOTIFY_KEY=' "$env_file" | cut -d= -f2-)"
+echo "  play notifications: https://$API_DOMAIN/v1/play/notifications?key=$notify_key  (secret: the Pub/Sub push endpoint)"
+
+# The service account key deploy.sh sent (deploy/incoming): only the API's
+# user (distroless nonroot, uid 65532) can read it.
+secrets_dir="${LIKHO_DIR:-/srv/likho}/secrets"
+install -d -m 755 -o root -g root "$secrets_dir"
+if [[ -f "$here/incoming/play-service-account.json" ]]; then
+  install -m 400 -o 65532 -g 65532 "$here/incoming/play-service-account.json" "$secrets_dir/play-service-account.json"
+  rm -f "$here/incoming/play-service-account.json"
+fi
+if [[ -f "$secrets_dir/play-service-account.json" ]]; then
+  grep -q '^PLAY_SERVICE_ACCOUNT_FILE=' "$env_file" ||
+    echo "PLAY_SERVICE_ACCOUNT_FILE=/run/secrets/likho/play-service-account.json" >> "$env_file"
+  echo "▸ Google Play Billing: service account key installed"
+else
+  echo "▸ Google Play Billing: no service account key yet (~/.config/likho/play-service-account.json on your computer)"
+fi
+
 # ------------------------------------------------------------------ nginx
 fill() { sed -e "s/__API_DOMAIN__/$API_DOMAIN/g" -e "s/__SITE_DOMAIN__/$SITE_DOMAIN/g" -e "s/__NAMES__/${names[*]}/g" "$1"; }
 
