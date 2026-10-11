@@ -16,6 +16,7 @@ const (
 	KindNotFound                        // no such thing (or not yours)
 	KindConflict                        // not allowed in the current state
 	KindForbidden                       // signed in, but not allowed
+	KindUnavailable                     // a service we need is not there (try later)
 )
 
 // Error is a business error with a stable code for the app ("level_locked")
@@ -41,19 +42,24 @@ func Invalid(message string) error {
 }
 
 var (
-	ErrNotFound        = &Error{KindNotFound, "not_found", "Not found"}
-	ErrCourseNotFound  = &Error{KindNotFound, "course_not_found", "No such course"}
-	ErrUnknownItem     = &Error{KindNotFound, "unknown_item", "No such item in the shop"}
-	ErrTooManyChildren = &Error{KindConflict, "too_many_children", "A family can have up to 4 children"}
-	ErrLastChild       = &Error{KindConflict, "last_child", "The only child profile cannot be deleted"}
-	ErrLevelLocked     = &Error{KindConflict, "level_locked", "Finish the level before this one first"}
-	ErrNotEnoughStars  = &Error{KindConflict, "not_enough_stars", "Not enough stars for this item"}
-	ErrTrialUsed       = &Error{KindConflict, "trial_used", "The free trial was already used"}
-	ErrPlusRequired    = &Error{KindPaymentRequired, "plus_required", "This level needs Likho Plus"}
-	ErrBadGoogleToken  = &Error{KindUnauthorized, "invalid_google_token", "Google sign-in could not be verified"}
-	ErrSessionInvalid  = &Error{KindUnauthorized, "session_invalid", "Sign in with Google again"}
-	ErrSessionReused   = &Error{KindUnauthorized, "session_reused", "Signed out on all devices for safety; sign in again"}
-	ErrAccountDeleted  = &Error{KindUnauthorized, "account_deleted", "This account no longer exists"}
+	ErrNotFound             = &Error{KindNotFound, "not_found", "Not found"}
+	ErrCourseNotFound       = &Error{KindNotFound, "course_not_found", "No such course"}
+	ErrUnknownItem          = &Error{KindNotFound, "unknown_item", "No such item in the shop"}
+	ErrTooManyChildren      = &Error{KindConflict, "too_many_children", "A family can have up to 4 children"}
+	ErrLastChild            = &Error{KindConflict, "last_child", "The only child profile cannot be deleted"}
+	ErrLevelLocked          = &Error{KindConflict, "level_locked", "Finish the level before this one first"}
+	ErrNotEnoughStars       = &Error{KindConflict, "not_enough_stars", "Not enough stars for this item"}
+	ErrTrialUsed            = &Error{KindConflict, "trial_used", "The free trial was already used"}
+	ErrPlusRequired         = &Error{KindPaymentRequired, "plus_required", "This level needs Likho Plus"}
+	ErrPurchaseInvalid      = &Error{KindInvalid, "purchase_invalid", "Google Play does not know this purchase"}
+	ErrPurchasePending      = &Error{KindConflict, "purchase_pending", "The payment is not finished yet"}
+	ErrPurchaseOtherAccount = &Error{KindConflict, "purchase_other_account", "This purchase belongs to another Likho account"}
+	ErrStoreUnavailable     = &Error{KindUnavailable, "store_unavailable", "Purchases are not set up on the server"}
+	ErrStoreUnreachable     = &Error{KindUnavailable, "store_unreachable", "Google Play could not be reached; try again"}
+	ErrBadGoogleToken       = &Error{KindUnauthorized, "invalid_google_token", "Google sign-in could not be verified"}
+	ErrSessionInvalid       = &Error{KindUnauthorized, "session_invalid", "Sign in with Google again"}
+	ErrSessionReused        = &Error{KindUnauthorized, "session_reused", "Signed out on all devices for safety; sign in again"}
+	ErrAccountDeleted       = &Error{KindUnauthorized, "account_deleted", "This account no longer exists"}
 
 	// admin panel
 	ErrAdminLogin     = &Error{KindUnauthorized, "invalid_login", "Wrong email or password"}

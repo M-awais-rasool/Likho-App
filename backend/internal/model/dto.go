@@ -37,6 +37,16 @@ type Subscription struct {
 	Active    bool       `json:"active"`
 	PlusUntil *time.Time `json:"plusUntil"`
 	TrialUsed bool       `json:"trialUsed"`
+
+	// A Google Play subscription behind it ("" = none: a trial or a
+	// grant): its base plan (monthly | yearly) and whether it renews.
+	Store        string `json:"store,omitempty"` // "google_play"
+	Plan         string `json:"plan,omitempty"`
+	AutoRenewing bool   `json:"autoRenewing"`
+
+	// StoreAccountID goes with a Google Play purchase
+	// (obfuscatedAccountId), so the server knows whose it is.
+	StoreAccountID string `json:"storeAccountId"`
 }
 
 // ChildView is a child with everything the app shows for it (map, room,

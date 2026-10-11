@@ -28,6 +28,7 @@ type Repositories struct {
 	Content  *ContentRepository
 
 	ClosedTest *ClosedTestRepository
+	Play       *PlayRepository
 }
 
 func New(db *gorm.DB) Repositories {
@@ -43,6 +44,7 @@ func New(db *gorm.DB) Repositories {
 		Content:  &ContentRepository{db: db},
 
 		ClosedTest: &ClosedTestRepository{db: db},
+		Play:       &PlayRepository{db: db},
 	}
 }
 

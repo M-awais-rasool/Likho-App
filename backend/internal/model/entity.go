@@ -2,7 +2,11 @@
 // dto.go = the JSON the API sends and receives.
 package model
 
-import "time"
+import (
+	"time"
+
+	"likho/backend/internal/domain"
+)
 
 // Database tables. GORM creates and updates them from these structs at
 // start-up (database.Migrate); the tags carry the constraints and indexes.
@@ -47,6 +51,8 @@ type Parent struct {
 	Events     []ActivityEvent `gorm:"constraint:OnDelete:CASCADE"`
 	ActiveDays []ActiveDay     `gorm:"constraint:OnDelete:CASCADE"`
 	Alerts     []AdminAlert    `gorm:"constraint:OnDelete:CASCADE"`
+
+	PlaySubscriptions []PlaySubscription `gorm:"constraint:OnDelete:CASCADE"`
 
 	// Google Play closed test (admin panel)
 	TestAccount *ClosedTestAccount `gorm:"constraint:OnDelete:CASCADE"`
@@ -143,6 +149,7 @@ const (
 	EventCourseCompleted = "course_completed"
 	EventItemBought      = "item_bought"
 	EventTrialStarted    = "trial_started"
+	EventPlusPurchased   = "plus_purchased"
 	EventAccountDeleted  = "account_deleted"
 )
 
@@ -264,6 +271,27 @@ type AdminSetting struct {
 	UpdatedAt time.Time
 }
 
+// PlaySubscription is one Google Play purchase of Likho Plus (one purchase
+// token), as Google last reported it (service.BillingService). The
+// family's Plus (Parent.PlusUntil) is extended to its expiry; a token
+// belongs to one account only.
+type PlaySubscription struct {
+	PurchaseToken string    `gorm:"primaryKey"`
+	ParentID      string    `gorm:"type:uuid;not null;index"`
+	ProductID     string    `gorm:"not null"`
+	BasePlanID    string    `gorm:"not null;default:''"` // monthly | yearly
+	OfferID       string    `gorm:"not null;default:''"` // e.g. the free trial
+	State         string    `gorm:"type:varchar(48);not null"`
+	ExpiresAt     time.Time `gorm:"not null"`
+	AutoRenewing  bool      `gorm:"not null;default:false"`
+	Acknowledged  bool      `gorm:"not null;default:false"`
+	OrderID       string    `gorm:"not null;default:''"`
+	LinkedToken   string    `gorm:"not null;default:''"`    // the purchase this one replaced
+	Test          bool      `gorm:"not null;default:false"` // a license tester's purchase
+	CreatedAt     time.Time
+	UpdatedAt     time.Time
+}
+
 // Google Play closed test: before launch, a new Play account must have
 // testers opted in for 14 days in a row. The panel tracks them by the
 // Likho account each one uses (never by a device id): a tester may sign in
@@ -302,7 +330,7 @@ type ClosedTestDay struct {
 var Tables = []any{
 	&Parent{}, &Child{}, &LevelProgress{}, &ChildItem{}, &PlayDay{}, &Session{},
 	&ActivityEvent{}, &ActiveDay{}, &AdminUser{}, &AdminSession{}, &AdminAlert{}, &AuditEntry{},
-	&ContentLevel{}, &ContentWorld{}, &AdminSetting{},
+	&ContentLevel{}, &ContentWorld{}, &AdminSetting{}, &PlaySubscription{},
 	&ClosedTester{}, &ClosedTestAccount{}, &ClosedTestDay{},
 }
 
@@ -320,5 +348,5 @@ func (p Parent) Settings() Settings {
 }
 
 func (p Parent) Subscription(now time.Time) Subscription {
-	return Subscription{Active: p.PlusActive(now), PlusUntil: p.PlusUntil, TrialUsed: p.TrialUsed}
+	return Subscription{Active: p.PlusActive(now), PlusUntil: p.PlusUntil, TrialUsed: p.TrialUsed, StoreAccountID: domain.StoreAccountID(p.ID)}
 }
