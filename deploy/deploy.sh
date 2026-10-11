@@ -59,9 +59,16 @@ if [[ "$what" != "media" ]]; then
     "${rs[@]}" "$root/backend/geoip/country.mmdb" "$target:$dir/geoip/"
   fi
 
+  play_key="$HOME/.config/likho/play-service-account.json"
+  if [[ -f "$play_key" ]]; then
+    echo "▸ Google Play service account key"
+    on "mkdir -p -m 700 $dir/src/deploy/incoming"
+    "${rs[@]}" --chmod=F600 "$play_key" "$target:$dir/src/deploy/incoming/play-service-account.json"
+  fi
+
   echo "▸ code"
   "${rs[@]}" --exclude bin/ --exclude geoip/ --exclude .env "$root/backend" "$target:$dir/src/"
-  "${rs[@]}" --exclude .env --exclude server.env --exclude terraform/ "$root/deploy" "$target:$dir/src/"
+  "${rs[@]}" --exclude .env --exclude server.env --exclude terraform/ --exclude incoming/ "$root/deploy" "$target:$dir/src/"
 
   echo "▸ secrets, nginx and HTTPS"
   on "sudo API_DOMAIN='$API_DOMAIN' SITE_DOMAIN='${SITE_DOMAIN:-}' LETSENCRYPT_EMAIL='$LETSENCRYPT_EMAIL' GOOGLE_CLIENT_IDS='$GOOGLE_CLIENT_IDS' ADMIN_EMAIL='$ADMIN_EMAIL' bash $dir/src/deploy/server-setup.sh"
