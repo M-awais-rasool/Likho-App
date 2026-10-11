@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../data/auth.dart';
+import '../data/billing.dart';
 import '../data/course_providers.dart';
 import '../data/family.dart';
 import '../design/tokens.dart';
@@ -34,7 +35,16 @@ class _AppShellState extends ConsumerState<AppShell> {
   @override
   void initState() {
     super.initState();
-    _life = AppLifecycleListener(onResume: () => ref.read(familyProvider.notifier).resumed());
+    _life = AppLifecycleListener(
+      onResume: () {
+        ref.read(familyProvider.notifier).resumed();
+        ref.read(billingProvider.notifier).finishUnfinished();
+      },
+    );
+    // a purchase the app could not finish last time (closed, offline)
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) ref.read(billingProvider.notifier).finishUnfinished();
+    });
   }
 
   @override

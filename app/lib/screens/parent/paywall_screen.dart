@@ -1,21 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import '../../data/billing.dart';
 import '../../feedback/app_feedback.dart';
 import '../../design/tokens.dart';
 import '../common/kid_widgets.dart';
 import '../gameplay/widgets/game_buttons.dart';
 import 'parent_widgets.dart';
 
-enum Plan { yearly, monthly }
-
 /// 22 Paywall (Likho Plus), from the prototype: what Plus unlocks, yearly or
-/// monthly, and a 7 day free trial. Store purchase is not wired yet;
-/// [onStartTrial] gets the chosen plan.
+/// monthly, and the free trial. With a store ([store]: Google Play) the
+/// prices and the trial are the store's ([plans]) and [onStartTrial] buys
+/// the chosen plan; without one it starts the server's free trial.
 class PaywallScreen extends StatefulWidget {
-  const PaywallScreen({super.key, required this.onClose, required this.onStartTrial, required this.onRestore});
+  const PaywallScreen({
+    super.key,
+    required this.onClose,
+    required this.onStartTrial,
+    required this.onRestore,
+    this.store = false,
+    this.plans = const {},
+    this.busy = false,
+  });
   final VoidCallback onClose, onRestore;
   final ValueChanged<Plan> onStartTrial;
+  final bool store, busy;
+  final Map<Plan, StorePlan> plans;
 
   @override
   State<PaywallScreen> createState() => _PaywallScreenState();
@@ -29,8 +39,39 @@ class _PaywallScreenState extends State<PaywallScreen> {
     setState(() => _plan = p);
   }
 
+  /// Free days for [plan]: the store's, or the usual 7 before it answers.
+  int _trial(Plan plan) => widget.plans.isEmpty ? 7 : widget.plans[plan]?.trialDays ?? 0;
+
+  String _price(Plan plan) => widget.plans[plan]?.price ?? (plan == Plan.yearly ? 'Rs 4,999' : 'Rs 799');
+
+  /// The yearly price per month, in the store's currency ("Rs 416").
+  String get _yearlyPerMonth {
+    final y = widget.plans[Plan.yearly];
+    if (y == null) return 'Rs 416';
+    final symbol = RegExp(r'^[^\d]*').stringMatch(y.price)?.trim() ?? '';
+    final perMonth = (y.priceMicros / 12 / 1e6).round();
+    return '${symbol.isEmpty ? '' : '$symbol '}${_thousands(perMonth)}';
+  }
+
+  String get _save {
+    final y = widget.plans[Plan.yearly], m = widget.plans[Plan.monthly];
+    if (y == null || m == null || m.priceMicros == 0) return '48%';
+    return '${((1 - y.priceMicros / (12 * m.priceMicros)) * 100).round()}%';
+  }
+
+  static String _thousands(int n) => n.toString().replaceAllMapped(RegExp(r'\B(?=(\d{3})+(?!\d))'), (_) => ',');
+
+  String get _finePrint {
+    if (!widget.store) return 'Your free trial starts now. Nothing is charged.';
+    final trial = _trial(_plan);
+    final every = _plan == Plan.yearly ? 'year' : 'month';
+    final then = trial > 0 ? 'Free for $trial days, then ${_price(_plan)} a $every' : '${_price(_plan)} a $every';
+    return '$then, renewing automatically until you cancel. Cancel anytime in Google Play › Payments & subscriptions.';
+  }
+
   @override
   Widget build(BuildContext context) {
+    final trial = _trial(_plan);
     return ParentPage(
       background: UiColors.parentBg,
       gradient: const LinearGradient(
@@ -63,7 +104,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
             ),
             const SizedBox(height: 8),
             Text(
-              'First 7 days free. Cancel anytime.',
+              trial > 0 ? 'First $trial days free. Cancel anytime.' : 'Cancel anytime.',
               textAlign: TextAlign.center,
               style: LikhoFonts.parent(size: 15, weight: FontWeight.w600, color: UiColors.inkBody),
             ),
@@ -100,9 +141,9 @@ class _PaywallScreenState extends State<PaywallScreen> {
             _PlanCard(
               selected: _plan == Plan.yearly,
               title: 'Yearly',
-              note: 'Rs 416 / month',
-              price: 'Rs 4,999',
-              badge: 'BEST VALUE · SAVE 48%',
+              note: '$_yearlyPerMonth / month',
+              price: _price(Plan.yearly),
+              badge: 'BEST VALUE · SAVE $_save',
               onTap: () => _pick(Plan.yearly),
             ),
             const SizedBox(height: 10),
@@ -110,7 +151,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
               selected: _plan == Plan.monthly,
               title: 'Monthly',
               note: 'Billed monthly',
-              price: 'Rs 799',
+              price: _price(Plan.monthly),
               onTap: () => _pick(Plan.monthly),
             ),
           ],
@@ -118,21 +159,22 @@ class _PaywallScreenState extends State<PaywallScreen> {
         Padding(
           padding: const EdgeInsets.only(top: 4),
           child: PushButton(
-            onTap: withSound(context, ButtonSound.press, () => widget.onStartTrial(_plan)),
+            onTap: widget.busy ? null : withSound(context, ButtonSound.press, () => widget.onStartTrial(_plan)),
             color: LikhoColors.ink,
             height: 64,
             width: double.infinity,
             pressScale: .98,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            child: Text(
-              'Start 7-day free trial',
-              style: LikhoFonts.parent(size: 18, weight: FontWeight.w800, color: LikhoColors.surface),
-            ),
+            child: widget.busy
+                ? const SizedBox.square(dimension: 26, child: CircularProgressIndicator(strokeWidth: 3, color: LikhoColors.surface))
+                : Text(
+                    trial > 0 ? 'Start $trial-day free trial' : 'Subscribe',
+                    style: LikhoFonts.parent(size: 18, weight: FontWeight.w800, color: LikhoColors.surface),
+                  ),
           ),
         ),
         Text(
-          "After the trial, you'll be charged for the plan you choose. To cancel: Settings › Apple ID / Google Play › Subscriptions › Likho. "
-          "We'll remind you 24 hours before the trial ends.",
+          _finePrint,
           textAlign: TextAlign.center,
           style: LikhoFonts.parent(size: 13, weight: FontWeight.w600, color: LikhoColors.inkMuted).copyWith(height: 1.55),
         ),
@@ -141,7 +183,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
             text: 'Restore purchases',
             padding: EdgeInsets.zero,
             style: LikhoFonts.parent(size: 14, weight: FontWeight.w700, color: UiColors.link),
-            onTap: widget.onRestore,
+            onTap: widget.busy ? () {} : widget.onRestore,
           ),
         ),
       ],
