@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math' as math;
@@ -8,6 +9,7 @@ import 'package:http/testing.dart';
 import 'package:likho/data/api/api_client.dart';
 import 'package:likho/data/api/likho_api.dart';
 import 'package:likho/data/auth.dart';
+import 'package:likho/data/billing.dart';
 import 'package:likho/data/course_providers.dart';
 import 'package:likho/data/media.dart';
 
@@ -26,7 +28,12 @@ class FakeBackend {
   final Map<String, Map<String, dynamic>> _results = {}; // idempotency key -> answer
 
   Map<String, dynamic> settings = {'sessionMinutes': 10, 'music': true, 'sfx': true, 'haptics': true, 'leftHanded': false, 'reduceMotion': false};
-  Map<String, dynamic> subscription = {'active': false, 'plusUntil': null, 'trialUsed': false};
+  Map<String, dynamic> subscription = {'active': false, 'plusUntil': null, 'trialUsed': false, 'storeAccountId': 'store-acc1'};
+
+  /// Google Play purchase tokens sent to POST /v1/me/purchases/google, and
+  /// what the fake server answers ('tok-other': another account's,
+  /// 'tok-pending': payment not finished, anything else: Plus on).
+  final List<String> purchases = [];
   final List<Map<String, dynamic>> children = [];
   int _ids = 0, _tokens = 0;
   String? _refresh;
@@ -97,6 +104,20 @@ class FakeBackend {
       case ('PATCH', ['me', 'settings']):
         settings = {...settings, ...body};
         return json(settings);
+      case ('POST', ['me', 'purchases', 'google']):
+        final token = body['purchaseToken'] as String;
+        purchases.add(token);
+        if (token == 'tok-other') return error(409, 'purchase_other_account');
+        if (token == 'tok-pending') return error(409, 'purchase_pending');
+        subscription = {
+          ...subscription,
+          'active': true,
+          'plusUntil': '2099-01-01T00:00:00Z',
+          'store': 'google_play',
+          'plan': token.contains('yearly') ? 'yearly' : 'monthly',
+          'autoRenewing': true,
+        };
+        return json({'subscription': subscription});
       case ('POST', ['me', 'trial']):
         if (subscription['trialUsed'] == true) return error(409, 'trial_used');
         subscription = {'active': true, 'plusUntil': '2026-10-06T00:00:00Z', 'trialUsed': true};
@@ -181,7 +202,7 @@ class FakeGoogle implements GoogleIdentity {
 /// Provider overrides that point the app at [backend], keep files in a
 /// memory and use [google] for sign-in. The course comes from the
 /// repo copy unless [realCourse] (then it goes through the API).
-List<Override> fakeBackendOverrides(FakeBackend backend, {FakeGoogle? google, bool realCourse = false, LocalFiles? files, TokenStore? tokens}) {
+List<Override> fakeBackendOverrides(FakeBackend backend, {FakeGoogle? google, bool realCourse = false, LocalFiles? files, TokenStore? tokens, Store? store}) {
   files ??= MemoryFiles();
   tokens ??= MemoryTokenStore();
   return [
@@ -191,5 +212,49 @@ List<Override> fakeBackendOverrides(FakeBackend backend, {FakeGoogle? google, bo
     // media manifest from the fake server too, never the real network
     mediaProvider.overrideWithValue(MediaStore(baseUrl: 'http://fake', files: files, client: backend.client, cacheDir: () async => null)),
     if (!realCourse) courseProvider.overrideWith((ref) async => testCourse),
+    // no real Google Play in tests (FakeStore when a test buys)
+    storeProvider.overrideWithValue(store),
   ];
+}
+
+/// Google Play in memory: [plans] for sale; [buy] answers with a purchase
+/// on [purchases] (token `tok-<plan>` unless [nextToken] says otherwise).
+class FakeStore implements Store {
+  Map<Plan, StorePlan> forSale = const {
+    Plan.yearly: StorePlan(plan: Plan.yearly, price: 'Rs 5,000', priceMicros: 5000000000, trialDays: 7),
+    Plan.monthly: StorePlan(plan: Plan.monthly, price: 'Rs 800', priceMicros: 800000000, trialDays: 7),
+  };
+  String? nextToken;
+  StoreStatus nextStatus = StoreStatus.bought;
+  List<StorePurchase> owned = [];
+  List<StorePurchase> left = [];
+  final List<String> accountIds = [], completed = [];
+  final _stream = StreamController<List<StorePurchase>>.broadcast();
+
+  @override
+  Future<bool> available() async => true;
+  @override
+  Future<Map<Plan, StorePlan>> plans() async => forSale;
+  @override
+  Future<bool> buy(Plan plan, {required String accountId}) async {
+    accountIds.add(accountId);
+    final p = StorePurchase(productId: plusProductId, token: nextToken ?? 'tok-${plan.name}', status: nextStatus);
+    if (nextStatus == StoreStatus.bought) owned = [...owned, p];
+    scheduleMicrotask(() => _stream.add([p]));
+    return true;
+  }
+
+  @override
+  Future<void> restore({required String accountId}) async {
+    accountIds.add(accountId);
+    final restored = [for (final p in owned) StorePurchase(productId: p.productId, token: p.token, status: StoreStatus.restored)];
+    if (restored.isNotEmpty) scheduleMicrotask(() => _stream.add(restored));
+  }
+
+  @override
+  Future<List<StorePurchase>> unfinished() async => left;
+  @override
+  Stream<List<StorePurchase>> get purchases => _stream.stream;
+  @override
+  Future<void> complete(StorePurchase purchase) async => completed.add(purchase.token);
 }
