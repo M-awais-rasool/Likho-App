@@ -25,7 +25,9 @@ const (
 	authPerMinute = 30
 	apiPerMinute  = 600
 	playPerMinute = 120
-	maxBodyBytes  = 64 << 10
+
+	playNotifyPerMinute = 600
+	maxBodyBytes        = 64 << 10
 
 	adminLoginPerMinute = 10
 )
@@ -69,6 +71,11 @@ func NewRouter(h *handler.Handlers, admin *handler.AdminHandler, tokens service.
 		r.HEAD("/media/*path", h.Media.File)
 	}
 
+	// Google Play's real-time developer notifications (Pub/Sub push; the
+	// push URL's key checks the sender, and every token is looked up at
+	// Google anyway)
+	v1.POST("/play/notifications", middleware.RateLimit(c, "play-notify", playNotifyPerMinute, time.Minute), h.Billing.Notify)
+
 	auth := v1.Group("/auth", middleware.RateLimit(c, "auth", authPerMinute, time.Minute))
 	auth.POST("/google", h.Auth.GoogleSignIn) // the only way in: sign in = sign up
 	auth.POST("/refresh", h.Auth.Refresh)
@@ -83,6 +90,7 @@ func NewRouter(h *handler.Handlers, admin *handler.AdminHandler, tokens service.
 	in.GET("/me", h.Account.Me)
 	in.PATCH("/me/settings", h.Account.UpdateSettings)
 	in.POST("/me/trial", h.Account.StartTrial)
+	in.POST("/me/purchases/google", h.Billing.VerifyGoogle)
 	in.DELETE("/me", h.Account.Delete)
 
 	in.POST("/children", h.Children.Create)

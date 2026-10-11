@@ -17,12 +17,13 @@ import (
 type AccountService struct {
 	accounts *repository.AccountRepository
 	children *repository.ChildRepository
+	play     *repository.PlayRepository
 	cache    *cache.Cache
 	activity *ActivityService
 }
 
-func NewAccountService(accounts *repository.AccountRepository, children *repository.ChildRepository, c *cache.Cache, activity *ActivityService) *AccountService {
-	return &AccountService{accounts: accounts, children: children, cache: c, activity: activity}
+func NewAccountService(accounts *repository.AccountRepository, children *repository.ChildRepository, playRepo *repository.PlayRepository, c *cache.Cache, activity *ActivityService) *AccountService {
+	return &AccountService{accounts: accounts, children: children, play: playRepo, cache: c, activity: activity}
 }
 
 // Me loads the whole account: parent, settings, subscription and every
@@ -39,7 +40,11 @@ func (s *AccountService) Me(ctx context.Context, parentID string) (model.Me, err
 	if err != nil {
 		return model.Me{}, err
 	}
-	return model.Me{Account: p.Account(), Settings: p.Settings(), Subscription: p.Subscription(time.Now()), Children: kids}, nil
+	sub, err := subscriptionOf(ctx, s.play, p, time.Now())
+	if err != nil {
+		return model.Me{}, err
+	}
+	return model.Me{Account: p.Account(), Settings: p.Settings(), Subscription: sub, Children: kids}, nil
 }
 
 // MeJSON is Me as JSON, from the cache when possible (hit = it was).

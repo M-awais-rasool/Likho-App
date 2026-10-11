@@ -20,6 +20,7 @@ type AdminService struct {
 	accounts *repository.AccountRepository
 	children *repository.ChildRepository
 	sessions *repository.SessionRepository
+	play     *repository.PlayRepository
 	catalog  *catalog.Store
 	cache    *cache.Cache
 	activity *ActivityService
@@ -28,7 +29,7 @@ type AdminService struct {
 
 func NewAdminService(r repository.Repositories, cat *catalog.Store, c *cache.Cache, activity *ActivityService, account *AccountService) *AdminService {
 	return &AdminService{
-		insights: r.Insights, admin: r.Admin, accounts: r.Accounts, children: r.Children, sessions: r.Sessions,
+		insights: r.Insights, admin: r.Admin, accounts: r.Accounts, children: r.Children, sessions: r.Sessions, play: r.Play,
 		catalog: cat, cache: c, activity: activity, account: account,
 	}
 }
@@ -150,6 +151,20 @@ type FamilyDetail struct {
 	Devices      []repository.DeviceSession `json:"devices"`
 	Activity     []repository.EventRow      `json:"activity"`
 	LastLevel    int                        `json:"lastLevel"`
+	Purchases    []PurchaseView             `json:"purchases"`
+}
+
+// PurchaseView is a Google Play purchase of Likho Plus in the panel.
+type PurchaseView struct {
+	Token        string    `json:"token"` // the end of the purchase token, to tell them apart
+	Plan         string    `json:"plan"`
+	Offer        string    `json:"offer"`
+	State        string    `json:"state"`
+	ExpiresAt    time.Time `json:"expiresAt"`
+	AutoRenewing bool      `json:"autoRenewing"`
+	OrderID      string    `json:"orderId"`
+	Test         bool      `json:"test"`
+	CreatedAt    time.Time `json:"createdAt"`
 }
 
 func (s *AdminService) Family(ctx context.Context, courseID, parentID string) (FamilyDetail, error) {
@@ -177,9 +192,26 @@ func (s *AdminService) Family(ctx context.Context, courseID, parentID string) (F
 	if err != nil {
 		return FamilyDetail{}, err
 	}
+	sub, err := subscriptionOf(ctx, s.play, p, time.Now())
+	if err != nil {
+		return FamilyDetail{}, err
+	}
+	rows, err := s.play.ForParent(ctx, parentID)
+	if err != nil {
+		return FamilyDetail{}, err
+	}
+	purchases := make([]PurchaseView, 0, len(rows))
+	for _, r := range rows {
+		tok := r.PurchaseToken
+		if len(tok) > 10 {
+			tok = "…" + tok[len(tok)-10:]
+		}
+		purchases = append(purchases, PurchaseView{Token: tok, Plan: r.BasePlanID, Offer: r.OfferID, State: r.State, ExpiresAt: r.ExpiresAt,
+			AutoRenewing: r.AutoRenewing, OrderID: r.OrderID, Test: r.Test, CreatedAt: r.CreatedAt})
+	}
 	return FamilyDetail{
-		Family: f, Subscription: p.Subscription(time.Now()), Settings: p.Settings(), Children: nonNil(kids),
-		Devices: nonNil(devices), Activity: nonNil(events), LastLevel: c.LastLevel(),
+		Family: f, Subscription: sub, Settings: p.Settings(), Children: nonNil(kids),
+		Devices: nonNil(devices), Activity: nonNil(events), LastLevel: c.LastLevel(), Purchases: purchases,
 	}, nil
 }
 

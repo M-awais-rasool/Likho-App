@@ -41,6 +41,16 @@ type Config struct {
 	// so they come back by themselves after the database is reset.
 	ReviewAccounts []string
 
+	// Google Play Billing (Likho Plus). PlayServiceAccountFile is the JSON
+	// key of a service account with access to the app in Play Console
+	// ("" = purchases are not set up; with DEV_LOGIN, "dev:monthly" style
+	// tokens stand in). PlayNotifyKey is the secret in the real-time
+	// developer notifications' push URL (?key=).
+	PlayPackage            string
+	PlayProduct            string
+	PlayServiceAccountFile string
+	PlayNotifyKey          string
+
 	// Admin panel. AdminDir serves its build (admin/dist) at /admin/; the
 	// bootstrap owner is created at start-up when there are no admins yet.
 	AdminDir               string
@@ -83,6 +93,11 @@ func Load() (Config, error) {
 		MediaDir:        get("MEDIA_DIR", "../media"),
 		DevLogin:        boolean("DEV_LOGIN", false),
 		ReviewAccounts:  list(get("REVIEW_ACCOUNTS", DefaultReviewAccounts)),
+
+		PlayPackage:            get("PLAY_PACKAGE_NAME", "com.likho.abcwriting"),
+		PlayProduct:            get("PLAY_PRODUCT_ID", "likho_plus"),
+		PlayServiceAccountFile: strings.TrimSpace(os.Getenv("PLAY_SERVICE_ACCOUNT_FILE")),
+		PlayNotifyKey:          strings.TrimSpace(os.Getenv("PLAY_NOTIFY_KEY")),
 
 		AdminDir:               os.Getenv("ADMIN_DIR"),
 		AdminBootstrapEmail:    strings.ToLower(strings.TrimSpace(os.Getenv("ADMIN_BOOTSTRAP_EMAIL"))),

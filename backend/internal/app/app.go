@@ -6,6 +6,7 @@ package app
 import (
 	"context"
 	"errors"
+	"fmt"
 	"io/fs"
 	"log/slog"
 	"net/http"
@@ -25,6 +26,7 @@ import (
 	"likho/backend/internal/database"
 	"likho/backend/internal/geo"
 	"likho/backend/internal/media"
+	"likho/backend/internal/play"
 	"likho/backend/internal/repository"
 	"likho/backend/internal/service"
 )
@@ -48,8 +50,14 @@ type Deps struct {
 	TrustedProxies []string
 	AdminDir       string
 	ReviewAccounts []string // Google accounts with Plus and every level (app review)
-	System         handler.SystemInfo
-	Production     bool
+
+	// Google Play Billing: Play nil = purchases are not set up.
+	Play          play.API
+	PlayPackage   string
+	PlayProduct   string
+	PlayNotifyKey string
+	System        handler.SystemInfo
+	Production    bool
 }
 
 // Built is the API with the services that run in the background.
@@ -72,7 +80,14 @@ func BuildApp(d Deps) *Built {
 
 	closedTest := service.NewClosedTestService(repos.ClosedTest, repos.Accounts, repos.Admin, c)
 	activity := service.NewActivityService(repos.Activity, repos.Admin, c, d.Geo, closedTest)
-	account := service.NewAccountService(repos.Accounts, repos.Children, c, activity)
+	account := service.NewAccountService(repos.Accounts, repos.Children, repos.Play, c, activity)
+	if d.PlayPackage == "" {
+		d.PlayPackage = "com.likho.abcwriting"
+	}
+	if d.PlayProduct == "" {
+		d.PlayProduct = "likho_plus"
+	}
+	billing := service.NewBillingService(d.Play, repos.Play, repos.Accounts, c, activity, d.PlayPackage, d.PlayProduct, d.PlayNotifyKey)
 	services := handler.Services{
 		Auth:     service.NewAuthService(repos.Accounts, repos.Sessions, d.Google, d.Tokens, account, activity, d.ReviewAccounts),
 		Account:  account,
@@ -80,6 +95,7 @@ func BuildApp(d Deps) *Built {
 		Progress: service.NewProgressService(repos.Progress, store, c, activity),
 		Room:     service.NewRoomService(repos.Room, c, activity),
 		Courses:  service.NewCourseService(store),
+		Billing:  billing,
 	}
 	content := service.NewContentService(d.ContentFS, d.ContentOptions, store, repos.Content, repos.Admin, repos.Insights)
 	if rows, err := repos.Content.Levels(context.Background(), ""); err == nil && len(rows) > 0 {
@@ -131,6 +147,30 @@ func OpenMedia(cfg config.Config, cat *catalog.Catalog) (*media.Library, error) 
 	return lib, nil
 }
 
+// openPlay connects to the Google Play Developer API with the service
+// account key; without one, development (DEV_LOGIN) uses play.Dev and
+// production has no purchases (the API answers store_unavailable).
+func openPlay(ctx context.Context, cfg config.Config) (play.API, error) {
+	if cfg.PlayServiceAccountFile != "" {
+		key, err := os.ReadFile(cfg.PlayServiceAccountFile)
+		if err != nil {
+			return nil, fmt.Errorf("PLAY_SERVICE_ACCOUNT_FILE: %w", err)
+		}
+		c, err := play.NewClient(ctx, cfg.PlayPackage, key)
+		if err != nil {
+			return nil, err
+		}
+		slog.Info("google play billing on", "package", cfg.PlayPackage, "product", cfg.PlayProduct)
+		return c, nil
+	}
+	if cfg.DevLogin {
+		slog.Warn("google play billing: dev stand-in (\"dev:monthly\" / \"dev:yearly\" purchase tokens)")
+		return &play.Dev{Product: cfg.PlayProduct}, nil
+	}
+	slog.Warn("google play billing off: no PLAY_SERVICE_ACCOUNT_FILE")
+	return nil, nil
+}
+
 func contentFS(cfg config.Config) fs.FS {
 	if cfg.ContentDir != "" {
 		return os.DirFS(cfg.ContentDir)
@@ -173,6 +213,11 @@ func Run(ctx context.Context, cfg config.Config) error {
 	}
 	tokens := service.Tokens{Secret: cfg.JWTSecret, AccessTTL: cfg.AccessTTL, RefreshTTL: cfg.RefreshTTL}
 
+	playAPI, err := openPlay(ctx, cfg)
+	if err != nil {
+		return err
+	}
+
 	resolver := geo.Open(cfg.GeoIPDB)
 	defer resolver.Close()
 	built := BuildApp(Deps{
@@ -180,7 +225,8 @@ func Run(ctx context.Context, cfg config.Config) error {
 		ContentFS: contentFS(cfg), ContentOptions: catalog.Options{IncludeDrafts: cfg.ContentDrafts},
 		Geo: resolver, CountryHeader: cfg.CountryHeader, TrustedProxies: cfg.TrustedProxies, AdminDir: cfg.AdminDir, Production: cfg.Production(),
 		ReviewAccounts: cfg.ReviewAccounts,
-		System:         handler.SystemInfo{Env: cfg.Env, StartedAt: time.Now(), GeoIP: resolver.Enabled(), CountryHeader: cfg.CountryHeader, DevLogin: cfg.DevLogin},
+		Play:           playAPI, PlayPackage: cfg.PlayPackage, PlayProduct: cfg.PlayProduct, PlayNotifyKey: cfg.PlayNotifyKey,
+		System: handler.SystemInfo{Env: cfg.Env, StartedAt: time.Now(), GeoIP: resolver.Enabled(), CountryHeader: cfg.CountryHeader, DevLogin: cfg.DevLogin},
 	})
 	if err := built.Admins.Bootstrap(ctx, cfg.AdminBootstrapEmail, cfg.AdminBootstrapPassword); err != nil {
 		return err
