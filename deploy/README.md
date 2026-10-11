@@ -60,6 +60,16 @@ and recordings only).
 
 Running `deploy.sh` accepts the Let's Encrypt subscriber agreement for the certificate.
 
+## Google Play Billing (Likho Plus)
+
+1. Put the Google Play service account's JSON key at `~/.config/likho/play-service-account.json`
+   (`chmod 600`). `deploy.sh` sends it; `server-setup.sh` installs it in `/srv/likho/secrets/`,
+   readable only by the API's user, and sets `PLAY_SERVICE_ACCOUNT_FILE`.
+2. The first deploy makes `PLAY_NOTIFY_KEY` and prints the push URL
+   (`https://api.<domain>/v1/play/notifications?key=…`): it is the Pub/Sub push subscription's
+   endpoint. Show it again with `sudo grep PLAY_NOTIFY_KEY /srv/likho/src/deploy/.env` on the server.
+   nginx keeps that URL out of its access log.
+
 ## Every day
 
 | Task | Command |
