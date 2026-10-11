@@ -94,6 +94,7 @@ export const eventMeta: Record<string, { label: string; tone: 'brand' | 'good' |
   course_completed: { label: 'Finished the course', tone: 'warn' },
   item_bought: { label: 'Bought a room item', tone: 'info' },
   trial_started: { label: 'Started Plus trial', tone: 'brand' },
+  plus_purchased: { label: 'Bought Likho Plus', tone: 'good' },
   account_deleted: { label: 'Deleted the account', tone: 'bad' },
 }
 
