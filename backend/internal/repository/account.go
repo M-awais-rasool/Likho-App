@@ -122,3 +122,12 @@ func (r *AccountRepository) SetPlusUntil(ctx context.Context, parentID string, u
 	}
 	return res.Error
 }
+
+// GiveFullAccess gives Likho Plus until [until] (when it ends sooner) and
+// opens every level (review accounts). True when anything changed.
+func (r *AccountRepository) GiveFullAccess(ctx context.Context, parentID string, until time.Time) (bool, error) {
+	res := r.db.WithContext(ctx).Model(&model.Parent{}).
+		Where("id = ? AND (NOT tester OR plus_until IS NULL OR plus_until < ?)", parentID, until).
+		Updates(map[string]any{"tester": true, "plus_until": gorm.Expr("GREATEST(COALESCE(plus_until, ?), ?)", until, until)})
+	return res.RowsAffected > 0, res.Error
+}

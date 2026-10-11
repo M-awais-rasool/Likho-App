@@ -47,6 +47,7 @@ type Deps struct {
 	CountryHeader  string
 	TrustedProxies []string
 	AdminDir       string
+	ReviewAccounts []string // Google accounts with Plus and every level (app review)
 	System         handler.SystemInfo
 	Production     bool
 }
@@ -73,7 +74,7 @@ func BuildApp(d Deps) *Built {
 	activity := service.NewActivityService(repos.Activity, repos.Admin, c, d.Geo, closedTest)
 	account := service.NewAccountService(repos.Accounts, repos.Children, c, activity)
 	services := handler.Services{
-		Auth:     service.NewAuthService(repos.Accounts, repos.Sessions, d.Google, d.Tokens, account, activity),
+		Auth:     service.NewAuthService(repos.Accounts, repos.Sessions, d.Google, d.Tokens, account, activity, d.ReviewAccounts),
 		Account:  account,
 		Children: service.NewChildService(repos.Children, c, activity),
 		Progress: service.NewProgressService(repos.Progress, store, c, activity),
@@ -178,7 +179,8 @@ func Run(ctx context.Context, cfg config.Config) error {
 		DB: db, Redis: rdb, Catalog: cat, Media: lib, Google: google, Tokens: tokens,
 		ContentFS: contentFS(cfg), ContentOptions: catalog.Options{IncludeDrafts: cfg.ContentDrafts},
 		Geo: resolver, CountryHeader: cfg.CountryHeader, TrustedProxies: cfg.TrustedProxies, AdminDir: cfg.AdminDir, Production: cfg.Production(),
-		System: handler.SystemInfo{Env: cfg.Env, StartedAt: time.Now(), GeoIP: resolver.Enabled(), CountryHeader: cfg.CountryHeader, DevLogin: cfg.DevLogin},
+		ReviewAccounts: cfg.ReviewAccounts,
+		System:         handler.SystemInfo{Env: cfg.Env, StartedAt: time.Now(), GeoIP: resolver.Enabled(), CountryHeader: cfg.CountryHeader, DevLogin: cfg.DevLogin},
 	})
 	if err := built.Admins.Bootstrap(ctx, cfg.AdminBootstrapEmail, cfg.AdminBootstrapPassword); err != nil {
 		return err

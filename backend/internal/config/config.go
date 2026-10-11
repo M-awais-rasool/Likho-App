@@ -36,6 +36,11 @@ type Config struct {
 	// Development only: accept "dev:<email>" instead of a Google ID token.
 	DevLogin bool
 
+	// Google accounts that get Likho Plus and every level open whenever
+	// they sign in, e.g. the account Google Play's reviewers use. In code,
+	// so they come back by themselves after the database is reset.
+	ReviewAccounts []string
+
 	// Admin panel. AdminDir serves its build (admin/dist) at /admin/; the
 	// bootstrap owner is created at start-up when there are no admins yet.
 	AdminDir               string
@@ -59,6 +64,10 @@ type Config struct {
 
 func (c Config) Production() bool { return c.Env == "production" }
 
+// DefaultReviewAccounts: the Google account in Play Console's sign-in
+// details for app review (REVIEW_ACCOUNTS replaces the list).
+const DefaultReviewAccounts = "likho.review@gmail.com"
+
 func Load() (Config, error) {
 	c := Config{
 		Env:             get("APP_ENV", "development"),
@@ -73,6 +82,7 @@ func Load() (Config, error) {
 		ContentDir:      os.Getenv("CONTENT_DIR"),
 		MediaDir:        get("MEDIA_DIR", "../media"),
 		DevLogin:        boolean("DEV_LOGIN", false),
+		ReviewAccounts:  list(get("REVIEW_ACCOUNTS", DefaultReviewAccounts)),
 
 		AdminDir:               os.Getenv("ADMIN_DIR"),
 		AdminBootstrapEmail:    strings.ToLower(strings.TrimSpace(os.Getenv("ADMIN_BOOTSTRAP_EMAIL"))),

@@ -48,6 +48,11 @@ type testApp struct {
 // newTestApp builds the API on a fresh database; [cat] replaces the real
 // content.
 func newTestApp(t *testing.T, cat ...*catalog.Catalog) *testApp {
+	return newTestAppWith(t, nil, cat...)
+}
+
+// newTestAppWith is newTestApp with [edit] changing the app's deps first.
+func newTestAppWith(t *testing.T, edit func(*app.Deps), cat ...*catalog.Catalog) *testApp {
 	url := os.Getenv("TEST_DATABASE_URL")
 	if url == "" {
 		t.Skip("TEST_DATABASE_URL not set")
@@ -82,7 +87,11 @@ func newTestApp(t *testing.T, cat ...*catalog.Catalog) *testApp {
 		cat = append(cat, real)
 	}
 	tokens := service.Tokens{Secret: []byte("test-secret-test-secret-test-secret"), AccessTTL: 15 * time.Minute, RefreshTTL: time.Hour}
-	built := app.BuildApp(app.Deps{DB: db, Redis: rdb, Catalog: cat[0], Google: service.DevGoogle{}, Tokens: tokens, System: handler.SystemInfo{StartedAt: time.Now()}})
+	deps := app.Deps{DB: db, Redis: rdb, Catalog: cat[0], Google: service.DevGoogle{}, Tokens: tokens, System: handler.SystemInfo{StartedAt: time.Now()}}
+	if edit != nil {
+		edit(&deps)
+	}
+	built := app.BuildApp(deps)
 	return &testApp{t: t, r: built.Handler, redis: mr, built: built, db: db}
 }
 
@@ -183,6 +192,50 @@ func TestTesterAccountOpensEveryLevel(t *testing.T) {
 	me := a.do("GET", "/v1/me", tok, nil).json()
 	if me["account"].(map[string]any)["tester"] != true {
 		t.Fatalf("/me shows the test account: %v", me["account"])
+	}
+}
+
+// A review account (Play's reviewers, REVIEW_ACCOUNTS) gets Likho Plus and
+// every level at every sign-in, so it comes back after a database reset;
+// other accounts get nothing.
+func TestReviewAccountGetsPlusAndEveryLevel(t *testing.T) {
+	a := newTestAppWith(t, func(d *app.Deps) { d.ReviewAccounts = []string{"likho.review@gmail.com"} })
+	signIn := func(email string) (string, map[string]any) {
+		r := a.do("POST", "/v1/auth/google", "", map[string]any{"idToken": "dev:" + email})
+		if r.status != http.StatusCreated && r.status != http.StatusOK {
+			t.Fatalf("sign in %s: %d", email, r.status)
+		}
+		return r.json()["accessToken"].(string), r.json()["me"].(map[string]any)
+	}
+	access := func(me map[string]any) (plus, open bool) {
+		return me["subscription"].(map[string]any)["active"] == true, me["account"].(map[string]any)["tester"] == true
+	}
+	tok, me := signIn("Likho.Review@gmail.com")
+	if plus, open := access(me); !plus || !open {
+		t.Fatalf("review account: %v", me)
+	}
+	kid := a.do("POST", "/v1/children", tok, map[string]any{"name": "Rev", "age": 6, "color": "#B79CED"})
+	want(t, kid, http.StatusCreated)
+	// any level, Plus ones too
+	want(t, a.do("POST", "/v1/children/"+kid.json()["id"].(string)+"/courses/"+course+"/results", tok, map[string]any{"level": 150, "stars": 3}), 200)
+
+	// taken away (or the database reset): the next sign-in gives it back
+	if err := a.db.Exec("UPDATE parents SET plus_until = NULL, tester = false").Error; err != nil {
+		t.Fatal(err)
+	}
+	if _, me := signIn("likho.review@gmail.com"); !func() bool { p, o := access(me); return p && o }() {
+		t.Fatalf("not given back: %v", me)
+	}
+	if err := a.db.Exec("DELETE FROM parents").Error; err != nil {
+		t.Fatal(err)
+	}
+	if _, me := signIn("likho.review@gmail.com"); !func() bool { p, o := access(me); return p && o }() {
+		t.Fatalf("after a reset: %v", me)
+	}
+
+	// anyone else: nothing
+	if _, me := signIn("parent@gmail.com"); func() bool { p, o := access(me); return p || o }() {
+		t.Fatalf("a normal account got access: %v", me)
 	}
 }
 
