@@ -258,6 +258,20 @@ With `DEV_LOGIN=true` (development only; refused in production) the token `dev:<
 without Google. The app's "Test User" button uses it too (`dev:test.user@likho.app`): one shared
 test account that is found or created like a Google account.
 
+**Likho Plus in Google Play** (`internal/play`, `service.BillingService`). The app buys the
+`likho_plus` subscription (base plans `monthly` and `yearly`, the free trial is an offer on them) with
+the account's `storeAccountId` as the obfuscated account ID, then sends the purchase token to
+`POST /v1/me/purchases/google`. The server looks the token up at Google
+(purchases.subscriptionsv2), links it to one account (`play_subscriptions`), runs the account's
+`plus_until` to the expiry and acknowledges it; only then does the app finish the purchase. Google's
+real-time developer notifications (Pub/Sub push to `/v1/play/notifications?key=`) renew, cancel
+and refund: a purchase that ends early ends the Plus it gave, never a longer trial or grant.
+Settings: `PLAY_SERVICE_ACCOUNT_FILE` (a service account's JSON key with access to the app in Play
+Console; without it purchases answer 503 `store_unavailable`, and with `DEV_LOGIN` the tokens
+`dev:monthly` / `dev:yearly` stand in), `PLAY_NOTIFY_KEY`, `PLAY_PACKAGE_NAME`
+(`com.likho.abcwriting`), `PLAY_PRODUCT_ID` (`likho_plus`). The app falls back to the server's
+free trial where there is no store (iOS for now).
+
 `REVIEW_ACCOUNTS` (default `likho.review@gmail.com`, the account in Play Console's sign-in
 details for app review) lists Google accounts that get Likho Plus and every level open at every
 sign-in. The default is in code (`config.DefaultReviewAccounts`), so the account gets its access back
@@ -280,6 +294,8 @@ The full contract is [`backend/docs/openapi.yaml`](backend/docs/openapi.yaml). E
 | GET | `/v1/me` | account, settings, subscription, children with progress per course (Redis-cached) |
 | PATCH | `/v1/me/settings` | only the fields to change |
 | POST | `/v1/me/trial` | 7 days of Likho Plus, once |
+| POST | `/v1/me/purchases/google` | `{"productId", "purchaseToken"}` → a Google Play purchase checked at Google and linked to this account (one account only); Plus to its expiry |
+| POST | `/v1/play/notifications?key=` | Google Play real-time developer notifications (Pub/Sub push): renewals, cancellations, refunds |
 | DELETE | `/v1/me` | delete the account and everything in it |
 | POST | `/v1/children` | `{"name","age","color"}`, up to 4 |
 | PATCH / DELETE | `/v1/children/{childId}` | change / delete (not the only child) |

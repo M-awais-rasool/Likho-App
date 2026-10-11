@@ -189,6 +189,48 @@ paths:
         "200": { description: Subscription, content: { application/json: { schema: { $ref: "#/components/schemas/Subscription" } } } }
         "409": { $ref: "#/components/responses/Error" }
 
+  /v1/me/purchases/google:
+    post:
+      tags: [account]
+      summary: Check a Google Play purchase of Likho Plus and give its Plus
+      description: |
+        The app sends every purchase and restore. The token is looked up at Google Play; it belongs to
+        one account only (409 purchase_other_account); Plus runs at least to its expiry. 400
+        purchase_invalid = Google does not know it; 409 purchase_pending = payment not finished;
+        503 store_unavailable / store_unreachable = try again later.
+      security: [{ bearer: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [purchaseToken]
+              properties:
+                productId: { type: string, example: likho_plus }
+                purchaseToken: { type: string }
+      responses:
+        "200":
+          description: The account's subscription
+          content: { application/json: { schema: { type: object, properties: { subscription: { $ref: "#/components/schemas/Subscription" } } } } }
+        "400": { $ref: "#/components/responses/Error" }
+        "409": { $ref: "#/components/responses/Error" }
+        "503": { $ref: "#/components/responses/Error" }
+
+  /v1/play/notifications:
+    post:
+      tags: [billing]
+      summary: Google Play real-time developer notifications (Pub/Sub push)
+      description: |
+        Pub/Sub pushes here with ?key= (PLAY_NOTIFY_KEY). Renewals, cancellations, refunds: the token is
+        looked up at Google and the account's Plus follows it. 204 = handled; errors are pushed again.
+      parameters:
+        - { name: key, in: query, required: true, schema: { type: string } }
+      responses:
+        "204": { description: Handled }
+        "403": { $ref: "#/components/responses/Error" }
+        "503": { $ref: "#/components/responses/Error" }
+
   /v1/children:
     post:
       tags: [children]
@@ -376,6 +418,10 @@ components:
         active: { type: boolean }
         plusUntil: { type: [string, "null"], format: date-time }
         trialUsed: { type: boolean }
+        store: { type: string, description: '"google_play" when a Play subscription gives the Plus' }
+        plan: { type: string, description: "monthly | yearly (the Play base plan)" }
+        autoRenewing: { type: boolean }
+        storeAccountId: { type: string, description: "send as the purchase's obfuscatedAccountId" }
 
     ChildInput:
       type: object
