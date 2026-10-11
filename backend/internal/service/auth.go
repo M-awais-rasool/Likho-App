@@ -22,10 +22,18 @@ type AuthService struct {
 	tokens   Tokens
 	me       *AccountService
 	activity *ActivityService
+
+	review map[string]bool // normalized emails of review accounts (config.ReviewAccounts)
 }
 
-func NewAuthService(accounts *repository.AccountRepository, sessions *repository.SessionRepository, google GoogleVerifier, tokens Tokens, me *AccountService, activity *ActivityService) *AuthService {
-	return &AuthService{accounts: accounts, sessions: sessions, google: google, tokens: tokens, me: me, activity: activity}
+func NewAuthService(accounts *repository.AccountRepository, sessions *repository.SessionRepository, google GoogleVerifier, tokens Tokens, me *AccountService, activity *ActivityService, reviewAccounts []string) *AuthService {
+	review := map[string]bool{}
+	for _, e := range reviewAccounts {
+		if n := normalizeEmail(e); n != "" {
+			review[n] = true
+		}
+	}
+	return &AuthService{accounts: accounts, sessions: sessions, google: google, tokens: tokens, me: me, activity: activity, review: review}
 }
 
 // SignInWithGoogle verifies the Google ID token, finds or creates the
@@ -45,6 +53,13 @@ func (s *AuthService) SignInWithGoogle(ctx context.Context, idToken, device stri
 		return model.SignIn{}, err
 	}
 	s.activity.SignedIn(ctx, parent, created, info)
+	// a review account (Play's reviewers) gets Plus and every level, also
+	// after the database was reset
+	if s.review[normalizeEmail(parent.Email)] {
+		if err := s.me.GiveFullAccess(ctx, parent.ID); err != nil {
+			return model.SignIn{}, err
+		}
+	}
 	me, err := s.me.Me(ctx, parent.ID)
 	if err != nil {
 		return model.SignIn{}, err

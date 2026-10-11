@@ -94,3 +94,16 @@ func (s *AccountService) Delete(ctx context.Context, parentID string) error {
 	}
 	return err
 }
+
+// reviewPlusUntil: review accounts keep Likho Plus for good.
+var reviewPlusUntil = time.Date(2099, 12, 31, 0, 0, 0, 0, time.UTC)
+
+// GiveFullAccess gives the account Likho Plus and every level open (review
+// accounts, at every sign-in).
+func (s *AccountService) GiveFullAccess(ctx context.Context, parentID string) error {
+	changed, err := s.accounts.GiveFullAccess(ctx, parentID, reviewPlusUntil)
+	if changed {
+		s.cache.ForgetMe(ctx, parentID)
+	}
+	return err
+}
