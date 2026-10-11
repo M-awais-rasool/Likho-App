@@ -12,7 +12,12 @@ export default function DeleteAccountPage() {
   return (
     <LegalPage
       title="Delete your Likho account"
-      intro={<p>You can delete your Likho account, and all of the information in it, at any time. Here&apos;s how.</p>}
+      intro={
+        <p>
+          You can delete your Likho account, and all of the information in it, at any time. You can also delete one child&apos;s information
+          and keep the account. Here&apos;s how.
+        </p>
+      }
     >
       <LegalSection title="In the app">
         <ol className="ml-5 list-decimal space-y-2">
@@ -42,6 +47,27 @@ export default function DeleteAccountPage() {
           <li>Settings and signed-in sessions on every device.</li>
         </ul>
         <p>This can&apos;t be undone.</p>
+        <p>
+          Our server keeps backup copies of its database for safety. Deleted information disappears from those backups by itself within 30
+          days.
+        </p>
+      </LegalSection>
+
+      <LegalSection id="child" title="Delete one child's information only">
+        <ol className="ml-5 list-decimal space-y-2">
+          <li>On the map, tap your child&apos;s picture to open their profile.</li>
+          <li>Tap the pencil (edit) button and answer the grown-ups question.</li>
+          <li>
+            Tap <strong>Delete profile</strong> and confirm.
+          </li>
+        </ol>
+        <p>
+          This deletes that child&apos;s name, age, Pencil&apos;s colour and all of their progress (levels, stars, stickers, outfits, room
+          items and play days). The parent account and the other children stay. The last child profile can&apos;t be deleted on its own:
+          delete the account instead. Without the app, email{" "}
+          <a href={`mailto:${site.email}?subject=Delete%20my%20child%27s%20Likho%20data`}>{site.email}</a> from your account&apos;s email
+          address and tell us the child&apos;s name. Backups follow within 30 days, as above.
+        </p>
       </LegalSection>
 
       <LegalSection title="What is not deleted">
@@ -52,6 +78,8 @@ export default function DeleteAccountPage() {
             keeps renewing.
           </li>
           <li>Anything played without signing in: it was never sent to us.</li>
+          <li>A note that an account was deleted, with only its country and device type, so our usage numbers stay right.</li>
+          <li>If we delete an account for you after an email, our team&apos;s log keeps that email address and the date, as a record that we did it.</li>
         </ul>
       </LegalSection>
     </LegalPage>
