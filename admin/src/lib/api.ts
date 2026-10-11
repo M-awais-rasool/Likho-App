@@ -215,12 +215,26 @@ export interface ChildView {
 
 export interface FamilyDetail {
   family: Family
-  subscription: { active: boolean; plusUntil: string | null; trialUsed: boolean }
+  subscription: { active: boolean; plusUntil: string | null; trialUsed: boolean; store?: string; plan?: string; autoRenewing: boolean }
   settings: Record<string, number | boolean>
   children: ChildView[]
   devices: { id: string; device: string; createdAt: string; expiresAt: string; revokedAt: string | null }[]
   activity: ActivityEvent[]
   lastLevel: number
+  purchases: Purchase[]
+}
+
+/** A Google Play purchase of Likho Plus. */
+export interface Purchase {
+  token: string
+  plan: string
+  offer: string
+  state: string
+  expiresAt: string
+  autoRenewing: boolean
+  orderId: string
+  test: boolean
+  createdAt: string
 }
 
 export interface ActivityEvent {

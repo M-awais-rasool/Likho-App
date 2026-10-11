@@ -83,6 +83,7 @@ export default function FamilyDetail() {
               {d.subscription.active ? (
                 <Badge tone="warn">
                   <Crown className="size-3" /> Plus until {date(d.subscription.plusUntil)}
+                  {d.subscription.store === 'google_play' && ` · Google Play ${d.subscription.plan ?? ''}${d.subscription.autoRenewing ? ', renews' : ', ends'}`}
                 </Badge>
               ) : (
                 <Badge>Free{d.subscription.trialUsed ? ' · trial used' : ''}</Badge>
@@ -192,6 +193,27 @@ export default function FamilyDetail() {
           </Card>
         </div>
         <div className="space-y-5">
+          {d.purchases.length > 0 && (
+            <Card title="Google Play purchases" padded={false}>
+              <ul className="divide-y divide-line">
+                {d.purchases.map((p) => (
+                  <li key={p.token + p.createdAt} className="px-4 py-3 text-[13px]">
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <span className="font-medium capitalize">{p.plan || 'Likho Plus'}</span>
+                      <Badge tone={purchaseTone(p.state)}>{purchaseState(p.state)}</Badge>
+                      {p.test && <Badge tone="info">Test</Badge>}
+                      {p.offer && <Badge>{p.offer}</Badge>}
+                    </div>
+                    <div className="mt-1 text-[12px] text-ink-3">
+                      {new Date(p.expiresAt) > new Date() ? (p.autoRenewing ? 'Renews ' : 'Ends ') : 'Ended '}
+                      {dateTime(p.expiresAt)} · bought {date(p.createdAt)}
+                      {p.orderId && ` · ${p.orderId}`}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          )}
           <Card title="Devices (sign-ins)" padded={false}>
             {d.devices.length === 0 ? (
               <Empty title="No sign-ins" />
@@ -304,3 +326,15 @@ function AdjustStars({ child, onClose, onDone }: { child: ChildView | null; onCl
     </Modal>
   )
 }
+
+const states: Record<string, [string, 'good' | 'warn' | 'bad' | 'muted']> = {
+  SUBSCRIPTION_STATE_ACTIVE: ['Active', 'good'],
+  SUBSCRIPTION_STATE_CANCELED: ['Cancelled', 'warn'],
+  SUBSCRIPTION_STATE_IN_GRACE_PERIOD: ['Payment problem (grace)', 'warn'],
+  SUBSCRIPTION_STATE_ON_HOLD: ['On hold', 'bad'],
+  SUBSCRIPTION_STATE_PAUSED: ['Paused', 'muted'],
+  SUBSCRIPTION_STATE_EXPIRED: ['Expired', 'muted'],
+  SUBSCRIPTION_STATE_PENDING: ['Payment pending', 'warn'],
+}
+const purchaseState = (s: string) => states[s]?.[0] ?? s.replace('SUBSCRIPTION_STATE_', '').toLowerCase()
+const purchaseTone = (s: string) => states[s]?.[1] ?? 'muted'
