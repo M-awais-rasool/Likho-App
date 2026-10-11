@@ -258,6 +258,11 @@ With `DEV_LOGIN=true` (development only; refused in production) the token `dev:<
 without Google. The app's "Test User" button uses it too (`dev:test.user@likho.app`): one shared
 test account that is found or created like a Google account.
 
+`REVIEW_ACCOUNTS` (default `likho.review@gmail.com`, the account in Play Console's sign-in
+details for app review) lists Google accounts that get Likho Plus and every level open at every
+sign-in. The default is in code (`config.DefaultReviewAccounts`), so the account gets its access back
+by itself after the database is reset.
+
 ### Endpoints
 
 The full contract is [`backend/docs/openapi.yaml`](backend/docs/openapi.yaml). Errors are always
