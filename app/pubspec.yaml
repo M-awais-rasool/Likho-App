@@ -1,7 +1,7 @@
 name: likho
 description: "Likho: English handwriting for kids aged 5-8."
 publish_to: 'none'
-version: 0.1.0+1
+version: 0.1.0+7
 
 environment:
   sdk: ^3.13.4
@@ -38,6 +38,7 @@ flutter:
     - assets/mascot/accessories/
     - assets/mascot/fx/
     - assets/audio/
+    - assets/voice/
     - assets/sfx/
     - assets/licenses/
     # dev-only reference images for the overlay check (remove from release builds)

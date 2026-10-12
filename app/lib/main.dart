@@ -10,6 +10,7 @@ import 'design/tokens.dart';
 import 'dev/dev_launch.dart';
 import 'feedback/app_feedback.dart';
 import 'feedback/haptics.dart';
+import 'feedback/pencil_lines.dart';
 import 'feedback/sfx.dart';
 import 'feedback/sound_engine.dart';
 import 'screens/app_flow.dart';
@@ -30,6 +31,7 @@ Future<void> main() async {
     overrides: [
       soundEngineProvider.overrideWithValue(sound),
       hapticsProvider.overrideWithValue(const SystemHaptics()),
+      pencilVoiceProvider.overrideWithValue(true),
       // QA shortcuts show the sample family and never touch the account
       if (devLevel != null || devScreen != null) familyProvider.overrideWith(DemoFamilyNotifier.new),
     ],
