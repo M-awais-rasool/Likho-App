@@ -3,6 +3,7 @@ package e2e
 import (
 	"net/http"
 	"slices"
+	"strings"
 	"testing"
 	"time"
 )
@@ -150,6 +151,46 @@ func TestClosedTestTracksTestersByAccount(t *testing.T) {
 	for _, x := range []string{"closed_test.settings", "closed_test.testers_added", "closed_test.account_linked", "closed_test.tester_removed", "closed_test.account_unlinked"} {
 		if !actions[x] {
 			t.Errorf("audit log misses %s", x)
+		}
+	}
+}
+
+// Testers who used Likho before anyone put them on the list (the panel's
+// "Add all as testers"): adding testers with the accounts' emails links
+// them at once, with the days they already used it.
+func TestClosedTestAccountsBeforeTheirTesters(t *testing.T) {
+	a := newTestApp(t)
+	adm := a.admin()
+	karachi, _ := time.LoadLocation("Asia/Karachi")
+	today := time.Now().In(karachi).Format("2006-01-02")
+	adm.json("PUT", "/closed-test/settings", map[string]any{"startDate": today, "days": 14, "needed": 12, "timeZone": "Asia/Karachi", "plus": true}, 200)
+
+	emails := []string{"wanda.hardy@gmail.com", "zain@outlook.com", "Ayesha.Noor@Gmail.com"}
+	for _, e := range emails {
+		want(t, a.do("POST", "/v1/auth/google", "", map[string]any{"idToken": "dev:" + e}), http.StatusCreated)
+	}
+	b := adm.json("GET", "/closed-test", nil, 200)
+	if len(b["newAccounts"].([]any)) != 3 || len(b["testers"].([]any)) != 0 {
+		t.Fatalf("before: %v", b)
+	}
+
+	// what the panel sends: each account's name (or the email's) and email
+	var list []map[string]any
+	for _, x := range b["newAccounts"].([]any) {
+		acc := x.(map[string]any)
+		list = append(list, map[string]any{"name": strings.Split(acc["email"].(string), "@")[0], "email": acc["email"]})
+	}
+	if r := adm.json("POST", "/closed-test/testers", map[string]any{"testers": list}, 201); len(r["added"].([]any)) != 3 {
+		t.Fatalf("added: %v", r)
+	}
+	b = adm.json("GET", "/closed-test", nil, 200)
+	if len(b["newAccounts"].([]any)) != 0 || len(b["testers"].([]any)) != 3 {
+		t.Fatalf("after: new %v, testers %v", b["newAccounts"], b["testers"])
+	}
+	for _, x := range b["testers"].([]any) {
+		tr := x.(map[string]any)
+		if len(tr["accounts"].([]any)) != 1 || len(tr["days"].([]any)) != 1 || tr["days"].([]any)[0] != today {
+			t.Fatalf("tester %v: used today on their account", tr)
 		}
 	}
 }
