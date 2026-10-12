@@ -43,6 +43,10 @@ type testApp struct {
 	redis *miniredis.Miniredis
 	built *app.Built
 	db    *gorm.DB
+
+	// admins' authenticator apps: secret and last 30 s step used, by email
+	totp     map[string]string
+	totpStep map[string]int64
 }
 
 // newTestApp builds the API on a fresh database; [cat] replaces the real
@@ -92,7 +96,7 @@ func newTestAppWith(t *testing.T, edit func(*app.Deps), cat ...*catalog.Catalog)
 		edit(&deps)
 	}
 	built := app.BuildApp(deps)
-	return &testApp{t: t, r: built.Handler, redis: mr, built: built, db: db}
+	return &testApp{t: t, r: built.Handler, redis: mr, built: built, db: db, totp: map[string]string{}, totpStep: map[string]int64{}}
 }
 
 type res struct {
