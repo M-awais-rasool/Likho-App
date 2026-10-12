@@ -5,6 +5,8 @@ import (
 	"crypto/rand"
 	"crypto/sha256"
 	"encoding/base64"
+	"encoding/hex"
+	"encoding/json"
 	"errors"
 	"log/slog"
 	"net/mail"
@@ -18,15 +20,38 @@ import (
 	"likho/backend/internal/repository"
 )
 
-// AdminAuthService: signing in to the admin panel (email + password,
-// a random session token in an HttpOnly cookie) and the team of admins.
+// AdminAuthService: signing in to the admin panel (email + password, then
+// a code from an authenticator app; a random session token in an HttpOnly
+// cookie) and the team of admins.
 type AdminAuthService struct {
 	repo       *repository.AdminRepository
+	store      AdminLoginStore
 	sessionTTL time.Duration
+	now        func() time.Time
 }
 
-func NewAdminAuthService(repo *repository.AdminRepository) *AdminAuthService {
-	return &AdminAuthService{repo: repo, sessionTTL: 12 * time.Hour}
+// AdminLoginStore keeps the step between the password and the code, and
+// counts wrong tries per account (Redis: cache.Cache).
+type AdminLoginStore interface {
+	PutLoginTicket(ctx context.Context, id string, v []byte, ttl time.Duration) error
+	LoginTicket(ctx context.Context, id string) ([]byte, bool, error)
+	DropLoginTicket(ctx context.Context, id string)
+	LoginFailures(ctx context.Context, email string) int64
+	AddLoginFailure(ctx context.Context, email string, window time.Duration) int64
+	ClearLoginFailures(ctx context.Context, email string)
+}
+
+const (
+	// wrong passwords or codes (from any IP) before an account is locked,
+	// and how long the lock lasts after the last one
+	adminMaxFailures = 5
+	adminLockFor     = 15 * time.Minute
+	// time to type the code (or set up the app) after the password
+	adminTicketTTL = 10 * time.Minute
+)
+
+func NewAdminAuthService(repo *repository.AdminRepository, store AdminLoginStore) *AdminAuthService {
+	return &AdminAuthService{repo: repo, store: store, sessionTTL: 12 * time.Hour, now: time.Now}
 }
 
 // SessionTTL is how long a sign-in lasts.
@@ -41,10 +66,11 @@ type AdminView struct {
 	Disabled    bool       `json:"disabled"`
 	CreatedAt   time.Time  `json:"createdAt"`
 	LastLoginAt *time.Time `json:"lastLoginAt"`
+	TwoFactor   bool       `json:"twoFactor"` // the authenticator app is set up
 }
 
 func viewOf(a model.AdminUser) AdminView {
-	return AdminView{ID: a.ID, Email: a.Email, Name: a.Name, Role: a.Role, Disabled: a.Disabled, CreatedAt: a.CreatedAt, LastLoginAt: a.LastLoginAt}
+	return AdminView{ID: a.ID, Email: a.Email, Name: a.Name, Role: a.Role, Disabled: a.Disabled, CreatedAt: a.CreatedAt, LastLoginAt: a.LastLoginAt, TwoFactor: a.TOTPSecret != ""}
 }
 
 // RoleAtLeast reports whether [role] can do what [need] can.
@@ -97,37 +123,150 @@ func (s *AdminAuthService) Bootstrap(ctx context.Context, email, password string
 	return nil
 }
 
-// Login checks the password and opens a session; the token goes in the
-// cookie (only its hash is stored).
-func (s *AdminAuthService) Login(ctx context.Context, email, password, userAgent string) (AdminView, string, error) {
+// LoginStep is what the panel asks after a right password: the code from
+// the authenticator app ("code"), or to set the app up first ("setup":
+// scan [URL] as a QR code, or type [Secret]). [Ticket] goes with the code.
+type LoginStep struct {
+	Next   string `json:"next"`
+	Ticket string `json:"ticket"`
+	Secret string `json:"secret,omitempty"`
+	URL    string `json:"otpauthUrl,omitempty"`
+}
+
+// loginTicket is kept between the two steps (only its id goes out).
+type loginTicket struct {
+	AdminID string `json:"adminId"`
+	Email   string `json:"email"`
+	Secret  string `json:"secret,omitempty"` // a new secret, until its first code
+}
+
+// Login checks the password (step 1). Wrong tries count against the
+// account; after adminMaxFailures it is locked for adminLockFor.
+func (s *AdminAuthService) Login(ctx context.Context, email, password string) (LoginStep, error) {
 	email = strings.ToLower(strings.TrimSpace(email))
+	if s.store.LoginFailures(ctx, email) >= adminMaxFailures {
+		return LoginStep{}, domain.ErrAdminLocked
+	}
 	a, err := s.repo.AdminByEmail(ctx, email)
 	if err != nil {
 		_ = bcrypt.CompareHashAndPassword(dummyHash, []byte(password))
 		if errors.Is(err, domain.ErrNotFound) {
-			return AdminView{}, "", domain.ErrAdminLogin
+			s.store.AddLoginFailure(ctx, email, adminLockFor)
+			return LoginStep{}, domain.ErrAdminLogin
 		}
-		return AdminView{}, "", err
+		return LoginStep{}, err
 	}
 	if bcrypt.CompareHashAndPassword([]byte(a.PasswordHash), []byte(password)) != nil || a.Disabled {
-		return AdminView{}, "", domain.ErrAdminLogin
+		s.store.AddLoginFailure(ctx, email, adminLockFor)
+		return LoginStep{}, domain.ErrAdminLogin
 	}
-	b := make([]byte, 32)
-	if _, err := rand.Read(b); err != nil {
-		return AdminView{}, "", err
+	t := loginTicket{AdminID: a.ID, Email: a.Email}
+	step := LoginStep{Next: "code"}
+	if a.TOTPSecret == "" {
+		if t.Secret, err = NewTOTPSecret(); err != nil {
+			return LoginStep{}, err
+		}
+		step = LoginStep{Next: "setup", Secret: t.Secret, URL: TOTPURL(t.Secret, a.Email)}
 	}
-	token := base64.RawURLEncoding.EncodeToString(b)
+	if step.Ticket, err = randomToken(); err != nil {
+		return LoginStep{}, err
+	}
+	v, _ := json.Marshal(t)
+	if err := s.store.PutLoginTicket(ctx, ticketID(step.Ticket), v, adminTicketTTL); err != nil {
+		return LoginStep{}, err
+	}
+	return step, nil
+}
+
+// Verify checks the authenticator code for [ticket] (step 2) and opens a
+// session; the token goes in the cookie (only its hash is stored). The
+// first right code after "setup" turns two-step sign-in on (setUp).
+func (s *AdminAuthService) Verify(ctx context.Context, ticket, code, userAgent string) (view AdminView, token string, setUp bool, err error) {
+	raw, ok, err := s.store.LoginTicket(ctx, ticketID(ticket))
+	if err != nil {
+		return AdminView{}, "", false, err
+	}
+	var t loginTicket
+	if !ok || json.Unmarshal(raw, &t) != nil {
+		return AdminView{}, "", false, domain.ErrAdminTicket
+	}
+	if s.store.LoginFailures(ctx, t.Email) >= adminMaxFailures {
+		s.store.DropLoginTicket(ctx, ticketID(ticket))
+		return AdminView{}, "", false, domain.ErrAdminLocked
+	}
+	a, err := s.repo.Admin(ctx, t.AdminID)
+	if errors.Is(err, domain.ErrNotFound) || (err == nil && a.Disabled) {
+		return AdminView{}, "", false, domain.ErrAdminTicket
+	}
+	if err != nil {
+		return AdminView{}, "", false, err
+	}
+	secret, last := a.TOTPSecret, a.TOTPLastStep
+	if t.Secret != "" {
+		secret, last = t.Secret, 0
+	}
+	if secret == "" { // reset since step 1
+		return AdminView{}, "", false, domain.ErrAdminTicket
+	}
+	step, ok := checkTOTP(secret, code, s.now(), last)
+	if !ok {
+		s.store.AddLoginFailure(ctx, t.Email, adminLockFor)
+		return AdminView{}, "", false, domain.ErrAdminCode
+	}
+	// only the first of two tabs with the same code gets in
+	q := map[string]any{"totp_secret": secret, "totp_last_step": step}
+	if n, err := s.repo.UseTOTPStep(ctx, a.ID, a.TOTPSecret, last, q); err != nil {
+		return AdminView{}, "", false, err
+	} else if n == 0 {
+		s.store.AddLoginFailure(ctx, t.Email, adminLockFor)
+		return AdminView{}, "", false, domain.ErrAdminCode
+	}
+	s.store.DropLoginTicket(ctx, ticketID(ticket))
+	s.store.ClearLoginFailures(ctx, t.Email)
+
+	if token, err = randomToken(); err != nil {
+		return AdminView{}, "", false, err
+	}
 	if len(userAgent) > 200 {
 		userAgent = userAgent[:200]
 	}
-	err = s.repo.CreateSession(ctx, &model.AdminSession{AdminID: a.ID, TokenHash: hashToken(token), UserAgent: userAgent, ExpiresAt: time.Now().Add(s.sessionTTL)})
+	err = s.repo.CreateSession(ctx, &model.AdminSession{AdminID: a.ID, TokenHash: hashToken(token), UserAgent: userAgent, ExpiresAt: s.now().Add(s.sessionTTL)})
 	if err != nil {
-		return AdminView{}, "", err
+		return AdminView{}, "", false, err
 	}
-	now := time.Now()
+	now := s.now()
 	_ = s.repo.UpdateAdmin(ctx, a.ID, map[string]any{"last_login_at": now})
-	a.LastLoginAt = &now
-	return viewOf(a), token, nil
+	a.LastLoginAt, a.TOTPSecret = &now, secret
+	return viewOf(a), token, t.Secret != "", nil
+}
+
+// ResetTwoFactor makes [email] set up the authenticator app again at the
+// next sign-in (a lost phone), signs them out and lifts a lock. For the
+// server command (owners use Update in the panel).
+func (s *AdminAuthService) ResetTwoFactor(ctx context.Context, email string) error {
+	a, err := s.repo.AdminByEmail(ctx, strings.ToLower(strings.TrimSpace(email)))
+	if err != nil {
+		return err
+	}
+	if err := s.repo.UpdateAdmin(ctx, a.ID, map[string]any{"totp_secret": "", "totp_last_step": 0}); err != nil {
+		return err
+	}
+	s.store.ClearLoginFailures(ctx, a.Email)
+	return s.repo.RevokeAdminSessions(ctx, a.ID)
+}
+
+func randomToken() (string, error) {
+	b := make([]byte, 32)
+	if _, err := rand.Read(b); err != nil {
+		return "", err
+	}
+	return base64.RawURLEncoding.EncodeToString(b), nil
+}
+
+// ticketID is what Redis keeps for a ticket (not the ticket itself).
+func ticketID(ticket string) string {
+	h := sha256.Sum256([]byte("admin-ticket:" + ticket))
+	return hex.EncodeToString(h[:])
 }
 
 func hashToken(t string) []byte {
@@ -141,7 +280,9 @@ func (s *AdminAuthService) Session(ctx context.Context, token string) (AdminView
 		return AdminView{}, domain.ErrAdminSignedOut
 	}
 	a, _, err := s.repo.SessionAdmin(ctx, hashToken(token))
-	if errors.Is(err, domain.ErrNotFound) || (err == nil && a.Disabled) {
+	// without the authenticator app (a session from before two-step
+	// sign-in, or the app was reset since) the session does not count
+	if errors.Is(err, domain.ErrNotFound) || (err == nil && (a.Disabled || a.TOTPSecret == "")) {
 		return AdminView{}, domain.ErrAdminSignedOut
 	}
 	return viewOf(a), err
@@ -208,6 +349,8 @@ type AdminPatch struct {
 	Role     *string `json:"role"`
 	Disabled *bool   `json:"disabled"`
 	Password *string `json:"password"` // a new first password
+	// set up the authenticator app again at the next sign-in (lost phone)
+	ResetTwoFactor bool `json:"resetTwoFactor"`
 }
 
 func (s *AdminAuthService) Update(ctx context.Context, id string, p AdminPatch) (AdminView, error) {
@@ -238,6 +381,9 @@ func (s *AdminAuthService) Update(ctx context.Context, id string, p AdminPatch) 
 		}
 		updates["password_hash"] = h
 	}
+	if p.ResetTwoFactor {
+		updates["totp_secret"], updates["totp_last_step"] = "", 0
+	}
 	if losesOwner {
 		if n, err := s.repo.OwnersOtherThan(ctx, id); err != nil {
 			return AdminView{}, err
@@ -250,7 +396,7 @@ func (s *AdminAuthService) Update(ctx context.Context, id string, p AdminPatch) 
 			return AdminView{}, err
 		}
 	}
-	if p.Password != nil || (p.Disabled != nil && *p.Disabled) {
+	if p.Password != nil || p.ResetTwoFactor || (p.Disabled != nil && *p.Disabled) {
 		if err := s.repo.RevokeAdminSessions(ctx, id); err != nil {
 			return AdminView{}, err
 		}

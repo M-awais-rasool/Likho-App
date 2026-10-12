@@ -41,7 +41,17 @@ type Actor struct {
 
 // Audit records a change made in the panel.
 func (s *AdminService) Audit(ctx context.Context, by Actor, action, target string, detail any) {
-	_ = s.admin.Audit(ctx, &model.AuditEntry{AdminID: by.ID, AdminEmail: by.Email, Action: action, Target: target, Detail: model.JSONOf(detail)})
+	_ = s.admin.Audit(ctx, auditEntry(by, action, target, detail))
+}
+
+// auditEntry is one line of the audit log; a zero [by] is nobody signed in
+// (a failed sign-in).
+func auditEntry(by Actor, action, target string, detail any) *model.AuditEntry {
+	e := &model.AuditEntry{AdminEmail: by.Email, Action: action, Target: target, Detail: model.JSONOf(detail)}
+	if by.ID != "" {
+		e.AdminID = &by.ID
+	}
+	return e
 }
 
 func (s *AdminService) AuditLog(ctx context.Context, before int64, limit int) ([]model.AuditEntry, error) {
