@@ -282,19 +282,67 @@
     },
     {
       "id": "level-23-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: N, O, P, Q, R, S, T!",
-        "say": "Say all the letters with me! {N|ˈɛn}, {O|ˈoʊ}, {P|pˈiː}, {Q|kjˈuː}, {R|ˈɑːɹ}, {S|ˈɛs}, {T|tˈiː}!",
-        "audio": "voice/line-b0eb5c4f47023532.m4a"
+        "text": "Join N to T!",
+        "say": "Join the dots, from {N|ˈɛn} to {T|tˈiː}. What will it be?",
+        "audio": "voice/line-053be731b0fb4a62.m4a"
       },
       "card": {
-        "text": "N, O, P, Q, R, S, T!",
+        "text": "N → T",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "speak": {
-        "expected": "N, O, P, Q, R, S, T!"
+      "connect": {
+        "labels": [
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T"
+        ],
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            82,
+            50
+          ],
+          [
+            98,
+            64
+          ],
+          [
+            80,
+            94
+          ],
+          [
+            20,
+            94
+          ],
+          [
+            2,
+            64
+          ],
+          [
+            50,
+            64
+          ]
+        ],
+        "picture": {
+          "key": "boat",
+          "label": "boat",
+          "url": null
+        },
+        "done": {
+          "text": "A boat!",
+          "say": "It's a boat!",
+          "audio": "voice/line-a705e55e86a2309a.m4a"
+        }
       }
     },
     {

@@ -331,23 +331,35 @@
     },
     {
       "id": "level-47-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: o says /o/ like octopus!",
-        "say": "{o|ˈoʊ} says {/o/|ɑ}, like octopus! Now you say it.",
-        "audio": "voice/line-890c2ca7ad273891.m4a"
+        "text": "Clap the beats!",
+        "say": "Octopus! Tap the drum for every beat in octopus.",
+        "audio": "voice/line-ea285b408845a0e8.m4a"
       },
       "card": {
-        "text": "o says /o/ like octopus!",
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "beats": {
+        "text": "octopus",
+        "parts": [
+          "oc",
+          "to",
+          "pus"
+        ],
+        "unit": "syllable",
         "picture": {
           "key": "octopus",
           "label": "octopus",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "o says /o/ like octopus!"
+        "hint": {
+          "text": "oc-to-pus",
+          "say": "Octopus. Three beats!",
+          "audio": "voice/line-43eee4ce011cfd6c.m4a"
+        }
       }
     }
   ]

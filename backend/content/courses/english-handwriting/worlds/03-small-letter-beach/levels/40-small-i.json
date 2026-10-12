@@ -258,23 +258,34 @@
     },
     {
       "id": "level-40-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: i says /i/ like insect!",
-        "say": "{i|ˈaɪ} says {/i/|ɪ}, like insect! Now you say it.",
-        "audio": "voice/line-e3a3b74191ea4ab8.m4a"
+        "text": "Clap the beats!",
+        "say": "Insect! Tap the drum for every beat in insect.",
+        "audio": "voice/line-854d2ea39415b568.m4a"
       },
       "card": {
-        "text": "i says /i/ like insect!",
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "beats": {
+        "text": "insect",
+        "parts": [
+          "in",
+          "sect"
+        ],
+        "unit": "syllable",
         "picture": {
           "key": "insect",
           "label": "insect",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "i says /i/ like insect!"
+        "hint": {
+          "text": "in-sect",
+          "say": "Insect. Two beats!",
+          "audio": "voice/line-fcebe32c403375b9.m4a"
+        }
       }
     }
   ]

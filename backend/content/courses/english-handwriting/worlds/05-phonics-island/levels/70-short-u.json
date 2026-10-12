@@ -113,24 +113,6 @@
         ],
         "items": [
           {
-            "label": "nest",
-            "picture": {
-              "key": "nest",
-              "label": "nest",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "hut",
-            "picture": {
-              "key": "hut",
-              "label": "hut",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
             "label": "hat",
             "picture": {
               "key": "hat",
@@ -149,13 +131,22 @@
             "bin": 1
           },
           {
-            "label": "nose",
+            "label": "nail",
             "picture": {
-              "key": "nose",
-              "label": "nose",
+              "key": "nail",
+              "label": "nail",
               "url": null
             },
             "bin": 1
+          },
+          {
+            "label": "hen",
+            "picture": {
+              "key": "hen",
+              "label": "hen",
+              "url": null
+            },
+            "bin": 0
           },
           {
             "label": "hand",
@@ -165,6 +156,15 @@
               "url": null
             },
             "bin": 0
+          },
+          {
+            "label": "nose",
+            "picture": {
+              "key": "nose",
+              "label": "nose",
+              "url": null
+            },
+            "bin": 1
           }
         ]
       }
@@ -327,23 +327,68 @@
     },
     {
       "id": "level-70-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: bus, sun, cup, bug!",
-        "say": "Say them with me! bus, sun, cup, bug!",
-        "audio": "voice/line-773ccec2e6bd94b9.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "bus, sun, cup, bug!",
-        "picture": {
-          "key": "bus",
-          "label": "bus",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "bus, sun, cup, bug!"
+      "sounds": {
+        "word": "bus",
+        "parts": [
+          {
+            "text": "b",
+            "say": "{/b/|bʌ}",
+            "audio": "voice/line-54284489cdcd15c3.m4a"
+          },
+          {
+            "text": "u",
+            "say": "{/u/|ʌ}",
+            "audio": "voice/line-6094ce3b4313c3cc.m4a"
+          },
+          {
+            "text": "s",
+            "say": "{/s/|sːː}",
+            "audio": "voice/line-176638e56286fdf8.m4a"
+          }
+        ],
+        "blend": {
+          "text": "bus",
+          "say": "bus!",
+          "audio": "voice/line-eddf07c14325cb0a.m4a"
+        },
+        "choices": [
+          {
+            "label": "bus",
+            "picture": {
+              "key": "bus",
+              "label": "bus",
+              "url": null
+            }
+          },
+          {
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            }
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            }
+          }
+        ],
+        "answer": 0
       }
     },
     {

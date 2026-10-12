@@ -288,23 +288,68 @@
     },
     {
       "id": "level-65-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: wet, net, ten, jet!",
-        "say": "Say them with me! wet, net, ten, jet!",
-        "audio": "voice/line-f207c996a68d0b16.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "wet, net, ten, jet!",
-        "picture": {
-          "key": "wet",
-          "label": "wet",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "wet, net, ten, jet!"
+      "sounds": {
+        "word": "wet",
+        "parts": [
+          {
+            "text": "w",
+            "say": "{/w/|wʌ}",
+            "audio": "voice/line-9b908be90fdc574f.m4a"
+          },
+          {
+            "text": "e",
+            "say": "{/e/|ɛ}",
+            "audio": "voice/line-26b8405a6ef65e10.m4a"
+          },
+          {
+            "text": "t",
+            "say": "{/t/|tʌ}",
+            "audio": "voice/line-570d1fc0dffd834f.m4a"
+          }
+        ],
+        "blend": {
+          "text": "wet",
+          "say": "wet!",
+          "audio": "voice/line-00b6567f2445f8fa.m4a"
+        },
+        "choices": [
+          {
+            "label": "wet",
+            "picture": {
+              "key": "wet",
+              "label": "wet",
+              "url": null
+            }
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            }
+          },
+          {
+            "label": "pig",
+            "picture": {
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            }
+          }
+        ],
+        "answer": 0
       }
     },
     {

@@ -256,23 +256,72 @@
     },
     {
       "id": "level-36-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: f says /f/ like fish!",
-        "say": "{f|ˈɛf} says {/f/|fːː}, like fish! Now you say it.",
-        "audio": "voice/line-504a01d8f890d2e5.m4a"
+        "text": "Join b to i!",
+        "say": "Join the dots, from {b|bˈiː} to {i|ˈaɪ}. What will it be?",
+        "audio": "voice/line-5566b6d3e5213df7.m4a"
       },
       "card": {
-        "text": "f says /f/ like fish!",
+        "text": "b → i",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "b",
+          "c",
+          "d",
+          "e",
+          "f",
+          "g",
+          "h",
+          "i"
+        ],
+        "points": [
+          [
+            8,
+            8
+          ],
+          [
+            78,
+            8
+          ],
+          [
+            78,
+            30
+          ],
+          [
+            98,
+            30
+          ],
+          [
+            98,
+            66
+          ],
+          [
+            78,
+            66
+          ],
+          [
+            72,
+            94
+          ],
+          [
+            14,
+            94
+          ]
+        ],
         "picture": {
-          "key": "fish",
-          "label": "fish",
+          "key": "cup",
+          "label": "cup",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "f says /f/ like fish!"
+        "done": {
+          "text": "A cup!",
+          "say": "It's a cup!",
+          "audio": "voice/line-b59d914d7fd7fbc2.m4a"
+        }
       }
     }
   ]

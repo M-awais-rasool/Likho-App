@@ -256,23 +256,68 @@
     },
     {
       "id": "level-44-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: m says /m/ like moon!",
-        "say": "{m|ˈɛm} says {/m/|mːː}, like moon! Now you say it.",
-        "audio": "voice/line-3a9da35def51dbcc.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "m says /m/ like moon!",
-        "picture": {
-          "key": "moon",
-          "label": "moon",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "m says /m/ like moon!"
+      "sounds": {
+        "word": "moon",
+        "parts": [
+          {
+            "text": "m",
+            "say": "{/m/|mːː}",
+            "audio": "voice/line-26d6be66a61da36b.m4a"
+          },
+          {
+            "text": "oo",
+            "say": "{/oo/|uː}",
+            "audio": "voice/line-2979e2dbcbe276e4.m4a"
+          },
+          {
+            "text": "n",
+            "say": "{/n/|nːː}",
+            "audio": "voice/line-1f9de0e8fd168b84.m4a"
+          }
+        ],
+        "blend": {
+          "text": "moon",
+          "say": "moon!",
+          "audio": "voice/line-ce8af1c87b70420c.m4a"
+        },
+        "choices": [
+          {
+            "label": "ball",
+            "picture": {
+              "key": "ball",
+              "label": "ball",
+              "url": null
+            }
+          },
+          {
+            "label": "box",
+            "picture": {
+              "key": "box",
+              "label": "box",
+              "url": null
+            }
+          },
+          {
+            "label": "moon",
+            "picture": {
+              "key": "moon",
+              "label": "moon",
+              "url": null
+            }
+          }
+        ],
+        "answer": 2
       }
     }
   ]

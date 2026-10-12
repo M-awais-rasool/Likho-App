@@ -249,23 +249,34 @@
     },
     {
       "id": "level-59-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: z says /z/ like zebra!",
-        "say": "{z|zˈiː} says {/z/|zːː}, like zebra! Now you say it.",
-        "audio": "voice/line-03989585fbf12c47.m4a"
+        "text": "Clap the beats!",
+        "say": "Zebra! Tap the drum for every beat in zebra.",
+        "audio": "voice/line-9fd7e56a4559c113.m4a"
       },
       "card": {
-        "text": "z says /z/ like zebra!",
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "beats": {
+        "text": "zebra",
+        "parts": [
+          "ze",
+          "bra"
+        ],
+        "unit": "syllable",
         "picture": {
           "key": "zebra",
           "label": "zebra",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "z says /z/ like zebra!"
+        "hint": {
+          "text": "ze-bra",
+          "say": "Zebra. Two beats!",
+          "audio": "voice/line-5b5cdfc5ad17f466.m4a"
+        }
       }
     }
   ]

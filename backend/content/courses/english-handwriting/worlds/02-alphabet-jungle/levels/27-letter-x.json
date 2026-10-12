@@ -312,23 +312,33 @@
     },
     {
       "id": "level-27-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: X is for box!",
-        "say": "{X|ˈɛks} is for box! Now you say it.",
-        "audio": "voice/line-69b37cf99fa7a6eb.m4a"
+        "text": "Clap the beats!",
+        "say": "Box! Tap the drum for every beat in box.",
+        "audio": "voice/line-feeecd6508f310fa.m4a"
       },
       "card": {
-        "text": "X is for box!",
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "beats": {
+        "text": "box",
+        "parts": [
+          "box"
+        ],
+        "unit": "syllable",
         "picture": {
           "key": "box",
           "label": "box",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "X is for box!"
+        "hint": {
+          "text": "box",
+          "say": "Box. One beat!",
+          "audio": "voice/line-b318406d154b42e8.m4a"
+        }
       }
     }
   ]

@@ -306,23 +306,33 @@
     },
     {
       "id": "level-35-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: e says /e/ like egg!",
-        "say": "{e|ˈiː} says {/e/|ɛ}, like egg! Now you say it.",
-        "audio": "voice/line-b888d276ba3450f5.m4a"
+        "text": "Clap the beats!",
+        "say": "Egg! Tap the drum for every beat in egg.",
+        "audio": "voice/line-db589d41d871a3e9.m4a"
       },
       "card": {
-        "text": "e says /e/ like egg!",
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "beats": {
+        "text": "egg",
+        "parts": [
+          "egg"
+        ],
+        "unit": "syllable",
         "picture": {
           "key": "egg",
           "label": "egg",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "e says /e/ like egg!"
+        "hint": {
+          "text": "egg",
+          "say": "Egg. One beat!",
+          "audio": "voice/line-9a41eeaa436a221c.m4a"
+        }
       }
     }
   ]

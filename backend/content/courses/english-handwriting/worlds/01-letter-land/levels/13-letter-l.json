@@ -298,23 +298,34 @@
     },
     {
       "id": "level-13-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: L is for lion!",
-        "say": "{L|ˈɛl} is for lion! Now you say it.",
-        "audio": "voice/line-4bf8e272e2a69cfe.m4a"
+        "text": "Clap the beats!",
+        "say": "Lion! Tap the drum for every beat in lion.",
+        "audio": "voice/line-0f34de4ca491d719.m4a"
       },
       "card": {
-        "text": "L is for lion!",
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "beats": {
+        "text": "lion",
+        "parts": [
+          "li",
+          "on"
+        ],
+        "unit": "syllable",
         "picture": {
           "key": "lion",
           "label": "lion",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "L is for lion!"
+        "hint": {
+          "text": "li-on",
+          "say": "Lion. Two beats!",
+          "audio": "voice/line-8357039d450f08d2.m4a"
+        }
       }
     }
   ]

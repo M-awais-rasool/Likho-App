@@ -262,23 +262,33 @@
     },
     {
       "id": "level-48-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: p says /p/ like pig!",
-        "say": "{p|pˈiː} says {/p/|pʌ}, like pig! Now you say it.",
-        "audio": "voice/line-6fb28eec69925fbf.m4a"
+        "text": "Clap the beats!",
+        "say": "Pig! Tap the drum for every beat in pig.",
+        "audio": "voice/line-67d832084732c5d0.m4a"
       },
       "card": {
-        "text": "p says /p/ like pig!",
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "beats": {
+        "text": "pig",
+        "parts": [
+          "pig"
+        ],
+        "unit": "syllable",
         "picture": {
           "key": "pig",
           "label": "pig",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "p says /p/ like pig!"
+        "hint": {
+          "text": "pig",
+          "say": "Pig. One beat!",
+          "audio": "voice/line-376df7ded4ba5bed.m4a"
+        }
       }
     }
   ]

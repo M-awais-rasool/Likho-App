@@ -322,23 +322,33 @@
     },
     {
       "id": "level-05-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: E is for egg!",
-        "say": "{E|ˈiː} is for egg! Now you say it.",
-        "audio": "voice/line-86234de193bd517b.m4a"
+        "text": "Clap the beats!",
+        "say": "Egg! Tap the drum for every beat in egg.",
+        "audio": "voice/line-db589d41d871a3e9.m4a"
       },
       "card": {
-        "text": "E is for egg!",
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "beats": {
+        "text": "egg",
+        "parts": [
+          "egg"
+        ],
+        "unit": "syllable",
         "picture": {
           "key": "egg",
           "label": "egg",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "E is for egg!"
+        "hint": {
+          "text": "egg",
+          "say": "Egg. One beat!",
+          "audio": "voice/line-9a41eeaa436a221c.m4a"
+        }
       }
     }
   ]

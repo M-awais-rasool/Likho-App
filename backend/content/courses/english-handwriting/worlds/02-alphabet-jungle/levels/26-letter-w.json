@@ -208,23 +208,92 @@
     },
     {
       "id": "level-26-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: W is for whale!",
-        "say": "{W|dˈʌbəljuː} is for whale! Now you say it.",
-        "audio": "voice/line-f2c446ee2306dd06.m4a"
+        "text": "Join O to Z!",
+        "say": "Join the dots, from {O|ˈoʊ} to {Z|zˈiː}. What will it be?",
+        "audio": "voice/line-e452dcf56ea494a4.m4a"
       },
       "card": {
-        "text": "W is for whale!",
+        "text": "O → Z",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ],
+        "points": [
+          [
+            50,
+            3
+          ],
+          [
+            66,
+            22
+          ],
+          [
+            91,
+            27
+          ],
+          [
+            82,
+            50
+          ],
+          [
+            91,
+            74
+          ],
+          [
+            66,
+            78
+          ],
+          [
+            50,
+            97
+          ],
+          [
+            34,
+            78
+          ],
+          [
+            9,
+            74
+          ],
+          [
+            18,
+            50
+          ],
+          [
+            9,
+            26
+          ],
+          [
+            34,
+            22
+          ]
+        ],
         "picture": {
-          "key": "whale",
-          "label": "whale",
+          "key": "sun",
+          "label": "sun",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "W is for whale!"
+        "done": {
+          "text": "A sun!",
+          "say": "It's a sun!",
+          "audio": "voice/line-f71c516d1c115862.m4a"
+        }
       }
     }
   ]

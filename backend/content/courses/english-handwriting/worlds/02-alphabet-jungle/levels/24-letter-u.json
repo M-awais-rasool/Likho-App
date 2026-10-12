@@ -241,23 +241,35 @@
     },
     {
       "id": "level-24-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: U is for umbrella!",
-        "say": "{U|jˈuː} is for umbrella! Now you say it.",
-        "audio": "voice/line-b595a4e48e70b3c9.m4a"
+        "text": "Clap the beats!",
+        "say": "Umbrella! Tap the drum for every beat in umbrella.",
+        "audio": "voice/line-06b47482af42f3bf.m4a"
       },
       "card": {
-        "text": "U is for umbrella!",
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "beats": {
+        "text": "umbrella",
+        "parts": [
+          "um",
+          "brel",
+          "la"
+        ],
+        "unit": "syllable",
         "picture": {
           "key": "umbrella",
           "label": "umbrella",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "U is for umbrella!"
+        "hint": {
+          "text": "um-brel-la",
+          "say": "Umbrella. Three beats!",
+          "audio": "voice/line-7a7c9223f404f582.m4a"
+        }
       }
     }
   ]

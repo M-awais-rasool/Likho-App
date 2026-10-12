@@ -220,18 +220,18 @@
           },
           {
             "text": "log",
-            "wrong": "mirror",
-            "at": 2
-          },
-          {
-            "text": "pot",
             "wrong": null,
             "at": null
           },
           {
+            "text": "pot",
+            "wrong": "mirror",
+            "at": 0
+          },
+          {
             "text": "dog",
             "wrong": "mirror",
-            "at": 2
+            "at": 0
           }
         ]
       }
@@ -336,23 +336,68 @@
     },
     {
       "id": "level-69-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: hot, log, pot, dog!",
-        "say": "Say them with me! hot, log, pot, dog!",
-        "audio": "voice/line-33f8c9e952b57ea3.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "hot, log, pot, dog!",
-        "picture": {
-          "key": "hot",
-          "label": "hot",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "hot, log, pot, dog!"
+      "sounds": {
+        "word": "hot",
+        "parts": [
+          {
+            "text": "h",
+            "say": "{/h/|hʌ}",
+            "audio": "voice/line-cf2e19ba9b889302.m4a"
+          },
+          {
+            "text": "o",
+            "say": "{/o/|ɑ}",
+            "audio": "voice/line-253bbb0325fbe7e3.m4a"
+          },
+          {
+            "text": "t",
+            "say": "{/t/|tʌ}",
+            "audio": "voice/line-570d1fc0dffd834f.m4a"
+          }
+        ],
+        "blend": {
+          "text": "hot",
+          "say": "hot!",
+          "audio": "voice/line-dc13f80afe0f87e4.m4a"
+        },
+        "choices": [
+          {
+            "label": "pot",
+            "picture": {
+              "key": "pot",
+              "label": "pot",
+              "url": null
+            }
+          },
+          {
+            "label": "bed",
+            "picture": {
+              "key": "bed",
+              "label": "bed",
+              "url": null
+            }
+          },
+          {
+            "label": "hot",
+            "picture": {
+              "key": "hot",
+              "label": "hot",
+              "url": null
+            }
+          }
+        ],
+        "answer": 2
       }
     },
     {

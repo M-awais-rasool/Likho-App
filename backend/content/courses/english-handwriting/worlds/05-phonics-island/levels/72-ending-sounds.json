@@ -300,23 +300,36 @@
     },
     {
       "id": "level-72-r7",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Cat, hat, bat! They all end the same.",
-        "say": "Cat, hat, bat! They all end the same. Now you say it!",
-        "audio": "voice/line-6381adacec53ef02.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Cat, hat, bat! They all end the same. Tap the drum once for every word!",
+        "audio": "voice/line-40621319bfe8991e.m4a"
       },
       "card": {
-        "text": "Cat, hat, bat! They all end the same.",
-        "picture": {
-          "key": "hat",
-          "label": "hat",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Cat, hat, bat! They all end the same."
+      "beats": {
+        "text": "Cat, hat, bat! They all end the same.",
+        "parts": [
+          "Cat",
+          "hat",
+          "bat",
+          "They",
+          "all",
+          "end",
+          "the",
+          "same"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Cat hat bat They all end the same",
+          "say": "Cat, hat, bat! They all end the same. Eight words!",
+          "audio": "voice/line-8214f4d03dd827e8.m4a"
+        }
       }
     },
     {

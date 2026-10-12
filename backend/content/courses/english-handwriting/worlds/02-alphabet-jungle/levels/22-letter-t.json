@@ -262,23 +262,34 @@
     },
     {
       "id": "level-22-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: T is for tiger!",
-        "say": "{T|tˈiː} is for tiger! Now you say it.",
-        "audio": "voice/line-cf0603cb513cbe7a.m4a"
+        "text": "Clap the beats!",
+        "say": "Tiger! Tap the drum for every beat in tiger.",
+        "audio": "voice/line-76e654d16004ee99.m4a"
       },
       "card": {
-        "text": "T is for tiger!",
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "beats": {
+        "text": "tiger",
+        "parts": [
+          "ti",
+          "ger"
+        ],
+        "unit": "syllable",
         "picture": {
           "key": "tiger",
           "label": "tiger",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "T is for tiger!"
+        "hint": {
+          "text": "ti-ger",
+          "say": "Tiger. Two beats!",
+          "audio": "voice/line-a773e77f68d3d704.m4a"
+        }
       }
     }
   ]

@@ -300,23 +300,33 @@
     },
     {
       "id": "level-37-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: g says /g/ like goat!",
-        "say": "{g|ʤˈiː} says {/g/|ɡʌ}, like goat! Now you say it.",
-        "audio": "voice/line-4b4a1287493f6964.m4a"
+        "text": "Clap the beats!",
+        "say": "Goat! Tap the drum for every beat in goat.",
+        "audio": "voice/line-971003ace6334351.m4a"
       },
       "card": {
-        "text": "g says /g/ like goat!",
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "beats": {
+        "text": "goat",
+        "parts": [
+          "goat"
+        ],
+        "unit": "syllable",
         "picture": {
           "key": "goat",
           "label": "goat",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "g says /g/ like goat!"
+        "hint": {
+          "text": "goat",
+          "say": "Goat. One beat!",
+          "audio": "voice/line-96e4cbf827fa6f9c.m4a"
+        }
       }
     }
   ]

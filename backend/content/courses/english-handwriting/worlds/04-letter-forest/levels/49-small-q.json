@@ -298,23 +298,68 @@
     },
     {
       "id": "level-49-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: q says /q/ like queen!",
-        "say": "{q|kjˈuː} says {/q/|kwʌ}, like queen! Now you say it.",
-        "audio": "voice/line-5dacdc878cd0907b.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "q says /q/ like queen!",
-        "picture": {
-          "key": "queen",
-          "label": "queen",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "q says /q/ like queen!"
+      "sounds": {
+        "word": "queen",
+        "parts": [
+          {
+            "text": "qu",
+            "say": "{/qu/|kwʌ}",
+            "audio": "voice/line-e37fc06cb9fd0ae9.m4a"
+          },
+          {
+            "text": "ee",
+            "say": "{/ee/|iː}",
+            "audio": "voice/line-701f08c8f6944cca.m4a"
+          },
+          {
+            "text": "n",
+            "say": "{/n/|nːː}",
+            "audio": "voice/line-1f9de0e8fd168b84.m4a"
+          }
+        ],
+        "blend": {
+          "text": "queen",
+          "say": "queen!",
+          "audio": "voice/line-1baf49ab2dada123.m4a"
+        },
+        "choices": [
+          {
+            "label": "queen",
+            "picture": {
+              "key": "queen",
+              "label": "queen",
+              "url": null
+            }
+          },
+          {
+            "label": "pig",
+            "picture": {
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            }
+          },
+          {
+            "label": "zebra",
+            "picture": {
+              "key": "zebra",
+              "label": "zebra",
+              "url": null
+            }
+          }
+        ],
+        "answer": 0
       }
     }
   ]

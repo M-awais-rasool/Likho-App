@@ -299,19 +299,62 @@
     },
     {
       "id": "level-60-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: n, p, q, s, u, y!",
-        "say": "Say all the letters with me! {n|ˈɛn}, {p|pˈiː}, {q|kjˈuː}, {s|ˈɛs}, {u|jˈuː}, {y|wˈaɪ}!",
-        "audio": "voice/line-244af00ace147a34.m4a"
+        "text": "Join n to y!",
+        "say": "Join the dots, from {n|ˈɛn} to {y|wˈaɪ}. What will it be?",
+        "audio": "voice/line-179ffe61e22b5bc8.m4a"
       },
       "card": {
-        "text": "n, p, q, s, u, y!",
+        "text": "n → y",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "speak": {
-        "expected": "n, p, q, s, u, y!"
+      "connect": {
+        "labels": [
+          "n",
+          "p",
+          "q",
+          "s",
+          "u",
+          "y"
+        ],
+        "points": [
+          [
+            50,
+            3
+          ],
+          [
+            88,
+            38
+          ],
+          [
+            69,
+            68
+          ],
+          [
+            50,
+            97
+          ],
+          [
+            31,
+            68
+          ],
+          [
+            12,
+            38
+          ]
+        ],
+        "picture": {
+          "key": "kite",
+          "label": "kite",
+          "url": null
+        },
+        "done": {
+          "text": "A kite!",
+          "say": "It's a kite!",
+          "audio": "voice/line-84a0b92f93e00a15.m4a"
+        }
       }
     },
     {

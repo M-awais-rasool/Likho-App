@@ -316,23 +316,77 @@
     },
     {
       "id": "level-07-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: G is for goat!",
-        "say": "{G|ʤˈiː} is for goat! Now you say it.",
-        "audio": "voice/line-952ba1047d5f6168.m4a"
+        "text": "Join C to K!",
+        "say": "Join the dots, from {C|sˈiː} to {K|kˈeɪ}. What will it be?",
+        "audio": "voice/line-0c26de6659d36975.m4a"
       },
       "card": {
-        "text": "G is for goat!",
+        "text": "C → K",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J",
+          "K"
+        ],
+        "points": [
+          [
+            6,
+            50
+          ],
+          [
+            30,
+            24
+          ],
+          [
+            56,
+            22
+          ],
+          [
+            76,
+            36
+          ],
+          [
+            96,
+            16
+          ],
+          [
+            96,
+            84
+          ],
+          [
+            76,
+            64
+          ],
+          [
+            56,
+            78
+          ],
+          [
+            30,
+            76
+          ]
+        ],
         "picture": {
-          "key": "goat",
-          "label": "goat",
+          "key": "fish",
+          "label": "fish",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "G is for goat!"
+        "done": {
+          "text": "A fish!",
+          "say": "It's a fish!",
+          "audio": "voice/line-141ec1a5d1f6e869.m4a"
+        }
       }
     }
   ]

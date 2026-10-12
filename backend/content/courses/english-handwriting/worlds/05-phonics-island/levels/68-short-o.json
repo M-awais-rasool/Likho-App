@@ -113,19 +113,19 @@
         ],
         "items": [
           {
-            "label": "fish",
+            "label": "foot",
             "picture": {
-              "key": "fish",
-              "label": "fish",
+              "key": "foot",
+              "label": "foot",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "four",
+            "label": "fish",
             "picture": {
-              "key": "four",
-              "label": "four",
+              "key": "fish",
+              "label": "fish",
               "url": null
             },
             "bin": 1
@@ -140,28 +140,28 @@
             "bin": 0
           },
           {
-            "label": "pin",
+            "label": "pot",
             "picture": {
-              "key": "pin",
-              "label": "pin",
+              "key": "pot",
+              "label": "pot",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "foot",
+            "label": "four",
             "picture": {
-              "key": "foot",
-              "label": "foot",
+              "key": "four",
+              "label": "four",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "pen",
+            "label": "pig",
             "picture": {
-              "key": "pen",
-              "label": "pen",
+              "key": "pig",
+              "label": "pig",
               "url": null
             },
             "bin": 0
@@ -327,23 +327,68 @@
     },
     {
       "id": "level-68-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: dog, box, pot, fox!",
-        "say": "Say them with me! dog, box, pot, fox!",
-        "audio": "voice/line-0e337c9f9452f73d.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "dog, box, pot, fox!",
-        "picture": {
-          "key": "dog",
-          "label": "dog",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "dog, box, pot, fox!"
+      "sounds": {
+        "word": "dog",
+        "parts": [
+          {
+            "text": "d",
+            "say": "{/d/|dʌ}",
+            "audio": "voice/line-f06c02b8a2619c78.m4a"
+          },
+          {
+            "text": "o",
+            "say": "{/o/|ɑ}",
+            "audio": "voice/line-253bbb0325fbe7e3.m4a"
+          },
+          {
+            "text": "g",
+            "say": "{/g/|ɡʌ}",
+            "audio": "voice/line-be23dfaf66221347.m4a"
+          }
+        ],
+        "blend": {
+          "text": "dog",
+          "say": "dog!",
+          "audio": "voice/line-b153f0b84aa91128.m4a"
+        },
+        "choices": [
+          {
+            "label": "box",
+            "picture": {
+              "key": "box",
+              "label": "box",
+              "url": null
+            }
+          },
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            }
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            }
+          }
+        ],
+        "answer": 2
       }
     },
     {
