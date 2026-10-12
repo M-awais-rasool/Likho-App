@@ -120,6 +120,126 @@ void main() {
     });
   });
 
+  test('sound buttons: sounds in order (each said), slide to read, then the picture', () {
+    fakeAsync((clock) {
+      final level = onlyRounds(levelWith((r) => r is SoundsRound), (r) => r is SoundsRound);
+      final c = ProviderContainer();
+      addTearDown(c.dispose);
+      final sub = c.listen(levelSessionProvider(level), (_, _) {});
+      final s = c.read(levelSessionProvider(level).notifier);
+      SessionState st() => c.read(levelSessionProvider(level));
+      final r = level.rounds.first as SoundsRound;
+      expect(r.parts.map((p) => p.text).join(), r.word, reason: 'the sounds spell the word');
+
+      s.blendWord(); // not before every sound is tapped
+      expect(st().blended, isFalse);
+      if (r.parts.length > 1) {
+        s.tapSound(1); // a later dot waits: no sound, no mistake
+        expect(st().found, isEmpty);
+        expect((st().said, st().mistakes), (0, 0));
+      }
+      for (var i = 0; i < r.parts.length; i++) {
+        s.tapSound(i);
+        expect(st().found.length, i + 1);
+        expect(st().saying, r.parts[i], reason: 'Pencil says the sound');
+      }
+      final said = st().said;
+      s.tapSound(0); // a lit dot says its sound again
+      expect((st().said, st().saying), (said + 1, r.parts[0]));
+      s.pickChoice(r.answer); // pictures only after reading
+      expect(st().correct, isFalse);
+      s.blendWord();
+      expect((st().blended, st().saying), (true, r.blend));
+      s.tapSound(0); // read: the dots are done
+      expect(st().saying, r.blend);
+
+      final wrong = (r.answer + 1) % r.choices.length;
+      s.pickChoice(wrong);
+      expect((st().mistakes, st().hint), (1, true));
+      expect(st().wrongOptions, {wrong});
+      clock.elapse(GameTiming.afterWrong);
+      s.pickChoice(r.answer);
+      expect(st().correct, isTrue);
+      clock.elapse(GameTiming.afterCorrect);
+      expect(st().finished, isTrue);
+      sub.close();
+    });
+  });
+
+  test('clap the beats: a tap a beat, Done checks; a wrong count is a mistake, Pencil says the hint, the drum starts over', () {
+    fakeAsync((clock) {
+      final level = onlyRounds(levelWith((r) => r is BeatsRound), (r) => r is BeatsRound);
+      final c = ProviderContainer();
+      addTearDown(c.dispose);
+      final sub = c.listen(levelSessionProvider(level), (_, _) {});
+      final s = c.read(levelSessionProvider(level).notifier);
+      SessionState st() => c.read(levelSessionProvider(level));
+      final r = level.rounds.first as BeatsRound;
+
+      s.checkBeats(); // nothing drummed yet
+      expect(st().mistakes, 0);
+      for (var i = 0; i < r.count + 1; i++) {
+        s.tapDrum();
+      }
+      s.clearBeats(); // start again: no mistake
+      expect((st().beats, st().mistakes), (0, 0));
+      for (var i = 0; i < r.count + 1; i++) {
+        s.tapDrum();
+      }
+      s.checkBeats();
+      expect((st().mistakes, st().beats, st().hint), (1, 0, true));
+      expect(st().saying, r.hint);
+      clock.elapse(GameTiming.afterWrong);
+      for (var i = 0; i < 40; i++) {
+        s.tapDrum();
+      }
+      expect(st().beats, LevelSession.maxBeats, reason: 'drumming on and on stops counting');
+      s.clearBeats();
+      for (var i = 0; i < r.count; i++) {
+        s.tapDrum();
+      }
+      s.checkBeats();
+      expect(st().correct, isTrue);
+      sub.close();
+    });
+  });
+
+  test('connect the dots: in label order; a dot out of order is a mistake; the last shows the picture, then it is right', () {
+    fakeAsync((clock) {
+      final level = onlyRounds(levelWith((r) => r is ConnectRound), (r) => r is ConnectRound);
+      final c = ProviderContainer();
+      addTearDown(c.dispose);
+      final sub = c.listen(levelSessionProvider(level), (_, _) {});
+      final s = c.read(levelSessionProvider(level).notifier);
+      SessionState st() => c.read(levelSessionProvider(level));
+      final r = level.rounds.first as ConnectRound;
+      expect(r.points.length, r.labels.length);
+      expect(r.points.every((p) => p.dx >= 0 && p.dx <= 1 && p.dy >= 0 && p.dy <= 1), isTrue);
+
+      s.tapDot(2);
+      expect((st().mistakes, st().picked), (1, 2));
+      expect(st().found, isEmpty);
+      clock.elapse(GameTiming.afterWrong);
+      for (var i = 0; i < r.labels.length; i++) {
+        s.tapDot(i);
+        s.tapDot(i); // twice counts once
+      }
+      expect(st().found.length, r.labels.length);
+      expect((st().correct, st().saying), (false, r.done), reason: 'the picture shows first');
+      clock.elapse(GameTiming.dotsReveal);
+      expect(st().correct, isTrue);
+      expect(st().mistakes, 1);
+      sub.close();
+    });
+  });
+
+  test('the course never asks a child to speak (the app does not listen)', () {
+    final types = {for (final l in testCourse.levels) for (final r in l.rounds) r.type};
+    expect(types, isNot(contains('speak')));
+    expect(types, containsAll(['sounds', 'beats', 'connect']));
+    expect(testCourse.levels.expand((l) => l.rounds).whereType<UnknownRound>(), isEmpty);
+  });
+
   test('resume: a level goes on from a saved round, with its mistakes', () {
     fakeAsync((clock) {
       final level = testCourse.level(5);
