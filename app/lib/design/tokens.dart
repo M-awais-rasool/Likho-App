@@ -524,11 +524,18 @@ abstract final class GameColors {
   // fix-it paper
   static const ruled = Color(0x2E4D9DE0);
 
-  // alien (speak)
-  static const spaceTop = Color(0xFF3A4077);
+  // night sky (certificate)
   static const spaceBottom = Color(0xFF252950);
-  static const starDot = Color(0xFFFFE8A3);
-  static const alien = Color(0xFF7FD69A);
+
+  // the drum (beats)
+  static const drumShell = Color(0xFFF2735B);
+  static const drumCord = Color(0xFFFFE3A3);
+  static const drumRim = Color(0xFF8C5A48);
+  static const drumSkin = Color(0xFFFFF4E0);
+  static const drumSkinShade = Color(0xFFF7E6C8);
+
+  // connect the dots: the finished shape
+  static const dotsFill = Color(0x593BB273); // success .35
 
   // boss bubbles
   static const bubbleRim = Color(0xF2FFFFFF);

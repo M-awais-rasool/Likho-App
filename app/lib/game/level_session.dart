@@ -18,7 +18,7 @@ abstract final class GameTiming {
   static const afterCorrect = Duration(milliseconds: 1350);
   static const afterWrong = Duration(milliseconds: 1300);
   static const orderSettle = Duration(milliseconds: 250); // last tile -> correct
-  static const listening = Duration(milliseconds: 1800); // simulated voice check
+  static const dotsReveal = Duration(milliseconds: 1600); // the last dot -> the picture shows -> correct
   static const matchPeek = Duration(milliseconds: 900); // two cards that are not a pair stay up
   static const flash = Duration(milliseconds: 2600); // flash writing: the letter shows, then hides
 }
@@ -88,9 +88,12 @@ class SessionState {
     this.spellFilled = 0,
     this.choices = const {},
     this.paint,
-    this.listening = false,
     this.found = const {},
     this.open = const [],
+    this.beats = 0,
+    this.blended = false,
+    this.saying,
+    this.said = 0,
     this.finished = false,
   });
 
@@ -114,15 +117,24 @@ class SessionState {
   // story choices (choiceKey -> label), kept for the whole level
   final Map<String, String> choices;
 
-  // speak
-  final bool listening;
-
   // hunt: cells found so far; fix: items fixed; sort: items in a bin;
-  // match: cards matched; pop: bubbles popped
+  // match: cards matched; pop: bubbles popped; sounds: dots tapped;
+  // dots: dots joined
   final Set<int> found;
 
   // match: cards turned up and not matched yet (at most two)
   final List<int> open;
+
+  // beats: drum taps so far
+  final int beats;
+
+  // sounds: the word was read (slid under): its pictures show
+  final bool blended;
+
+  /// What Pencil says now (a sound, a word, a hint); [said] counts the
+  /// lines so the same line twice is said twice.
+  final Prompt? saying;
+  final int said;
 
   final bool finished;
 
@@ -159,9 +171,10 @@ class SessionState {
     Map<String, String>? choices,
     String? paint,
     bool clearPaint = false,
-    bool? listening,
     Set<int>? found,
     List<int>? open,
+    int? beats,
+    bool? blended,
     bool? finished,
   }) =>
       SessionState(
@@ -176,11 +189,38 @@ class SessionState {
         spellFilled: spellFilled ?? this.spellFilled,
         choices: choices ?? this.choices,
         paint: clearPaint ? null : paint ?? this.paint,
-        listening: listening ?? this.listening,
         found: found ?? this.found,
         open: open ?? this.open,
+        beats: beats ?? this.beats,
+        blended: blended ?? this.blended,
+        saying: saying,
+        said: said,
         finished: finished ?? this.finished,
       );
+
+  /// This state with Pencil saying [line] (nothing when null).
+  SessionState say(Prompt? line) => line == null
+      ? this
+      : SessionState(
+          level: level,
+          round: round,
+          mistakes: mistakes,
+          feedback: feedback,
+          hint: hint,
+          wrongOptions: wrongOptions,
+          picked: picked,
+          placed: placed,
+          spellFilled: spellFilled,
+          choices: choices,
+          paint: paint,
+          found: found,
+          open: open,
+          beats: beats,
+          blended: blended,
+          saying: line,
+          said: said + 1,
+          finished: finished,
+        );
 }
 
 /// Result of a submitted drawing (from the writing pad).
@@ -254,16 +294,88 @@ class LevelSession extends Notifier<SessionState> {
     _correct();
   }
 
-  // ------------------------------------------------------------ speak
-  /// Mic tapped. Voice checking is simulated like the prototype: listens
-  /// for [GameTiming.listening], then accepts.
-  void listen() {
-    if (state.current is! SpeakRound || _locked || state.listening || state.feedback != RoundFeedback.none) return;
-    state = state.copyWith(listening: true);
-    _after(GameTiming.listening, () {
-      state = state.copyWith(listening: false);
+  // ------------------------------------------------------------ sounds
+  /// Sound dot [part] tapped: the next one says its sound and lights up;
+  /// one already lit says it again; later ones wait (not a mistake: the
+  /// next dot glows).
+  void tapSound(int part) {
+    final r = state.current;
+    if (r is! SoundsRound || _locked || state.blended || part < 0 || part >= r.parts.length) return;
+    if (part < state.found.length) {
+      state = state.say(r.parts[part]);
+    } else if (part == state.found.length) {
+      state = state.copyWith(found: {...state.found, part}).say(r.parts[part]);
+    }
+  }
+
+  /// Slid under the word once every sound was tapped: Pencil reads it and
+  /// the pictures show.
+  void blendWord() {
+    final r = state.current;
+    if (r is! SoundsRound || _locked || state.blended || state.found.length < r.parts.length) return;
+    state = state.copyWith(blended: true).say(r.blend);
+  }
+
+  /// Picture [index] of [SoundsRound.choices] tapped (after reading).
+  void pickChoice(int index) {
+    final r = state.current;
+    if (r is! SoundsRound || _locked || !state.blended || state.wrongOptions.contains(index)) return;
+    if (index == r.answer) {
+      state = state.copyWith(picked: index);
       _correct();
-    });
+    } else {
+      state = state.copyWith(wrongOptions: {...state.wrongOptions, index});
+      _wrong();
+    }
+  }
+
+  // ------------------------------------------------------------ beats
+  /// Drum taps counted at most (a child drumming on and on).
+  static const maxBeats = 12;
+
+  void tapDrum() {
+    final r = state.current;
+    if (r is! BeatsRound || _locked || state.beats >= maxBeats) return;
+    state = state.copyWith(beats: state.beats + 1);
+  }
+
+  /// Start the drumming again (not a mistake).
+  void clearBeats() {
+    if (state.current is! BeatsRound || _locked || state.beats == 0) return;
+    state = state.copyWith(beats: 0);
+  }
+
+  /// "Done" after drumming: the right number of beats is right; else Pencil
+  /// says the hint and the drum starts again.
+  void checkBeats() {
+    final r = state.current;
+    if (r is! BeatsRound || _locked || state.beats == 0) return;
+    if (state.beats == r.count) {
+      _correct();
+    } else {
+      state = state.copyWith(beats: 0);
+      _wrong();
+      state = state.say(r.hint);
+    }
+  }
+
+  // ------------------------------------------------------------ dots
+  /// Dot [index] tapped: the next in order joins the line; another one is
+  /// a mistake. The last one shows the picture, then the round is right.
+  void tapDot(int index) {
+    final r = state.current;
+    if (r is! ConnectRound || _locked || state.found.contains(index) || index < 0 || index >= r.labels.length) return;
+    if (index != state.found.length) {
+      state = state.copyWith(picked: index);
+      _wrong();
+      return;
+    }
+    final found = {...state.found, index};
+    state = state.copyWith(found: found, clearPicked: true);
+    if (found.length == r.labels.length) {
+      state = state.say(r.done);
+      _after(GameTiming.dotsReveal, _correct);
+    }
   }
 
   // ------------------------------------------------------------ hunt
