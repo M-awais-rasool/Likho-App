@@ -238,10 +238,19 @@
         ],
         "items": [
           {
-            "label": "book",
+            "label": "bed",
             "picture": {
-              "key": "book",
-              "label": "book",
+              "key": "bed",
+              "label": "bed",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "boat",
+            "picture": {
+              "key": "boat",
+              "label": "boat",
               "url": null
             },
             "bin": 0
@@ -256,10 +265,10 @@
             "bin": 1
           },
           {
-            "label": "bug",
+            "label": "bat",
             "picture": {
-              "key": "bug",
-              "label": "bug",
+              "key": "bat",
+              "label": "bat",
               "url": null
             },
             "bin": 0
@@ -272,15 +281,6 @@
               "url": null
             },
             "bin": 1
-          },
-          {
-            "label": "ball",
-            "picture": {
-              "key": "ball",
-              "label": "ball",
-              "url": null
-            },
-            "bin": 0
           }
         ]
       }
@@ -315,23 +315,68 @@
     },
     {
       "id": "level-100-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: boat, goat, car, star!",
-        "say": "Say them with me! boat, goat, car, star!",
-        "audio": "voice/line-214193441c21aa93.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "boat, goat, car, star!",
-        "picture": {
-          "key": "boat",
-          "label": "boat",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "boat, goat, car, star!"
+      "sounds": {
+        "word": "boat",
+        "parts": [
+          {
+            "text": "b",
+            "say": "{/b/|bʌ}",
+            "audio": "voice/line-54284489cdcd15c3.m4a"
+          },
+          {
+            "text": "oa",
+            "say": "{/oa/|oʊ}",
+            "audio": "voice/line-6ba096958ec4e79c.m4a"
+          },
+          {
+            "text": "t",
+            "say": "{/t/|tʌ}",
+            "audio": "voice/line-570d1fc0dffd834f.m4a"
+          }
+        ],
+        "blend": {
+          "text": "boat",
+          "say": "boat!",
+          "audio": "voice/line-dfc6bc396ced507d.m4a"
+        },
+        "choices": [
+          {
+            "label": "boat",
+            "picture": {
+              "key": "boat",
+              "label": "boat",
+              "url": null
+            }
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            }
+          },
+          {
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            }
+          }
+        ],
+        "answer": 0
       }
     },
     {

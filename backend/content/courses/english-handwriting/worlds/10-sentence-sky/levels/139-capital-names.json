@@ -348,23 +348,34 @@
     },
     {
       "id": "level-139-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Names start with a capital letter!",
-        "say": "Names start with a capital letter! Now you say it!",
-        "audio": "voice/line-dde5ad9b0b6abd25.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Names start with a capital letter! Tap the drum once for every word!",
+        "audio": "voice/line-0b61294c0cd89450.m4a"
       },
       "card": {
-        "text": "Names start with a capital letter!",
-        "picture": {
-          "key": "pencil",
-          "label": "pencil",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Names start with a capital letter!"
+      "beats": {
+        "text": "Names start with a capital letter!",
+        "parts": [
+          "Names",
+          "start",
+          "with",
+          "a",
+          "capital",
+          "letter"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Names start with a capital letter",
+          "say": "Names start with a capital letter! Six words!",
+          "audio": "voice/line-21d304d4368ef92f.m4a"
+        }
       }
     },
     {

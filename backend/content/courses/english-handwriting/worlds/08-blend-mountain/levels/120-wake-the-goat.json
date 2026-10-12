@@ -213,58 +213,6 @@
     },
     {
       "id": "level-120-r6",
-      "type": "pick",
-      "prompt": {
-        "text": "What is this?",
-        "say": "What is this? Find the word!",
-        "audio": "voice/line-69b2bf73b2b7783d.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "sled",
-          "label": "sled",
-          "url": null
-        },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-120-r6-o1",
-            "label": "star",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-120-r6-o2",
-            "label": "sled",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-120-r6-o3",
-            "label": "frog",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "sled"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-120-r7",
       "type": "write",
       "prompt": {
         "text": "Write skate",
@@ -291,7 +239,7 @@
       }
     },
     {
-      "id": "level-120-r8",
+      "id": "level-120-r7",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -318,7 +266,7 @@
       }
     },
     {
-      "id": "level-120-r9",
+      "id": "level-120-r8",
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
@@ -356,24 +304,101 @@
       }
     },
     {
-      "id": "level-120-r10",
-      "type": "speak",
+      "id": "level-120-r9",
+      "type": "beats",
       "prompt": {
-        "text": "Say: star, flag, frog, sled!",
-        "say": "Say them with me! star, flag, frog, sled!",
-        "audio": "voice/line-04c75ebc416aac8b.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "The fish is in the sea. Tap the drum once for every word!",
+        "audio": "voice/line-b8edb4cbb35f7d4e.m4a"
       },
       "card": {
-        "text": "star, flag, frog, sled!",
-        "picture": {
-          "key": "star",
-          "label": "star",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "star, flag, frog, sled!"
+      "beats": {
+        "text": "The fish is in the sea.",
+        "parts": [
+          "The",
+          "fish",
+          "is",
+          "in",
+          "the",
+          "sea"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "The fish is in the sea",
+          "say": "The fish is in the sea. Six words!",
+          "audio": "voice/line-b050d72eb8524cff.m4a"
+        }
+      }
+    },
+    {
+      "id": "level-120-r10",
+      "type": "sounds",
+      "prompt": {
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "sounds": {
+        "word": "star",
+        "parts": [
+          {
+            "text": "s",
+            "say": "{/s/|sːː}",
+            "audio": "voice/line-176638e56286fdf8.m4a"
+          },
+          {
+            "text": "t",
+            "say": "{/t/|tʌ}",
+            "audio": "voice/line-570d1fc0dffd834f.m4a"
+          },
+          {
+            "text": "ar",
+            "say": "{/ar/|ɑːɹ}",
+            "audio": "voice/line-9a62cc86666d5529.m4a"
+          }
+        ],
+        "blend": {
+          "text": "star",
+          "say": "star!",
+          "audio": "voice/line-710761c051416a81.m4a"
+        },
+        "choices": [
+          {
+            "label": "star",
+            "picture": {
+              "key": "star",
+              "label": "star",
+              "url": null
+            }
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            }
+          },
+          {
+            "label": "flag",
+            "picture": {
+              "key": "flag",
+              "label": "flag",
+              "url": null
+            }
+          }
+        ],
+        "answer": 0
       }
     }
   ]

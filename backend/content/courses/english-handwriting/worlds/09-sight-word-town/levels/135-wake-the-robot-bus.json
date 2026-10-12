@@ -175,10 +175,10 @@
         ],
         "items": [
           {
-            "label": "four",
+            "label": "foot",
             "picture": {
-              "key": "four",
-              "label": "four",
+              "key": "foot",
+              "label": "foot",
               "url": null
             },
             "bin": 0
@@ -193,13 +193,13 @@
             "bin": 1
           },
           {
-            "label": "doctor",
+            "label": "four",
             "picture": {
-              "key": "doctor",
-              "label": "doctor",
+              "key": "four",
+              "label": "four",
               "url": null
             },
-            "bin": 1
+            "bin": 0
           },
           {
             "label": "duck",
@@ -211,15 +211,6 @@
             "bin": 1
           },
           {
-            "label": "foot",
-            "picture": {
-              "key": "foot",
-              "label": "foot",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
             "label": "fish",
             "picture": {
               "key": "fish",
@@ -227,59 +218,21 @@
               "url": null
             },
             "bin": 0
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 1
           }
         ]
       }
     },
     {
       "id": "level-135-r6",
-      "type": "pick",
-      "prompt": {
-        "text": "What is this?",
-        "audio": "voice/line-7a2c7d4750e1443e.m4a"
-      },
-      "card": {
-        "text": "with",
-        "picture": null,
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-135-r6-o1",
-            "label": "the",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-135-r6-o2",
-            "label": "like",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-135-r6-o3",
-            "label": "with",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "with"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-135-r7",
       "type": "write",
       "prompt": {
         "text": "Write many",
@@ -302,7 +255,7 @@
       }
     },
     {
-      "id": "level-135-r8",
+      "id": "level-135-r7",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -325,7 +278,7 @@
       }
     },
     {
-      "id": "level-135-r9",
+      "id": "level-135-r8",
       "type": "write",
       "prompt": {
         "text": "Look, then write they",
@@ -348,20 +301,105 @@
       }
     },
     {
-      "id": "level-135-r10",
-      "type": "speak",
+      "id": "level-135-r9",
+      "type": "beats",
       "prompt": {
-        "text": "Say: the, said, they, with!",
-        "say": "Say them with me! the, said, they, with!",
-        "audio": "voice/line-89e5f771b974babe.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "The fish is in the sea. Tap the drum once for every word!",
+        "audio": "voice/line-b8edb4cbb35f7d4e.m4a"
       },
       "card": {
-        "text": "the, said, they, with!",
+        "text": null,
         "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "the, said, they, with!"
+      "beats": {
+        "text": "The fish is in the sea.",
+        "parts": [
+          "The",
+          "fish",
+          "is",
+          "in",
+          "the",
+          "sea"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "The fish is in the sea",
+          "say": "The fish is in the sea. Six words!",
+          "audio": "voice/line-b050d72eb8524cff.m4a"
+        }
+      }
+    },
+    {
+      "id": "level-135-r10",
+      "type": "connect",
+      "prompt": {
+        "text": "Join r to y!",
+        "say": "Join the dots, from {r|ˈɑːɹ} to {y|wˈaɪ}. What will it be?",
+        "audio": "voice/line-7f7017e625198520.m4a"
+      },
+      "card": {
+        "text": "r → y",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "r",
+          "s",
+          "t",
+          "u",
+          "v",
+          "w",
+          "x",
+          "y"
+        ],
+        "points": [
+          [
+            8,
+            44
+          ],
+          [
+            40,
+            44
+          ],
+          [
+            40,
+            10
+          ],
+          [
+            60,
+            10
+          ],
+          [
+            60,
+            44
+          ],
+          [
+            92,
+            44
+          ],
+          [
+            92,
+            94
+          ],
+          [
+            8,
+            94
+          ]
+        ],
+        "picture": {
+          "key": "cake",
+          "label": "cake",
+          "url": null
+        },
+        "done": {
+          "text": "A cake!",
+          "say": "It's a cake!",
+          "audio": "voice/line-603810a81e3a93a1.m4a"
+        }
       }
     }
   ]

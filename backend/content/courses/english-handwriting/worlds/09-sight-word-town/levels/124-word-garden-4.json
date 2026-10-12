@@ -309,23 +309,34 @@
     },
     {
       "id": "level-124-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: The cat is on the box.",
-        "say": "The cat is on the box. Now you say it!",
-        "audio": "voice/line-e9d3279873a1471a.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "The cat is on the box. Tap the drum once for every word!",
+        "audio": "voice/line-efeb2a5e89b4022d.m4a"
       },
       "card": {
-        "text": "The cat is on the box.",
-        "picture": {
-          "key": "cat_on_box",
-          "label": "cat on box",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "The cat is on the box."
+      "beats": {
+        "text": "The cat is on the box.",
+        "parts": [
+          "The",
+          "cat",
+          "is",
+          "on",
+          "the",
+          "box"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "The cat is on the box",
+          "say": "The cat is on the box. Six words!",
+          "audio": "voice/line-6acfdc4778120a40.m4a"
+        }
       }
     },
     {

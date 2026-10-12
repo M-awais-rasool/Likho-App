@@ -277,23 +277,62 @@
     },
     {
       "id": "level-95-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: ring, king, wing, sing!",
-        "say": "Say them with me! ring, king, wing, sing!",
-        "audio": "voice/line-b5fbceec84b35e05.m4a"
+        "text": "Join a to f!",
+        "say": "Join the dots, from {a|ˈeɪ} to {f|ˈɛf}. What will it be?",
+        "audio": "voice/line-a3316cd8c94e22c9.m4a"
       },
       "card": {
-        "text": "ring, king, wing, sing!",
+        "text": "a → f",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f"
+        ],
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            95,
+            42
+          ],
+          [
+            80,
+            94
+          ],
+          [
+            50,
+            94
+          ],
+          [
+            20,
+            94
+          ],
+          [
+            5,
+            42
+          ]
+        ],
         "picture": {
-          "key": "ring",
-          "label": "ring",
+          "key": "house",
+          "label": "house",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "ring, king, wing, sing!"
+        "done": {
+          "text": "A house!",
+          "say": "It's a house!",
+          "audio": "voice/line-d592a37832458791.m4a"
+        }
       }
     },
     {

@@ -113,37 +113,19 @@
         ],
         "items": [
           {
-            "label": "tooth",
+            "label": "leg",
             "picture": {
-              "key": "tooth",
-              "label": "tooth",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "lion",
-            "picture": {
-              "key": "lion",
-              "label": "lion",
+              "key": "leg",
+              "label": "leg",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "turtle",
+            "label": "tooth",
             "picture": {
-              "key": "turtle",
-              "label": "turtle",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "tent",
-            "picture": {
-              "key": "tent",
-              "label": "tent",
+              "key": "tooth",
+              "label": "tooth",
               "url": null
             },
             "bin": 0
@@ -165,6 +147,24 @@
               "url": null
             },
             "bin": 1
+          },
+          {
+            "label": "tiger",
+            "picture": {
+              "key": "tiger",
+              "label": "tiger",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "tent",
+            "picture": {
+              "key": "tent",
+              "label": "tent",
+              "url": null
+            },
+            "bin": 0
           }
         ]
       }
@@ -328,23 +328,73 @@
     },
     {
       "id": "level-112-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: hand, tent, lamp, nest!",
-        "say": "Say them with me! hand, tent, lamp, nest!",
-        "audio": "voice/line-d9af575f0c74da7a.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "hand, tent, lamp, nest!",
-        "picture": {
-          "key": "hand",
-          "label": "hand",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "hand, tent, lamp, nest!"
+      "sounds": {
+        "word": "hand",
+        "parts": [
+          {
+            "text": "h",
+            "say": "{/h/|hʌ}",
+            "audio": "voice/line-cf2e19ba9b889302.m4a"
+          },
+          {
+            "text": "a",
+            "say": "{/a/|æ}",
+            "audio": "voice/line-6a230dad287fe9e9.m4a"
+          },
+          {
+            "text": "n",
+            "say": "{/n/|nːː}",
+            "audio": "voice/line-1f9de0e8fd168b84.m4a"
+          },
+          {
+            "text": "d",
+            "say": "{/d/|dʌ}",
+            "audio": "voice/line-f06c02b8a2619c78.m4a"
+          }
+        ],
+        "blend": {
+          "text": "hand",
+          "say": "hand!",
+          "audio": "voice/line-a12b2d37a91a73f0.m4a"
+        },
+        "choices": [
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            }
+          },
+          {
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            }
+          },
+          {
+            "label": "hand",
+            "picture": {
+              "key": "hand",
+              "label": "hand",
+              "url": null
+            }
+          }
+        ],
+        "answer": 2
       }
     },
     {

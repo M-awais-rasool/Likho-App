@@ -263,23 +263,33 @@
     },
     {
       "id": "level-130-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: I play with my dog.",
-        "say": "I play with my dog. Now you say it!",
-        "audio": "voice/line-ca74e3d509d6dbe0.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "I play with my dog. Tap the drum once for every word!",
+        "audio": "voice/line-0d6d808f9207fea7.m4a"
       },
       "card": {
-        "text": "I play with my dog.",
-        "picture": {
-          "key": "dog",
-          "label": "dog",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "I play with my dog."
+      "beats": {
+        "text": "I play with my dog.",
+        "parts": [
+          "I",
+          "play",
+          "with",
+          "my",
+          "dog"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "I play with my dog",
+          "say": "I play with my dog. Five words!",
+          "audio": "voice/line-48e0a8af042b955b.m4a"
+        }
       }
     },
     {

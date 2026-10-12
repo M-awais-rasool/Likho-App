@@ -308,23 +308,32 @@
     },
     {
       "id": "level-133-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: It is very hot.",
-        "say": "It is very hot. Now you say it!",
-        "audio": "voice/line-7ee8bc8bd11e4bf8.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "It is very hot. Tap the drum once for every word!",
+        "audio": "voice/line-f78af7d8ad69a5bf.m4a"
       },
       "card": {
-        "text": "It is very hot.",
-        "picture": {
-          "key": "hot_sun",
-          "label": "hot sun",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "It is very hot."
+      "beats": {
+        "text": "It is very hot.",
+        "parts": [
+          "It",
+          "is",
+          "very",
+          "hot"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "It is very hot",
+          "say": "It is very hot. Four words!",
+          "audio": "voice/line-169d29dcf62ab695.m4a"
+        }
       }
     },
     {

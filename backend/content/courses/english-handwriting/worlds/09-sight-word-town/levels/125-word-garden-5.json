@@ -287,23 +287,72 @@
     },
     {
       "id": "level-125-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: Come and play.",
-        "say": "Come and play. Now you say it!",
-        "audio": "voice/line-111956fee1ce5db8.m4a"
+        "text": "Join o to v!",
+        "say": "Join the dots, from {o|ˈoʊ} to {v|vˈiː}. What will it be?",
+        "audio": "voice/line-01687c47f1a800c7.m4a"
       },
       "card": {
-        "text": "Come and play.",
+        "text": "o → v",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "o",
+          "p",
+          "q",
+          "r",
+          "s",
+          "t",
+          "u",
+          "v"
+        ],
+        "points": [
+          [
+            8,
+            44
+          ],
+          [
+            40,
+            44
+          ],
+          [
+            40,
+            10
+          ],
+          [
+            60,
+            10
+          ],
+          [
+            60,
+            44
+          ],
+          [
+            92,
+            44
+          ],
+          [
+            92,
+            94
+          ],
+          [
+            8,
+            94
+          ]
+        ],
         "picture": {
-          "key": "play",
-          "label": "play",
+          "key": "cake",
+          "label": "cake",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "Come and play."
+        "done": {
+          "text": "A cake!",
+          "say": "It's a cake!",
+          "audio": "voice/line-603810a81e3a93a1.m4a"
+        }
       }
     },
     {

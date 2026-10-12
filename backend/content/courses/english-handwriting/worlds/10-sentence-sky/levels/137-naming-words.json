@@ -423,23 +423,87 @@
     },
     {
       "id": "level-137-r9",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: A naming word names a person, a place or a thing.",
-        "say": "A naming word names a person, a place or a thing. Now you say it!",
-        "audio": "voice/line-424ed74a981bad50.m4a"
+        "text": "Join j to t!",
+        "say": "Join the dots, from {j|ʤˈeɪ} to {t|tˈiː}. What will it be?",
+        "audio": "voice/line-28129f429fa3208e.m4a"
       },
       "card": {
-        "text": "A naming word names a person, a place or a thing.",
+        "text": "j → t",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "j",
+          "k",
+          "l",
+          "m",
+          "n",
+          "o",
+          "p",
+          "q",
+          "r",
+          "s",
+          "t"
+        ],
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            76,
+            14
+          ],
+          [
+            88,
+            38
+          ],
+          [
+            78,
+            62
+          ],
+          [
+            60,
+            78
+          ],
+          [
+            66,
+            96
+          ],
+          [
+            34,
+            96
+          ],
+          [
+            40,
+            78
+          ],
+          [
+            22,
+            62
+          ],
+          [
+            12,
+            38
+          ],
+          [
+            24,
+            14
+          ]
+        ],
         "picture": {
-          "key": "ball",
-          "label": "ball",
+          "key": "balloon",
+          "label": "balloon",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "A naming word names a person, a place or a thing."
+        "done": {
+          "text": "A balloon!",
+          "say": "It's a balloon!",
+          "audio": "voice/line-02f6767f455aad89.m4a"
+        }
       }
     },
     {

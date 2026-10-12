@@ -322,23 +322,87 @@
     },
     {
       "id": "level-91-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: ship, shop, fish, shell!",
-        "say": "Say them with me! ship, shop, fish, shell!",
-        "audio": "voice/line-b6e9cafe50cafa76.m4a"
+        "text": "Join d to n!",
+        "say": "Join the dots, from {d|dˈiː} to {n|ˈɛn}. What will it be?",
+        "audio": "voice/line-59371e17ce323ed6.m4a"
       },
       "card": {
-        "text": "ship, shop, fish, shell!",
+        "text": "d → n",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "d",
+          "e",
+          "f",
+          "g",
+          "h",
+          "i",
+          "j",
+          "k",
+          "l",
+          "m",
+          "n"
+        ],
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            76,
+            14
+          ],
+          [
+            88,
+            38
+          ],
+          [
+            78,
+            62
+          ],
+          [
+            60,
+            78
+          ],
+          [
+            66,
+            96
+          ],
+          [
+            34,
+            96
+          ],
+          [
+            40,
+            78
+          ],
+          [
+            22,
+            62
+          ],
+          [
+            12,
+            38
+          ],
+          [
+            24,
+            14
+          ]
+        ],
         "picture": {
-          "key": "ship",
-          "label": "ship",
+          "key": "balloon",
+          "label": "balloon",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "ship, shop, fish, shell!"
+        "done": {
+          "text": "A balloon!",
+          "say": "It's a balloon!",
+          "audio": "voice/line-02f6767f455aad89.m4a"
+        }
       }
     },
     {

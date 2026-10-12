@@ -288,23 +288,72 @@
     },
     {
       "id": "level-99-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: light, night, high, right!",
-        "say": "Say them with me! light, night, high, right!",
-        "audio": "voice/line-c3d4ebbb84e6cee5.m4a"
+        "text": "Join d to k!",
+        "say": "Join the dots, from {d|dˈiː} to {k|kˈeɪ}. What will it be?",
+        "audio": "voice/line-9d5f77c16671a75b.m4a"
       },
       "card": {
-        "text": "light, night, high, right!",
+        "text": "d → k",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "d",
+          "e",
+          "f",
+          "g",
+          "h",
+          "i",
+          "j",
+          "k"
+        ],
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            88,
+            20
+          ],
+          [
+            98,
+            50
+          ],
+          [
+            64,
+            46
+          ],
+          [
+            50,
+            96
+          ],
+          [
+            36,
+            46
+          ],
+          [
+            2,
+            50
+          ],
+          [
+            12,
+            20
+          ]
+        ],
         "picture": {
-          "key": "light",
-          "label": "light",
+          "key": "umbrella",
+          "label": "umbrella",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "light, night, high, right!"
+        "done": {
+          "text": "An umbrella!",
+          "say": "It's an umbrella!",
+          "audio": "voice/line-4a730bcd271939db.m4a"
+        }
       }
     },
     {

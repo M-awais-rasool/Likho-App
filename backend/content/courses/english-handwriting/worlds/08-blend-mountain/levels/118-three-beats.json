@@ -347,23 +347,32 @@
     },
     {
       "id": "level-118-r7",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: But, ter, fly! Butterfly!",
-        "say": "But, ter, fly! Butterfly! Now you say it!",
-        "audio": "voice/line-0f87f3e71ff68b15.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "But, ter, fly! Butterfly! Tap the drum once for every word!",
+        "audio": "voice/line-cd43efefc34130a0.m4a"
       },
       "card": {
-        "text": "But, ter, fly! Butterfly!",
-        "picture": {
-          "key": "butterfly",
-          "label": "butterfly",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "But, ter, fly! Butterfly!"
+      "beats": {
+        "text": "But, ter, fly! Butterfly!",
+        "parts": [
+          "But",
+          "ter",
+          "fly",
+          "Butterfly"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "But ter fly Butterfly",
+          "say": "But, ter, fly! Butterfly! Four words!",
+          "audio": "voice/line-7b8a41fe21bd491d.m4a"
+        }
       }
     },
     {

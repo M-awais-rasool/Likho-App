@@ -137,54 +137,6 @@
     },
     {
       "id": "level-113-r4",
-      "type": "pick",
-      "prompt": {
-        "text": "Find the word you hear",
-        "say": "Listen! Find the word salt.",
-        "audio": "voice/line-dda58ddc4e9eb625.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": null,
-        "listen": true
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-113-r4-o1",
-            "label": "salt",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-113-r4-o2",
-            "label": "desk",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-113-r4-o3",
-            "label": "mask",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "salt"
-        },
-        "shape": "balloon",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-113-r5",
       "type": "write",
       "prompt": {
         "text": "Which letter is missing?",
@@ -211,7 +163,7 @@
       }
     },
     {
-      "id": "level-113-r6",
+      "id": "level-113-r5",
       "type": "match",
       "prompt": {
         "text": "Find the pairs!",
@@ -271,7 +223,7 @@
       }
     },
     {
-      "id": "level-113-r7",
+      "id": "level-113-r6",
       "type": "hunt",
       "prompt": {
         "text": "Find every milk!",
@@ -299,28 +251,78 @@
       }
     },
     {
-      "id": "level-113-r8",
-      "type": "speak",
+      "id": "level-113-r7",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: mask, salt, belt, milk!",
-        "say": "Say them with me! mask, salt, belt, milk!",
-        "audio": "voice/line-bae83b415bd7135b.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "mask, salt, belt, milk!",
-        "picture": {
-          "key": "mask",
-          "label": "mask",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "mask, salt, belt, milk!"
+      "sounds": {
+        "word": "mask",
+        "parts": [
+          {
+            "text": "m",
+            "say": "{/m/|mːː}",
+            "audio": "voice/line-26d6be66a61da36b.m4a"
+          },
+          {
+            "text": "a",
+            "say": "{/a/|æ}",
+            "audio": "voice/line-6a230dad287fe9e9.m4a"
+          },
+          {
+            "text": "s",
+            "say": "{/s/|sːː}",
+            "audio": "voice/line-176638e56286fdf8.m4a"
+          },
+          {
+            "text": "k",
+            "say": "{/k/|kʌ}",
+            "audio": "voice/line-eec1fee16c5c51e0.m4a"
+          }
+        ],
+        "blend": {
+          "text": "mask",
+          "say": "mask!",
+          "audio": "voice/line-f0809abad20942a9.m4a"
+        },
+        "choices": [
+          {
+            "label": "mask",
+            "picture": {
+              "key": "mask",
+              "label": "mask",
+              "url": null
+            }
+          },
+          {
+            "label": "pig",
+            "picture": {
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            }
+          },
+          {
+            "label": "salt",
+            "picture": {
+              "key": "salt",
+              "label": "salt",
+              "url": null
+            }
+          }
+        ],
+        "answer": 0
       }
     },
     {
-      "id": "level-113-r9",
+      "id": "level-113-r8",
       "type": "write",
       "prompt": {
         "text": "Write belt",
@@ -343,7 +345,7 @@
       }
     },
     {
-      "id": "level-113-r10",
+      "id": "level-113-r9",
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
@@ -359,13 +361,13 @@
         "items": [
           {
             "text": "mask",
-            "wrong": null,
-            "at": null
+            "wrong": "mirror",
+            "at": 2
           },
           {
             "text": "salt",
-            "wrong": "mirror",
-            "at": 0
+            "wrong": null,
+            "at": null
           },
           {
             "text": "belt",
@@ -378,6 +380,91 @@
             "at": 3
           }
         ]
+      }
+    },
+    {
+      "id": "level-113-r10",
+      "type": "connect",
+      "prompt": {
+        "text": "Join I to S!",
+        "say": "Join the dots, from {I|ˈaɪ} to {S|ˈɛs}. What will it be?",
+        "audio": "voice/line-99ec9c61da075cfb.m4a"
+      },
+      "card": {
+        "text": "I → S",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "I",
+          "J",
+          "K",
+          "L",
+          "M",
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S"
+        ],
+        "points": [
+          [
+            50,
+            2
+          ],
+          [
+            80,
+            36
+          ],
+          [
+            60,
+            36
+          ],
+          [
+            88,
+            66
+          ],
+          [
+            60,
+            66
+          ],
+          [
+            60,
+            96
+          ],
+          [
+            40,
+            96
+          ],
+          [
+            40,
+            66
+          ],
+          [
+            12,
+            66
+          ],
+          [
+            40,
+            36
+          ],
+          [
+            20,
+            36
+          ]
+        ],
+        "picture": {
+          "key": "tree",
+          "label": "tree",
+          "url": null
+        },
+        "done": {
+          "text": "A tree!",
+          "say": "It's a tree!",
+          "audio": "voice/line-9f1ccab9d42ec40f.m4a"
+        }
       }
     }
   ]

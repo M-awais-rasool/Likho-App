@@ -286,23 +286,82 @@
     },
     {
       "id": "level-103-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: whale, phone, white, dolphin!",
-        "say": "Say them with me! whale, phone, white, dolphin!",
-        "audio": "voice/line-6c5323c711e63965.m4a"
+        "text": "Join Q to Z!",
+        "say": "Join the dots, from {Q|kjˈuː} to {Z|zˈiː}. What will it be?",
+        "audio": "voice/line-3edfb136e734afee.m4a"
       },
       "card": {
-        "text": "whale, phone, white, dolphin!",
+        "text": "Q → Z",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ],
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            62,
+            36
+          ],
+          [
+            96,
+            37
+          ],
+          [
+            69,
+            58
+          ],
+          [
+            78,
+            91
+          ],
+          [
+            50,
+            72
+          ],
+          [
+            22,
+            91
+          ],
+          [
+            31,
+            58
+          ],
+          [
+            4,
+            37
+          ],
+          [
+            38,
+            36
+          ]
+        ],
         "picture": {
-          "key": "whale",
-          "label": "whale",
+          "key": "star",
+          "label": "star",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "whale, phone, white, dolphin!"
+        "done": {
+          "text": "A star!",
+          "say": "It's a star!",
+          "audio": "voice/line-8b6bccb5c1f3e6a4.m4a"
+        }
       }
     },
     {

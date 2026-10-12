@@ -388,23 +388,67 @@
     },
     {
       "id": "level-146-r9",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: Bread and jam, cat and dog!",
-        "say": "Bread and jam, cat and dog! Now you say it!",
-        "audio": "voice/line-5e0afe0f62861d96.m4a"
+        "text": "Join E to K!",
+        "say": "Join the dots, from {E|ˈiː} to {K|kˈeɪ}. What will it be?",
+        "audio": "voice/line-3431ce9d888b9b73.m4a"
       },
       "card": {
-        "text": "Bread and jam, cat and dog!",
+        "text": "E → K",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J",
+          "K"
+        ],
+        "points": [
+          [
+            6,
+            28
+          ],
+          [
+            30,
+            54
+          ],
+          [
+            50,
+            10
+          ],
+          [
+            70,
+            54
+          ],
+          [
+            94,
+            28
+          ],
+          [
+            84,
+            88
+          ],
+          [
+            16,
+            88
+          ]
+        ],
         "picture": {
-          "key": "jam",
-          "label": "jam",
+          "key": "crown",
+          "label": "crown",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "Bread and jam, cat and dog!"
+        "done": {
+          "text": "A crown!",
+          "say": "It's a crown!",
+          "audio": "voice/line-9649373564b61d61.m4a"
+        }
       }
     },
     {

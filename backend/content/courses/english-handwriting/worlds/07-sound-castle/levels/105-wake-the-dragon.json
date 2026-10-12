@@ -89,24 +89,6 @@
             "bin": 1
           },
           {
-            "label": "pig",
-            "picture": {
-              "key": "pig",
-              "label": "pig",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "pin",
-            "picture": {
-              "key": "pin",
-              "label": "pin",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
             "label": "dog",
             "picture": {
               "key": "dog",
@@ -116,10 +98,28 @@
             "bin": 1
           },
           {
-            "label": "pot",
+            "label": "pig",
             "picture": {
-              "key": "pot",
-              "label": "pot",
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "pencil",
+            "picture": {
+              "key": "pencil",
+              "label": "pencil",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "pin",
+            "picture": {
+              "key": "pin",
+              "label": "pin",
               "url": null
             },
             "bin": 0
@@ -241,58 +241,6 @@
     },
     {
       "id": "level-105-r6",
-      "type": "pick",
-      "prompt": {
-        "text": "What is this?",
-        "say": "What is this? Find the word!",
-        "audio": "voice/line-69b2bf73b2b7783d.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "moon",
-          "label": "moon",
-          "url": null
-        },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-105-r6-o1",
-            "label": "moon",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-105-r6-o2",
-            "label": "dog",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-105-r6-o3",
-            "label": "bus",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "moon"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-105-r7",
       "type": "write",
       "prompt": {
         "text": "Write light",
@@ -319,7 +267,7 @@
       }
     },
     {
-      "id": "level-105-r8",
+      "id": "level-105-r7",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -345,7 +293,7 @@
       }
     },
     {
-      "id": "level-105-r9",
+      "id": "level-105-r8",
       "type": "pop",
       "prompt": {
         "text": "Pop every thumb!",
@@ -368,24 +316,101 @@
       }
     },
     {
-      "id": "level-105-r10",
-      "type": "speak",
+      "id": "level-105-r9",
+      "type": "beats",
       "prompt": {
-        "text": "Say: ship, chick, thumb, moon!",
-        "say": "Say them with me! ship, chick, thumb, moon!",
-        "audio": "voice/line-2bcb0d199a505d43.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "The fish is in the sea. Tap the drum once for every word!",
+        "audio": "voice/line-b8edb4cbb35f7d4e.m4a"
       },
       "card": {
-        "text": "ship, chick, thumb, moon!",
-        "picture": {
-          "key": "ship",
-          "label": "ship",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "ship, chick, thumb, moon!"
+      "beats": {
+        "text": "The fish is in the sea.",
+        "parts": [
+          "The",
+          "fish",
+          "is",
+          "in",
+          "the",
+          "sea"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "The fish is in the sea",
+          "say": "The fish is in the sea. Six words!",
+          "audio": "voice/line-b050d72eb8524cff.m4a"
+        }
+      }
+    },
+    {
+      "id": "level-105-r10",
+      "type": "sounds",
+      "prompt": {
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "sounds": {
+        "word": "ship",
+        "parts": [
+          {
+            "text": "sh",
+            "say": "{/sh/|ʃːː}",
+            "audio": "voice/line-9800483307c29bf6.m4a"
+          },
+          {
+            "text": "i",
+            "say": "{/i/|ɪ}",
+            "audio": "voice/line-55c556f50179c6d4.m4a"
+          },
+          {
+            "text": "p",
+            "say": "{/p/|pʌ}",
+            "audio": "voice/line-6b361a2ef876dccb.m4a"
+          }
+        ],
+        "blend": {
+          "text": "ship",
+          "say": "ship!",
+          "audio": "voice/line-d76bbe252f89c3ff.m4a"
+        },
+        "choices": [
+          {
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            }
+          },
+          {
+            "label": "chick",
+            "picture": {
+              "key": "chick",
+              "label": "chick",
+              "url": null
+            }
+          },
+          {
+            "label": "ship",
+            "picture": {
+              "key": "ship",
+              "label": "ship",
+              "url": null
+            }
+          }
+        ],
+        "answer": 2
       }
     }
   ]

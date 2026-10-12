@@ -310,23 +310,34 @@
     },
     {
       "id": "level-102-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: bird, girl, her, turtle!",
-        "say": "Say them with me! bird, girl, her, turtle!",
-        "audio": "voice/line-b3d43e9b64b8fcd8.m4a"
+        "text": "Clap the beats!",
+        "say": "Turtle! Tap the drum for every beat in turtle.",
+        "audio": "voice/line-65ffb16f76a75159.m4a"
       },
       "card": {
-        "text": "bird, girl, her, turtle!",
-        "picture": {
-          "key": "bird",
-          "label": "bird",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "bird, girl, her, turtle!"
+      "beats": {
+        "text": "turtle",
+        "parts": [
+          "tur",
+          "tle"
+        ],
+        "unit": "syllable",
+        "picture": {
+          "key": "turtle",
+          "label": "turtle",
+          "url": null
+        },
+        "hint": {
+          "text": "tur-tle",
+          "say": "Turtle. Two beats!",
+          "audio": "voice/line-d0e54bb40d3cfa7d.m4a"
+        }
       }
     },
     {

@@ -262,23 +262,32 @@
     },
     {
       "id": "level-123-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: She is my sister.",
-        "say": "She is my sister. Now you say it!",
-        "audio": "voice/line-a8a8ea7130692b1a.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "She is my sister. Tap the drum once for every word!",
+        "audio": "voice/line-aafef219bc951502.m4a"
       },
       "card": {
-        "text": "She is my sister.",
-        "picture": {
-          "key": "family_sister",
-          "label": "family sister",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "She is my sister."
+      "beats": {
+        "text": "She is my sister.",
+        "parts": [
+          "She",
+          "is",
+          "my",
+          "sister"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "She is my sister",
+          "say": "She is my sister. Four words!",
+          "audio": "voice/line-93cf462bb89d1b1d.m4a"
+        }
       }
     },
     {

@@ -300,23 +300,78 @@
     },
     {
       "id": "level-114-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: straw, sprout, scroll, splash!",
-        "say": "Say them with me! straw, sprout, scroll, splash!",
-        "audio": "voice/line-97a6503f967f3505.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "straw, sprout, scroll, splash!",
-        "picture": {
-          "key": "straw",
-          "label": "straw",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "straw, sprout, scroll, splash!"
+      "sounds": {
+        "word": "splash",
+        "parts": [
+          {
+            "text": "s",
+            "say": "{/s/|sːː}",
+            "audio": "voice/line-176638e56286fdf8.m4a"
+          },
+          {
+            "text": "p",
+            "say": "{/p/|pʌ}",
+            "audio": "voice/line-6b361a2ef876dccb.m4a"
+          },
+          {
+            "text": "l",
+            "say": "{/l/|lːː}",
+            "audio": "voice/line-46d949fa5b946ccb.m4a"
+          },
+          {
+            "text": "a",
+            "say": "{/a/|æ}",
+            "audio": "voice/line-6a230dad287fe9e9.m4a"
+          },
+          {
+            "text": "sh",
+            "say": "{/sh/|ʃːː}",
+            "audio": "voice/line-9800483307c29bf6.m4a"
+          }
+        ],
+        "blend": {
+          "text": "splash",
+          "say": "splash!",
+          "audio": "voice/line-0149c2f5a786b490.m4a"
+        },
+        "choices": [
+          {
+            "label": "splash",
+            "picture": {
+              "key": "splash",
+              "label": "splash",
+              "url": null
+            }
+          },
+          {
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            }
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            }
+          }
+        ],
+        "answer": 0
       }
     },
     {

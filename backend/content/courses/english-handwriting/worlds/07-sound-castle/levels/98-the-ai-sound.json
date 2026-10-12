@@ -108,6 +108,15 @@
         ],
         "items": [
           {
+            "label": "train",
+            "picture": {
+              "key": "train",
+              "label": "train",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
             "label": "hand",
             "picture": {
               "key": "hand",
@@ -151,15 +160,6 @@
               "url": null
             },
             "bin": null
-          },
-          {
-            "label": "train",
-            "picture": {
-              "key": "train",
-              "label": "train",
-              "url": null
-            },
-            "bin": 0
           }
         ]
       }
@@ -322,23 +322,68 @@
     },
     {
       "id": "level-98-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: rain, snail, train, nail!",
-        "say": "Say them with me! rain, snail, train, nail!",
-        "audio": "voice/line-e430169e9b584565.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "rain, snail, train, nail!",
-        "picture": {
-          "key": "rain",
-          "label": "rain",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "rain, snail, train, nail!"
+      "sounds": {
+        "word": "rain",
+        "parts": [
+          {
+            "text": "r",
+            "say": "{/r/|ɹːː}",
+            "audio": "voice/line-c9097eface293028.m4a"
+          },
+          {
+            "text": "ai",
+            "say": "{/ai/|eɪ}",
+            "audio": "voice/line-a13be2668ad3e15d.m4a"
+          },
+          {
+            "text": "n",
+            "say": "{/n/|nːː}",
+            "audio": "voice/line-1f9de0e8fd168b84.m4a"
+          }
+        ],
+        "blend": {
+          "text": "rain",
+          "say": "rain!",
+          "audio": "voice/line-0f76b6957a75ed5e.m4a"
+        },
+        "choices": [
+          {
+            "label": "snail",
+            "picture": {
+              "key": "snail",
+              "label": "snail",
+              "url": null
+            }
+          },
+          {
+            "label": "rain",
+            "picture": {
+              "key": "rain",
+              "label": "rain",
+              "url": null
+            }
+          },
+          {
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            }
+          }
+        ],
+        "answer": 1
       }
     },
     {

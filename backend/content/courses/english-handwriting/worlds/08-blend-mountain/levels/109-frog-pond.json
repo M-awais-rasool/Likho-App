@@ -113,12 +113,12 @@
           {
             "text": "drum",
             "wrong": "mirror",
-            "at": 1
+            "at": 0
           },
           {
             "text": "crab",
             "wrong": "mirror",
-            "at": 2
+            "at": 0
           }
         ]
       }
@@ -278,23 +278,73 @@
     },
     {
       "id": "level-109-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: frog, tree, drum, crab!",
-        "say": "Say them with me! frog, tree, drum, crab!",
-        "audio": "voice/line-4614fd5baf667952.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "frog, tree, drum, crab!",
-        "picture": {
-          "key": "frog",
-          "label": "frog",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "frog, tree, drum, crab!"
+      "sounds": {
+        "word": "frog",
+        "parts": [
+          {
+            "text": "f",
+            "say": "{/f/|fːː}",
+            "audio": "voice/line-f8e06cf8534c2a27.m4a"
+          },
+          {
+            "text": "r",
+            "say": "{/r/|ɹːː}",
+            "audio": "voice/line-c9097eface293028.m4a"
+          },
+          {
+            "text": "o",
+            "say": "{/o/|ɑ}",
+            "audio": "voice/line-253bbb0325fbe7e3.m4a"
+          },
+          {
+            "text": "g",
+            "say": "{/g/|ɡʌ}",
+            "audio": "voice/line-be23dfaf66221347.m4a"
+          }
+        ],
+        "blend": {
+          "text": "frog",
+          "say": "frog!",
+          "audio": "voice/line-246fb89eccc67ede.m4a"
+        },
+        "choices": [
+          {
+            "label": "drum",
+            "picture": {
+              "key": "drum",
+              "label": "drum",
+              "url": null
+            }
+          },
+          {
+            "label": "frog",
+            "picture": {
+              "key": "frog",
+              "label": "frog",
+              "url": null
+            }
+          },
+          {
+            "label": "cup",
+            "picture": {
+              "key": "cup",
+              "label": "cup",
+              "url": null
+            }
+          }
+        ],
+        "answer": 1
       }
     },
     {
@@ -325,37 +375,10 @@
         ],
         "items": [
           {
-            "label": "sock",
+            "label": "bat",
             "picture": {
-              "key": "sock",
-              "label": "sock",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "seed",
-            "picture": {
-              "key": "seed",
-              "label": "seed",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "bed",
-            "picture": {
-              "key": "bed",
-              "label": "bed",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "bag",
-            "picture": {
-              "key": "bag",
-              "label": "bag",
+              "key": "bat",
+              "label": "bat",
               "url": null
             },
             "bin": 0
@@ -370,10 +393,37 @@
             "bin": 1
           },
           {
-            "label": "bat",
+            "label": "seed",
             "picture": {
-              "key": "bat",
-              "label": "bat",
+              "key": "seed",
+              "label": "seed",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "bus",
+            "picture": {
+              "key": "bus",
+              "label": "bus",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "bee",
+            "picture": {
+              "key": "bee",
+              "label": "bee",
               "url": null
             },
             "bin": 0

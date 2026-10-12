@@ -317,23 +317,33 @@
     },
     {
       "id": "level-150-r10",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: I can write a sentence!",
-        "say": "I can write a sentence! Now you say it!",
-        "audio": "voice/line-3cc0299f74343e65.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "I can write a sentence! Tap the drum once for every word!",
+        "audio": "voice/line-e100b07a4dd92499.m4a"
       },
       "card": {
-        "text": "I can write a sentence!",
-        "picture": {
-          "key": "pencil",
-          "label": "pencil",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "I can write a sentence!"
+      "beats": {
+        "text": "I can write a sentence!",
+        "parts": [
+          "I",
+          "can",
+          "write",
+          "a",
+          "sentence"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "I can write a sentence",
+          "say": "I can write a sentence! Five words!",
+          "audio": "voice/line-15945995e243202d.m4a"
+        }
       }
     }
   ]

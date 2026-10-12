@@ -325,23 +325,34 @@
     },
     {
       "id": "level-86-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: mango, pear, grapes, apple!",
-        "say": "Say them with me! mango, pear, grapes, apple!",
-        "audio": "voice/line-0493b23154339ba8.m4a"
+        "text": "Clap the beats!",
+        "say": "Mango! Tap the drum for every beat in mango.",
+        "audio": "voice/line-ec7495c61dfd0a2f.m4a"
       },
       "card": {
-        "text": "mango, pear, grapes, apple!",
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "beats": {
+        "text": "mango",
+        "parts": [
+          "man",
+          "go"
+        ],
+        "unit": "syllable",
         "picture": {
           "key": "mango",
           "label": "mango",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "mango, pear, grapes, apple!"
+        "hint": {
+          "text": "man-go",
+          "say": "Mango. Two beats!",
+          "audio": "voice/line-67c9e5451511303a.m4a"
+        }
       }
     },
     {

@@ -300,23 +300,68 @@
     },
     {
       "id": "level-106-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: star, stop, snake, spoon!",
-        "say": "Say them with me! star, stop, snake, spoon!",
-        "audio": "voice/line-d9e47d94f0c037ab.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "star, stop, snake, spoon!",
-        "picture": {
-          "key": "star",
-          "label": "star",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "star, stop, snake, spoon!"
+      "sounds": {
+        "word": "star",
+        "parts": [
+          {
+            "text": "s",
+            "say": "{/s/|sːː}",
+            "audio": "voice/line-176638e56286fdf8.m4a"
+          },
+          {
+            "text": "t",
+            "say": "{/t/|tʌ}",
+            "audio": "voice/line-570d1fc0dffd834f.m4a"
+          },
+          {
+            "text": "ar",
+            "say": "{/ar/|ɑːɹ}",
+            "audio": "voice/line-9a62cc86666d5529.m4a"
+          }
+        ],
+        "blend": {
+          "text": "star",
+          "say": "star!",
+          "audio": "voice/line-710761c051416a81.m4a"
+        },
+        "choices": [
+          {
+            "label": "star",
+            "picture": {
+              "key": "star",
+              "label": "star",
+              "url": null
+            }
+          },
+          {
+            "label": "bed",
+            "picture": {
+              "key": "bed",
+              "label": "bed",
+              "url": null
+            }
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            }
+          }
+        ],
+        "answer": 0
       }
     },
     {
@@ -336,23 +381,23 @@
         "items": [
           {
             "text": "star",
-            "wrong": "mirror",
-            "at": 2
-          },
-          {
-            "text": "stop",
             "wrong": null,
             "at": null
           },
           {
-            "text": "snake",
+            "text": "stop",
             "wrong": "mirror",
             "at": 0
           },
           {
-            "text": "spoon",
+            "text": "snake",
             "wrong": null,
             "at": null
+          },
+          {
+            "text": "spoon",
+            "wrong": "mirror",
+            "at": 1
           }
         ]
       }

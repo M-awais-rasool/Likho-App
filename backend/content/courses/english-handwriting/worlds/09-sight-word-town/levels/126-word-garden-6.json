@@ -308,23 +308,33 @@
     },
     {
       "id": "level-126-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: I have a red ball.",
-        "say": "I have a red ball. Now you say it!",
-        "audio": "voice/line-9615590e2da1c37e.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "I have a red ball. Tap the drum once for every word!",
+        "audio": "voice/line-cecdc63e93090dde.m4a"
       },
       "card": {
-        "text": "I have a red ball.",
-        "picture": {
-          "key": "ball",
-          "label": "ball",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "I have a red ball."
+      "beats": {
+        "text": "I have a red ball.",
+        "parts": [
+          "I",
+          "have",
+          "a",
+          "red",
+          "ball"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "I have a red ball",
+          "say": "I have a red ball. Five words!",
+          "audio": "voice/line-88782dc59432cacc.m4a"
+        }
       }
     },
     {
