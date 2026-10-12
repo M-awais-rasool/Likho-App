@@ -9,11 +9,15 @@ import 'package:likho/data/progress.dart';
 import 'package:likho/data/shop_items.dart';
 import 'package:likho/design/tokens.dart';
 import 'package:likho/dev/dev_launch.dart';
+import 'package:likho/feedback/pencil_lines.dart';
+import 'package:likho/mascot/mascot.dart';
 import 'package:likho/screens/app_flow.dart';
 import 'package:likho/screens/auth/sign_in_sheet.dart';
 import 'package:likho/screens/auth/welcome_screen.dart';
+import 'package:likho/screens/common/pencil_figure.dart';
 import 'package:likho/screens/gameplay/gameplay_screen.dart';
 import 'package:likho/screens/parent/parent_gate.dart';
+import 'package:likho/screens/placement/placement_done_screen.dart';
 import 'package:likho/screens/profiles/child_setup_screen.dart';
 import 'package:likho/screens/profiles/whos_playing_screen.dart';
 import 'package:likho/screens/world_map/world_map_screen.dart';
@@ -348,6 +352,42 @@ void main() {
     expect((f.active.name, f.active.age, f.profiles.length), ('Sara', 7, 3));
     expect(t.widget<GameplayScreen>(find.byType(GameplayScreen)).level.number, 0, reason: 'placement warm-up');
     expect(t.takeException(), isNull);
+    await _close(t);
+  });
+
+  testWidgets('adding a child: Pencil asks each step out loud; editing stays quiet', (t) async {
+    String? said() => t.widget<PencilFigure>(find.byType(PencilFigure)).say;
+    await _app(t, DevScreenLauncher(screen: 'onb'));
+    await _pumpFor(t, const Duration(milliseconds: 150));
+    final speaker = t.state(find.byType(PencilFigure));
+    await _pumpFor(t, const Duration(milliseconds: 800));
+    expect(said(), PencilLines.name);
+    expect(t.state(find.byType(PencilFigure)), same(speaker), reason: 'the step rising in must not build Pencil again (the line would start over)');
+    await t.enterText(find.byType(TextField), 'Sara');
+    await t.tap(find.text('Next'));
+    await _pumpFor(t, const Duration(milliseconds: 400));
+    expect(said(), PencilLines.age);
+    await t.tap(find.text('7'));
+    await _pumpFor(t, const Duration(milliseconds: 800));
+    expect(said(), PencilLines.colour);
+    await _close(t);
+
+    await _app(t, DevScreenLauncher(screen: 'edit'));
+    await _pumpFor(t, const Duration(milliseconds: 800));
+    expect(find.byType(ChildSetupScreen), findsOneWidget);
+    expect(said(), isNull, reason: 'a parent edits the profile');
+    await _close(t);
+  });
+
+  testWidgets('placement done: "Let\'s get started!", then Pencil cheers and the map opens', (t) async {
+    var done = 0;
+    await _app(t, PlacementDoneScreen(onDone: () => done++));
+    final pencil = t.widget<PencilFigure>(find.byType(PencilFigure));
+    expect(pencil.say, PencilLines.letsStart);
+    await _pumpFor(t, const Duration(milliseconds: 100));
+    expect(t.widget<PencilFigure>(find.byType(PencilFigure)).state, MascotState.happy, reason: 'voice off: cheers at once');
+    await _pumpFor(t, PlacementDoneScreen.length);
+    expect(done, 1);
     await _close(t);
   });
 }

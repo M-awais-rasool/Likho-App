@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:likho/data/media.dart';
 import 'package:likho/data/models/course_models.dart';
+import 'package:likho/feedback/pencil_lines.dart';
 import 'package:likho/mascot/lip_sync.dart';
 
 import 'fake_backend.dart';
@@ -38,6 +39,17 @@ void main() {
     final missing = [for (final p in allMedia) if (!File('${folder.path}/$p').existsSync()) p]..sort();
     expect(missing, isEmpty, reason: 'run tools/illustrations and tools/voice');
   }, skip: folder.existsSync() ? false : 'no media folder here (the server checks it)');
+
+  test('Pencil\'s app lines are in the app, each with its mouth movement', () {
+    for (final line in PencilLines.all) {
+      expect(File(line).existsSync(), isTrue, reason: '$line: run tools/voice/generate_voice.py --app');
+      expect(File(LipSyncEnvelope.lipFileOf(line)).existsSync(), isTrue, reason: '$line has no .lip');
+    }
+    // the generator's list (its lock) and the app's are the same lines
+    final lock = jsonDecode(File('../tools/voice/app_lines.lock.json').readAsStringSync()) as Map<String, dynamic>;
+    expect({for (final k in lock.keys) 'assets/voice/$k.m4a'}, PencilLines.all.toSet());
+    expect(File('pubspec.yaml').readAsStringSync(), contains('- assets/voice/'));
+  });
 
   test('device voice reads the shown part of a pronunciation', () {
     expect(spokenText('Trace small {a|ˈeɪ}.'), 'Trace small a.');
