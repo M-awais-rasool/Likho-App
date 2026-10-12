@@ -69,8 +69,8 @@
         "items": [
           {
             "text": "cat",
-            "wrong": null,
-            "at": null
+            "wrong": "mirror",
+            "at": 1
           },
           {
             "text": "bed",
@@ -79,8 +79,8 @@
           },
           {
             "text": "pig",
-            "wrong": "mirror",
-            "at": 2
+            "wrong": null,
+            "at": null
           },
           {
             "text": "dog",
@@ -277,23 +277,68 @@
     },
     {
       "id": "level-74-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: cat, bed, pig, dog!",
-        "say": "Say them with me! cat, bed, pig, dog!",
-        "audio": "voice/line-2af527372d1ba387.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "cat, bed, pig, dog!",
-        "picture": {
-          "key": "cat",
-          "label": "cat",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "cat, bed, pig, dog!"
+      "sounds": {
+        "word": "cat",
+        "parts": [
+          {
+            "text": "c",
+            "say": "{/c/|kʌ}",
+            "audio": "voice/line-eec1fee16c5c51e0.m4a"
+          },
+          {
+            "text": "a",
+            "say": "{/a/|æ}",
+            "audio": "voice/line-6a230dad287fe9e9.m4a"
+          },
+          {
+            "text": "t",
+            "say": "{/t/|tʌ}",
+            "audio": "voice/line-570d1fc0dffd834f.m4a"
+          }
+        ],
+        "blend": {
+          "text": "cat",
+          "say": "cat!",
+          "audio": "voice/line-0bed5f04580b7f83.m4a"
+        },
+        "choices": [
+          {
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            }
+          },
+          {
+            "label": "bed",
+            "picture": {
+              "key": "bed",
+              "label": "bed",
+              "url": null
+            }
+          },
+          {
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            }
+          }
+        ],
+        "answer": 0
       }
     },
     {
@@ -324,19 +369,28 @@
         ],
         "items": [
           {
-            "label": "bag",
+            "label": "pen",
             "picture": {
-              "key": "bag",
-              "label": "bag",
+              "key": "pen",
+              "label": "pen",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "boat",
+            "picture": {
+              "key": "boat",
+              "label": "boat",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "pig",
+            "label": "pencil",
             "picture": {
-              "key": "pig",
-              "label": "pig",
+              "key": "pencil",
+              "label": "pencil",
               "url": null
             },
             "bin": 1
@@ -351,28 +405,19 @@
             "bin": 0
           },
           {
-            "label": "pot",
+            "label": "ball",
             "picture": {
-              "key": "pot",
-              "label": "pot",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "bus",
-            "picture": {
-              "key": "bus",
-              "label": "bus",
+              "key": "ball",
+              "label": "ball",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "pen",
+            "label": "pig",
             "picture": {
-              "key": "pen",
-              "label": "pen",
+              "key": "pig",
+              "label": "pig",
               "url": null
             },
             "bin": 1

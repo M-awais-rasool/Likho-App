@@ -266,23 +266,68 @@
     },
     {
       "id": "level-66-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: pig, pin, bin, lip!",
-        "say": "Say them with me! pig, pin, bin, lip!",
-        "audio": "voice/line-86128476eae4cc84.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "pig, pin, bin, lip!",
-        "picture": {
-          "key": "pig",
-          "label": "pig",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "pig, pin, bin, lip!"
+      "sounds": {
+        "word": "pig",
+        "parts": [
+          {
+            "text": "p",
+            "say": "{/p/|pʌ}",
+            "audio": "voice/line-6b361a2ef876dccb.m4a"
+          },
+          {
+            "text": "i",
+            "say": "{/i/|ɪ}",
+            "audio": "voice/line-55c556f50179c6d4.m4a"
+          },
+          {
+            "text": "g",
+            "say": "{/g/|ɡʌ}",
+            "audio": "voice/line-be23dfaf66221347.m4a"
+          }
+        ],
+        "blend": {
+          "text": "pig",
+          "say": "pig!",
+          "audio": "voice/line-88731414b66c2d84.m4a"
+        },
+        "choices": [
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            }
+          },
+          {
+            "label": "pig",
+            "picture": {
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            }
+          },
+          {
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            }
+          }
+        ],
+        "answer": 1
       }
     },
     {

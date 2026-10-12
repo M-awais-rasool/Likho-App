@@ -299,23 +299,68 @@
     },
     {
       "id": "level-64-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: hen, bed, pen, net!",
-        "say": "Say them with me! hen, bed, pen, net!",
-        "audio": "voice/line-3832ce13a7ce25aa.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "hen, bed, pen, net!",
-        "picture": {
-          "key": "hen",
-          "label": "hen",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "hen, bed, pen, net!"
+      "sounds": {
+        "word": "hen",
+        "parts": [
+          {
+            "text": "h",
+            "say": "{/h/|hʌ}",
+            "audio": "voice/line-cf2e19ba9b889302.m4a"
+          },
+          {
+            "text": "e",
+            "say": "{/e/|ɛ}",
+            "audio": "voice/line-26b8405a6ef65e10.m4a"
+          },
+          {
+            "text": "n",
+            "say": "{/n/|nːː}",
+            "audio": "voice/line-1f9de0e8fd168b84.m4a"
+          }
+        ],
+        "blend": {
+          "text": "hen",
+          "say": "hen!",
+          "audio": "voice/line-d969681698a46426.m4a"
+        },
+        "choices": [
+          {
+            "label": "hen",
+            "picture": {
+              "key": "hen",
+              "label": "hen",
+              "url": null
+            }
+          },
+          {
+            "label": "pig",
+            "picture": {
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            }
+          },
+          {
+            "label": "cup",
+            "picture": {
+              "key": "cup",
+              "label": "cup",
+              "url": null
+            }
+          }
+        ],
+        "answer": 0
       }
     },
     {
@@ -335,18 +380,18 @@
         "items": [
           {
             "text": "hen",
+            "wrong": "mirror",
+            "at": 1
+          },
+          {
+            "text": "bed",
             "wrong": null,
             "at": null
           },
           {
-            "text": "bed",
-            "wrong": "mirror",
-            "at": 0
-          },
-          {
             "text": "pen",
             "wrong": "mirror",
-            "at": 1
+            "at": 0
           },
           {
             "text": "net",

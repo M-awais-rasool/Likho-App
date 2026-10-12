@@ -270,23 +270,33 @@
     },
     {
       "id": "level-42-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: k says /k/ like kite!",
-        "say": "{k|kˈeɪ} says {/k/|kʌ}, like kite! Now you say it.",
-        "audio": "voice/line-d6f207b729f55797.m4a"
+        "text": "Clap the beats!",
+        "say": "Kite! Tap the drum for every beat in kite.",
+        "audio": "voice/line-01a073449fb3738c.m4a"
       },
       "card": {
-        "text": "k says /k/ like kite!",
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "beats": {
+        "text": "kite",
+        "parts": [
+          "kite"
+        ],
+        "unit": "syllable",
         "picture": {
           "key": "kite",
           "label": "kite",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "k says /k/ like kite!"
+        "hint": {
+          "text": "kite",
+          "say": "Kite. One beat!",
+          "audio": "voice/line-737eca8daaff1441.m4a"
+        }
       }
     }
   ]

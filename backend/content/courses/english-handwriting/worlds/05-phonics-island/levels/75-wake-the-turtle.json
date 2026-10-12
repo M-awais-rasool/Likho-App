@@ -88,10 +88,10 @@
             "bin": 1
           },
           {
-            "label": "ball",
+            "label": "bat",
             "picture": {
-              "key": "ball",
-              "label": "ball",
+              "key": "bat",
+              "label": "bat",
               "url": null
             },
             "bin": 0
@@ -106,10 +106,10 @@
             "bin": 1
           },
           {
-            "label": "boat",
+            "label": "bed",
             "picture": {
-              "key": "boat",
-              "label": "boat",
+              "key": "bed",
+              "label": "bed",
               "url": null
             },
             "bin": 0
@@ -231,58 +231,6 @@
     },
     {
       "id": "level-75-r6",
-      "type": "pick",
-      "prompt": {
-        "text": "What is this?",
-        "say": "What is this? Find the word!",
-        "audio": "voice/line-69b2bf73b2b7783d.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "dog",
-          "label": "dog",
-          "url": null
-        },
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-75-r6-o1",
-            "label": "dog",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-75-r6-o2",
-            "label": "jam",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          },
-          {
-            "id": "level-75-r6-o3",
-            "label": "cat",
-            "picture": null,
-            "color": null,
-            "hideLabel": false
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "dog"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-75-r7",
       "type": "write",
       "prompt": {
         "text": "Write bus",
@@ -309,7 +257,7 @@
       }
     },
     {
-      "id": "level-75-r8",
+      "id": "level-75-r7",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -335,7 +283,7 @@
       }
     },
     {
-      "id": "level-75-r9",
+      "id": "level-75-r8",
       "type": "pop",
       "prompt": {
         "text": "Pop every pig!",
@@ -358,24 +306,110 @@
       }
     },
     {
-      "id": "level-75-r10",
-      "type": "speak",
+      "id": "level-75-r9",
+      "type": "beats",
       "prompt": {
-        "text": "Say: cat, hen, pig, dog!",
-        "say": "Say them with me! cat, hen, pig, dog!",
-        "audio": "voice/line-bf6b9213c4c69f0d.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "The fish is in the sea. Tap the drum once for every word!",
+        "audio": "voice/line-b8edb4cbb35f7d4e.m4a"
       },
       "card": {
-        "text": "cat, hen, pig, dog!",
-        "picture": {
-          "key": "cat",
-          "label": "cat",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "cat, hen, pig, dog!"
+      "beats": {
+        "text": "The fish is in the sea.",
+        "parts": [
+          "The",
+          "fish",
+          "is",
+          "in",
+          "the",
+          "sea"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "The fish is in the sea",
+          "say": "The fish is in the sea. Six words!",
+          "audio": "voice/line-b050d72eb8524cff.m4a"
+        }
+      }
+    },
+    {
+      "id": "level-75-r10",
+      "type": "connect",
+      "prompt": {
+        "text": "Join E to M!",
+        "say": "Join the dots, from {E|ˈiː} to {M|ˈɛm}. What will it be?",
+        "audio": "voice/line-b07431628f222fb0.m4a"
+      },
+      "card": {
+        "text": "E → M",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J",
+          "K",
+          "L",
+          "M"
+        ],
+        "points": [
+          [
+            6,
+            50
+          ],
+          [
+            30,
+            24
+          ],
+          [
+            56,
+            22
+          ],
+          [
+            76,
+            36
+          ],
+          [
+            96,
+            16
+          ],
+          [
+            96,
+            84
+          ],
+          [
+            76,
+            64
+          ],
+          [
+            56,
+            78
+          ],
+          [
+            30,
+            76
+          ]
+        ],
+        "picture": {
+          "key": "fish",
+          "label": "fish",
+          "url": null
+        },
+        "done": {
+          "text": "A fish!",
+          "say": "It's a fish!",
+          "audio": "voice/line-141ec1a5d1f6e869.m4a"
+        }
       }
     }
   ]

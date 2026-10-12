@@ -347,23 +347,35 @@
     },
     {
       "id": "level-17-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: O is for octopus!",
-        "say": "{O|ˈoʊ} is for octopus! Now you say it.",
-        "audio": "voice/line-3a46979132187bcd.m4a"
+        "text": "Clap the beats!",
+        "say": "Octopus! Tap the drum for every beat in octopus.",
+        "audio": "voice/line-ea285b408845a0e8.m4a"
       },
       "card": {
-        "text": "O is for octopus!",
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "beats": {
+        "text": "octopus",
+        "parts": [
+          "oc",
+          "to",
+          "pus"
+        ],
+        "unit": "syllable",
         "picture": {
           "key": "octopus",
           "label": "octopus",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "O is for octopus!"
+        "hint": {
+          "text": "oc-to-pus",
+          "say": "Octopus. Three beats!",
+          "audio": "voice/line-43eee4ce011cfd6c.m4a"
+        }
       }
     }
   ]

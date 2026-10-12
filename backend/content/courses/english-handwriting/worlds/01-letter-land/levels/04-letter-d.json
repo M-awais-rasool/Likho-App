@@ -262,23 +262,72 @@
     },
     {
       "id": "level-04-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: D is for dog!",
-        "say": "{D|dˈiː} is for dog! Now you say it.",
-        "audio": "voice/line-d27d7ada4a915e00.m4a"
+        "text": "Join A to H!",
+        "say": "Join the dots, from {A|ˈeɪ} to {H|ˈeɪʧ}. What will it be?",
+        "audio": "voice/line-e5d4c83d8c1f0a42.m4a"
       },
       "card": {
-        "text": "D is for dog!",
+        "text": "A → H",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "points": [
+          [
+            8,
+            44
+          ],
+          [
+            40,
+            44
+          ],
+          [
+            40,
+            10
+          ],
+          [
+            60,
+            10
+          ],
+          [
+            60,
+            44
+          ],
+          [
+            92,
+            44
+          ],
+          [
+            92,
+            94
+          ],
+          [
+            8,
+            94
+          ]
+        ],
         "picture": {
-          "key": "dog",
-          "label": "dog",
+          "key": "cake",
+          "label": "cake",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "D is for dog!"
+        "done": {
+          "text": "A cake!",
+          "say": "It's a cake!",
+          "audio": "voice/line-603810a81e3a93a1.m4a"
+        }
       }
     }
   ]

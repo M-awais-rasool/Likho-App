@@ -292,23 +292,33 @@
     },
     {
       "id": "level-03-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: C is for cat!",
-        "say": "{C|sˈiː} is for cat! Now you say it.",
-        "audio": "voice/line-255cdb501f670a54.m4a"
+        "text": "Clap the beats!",
+        "say": "Cat! Tap the drum for every beat in cat.",
+        "audio": "voice/line-fb02bf693b69c841.m4a"
       },
       "card": {
-        "text": "C is for cat!",
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "beats": {
+        "text": "cat",
+        "parts": [
+          "cat"
+        ],
+        "unit": "syllable",
         "picture": {
           "key": "cat",
           "label": "cat",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "C is for cat!"
+        "hint": {
+          "text": "cat",
+          "say": "Cat. One beat!",
+          "audio": "voice/line-bf31acba7ff32396.m4a"
+        }
       }
     }
   ]

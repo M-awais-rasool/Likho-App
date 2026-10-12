@@ -279,23 +279,34 @@
     },
     {
       "id": "level-50-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: r says /r/ like robot!",
-        "say": "{r|ˈɑːɹ} says {/r/|ɹːː}, like robot! Now you say it.",
-        "audio": "voice/line-5f2ebe7c32d832b0.m4a"
+        "text": "Clap the beats!",
+        "say": "Robot! Tap the drum for every beat in robot.",
+        "audio": "voice/line-a52d03075e16d9ec.m4a"
       },
       "card": {
-        "text": "r says /r/ like robot!",
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "beats": {
+        "text": "robot",
+        "parts": [
+          "ro",
+          "bot"
+        ],
+        "unit": "syllable",
         "picture": {
           "key": "robot",
           "label": "robot",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "r says /r/ like robot!"
+        "hint": {
+          "text": "ro-bot",
+          "say": "Robot. Two beats!",
+          "audio": "voice/line-541bc8f9cd1eca51.m4a"
+        }
       }
     }
   ]

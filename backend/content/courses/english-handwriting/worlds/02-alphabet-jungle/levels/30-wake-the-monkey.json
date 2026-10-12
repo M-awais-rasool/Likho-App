@@ -299,19 +299,62 @@
     },
     {
       "id": "level-30-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: P, R, S, U, W, Z!",
-        "say": "Say all the letters with me! {P|pˈiː}, {R|ˈɑːɹ}, {S|ˈɛs}, {U|jˈuː}, {W|dˈʌbəljuː}, {Z|zˈiː}!",
-        "audio": "voice/line-015b15c910f9ceca.m4a"
+        "text": "Join P to Z!",
+        "say": "Join the dots, from {P|pˈiː} to {Z|zˈiː}. What will it be?",
+        "audio": "voice/line-6c11cc3abf8488bf.m4a"
       },
       "card": {
-        "text": "P, R, S, U, W, Z!",
+        "text": "P → Z",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "speak": {
-        "expected": "P, R, S, U, W, Z!"
+      "connect": {
+        "labels": [
+          "P",
+          "R",
+          "S",
+          "U",
+          "W",
+          "Z"
+        ],
+        "points": [
+          [
+            50,
+            3
+          ],
+          [
+            88,
+            38
+          ],
+          [
+            69,
+            68
+          ],
+          [
+            50,
+            97
+          ],
+          [
+            31,
+            68
+          ],
+          [
+            12,
+            38
+          ]
+        ],
+        "picture": {
+          "key": "kite",
+          "label": "kite",
+          "url": null
+        },
+        "done": {
+          "text": "A kite!",
+          "say": "It's a kite!",
+          "audio": "voice/line-84a0b92f93e00a15.m4a"
+        }
       }
     },
     {

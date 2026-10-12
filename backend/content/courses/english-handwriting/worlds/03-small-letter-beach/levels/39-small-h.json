@@ -315,23 +315,68 @@
     },
     {
       "id": "level-39-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: h says /h/ like hat!",
-        "say": "{h|ˈeɪʧ} says {/h/|hʌ}, like hat! Now you say it.",
-        "audio": "voice/line-9709fc6fd42671b8.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "h says /h/ like hat!",
-        "picture": {
-          "key": "hat",
-          "label": "hat",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "h says /h/ like hat!"
+      "sounds": {
+        "word": "hat",
+        "parts": [
+          {
+            "text": "h",
+            "say": "{/h/|hʌ}",
+            "audio": "voice/line-cf2e19ba9b889302.m4a"
+          },
+          {
+            "text": "a",
+            "say": "{/a/|æ}",
+            "audio": "voice/line-6a230dad287fe9e9.m4a"
+          },
+          {
+            "text": "t",
+            "say": "{/t/|tʌ}",
+            "audio": "voice/line-570d1fc0dffd834f.m4a"
+          }
+        ],
+        "blend": {
+          "text": "hat",
+          "say": "hat!",
+          "audio": "voice/line-286b6f1ba138cf7a.m4a"
+        },
+        "choices": [
+          {
+            "label": "violin",
+            "picture": {
+              "key": "violin",
+              "label": "violin",
+              "url": null
+            }
+          },
+          {
+            "label": "octopus",
+            "picture": {
+              "key": "octopus",
+              "label": "octopus",
+              "url": null
+            }
+          },
+          {
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            }
+          }
+        ],
+        "answer": 2
       }
     }
   ]

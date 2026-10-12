@@ -282,19 +282,62 @@
     },
     {
       "id": "level-15-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: C, F, H, J, L, M!",
-        "say": "Say all the letters with me! {C|sˈiː}, {F|ˈɛf}, {H|ˈeɪʧ}, {J|ʤˈeɪ}, {L|ˈɛl}, {M|ˈɛm}!",
-        "audio": "voice/line-bd22782240c1a9aa.m4a"
+        "text": "Join C to M!",
+        "say": "Join the dots, from {C|sˈiː} to {M|ˈɛm}. What will it be?",
+        "audio": "voice/line-e6ea77117a6c1d47.m4a"
       },
       "card": {
-        "text": "C, F, H, J, L, M!",
+        "text": "C → M",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "speak": {
-        "expected": "C, F, H, J, L, M!"
+      "connect": {
+        "labels": [
+          "C",
+          "F",
+          "H",
+          "J",
+          "L",
+          "M"
+        ],
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            95,
+            42
+          ],
+          [
+            80,
+            94
+          ],
+          [
+            50,
+            94
+          ],
+          [
+            20,
+            94
+          ],
+          [
+            5,
+            42
+          ]
+        ],
+        "picture": {
+          "key": "house",
+          "label": "house",
+          "url": null
+        },
+        "done": {
+          "text": "A house!",
+          "say": "It's a house!",
+          "audio": "voice/line-d592a37832458791.m4a"
+        }
       }
     },
     {

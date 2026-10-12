@@ -298,23 +298,62 @@
     },
     {
       "id": "level-09-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: H is for hat!",
-        "say": "{H|ˈeɪʧ} is for hat! Now you say it.",
-        "audio": "voice/line-e72682dd30cffa23.m4a"
+        "text": "Join E to J!",
+        "say": "Join the dots, from {E|ˈiː} to {J|ʤˈeɪ}. What will it be?",
+        "audio": "voice/line-59a4f58ae78aea9b.m4a"
       },
       "card": {
-        "text": "H is for hat!",
+        "text": "E → J",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J"
+        ],
+        "points": [
+          [
+            50,
+            3
+          ],
+          [
+            88,
+            38
+          ],
+          [
+            69,
+            68
+          ],
+          [
+            50,
+            97
+          ],
+          [
+            31,
+            68
+          ],
+          [
+            12,
+            38
+          ]
+        ],
         "picture": {
-          "key": "hat",
-          "label": "hat",
+          "key": "kite",
+          "label": "kite",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "H is for hat!"
+        "done": {
+          "text": "A kite!",
+          "say": "It's a kite!",
+          "audio": "voice/line-84a0b92f93e00a15.m4a"
+        }
       }
     }
   ]

@@ -269,23 +269,68 @@
     },
     {
       "id": "level-73-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: cat, hat, dog, log!",
-        "say": "Say them with me! cat, hat, dog, log!",
-        "audio": "voice/line-01a686777634bc89.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "cat, hat, dog, log!",
-        "picture": {
-          "key": "cat",
-          "label": "cat",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "cat, hat, dog, log!"
+      "sounds": {
+        "word": "cat",
+        "parts": [
+          {
+            "text": "c",
+            "say": "{/c/|kʌ}",
+            "audio": "voice/line-eec1fee16c5c51e0.m4a"
+          },
+          {
+            "text": "a",
+            "say": "{/a/|æ}",
+            "audio": "voice/line-6a230dad287fe9e9.m4a"
+          },
+          {
+            "text": "t",
+            "say": "{/t/|tʌ}",
+            "audio": "voice/line-570d1fc0dffd834f.m4a"
+          }
+        ],
+        "blend": {
+          "text": "cat",
+          "say": "cat!",
+          "audio": "voice/line-0bed5f04580b7f83.m4a"
+        },
+        "choices": [
+          {
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            }
+          },
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            }
+          },
+          {
+            "label": "log",
+            "picture": {
+              "key": "log",
+              "label": "log",
+              "url": null
+            }
+          }
+        ],
+        "answer": 0
       }
     },
     {

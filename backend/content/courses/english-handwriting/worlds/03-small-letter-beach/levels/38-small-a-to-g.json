@@ -321,19 +321,67 @@
     },
     {
       "id": "level-38-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: a, b, c, d, e, f, g!",
-        "say": "Say all the letters with me! {a|ˈeɪ}, {b|bˈiː}, {c|sˈiː}, {d|dˈiː}, {e|ˈiː}, {f|ˈɛf}, {g|ʤˈiː}!",
-        "audio": "voice/line-8815a20b48fa3208.m4a"
+        "text": "Join a to g!",
+        "say": "Join the dots, from {a|ˈeɪ} to {g|ʤˈiː}. What will it be?",
+        "audio": "voice/line-df1bb029866491f4.m4a"
       },
       "card": {
-        "text": "a, b, c, d, e, f, g!",
+        "text": "a → g",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "speak": {
-        "expected": "a, b, c, d, e, f, g!"
+      "connect": {
+        "labels": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f",
+          "g"
+        ],
+        "points": [
+          [
+            6,
+            28
+          ],
+          [
+            30,
+            54
+          ],
+          [
+            50,
+            10
+          ],
+          [
+            70,
+            54
+          ],
+          [
+            94,
+            28
+          ],
+          [
+            84,
+            88
+          ],
+          [
+            16,
+            88
+          ]
+        ],
+        "picture": {
+          "key": "crown",
+          "label": "crown",
+          "url": null
+        },
+        "done": {
+          "text": "A crown!",
+          "say": "It's a crown!",
+          "audio": "voice/line-9649373564b61d61.m4a"
+        }
       }
     },
     {

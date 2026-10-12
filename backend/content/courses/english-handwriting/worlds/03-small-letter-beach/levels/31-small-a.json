@@ -298,23 +298,34 @@
     },
     {
       "id": "level-31-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: a says /a/ like apple!",
-        "say": "{a|ˈeɪ} says {/a/|æ}, like apple! Now you say it.",
-        "audio": "voice/line-6851df192c9edd23.m4a"
+        "text": "Clap the beats!",
+        "say": "Apple! Tap the drum for every beat in apple.",
+        "audio": "voice/line-cf93f03b9a22acb2.m4a"
       },
       "card": {
-        "text": "a says /a/ like apple!",
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "beats": {
+        "text": "apple",
+        "parts": [
+          "ap",
+          "ple"
+        ],
+        "unit": "syllable",
         "picture": {
           "key": "apple",
           "label": "apple",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "a says /a/ like apple!"
+        "hint": {
+          "text": "ap-ple",
+          "say": "Apple. Two beats!",
+          "audio": "voice/line-39e03a9619de0288.m4a"
+        }
       }
     }
   ]

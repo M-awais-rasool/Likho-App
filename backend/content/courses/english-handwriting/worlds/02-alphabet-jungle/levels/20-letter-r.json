@@ -295,23 +295,34 @@
     },
     {
       "id": "level-20-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: R is for robot!",
-        "say": "{R|ˈɑːɹ} is for robot! Now you say it.",
-        "audio": "voice/line-d71023ad234d6b4c.m4a"
+        "text": "Clap the beats!",
+        "say": "Robot! Tap the drum for every beat in robot.",
+        "audio": "voice/line-a52d03075e16d9ec.m4a"
       },
       "card": {
-        "text": "R is for robot!",
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "beats": {
+        "text": "robot",
+        "parts": [
+          "ro",
+          "bot"
+        ],
+        "unit": "syllable",
         "picture": {
           "key": "robot",
           "label": "robot",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "R is for robot!"
+        "hint": {
+          "text": "ro-bot",
+          "say": "Robot. Two beats!",
+          "audio": "voice/line-541bc8f9cd1eca51.m4a"
+        }
       }
     }
   ]

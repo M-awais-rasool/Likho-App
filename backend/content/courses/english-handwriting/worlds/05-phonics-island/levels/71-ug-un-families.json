@@ -321,23 +321,67 @@
     },
     {
       "id": "level-71-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: hug, bun, bug, run!",
-        "say": "Say them with me! hug, bun, bug, run!",
-        "audio": "voice/line-8f8a46c854b4dcef.m4a"
+        "text": "Join O to U!",
+        "say": "Join the dots, from {O|ˈoʊ} to {U|jˈuː}. What will it be?",
+        "audio": "voice/line-ad51d37a99b39d7c.m4a"
       },
       "card": {
-        "text": "hug, bun, bug, run!",
+        "text": "O → U",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U"
+        ],
+        "points": [
+          [
+            6,
+            28
+          ],
+          [
+            30,
+            54
+          ],
+          [
+            50,
+            10
+          ],
+          [
+            70,
+            54
+          ],
+          [
+            94,
+            28
+          ],
+          [
+            84,
+            88
+          ],
+          [
+            16,
+            88
+          ]
+        ],
         "picture": {
-          "key": "hug",
-          "label": "hug",
+          "key": "crown",
+          "label": "crown",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "hug, bun, bug, run!"
+        "done": {
+          "text": "A crown!",
+          "say": "It's a crown!",
+          "audio": "voice/line-9649373564b61d61.m4a"
+        }
       }
     },
     {

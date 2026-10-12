@@ -262,23 +262,68 @@
     },
     {
       "id": "level-34-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: d says /d/ like dog!",
-        "say": "{d|dˈiː} says {/d/|dʌ}, like dog! Now you say it.",
-        "audio": "voice/line-40a71630a84dfbc0.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "d says /d/ like dog!",
-        "picture": {
-          "key": "dog",
-          "label": "dog",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "d says /d/ like dog!"
+      "sounds": {
+        "word": "dog",
+        "parts": [
+          {
+            "text": "d",
+            "say": "{/d/|dʌ}",
+            "audio": "voice/line-f06c02b8a2619c78.m4a"
+          },
+          {
+            "text": "o",
+            "say": "{/o/|ɑ}",
+            "audio": "voice/line-253bbb0325fbe7e3.m4a"
+          },
+          {
+            "text": "g",
+            "say": "{/g/|ɡʌ}",
+            "audio": "voice/line-be23dfaf66221347.m4a"
+          }
+        ],
+        "blend": {
+          "text": "dog",
+          "say": "dog!",
+          "audio": "voice/line-b153f0b84aa91128.m4a"
+        },
+        "choices": [
+          {
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            }
+          },
+          {
+            "label": "apple",
+            "picture": {
+              "key": "apple",
+              "label": "apple",
+              "url": null
+            }
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            }
+          }
+        ],
+        "answer": 2
       }
     }
   ]

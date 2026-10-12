@@ -263,18 +263,18 @@
         "items": [
           {
             "text": "cat",
-            "wrong": null,
-            "at": null
+            "wrong": "mirror",
+            "at": 0
           },
           {
             "text": "hat",
             "wrong": "mirror",
-            "at": 0
+            "at": 1
           },
           {
             "text": "bat",
-            "wrong": "mirror",
-            "at": 0
+            "wrong": null,
+            "at": null
           },
           {
             "text": "map",
@@ -314,23 +314,68 @@
     },
     {
       "id": "level-62-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: cat, hat, bat, map!",
-        "say": "Say them with me! cat, hat, bat, map!",
-        "audio": "voice/line-029a699659f8b533.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "cat, hat, bat, map!",
-        "picture": {
-          "key": "cat",
-          "label": "cat",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "cat, hat, bat, map!"
+      "sounds": {
+        "word": "cat",
+        "parts": [
+          {
+            "text": "c",
+            "say": "{/c/|kʌ}",
+            "audio": "voice/line-eec1fee16c5c51e0.m4a"
+          },
+          {
+            "text": "a",
+            "say": "{/a/|æ}",
+            "audio": "voice/line-6a230dad287fe9e9.m4a"
+          },
+          {
+            "text": "t",
+            "say": "{/t/|tʌ}",
+            "audio": "voice/line-570d1fc0dffd834f.m4a"
+          }
+        ],
+        "blend": {
+          "text": "cat",
+          "say": "cat!",
+          "audio": "voice/line-0bed5f04580b7f83.m4a"
+        },
+        "choices": [
+          {
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            }
+          },
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            }
+          },
+          {
+            "label": "pig",
+            "picture": {
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            }
+          }
+        ],
+        "answer": 0
       }
     },
     {

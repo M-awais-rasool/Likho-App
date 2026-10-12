@@ -331,23 +331,35 @@
     },
     {
       "id": "level-55-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: v says /v/ like violin!",
-        "say": "{v|vˈiː} says {/v/|vːː}, like violin! Now you say it.",
-        "audio": "voice/line-6bb769338a11917d.m4a"
+        "text": "Clap the beats!",
+        "say": "Violin! Tap the drum for every beat in violin.",
+        "audio": "voice/line-2da9ff23e74e8f14.m4a"
       },
       "card": {
-        "text": "v says /v/ like violin!",
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "beats": {
+        "text": "violin",
+        "parts": [
+          "vi",
+          "o",
+          "lin"
+        ],
+        "unit": "syllable",
         "picture": {
           "key": "violin",
           "label": "violin",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "v says /v/ like violin!"
+        "hint": {
+          "text": "vi-o-lin",
+          "say": "Violin. Three beats!",
+          "audio": "voice/line-9333b241b8db025e.m4a"
+        }
       }
     }
   ]

@@ -249,23 +249,82 @@
     },
     {
       "id": "level-41-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: j says /j/ like jam!",
-        "say": "{j|ʤˈeɪ} says {/j/|ʤʌ}, like jam! Now you say it.",
-        "audio": "voice/line-a56a8e88b1f68486.m4a"
+        "text": "Join e to n!",
+        "say": "Join the dots, from {e|ˈiː} to {n|ˈɛn}. What will it be?",
+        "audio": "voice/line-74bb39855cf0e067.m4a"
       },
       "card": {
-        "text": "j says /j/ like jam!",
+        "text": "e → n",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "e",
+          "f",
+          "g",
+          "h",
+          "i",
+          "j",
+          "k",
+          "l",
+          "m",
+          "n"
+        ],
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            62,
+            36
+          ],
+          [
+            96,
+            37
+          ],
+          [
+            69,
+            58
+          ],
+          [
+            78,
+            91
+          ],
+          [
+            50,
+            72
+          ],
+          [
+            22,
+            91
+          ],
+          [
+            31,
+            58
+          ],
+          [
+            4,
+            37
+          ],
+          [
+            38,
+            36
+          ]
+        ],
         "picture": {
-          "key": "jam",
-          "label": "jam",
+          "key": "star",
+          "label": "star",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "j says /j/ like jam!"
+        "done": {
+          "text": "A star!",
+          "say": "It's a star!",
+          "audio": "voice/line-8b6bccb5c1f3e6a4.m4a"
+        }
       }
     }
   ]
