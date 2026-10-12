@@ -243,6 +243,19 @@ List<String> levelMedia(CourseLevel level) {
         }
       case OrderRound(:final tiles, :final slot) when (slot ?? level.presentation.slot) == 'panel':
         out.addAll(tiles.map((t) => MediaStore.picturePath(t.replaceAll(' ', '_'))));
+      case SoundsRound(:final parts, :final blend, :final choices):
+        for (final p in [...parts, blend]) {
+          audio(p.audio);
+        }
+        for (final c in choices) {
+          picture(c.picture);
+        }
+      case BeatsRound r:
+        audio(r.hint?.audio);
+        picture(r.picture);
+      case ConnectRound r:
+        audio(r.done?.audio);
+        picture(r.picture);
       default:
     }
   }

@@ -58,12 +58,13 @@ class _GameFeedbackState extends ConsumerState<GameFeedback> {
     if (next.found.length > prev.found.length) {
       if (next.current is PopRound) {
         _fb.pop();
-      } else if (!next.correct) {
-        _fb.step(next.found.length);
+      } else if (next.current is! SoundsRound && !next.correct) {
+        _fb.step(next.found.length); // sound buttons: Pencil says the sound instead
       }
     }
+    if (next.beats > prev.beats) _fb.drum();
+    if (next.blended && !prev.blended) _fb.whoosh();
     if (next.spellFilled > prev.spellFilled && !next.correct) _fb.step(next.spellFilled);
-    if (next.listening && !prev.listening) _fb.listen();
     if (next.correct && !prev.correct) {
       _streak++;
       final r = next.current;

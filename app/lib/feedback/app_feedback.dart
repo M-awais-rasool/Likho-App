@@ -89,6 +89,9 @@ class AppFeedback {
 
   void listen() => _go(Sfx.listen, HapticCue.press);
 
+  /// A drum beat (clap the beats).
+  void drum() => _go(Sfx.bossDrum, HapticCue.tick);
+
   void roundNext() => _go(Sfx.roundNext, null, volume: .8);
 
   // ---------------------------------------------------------- journeys

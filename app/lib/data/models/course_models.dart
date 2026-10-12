@@ -1,3 +1,5 @@
+import 'dart:ui' show Offset;
+
 import 'package:flutter/foundation.dart';
 
 /// Course content, shaped exactly like the course API response
@@ -280,8 +282,49 @@ sealed class Round {
       case 'order':
         final o = r.object('order');
         return OrderRound(id: id, prompt: prompt, card: card, tiles: o.strings('tiles'), slot: o.optString('slot'));
-      case 'speak':
-        return SpeakRound(id: id, prompt: prompt, card: card);
+      case 'sounds':
+        final s = r.object('sounds');
+        return SoundsRound(
+          id: id,
+          prompt: prompt,
+          card: card,
+          word: s.string('word'),
+          parts: s.list('parts', (x, q) => Prompt.fromJson(JsonReader(x, q))),
+          blend: Prompt.fromJson(s.object('blend')),
+          choices: s.list('choices', (x, q) => SortThing.fromJson(JsonReader(x, q))),
+          answer: s.integer('answer'),
+        );
+      case 'beats':
+        final b = r.object('beats');
+        return BeatsRound(
+          id: id,
+          prompt: prompt,
+          card: card,
+          text: b.string('text'),
+          parts: b.strings('parts'),
+          words: b.optString('unit') == 'word',
+          picture: b.optPicture('picture'),
+          hint: b.has('hint') ? Prompt.fromJson(b.object('hint')) : null,
+        );
+      case 'connect':
+        final d = r.object('connect');
+        final points = d.json['points'];
+        return ConnectRound(
+          id: id,
+          prompt: prompt,
+          card: card,
+          labels: d.strings('labels'),
+          points: points is List
+              ? [
+                  for (final (i, p) in points.indexed)
+                    p is List && p.length == 2 && p[0] is num && p[1] is num
+                        ? Offset((p[0] as num).toDouble() / 100, (p[1] as num).toDouble() / 100)
+                        : throw FormatException('Expected [x, y] at ${d.path}.points[$i]'),
+                ]
+              : throw FormatException('Expected a list at ${d.path}.points'),
+          picture: d.optPicture('picture'),
+          done: d.has('done') ? Prompt.fromJson(d.object('done')) : null,
+        );
       case 'hunt':
         final h = r.object('hunt');
         return HuntRound(id: id, prompt: prompt, card: card, target: h.string('target'), grid: h.strings('grid'));
@@ -416,12 +459,70 @@ final class OrderRound extends Round {
   String get type => 'order';
 }
 
-/// Say something out loud.
-final class SpeakRound extends Round {
-  const SpeakRound({required super.id, required super.prompt, super.card});
+/// Sound buttons: [word] with a dot under each of its sounds ([parts], what
+/// Pencil says for each). Tap the dots in order, slide under the word to
+/// read it ([blend]), then pick its picture from [choices] ([answer]).
+final class SoundsRound extends Round {
+  const SoundsRound({
+    required super.id,
+    required super.prompt,
+    super.card,
+    required this.word,
+    required this.parts,
+    required this.blend,
+    required this.choices,
+    required this.answer,
+  });
+  final String word;
+  final List<Prompt> parts;
+  final Prompt blend;
+  final List<SortThing> choices;
+  final int answer;
 
   @override
-  String get type => 'speak';
+  String get type => 'sounds';
+}
+
+/// Clap the beats: tap the drum once for each beat of [text] ([parts]: its
+/// syllables, or its words when [words]), then "Done".
+final class BeatsRound extends Round {
+  const BeatsRound({
+    required super.id,
+    required super.prompt,
+    super.card,
+    required this.text,
+    required this.parts,
+    this.words = false,
+    this.picture,
+    this.hint,
+  });
+  final String text;
+  final List<String> parts;
+  final bool words;
+  final Picture? picture;
+
+  /// What Pencil says after a wrong count ("Apple. Two beats!").
+  final Prompt? hint;
+
+  int get count => parts.length;
+
+  @override
+  String get type => 'beats';
+}
+
+/// Connect the dots: tap the dots in [labels] order (A, B, C …) and the
+/// lines draw [picture]'s outline. [points] are 0..1 in a square.
+final class ConnectRound extends Round {
+  const ConnectRound({required super.id, required super.prompt, super.card, required this.labels, required this.points, this.picture, this.done});
+  final List<String> labels;
+  final List<Offset> points;
+  final Picture? picture;
+
+  /// What Pencil says when the picture is done ("A star!").
+  final Prompt? done;
+
+  @override
+  String get type => 'connect';
 }
 
 /// Letter hunt: tap every cell of [grid] that is [target].
