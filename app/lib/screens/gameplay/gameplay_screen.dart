@@ -23,6 +23,8 @@ import '../../game/level_session.dart';
 import '../../game/speech/prompt_voice.dart';
 import '../../game/writing/stroke_guide.dart';
 import '../../mascot/mascot.dart';
+import 'rounds/beats_round_view.dart';
+import 'rounds/connect_round_view.dart';
 import 'rounds/fix_round_view.dart';
 import 'rounds/hunt_round_view.dart';
 import 'rounds/match_round_view.dart';
@@ -30,7 +32,7 @@ import 'rounds/order_round_view.dart';
 import 'rounds/pick_round_view.dart';
 import 'rounds/pop_round_view.dart';
 import 'rounds/sort_round_view.dart';
-import 'rounds/speak_round_view.dart';
+import 'rounds/sounds_round_view.dart';
 import 'rounds/truth_round_view.dart';
 import 'rounds/write_round_view.dart';
 import 'widgets/game_bits.dart';
@@ -314,10 +316,9 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
         if (!ref.read(levelSessionProvider(level)).correct) _mascot.play(MascotState.watching);
       });
     }
-    if (next.listening && !prev.listening) {
-      _mascot.play(MascotState.watching);
-      _say('Say it!', GameTiming.listening);
-    }
+    // a sound, a word or a hint the round asks Pencil to say
+    final line = next.saying;
+    if (line != null && next.said != prev.said && !next.correct) _voice.speak(line, _mascot, after: _resting);
     if (next.finished && !_done) {
       _done = true;
       if (child != null) ref.read(levelResumeProvider.notifier).clear(child, level);
@@ -361,7 +362,7 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
       PopRound() => ShotKind.bubble,
       OrderRound() => ShotKind.bell,
       WriteRound() => ShotKind.letter,
-      SpeakRound() => ShotKind.wave,
+      BeatsRound() => ShotKind.wave,
       TruthRound() => ShotKind.sun,
       _ => battle.hits.isEven ? ShotKind.star : ShotKind.bell,
     };
@@ -730,8 +731,13 @@ class _RoundArea extends ConsumerWidget {
           return PillowFightView(key: ValueKey(r.id), state: state, round: r, onPick: session.pick, time: time);
         case PopRound():
           return SnoreBubblesView(key: ValueKey(r.id), state: state, round: r, onPop: session.popBubble, time: time);
-        case SpeakRound():
-          return ShoutView(key: ValueKey(r.id), state: state, onMic: session.listen, time: time);
+        case SoundsRound() || BeatsRound() || ConnectRound():
+          // the new games on paper in the magic frame, like writing
+          return MagicFrame(
+            theme: theme,
+            time: time,
+            child: ColoredBox(color: LikhoColors.background, child: _plain(session)),
+          );
         case TruthRound():
           return SunMoonView(key: ValueKey(r.id), state: state, round: r, onAnswer: session.answerTruth, time: time);
         case HuntRound():
@@ -757,6 +763,11 @@ class _RoundArea extends ConsumerWidget {
           break;
       }
     }
+    return _plain(session);
+  }
+
+  /// The round's own view.
+  Widget _plain(LevelSession session) {
     return switch (state.current) {
       final PickRound r => PickRoundView(key: ValueKey(r.id), state: state, round: r, onPick: session.pick, time: time),
       final OrderRound r => OrderRoundView(key: ValueKey(r.id), state: state, round: r, onTile: session.placeTile, time: time),
@@ -764,7 +775,25 @@ class _RoundArea extends ConsumerWidget {
         pad == null
             ? const SizedBox.shrink()
             : WritePad(key: ValueKey(r.id), controller: pad!, state: state, round: r, glyphs: glyphs, time: time, onPen: onPen),
-      SpeakRound() => SpeakRoundView(key: ValueKey(state.current.id), state: state, onMic: session.listen, time: time),
+      final SoundsRound r => SoundsRoundView(
+        key: ValueKey(r.id),
+        state: state,
+        round: r,
+        onSound: session.tapSound,
+        onBlend: session.blendWord,
+        onChoice: session.pickChoice,
+        time: time,
+      ),
+      final BeatsRound r => BeatsRoundView(
+        key: ValueKey(r.id),
+        state: state,
+        round: r,
+        onDrum: session.tapDrum,
+        onDone: session.checkBeats,
+        onAgain: session.clearBeats,
+        time: time,
+      ),
+      final ConnectRound r => ConnectRoundView(key: ValueKey(r.id), state: state, round: r, onTap: session.tapDot, time: time),
       final HuntRound r => HuntRoundView(key: ValueKey(r.id), state: state, round: r, onTap: session.tapCell, time: time),
       final FixRound r => FixRoundView(key: ValueKey(r.id), state: state, round: r, onTap: session.fixItem, time: time),
       final SortRound r => SortRoundView(key: ValueKey(r.id), state: state, round: r, onSort: session.sortItem, time: time),
