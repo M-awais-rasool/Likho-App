@@ -270,9 +270,52 @@ class Words:
         self._no_guide()
         self.L.rounds[-1]["write"]["sentence"] = True  # the wide pad, written freely
 
+    # -- in place of saying words aloud (the app does not listen): sound
+    #    buttons, clapping the beats, connecting the dots
     def say(self, words, pic_word=None):
-        line = ", ".join(words) + "!"
-        self.L.speak(f"Say: {line}", f"Say them with me! {line}", B.card(line, picture(pic_word) if pic_word else None, listen=True), line)
+        """One of the level's words: sound it out, or clap its beats, or join the dots; whichever fits, turning with
+        the level so neighbours differ."""
+        # sound buttons most (reading is the point), then beats, sometimes the dots
+        order = {0: "bkc", 1: "bck", 2: "kbc", 3: "cbk"}[self.L.number % 4]
+        game = {"b": self.buttons, "k": self.beats_word, "c": lambda _: self.connect()}
+        for g in order:
+            if game[g](words):
+                return
+
+    def buttons(self, words):
+        word = next((w for w in words if B.sound_parts(w) and has_picture(w)), None)
+        if word is None:
+            return False
+        others = [w for w in B.unique(list(words) + ["sun", "cat", "fish", "hat", "pig", "bed", "cup", "dog"])
+                  if w != word and has_picture(w) and w[0] != word[0]]
+        self.rnd.shuffle(others)
+        self.L.sounds(word, B.sound_parts(word), B.say_part, {w: picture(w) for w in [word] + others[:2]})
+        return True
+
+    def beats_word(self, words):
+        word = next((w for w in words if has_picture(w) and (B.beats_of(w) or []).__len__() > 1), None)
+        if word is None:
+            return False
+        self.L.beats(word, B.beats_of(word), picture(word))
+        return True
+
+    def beats_line(self, line):
+        """A beat for each word of a sentence (2 to 8 words)."""
+        words = re.findall(r"[A-Za-z']+", line)
+        if not 2 <= len(words) <= 8:
+            return False
+        self.L.beats(line, words, words=True)
+        return True
+
+    def connect(self):
+        """Join the dots in ABC order (capitals or small letters, a different stretch and picture each level)."""
+        n0 = self.L.number + len(self.L.rounds)
+        shape = sorted(B.SHAPES)[(n0 * 5) % len(B.SHAPES)]
+        n = len(B.SHAPES[shape])
+        start = (n0 * 7) % (27 - n)
+        abc = "abcdefghijklmnopqrstuvwxyz"[start:start + n]
+        self.L.connect([c if n0 % 2 else c.upper() for c in abc], shape, B.name)
+        return True
 
     # -- sentences
     def order_sentence(self, sentence, pic_key=None):
@@ -338,7 +381,10 @@ class Words:
         self.L.rounds[-1]["order"]["slot"] = "panel"
 
     def speak_line(self, line, pic_key=None):
-        self.L.speak(f"Say: {line}", f"{line} Now you say it!", B.card(line, B.pic(pic_key) if pic_key else None, listen=True), line)
+        """A line the level would say aloud: a beat for each of its words, or (every third level, or a long line)
+        connect the dots."""
+        if self.L.number % 3 == 2 or not self.beats_line(line):
+            self.connect()
 
     # -- the games that make levels differ (finalize() adds some to every level)
     def pop_word(self, word, pool):
@@ -391,6 +437,8 @@ class Words:
 
     def classic(self, name, take=None):
         for r in classic(name, take):
+            if r["type"] == "speak":  # saying aloud: the app does not listen
+                continue
             self.L._add(r["type"], r["prompt"]["text"], r["prompt"].get("say"), r.get("card"), r[r["type"]])
 
     # -- games of the topic levels (TOPICS)
@@ -894,7 +942,7 @@ def level_specs(world):
              lambda n, s, e: sentence_level(n, s, e, "days")),
             topic("Months of the Year", "Months", "calendar_month", "January", "calendar",
                   "January, February, March! There are twelve months in a year.", "months"),
-            ("Talk to Aliens", "Speaking", "record_voice_over", "Hi!", "alien", "Hi! Let's talk to the friendly aliens.",
+            ("Alien Friends", "Asking and answering", "question_answer", "Hi!", "alien", "Hi! Let's read and write with the friendly aliens.",
              lambda n, s, e: sentence_level(n, s, e, "aliens", [("Talk to Aliens", None)])),
             topic("Asking Politely", "Please and thank you", "record_voice_over", "please", "gift",
                   "Please and thank you! Let's ask nicely.", "polite"),
