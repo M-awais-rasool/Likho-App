@@ -66,7 +66,7 @@
       "required": ["id", "type", "prompt"],
       "properties": {
         "id": { "type": "string" },
-        "type": { "enum": ["pick", "write", "order", "speak", "hunt", "fix", "sort", "match", "pop", "truth"], "description": "The payload object has the same name." },
+        "type": { "enum": ["pick", "write", "order", "hunt", "fix", "sort", "match", "pop", "truth", "sounds", "beats", "connect"], "description": "The payload object has the same name." },
         "prompt": {
           "type": "object",
           "required": ["text"],
@@ -85,25 +85,29 @@
         "pick": { "$ref": "#/$defs/pick" },
         "write": { "$ref": "#/$defs/write" },
         "order": { "$ref": "#/$defs/order" },
-        "speak": { "$ref": "#/$defs/speak" },
         "hunt": { "$ref": "#/$defs/hunt" },
         "fix": { "$ref": "#/$defs/fix" },
         "sort": { "$ref": "#/$defs/sort" },
         "match": { "$ref": "#/$defs/match" },
         "pop": { "$ref": "#/$defs/pop" },
-        "truth": { "$ref": "#/$defs/truth" }
+        "truth": { "$ref": "#/$defs/truth" },
+        "sounds": { "$ref": "#/$defs/sounds" },
+        "beats": { "$ref": "#/$defs/beats" },
+        "connect": { "$ref": "#/$defs/connect" }
       },
       "allOf": [
         { "if": { "properties": { "type": { "const": "pick" } } }, "then": { "required": ["pick"] } },
         { "if": { "properties": { "type": { "const": "write" } } }, "then": { "required": ["write"] } },
         { "if": { "properties": { "type": { "const": "order" } } }, "then": { "required": ["order"] } },
-        { "if": { "properties": { "type": { "const": "speak" } } }, "then": { "required": ["speak"] } },
         { "if": { "properties": { "type": { "const": "hunt" } } }, "then": { "required": ["hunt"] } },
         { "if": { "properties": { "type": { "const": "fix" } } }, "then": { "required": ["fix"] } },
         { "if": { "properties": { "type": { "const": "sort" } } }, "then": { "required": ["sort"] } },
         { "if": { "properties": { "type": { "const": "match" } } }, "then": { "required": ["match"] } },
         { "if": { "properties": { "type": { "const": "pop" } } }, "then": { "required": ["pop"] } },
-        { "if": { "properties": { "type": { "const": "truth" } } }, "then": { "required": ["truth"] } }
+        { "if": { "properties": { "type": { "const": "truth" } } }, "then": { "required": ["truth"] } },
+        { "if": { "properties": { "type": { "const": "sounds" } } }, "then": { "required": ["sounds"] } },
+        { "if": { "properties": { "type": { "const": "beats" } } }, "then": { "required": ["beats"] } },
+        { "if": { "properties": { "type": { "const": "connect" } } }, "then": { "required": ["connect"] } }
       ]
     },
     "pick": {
@@ -159,9 +163,57 @@
         "slot": { "enum": ["wagon", "plank", "stripe", "panel", null], "description": "This round's slots instead of the level's presentation.slot." }
       }
     },
-    "speak": {
+    "line": {
       "type": "object",
-      "properties": { "expected": { "type": ["string", "null"] } }
+      "description": "Something Pencil says inside a round (a sound, a word, a hint).",
+      "required": ["text"],
+      "additionalProperties": false,
+      "properties": {
+        "text": { "type": "string", "minLength": 1 },
+        "say": { "$ref": "#/$defs/say" },
+        "audio": { "$ref": "#/$defs/audio" }
+      }
+    },
+    "sounds": {
+      "type": "object",
+      "description": "Sound buttons: tap each sound of the word (Pencil says it), slide to read the word, then pick its picture.",
+      "required": ["word", "parts", "blend", "choices", "answer"],
+      "properties": {
+        "word": { "type": "string", "minLength": 1 },
+        "parts": { "type": "array", "minItems": 1, "maxItems": 6, "items": { "$ref": "#/$defs/line" }, "description": "The sounds in order; their texts spell the word." },
+        "blend": { "$ref": "#/$defs/line", "description": "What Pencil says when the word is read." },
+        "choices": {
+          "type": "array", "minItems": 2, "maxItems": 4,
+          "items": { "type": "object", "required": ["label"], "properties": { "label": { "type": "string" }, "picture": { "$ref": "#/$defs/picture" } } }
+        },
+        "answer": { "type": "integer", "minimum": 0, "description": "Index of the word's picture in choices." }
+      }
+    },
+    "beats": {
+      "type": "object",
+      "description": "Clap the beats: tap the drum once for every beat, then Done.",
+      "required": ["text", "parts"],
+      "properties": {
+        "text": { "type": "string", "minLength": 1 },
+        "parts": { "type": "array", "minItems": 1, "maxItems": 8, "items": { "type": "string", "minLength": 1 }, "description": "The beats: syllables (ap, ple) or words." },
+        "unit": { "enum": ["syllable", "word", null] },
+        "picture": { "$ref": "#/$defs/picture" },
+        "hint": { "$ref": "#/$defs/line", "description": "What Pencil says after a wrong count." }
+      }
+    },
+    "connect": {
+      "type": "object",
+      "description": "Connect the dots in label order; the shape fills and the picture shows.",
+      "required": ["labels", "points"],
+      "properties": {
+        "labels": { "type": "array", "minItems": 4, "maxItems": 14, "items": { "type": "string", "minLength": 1 } },
+        "points": {
+          "type": "array", "minItems": 4, "maxItems": 14,
+          "items": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "number", "minimum": 0, "maximum": 100 } }
+        },
+        "picture": { "$ref": "#/$defs/picture" },
+        "done": { "$ref": "#/$defs/line", "description": "What Pencil says when the picture shows." }
+      }
     },
     "hunt": {
       "type": "object",
