@@ -1,0 +1,18 @@
+{
+ "onb_name": {
+  "says": "Hi, I'm Pencil! What's your name? Ask a grown-up to type it.",
+  "made": "6e3c8c24fa699975"
+ },
+ "onb_age": {
+  "says": "Nice to meet you! How old are you? Tap your birthday cake.",
+  "made": "54adf06cd0e13462"
+ },
+ "onb_colour": {
+  "says": "Now pick my colour! Which one do you like?",
+  "made": "85d84d9a1223ddca"
+ },
+ "lets_start": {
+  "says": "Let's get started!",
+  "made": "4842d3b8de7f4102"
+ }
+}

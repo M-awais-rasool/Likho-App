@@ -10,7 +10,12 @@ speech model (Apache-2.0, runs on this computer) and writes, per line:
                                   it next to the .m4a)
 
 and puts the recording's path in the content (`intro.audio`, `prompt.audio`).
-Lines are `intro.say` and `prompt.say`, or the prompt's `text`. A
+Pencil's lines outside the course (APP_LINES: onboarding) go into the app
+itself, app/assets/voice/<id>.m4a + .lip, so they play before anything is
+downloaded; app/lib/feedback/pencil_lines.dart names them.
+Lines are `intro.say` and `prompt.say`, or the prompt's `text`, and the lines
+said inside a game (sound buttons, the word read, a beats hint, what the dots
+made). A
 pronunciation is written {shown|IPA}: "Trace small {a|ˈeɪ}" says the letter,
 not the article. A recording is named after what it says (voice, speed and
 phonemes), so a line used in many levels is one file, renumbering levels
@@ -21,6 +26,7 @@ lists what every file says.
     .venv/bin/python tools/voice/generate_voice.py            # new and changed lines
     .venv/bin/python tools/voice/generate_voice.py --all      # every line
     .venv/bin/python tools/voice/generate_voice.py --print    # show the phonemes, record nothing
+    .venv/bin/python tools/voice/generate_voice.py --app      # only the app's own lines
 
 The model (~350 MB) is downloaded once into tools/voice/.cache. macOS: needs
 afconvert (built in). onnxruntime 1.23.2 is the last with Intel Mac builds.
@@ -55,6 +61,8 @@ ROOT = HERE.parent.parent  # the repository
 CONTENT = ROOT / "backend" / "content" / "courses" / COURSE
 OUT = ROOT / "media" / "voice"  # served by the API at /media/voice/ (MEDIA_DIR); not in git
 LOCK = HERE / "voice.lock.json"
+APP_OUT = ROOT / "app" / "assets" / "voice"  # bundled with the app
+APP_LOCK = HERE / "app_lines.lock.json"
 CACHE = HERE / ".cache"
 
 # {shown|IPA}
@@ -62,6 +70,16 @@ PRON = re.compile(r"\{([^{}|]+)\|([^{}|]+)\}")
 
 
 # ---------------------------------------------------------------- lines
+
+# Pencil's lines in the app's own screens (id -> words), kept in the app.
+# Change one and run --app: only that line is recorded again.
+APP_LINES = {
+    # onboarding (Add child): name -> age -> colour, then placement done
+    "onb_name": "Hi, I'm Pencil! What's your name? Ask a grown-up to type it.",
+    "onb_age": "Nice to meet you! How old are you? Tap your birthday cake.",
+    "onb_colour": "Now pick my colour! Which one do you like?",
+    "lets_start": "Let's get started!",
+}
 
 def level_files():
     return sorted(CONTENT.glob("worlds/*/levels/*.json")) + [CONTENT / "placement.json"]
@@ -77,6 +95,21 @@ def lines():
         for i, r in enumerate(d["rounds"]):
             words = r["prompt"].get("say") or r["prompt"]["text"]
             out.append((r["id"], words, f, ("rounds", i, "prompt")))
+            # lines Pencil says inside a game: each sound button, the word read,
+            # the hint after a wrong count of beats, the picture the dots made
+            t = r["type"]
+            inner = []
+            if t == "sounds":
+                inner = [(("sounds", "parts", j), f"s{j + 1}") for j in range(len(r["sounds"]["parts"]))] + [(("sounds", "blend"), "word")]
+            elif t == "beats" and r["beats"].get("hint"):
+                inner = [(("beats", "hint"), "hint")]
+            elif t == "connect" and r["connect"].get("done"):
+                inner = [(("connect", "done"), "done")]
+            for where, tag in inner:
+                node = r
+                for k in where:
+                    node = node[k]
+                out.append((f"{r['id']}-{tag}", node.get("say") or node["text"], f, ("rounds", i) + where))
     return out
 
 
@@ -176,16 +209,48 @@ def set_audio(f, where, path):
     return True
 
 
+def app_lines(voice, args):
+    """Records APP_LINES into the app (by id; the lock says what each says)."""
+    lock = json.loads(APP_LOCK.read_text(encoding="utf-8")) if APP_LOCK.exists() else {}
+    out, recorded = {}, 0
+    APP_OUT.mkdir(parents=True, exist_ok=True)
+    for key, words in APP_LINES.items():
+        ph = voice.phonemes(words)
+        if args.print:
+            print(f"{key:22} {words!r}\n{'':22} {ph}")
+            continue
+        made = hashlib.sha1(json.dumps([VOICE, SPEED, ph]).encode()).hexdigest()[:16]
+        m4a, lipf = APP_OUT / f"{key}.m4a", APP_OUT / f"{key}.lip"
+        if args.all or lock.get(key, {}).get("made") != made or not m4a.exists() or not lipf.exists():
+            x = polish(voice.speak(ph))
+            encode(x, m4a)
+            lipf.write_bytes(lip(x))
+            recorded += 1
+            print(f"recorded {key:22} {len(x) / RATE:4.1f} s  {words}")
+        out[key] = {"says": spoken(words), "made": made}
+    if args.print:
+        return
+    for old in APP_OUT.iterdir():  # lines the app no longer has
+        if old.stem not in APP_LINES and old.suffix in (".m4a", ".lip"):
+            old.unlink()
+    APP_LOCK.write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"{recorded} app lines recorded, {len(out)} in the app")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--all", action="store_true", help="record every line again")
     ap.add_argument("--print", action="store_true", help="print each line's phonemes, record nothing")
+    ap.add_argument("--app", action="store_true", help="only the app's own lines (APP_LINES)")
     args = ap.parse_args()
 
     voice = Voice()
     OUT.mkdir(parents=True, exist_ok=True)
     said, recorded, linked, done = {}, 0, 0, set()
     try:
+        app_lines(voice, args)
+        if args.app:
+            return
         for where_id, words, f, where in lines():
             ph = voice.phonemes(words)
             if args.print:
