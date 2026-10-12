@@ -90,6 +90,107 @@ SOUND = {
     "u": "ʌ", "v": "vːː", "w": "wʌ", "x": "ks", "y": "jʌ", "z": "zːː",
 }
 
+# Connect the dots: outlines of pictures the course has, the dots in order
+# (x, y from 0 to 100). The labels (A, B, C ...) are added per level.
+def _ring(n, outer, inner, cx=50, cy=52):
+    import math
+    pts = []
+    for k in range(2 * n):
+        r = outer if k % 2 == 0 else inner
+        a = math.radians(-90 + 180 * k / n)
+        pts.append([round(cx + r * math.cos(a)), round(cy + r * math.sin(a))])
+    return pts
+
+
+SHAPES = {
+    "star": _ring(5, 48, 20),
+    "sun": _ring(6, 47, 32, cy=50),
+    "house": [[50, 4], [95, 42], [80, 94], [50, 94], [20, 94], [5, 42]],
+    "boat": [[50, 4], [82, 50], [98, 64], [80, 94], [20, 94], [2, 64], [50, 64]],
+    "crown": [[6, 28], [30, 54], [50, 10], [70, 54], [94, 28], [84, 88], [16, 88]],
+    "kite": [[50, 3], [88, 38], [69, 68], [50, 97], [31, 68], [12, 38]],
+    "cup": [[8, 8], [78, 8], [78, 30], [98, 30], [98, 66], [78, 66], [72, 94], [14, 94]],
+    "cake": [[8, 44], [40, 44], [40, 10], [60, 10], [60, 44], [92, 44], [92, 94], [8, 94]],
+    "fish": [[6, 50], [30, 24], [56, 22], [76, 36], [96, 16], [96, 84], [76, 64], [56, 78], [30, 76]],
+    "moon": [[62, 4], [30, 10], [10, 36], [8, 64], [28, 88], [62, 96], [44, 74], [36, 50], [44, 26]],
+    "tree": [[50, 2], [80, 36], [60, 36], [88, 66], [60, 66], [60, 96], [40, 96], [40, 66], [12, 66], [40, 36], [20, 36]],
+    "umbrella": [[50, 4], [88, 20], [98, 50], [64, 46], [50, 96], [36, 46], [2, 50], [12, 20]],
+    "balloon": [[50, 4], [76, 14], [88, 38], [78, 62], [60, 78], [66, 96], [34, 96], [40, 78], [22, 62], [12, 38], [24, 14]],
+    "apple": [[50, 22], [66, 12], [86, 22], [92, 48], [82, 76], [68, 94], [50, 84], [32, 94], [18, 76], [8, 48], [14, 22], [34, 12]],
+}
+
+# Beats (syllables) of the multi-beat words the games clap; a word not here
+# with one vowel group is one beat.
+SYLLABLES = {
+    "apple": "ap-ple", "insect": "in-sect", "octopus": "oc-to-pus", "lion": "li-on", "robot": "ro-bot", "tiger": "ti-ger",
+    "umbrella": "um-brel-la", "violin": "vi-o-lin", "yo-yo": "yo-yo", "zebra": "ze-bra", "monkey": "mon-key", "rabbit": "rab-bit",
+    "butterfly": "but-ter-fly", "elephant": "el-e-phant", "banana": "ba-na-na", "pencil": "pen-cil", "rainbow": "rain-bow",
+    "sunflower": "sun-flow-er", "flower": "flow-er", "water": "wa-ter", "teacher": "teach-er", "garden": "gar-den",
+    "dinosaur": "di-no-saur", "carrot": "car-rot", "tomato": "to-ma-to", "potato": "po-ta-to", "mango": "man-go",
+    "rocket": "rock-et", "window": "win-dow", "basket": "bas-ket", "kitten": "kit-ten", "puppy": "pup-py", "table": "ta-ble",
+    "football": "foot-ball", "popcorn": "pop-corn", "cupcake": "cup-cake", "jellyfish": "jel-ly-fish", "seven": "sev-en",
+    "spider": "spi-der", "tractor": "trac-tor", "pumpkin": "pump-kin", "lemon": "lem-on", "melon": "mel-on", "happy": "hap-py",
+    "yellow": "yel-low", "purple": "pur-ple", "orange": "or-ange", "family": "fam-i-ly", "doctor": "doc-tor", "camel": "cam-el",
+    "candle": "can-dle", "kangaroo": "kan-ga-roo", "bedroom": "bed-room", "toothbrush": "tooth-brush", "starfish": "star-fish",
+    "snowman": "snow-man", "sandwich": "sand-wich", "hamburger": "ham-bur-ger", "pizza": "piz-za", "dragon": "drag-on",
+    "giraffe": "gi-raffe", "penguin": "pen-guin", "turtle": "tur-tle", "parrot": "par-rot", "chicken": "chick-en",
+    "zero": "ze-ro", "eleven": "e-lev-en", "computer": "com-pu-ter", "bicycle": "bi-cy-cle", "airplane": "air-plane",
+    "ladybug": "la-dy-bug", "caterpillar": "cat-er-pil-lar", "watermelon": "wa-ter-mel-on", "strawberry": "straw-ber-ry",
+}
+
+NUMBER_WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
+
+
+def beats_of(word):
+    """The word's beats (syllables), or None when it is not in SYLLABLES and has more than one."""
+    if word in SYLLABLES:
+        return SYLLABLES[word].split("-")
+    return [word] if len(re.findall(r"[aeiouy]+", word.lower().rstrip("e"))) <= 1 else None
+
+
+# Sound buttons: the letter pairs that are one sound, and words whose letters
+# do not all say their own sound (they are never sound-buttoned).
+DOUBLES = ["ll", "ss", "ff", "zz", "gg", "dd", "tt", "pp", "nn", "mm", "rr", "bb"]
+PAIRS = ["igh", "sh", "ch", "th", "ck", "ng", "ee", "oo", "ai", "oa", "ar", "or", "qu", "wh", "ph", "er", "ir", "ur"] + DOUBLES
+PAIR_SOUND = {
+    "sh": "ʃːː", "ch": "ʧʌ", "th": "θːː", "ck": "kʌ", "ng": "ŋːː", "ee": "iː", "oo": "uː", "ai": "eɪ", "oa": "oʊ", "ar": "ɑːɹ",
+    "or": "ɔːɹ", "qu": "kwʌ", "igh": "aɪ", "wh": "wʌ", "ph": "fːː", "er": "ɜː", "ir": "ɜː", "ur": "ɜː",
+}
+VOWEL_SOUNDS = {"a", "e", "i", "o", "u", "ee", "oo", "ai", "oa", "ar", "or", "er", "ir", "ur", "igh"}
+SHORT_OO = {"book", "look", "cook", "hook", "took", "foot", "good", "wood", "hood"}
+
+
+def sound_parts(word):
+    """The word as sound buttons (c-a-t, f-i-sh, m-oo-n), or None when a letter would not say its sound
+    (magic e, y, w after a vowel, "all" ...)."""
+    w = word.lower()
+    if not re.fullmatch(r"[a-z]{2,6}", w) or re.search(r"[aeiou][a-z]e$|(?<!^)y|[aeiou]w|all|ea|ou|ow|oy|oi|au|aw|ue|ie|ei|kn|wr|gh(?!t)|mb$|oll|ol[dt]|i[nl]d|ost$|alk|wa|wor|ear|are|ire|ore|ure", w.replace("qu", "q")):
+        return None
+    if w.endswith("e") and not w.endswith(("ee",)):
+        return None
+    out, i = [], 0
+    while i < len(w):
+        pair = next((p for p in PAIRS if w.startswith(p, i)), None)
+        out.append(pair or w[i])
+        i += len(pair or w[i])
+    # one vowel sound, and a short vowel letter closed by a consonant (c-a-t, not ti-ger or t-w-o)
+    vowels = [k for k, p in enumerate(out) if p in VOWEL_SOUNDS]
+    if len(vowels) != 1 or (len(out[vowels[0]]) == 1 and vowels[0] == len(out) - 1):
+        return None
+    return out if 2 <= len(out) <= 5 else None
+
+
+def say_part(part, word=""):
+    """How Pencil says one sound button of [word]: {/sh/|ʃːː} (a doubled letter is one sound)."""
+    if part == "oo" and word in SHORT_OO:
+        return "{/oo/|ʊ}"
+    return f"{{/{part}/|{PAIR_SOUND.get(part) or SOUND[part[0]]}}}"
+
+
+def article(word):
+    return f"an {word}" if word[0] in "aeiou" else f"a {word}"
+
+
 # Letters that look alike: the wrong answers in picks and hunts.
 LOOKALIKE = {
     "A": "RHN", "B": "RPD", "C": "OGQ", "D": "OPB", "E": "FLH", "F": "EPT", "G": "COQ", "H": "NIE", "I": "LTH",
@@ -193,8 +294,42 @@ class Level:
     def order(self, text, say, crd, tiles):
         self._add("order", text, say, crd, {"tiles": tiles})
 
-    def speak(self, text, say, crd, expected):
-        self._add("speak", text, say, crd, {"expected": expected})
+    def sounds(self, word, parts, sound_say, choices):
+        """Sound buttons: [parts] spell [word], [sound_say] says each ({shown|IPA}); choices: {label: picture}, the word's first."""
+        labels = list(choices)
+        self.rnd.shuffle(labels)
+        self._add("sounds", "Tap each sound, then read!", "Tap each sound. Then slide the arrow to read the word!", card(None, None, listen=True), {
+            "word": word,
+            "parts": [{"text": p, "say": sound_say(p, word)} for p in parts],
+            "blend": {"text": word, "say": f"{word}!"},
+            "choices": [{"label": lab, "picture": choices[lab]} for lab in labels],
+            "answer": labels.index(word),
+        })
+
+    def beats(self, text, parts, picture=None, words=False):
+        """Clap the beats: tap the drum once per syllable of the word [text] (or per word of the sentence)."""
+        n = NUMBER_WORDS[len(parts)].capitalize()
+        if words:
+            prompt, say = "Tap a beat for each word!", f"{text} Tap the drum once for every word!"
+            hint = f"{text} {n} word{'s' if len(parts) > 1 else ''}!"
+        else:
+            prompt, say = "Clap the beats!", f"{text.capitalize()}! Tap the drum for every beat in {text}."
+            hint = f"{text.capitalize()}. {n} beat{'s' if len(parts) > 1 else ''}!"
+        self._add("beats", prompt, say, card(None, None, listen=True), {
+            "text": text, "parts": parts, "unit": "word" if words else "syllable", "picture": picture,
+            "hint": {"text": "-".join(parts) if not words else " ".join(parts), "say": hint},
+        })
+
+    def connect(self, labels, shape, say_label=None):
+        """Connect the dots: [labels] in order around the outline of [shape] (a SHAPES key with a picture)."""
+        points = SHAPES[shape]
+        assert len(labels) == len(points), (shape, labels)
+        named = say_label or (lambda x: x)
+        self._add("connect", f"Join {labels[0]} to {labels[-1]}!", f"Join the dots, from {named(labels[0])} to {named(labels[-1])}. What will it be?",
+                  card(f"{labels[0]} → {labels[-1]}"), {
+                      "labels": labels, "points": points, "picture": pic(shape),
+                      "done": {"text": f"{article(shape).capitalize()}!", "say": f"It's {article(shape)}!"},
+                  })
 
     def hunt(self, text, say, crd, target, others, cells=12, found=4):
         grid = [target] * found + [others[i % len(others)] for i in range(cells - found)]
@@ -420,17 +555,28 @@ def letter_level(number, ch, small, step):
     def flash():
         L.write(f"Look, then write {shown}", f"Look at {tag}. Then write it from memory!", card(None, picture), "flash", ch)
 
-    def speak():
-        line = f"{ch} says /{ch}/ like {word}!" if small else f"{big} is for {word}!"
-        say_line = f"{name(ch)} says {sound(ch)}, like {word}! Now you say it." if small else f"{name(ch)} is for {word}! Now you say it."
-        L.speak(f"Say: {line}", say_line, card(line, picture, listen=True), line)
+    def beats():
+        L.beats(word, beats_of(word), picture)
+
+    def connect():
+        shape = sorted(SHAPES)[step % len(SHAPES)]
+        n = len(SHAPES[shape])
+        i = "abcdefghijklmnopqrstuvwxyz".index(ch.lower())
+        start = min(max(0, i - n // 2), 26 - n)
+        L.connect([letter_case(c, small) for c in "abcdefghijklmnopqrstuvwxyz"[start:start + n]], shape, name)
+
+    def buttons():
+        L.sounds(word, sound_parts(word), say_part, picture_choices(ch, L.rnd))
 
     games = {"find": find, "pop": pop, "trace": trace, "sound": sound_pick, "monster": monster, "truth": truth, "dots": dots,
              "hunt": hunt, "fix": fix, "match": match, "missing": missing, "order": order, "baskets": baskets, "free": free,
-             "flash": flash, "speak": speak}
-    feasible = lambda g: {"monster": len(STARTS[ch.lower()]) >= 2, "fix": fix_how(ch) is not None}.get(g, True)
+             "flash": flash, "beats": beats, "connect": connect, "buttons": buttons}
+    feasible = lambda g: {"monster": len(STARTS[ch.lower()]) >= 2, "fix": fix_how(ch) is not None,
+                          "beats": beats_of(word) is not None,
+                          "buttons": small and sound_parts(word) is not None}.get(g, True)
     picked = choose([(["find", "pop"], 0), (["trace"], 0), (["sound", "monster", "truth"], 0), (["dots"], 0),
-                     (["hunt", "fix", "match"], 1), (["missing", "order", "baskets"], 0), (["free", "flash"], 1), (["speak"], 0)],
+                     (["hunt", "fix", "match"], 1), (["missing", "order", "baskets"], 0), (["free", "flash"], 1),
+                     (["buttons", "beats", "connect"], 0)],
                     step, feasible)
     if step % 2:  # every other letter: its look game before its sound game
         picked[2], picked[4] = picked[4], picked[2]
@@ -503,9 +649,9 @@ def review_level(number, letters, small, step, boss=None):
     def order():
         L.order("Put the letters in ABC order!", "Put the letters in A B C order!", card(None, pic("train")), g[:3])
 
-    def speak():
-        line = ", ".join(g) + "!"
-        L.speak(f"Say: {line}", "Say all the letters with me! " + ", ".join(name(c) for c in g) + "!", card(line, None, listen=True), line)
+    def connect():
+        shapes = sorted(k for k, v in SHAPES.items() if len(v) == len(g))
+        L.connect(g, shapes[step % len(shapes)], name)
 
     def last():  # fill a box (the boss wakes up on this one)
         if boss:
@@ -518,11 +664,11 @@ def review_level(number, letters, small, step, boss=None):
                     word="".join(run), missing=run.index(g[1]))
 
     games = {"ear": by_ear, "pop": pop, "trace": trace, "sound": sound_pick, "baskets": baskets, "dots": dots, "hunt": hunt,
-             "match": match, "fix": fix, "free": by_ear_write, "flash": flash, "order": order, "speak": speak, "last": last}
+             "match": match, "fix": fix, "free": by_ear_write, "flash": flash, "order": order, "connect": connect, "last": last}
     feasible = lambda name_: {"baskets": len([c for c in g if len(STARTS[c.lower()]) >= 2]) >= 2,
                               "fix": len([c for c in g if fix_how(c)]) >= 2}.get(name_, True)
     picked = choose([(["ear", "pop"], 1), (["trace"], 0), (["sound", "baskets"], 0), (["dots"], 0), (["hunt", "match", "fix"], 0),
-                     (["free", "flash"], 0), (["order"], 0), (["speak"], 0), (["last"], 0)], step, feasible)
+                     (["free", "flash"], 0), (["order"], 0), (["connect"], 0), (["last"], 0)], step, feasible)
     for name_ in picked:
         games[name_]()
     return L
