@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../data/billing.dart';
+import '../../data/family.dart';
 import '../../feedback/app_feedback.dart';
 import '../../design/tokens.dart';
 import '../common/kid_widgets.dart';
@@ -21,8 +22,16 @@ class PaywallScreen extends StatefulWidget {
     this.store = false,
     this.plans = const {},
     this.busy = false,
+    this.current,
+    this.onManage,
   });
   final VoidCallback onClose, onRestore;
+
+  /// The family's Likho Plus when it has it: shown instead of the plans.
+  final PlusNow? current;
+
+  /// Opens the store's subscription page (change plan, cancel).
+  final VoidCallback? onManage;
   final ValueChanged<Plan> onStartTrial;
   final bool store, busy;
   final Map<Plan, StorePlan> plans;
@@ -71,6 +80,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.current case final now?) return _Current(now: now, onClose: widget.onClose, onManage: widget.onManage);
     final trial = _trial(_plan);
     return ParentPage(
       background: UiColors.parentBg,
@@ -189,6 +199,122 @@ class _PaywallScreenState extends State<PaywallScreen> {
       ],
     );
   }
+}
+
+/// The family's Likho Plus, as the paywall shows it once they have it.
+@immutable
+class PlusNow {
+  const PlusNow({this.plan, this.until, this.renews = false, this.store = false});
+
+  /// The store's base plan ("monthly" / "yearly"); null: a trial or a grant.
+  final String? plan;
+  final DateTime? until;
+
+  /// The store renews it (false: cancelled, it ends at [until]).
+  final bool renews;
+
+  /// Bought in the store (it can be managed there).
+  final bool store;
+
+  String get title => switch (plan) {
+    'monthly' => 'Monthly plan',
+    'yearly' => 'Yearly plan',
+    _ => 'Likho Plus',
+  };
+
+  String get status {
+    final day = until == null ? null : formatDay(until!);
+    if (day == null) return 'Active';
+    if (!store) return 'Active until $day';
+    return renews ? 'Renews on $day' : "Ends on $day. It won't renew.";
+  }
+}
+
+/// "You have Likho Plus": the plan, when it renews or ends, and the store's
+/// page to change or cancel it.
+class _Current extends StatelessWidget {
+  const _Current({required this.now, required this.onClose, this.onManage});
+  final PlusNow now;
+  final VoidCallback onClose;
+  final VoidCallback? onManage;
+
+  @override
+  Widget build(BuildContext context) => ParentPage(
+    background: UiColors.parentBg,
+    gradient: const LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [ParentColors.journeyTop, UiColors.parentBg],
+      stops: [0, .36],
+    ),
+    children: [
+      Align(
+        alignment: Alignment.centerRight,
+        child: CircleIconButton(
+          icon: Symbols.close_rounded,
+          onTap: onClose,
+          size: 44,
+          iconSize: 22,
+          color: UiColors.white80,
+          shadow: null,
+          sound: ButtonSound.back,
+        ),
+      ),
+      Column(
+        children: [
+          const IconLine(Symbols.workspace_premium_rounded, size: 56, color: LikhoColors.primary),
+          const SizedBox(height: 8),
+          Text('You have Likho Plus', textAlign: TextAlign.center, style: LikhoFonts.title(size: 30, weight: FontWeight.w800)),
+          const SizedBox(height: 8),
+          Text(
+            'Every world and every level is open.',
+            textAlign: TextAlign.center,
+            style: LikhoFonts.parent(size: 15, weight: FontWeight.w600, color: UiColors.inkBody),
+          ),
+        ],
+      ),
+      ParentCard(
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+        radius: 22,
+        soft: false,
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(now.title, style: LikhoFonts.parent(size: 17, weight: FontWeight.w800)),
+                  const SizedBox(height: 2),
+                  Text(now.status, style: LikhoFonts.parent(size: 13, weight: FontWeight.w600, color: LikhoColors.inkMuted)),
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              decoration: BoxDecoration(color: ParentColors.featureGreenBg, borderRadius: BorderRadius.circular(999)),
+              child: Text('Active', style: LikhoFonts.parent(size: 12, weight: FontWeight.w800, color: ParentColors.featureGreen)),
+            ),
+          ],
+        ),
+      ),
+      if (now.store && onManage != null) ...[
+        PushButton(
+          onTap: withSound(context, ButtonSound.press, onManage!),
+          color: LikhoColors.ink,
+          height: 60,
+          width: double.infinity,
+          pressScale: .98,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          child: Text('Manage subscription', style: LikhoFonts.parent(size: 17, weight: FontWeight.w800, color: LikhoColors.surface)),
+        ),
+        Text(
+          'Change your plan, cancel or update the payment method in Google Play.',
+          textAlign: TextAlign.center,
+          style: LikhoFonts.parent(size: 13, weight: FontWeight.w600, color: LikhoColors.inkMuted).copyWith(height: 1.55),
+        ),
+      ],
+    ],
+  );
 }
 
 class _Feature extends StatelessWidget {

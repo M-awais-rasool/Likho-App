@@ -5,6 +5,9 @@ import 'package:url_launcher/url_launcher.dart';
 abstract final class LikhoLinks {
   static final privacy = Uri.parse('https://likho.io/privacy/');
 
+  /// Google Play's page for this app's subscription (manage, cancel, change payment).
+  static final playSubscription = Uri.parse('https://play.google.com/store/account/subscriptions?sku=likho_plus&package=com.likho.abcwriting');
+
   /// Opens [uri] in the browser; false when nothing could open it.
   static Future<bool> open(Uri uri) async {
     try {
