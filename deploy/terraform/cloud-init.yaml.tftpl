@@ -187,7 +187,7 @@ runcmd:
 
   - sysctl --system
   - rm -f /etc/nginx/sites-enabled/default
-  - install -d -o deploy -g deploy -m 750 /srv/likho
+  - install -d -o deploy -g deploy -m 711 /srv/likho # nginx passes through to media/
   - install -d -m 755 /var/www/acme
   - systemctl daemon-reload
   - systemctl enable --now likho-backup.timer fail2ban unattended-upgrades nginx

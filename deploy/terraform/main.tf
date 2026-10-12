@@ -104,7 +104,7 @@ resource "vultr_instance" "likho" {
 # where it is (e.g. Vercel) and you add the records in output "dns_records"
 # there.
 locals {
-  dns_names = var.website_on_server ? ["", "www", "api"] : ["api"]
+  dns_names = concat(var.website_on_server ? ["", "www", "api"] : ["api"], var.admin_on_internet ? ["admin"] : [])
 }
 
 resource "vultr_dns_domain" "likho" {
@@ -172,6 +172,7 @@ resource "local_file" "server_env" {
     SSH_KEY=${replace(pathexpand(var.ssh_public_key_path), "/\\.pub$/", "")}
     API_DOMAIN=${local.api_domain}
     SITE_DOMAIN=${var.website_on_server ? var.domain : ""}
+    ADMIN_DOMAIN=${var.admin_on_internet ? "admin.${var.domain}" : ""}
     LETSENCRYPT_EMAIL=${var.letsencrypt_email}
     GOOGLE_CLIENT_IDS=${var.google_client_ids}
     ADMIN_EMAIL=${var.admin_email}
