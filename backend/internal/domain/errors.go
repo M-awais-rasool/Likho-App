@@ -17,6 +17,7 @@ const (
 	KindConflict                        // not allowed in the current state
 	KindForbidden                       // signed in, but not allowed
 	KindUnavailable                     // a service we need is not there (try later)
+	KindTooMany                         // too many tries: wait, then try again
 )
 
 // Error is a business error with a stable code for the app ("level_locked")
@@ -64,6 +65,9 @@ var (
 	// admin panel
 	ErrAdminLogin     = &Error{KindUnauthorized, "invalid_login", "Wrong email or password"}
 	ErrAdminSignedOut = &Error{KindUnauthorized, "signed_out", "Sign in to the admin panel"}
+	ErrAdminCode      = &Error{KindUnauthorized, "invalid_code", "Wrong or expired code from the authenticator app"}
+	ErrAdminTicket    = &Error{KindUnauthorized, "login_expired", "Sign in again: the code step timed out"}
+	ErrAdminLocked    = &Error{KindTooMany, "login_locked", "Too many wrong tries: this account is locked for 15 minutes"}
 	ErrAdminForbidden = &Error{KindForbidden, "forbidden", "Your role cannot do this"}
 	ErrAdminExists    = &Error{KindConflict, "admin_exists", "An admin with this email already exists"}
 	ErrLastOwner      = &Error{KindConflict, "last_owner", "The team needs at least one owner"}
