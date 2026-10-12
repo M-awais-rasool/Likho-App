@@ -8,6 +8,8 @@ import (
 	"strings"
 	"testing"
 	"time"
+
+	"likho/backend/internal/service"
 )
 
 const ownerEmail, ownerPassword = "owner@likho.test", "owner-password-1"
@@ -26,10 +28,49 @@ func (a *testApp) admin() *adminClient {
 	return a.adminLogin(ownerEmail, ownerPassword)
 }
 
+// adminLogin signs in like the panel: the password, then the code of the
+// admin's authenticator app (set up at the first sign-in).
 func (a *testApp) adminLogin(email, password string) *adminClient {
 	a.t.Helper()
 	r := a.do("POST", "/admin/api/v1/auth/login", "", map[string]any{"email": email, "password": password})
 	want(a.t, r, http.StatusOK)
+	step := r.json()
+	switch step["next"] {
+	case "setup":
+		a.totp[email] = step["secret"].(string)
+		delete(a.totpStep, email)
+	case "code":
+	default:
+		a.t.Fatalf("login step: %v", step)
+	}
+	r = a.do("POST", "/admin/api/v1/auth/verify", "", map[string]any{"ticket": step["ticket"], "code": a.totpCode(email)})
+	want(a.t, r, http.StatusOK)
+	return a.adminCookie(r)
+}
+
+// totpCode is the next unused code of [email]'s authenticator app (a code
+// works once; the server takes the steps either side of now too).
+func (a *testApp) totpCode(email string) string {
+	a.t.Helper()
+	now := time.Now()
+	if now.Unix()%30 >= 28 { // not a code that ends before the server sees it
+		time.Sleep(time.Duration(30-now.Unix()%30) * time.Second)
+		now = time.Now()
+	}
+	s := max(now.Unix()/30-1, a.totpStep[email]+1)
+	if s > now.Unix()/30+1 {
+		a.t.Fatalf("%s signed in too often for one code", email)
+	}
+	a.totpStep[email] = s
+	code, err := service.TOTPCode(a.totp[email], time.Unix(s*30, 0))
+	if err != nil {
+		a.t.Fatal(err)
+	}
+	return code
+}
+
+func (a *testApp) adminCookie(r res) *adminClient {
+	a.t.Helper()
 	for _, c := range r.header.Values("Set-Cookie") {
 		if strings.HasPrefix(c, "likho_admin=") {
 			if !strings.Contains(c, "HttpOnly") || !strings.Contains(c, "SameSite=Strict") {
@@ -98,6 +139,107 @@ func TestAdminSignInRolesAndCSRF(t *testing.T) {
 
 	owner.do("POST", "/auth/logout", nil)
 	want(t, owner.do("GET", "/auth/me", nil), http.StatusUnauthorized)
+}
+
+func TestAdminTwoStepSignIn(t *testing.T) {
+	a := newTestApp(t)
+	login := func(email, password string) map[string]any {
+		r := a.do("POST", "/admin/api/v1/auth/login", "", map[string]any{"email": email, "password": password})
+		want(t, r, http.StatusOK)
+		return r.json()
+	}
+	verify := func(ticket any, code string) res {
+		return a.do("POST", "/admin/api/v1/auth/verify", "", map[string]any{"ticket": ticket, "code": code})
+	}
+	if err := a.built.Admins.Bootstrap(context.Background(), ownerEmail, ownerPassword); err != nil {
+		t.Fatal(err)
+	}
+
+	// first sign-in: the password alone opens nothing; set up the app
+	step := login(ownerEmail, ownerPassword)
+	secret, _ := step["secret"].(string)
+	if step["next"] != "setup" || len(secret) != 32 || !strings.HasPrefix(step["otpauthUrl"].(string), "otpauth://totp/") || step["ticket"] == "" {
+		t.Fatalf("setup step: %v", step)
+	}
+	if strings.Contains(fmt.Sprint(a.do("POST", "/admin/api/v1/auth/login", "", map[string]any{"email": ownerEmail, "password": ownerPassword}).header), "likho_admin=") {
+		t.Fatal("a password alone must not set the session cookie")
+	}
+	want(t, verify(step["ticket"], "000000"), http.StatusUnauthorized, "invalid_code")
+	want(t, verify("made-up-ticket", "123456"), http.StatusUnauthorized, "login_expired")
+	a.totp[ownerEmail] = secret
+	r := verify(step["ticket"], a.totpCode(ownerEmail))
+	want(t, r, http.StatusOK)
+	owner := a.adminCookie(r)
+	if me := owner.json("GET", "/auth/me", nil, 200)["admin"].(map[string]any); me["twoFactor"] != true {
+		t.Fatalf("me: %v", me)
+	}
+	next, _ := service.TOTPCode(secret, time.Unix((a.totpStep[ownerEmail]+1)*30, 0))
+	want(t, verify(step["ticket"], next), http.StatusUnauthorized, "login_expired") // a ticket is used once
+
+	// next time: the code, with the same secret (no new one shown)
+	step = login(ownerEmail, ownerPassword)
+	if step["next"] != "code" || step["secret"] != nil {
+		t.Fatalf("code step: %v", step)
+	}
+	used := a.totpStep[ownerEmail]
+	same, _ := service.TOTPCode(secret, time.Unix(used*30, 0))
+	want(t, verify(step["ticket"], same), http.StatusUnauthorized, "invalid_code") // a code works once
+	want(t, verify(step["ticket"], a.totpCode(ownerEmail)), http.StatusOK)
+
+	// five wrong tries lock the account, whatever the IP, even with the right password
+	a.redis.FlushAll() // forget the wrong code above
+	for i := 0; i < 4; i++ {
+		want(t, a.do("POST", "/admin/api/v1/auth/login", "", map[string]any{"email": ownerEmail, "password": "wrong-password"}, "X-Forwarded-For", fmt.Sprintf("203.0.113.%d", i)), http.StatusUnauthorized, "invalid_login")
+	}
+	step = login(ownerEmail, ownerPassword)
+	want(t, verify(step["ticket"], "000000"), http.StatusUnauthorized, "invalid_code") // the fifth
+	unused, _ := service.TOTPCode(secret, time.Unix((a.totpStep[ownerEmail]+1)*30, 0))
+	want(t, verify(step["ticket"], unused), http.StatusTooManyRequests, "login_locked") // even the right code
+	want(t, a.do("POST", "/admin/api/v1/auth/login", "", map[string]any{"email": ownerEmail, "password": ownerPassword}), http.StatusTooManyRequests, "login_locked")
+	a.redis.FastForward(16 * time.Minute)
+	owner = a.adminLogin(ownerEmail, ownerPassword)
+
+	// a lost phone: an owner resets a teammate's app; their sessions end and
+	// they set it up again
+	ed := owner.json("POST", "/team", map[string]any{"email": "ed@likho.test", "name": "Ed", "role": "editor", "password": "editor-password"}, 201)
+	if ed["twoFactor"] != false {
+		t.Fatalf("new admin: %v", ed)
+	}
+	editor := a.adminLogin("ed@likho.test", "editor-password")
+	owner.json("PATCH", "/team/"+ed["id"].(string), map[string]any{"resetTwoFactor": true}, 200)
+	want(t, editor.do("GET", "/overview", nil), http.StatusUnauthorized, "signed_out")
+	if step := login("ed@likho.test", "editor-password"); step["next"] != "setup" || step["secret"] == a.totp["ed@likho.test"] {
+		t.Fatalf("after a reset: %v", step)
+	}
+
+	// the server command does the same for the owner (and lifts a lock)
+	if err := a.built.Admins.ResetTwoFactor(context.Background(), ownerEmail); err != nil {
+		t.Fatal(err)
+	}
+	want(t, owner.do("GET", "/overview", nil), http.StatusUnauthorized, "signed_out")
+	if step := login(ownerEmail, ownerPassword); step["next"] != "setup" {
+		t.Fatalf("after the command: %v", step)
+	}
+
+	// failed sign-ins are in the audit log
+	owner = a.adminLogin(ownerEmail, ownerPassword)
+	actions := map[string]int{}
+	for _, it := range owner.json("GET", "/audit", nil, 200)["items"].([]any) {
+		actions[it.(map[string]any)["action"].(string)]++
+	}
+	if actions["admin.login_failed"] < 5 || actions["admin.two_factor_on"] < 2 {
+		t.Fatalf("audit: %v", actions)
+	}
+}
+
+// A session from before two-step sign-in (or after a reset) does not count.
+func TestAdminSessionNeedsTwoStep(t *testing.T) {
+	a := newTestApp(t)
+	owner := a.admin()
+	if err := a.db.Exec("UPDATE admin_users SET totp_secret = ''").Error; err != nil {
+		t.Fatal(err)
+	}
+	want(t, owner.do("GET", "/auth/me", nil), http.StatusUnauthorized, "signed_out")
 }
 
 func TestAdminSeesFamiliesProgressAndEndAlerts(t *testing.T) {
