@@ -82,7 +82,7 @@ class MemoryTokenStore implements TokenStore {
 
 /// This build's version; keep it in step with `version:` in pubspec.yaml
 /// (test/api_client_headers_test.dart checks it).
-const appVersion = '0.1.0+1';
+const appVersion = '0.1.0+7';
 
 /// What every request says about the device, for the admin panel: the
 /// platform, the app version and the region of the phone's language
