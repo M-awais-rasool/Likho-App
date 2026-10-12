@@ -14,6 +14,10 @@
 # Copies are incremental (rsync): only changed files travel. One SSH
 # connection is reused for every step.
 set -euo pipefail
+# builds and copies must be readable by the server's nginx and the API's
+# container user, whatever umask the caller has (a 077 umask made the admin
+# panel unreadable)
+umask 022
 
 what="${1:-all}"
 root="$(cd "$(dirname "$0")/.." && pwd)"
@@ -63,7 +67,7 @@ if [[ "$what" != "media" ]]; then
   if [[ -f "$play_key" ]]; then
     echo "▸ Google Play service account key"
     on "mkdir -p -m 700 $dir/src/deploy/incoming"
-    "${rs[@]}" --chmod=F600 "$play_key" "$target:$dir/src/deploy/incoming/play-service-account.json"
+    "${rs[@]}" "$play_key" "$target:$dir/src/deploy/incoming/play-service-account.json" # keeps its 600 mode (-a)
   fi
 
   echo "▸ code"
@@ -71,7 +75,7 @@ if [[ "$what" != "media" ]]; then
   "${rs[@]}" --exclude .env --exclude server.env --exclude terraform/ --exclude incoming/ "$root/deploy" "$target:$dir/src/"
 
   echo "▸ secrets, nginx and HTTPS"
-  on "sudo API_DOMAIN='$API_DOMAIN' SITE_DOMAIN='${SITE_DOMAIN:-}' LETSENCRYPT_EMAIL='$LETSENCRYPT_EMAIL' GOOGLE_CLIENT_IDS='$GOOGLE_CLIENT_IDS' ADMIN_EMAIL='$ADMIN_EMAIL' bash $dir/src/deploy/server-setup.sh"
+  on "sudo API_DOMAIN='$API_DOMAIN' SITE_DOMAIN='${SITE_DOMAIN:-}' ADMIN_DOMAIN='${ADMIN_DOMAIN:-}' LETSENCRYPT_EMAIL='$LETSENCRYPT_EMAIL' GOOGLE_CLIENT_IDS='$GOOGLE_CLIENT_IDS' ADMIN_EMAIL='$ADMIN_EMAIL' bash $dir/src/deploy/server-setup.sh"
 
   echo "▸ build and start"
   on "cd $dir/src/deploy && docker compose up -d --build --remove-orphans && docker image prune -f >/dev/null"
@@ -82,3 +86,7 @@ echo "▸ restart the API"
 on "cd $dir/src/deploy && docker compose restart api >/dev/null && for i in \$(seq 1 30); do docker compose exec -T api /likho-api health && exit 0; sleep 1; done; echo 'API not ready: docker compose logs api'; exit 1"
 
 curl -fsS --max-time 10 "https://$API_DOMAIN/healthz" >/dev/null && echo "✓ deployed: https://$API_DOMAIN${SITE_DOMAIN:+ and https://$SITE_DOMAIN}"
+if [[ -n "${ADMIN_DOMAIN:-}" ]]; then
+  curl -fs --max-time 10 -o /dev/null "https://$ADMIN_DOMAIN/admin/" && echo "✓ admin panel: https://$ADMIN_DOMAIN/admin/" ||
+    echo "▸ admin panel not on https://$ADMIN_DOMAIN yet (its DNS?): deploy/admin-tunnel.sh meanwhile"
+fi

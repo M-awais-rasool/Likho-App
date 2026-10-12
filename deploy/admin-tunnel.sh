@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-# Opens the admin panel through SSH: it is never on the internet (nginx
-# answers 404 for /admin). Only computers with the deploy key, from an IP
-# the firewall allows, can reach it.
+# Opens the admin panel through SSH: the way in when admin.<domain> is off
+# (admin_on_internet = false) or its DNS is not there yet. Only computers
+# with the deploy key, from an IP the firewall allows, can reach it; the
+# panel still asks for the password and the authenticator code.
 #
 #   deploy/admin-tunnel.sh      then open http://localhost:18080/admin/
 #

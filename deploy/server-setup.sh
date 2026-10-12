@@ -5,15 +5,30 @@
 #   2. nginx: hardening, the catch-all for scanners, Likho's sites
 #   3. the HTTPS certificate (Let's Encrypt), renewed by certbot by itself
 # Needs API_DOMAIN and LETSENCRYPT_EMAIL; SITE_DOMAIN only when the server
-# serves the website too. GOOGLE_CLIENT_IDS and ADMIN_EMAIL go into .env.
+# serves the website too; ADMIN_DOMAIN for the admin panel on the internet
+# (left out until its DNS points here). GOOGLE_CLIENT_IDS and ADMIN_EMAIL
+# go into .env.
 set -euo pipefail
 
 : "${API_DOMAIN:?}" "${LETSENCRYPT_EMAIL:?}"
 SITE_DOMAIN="${SITE_DOMAIN:-}"
+ADMIN_DOMAIN="${ADMIN_DOMAIN:-}"
 here="$(cd "$(dirname "$0")" && pwd)"
 env_file="$here/.env"
 names=("$API_DOMAIN")
 [[ -n "$SITE_DOMAIN" ]] && names+=("$SITE_DOMAIN" "www.$SITE_DOMAIN")
+
+# Let's Encrypt can only check names that already point here
+server_ip="$(curl -fsS4 --max-time 5 https://ipv4.icanhazip.com || true)"
+points_here() { [[ "$({ getent ahostsv4 "$1" || true; } | awk 'NR==1{print $1}')" == "$server_ip" ]]; }
+if [[ -n "$ADMIN_DOMAIN" ]]; then
+  if points_here "$ADMIN_DOMAIN"; then
+    names+=("$ADMIN_DOMAIN")
+  else
+    echo "▸ admin panel: $ADMIN_DOMAIN does not point to this server ($server_ip) yet: add its A and AAAA records, then deploy again (until then: admin-tunnel.sh)"
+    ADMIN_DOMAIN=""
+  fi
+fi
 
 secret() { openssl rand -base64 "$1" | tr -d '\n/+=' | cut -c "1-$2"; }
 
@@ -69,7 +84,16 @@ else
 fi
 
 # ------------------------------------------------------------------ nginx
-fill() { sed -e "s/__API_DOMAIN__/$API_DOMAIN/g" -e "s/__SITE_DOMAIN__/$SITE_DOMAIN/g" -e "s/__NAMES__/${names[*]}/g" "$1"; }
+# nginx (www-data) passes through /srv/likho to serve media/ (and site/):
+# 711 lets it in without listing; .env (600), secrets/ (the key is 400, the
+# API's user) and backups/ (700) stay closed.
+chmod 711 "${LIKHO_DIR:-/srv/likho}"
+# what deploy.sh copies is public to nginx and the API container (never secrets)
+for d in admin media site geoip; do
+  [[ -d "${LIKHO_DIR:-/srv/likho}/$d" ]] && chmod -R a+rX "${LIKHO_DIR:-/srv/likho}/$d"
+done
+
+fill() { sed -e "s/__API_DOMAIN__/$API_DOMAIN/g" -e "s/__SITE_DOMAIN__/$SITE_DOMAIN/g" -e "s/__ADMIN_DOMAIN__/$ADMIN_DOMAIN/g" -e "s/__NAMES__/${names[*]}/g" "$1"; }
 
 install -m 644 "$here/nginx/hardening.conf" /etc/nginx/conf.d/likho-hardening.conf
 install -m 644 "$here/nginx/headers.conf" /etc/nginx/snippets/likho-headers.conf
@@ -83,12 +107,9 @@ systemctl reload nginx
 
 # ------------------------------------------------------------------ HTTPS
 if [[ ! -d /etc/letsencrypt/live/likho ]]; then
-  # Let's Encrypt can only check names that already point here
-  ip="$(curl -fsS4 --max-time 5 https://ipv4.icanhazip.com || true)"
   for n in "${names[@]}"; do
-    got="$({ getent ahostsv4 "$n" || true; } | awk 'NR==1{print $1}')"
-    if [[ "$got" != "$ip" ]]; then
-      echo "✗ $n points to '${got:-nothing}', not to this server ($ip)."
+    if ! points_here "$n"; then
+      echo "✗ $n does not point to this server ($server_ip)."
       echo "  Add its A record (terraform output dns_records) where the domain's DNS is, wait for DNS, then deploy again."
       exit 1
     fi
@@ -105,6 +126,11 @@ if [[ -n "$SITE_DOMAIN" ]]; then
   fill "$here/nginx/likho-site.conf" > /etc/nginx/sites-enabled/likho-site
 else
   rm -f /etc/nginx/sites-enabled/likho-site
+fi
+if [[ -n "$ADMIN_DOMAIN" ]]; then
+  fill "$here/nginx/likho-admin.conf" > /etc/nginx/sites-enabled/likho-admin
+else
+  rm -f /etc/nginx/sites-enabled/likho-admin
 fi
 nginx -t -q
 systemctl reload nginx

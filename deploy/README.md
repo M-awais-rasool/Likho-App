@@ -7,7 +7,7 @@ One Ubuntu 24.04 server on Vultr runs the API. Likho's domain is `likho.io`; its
 |---|---|---|
 | `https://api.likho.io` | the API the app talks to, and `/media/` | nginx → API container (Vultr) |
 | `https://likho.io` (and `www.`) | the website | Vercel |
-| admin panel | never on the internet | SSH tunnel (`admin-tunnel.sh`) |
+| `https://admin.likho.io/admin/` | the admin panel (password + authenticator code) | nginx → API container (Vultr) |
 
 Terraform (`terraform/`) creates the server, its firewall and its daily backups. `deploy.sh` puts
 Likho on it. Both run from your computer. (With `website_on_server = true` the server serves the
@@ -76,7 +76,8 @@ Running `deploy.sh` accepts the Let's Encrypt subscriber agreement for the certi
 |---|---|
 | Deploy a change | `deploy/deploy.sh` |
 | Send new media only | `deploy/deploy.sh media` |
-| Open the admin panel | `deploy/admin-tunnel.sh`, then <http://localhost:18080/admin/> in Chrome |
+| Open the admin panel | <https://admin.likho.io/admin/> (or `deploy/admin-tunnel.sh`, then <http://localhost:18080/admin/>) |
+| An admin lost their phone | an owner: Team → Reset 2-step. The last owner: on the server, `cd /srv/likho/src/deploy && docker compose exec api /likho-api admin-reset-2fa <email>` |
 | Your home IP changed (SSH refused) | `source ~/.config/likho/vultr.env && terraform -chdir=deploy/terraform apply` |
 | Log in to the server | `ssh -i ~/.ssh/likho_deploy deploy@$(terraform -chdir=deploy/terraform output -raw server_ip)` |
 | API logs | on the server: `cd /srv/likho/src/deploy && docker compose logs -f api` |
@@ -119,9 +120,17 @@ Running `deploy.sh` accepts the Let's Encrypt subscriber agreement for the certi
   token.
 
 **Admin panel**
-- Not on the internet (nginx answers 404).
-- Reachable only through the SSH tunnel: you need the deploy key, from an allowed IP, and then the
-  panel's own password.
+- At `admin.likho.io` only (`api.likho.io/admin` answers 404); `admin_on_internet = false` in
+  Terraform takes it off the internet again (then only the SSH tunnel reaches it).
+- Signing in takes the password and then a 6-digit code from an authenticator app (Google
+  Authenticator, Microsoft Authenticator, 1Password), set up with a QR code at the first sign-in.
+  A session without it does not count.
+- 5 wrong passwords or codes lock that account for 15 minutes, whatever the IP; nginx also allows
+  only a few sign-in tries per IP. Failed sign-ins are in the panel's audit log.
+- The page has a strict content security policy, is never indexed, and its cookie is HttpOnly,
+  Secure, SameSite=Strict and only for that name.
+- Its DNS: `admin` A and AAAA records to the server (`terraform output dns_records`). Until they
+  point here, deploys leave the admin name out and the tunnel still works.
 
 **Secrets**
 - Made on the server by `server-setup.sh` the first time. They never travel and are never in git:
