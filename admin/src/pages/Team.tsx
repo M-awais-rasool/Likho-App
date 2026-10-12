@@ -36,7 +36,8 @@ export default function Team() {
               <Avatar label={(a.name || a.email)[0].toUpperCase()} />
               <div className="min-w-0 flex-1">
                 <div className="font-medium">
-                  {a.name || a.email} {a.id === me?.id && <Badge tone="brand">You</Badge>} {a.disabled && <Badge tone="bad">Disabled</Badge>}
+                  {a.name || a.email} {a.id === me?.id && <Badge tone="brand">You</Badge>} {a.disabled && <Badge tone="bad">Disabled</Badge>}{' '}
+                  {a.twoFactor ? <Badge tone="good">2-step on</Badge> : <Badge tone="warn">Sets up 2-step at next sign-in</Badge>}
                 </div>
                 <div className="text-[12.5px] text-ink-3">{a.email} · last sign-in {ago(a.lastLoginAt)}</div>
               </div>
@@ -48,6 +49,12 @@ export default function Team() {
               {a.id !== me?.id && (
                 <>
                   <Button size="sm" variant="ghost" onClick={() => update.mutate({ id: a.id, body: { disabled: !a.disabled } })}>{a.disabled ? 'Enable' : 'Disable'}</Button>
+                  {a.twoFactor && (
+                    <Button size="sm" variant="ghost" onClick={async () => {
+                      if (!(await confirm({ title: `Reset two-step sign-in for ${a.email}?`, body: 'For a lost or new phone: they are signed out and scan a new QR code at their next sign-in.', confirm: 'Reset' }))) return
+                      update.mutate({ id: a.id, body: { resetTwoFactor: true } }, { onSuccess: () => toast(`${a.email} sets up two-step sign-in again at the next sign-in.`, 'good') })
+                    }}>Reset 2-step</Button>
+                  )}
                   <Button size="sm" variant="ghost" className="text-bad" onClick={async () => {
                     if (!(await confirm({ title: `Remove ${a.email}?`, body: 'They can no longer sign in. The audit log keeps what they did.', confirm: 'Remove', danger: true }))) return
                     try {
@@ -80,7 +87,7 @@ function AddAdmin({ open, onClose }: { open: boolean; onClose: () => void }) {
   const m = useMutation({
     mutationFn: () => post('/team', f),
     onSuccess: () => {
-      toast(`${f.email} can sign in now. Share the first password safely; they can change it in Settings.`, 'good')
+      toast(`${f.email} can sign in now: they set up an authenticator app at the first sign-in. Share the first password safely; they can change it in Settings.`, 'good')
       qc.invalidateQueries({ queryKey: ['team'] })
       setF({ email: '', name: '', role: 'editor', password: '' })
       onClose()
