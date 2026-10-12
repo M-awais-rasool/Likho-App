@@ -487,13 +487,30 @@ class _SampleA extends CustomPainter {
   bool shouldRepaint(_SampleA old) => old.shaky != shaky;
 }
 
-class _PlusCard extends StatelessWidget {
+class _PlusCard extends ConsumerWidget {
   const _PlusCard({required this.worlds, required this.levels, required this.onPlans, required this.onRestore});
   final int worlds, levels;
   final VoidCallback onPlans, onRestore;
 
+  /// What the card says once Likho Plus is on: the plan and when it renews.
+  static String _active(FamilyState f) {
+    final plan = switch (f.plusPlan) {
+      'monthly' => 'Monthly plan',
+      'yearly' => 'Yearly plan',
+      _ => 'Likho Plus is on',
+    };
+    final until = f.plusUntil;
+    if (until == null) return '$plan. Every world and level is open.';
+    final day = formatDay(until);
+    if (f.plusStore != 'google_play') return '$plan until $day. Every world and level is open.';
+    return f.plusRenews ? '$plan, renews on $day. Every world and level is open.' : "$plan, ends on $day (it won't renew).";
+  }
+
   @override
-  Widget build(BuildContext context) => Container(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final family = ref.watch(familyProvider);
+    final on = family.subscribed;
+    return Container(
     padding: const EdgeInsets.all(18),
     decoration: BoxDecoration(color: LikhoColors.ink, borderRadius: BorderRadius.circular(24)),
     child: Column(
@@ -513,7 +530,7 @@ class _PlusCard extends StatelessWidget {
         Opacity(
           opacity: .8,
           child: Text(
-            'All $worlds worlds, $levels levels and weekly progress. First 7 days free.',
+            on ? _active(family) : 'All $worlds worlds, $levels levels and weekly progress. First 7 days free.',
             style: LikhoFonts.parent(size: 14, weight: FontWeight.w600, color: LikhoColors.surface).copyWith(height: 1.5),
           ),
         ),
@@ -529,10 +546,10 @@ class _PlusCard extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 18),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(color: LikhoColors.primary, borderRadius: BorderRadius.circular(14)),
-                child: Text('See plans', style: LikhoFonts.parent(size: 15, weight: FontWeight.w800)),
+                child: Text(on ? 'Your plan' : 'See plans', style: LikhoFonts.parent(size: 15, weight: FontWeight.w800)),
               ),
             ),
-            GestureDetector(
+            if (!on) GestureDetector(
               onTap: withSound(context, ButtonSound.tap, onRestore),
               child: Padding(
                 padding: const EdgeInsets.all(8),
@@ -550,4 +567,5 @@ class _PlusCard extends StatelessWidget {
       ],
     ),
   );
+  }
 }

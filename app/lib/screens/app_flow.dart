@@ -302,10 +302,18 @@ abstract final class AppFlow {
         });
         final store = ref.watch(storeProvider) != null;
         final billing = ref.watch(billingProvider);
+        final family = ref.watch(familyProvider);
         return PaywallScreen(
           store: store,
           plans: billing.plans,
           busy: billing.busy,
+          // Plus already on: show the plan, and Google Play's page to manage it
+          current: family.subscribed
+              ? PlusNow(plan: family.plusPlan, until: family.plusUntil, renews: family.plusRenews, store: family.plusStore == 'google_play')
+              : null,
+          onManage: () async {
+            if (!await LikhoLinks.open(LikhoLinks.playSubscription) && ctx.mounted) Toast.show(ctx, 'Open Google Play › Payments & subscriptions.');
+          },
           onClose: () => Navigator.of(ctx).pop(),
           onRestore: () => store ? _member(ctx, () => unawaited(ref.read(billingProvider.notifier).restore())) : Toast.show(ctx, 'No previous purchases found.'),
           onStartTrial: (plan) async {

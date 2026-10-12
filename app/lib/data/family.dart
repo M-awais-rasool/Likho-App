@@ -142,6 +142,9 @@ class FamilyState {
     this.settings = const AppSettings(),
     this.subscribed = false,
     this.plusPlan,
+    this.plusUntil,
+    this.plusRenews = false,
+    this.plusStore,
     this.storeAccountId = '',
     this.account,
     this.mode = FamilyMode.demo,
@@ -156,6 +159,12 @@ class FamilyState {
   /// The Google Play plan behind Likho Plus ("monthly" / "yearly"), or null
   /// (a trial, a grant, or no Plus).
   final String? plusPlan;
+
+  /// When Likho Plus ends (or renews) and whether the store renews it; the
+  /// store ("google_play") or null (a trial or a grant).
+  final DateTime? plusUntil;
+  final bool plusRenews;
+  final String? plusStore;
 
   /// The account's ID for the store (the server's hash), sent with a purchase.
   final String storeAccountId;
@@ -180,6 +189,9 @@ class FamilyState {
         settings: settings ?? this.settings,
         subscribed: subscribed ?? this.subscribed,
         plusPlan: plusPlan,
+        plusUntil: plusUntil,
+        plusRenews: plusRenews,
+        plusStore: plusStore,
         storeAccountId: storeAccountId,
         account: account,
         mode: mode,
@@ -197,6 +209,9 @@ class FamilyState {
       settings: AppSettings.fromJson((me['settings'] as Map).cast<String, dynamic>()),
       subscribed: (me['subscription'] as Map?)?['active'] == true,
       plusPlan: (me['subscription'] as Map?)?['active'] == true ? (me['subscription'] as Map)['plan'] as String? : null,
+      plusUntil: DateTime.tryParse((me['subscription'] as Map?)?['plusUntil'] as String? ?? '')?.toLocal(),
+      plusRenews: (me['subscription'] as Map?)?['autoRenewing'] == true,
+      plusStore: (me['subscription'] as Map?)?['active'] == true ? (me['subscription'] as Map)['store'] as String? : null,
       storeAccountId: (me['subscription'] as Map?)?['storeAccountId'] as String? ?? '',
       account: Account(
         id: acc['id'] as String,
@@ -615,3 +630,10 @@ class PlaySessionNotifier extends Notifier<PlaySession> {
 }
 
 final playSessionProvider = NotifierProvider<PlaySessionNotifier, PlaySession>(PlaySessionNotifier.new);
+
+/// "11 Oct 2026": a day as parents read it (the phone's local date).
+String formatDay(DateTime d) {
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  final l = d.toLocal();
+  return '${l.day} ${months[l.month - 1]} ${l.year}';
+}
