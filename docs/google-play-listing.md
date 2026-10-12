@@ -148,8 +148,8 @@ HOW KIDS LEARN TO WRITE
 • Colourful pictures for every word: a is for apple!
 • Older letters keep coming back, so children remember them
 
-10 KINDS OF GAMES
-Every level mixes writing with short games: pop the bubbles, find the picture, sort into baskets, match the pairs, build the word, hunt for the letter, true or silly, fix Pencil's mistakes, say it out loud and, of course, write it.
+12 KINDS OF GAMES
+Every level mixes writing with short games: pop the bubbles, find the picture, sort into baskets, match the pairs, build the word, hunt for the letter, true or silly, fix Pencil's mistakes, tap the sound buttons to read a word, clap the beats on a drum, connect the dots in ABC order and, of course, write it.
 
 14 WORLDS, 210 LEVELS
 1. Letter Land: capital letters A to M
@@ -163,7 +163,7 @@ Every level mixes writing with short games: pop the bubbles, find the picture, s
 9. Sight Word Town: the, said, was, they and other words to know by sight
 10. Sentence Sky: capital letters, full stops, commas and sentences such as "I see a cat."
 11. Action Cove: doing words, describing words, feelings and opposites
-12. Question River: who, what, where, when, why, and talking with friendly aliens
+12. Question River: who, what, where, when, why, and asking and answering with friendly aliens
 13. Reading Bay: read signs, lists and little stories, then answer questions
 14. Story Space: put stories in order and write about me, my pet, my school and my day
 Every world has 15 levels and ends with a sleepy boss that your child wakes up by finishing the level.
@@ -198,8 +198,12 @@ Notes on the full description:
   "Progress is saved to your account" and the offline line. Update them if accounts change.
 - Checked against the course on 10 October 2026: children write all 26 capital and all 26 small
   letters, every level mixes the 10 round types, and each of the 14 worlds ends with a boss.
+- 11 October 2026: the "say it" rounds were removed (the app never used the microphone and has no
+  microphone permission). Their place went to three games without speaking: sound buttons, clap
+  the beats and connect the dots (12 kinds of games now). Update the full description in Play
+  Console with this text.
 - Not claimed on purpose:
-  - speech checking (speak rounds do not listen yet)
+  - anything about speaking or the microphone (the app has no microphone permission)
   - left-handed mode (a stored setting that does not change the game yet)
   - weekly reports (on the paywall, but not built)
 - The LIKHO PLUS paragraph describes the subscription in section 3. Publish the listing only after
