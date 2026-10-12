@@ -157,9 +157,26 @@ type roundDoc struct {
 		Tiles []string `json:"tiles"`
 		Slot  *string  `json:"slot"`
 	} `json:"order"`
-	Speak *struct {
-		Expected *string `json:"expected"`
-	} `json:"speak"`
+	Sounds *struct {
+		Word    string      `json:"word"`
+		Parts   []promptDoc `json:"parts"`
+		Blend   *promptDoc  `json:"blend"`
+		Choices []sortThing `json:"choices"`
+		Answer  *int        `json:"answer"`
+	} `json:"sounds"`
+	Beats *struct {
+		Text    string      `json:"text"`
+		Parts   []string    `json:"parts"`
+		Unit    *string     `json:"unit"`
+		Picture *pictureDoc `json:"picture"`
+		Hint    *promptDoc  `json:"hint"`
+	} `json:"beats"`
+	Connect *struct {
+		Labels  []string     `json:"labels"`
+		Points  [][]*float64 `json:"points"`
+		Picture *pictureDoc  `json:"picture"`
+		Done    *promptDoc   `json:"done"`
+	} `json:"connect"`
 	Hunt *struct {
 		Target string   `json:"target"`
 		Grid   []string `json:"grid"`
@@ -191,6 +208,13 @@ type roundDoc struct {
 		Picture *pictureDoc `json:"picture"`
 		Answer  *bool       `json:"answer"`
 	} `json:"truth"`
+}
+
+// promptDoc is a line Pencil says inside a round (a sound, a word, a hint).
+type promptDoc struct {
+	Text  string  `json:"text"`
+	Say   *string `json:"say"`
+	Audio *string `json:"audio"`
 }
 
 type sortThing struct {
@@ -309,12 +333,13 @@ func (c *checker) round(file string, i int, r *roundDoc) {
 		c.speech(at+" prompt", r.Prompt.Say, r.Prompt.Audio)
 	}
 	if !roundTypes[r.Type] {
-		c.p.add(at, "type %q is not one of pick, write, order, speak, hunt, fix, sort, match, pop, truth", r.Type)
+		c.p.add(at, "type %q is not one of pick, write, order, hunt, fix, sort, match, pop, truth, sounds, beats, connect", r.Type)
 		return
 	}
 	payloads := map[string]bool{
-		"pick": r.Pick != nil, "write": r.Write != nil, "order": r.Order != nil, "speak": r.Speak != nil, "hunt": r.Hunt != nil,
+		"pick": r.Pick != nil, "write": r.Write != nil, "order": r.Order != nil, "hunt": r.Hunt != nil,
 		"fix": r.Fix != nil, "sort": r.Sort != nil, "match": r.Match != nil, "pop": r.Pop != nil, "truth": r.Truth != nil,
+		"sounds": r.Sounds != nil, "beats": r.Beats != nil, "connect": r.Connect != nil,
 	}
 	for name, present := range payloads {
 		if name == r.Type && !present {
@@ -367,6 +392,104 @@ func (c *checker) round(file string, i int, r *roundDoc) {
 		if r.Truth.Text == "" || r.Truth.Answer == nil {
 			c.p.add(at, "truth needs a text and an answer (true or false)")
 		}
+	case r.Sounds != nil:
+		c.sounds(at, r)
+	case r.Beats != nil:
+		c.beats(at, r)
+	case r.Connect != nil:
+		c.connect(at, r)
+	}
+}
+
+// line checks a line Pencil says in a round: words, and a pronunciation
+// and recording like a prompt's.
+func (c *checker) line(at string, l *promptDoc) {
+	if l == nil || l.Text == "" {
+		c.p.add(at, "text is required")
+		return
+	}
+	c.speech(at, l.Say, l.Audio)
+}
+
+// sounds: the word, 1 to 6 sounds that spell it, what Pencil says when it
+// is read, and 2 to 4 pictures with the answer among them.
+func (c *checker) sounds(at string, r *roundDoc) {
+	s := r.Sounds
+	if s.Word == "" {
+		c.p.add(at, "sounds.word is required")
+	}
+	if n := len(s.Parts); n < 1 || n > 6 {
+		c.p.add(at, "sounds.parts needs 1 to 6 sounds")
+	}
+	spelled := ""
+	for i := range s.Parts {
+		c.line(fmt.Sprintf("%s sounds.parts[%d]", at, i), &s.Parts[i])
+		spelled += s.Parts[i].Text
+	}
+	if s.Word != "" && len(s.Parts) > 0 && spelled != s.Word {
+		c.p.add(at, "sounds.parts spell %q, not the word %q", spelled, s.Word)
+	}
+	c.line(at+" sounds.blend", s.Blend)
+	if n := len(s.Choices); n < 2 || n > 4 {
+		c.p.add(at, "sounds.choices needs 2 to 4 pictures")
+	}
+	for i, ch := range s.Choices {
+		if ch.Label == "" {
+			c.p.add(at, "sounds.choices[%d].label is required", i)
+		}
+	}
+	if s.Answer == nil || *s.Answer < 0 || *s.Answer >= len(s.Choices) {
+		c.p.add(at, "sounds.answer must be the index of one of the choices")
+	}
+}
+
+// beats: the word or sentence and its 1 to 8 beats (syllables, or words
+// with unit "word").
+func (c *checker) beats(at string, r *roundDoc) {
+	b := r.Beats
+	if b.Text == "" {
+		c.p.add(at, "beats.text is required")
+	}
+	if n := len(b.Parts); n < 1 || n > 8 {
+		c.p.add(at, "beats.parts needs 1 to 8 beats")
+	}
+	for i, p := range b.Parts {
+		if p == "" {
+			c.p.add(at, "beats.parts[%d] is empty", i)
+		}
+	}
+	if b.Unit != nil && *b.Unit != "syllable" && *b.Unit != "word" {
+		c.p.add(at, "beats.unit %q is not one of syllable, word", *b.Unit)
+	}
+	if b.Hint != nil {
+		c.line(at+" beats.hint", b.Hint)
+	}
+}
+
+// connect: 4 to 14 labelled dots, each a point [x, y] from 0 to 100, labels
+// unique (the order to join them in).
+func (c *checker) connect(at string, r *roundDoc) {
+	d := r.Connect
+	if n := len(d.Labels); n < 4 || n > 14 {
+		c.p.add(at, "connect.labels needs 4 to 14 dots")
+	}
+	if len(d.Points) != len(d.Labels) {
+		c.p.add(at, "connect needs one point per label (%d labels, %d points)", len(d.Labels), len(d.Points))
+	}
+	seen := map[string]bool{}
+	for i, l := range d.Labels {
+		if l == "" || seen[l] {
+			c.p.add(at, "connect.labels[%d] %q must be a label not used before", i, l)
+		}
+		seen[l] = true
+	}
+	for i, p := range d.Points {
+		if len(p) != 2 || p[0] == nil || p[1] == nil || *p[0] < 0 || *p[0] > 100 || *p[1] < 0 || *p[1] > 100 {
+			c.p.add(at, "connect.points[%d] must be [x, y] from 0 to 100", i)
+		}
+	}
+	if d.Done != nil {
+		c.line(at+" connect.done", d.Done)
 	}
 }
 

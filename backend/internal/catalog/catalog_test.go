@@ -151,6 +151,10 @@ func TestNewGamesLoad(t *testing.T) {
 		`"type":"pop","prompt":{"text":"Pop b"},"pop":{"target":"b","others":["d","p"],"count":5}`,
 		`"type":"truth","prompt":{"text":"True or silly?"},"truth":{"text":"The cat can fly.","picture":null,"answer":false}`,
 		`"type":"write","prompt":{"text":"Look, then write"},"write":{"mode":"flash","guide":"A"}`,
+		`"type":"sounds","prompt":{"text":"Tap each sound"},"sounds":{"word":"ship","parts":[{"text":"sh","say":"{/sh/|ʃːː}"},{"text":"i"},{"text":"p"}],"blend":{"text":"ship"},"choices":[{"label":"ship","picture":{"key":"ship","label":"ship","url":null}},{"label":"sun"}],"answer":0}`,
+		`"type":"beats","prompt":{"text":"Clap the beats"},"beats":{"text":"apple","parts":["ap","ple"],"unit":"syllable","picture":null,"hint":{"text":"ap-ple","say":"Apple. Two beats!"}}`,
+		`"type":"beats","prompt":{"text":"A beat a word"},"beats":{"text":"I see a cat.","parts":["I","see","a","cat"],"unit":"word"}`,
+		`"type":"connect","prompt":{"text":"Join A to D"},"connect":{"labels":["A","B","C","D"],"points":[[50,0],[100,50],[50,100],[0,50]],"picture":{"key":"kite","label":"kite","url":null},"done":{"text":"A kite!"}}`,
 	} {
 		fs := course()
 		f := fs["courses/demo/worlds/01-one/levels/01-a.json"]
@@ -239,6 +243,26 @@ func TestContentProblemsAreReportedWithTheirFile(t *testing.T) {
 			f.Data = bytes.Replace(f.Data, []byte(`"type":"write","prompt":{"text":"Trace A"},"write":{"mode":"trace","guide":"A"}`),
 				[]byte(`"type":"truth","prompt":{"text":"Hm"},"truth":{"text":"The sun is cold."}`), 1)
 		}, []string{"truth needs a text and an answer"}},
+		{"saying aloud is gone: the app does not listen", func(fs fstest.MapFS) {
+			f := fs["courses/demo/worlds/01-one/levels/01-a.json"]
+			f.Data = bytes.Replace(f.Data, []byte(`"type":"write","prompt":{"text":"Trace A"},"write":{"mode":"trace","guide":"A"}`),
+				[]byte(`"type":"speak","prompt":{"text":"Say A"},"speak":{"expected":"A"}`), 1)
+		}, []string{"01-a.json", `unknown field "speak"`}},
+		{"sound buttons that do not spell the word", func(fs fstest.MapFS) {
+			f := fs["courses/demo/worlds/01-one/levels/01-a.json"]
+			f.Data = bytes.Replace(f.Data, []byte(`"type":"write","prompt":{"text":"Trace A"},"write":{"mode":"trace","guide":"A"}`),
+				[]byte(`"type":"sounds","prompt":{"text":"Tap"},"sounds":{"word":"cat","parts":[{"text":"c"},{"text":"u"},{"text":"t"}],"choices":[{"label":"cat"}],"answer":3}`), 1)
+		}, []string{`sounds.parts spell "cut", not the word "cat"`, "sounds.blend: text is required", "sounds.choices needs 2 to 4 pictures", "sounds.answer must be the index"}},
+		{"beats without beats", func(fs fstest.MapFS) {
+			f := fs["courses/demo/worlds/01-one/levels/01-a.json"]
+			f.Data = bytes.Replace(f.Data, []byte(`"type":"write","prompt":{"text":"Trace A"},"write":{"mode":"trace","guide":"A"}`),
+				[]byte(`"type":"beats","prompt":{"text":"Clap"},"beats":{"text":"apple","parts":[],"unit":"clap"}`), 1)
+		}, []string{"beats.parts needs 1 to 8 beats", `beats.unit "clap" is not one of syllable, word`}},
+		{"dots without a point each", func(fs fstest.MapFS) {
+			f := fs["courses/demo/worlds/01-one/levels/01-a.json"]
+			f.Data = bytes.Replace(f.Data, []byte(`"type":"write","prompt":{"text":"Trace A"},"write":{"mode":"trace","guide":"A"}`),
+				[]byte(`"type":"connect","prompt":{"text":"Join"},"connect":{"labels":["A","B","B","D"],"points":[[50,0],[100,50],[50,140]]}`), 1)
+		}, []string{"connect needs one point per label", `connect.labels[2] "B" must be a label not used before`, "connect.points[2] must be [x, y] from 0 to 100"}},
 		{"writing pads are gone: there is only the paper", func(fs fstest.MapFS) {
 			f := fs["courses/demo/worlds/01-one/levels/01-a.json"]
 			f.Data = bytes.Replace(f.Data, []byte(`"mode":"trace","guide":"A"`), []byte(`"mode":"trace","guide":"A","pad":"sand"`), 1)
