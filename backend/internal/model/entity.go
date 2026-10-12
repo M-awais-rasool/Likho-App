@@ -172,6 +172,12 @@ type AdminUser struct {
 	CreatedAt    time.Time
 	LastLoginAt  *time.Time
 
+	// Two-step sign-in: the authenticator app's secret (base32; "" = not
+	// set up yet, asked at the next sign-in) and the last 30 s step whose
+	// code was used (a code works once).
+	TOTPSecret   string `gorm:"column:totp_secret;not null;default:''"`
+	TOTPLastStep int64  `gorm:"column:totp_last_step;not null;default:0"`
+
 	Sessions []AdminSession `gorm:"foreignKey:AdminID;constraint:OnDelete:CASCADE"`
 }
 
@@ -223,7 +229,7 @@ const (
 type AuditEntry struct {
 	ID         int64     `gorm:"primaryKey" json:"id"`
 	At         time.Time `gorm:"not null;default:now();index" json:"at"`
-	AdminID    string    `gorm:"type:uuid;index" json:"adminId"`
+	AdminID    *string   `gorm:"type:uuid;index" json:"adminId"` // nil: nobody signed in (a failed sign-in)
 	AdminEmail string    `gorm:"not null" json:"adminEmail"`
 	Action     string    `gorm:"type:varchar(48);not null;index" json:"action"`
 	Target     string    `gorm:"not null;default:''" json:"target"`

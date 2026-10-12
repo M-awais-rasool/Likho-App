@@ -62,6 +62,15 @@ func (r *AdminRepository) UpdateAdmin(ctx context.Context, id string, updates ma
 	return res.Error
 }
 
+// UseTOTPStep saves [updates] (the secret and the code's step) only while
+// the admin still has [secret] and [last]: of two sign-ins with the same
+// code, one wins. Returns the rows changed (0 = lost the race).
+func (r *AdminRepository) UseTOTPStep(ctx context.Context, id, secret string, last int64, updates map[string]any) (int64, error) {
+	res := r.db.WithContext(ctx).Model(&model.AdminUser{}).
+		Where("id = ? AND totp_secret = ? AND totp_last_step = ?", id, secret, last).Updates(updates)
+	return res.RowsAffected, res.Error
+}
+
 func (r *AdminRepository) DeleteAdmin(ctx context.Context, id string) error {
 	res := r.db.WithContext(ctx).Delete(&model.AdminUser{}, "id = ?", id)
 	if res.Error == nil && res.RowsAffected == 0 {
