@@ -533,5 +533,5 @@ func (s *ClosedTestService) UnlinkAccount(ctx context.Context, by Actor, parentI
 }
 
 func (s *ClosedTestService) audit(ctx context.Context, by Actor, action, target string, detail any) {
-	_ = s.admin.Audit(ctx, &model.AuditEntry{AdminID: by.ID, AdminEmail: by.Email, Action: action, Target: target, Detail: model.JSONOf(detail)})
+	_ = s.admin.Audit(ctx, auditEntry(by, action, target, detail))
 }
