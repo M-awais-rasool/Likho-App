@@ -47,7 +47,7 @@ export async function api<T = unknown>(path: string, init: { method?: string; bo
   }
   if (!res.ok) {
     const d = (data ?? {}) as { error?: string; message?: string; problems?: string[] }
-    if (res.status === 401 && path !== '/auth/login') onSignedOut?.()
+    if (res.status === 401 && !path.startsWith('/auth/login') && !path.startsWith('/auth/verify')) onSignedOut?.()
     throw new ApiError(res.status, d.error ?? 'error', d.message ?? `Request failed (${res.status})`, d.problems ?? [])
   }
   return data as T
@@ -80,6 +80,15 @@ export interface Admin {
   disabled: boolean
   createdAt: string
   lastLoginAt: string | null
+  twoFactor: boolean // the authenticator app is set up
+}
+
+/** After a right password: the authenticator code, or set the app up first. */
+export interface LoginStep {
+  next: 'code' | 'setup'
+  ticket: string
+  secret?: string // setup: to type into the app
+  otpauthUrl?: string // setup: shown as a QR code
 }
 
 export interface CourseSummary {
@@ -345,7 +354,7 @@ export interface LevelStats {
 export interface AuditEntry {
   id: number
   at: string
-  adminId: string
+  adminId: string | null // null: a failed sign-in
   adminEmail: string
   action: string
   target: string
