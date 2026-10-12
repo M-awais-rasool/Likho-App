@@ -3,6 +3,7 @@ import { ArrowDown, ArrowUp, Copy, Mic, Plus, Trash2, Volume2 } from 'lucide-rea
 import { useState, type ReactNode } from 'react'
 import {
   COLORS,
+  DOT_SHAPES,
   LAYOUTS,
   LEVEL_ICONS,
   ROUND_TYPES,
@@ -470,6 +471,131 @@ function StarEditor({ r, at, change, assets }: { r: Doc; at: (string | number)[]
           </Field>
         </div>
       )
+    case 'sounds': {
+      const s = r.sounds ?? {}
+      const parts: Doc[] = s.parts ?? []
+      const choices: Doc[] = s.choices ?? []
+      return (
+        <div className="space-y-3">
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Field label="Word">
+              <Input value={s.word ?? ''} onChange={(e) => change([...at, 'sounds', 'word'], e.target.value)} />
+            </Field>
+            <Field label="Pencil reads it" hint="When the child slides under the word">
+              <Input value={s.blend?.say ?? s.blend?.text ?? ''} onChange={(e) => change([...at, 'sounds', 'blend'], { text: s.word ?? e.target.value, say: e.target.value })} />
+            </Field>
+          </div>
+          <Field label="Sounds, in order" hint="Their letters spell the word (sh, ee and doubled letters are one sound). Pencil says each: write it {/sh/|ʃːː}, then record it with tools/voice.">
+            <Rows
+              rows={parts}
+              min={1}
+              add="Add sound"
+              blank={{ text: '?', say: null }}
+              onChange={(next) => change([...at, 'sounds', 'parts'], next.slice(0, 6))}
+              render={(pt, set) => (
+                <>
+                  <Field label="Letters">
+                    <Input value={pt.text} onChange={(e) => set({ ...pt, text: e.target.value })} />
+                  </Field>
+                  <Field label="Pencil says">
+                    <Input value={pt.say ?? ''} placeholder="{/c/|kʌ}" onChange={(e) => set({ ...pt, say: e.target.value || null })} />
+                  </Field>
+                </>
+              )}
+            />
+          </Field>
+          <Field label="Pictures to choose from" hint="2 to 4; the word's picture is one of them">
+            <Rows
+              rows={choices}
+              min={2}
+              add="Add picture"
+              blank={{ label: '?', picture: null }}
+              onChange={(next) => change([...at, 'sounds', 'choices'], next.slice(0, 4))}
+              render={(c, set) => (
+                <>
+                  <Field label="Word">
+                    <Input value={c.label} onChange={(e) => set({ ...c, label: e.target.value })} />
+                  </Field>
+                  <PictureField label="Picture" value={c.picture} assets={assets} onChange={(pic) => set({ ...c, picture: pic })} />
+                </>
+              )}
+            />
+          </Field>
+          <Field label="The right picture">
+            <Select value={s.answer ?? 0} onChange={(e) => change([...at, 'sounds', 'answer'], Number(e.target.value))}>
+              {choices.map((c, i) => (
+                <option key={i} value={i}>
+                  {c.label || `Picture ${i + 1}`}
+                </option>
+              ))}
+            </Select>
+          </Field>
+        </div>
+      )
+    }
+    case 'beats': {
+      const b = r.beats ?? {}
+      return (
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Field label="Word or sentence">
+            <Input value={b.text ?? ''} onChange={(e) => change([...at, 'beats', 'text'], e.target.value)} />
+          </Field>
+          <Field label="Beats" hint="Syllables (ap-ple) or words, separated by - or spaces; 1 to 8">
+            <Input
+              value={(b.parts ?? []).join(b.unit === 'word' ? ' ' : '-')}
+              onChange={(e) => change([...at, 'beats', 'parts'], e.target.value.split(b.unit === 'word' ? /\s+/ : /[-\s]+/).map((x) => x.trim()).filter(Boolean))}
+            />
+          </Field>
+          <Field label="A beat for each">
+            <Select value={b.unit ?? 'syllable'} onChange={(e) => change([...at, 'beats', 'unit'], e.target.value)}>
+              <option value="syllable">Syllable (ap-ple)</option>
+              <option value="word">Word (I see a cat)</option>
+            </Select>
+          </Field>
+          <PictureField label="Picture" value={b.picture} assets={assets} onChange={(pic) => change([...at, 'beats', 'picture'], pic)} />
+          <Field label="Hint after a wrong count" hint="What Pencil says, e.g. Apple. Two beats!">
+            <Input
+              value={b.hint?.say ?? b.hint?.text ?? ''}
+              onChange={(e) => change([...at, 'beats', 'hint'], e.target.value ? { text: (b.parts ?? []).join('-') || e.target.value, say: e.target.value } : null)}
+            />
+          </Field>
+        </div>
+      )
+    }
+    case 'connect': {
+      const c = r.connect ?? {}
+      const labels: string[] = c.labels ?? []
+      const shape = Object.keys(DOT_SHAPES).find((k) => JSON.stringify(DOT_SHAPES[k]) === JSON.stringify(c.points)) ?? ''
+      const pickShape = (k: string) => {
+        const pts = DOT_SHAPES[k]
+        const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        const start = Math.max(0, Math.min(abc.indexOf(labels[0] ?? 'A'), 26 - pts.length))
+        const lower = labels[0] != null && labels[0] === labels[0].toLowerCase()
+        const next = abc.slice(start, start + pts.length).split('').map((x) => (lower ? x.toLowerCase() : x))
+        const art = /^[aeiou]/.test(k) ? 'an' : 'a'
+        change([...at, 'connect'], { ...c, labels: next, points: pts, picture: { key: k, label: k, url: null }, done: { text: `${art[0].toUpperCase()}${art.slice(1)} ${k}!`, say: `It's ${art} ${k}!` } })
+      }
+      return (
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Field label="Picture the dots make" hint="Sets the dots, their letters (from the first label) and the picture">
+            <Select value={shape} onChange={(e) => pickShape(e.target.value)}>
+              {!shape && <option value="">Custom (JSON)</option>}
+              {Object.keys(DOT_SHAPES).map((k) => (
+                <option key={k} value={k}>
+                  {k} ({DOT_SHAPES[k].length} dots)
+                </option>
+              ))}
+            </Select>
+          </Field>
+          <Field label="Letters, in order" hint={`One per dot (${(c.points ?? []).length}), separated by commas`}>
+            <Input value={labels.join(', ')} onChange={(e) => change([...at, 'connect', 'labels'], csv(e.target.value))} />
+          </Field>
+          <Field label="Pencil says when it is done">
+            <Input value={c.done?.say ?? c.done?.text ?? ''} onChange={(e) => change([...at, 'connect', 'done'], e.target.value ? { text: e.target.value, say: e.target.value } : null)} />
+          </Field>
+        </div>
+      )
+    }
     default:
       return null
   }
@@ -533,11 +659,6 @@ function RoundCard({ r, i, count, change, move, remove, duplicate, assets }: { r
             </div>
           )}
           <StarEditor r={r} at={at} change={change} assets={assets} />
-          {r.type === 'speak' && (
-            <Field label="What the child should say">
-              <Input value={r.speak?.expected ?? ''} onChange={(e) => change([...at, 'speak', 'expected'], e.target.value || null)} />
-            </Field>
-          )}
         </div>
       </div>
     </section>
