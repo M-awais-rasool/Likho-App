@@ -102,7 +102,7 @@ func BuildApp(d Deps) *Built {
 		_ = content.Reload(context.Background())
 	}
 	health := &handler.HealthHandler{Postgres: database.Pinger(d.DB), Redis: c}
-	admins := service.NewAdminAuthService(repos.Admin)
+	admins := service.NewAdminAuthService(repos.Admin, c)
 	adminHandler := &handler.AdminHandler{
 		Auth: admins, Admin: service.NewAdminService(repos, store, c, activity, account), Content: content,
 		ClosedTest: closedTest, Health: health, Info: d.System, Secure: d.Production,
@@ -262,4 +262,21 @@ func Run(ctx context.Context, cfg config.Config) error {
 	shutdownCtx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	return srv.Shutdown(shutdownCtx)
+}
+
+// ResetAdminTwoFactor is the server command for a lost phone: [email] sets
+// up the authenticator app again at the next sign-in (and is signed out,
+// and a lock is lifted).
+func ResetAdminTwoFactor(ctx context.Context, cfg config.Config, email string) error {
+	db, err := database.Connect(ctx, cfg.DatabaseURL, false, 1)
+	if err != nil {
+		return err
+	}
+	defer database.Close(db)
+	rdb, err := database.ConnectRedis(ctx, cfg.RedisURL)
+	if err != nil {
+		return err
+	}
+	defer rdb.Close()
+	return service.NewAdminAuthService(repository.New(db).Admin, cache.New(rdb)).ResetTwoFactor(ctx, email)
 }
