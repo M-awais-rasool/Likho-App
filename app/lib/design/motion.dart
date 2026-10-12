@@ -41,6 +41,8 @@ typedef MotionBuilder = Widget Function(BuildContext context, double t, Widget c
 
 /// Runs [builder] from t = 0 to 1 over [duration], after [delay]. Before the
 /// delay the widget shows t = 0 (CSS `animation-fill-mode: both`).
+/// Builders drop their wrappers at t = 1; the child keeps its state anyway
+/// (a speaking Pencil is not built again when its step has risen in).
 class Entrance extends StatefulWidget {
   const Entrance({super.key, required this.duration, required this.builder, required this.child, this.delay = Duration.zero});
 
@@ -54,6 +56,7 @@ class Entrance extends StatefulWidget {
 
 class _EntranceState extends State<Entrance> with SingleTickerProviderStateMixin {
   late final AnimationController _c = AnimationController(vsync: this, duration: widget.duration);
+  final _child = GlobalKey(debugLabel: 'Entrance.child');
   Timer? _wait;
 
   @override
@@ -76,8 +79,11 @@ class _EntranceState extends State<Entrance> with SingleTickerProviderStateMixin
   }
 
   @override
-  Widget build(BuildContext context) =>
-      AnimatedBuilder(animation: _c, child: widget.child, builder: (context, child) => widget.builder(context, _c.value, child!));
+  Widget build(BuildContext context) => AnimatedBuilder(
+    animation: _c,
+    child: KeyedSubtree(key: _child, child: widget.child),
+    builder: (context, child) => widget.builder(context, _c.value, child!),
+  );
 }
 
 Duration _ms(num s) => Duration(milliseconds: (s * 1000).round());
