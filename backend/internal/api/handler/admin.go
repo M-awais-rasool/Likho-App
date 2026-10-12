@@ -94,20 +94,53 @@ func uuidParam(c *gin.Context, name string) (string, bool) {
 
 // ------------------------------------------------------------------ auth
 
-// Login: POST /auth/login {"email", "password"} -> sets the session cookie.
+// Login: POST /auth/login {"email", "password"} -> the next step
+// {"next": "code" | "setup", "ticket", "secret"?, "otpauthUrl"?}.
 func (h *AdminHandler) Login(c *gin.Context) {
 	var in struct{ Email, Password string }
 	if !bind(c, &in) {
 		return
 	}
-	a, token, err := h.Auth.Login(c.Request.Context(), in.Email, in.Password, c.GetHeader("User-Agent"))
+	step, err := h.Auth.Login(c.Request.Context(), in.Email, in.Password)
 	if err != nil {
+		if errors.Is(err, domain.ErrAdminLocked) || errors.Is(err, domain.ErrAdminLogin) {
+			h.Admin.Audit(c.Request.Context(), service.Actor{}, "admin.login_failed", strings.ToLower(strings.TrimSpace(in.Email)), gin.H{"ip": c.ClientIP(), "error": errorCode(err)})
+		}
+		writeError(c, err)
+		return
+	}
+	writeJSON(c, http.StatusOK, step)
+}
+
+// Verify: POST /auth/verify {"ticket", "code"} -> sets the session cookie.
+func (h *AdminHandler) Verify(c *gin.Context) {
+	var in struct{ Ticket, Code string }
+	if !bind(c, &in) {
+		return
+	}
+	a, token, setUp, err := h.Auth.Verify(c.Request.Context(), in.Ticket, in.Code, c.GetHeader("User-Agent"))
+	if err != nil {
+		if errors.Is(err, domain.ErrAdminCode) || errors.Is(err, domain.ErrAdminLocked) {
+			h.Admin.Audit(c.Request.Context(), service.Actor{}, "admin.login_failed", "", gin.H{"ip": c.ClientIP(), "error": errorCode(err)})
+		}
 		writeError(c, err)
 		return
 	}
 	h.setCookie(c, token, int(h.Auth.SessionTTL().Seconds()))
-	h.Admin.Audit(c.Request.Context(), service.Actor{ID: a.ID, Email: a.Email}, "admin.login", a.Email, gin.H{"ip": c.ClientIP()})
+	who := service.Actor{ID: a.ID, Email: a.Email}
+	if setUp {
+		h.Admin.Audit(c.Request.Context(), who, "admin.two_factor_on", a.Email, nil)
+	}
+	h.Admin.Audit(c.Request.Context(), who, "admin.login", a.Email, gin.H{"ip": c.ClientIP()})
 	writeJSON(c, http.StatusOK, gin.H{"admin": a})
+}
+
+func errorCode(err error) string {
+	var de *domain.Error
+	if errors.As(err, &de) {
+		return de.Code
+	}
+	return "internal"
 }
 
 func (h *AdminHandler) setCookie(c *gin.Context, value string, maxAge int) {
@@ -645,7 +678,7 @@ func (h *AdminHandler) UpdateAdmin(c *gin.Context) {
 		writeError(c, err)
 		return
 	}
-	h.Admin.Audit(c.Request.Context(), actor(c), "team.updated", out.Email, gin.H{"role": in.Role, "disabled": in.Disabled, "name": in.Name, "passwordReset": in.Password != nil})
+	h.Admin.Audit(c.Request.Context(), actor(c), "team.updated", out.Email, gin.H{"role": in.Role, "disabled": in.Disabled, "name": in.Name, "passwordReset": in.Password != nil, "twoFactorReset": in.ResetTwoFactor})
 	writeJSON(c, http.StatusOK, out)
 }
 

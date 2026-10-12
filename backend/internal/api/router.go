@@ -129,6 +129,7 @@ func NewRouter(h *handler.Handlers, admin *handler.AdminHandler, tokens service.
 func adminRoutes(r *gin.Engine, h *handler.AdminHandler, c *cache.Cache) {
 	api := r.Group("/admin/api/v1")
 	api.POST("/auth/login", middleware.RateLimit(c, "admin-login", adminLoginPerMinute, time.Minute), h.Login)
+	api.POST("/auth/verify", middleware.RateLimit(c, "admin-verify", adminLoginPerMinute, time.Minute), h.Verify)
 	api.POST("/auth/logout", h.Logout)
 
 	in := api.Group("", middleware.AdminAuth(h.Auth.Session))
