@@ -9,6 +9,7 @@ import 'package:material_symbols_icons/symbols.dart';
 import '../../data/api/api_client.dart';
 import '../../data/family.dart';
 import '../../feedback/app_feedback.dart';
+import '../../feedback/pencil_lines.dart';
 import '../../design/motion.dart';
 import '../../design/tokens.dart';
 import '../../mascot/mascot.dart';
@@ -20,6 +21,7 @@ enum ChildSetupMode { add, edit }
 
 /// 07 Onboarding "Add child" (3 steps) and "Edit child", from the prototype:
 /// name (parents type it) -> age (tap a birthday cake) -> Pencil's colour.
+/// Adding a child, Pencil asks each step out loud ([PencilLines]).
 /// Adding finishes with [onDone] (placement warm-up next); editing saves and
 /// finishes with [onDone] too. In edit mode "Profile delete" asks first and
 /// then calls [onDeleted].
@@ -50,6 +52,11 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
 
   bool get _edit => widget.mode == ChildSetupMode.edit;
   bool get _nameOk => _name.text.trim().isNotEmpty;
+
+  /// Pencil's question for a step (when adding: a parent edits in silence),
+  /// once the step has risen in.
+  String? _line(String line) => _edit ? null : line;
+  static const _sayAt = Duration(milliseconds: 450);
 
   @override
   void dispose() {
@@ -245,7 +252,15 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
   Widget _nameStep() => Column(
     children: [
       const SizedBox(height: 22),
-      PencilFigure(width: 130, height: 184, color: _color, state: _happy ? MascotState.happy : MascotState.watching, lookDown: true),
+      PencilFigure(
+        width: 130,
+        height: 184,
+        color: _color,
+        state: _happy ? MascotState.happy : MascotState.watching,
+        lookDown: true,
+        say: _line(PencilLines.name),
+        sayAt: _sayAt,
+      ),
       const SizedBox(height: 14),
       Text(
         "Child's name?",
@@ -301,7 +316,15 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
   Widget _ageStep() => Column(
     children: [
       const SizedBox(height: 18),
-      PencilFigure(width: 96, height: 136, color: _color, state: MascotState.talking),
+      // talks while saying the line (or all along when editing, as before)
+      PencilFigure(
+        width: 96,
+        height: 136,
+        color: _color,
+        state: _edit ? MascotState.talking : MascotState.idle,
+        say: _line(PencilLines.age),
+        sayAt: _sayAt,
+      ),
       const SizedBox(height: 12),
       Text("Child's age?", style: LikhoFonts.title(size: 34, weight: FontWeight.w800)),
       const SizedBox(height: 30),
@@ -337,7 +360,15 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
               top: 20,
               child: _ColorSplash(color: _color, replay: _splash),
             ),
-            PencilFigure(width: 170, height: 240, color: _color, state: _happy ? MascotState.happy : MascotState.idle),
+            // picking a colour stops the line: Pencil cheers instead
+            PencilFigure(
+              width: 170,
+              height: 240,
+              color: _color,
+              state: _happy ? MascotState.happy : MascotState.idle,
+              say: _line(PencilLines.colour),
+              sayAt: _sayAt,
+            ),
           ],
         ),
       ),
