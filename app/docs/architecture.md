@@ -127,7 +127,7 @@ Build settings (`--dart-define`):
 }
 ```
 
-* Each round has a `type` and a payload object with the same name (`pick`, `write`, `order`, `speak`).
+* Each round has a `type` and a payload object with the same name (`pick`, `write`, `order`, `hunt`, `fix`, `sort`, `match`, `pop`, `truth`, `sounds`, `beats`, `connect`). There is no speaking round: the app never uses the microphone.
 * `prompt.audio` = recording (asset path or URL). Without it the device voice reads `prompt.text`.
 * `picture.key` = bundled image `assets/illustrations/<key>.png`; `picture.url` = remote image.
   Without either the prototype's labelled placeholder shows.
