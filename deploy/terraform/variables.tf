@@ -9,6 +9,12 @@ variable "website_on_server" {
   default     = false
 }
 
+variable "admin_on_internet" {
+  description = "The admin panel at https://admin.<domain> (password + authenticator code). false = only through deploy/admin-tunnel.sh."
+  type        = bool
+  default     = true
+}
+
 variable "dns_on_vultr" {
   description = "Vultr runs the domain's DNS (nameservers ns1.vultr.com, ns2.vultr.com). false = the DNS stays where it is (e.g. Vercel): add the records in output dns_records there."
   type        = bool

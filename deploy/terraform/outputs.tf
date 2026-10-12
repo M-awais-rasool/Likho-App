@@ -27,7 +27,7 @@ output "urls" {
   value = {
     website = var.website_on_server ? "https://${var.domain}" : "not on this server"
     api     = "https://${local.api_domain}"
-    admin   = "deploy/admin-tunnel.sh, then http://localhost:8080/admin/"
+    admin   = var.admin_on_internet ? "https://admin.${var.domain}/admin/ (or deploy/admin-tunnel.sh)" : "deploy/admin-tunnel.sh, then http://localhost:18080/admin/"
   }
 }
 
