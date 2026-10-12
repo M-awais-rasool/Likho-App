@@ -128,4 +128,47 @@ void main() {
     await t.pump();
     expect(bought, Plan.yearly);
   });
+
+  test('after buying, the family knows the plan, its renewal date and the store', () async {
+    await c.read(billingProvider.notifier).buy(Plan.monthly);
+    await settle();
+    final f = c.read(familyProvider);
+    expect((f.subscribed, f.plusPlan, f.plusRenews, f.plusStore), (true, 'monthly', true, 'google_play'));
+    expect(f.plusUntil, DateTime.utc(2099).toLocal());
+    expect(formatDay(DateTime(2026, 10, 11)), '11 Oct 2026');
+  });
+
+  testWidgets('with Likho Plus the plan screen shows the plan and Manage subscription', (t) async {
+    t.view.physicalSize = const Size(390, 900);
+    t.view.devicePixelRatio = 1;
+    addTearDown(t.view.reset);
+    var managed = 0;
+    Future<void> show(PlusNow now) => t.pumpWidget(
+      UncontrolledProviderScope(
+        container: c,
+        child: MaterialApp(
+          theme: likhoTheme(),
+          home: PaywallScreen(store: true, current: now, onClose: () {}, onRestore: () {}, onStartTrial: (_) {}, onManage: () => managed++),
+        ),
+      ),
+    );
+    await show(PlusNow(plan: 'monthly', until: DateTime(2026, 11, 11), renews: true, store: true));
+    await t.pump();
+    expect(find.text('You have Likho Plus'), findsOneWidget);
+    expect(find.text('Monthly plan'), findsOneWidget);
+    expect(find.text('Renews on 11 Nov 2026'), findsOneWidget);
+    expect(find.text('Start 7-day free trial'), findsNothing, reason: 'no plans to buy any more');
+    await t.tap(find.text('Manage subscription'));
+    await t.pump();
+    expect(managed, 1);
+
+    await show(PlusNow(plan: 'yearly', until: DateTime(2027, 10, 11), store: true));
+    await t.pump();
+    expect(find.text("Ends on 11 Oct 2027. It won't renew."), findsOneWidget);
+
+    await show(PlusNow(until: DateTime(2026, 10, 18)));
+    await t.pump();
+    expect(find.text('Active until 18 Oct 2026'), findsOneWidget);
+    expect(find.text('Manage subscription'), findsNothing, reason: 'a trial or a grant is not in the store');
+  });
 }
