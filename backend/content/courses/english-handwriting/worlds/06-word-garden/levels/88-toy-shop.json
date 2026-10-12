@@ -102,8 +102,8 @@
         "items": [
           {
             "text": "teddy",
-            "wrong": "mirror",
-            "at": 4
+            "wrong": null,
+            "at": null
           },
           {
             "text": "kite",
@@ -117,8 +117,8 @@
           },
           {
             "text": "drum",
-            "wrong": null,
-            "at": null
+            "wrong": "mirror",
+            "at": 1
           }
         ]
       }
@@ -279,23 +279,73 @@
     },
     {
       "id": "level-88-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: teddy, kite, ball, drum!",
-        "say": "Say them with me! teddy, kite, ball, drum!",
-        "audio": "voice/line-5d3bd9fb7675c242.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "teddy, kite, ball, drum!",
-        "picture": {
-          "key": "teddy",
-          "label": "teddy",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "teddy, kite, ball, drum!"
+      "sounds": {
+        "word": "drum",
+        "parts": [
+          {
+            "text": "d",
+            "say": "{/d/|dʌ}",
+            "audio": "voice/line-f06c02b8a2619c78.m4a"
+          },
+          {
+            "text": "r",
+            "say": "{/r/|ɹːː}",
+            "audio": "voice/line-c9097eface293028.m4a"
+          },
+          {
+            "text": "u",
+            "say": "{/u/|ʌ}",
+            "audio": "voice/line-6094ce3b4313c3cc.m4a"
+          },
+          {
+            "text": "m",
+            "say": "{/m/|mːː}",
+            "audio": "voice/line-26d6be66a61da36b.m4a"
+          }
+        ],
+        "blend": {
+          "text": "drum",
+          "say": "drum!",
+          "audio": "voice/line-de6140936329db5a.m4a"
+        },
+        "choices": [
+          {
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            }
+          },
+          {
+            "label": "cup",
+            "picture": {
+              "key": "cup",
+              "label": "cup",
+              "url": null
+            }
+          },
+          {
+            "label": "drum",
+            "picture": {
+              "key": "drum",
+              "label": "drum",
+              "url": null
+            }
+          }
+        ],
+        "answer": 2
       }
     },
     {
@@ -326,15 +376,6 @@
         ],
         "items": [
           {
-            "label": "fish",
-            "picture": {
-              "key": "fish",
-              "label": "fish",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
             "label": "gift",
             "picture": {
               "key": "gift",
@@ -353,6 +394,15 @@
             "bin": 0
           },
           {
+            "label": "goat",
+            "picture": {
+              "key": "goat",
+              "label": "goat",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
             "label": "four",
             "picture": {
               "key": "four",
@@ -362,13 +412,13 @@
             "bin": 0
           },
           {
-            "label": "goat",
+            "label": "fish",
             "picture": {
-              "key": "goat",
-              "label": "goat",
+              "key": "fish",
+              "label": "fish",
               "url": null
             },
-            "bin": 1
+            "bin": 0
           }
         ]
       }

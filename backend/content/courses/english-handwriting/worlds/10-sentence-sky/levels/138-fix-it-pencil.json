@@ -283,23 +283,35 @@
     },
     {
       "id": "level-138-r7",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: A sentence starts with a capital letter.",
-        "say": "A sentence starts with a capital letter. Now you say it!",
-        "audio": "voice/line-eb5923470ab4fba3.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "A sentence starts with a capital letter. Tap the drum once for every word!",
+        "audio": "voice/line-53f044c7ddf7501a.m4a"
       },
       "card": {
-        "text": "A sentence starts with a capital letter.",
-        "picture": {
-          "key": "pencil",
-          "label": "pencil",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "A sentence starts with a capital letter."
+      "beats": {
+        "text": "A sentence starts with a capital letter.",
+        "parts": [
+          "A",
+          "sentence",
+          "starts",
+          "with",
+          "a",
+          "capital",
+          "letter"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "A sentence starts with a capital letter",
+          "say": "A sentence starts with a capital letter. Seven words!",
+          "audio": "voice/line-74187350f16d9fb3.m4a"
+        }
       }
     },
     {

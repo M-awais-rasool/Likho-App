@@ -286,23 +286,34 @@
     },
     {
       "id": "level-132-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: The cat is under the chair.",
-        "say": "The cat is under the chair. Now you say it!",
-        "audio": "voice/line-c4947f3e6dde3870.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "The cat is under the chair. Tap the drum once for every word!",
+        "audio": "voice/line-7cc74d3387157dce.m4a"
       },
       "card": {
-        "text": "The cat is under the chair.",
-        "picture": {
-          "key": "cat_under_chair",
-          "label": "cat under chair",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "The cat is under the chair."
+      "beats": {
+        "text": "The cat is under the chair.",
+        "parts": [
+          "The",
+          "cat",
+          "is",
+          "under",
+          "the",
+          "chair"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "The cat is under the chair",
+          "say": "The cat is under the chair. Six words!",
+          "audio": "voice/line-5a2d2eea9b9fb24c.m4a"
+        }
       }
     },
     {

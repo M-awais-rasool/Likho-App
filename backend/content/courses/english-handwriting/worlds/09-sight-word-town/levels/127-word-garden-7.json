@@ -272,23 +272,31 @@
     },
     {
       "id": "level-127-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: What is this?",
-        "say": "What is this? Now you say it!",
-        "audio": "voice/line-01af29cb2edaa8ec.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "What is this? Tap the drum once for every word!",
+        "audio": "voice/line-5a7a2c076b192fa8.m4a"
       },
       "card": {
-        "text": "What is this?",
-        "picture": {
-          "key": "box",
-          "label": "box",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "What is this?"
+      "beats": {
+        "text": "What is this?",
+        "parts": [
+          "What",
+          "is",
+          "this"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "What is this",
+          "say": "What is this? Three words!",
+          "audio": "voice/line-350605bc86bc336f.m4a"
+        }
       }
     },
     {

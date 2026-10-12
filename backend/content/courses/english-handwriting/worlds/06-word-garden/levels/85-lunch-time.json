@@ -299,23 +299,63 @@
     },
     {
       "id": "level-85-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: egg, milk, rice, cake!",
-        "say": "Say them with me! egg, milk, rice, cake!",
-        "audio": "voice/line-97b6a23a5f32604b.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "egg, milk, rice, cake!",
-        "picture": {
-          "key": "egg",
-          "label": "egg",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "egg, milk, rice, cake!"
+      "sounds": {
+        "word": "egg",
+        "parts": [
+          {
+            "text": "e",
+            "say": "{/e/|ɛ}",
+            "audio": "voice/line-26b8405a6ef65e10.m4a"
+          },
+          {
+            "text": "gg",
+            "say": "{/gg/|ɡʌ}",
+            "audio": "voice/line-be23dfaf66221347.m4a"
+          }
+        ],
+        "blend": {
+          "text": "egg",
+          "say": "egg!",
+          "audio": "voice/line-1e26ba23c0501980.m4a"
+        },
+        "choices": [
+          {
+            "label": "milk",
+            "picture": {
+              "key": "milk",
+              "label": "milk",
+              "url": null
+            }
+          },
+          {
+            "label": "rice",
+            "picture": {
+              "key": "rice",
+              "label": "rice",
+              "url": null
+            }
+          },
+          {
+            "label": "egg",
+            "picture": {
+              "key": "egg",
+              "label": "egg",
+              "url": null
+            }
+          }
+        ],
+        "answer": 2
       }
     },
     {
@@ -335,23 +375,23 @@
         "items": [
           {
             "text": "egg",
-            "wrong": null,
-            "at": null
+            "wrong": "mirror",
+            "at": 1
           },
           {
             "text": "milk",
-            "wrong": "mirror",
-            "at": 3
+            "wrong": null,
+            "at": null
           },
           {
             "text": "rice",
-            "wrong": "mirror",
-            "at": 3
+            "wrong": null,
+            "at": null
           },
           {
             "text": "cake",
-            "wrong": null,
-            "at": null
+            "wrong": "mirror",
+            "at": 1
           }
         ]
       }

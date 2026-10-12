@@ -294,23 +294,32 @@
     },
     {
       "id": "level-78-r7",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Seven, eight, nine, ten!",
-        "say": "Seven, eight, nine, ten! Now you say it!",
-        "audio": "voice/line-305f1c362ca65099.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Seven, eight, nine, ten! Tap the drum once for every word!",
+        "audio": "voice/line-d08241cafeac6db9.m4a"
       },
       "card": {
-        "text": "Seven, eight, nine, ten!",
-        "picture": {
-          "key": "ten",
-          "label": "ten",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Seven, eight, nine, ten!"
+      "beats": {
+        "text": "Seven, eight, nine, ten!",
+        "parts": [
+          "Seven",
+          "eight",
+          "nine",
+          "ten"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Seven eight nine ten",
+          "say": "Seven, eight, nine, ten! Four words!",
+          "audio": "voice/line-53759848405f13b4.m4a"
+        }
       }
     },
     {

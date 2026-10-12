@@ -99,23 +99,31 @@
     },
     {
       "id": "level-148-r4",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: I can run.",
-        "say": "I can run. Now you say it!",
-        "audio": "voice/line-e1004f78dabba58f.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "I can run. Tap the drum once for every word!",
+        "audio": "voice/line-a51cc77fbdd38440.m4a"
       },
       "card": {
-        "text": "I can run.",
-        "picture": {
-          "key": "run",
-          "label": "run",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "I can run."
+      "beats": {
+        "text": "I can run.",
+        "parts": [
+          "I",
+          "can",
+          "run"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "I can run",
+          "say": "I can run. Three words!",
+          "audio": "voice/line-5f47e90dd8992bb1.m4a"
+        }
       }
     },
     {

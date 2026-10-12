@@ -210,23 +210,72 @@
     },
     {
       "id": "level-140-r5",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: A full stop ends a sentence.",
-        "say": "A full stop ends a sentence. Now you say it!",
-        "audio": "voice/line-285cd4b90fe34fb1.m4a"
+        "text": "Join r to y!",
+        "say": "Join the dots, from {r|ˈɑːɹ} to {y|wˈaɪ}. What will it be?",
+        "audio": "voice/line-7f7017e625198520.m4a"
       },
       "card": {
-        "text": "A full stop ends a sentence.",
+        "text": "r → y",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "r",
+          "s",
+          "t",
+          "u",
+          "v",
+          "w",
+          "x",
+          "y"
+        ],
+        "points": [
+          [
+            8,
+            44
+          ],
+          [
+            40,
+            44
+          ],
+          [
+            40,
+            10
+          ],
+          [
+            60,
+            10
+          ],
+          [
+            60,
+            44
+          ],
+          [
+            92,
+            44
+          ],
+          [
+            92,
+            94
+          ],
+          [
+            8,
+            94
+          ]
+        ],
         "picture": {
-          "key": "star",
-          "label": "star",
+          "key": "cake",
+          "label": "cake",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "A full stop ends a sentence."
+        "done": {
+          "text": "A cake!",
+          "say": "It's a cake!",
+          "audio": "voice/line-603810a81e3a93a1.m4a"
+        }
       }
     },
     {

@@ -267,23 +267,73 @@
     },
     {
       "id": "level-108-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: sled, blue, slide, black!",
-        "say": "Say them with me! sled, blue, slide, black!",
-        "audio": "voice/line-d444abbf7d840fef.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "sled, blue, slide, black!",
-        "picture": {
-          "key": "sled",
-          "label": "sled",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "sled, blue, slide, black!"
+      "sounds": {
+        "word": "sled",
+        "parts": [
+          {
+            "text": "s",
+            "say": "{/s/|sːː}",
+            "audio": "voice/line-176638e56286fdf8.m4a"
+          },
+          {
+            "text": "l",
+            "say": "{/l/|lːː}",
+            "audio": "voice/line-46d949fa5b946ccb.m4a"
+          },
+          {
+            "text": "e",
+            "say": "{/e/|ɛ}",
+            "audio": "voice/line-26b8405a6ef65e10.m4a"
+          },
+          {
+            "text": "d",
+            "say": "{/d/|dʌ}",
+            "audio": "voice/line-f06c02b8a2619c78.m4a"
+          }
+        ],
+        "blend": {
+          "text": "sled",
+          "say": "sled!",
+          "audio": "voice/line-cd80661ab0dc8a2c.m4a"
+        },
+        "choices": [
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            }
+          },
+          {
+            "label": "sled",
+            "picture": {
+              "key": "sled",
+              "label": "sled",
+              "url": null
+            }
+          },
+          {
+            "label": "black",
+            "picture": {
+              "key": "black",
+              "label": "black",
+              "url": null
+            }
+          }
+        ],
+        "answer": 1
       }
     },
     {

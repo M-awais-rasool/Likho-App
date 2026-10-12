@@ -397,23 +397,33 @@
     },
     {
       "id": "level-142-r9",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Wow! What a big cake!",
-        "say": "Wow! What a big cake! Now you say it!",
-        "audio": "voice/line-f7267fc83aefc5d2.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Wow! What a big cake! Tap the drum once for every word!",
+        "audio": "voice/line-e8a126c54d93634e.m4a"
       },
       "card": {
-        "text": "Wow! What a big cake!",
-        "picture": {
-          "key": "cake",
-          "label": "cake",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Wow! What a big cake!"
+      "beats": {
+        "text": "Wow! What a big cake!",
+        "parts": [
+          "Wow",
+          "What",
+          "a",
+          "big",
+          "cake"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Wow What a big cake",
+          "say": "Wow! What a big cake! Five words!",
+          "audio": "voice/line-eb0a384262a2d32a.m4a"
+        }
       }
     },
     {

@@ -266,23 +266,68 @@
     },
     {
       "id": "level-94-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: duck, sock, clock, rock!",
-        "say": "Say them with me! duck, sock, clock, rock!",
-        "audio": "voice/line-565bf41e933e3b4c.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "duck, sock, clock, rock!",
-        "picture": {
-          "key": "duck",
-          "label": "duck",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "duck, sock, clock, rock!"
+      "sounds": {
+        "word": "duck",
+        "parts": [
+          {
+            "text": "d",
+            "say": "{/d/|dʌ}",
+            "audio": "voice/line-f06c02b8a2619c78.m4a"
+          },
+          {
+            "text": "u",
+            "say": "{/u/|ʌ}",
+            "audio": "voice/line-6094ce3b4313c3cc.m4a"
+          },
+          {
+            "text": "ck",
+            "say": "{/ck/|kʌ}",
+            "audio": "voice/line-eec1fee16c5c51e0.m4a"
+          }
+        ],
+        "blend": {
+          "text": "duck",
+          "say": "duck!",
+          "audio": "voice/line-540b2268a9197b01.m4a"
+        },
+        "choices": [
+          {
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            }
+          },
+          {
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            }
+          },
+          {
+            "label": "duck",
+            "picture": {
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            }
+          }
+        ],
+        "answer": 2
       }
     },
     {

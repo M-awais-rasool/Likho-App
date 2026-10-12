@@ -314,23 +314,32 @@
     },
     {
       "id": "level-121-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: It is a dog.",
-        "say": "It is a dog. Now you say it!",
-        "audio": "voice/line-90b811973d2fbd49.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "It is a dog. Tap the drum once for every word!",
+        "audio": "voice/line-ff7e7798443e6d91.m4a"
       },
       "card": {
-        "text": "It is a dog.",
-        "picture": {
-          "key": "dog",
-          "label": "dog",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "It is a dog."
+      "beats": {
+        "text": "It is a dog.",
+        "parts": [
+          "It",
+          "is",
+          "a",
+          "dog"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "It is a dog",
+          "say": "It is a dog. Four words!",
+          "audio": "voice/line-ea0fe3af8a3dbf12.m4a"
+        }
       }
     },
     {

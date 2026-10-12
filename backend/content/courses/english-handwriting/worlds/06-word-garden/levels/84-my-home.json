@@ -113,19 +113,10 @@
         ],
         "items": [
           {
-            "label": "doctor",
+            "label": "cake",
             "picture": {
-              "key": "doctor",
-              "label": "doctor",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "cat",
-            "picture": {
-              "key": "cat",
-              "label": "cat",
+              "key": "cake",
+              "label": "cake",
               "url": null
             },
             "bin": 1
@@ -149,19 +140,28 @@
             "bin": 0
           },
           {
-            "label": "corn",
+            "label": "doctor",
             "picture": {
-              "key": "corn",
-              "label": "corn",
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "cup",
+            "label": "car",
             "picture": {
-              "key": "cup",
-              "label": "cup",
+              "key": "car",
+              "label": "car",
               "url": null
             },
             "bin": 1
@@ -329,23 +329,68 @@
     },
     {
       "id": "level-84-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: house, bed, door, bath!",
-        "say": "Say them with me! house, bed, door, bath!",
-        "audio": "voice/line-57466408f1f58223.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "house, bed, door, bath!",
-        "picture": {
-          "key": "house",
-          "label": "house",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "house, bed, door, bath!"
+      "sounds": {
+        "word": "bed",
+        "parts": [
+          {
+            "text": "b",
+            "say": "{/b/|bʌ}",
+            "audio": "voice/line-54284489cdcd15c3.m4a"
+          },
+          {
+            "text": "e",
+            "say": "{/e/|ɛ}",
+            "audio": "voice/line-26b8405a6ef65e10.m4a"
+          },
+          {
+            "text": "d",
+            "say": "{/d/|dʌ}",
+            "audio": "voice/line-f06c02b8a2619c78.m4a"
+          }
+        ],
+        "blend": {
+          "text": "bed",
+          "say": "bed!",
+          "audio": "voice/line-a3b5a998dfb86544.m4a"
+        },
+        "choices": [
+          {
+            "label": "house",
+            "picture": {
+              "key": "house",
+              "label": "house",
+              "url": null
+            }
+          },
+          {
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            }
+          },
+          {
+            "label": "bed",
+            "picture": {
+              "key": "bed",
+              "label": "bed",
+              "url": null
+            }
+          }
+        ],
+        "answer": 2
       }
     },
     {

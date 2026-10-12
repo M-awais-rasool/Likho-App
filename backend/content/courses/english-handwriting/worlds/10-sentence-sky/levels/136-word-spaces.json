@@ -100,23 +100,32 @@
     },
     {
       "id": "level-136-r4",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: I see a cat.",
-        "say": "I see a cat. Now you say it!",
-        "audio": "voice/line-ee54b6b907531e5c.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "I see a cat. Tap the drum once for every word!",
+        "audio": "voice/line-e3b09454daa74a4b.m4a"
       },
       "card": {
-        "text": "I see a cat.",
-        "picture": {
-          "key": "cat",
-          "label": "cat",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "I see a cat."
+      "beats": {
+        "text": "I see a cat.",
+        "parts": [
+          "I",
+          "see",
+          "a",
+          "cat"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "I see a cat",
+          "say": "I see a cat. Four words!",
+          "audio": "voice/line-c9ccae21419cf345.m4a"
+        }
       }
     },
     {

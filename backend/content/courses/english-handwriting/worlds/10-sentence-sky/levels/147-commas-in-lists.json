@@ -360,23 +360,32 @@
     },
     {
       "id": "level-147-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Mangoes, bananas and apples!",
-        "say": "Mangoes, bananas and apples! Now you say it!",
-        "audio": "voice/line-49ab70fdb913b5f7.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Mangoes, bananas and apples! Tap the drum once for every word!",
+        "audio": "voice/line-590e91ee7791e7a8.m4a"
       },
       "card": {
-        "text": "Mangoes, bananas and apples!",
-        "picture": {
-          "key": "mango",
-          "label": "mango",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Mangoes, bananas and apples!"
+      "beats": {
+        "text": "Mangoes, bananas and apples!",
+        "parts": [
+          "Mangoes",
+          "bananas",
+          "and",
+          "apples"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Mangoes bananas and apples",
+          "say": "Mangoes, bananas and apples! Four words!",
+          "audio": "voice/line-12b8eaabe5b8d69b.m4a"
+        }
       }
     },
     {

@@ -242,13 +242,13 @@
           },
           {
             "text": "blue",
-            "wrong": "mirror",
-            "at": 3
+            "wrong": null,
+            "at": null
           },
           {
             "text": "green",
-            "wrong": null,
-            "at": null
+            "wrong": "mirror",
+            "at": 0
           },
           {
             "text": "pink",
@@ -315,23 +315,68 @@
     },
     {
       "id": "level-76-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: red, blue, green, pink!",
-        "say": "Say them with me! red, blue, green, pink!",
-        "audio": "voice/line-f1ef7e567c54243c.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "red, blue, green, pink!",
-        "picture": {
-          "key": "red",
-          "label": "red",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "red, blue, green, pink!"
+      "sounds": {
+        "word": "red",
+        "parts": [
+          {
+            "text": "r",
+            "say": "{/r/|ɹːː}",
+            "audio": "voice/line-c9097eface293028.m4a"
+          },
+          {
+            "text": "e",
+            "say": "{/e/|ɛ}",
+            "audio": "voice/line-26b8405a6ef65e10.m4a"
+          },
+          {
+            "text": "d",
+            "say": "{/d/|dʌ}",
+            "audio": "voice/line-f06c02b8a2619c78.m4a"
+          }
+        ],
+        "blend": {
+          "text": "red",
+          "say": "red!",
+          "audio": "voice/line-d65f1d40964f6b14.m4a"
+        },
+        "choices": [
+          {
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            }
+          },
+          {
+            "label": "blue",
+            "picture": {
+              "key": "blue",
+              "label": "blue",
+              "url": null
+            }
+          },
+          {
+            "label": "red",
+            "picture": {
+              "key": "red",
+              "label": "red",
+              "url": null
+            }
+          }
+        ],
+        "answer": 2
       }
     },
     {

@@ -113,24 +113,6 @@
         ],
         "items": [
           {
-            "label": "log",
-            "picture": {
-              "key": "log",
-              "label": "log",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "duck",
-            "picture": {
-              "key": "duck",
-              "label": "duck",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
             "label": "dog",
             "picture": {
               "key": "dog",
@@ -140,10 +122,10 @@
             "bin": 1
           },
           {
-            "label": "lemon",
+            "label": "leg",
             "picture": {
-              "key": "lemon",
-              "label": "lemon",
+              "key": "leg",
+              "label": "leg",
               "url": null
             },
             "bin": 0
@@ -158,10 +140,28 @@
             "bin": 1
           },
           {
-            "label": "lion",
+            "label": "duck",
             "picture": {
-              "key": "lion",
-              "label": "lion",
+              "key": "duck",
+              "label": "duck",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "lamp",
+            "picture": {
+              "key": "lamp",
+              "label": "lamp",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "lemon",
+            "picture": {
+              "key": "lemon",
+              "label": "lemon",
               "url": null
             },
             "bin": 0
@@ -327,23 +327,68 @@
     },
     {
       "id": "level-96-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: tree, bee, sheep, feet!",
-        "say": "Say them with me! tree, bee, sheep, feet!",
-        "audio": "voice/line-804309d93bba538f.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "tree, bee, sheep, feet!",
-        "picture": {
-          "key": "tree",
-          "label": "tree",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "tree, bee, sheep, feet!"
+      "sounds": {
+        "word": "tree",
+        "parts": [
+          {
+            "text": "t",
+            "say": "{/t/|tʌ}",
+            "audio": "voice/line-570d1fc0dffd834f.m4a"
+          },
+          {
+            "text": "r",
+            "say": "{/r/|ɹːː}",
+            "audio": "voice/line-c9097eface293028.m4a"
+          },
+          {
+            "text": "ee",
+            "say": "{/ee/|iː}",
+            "audio": "voice/line-701f08c8f6944cca.m4a"
+          }
+        ],
+        "blend": {
+          "text": "tree",
+          "say": "tree!",
+          "audio": "voice/line-3c079abceae75203.m4a"
+        },
+        "choices": [
+          {
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            }
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            }
+          },
+          {
+            "label": "tree",
+            "picture": {
+              "key": "tree",
+              "label": "tree",
+              "url": null
+            }
+          }
+        ],
+        "answer": 2
       }
     },
     {

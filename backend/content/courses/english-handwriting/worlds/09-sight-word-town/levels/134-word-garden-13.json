@@ -272,23 +272,77 @@
     },
     {
       "id": "level-134-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: This is his hat.",
-        "say": "This is his hat. Now you say it!",
-        "audio": "voice/line-c67402058f85901b.m4a"
+        "text": "Join A to I!",
+        "say": "Join the dots, from {A|ˈeɪ} to {I|ˈaɪ}. What will it be?",
+        "audio": "voice/line-0062248febf8dee1.m4a"
       },
       "card": {
-        "text": "This is his hat.",
+        "text": "A → I",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I"
+        ],
+        "points": [
+          [
+            6,
+            50
+          ],
+          [
+            30,
+            24
+          ],
+          [
+            56,
+            22
+          ],
+          [
+            76,
+            36
+          ],
+          [
+            96,
+            16
+          ],
+          [
+            96,
+            84
+          ],
+          [
+            76,
+            64
+          ],
+          [
+            56,
+            78
+          ],
+          [
+            30,
+            76
+          ]
+        ],
         "picture": {
-          "key": "hat",
-          "label": "hat",
+          "key": "fish",
+          "label": "fish",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "This is his hat."
+        "done": {
+          "text": "A fish!",
+          "say": "It's a fish!",
+          "audio": "voice/line-141ec1a5d1f6e869.m4a"
+        }
       }
     },
     {

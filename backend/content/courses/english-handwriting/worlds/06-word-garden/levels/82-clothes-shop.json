@@ -122,15 +122,6 @@
             "bin": 1
           },
           {
-            "label": "sun",
-            "picture": {
-              "key": "sun",
-              "label": "sun",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
             "label": "six",
             "picture": {
               "key": "six",
@@ -138,15 +129,6 @@
               "url": null
             },
             "bin": 0
-          },
-          {
-            "label": "hen",
-            "picture": {
-              "key": "hen",
-              "label": "hen",
-              "url": null
-            },
-            "bin": 1
           },
           {
             "label": "hut",
@@ -158,10 +140,28 @@
             "bin": 1
           },
           {
-            "label": "seed",
+            "label": "hen",
             "picture": {
-              "key": "seed",
-              "label": "seed",
+              "key": "hen",
+              "label": "hen",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "sock",
+            "picture": {
+              "key": "sock",
+              "label": "sock",
               "url": null
             },
             "bin": 0
@@ -328,23 +328,68 @@
     },
     {
       "id": "level-82-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: coat, shoe, hat, dress!",
-        "say": "Say them with me! coat, shoe, hat, dress!",
-        "audio": "voice/line-2ed7990f7ab0de95.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "coat, shoe, hat, dress!",
-        "picture": {
-          "key": "coat",
-          "label": "coat",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "coat, shoe, hat, dress!"
+      "sounds": {
+        "word": "coat",
+        "parts": [
+          {
+            "text": "c",
+            "say": "{/c/|kʌ}",
+            "audio": "voice/line-eec1fee16c5c51e0.m4a"
+          },
+          {
+            "text": "oa",
+            "say": "{/oa/|oʊ}",
+            "audio": "voice/line-6ba096958ec4e79c.m4a"
+          },
+          {
+            "text": "t",
+            "say": "{/t/|tʌ}",
+            "audio": "voice/line-570d1fc0dffd834f.m4a"
+          }
+        ],
+        "blend": {
+          "text": "coat",
+          "say": "coat!",
+          "audio": "voice/line-0b1b1e153e2863e1.m4a"
+        },
+        "choices": [
+          {
+            "label": "coat",
+            "picture": {
+              "key": "coat",
+              "label": "coat",
+              "url": null
+            }
+          },
+          {
+            "label": "bed",
+            "picture": {
+              "key": "bed",
+              "label": "bed",
+              "url": null
+            }
+          },
+          {
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            }
+          }
+        ],
+        "answer": 0
       }
     },
     {

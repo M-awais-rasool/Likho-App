@@ -282,23 +282,34 @@
     },
     {
       "id": "level-116-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: rabbit, robot, pencil, tiger!",
-        "say": "Say them with me! rabbit, robot, pencil, tiger!",
-        "audio": "voice/line-0a77e1077f7a1ae5.m4a"
+        "text": "Clap the beats!",
+        "say": "Rabbit! Tap the drum for every beat in rabbit.",
+        "audio": "voice/line-28aa33791504d260.m4a"
       },
       "card": {
-        "text": "rabbit, robot, pencil, tiger!",
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "beats": {
+        "text": "rabbit",
+        "parts": [
+          "rab",
+          "bit"
+        ],
+        "unit": "syllable",
         "picture": {
           "key": "rabbit",
           "label": "rabbit",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "rabbit, robot, pencil, tiger!"
+        "hint": {
+          "text": "rab-bit",
+          "say": "Rabbit. Two beats!",
+          "audio": "voice/line-329ce753d74f3075.m4a"
+        }
       }
     },
     {

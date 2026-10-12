@@ -233,6 +233,24 @@
         ],
         "items": [
           {
+            "label": "bath",
+            "picture": {
+              "key": "bath",
+              "label": "bath",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "thumb",
+            "picture": {
+              "key": "thumb",
+              "label": "thumb",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
             "label": "tooth",
             "picture": {
               "key": "tooth",
@@ -260,15 +278,6 @@
             "bin": null
           },
           {
-            "label": "thumb",
-            "picture": {
-              "key": "thumb",
-              "label": "thumb",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
             "label": "bus",
             "picture": {
               "key": "bus",
@@ -276,15 +285,6 @@
               "url": null
             },
             "bin": null
-          },
-          {
-            "label": "bath",
-            "picture": {
-              "key": "bath",
-              "label": "bath",
-              "url": null
-            },
-            "bin": 0
           }
         ]
       }
@@ -319,23 +319,68 @@
     },
     {
       "id": "level-93-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: thumb, bath, tooth, three!",
-        "say": "Say them with me! thumb, bath, tooth, three!",
-        "audio": "voice/line-515ab6d56a084274.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "thumb, bath, tooth, three!",
-        "picture": {
-          "key": "thumb",
-          "label": "thumb",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "thumb, bath, tooth, three!"
+      "sounds": {
+        "word": "bath",
+        "parts": [
+          {
+            "text": "b",
+            "say": "{/b/|bʌ}",
+            "audio": "voice/line-54284489cdcd15c3.m4a"
+          },
+          {
+            "text": "a",
+            "say": "{/a/|æ}",
+            "audio": "voice/line-6a230dad287fe9e9.m4a"
+          },
+          {
+            "text": "th",
+            "say": "{/th/|θːː}",
+            "audio": "voice/line-a0d1b465a64ebbb2.m4a"
+          }
+        ],
+        "blend": {
+          "text": "bath",
+          "say": "bath!",
+          "audio": "voice/line-afd7b3fe57c52754.m4a"
+        },
+        "choices": [
+          {
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            }
+          },
+          {
+            "label": "bath",
+            "picture": {
+              "key": "bath",
+              "label": "bath",
+              "url": null
+            }
+          },
+          {
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            }
+          }
+        ],
+        "answer": 1
       }
     },
     {

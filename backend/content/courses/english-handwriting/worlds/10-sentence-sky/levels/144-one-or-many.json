@@ -210,23 +210,34 @@
     },
     {
       "id": "level-144-r7",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: One cat, two cats, three cats!",
-        "say": "One cat, two cats, three cats! Now you say it!",
-        "audio": "voice/line-2225c4ac3c799549.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "One cat, two cats, three cats! Tap the drum once for every word!",
+        "audio": "voice/line-08d26450502d6d81.m4a"
       },
       "card": {
-        "text": "One cat, two cats, three cats!",
-        "picture": {
-          "key": "many_cats",
-          "label": "many cats",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "One cat, two cats, three cats!"
+      "beats": {
+        "text": "One cat, two cats, three cats!",
+        "parts": [
+          "One",
+          "cat",
+          "two",
+          "cats",
+          "three",
+          "cats"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "One cat two cats three cats",
+          "say": "One cat, two cats, three cats! Six words!",
+          "audio": "voice/line-b6f102879b6778d1.m4a"
+        }
       }
     },
     {

@@ -298,23 +298,92 @@
     },
     {
       "id": "level-101-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: cow, house, crown, mouse!",
-        "say": "Say them with me! cow, house, crown, mouse!",
-        "audio": "voice/line-00fea56be99e6bab.m4a"
+        "text": "Join E to P!",
+        "say": "Join the dots, from {E|ˈiː} to {P|pˈiː}. What will it be?",
+        "audio": "voice/line-52d8e57c659e9bc9.m4a"
       },
       "card": {
-        "text": "cow, house, crown, mouse!",
+        "text": "E → P",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J",
+          "K",
+          "L",
+          "M",
+          "N",
+          "O",
+          "P"
+        ],
+        "points": [
+          [
+            50,
+            22
+          ],
+          [
+            66,
+            12
+          ],
+          [
+            86,
+            22
+          ],
+          [
+            92,
+            48
+          ],
+          [
+            82,
+            76
+          ],
+          [
+            68,
+            94
+          ],
+          [
+            50,
+            84
+          ],
+          [
+            32,
+            94
+          ],
+          [
+            18,
+            76
+          ],
+          [
+            8,
+            48
+          ],
+          [
+            14,
+            22
+          ],
+          [
+            34,
+            12
+          ]
+        ],
         "picture": {
-          "key": "cow",
-          "label": "cow",
+          "key": "apple",
+          "label": "apple",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "cow, house, crown, mouse!"
+        "done": {
+          "text": "An apple!",
+          "say": "It's an apple!",
+          "audio": "voice/line-eb257727166de7e7.m4a"
+        }
       }
     },
     {

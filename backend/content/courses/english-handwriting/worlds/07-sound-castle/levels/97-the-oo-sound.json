@@ -274,12 +274,12 @@
           {
             "text": "book",
             "wrong": "mirror",
-            "at": 3
+            "at": 0
           },
           {
             "text": "spoon",
             "wrong": "mirror",
-            "at": 1
+            "at": 0
           }
         ]
       }
@@ -314,23 +314,68 @@
     },
     {
       "id": "level-97-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: moon, boot, book, spoon!",
-        "say": "Say them with me! moon, boot, book, spoon!",
-        "audio": "voice/line-f8dc73d77afb1261.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "moon, boot, book, spoon!",
-        "picture": {
-          "key": "moon",
-          "label": "moon",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "moon, boot, book, spoon!"
+      "sounds": {
+        "word": "moon",
+        "parts": [
+          {
+            "text": "m",
+            "say": "{/m/|mːː}",
+            "audio": "voice/line-26d6be66a61da36b.m4a"
+          },
+          {
+            "text": "oo",
+            "say": "{/oo/|uː}",
+            "audio": "voice/line-2979e2dbcbe276e4.m4a"
+          },
+          {
+            "text": "n",
+            "say": "{/n/|nːː}",
+            "audio": "voice/line-1f9de0e8fd168b84.m4a"
+          }
+        ],
+        "blend": {
+          "text": "moon",
+          "say": "moon!",
+          "audio": "voice/line-ce8af1c87b70420c.m4a"
+        },
+        "choices": [
+          {
+            "label": "cup",
+            "picture": {
+              "key": "cup",
+              "label": "cup",
+              "url": null
+            }
+          },
+          {
+            "label": "moon",
+            "picture": {
+              "key": "moon",
+              "label": "moon",
+              "url": null
+            }
+          },
+          {
+            "label": "spoon",
+            "picture": {
+              "key": "spoon",
+              "label": "spoon",
+              "url": null
+            }
+          }
+        ],
+        "answer": 1
       }
     },
     {

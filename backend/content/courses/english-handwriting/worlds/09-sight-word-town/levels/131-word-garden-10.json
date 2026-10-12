@@ -308,23 +308,72 @@
     },
     {
       "id": "level-131-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: Yes, I did it!",
-        "say": "Yes, I did it! Now you say it!",
-        "audio": "voice/line-d62a383061d2e54e.m4a"
+        "text": "Join s to z!",
+        "say": "Join the dots, from {s|ˈɛs} to {z|zˈiː}. What will it be?",
+        "audio": "voice/line-467f95193800c08b.m4a"
       },
       "card": {
-        "text": "Yes, I did it!",
+        "text": "s → z",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "s",
+          "t",
+          "u",
+          "v",
+          "w",
+          "x",
+          "y",
+          "z"
+        ],
+        "points": [
+          [
+            8,
+            8
+          ],
+          [
+            78,
+            8
+          ],
+          [
+            78,
+            30
+          ],
+          [
+            98,
+            30
+          ],
+          [
+            98,
+            66
+          ],
+          [
+            78,
+            66
+          ],
+          [
+            72,
+            94
+          ],
+          [
+            14,
+            94
+          ]
+        ],
         "picture": {
-          "key": "prize",
-          "label": "prize",
+          "key": "cup",
+          "label": "cup",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "Yes, I did it!"
+        "done": {
+          "text": "A cup!",
+          "say": "It's a cup!",
+          "audio": "voice/line-b59d914d7fd7fbc2.m4a"
+        }
       }
     },
     {

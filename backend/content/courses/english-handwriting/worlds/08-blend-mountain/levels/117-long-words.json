@@ -321,23 +321,72 @@
     },
     {
       "id": "level-117-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: rabbit, robot, rainbow, pencil!",
-        "say": "Say them with me! rabbit, robot, rainbow, pencil!",
-        "audio": "voice/line-cf8e254b98a7082d.m4a"
+        "text": "Join p to w!",
+        "say": "Join the dots, from {p|pˈiː} to {w|dˈʌbəljuː}. What will it be?",
+        "audio": "voice/line-af609458c009f85b.m4a"
       },
       "card": {
-        "text": "rabbit, robot, rainbow, pencil!",
+        "text": "p → w",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "p",
+          "q",
+          "r",
+          "s",
+          "t",
+          "u",
+          "v",
+          "w"
+        ],
+        "points": [
+          [
+            8,
+            8
+          ],
+          [
+            78,
+            8
+          ],
+          [
+            78,
+            30
+          ],
+          [
+            98,
+            30
+          ],
+          [
+            98,
+            66
+          ],
+          [
+            78,
+            66
+          ],
+          [
+            72,
+            94
+          ],
+          [
+            14,
+            94
+          ]
+        ],
         "picture": {
-          "key": "rabbit",
-          "label": "rabbit",
+          "key": "cup",
+          "label": "cup",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "rabbit, robot, rainbow, pencil!"
+        "done": {
+          "text": "A cup!",
+          "say": "It's a cup!",
+          "audio": "voice/line-b59d914d7fd7fbc2.m4a"
+        }
       }
     },
     {

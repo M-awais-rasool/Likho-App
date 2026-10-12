@@ -323,23 +323,87 @@
     },
     {
       "id": "level-79-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: cow, duck, lion, goat!",
-        "say": "Say them with me! cow, duck, lion, goat!",
-        "audio": "voice/line-483a49290a5bce13.m4a"
+        "text": "Join E to O!",
+        "say": "Join the dots, from {E|ˈiː} to {O|ˈoʊ}. What will it be?",
+        "audio": "voice/line-34b2c5e70caccfda.m4a"
       },
       "card": {
-        "text": "cow, duck, lion, goat!",
+        "text": "E → O",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J",
+          "K",
+          "L",
+          "M",
+          "N",
+          "O"
+        ],
+        "points": [
+          [
+            50,
+            2
+          ],
+          [
+            80,
+            36
+          ],
+          [
+            60,
+            36
+          ],
+          [
+            88,
+            66
+          ],
+          [
+            60,
+            66
+          ],
+          [
+            60,
+            96
+          ],
+          [
+            40,
+            96
+          ],
+          [
+            40,
+            66
+          ],
+          [
+            12,
+            66
+          ],
+          [
+            40,
+            36
+          ],
+          [
+            20,
+            36
+          ]
+        ],
         "picture": {
-          "key": "cow",
-          "label": "cow",
+          "key": "tree",
+          "label": "tree",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "cow, duck, lion, goat!"
+        "done": {
+          "text": "A tree!",
+          "say": "It's a tree!",
+          "audio": "voice/line-9f1ccab9d42ec40f.m4a"
+        }
       }
     },
     {

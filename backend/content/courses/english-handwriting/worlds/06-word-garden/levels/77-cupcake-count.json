@@ -101,6 +101,15 @@
         ],
         "items": [
           {
+            "label": "leg",
+            "picture": {
+              "key": "leg",
+              "label": "leg",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
             "label": "duck",
             "picture": {
               "key": "duck",
@@ -110,10 +119,28 @@
             "bin": 1
           },
           {
-            "label": "leg",
+            "label": "dog",
             "picture": {
-              "key": "leg",
-              "label": "leg",
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "doctor",
+            "picture": {
+              "key": "doctor",
+              "label": "doctor",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "lamp",
+            "picture": {
+              "key": "lamp",
+              "label": "lamp",
               "url": null
             },
             "bin": 0
@@ -126,33 +153,6 @@
               "url": null
             },
             "bin": 0
-          },
-          {
-            "label": "doctor",
-            "picture": {
-              "key": "doctor",
-              "label": "doctor",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "lion",
-            "picture": {
-              "key": "lion",
-              "label": "lion",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "dog",
-            "picture": {
-              "key": "dog",
-              "label": "dog",
-              "url": null
-            },
-            "bin": 1
           }
         ]
       }
@@ -327,23 +327,68 @@
     },
     {
       "id": "level-77-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: one, two, three, four!",
-        "say": "Say them with me! one, two, three, four!",
-        "audio": "voice/line-f9d94c61e19d4929.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "one, two, three, four!",
-        "picture": {
-          "key": "one",
-          "label": "one",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "one, two, three, four!"
+      "sounds": {
+        "word": "three",
+        "parts": [
+          {
+            "text": "th",
+            "say": "{/th/|θːː}",
+            "audio": "voice/line-a0d1b465a64ebbb2.m4a"
+          },
+          {
+            "text": "r",
+            "say": "{/r/|ɹːː}",
+            "audio": "voice/line-c9097eface293028.m4a"
+          },
+          {
+            "text": "ee",
+            "say": "{/ee/|iː}",
+            "audio": "voice/line-701f08c8f6944cca.m4a"
+          }
+        ],
+        "blend": {
+          "text": "three",
+          "say": "three!",
+          "audio": "voice/line-ed8a22557274d447.m4a"
+        },
+        "choices": [
+          {
+            "label": "three",
+            "picture": {
+              "key": "three",
+              "label": "three",
+              "url": null
+            }
+          },
+          {
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            }
+          },
+          {
+            "label": "four",
+            "picture": {
+              "key": "four",
+              "label": "four",
+              "url": null
+            }
+          }
+        ],
+        "answer": 0
       }
     },
     {

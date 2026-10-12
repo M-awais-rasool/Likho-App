@@ -373,23 +373,34 @@
     },
     {
       "id": "level-141-r9",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: A telling sentence tells us something.",
-        "say": "A telling sentence tells us something. Now you say it!",
-        "audio": "voice/line-00661fc5190a08f3.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "A telling sentence tells us something. Tap the drum once for every word!",
+        "audio": "voice/line-e76ee39f6fe61a12.m4a"
       },
       "card": {
-        "text": "A telling sentence tells us something.",
-        "picture": {
-          "key": "story",
-          "label": "story",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "A telling sentence tells us something."
+      "beats": {
+        "text": "A telling sentence tells us something.",
+        "parts": [
+          "A",
+          "telling",
+          "sentence",
+          "tells",
+          "us",
+          "something"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "A telling sentence tells us something",
+          "say": "A telling sentence tells us something. Six words!",
+          "audio": "voice/line-cf7c4b785a930c3a.m4a"
+        }
       }
     },
     {

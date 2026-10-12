@@ -217,7 +217,7 @@
           {
             "text": "ship",
             "wrong": "mirror",
-            "at": 3
+            "at": 1
           },
           {
             "text": "chick",
@@ -227,7 +227,7 @@
           {
             "text": "thumb",
             "wrong": "mirror",
-            "at": 4
+            "at": 1
           },
           {
             "text": "tree",
@@ -347,23 +347,68 @@
     },
     {
       "id": "level-104-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: ship, chick, thumb, tree!",
-        "say": "Say them with me! ship, chick, thumb, tree!",
-        "audio": "voice/line-72168fc568c756c6.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "ship, chick, thumb, tree!",
-        "picture": {
-          "key": "ship",
-          "label": "ship",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "ship, chick, thumb, tree!"
+      "sounds": {
+        "word": "ship",
+        "parts": [
+          {
+            "text": "sh",
+            "say": "{/sh/|ʃːː}",
+            "audio": "voice/line-9800483307c29bf6.m4a"
+          },
+          {
+            "text": "i",
+            "say": "{/i/|ɪ}",
+            "audio": "voice/line-55c556f50179c6d4.m4a"
+          },
+          {
+            "text": "p",
+            "say": "{/p/|pʌ}",
+            "audio": "voice/line-6b361a2ef876dccb.m4a"
+          }
+        ],
+        "blend": {
+          "text": "ship",
+          "say": "ship!",
+          "audio": "voice/line-d76bbe252f89c3ff.m4a"
+        },
+        "choices": [
+          {
+            "label": "ship",
+            "picture": {
+              "key": "ship",
+              "label": "ship",
+              "url": null
+            }
+          },
+          {
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            }
+          },
+          {
+            "label": "pig",
+            "picture": {
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            }
+          }
+        ],
+        "answer": 0
       }
     },
     {

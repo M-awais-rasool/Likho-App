@@ -248,23 +248,33 @@
     },
     {
       "id": "level-129-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Help me find my cat.",
-        "say": "Help me find my cat. Now you say it!",
-        "audio": "voice/line-e5dc9865b845f389.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Help me find my cat. Tap the drum once for every word!",
+        "audio": "voice/line-e3db84ad2796e02f.m4a"
       },
       "card": {
-        "text": "Help me find my cat.",
-        "picture": {
-          "key": "cat",
-          "label": "cat",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Help me find my cat."
+      "beats": {
+        "text": "Help me find my cat.",
+        "parts": [
+          "Help",
+          "me",
+          "find",
+          "my",
+          "cat"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Help me find my cat",
+          "say": "Help me find my cat. Five words!",
+          "audio": "voice/line-d5cd203d238f3525.m4a"
+        }
       }
     },
     {

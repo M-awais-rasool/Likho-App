@@ -160,23 +160,34 @@
     },
     {
       "id": "level-145-r4",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: The fish is in the sea.",
-        "say": "The fish is in the sea. Now you say it!",
-        "audio": "voice/line-2df628b3d985ec5f.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "The fish is in the sea. Tap the drum once for every word!",
+        "audio": "voice/line-b8edb4cbb35f7d4e.m4a"
       },
       "card": {
-        "text": "The fish is in the sea.",
-        "picture": {
-          "key": "fish_in_sea",
-          "label": "fish in sea",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "The fish is in the sea."
+      "beats": {
+        "text": "The fish is in the sea.",
+        "parts": [
+          "The",
+          "fish",
+          "is",
+          "in",
+          "the",
+          "sea"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "The fish is in the sea",
+          "say": "The fish is in the sea. Six words!",
+          "audio": "voice/line-b050d72eb8524cff.m4a"
+        }
       }
     },
     {

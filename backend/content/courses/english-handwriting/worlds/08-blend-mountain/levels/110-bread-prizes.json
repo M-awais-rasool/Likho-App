@@ -113,28 +113,19 @@
         ],
         "items": [
           {
-            "label": "gift",
+            "label": "hand",
             "picture": {
-              "key": "gift",
-              "label": "gift",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "hat",
-            "picture": {
-              "key": "hat",
-              "label": "hat",
+              "key": "hand",
+              "label": "hand",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "hen",
+            "label": "hut",
             "picture": {
-              "key": "hen",
-              "label": "hen",
+              "key": "hut",
+              "label": "hut",
               "url": null
             },
             "bin": 1
@@ -149,13 +140,22 @@
             "bin": 0
           },
           {
-            "label": "hut",
+            "label": "hen",
             "picture": {
-              "key": "hut",
-              "label": "hut",
+              "key": "hen",
+              "label": "hen",
               "url": null
             },
             "bin": 1
+          },
+          {
+            "label": "gift",
+            "picture": {
+              "key": "gift",
+              "label": "gift",
+              "url": null
+            },
+            "bin": 0
           }
         ]
       }
@@ -320,23 +320,73 @@
     },
     {
       "id": "level-110-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: bread, broom, prize, brush!",
-        "say": "Say them with me! bread, broom, prize, brush!",
-        "audio": "voice/line-4b4fcfde1ceae8ea.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "bread, broom, prize, brush!",
-        "picture": {
-          "key": "bread",
-          "label": "bread",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "bread, broom, prize, brush!"
+      "sounds": {
+        "word": "broom",
+        "parts": [
+          {
+            "text": "b",
+            "say": "{/b/|bʌ}",
+            "audio": "voice/line-54284489cdcd15c3.m4a"
+          },
+          {
+            "text": "r",
+            "say": "{/r/|ɹːː}",
+            "audio": "voice/line-c9097eface293028.m4a"
+          },
+          {
+            "text": "oo",
+            "say": "{/oo/|uː}",
+            "audio": "voice/line-2979e2dbcbe276e4.m4a"
+          },
+          {
+            "text": "m",
+            "say": "{/m/|mːː}",
+            "audio": "voice/line-26d6be66a61da36b.m4a"
+          }
+        ],
+        "blend": {
+          "text": "broom",
+          "say": "broom!",
+          "audio": "voice/line-e62c605d3d52622c.m4a"
+        },
+        "choices": [
+          {
+            "label": "broom",
+            "picture": {
+              "key": "broom",
+              "label": "broom",
+              "url": null
+            }
+          },
+          {
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            }
+          },
+          {
+            "label": "pig",
+            "picture": {
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            }
+          }
+        ],
+        "answer": 0
       }
     },
     {

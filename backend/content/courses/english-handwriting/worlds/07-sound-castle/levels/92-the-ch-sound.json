@@ -300,23 +300,68 @@
     },
     {
       "id": "level-92-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: chick, chair, cheese, cherry!",
-        "say": "Say them with me! chick, chair, cheese, cherry!",
-        "audio": "voice/line-2c4a8aad9eb502f4.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "chick, chair, cheese, cherry!",
-        "picture": {
-          "key": "chick",
-          "label": "chick",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "chick, chair, cheese, cherry!"
+      "sounds": {
+        "word": "chick",
+        "parts": [
+          {
+            "text": "ch",
+            "say": "{/ch/|ʧʌ}",
+            "audio": "voice/line-c992235ba2e2738f.m4a"
+          },
+          {
+            "text": "i",
+            "say": "{/i/|ɪ}",
+            "audio": "voice/line-55c556f50179c6d4.m4a"
+          },
+          {
+            "text": "ck",
+            "say": "{/ck/|kʌ}",
+            "audio": "voice/line-eec1fee16c5c51e0.m4a"
+          }
+        ],
+        "blend": {
+          "text": "chick",
+          "say": "chick!",
+          "audio": "voice/line-66fdbf3cb48f6d17.m4a"
+        },
+        "choices": [
+          {
+            "label": "chick",
+            "picture": {
+              "key": "chick",
+              "label": "chick",
+              "url": null
+            }
+          },
+          {
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            }
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
+              "url": null
+            }
+          }
+        ],
+        "answer": 0
       }
     },
     {
@@ -341,13 +386,13 @@
           },
           {
             "text": "chair",
-            "wrong": "mirror",
-            "at": 4
+            "wrong": null,
+            "at": null
           },
           {
             "text": "cheese",
-            "wrong": null,
-            "at": null
+            "wrong": "mirror",
+            "at": 5
           },
           {
             "text": "cherry",

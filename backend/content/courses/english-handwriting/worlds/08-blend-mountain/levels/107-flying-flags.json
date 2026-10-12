@@ -324,23 +324,92 @@
     },
     {
       "id": "level-107-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: flag, clock, plane, flower!",
-        "say": "Say them with me! flag, clock, plane, flower!",
-        "audio": "voice/line-384a7074bcd79b28.m4a"
+        "text": "Join j to u!",
+        "say": "Join the dots, from {j|ʤˈeɪ} to {u|jˈuː}. What will it be?",
+        "audio": "voice/line-5182c65c6893e49d.m4a"
       },
       "card": {
-        "text": "flag, clock, plane, flower!",
+        "text": "j → u",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "j",
+          "k",
+          "l",
+          "m",
+          "n",
+          "o",
+          "p",
+          "q",
+          "r",
+          "s",
+          "t",
+          "u"
+        ],
+        "points": [
+          [
+            50,
+            3
+          ],
+          [
+            66,
+            22
+          ],
+          [
+            91,
+            27
+          ],
+          [
+            82,
+            50
+          ],
+          [
+            91,
+            74
+          ],
+          [
+            66,
+            78
+          ],
+          [
+            50,
+            97
+          ],
+          [
+            34,
+            78
+          ],
+          [
+            9,
+            74
+          ],
+          [
+            18,
+            50
+          ],
+          [
+            9,
+            26
+          ],
+          [
+            34,
+            22
+          ]
+        ],
         "picture": {
-          "key": "flag",
-          "label": "flag",
+          "key": "sun",
+          "label": "sun",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "flag, clock, plane, flower!"
+        "done": {
+          "text": "A sun!",
+          "say": "It's a sun!",
+          "audio": "voice/line-f71c516d1c115862.m4a"
+        }
       }
     },
     {

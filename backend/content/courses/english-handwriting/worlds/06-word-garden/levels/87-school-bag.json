@@ -267,23 +267,77 @@
     },
     {
       "id": "level-87-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: book, bag, pen, pencil!",
-        "say": "Say them with me! book, bag, pen, pencil!",
-        "audio": "voice/line-fb51ce14fad40a8a.m4a"
+        "text": "Join n to v!",
+        "say": "Join the dots, from {n|ˈɛn} to {v|vˈiː}. What will it be?",
+        "audio": "voice/line-3a2fadcff6076ba4.m4a"
       },
       "card": {
-        "text": "book, bag, pen, pencil!",
+        "text": "n → v",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "n",
+          "o",
+          "p",
+          "q",
+          "r",
+          "s",
+          "t",
+          "u",
+          "v"
+        ],
+        "points": [
+          [
+            62,
+            4
+          ],
+          [
+            30,
+            10
+          ],
+          [
+            10,
+            36
+          ],
+          [
+            8,
+            64
+          ],
+          [
+            28,
+            88
+          ],
+          [
+            62,
+            96
+          ],
+          [
+            44,
+            74
+          ],
+          [
+            36,
+            50
+          ],
+          [
+            44,
+            26
+          ]
+        ],
         "picture": {
-          "key": "book",
-          "label": "book",
+          "key": "moon",
+          "label": "moon",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "book, bag, pen, pencil!"
+        "done": {
+          "text": "A moon!",
+          "say": "It's a moon!",
+          "audio": "voice/line-24627cec3ea7f4e6.m4a"
+        }
       }
     },
     {
