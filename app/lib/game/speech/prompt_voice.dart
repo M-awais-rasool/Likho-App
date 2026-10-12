@@ -32,7 +32,10 @@ class PromptVoice {
     try {
       final tts = FlutterTts();
       await tts.setLanguage('en-US');
-      await tts.setSpeechRate(defaultTargetPlatform == TargetPlatform.iOS ? .42 : .85);
+      // a little slower than normal, for children. flutter_tts doubles the
+      // rate on Android (.42 -> 0.84x), and iOS's normal is .5: the same
+      // pace on both (.85 on Android was 1.7x, far too fast)
+      await tts.setSpeechRate(.42);
       await tts.setPitch(1.35);
       await tts.awaitSpeakCompletion(true);
       _tts = tts;
