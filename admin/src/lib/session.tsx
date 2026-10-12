@@ -1,12 +1,14 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
-import { ApiError, get, post, setSignedOutHandler, type Admin, type CourseSummary, type Role } from './api'
+import { ApiError, get, post, setSignedOutHandler, type Admin, type CourseSummary, type LoginStep, type Role } from './api'
 
 interface Session {
   admin: Admin | null
   loading: boolean // until the admin (and, once signed in, the courses) are known
   can: (role: Role) => boolean
-  login: (email: string, password: string) => Promise<void>
+  /** Step 1: the password. Step 2 is [verify] with the authenticator code. */
+  login: (email: string, password: string) => Promise<LoginStep>
+  verify: (ticket: string, code: string) => Promise<void>
   logout: () => Promise<void>
   course: string
   setCourse: (id: string) => void
@@ -54,8 +56,9 @@ export function SessionProvider({ children }: { children: ReactNode }) {
     admin: me.data ?? null,
     loading: me.isLoading || (!!me.data && courses.isPending && !courses.error),
     can: (role) => !!me.data && rank[me.data.role] >= rank[role],
-    login: async (email, password) => {
-      const r = await post<{ admin: Admin }>('/auth/login', { email, password })
+    login: (email, password) => post<LoginStep>('/auth/login', { email, password }),
+    verify: async (ticket, code) => {
+      const r = await post<{ admin: Admin }>('/auth/verify', { ticket, code })
       forgetData()
       qc.setQueryData(['me'], r.admin)
     },
