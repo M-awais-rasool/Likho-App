@@ -399,15 +399,36 @@ function AccountLine({ a }: { a: TestAccount }) {
   )
 }
 
+/** A tester made from an account: its Google name (or the email's name)
+ *  and email, so the server links the account to them at once. */
+const asTester = (a: TestAccount) => ({ name: (a.name || a.email.split('@')[0]).slice(0, 80), email: a.email })
+
 function NewAccounts({ accounts, testers, editable, run }: { accounts: TestAccount[]; testers: Tester[]; editable: boolean; run: Run }) {
+  const confirm = useConfirm()
+  const addAll = async () => {
+    const ok = await confirm({
+      title: `Add all ${accounts.length} as testers?`,
+      body: 'Each account becomes a tester with its own name and email, and counts from today on the board (with the days it already used Likho). Your own phone or a family account: mark it "Not a tester" afterwards.',
+      confirm: `Add ${accounts.length} testers`,
+    })
+    if (ok) await run(() => post('/closed-test/testers', { testers: accounts.map(asTester) }), `${accounts.length} testers added.`)
+  }
   return (
     <Card
       className="mb-5 border-warn/40"
       padded={false}
       title={<span className="flex items-center gap-2">New accounts: whose are they? <Badge tone="warn">{accounts.length}</Badge></span>}
+      action={
+        editable && accounts.length > 1 ? (
+          <Button size="sm" variant="primary" icon={<UserPlus className="size-4" />} onClick={addAll}>
+            Add all as testers
+          </Button>
+        ) : undefined
+      }
     >
       <p className="border-b border-line px-4 py-2.5 text-[12.5px] text-ink-2">
-        These accounts used Likho during the test, but their email is not on the tester list (testers can sign in with any Google account). Pick who each one is.
+        These accounts used Likho during the test, but their email is not on the tester list (testers can sign in with any Google account). Pick who each one is,
+        or make them testers: the board counts testers only.
       </p>
       <ul className="divide-y divide-line">
         {accounts.map((a) => (
@@ -421,10 +442,15 @@ function NewAccounts({ accounts, testers, editable, run }: { accounts: TestAccou
                 onChange={(e) => {
                   const v = e.target.value
                   if (!v) return
+                  if (v === 'new') {
+                    run(() => post('/closed-test/testers', { testers: [asTester(a)] }), `${asTester(a).name} is a tester now.`)
+                    return
+                  }
                   run(() => put(`/closed-test/accounts/${a.parentId}`, { testerId: v === 'none' ? null : v }), v === 'none' ? 'Marked as not a tester.' : 'Linked.')
                 }}
               >
                 <option value="">This is…</option>
+                <option value="new">A new tester: {asTester(a).name}</option>
                 {testers.map((t) => (
                   <option key={t.id} value={t.id}>
                     {t.name}
