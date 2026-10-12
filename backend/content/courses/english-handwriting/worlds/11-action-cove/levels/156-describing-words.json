@@ -237,37 +237,19 @@
         ],
         "items": [
           {
-            "label": "car",
+            "label": "cat",
             "picture": {
-              "key": "car",
-              "label": "car",
+              "key": "cat",
+              "label": "cat",
               "url": null
             },
             "bin": 1
           },
           {
-            "label": "hut",
+            "label": "cup",
             "picture": {
-              "key": "hut",
-              "label": "hut",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "hen",
-            "picture": {
-              "key": "hen",
-              "label": "hen",
-              "url": null
-            },
-            "bin": 0
-          },
-          {
-            "label": "cow",
-            "picture": {
-              "key": "cow",
-              "label": "cow",
+              "key": "cup",
+              "label": "cup",
               "url": null
             },
             "bin": 1
@@ -282,13 +264,31 @@
             "bin": 0
           },
           {
-            "label": "corn",
+            "label": "cake",
             "picture": {
-              "key": "corn",
-              "label": "corn",
+              "key": "cake",
+              "label": "cake",
               "url": null
             },
             "bin": 1
+          },
+          {
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
+            "label": "hen",
+            "picture": {
+              "key": "hen",
+              "label": "hen",
+              "url": null
+            },
+            "bin": 0
           }
         ]
       }
@@ -323,23 +323,68 @@
     },
     {
       "id": "level-156-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: big, small, hot, cold!",
-        "say": "Say them with me! big, small, hot, cold!",
-        "audio": "voice/line-3cc3e5dc2164407e.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "big, small, hot, cold!",
-        "picture": {
-          "key": "elephant",
-          "label": "big",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "big, small, hot, cold!"
+      "sounds": {
+        "word": "big",
+        "parts": [
+          {
+            "text": "b",
+            "say": "{/b/|bʌ}",
+            "audio": "voice/line-54284489cdcd15c3.m4a"
+          },
+          {
+            "text": "i",
+            "say": "{/i/|ɪ}",
+            "audio": "voice/line-55c556f50179c6d4.m4a"
+          },
+          {
+            "text": "g",
+            "say": "{/g/|ɡʌ}",
+            "audio": "voice/line-be23dfaf66221347.m4a"
+          }
+        ],
+        "blend": {
+          "text": "big",
+          "say": "big!",
+          "audio": "voice/line-45d86b32a80929c8.m4a"
+        },
+        "choices": [
+          {
+            "label": "sun",
+            "picture": {
+              "key": "sun",
+              "label": "sun",
+              "url": null
+            }
+          },
+          {
+            "label": "cold",
+            "picture": {
+              "key": "snowman",
+              "label": "cold",
+              "url": null
+            }
+          },
+          {
+            "label": "big",
+            "picture": {
+              "key": "elephant",
+              "label": "big",
+              "url": null
+            }
+          }
+        ],
+        "answer": 2
       }
     },
     {

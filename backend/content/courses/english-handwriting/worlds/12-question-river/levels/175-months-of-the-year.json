@@ -388,23 +388,34 @@
     },
     {
       "id": "level-175-r9",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: January, February, March, April, May, June!",
-        "say": "January, February, March, April, May, June! Now you say it!",
-        "audio": "voice/line-9b3c96b0b67b8c6c.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "January, February, March, April, May, June! Tap the drum once for every word!",
+        "audio": "voice/line-d13f4100e4de2554.m4a"
       },
       "card": {
-        "text": "January, February, March, April, May, June!",
-        "picture": {
-          "key": "calendar",
-          "label": "calendar",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "January, February, March, April, May, June!"
+      "beats": {
+        "text": "January, February, March, April, May, June!",
+        "parts": [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "January February March April May June",
+          "say": "January, February, March, April, May, June! Six words!",
+          "audio": "voice/line-8bed607475006351.m4a"
+        }
       }
     },
     {

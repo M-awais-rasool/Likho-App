@@ -350,23 +350,33 @@
     },
     {
       "id": "level-172-r9",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: How many? One, two, three!",
-        "say": "How many? One, two, three! Now you say it!",
-        "audio": "voice/line-04feee1b00e2b81b.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "How many? One, two, three! Tap the drum once for every word!",
+        "audio": "voice/line-7c7ad7bf93d60d67.m4a"
       },
       "card": {
-        "text": "How many? One, two, three!",
-        "picture": {
-          "key": "many_cats",
-          "label": "many cats",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "How many? One, two, three!"
+      "beats": {
+        "text": "How many? One, two, three!",
+        "parts": [
+          "How",
+          "many",
+          "One",
+          "two",
+          "three"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "How many One two three",
+          "say": "How many? One, two, three! Five words!",
+          "audio": "voice/line-7b0fe69d103cf337.m4a"
+        }
       }
     },
     {

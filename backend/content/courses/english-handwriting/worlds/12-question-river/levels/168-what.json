@@ -213,23 +213,32 @@
     },
     {
       "id": "level-168-r5",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: It is a cup.",
-        "say": "It is a cup. Now you say it!",
-        "audio": "voice/line-abdd27f25322651f.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "It is a cup. Tap the drum once for every word!",
+        "audio": "voice/line-17e83776aefd31b2.m4a"
       },
       "card": {
-        "text": "It is a cup.",
-        "picture": {
-          "key": "cup",
-          "label": "cup",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "It is a cup."
+      "beats": {
+        "text": "It is a cup.",
+        "parts": [
+          "It",
+          "is",
+          "a",
+          "cup"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "It is a cup",
+          "say": "It is a cup. Four words!",
+          "audio": "voice/line-aaead03532274839.m4a"
+        }
       }
     },
     {

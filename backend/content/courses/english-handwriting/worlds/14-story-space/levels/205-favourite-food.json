@@ -333,23 +333,34 @@
     },
     {
       "id": "level-205-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Yum! My favourite food is mango!",
-        "say": "Yum! My favourite food is mango! Now you say it!",
-        "audio": "voice/line-b7d73e292a5d5eda.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Yum! My favourite food is mango! Tap the drum once for every word!",
+        "audio": "voice/line-c75173d74089bf1f.m4a"
       },
       "card": {
-        "text": "Yum! My favourite food is mango!",
-        "picture": {
-          "key": "mango",
-          "label": "mango",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Yum! My favourite food is mango!"
+      "beats": {
+        "text": "Yum! My favourite food is mango!",
+        "parts": [
+          "Yum",
+          "My",
+          "favourite",
+          "food",
+          "is",
+          "mango"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Yum My favourite food is mango",
+          "say": "Yum! My favourite food is mango! Six words!",
+          "audio": "voice/line-c8aa579319268d0a.m4a"
+        }
       }
     },
     {

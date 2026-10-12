@@ -197,23 +197,34 @@
     },
     {
       "id": "level-181-r5",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: A bird is in the sky.",
-        "say": "A bird is in the sky. Now you say it!",
-        "audio": "voice/line-99c5fa980663015f.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "A bird is in the sky. Tap the drum once for every word!",
+        "audio": "voice/line-618f37e950e54e63.m4a"
       },
       "card": {
-        "text": "A bird is in the sky.",
-        "picture": {
-          "key": "bird_in_sky",
-          "label": "bird in sky",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "A bird is in the sky."
+      "beats": {
+        "text": "A bird is in the sky.",
+        "parts": [
+          "A",
+          "bird",
+          "is",
+          "in",
+          "the",
+          "sky"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "A bird is in the sky",
+          "say": "A bird is in the sky. Six words!",
+          "audio": "voice/line-7eea9ec2efbc835e.m4a"
+        }
       }
     },
     {

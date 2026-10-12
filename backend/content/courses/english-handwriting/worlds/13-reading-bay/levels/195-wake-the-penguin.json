@@ -419,23 +419,33 @@
     },
     {
       "id": "level-195-r10",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: I can read a story!",
-        "say": "I can read a story! Now you say it!",
-        "audio": "voice/line-a8cfb418563829df.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "I can read a story! Tap the drum once for every word!",
+        "audio": "voice/line-770e6f147dfd8ee8.m4a"
       },
       "card": {
-        "text": "I can read a story!",
-        "picture": {
-          "key": "storybook",
-          "label": "storybook",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "I can read a story!"
+      "beats": {
+        "text": "I can read a story!",
+        "parts": [
+          "I",
+          "can",
+          "read",
+          "a",
+          "story"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "I can read a story",
+          "say": "I can read a story! Five words!",
+          "audio": "voice/line-470c100f383c1184.m4a"
+        }
       }
     }
   ]

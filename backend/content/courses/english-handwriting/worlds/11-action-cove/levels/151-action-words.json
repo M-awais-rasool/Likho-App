@@ -277,23 +277,87 @@
     },
     {
       "id": "level-151-r8",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: run, jump, swim, eat!",
-        "say": "Say them with me! run, jump, swim, eat!",
-        "audio": "voice/line-a2fcf007ec7c3ac1.m4a"
+        "text": "Join O to Y!",
+        "say": "Join the dots, from {O|ˈoʊ} to {Y|wˈaɪ}. What will it be?",
+        "audio": "voice/line-e160275a8bcc31b1.m4a"
       },
       "card": {
-        "text": "run, jump, swim, eat!",
+        "text": "O → Y",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V",
+          "W",
+          "X",
+          "Y"
+        ],
+        "points": [
+          [
+            50,
+            2
+          ],
+          [
+            80,
+            36
+          ],
+          [
+            60,
+            36
+          ],
+          [
+            88,
+            66
+          ],
+          [
+            60,
+            66
+          ],
+          [
+            60,
+            96
+          ],
+          [
+            40,
+            96
+          ],
+          [
+            40,
+            66
+          ],
+          [
+            12,
+            66
+          ],
+          [
+            40,
+            36
+          ],
+          [
+            20,
+            36
+          ]
+        ],
         "picture": {
-          "key": "run",
-          "label": "run",
+          "key": "tree",
+          "label": "tree",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "run, jump, swim, eat!"
+        "done": {
+          "text": "A tree!",
+          "say": "It's a tree!",
+          "audio": "voice/line-9f1ccab9d42ec40f.m4a"
+        }
       }
     },
     {

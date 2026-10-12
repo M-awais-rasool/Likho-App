@@ -151,23 +151,34 @@
     },
     {
       "id": "level-178-r5",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Can you swim? Yes, I can!",
-        "say": "Can you swim? Yes, I can! Now you say it!",
-        "audio": "voice/line-42b1b841684e134d.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Can you swim? Yes, I can! Tap the drum once for every word!",
+        "audio": "voice/line-a6bd528380e852af.m4a"
       },
       "card": {
-        "text": "Can you swim? Yes, I can!",
-        "picture": {
-          "key": "swim",
-          "label": "swim",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Can you swim? Yes, I can!"
+      "beats": {
+        "text": "Can you swim? Yes, I can!",
+        "parts": [
+          "Can",
+          "you",
+          "swim",
+          "Yes",
+          "I",
+          "can"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Can you swim Yes I can",
+          "say": "Can you swim? Yes, I can! Six words!",
+          "audio": "voice/line-a459be24037ebc2a.m4a"
+        }
       }
     },
     {

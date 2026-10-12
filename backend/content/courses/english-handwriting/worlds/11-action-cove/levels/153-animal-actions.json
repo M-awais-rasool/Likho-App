@@ -309,23 +309,34 @@
     },
     {
       "id": "level-153-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Fish swim, birds fly, frogs hop!",
-        "say": "Fish swim, birds fly, frogs hop! Now you say it!",
-        "audio": "voice/line-e1381cad791b8485.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Fish swim, birds fly, frogs hop! Tap the drum once for every word!",
+        "audio": "voice/line-4b7181d7884ab25d.m4a"
       },
       "card": {
-        "text": "Fish swim, birds fly, frogs hop!",
-        "picture": {
-          "key": "frog",
-          "label": "frog",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Fish swim, birds fly, frogs hop!"
+      "beats": {
+        "text": "Fish swim, birds fly, frogs hop!",
+        "parts": [
+          "Fish",
+          "swim",
+          "birds",
+          "fly",
+          "frogs",
+          "hop"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Fish swim birds fly frogs hop",
+          "say": "Fish swim, birds fly, frogs hop! Six words!",
+          "audio": "voice/line-4eda5e57171718c6.m4a"
+        }
       }
     },
     {

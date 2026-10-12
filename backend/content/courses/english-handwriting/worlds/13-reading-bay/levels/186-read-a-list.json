@@ -374,23 +374,33 @@
     },
     {
       "id": "level-186-r9",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Milk, eggs, bread and rice!",
-        "say": "Milk, eggs, bread and rice! Now you say it!",
-        "audio": "voice/line-dd7953ee3c4072cb.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Milk, eggs, bread and rice! Tap the drum once for every word!",
+        "audio": "voice/line-51124f84ba2b9036.m4a"
       },
       "card": {
-        "text": "Milk, eggs, bread and rice!",
-        "picture": {
-          "key": "milk",
-          "label": "milk",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Milk, eggs, bread and rice!"
+      "beats": {
+        "text": "Milk, eggs, bread and rice!",
+        "parts": [
+          "Milk",
+          "eggs",
+          "bread",
+          "and",
+          "rice"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Milk eggs bread and rice",
+          "say": "Milk, eggs, bread and rice! Five words!",
+          "audio": "voice/line-2e5b2857fb0a514d.m4a"
+        }
       }
     },
     {

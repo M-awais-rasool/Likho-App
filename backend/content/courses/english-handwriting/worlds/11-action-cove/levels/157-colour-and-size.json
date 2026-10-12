@@ -315,23 +315,72 @@
     },
     {
       "id": "level-157-r9",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: A big red bus and a little yellow chick!",
-        "say": "A big red bus and a little yellow chick! Now you say it!",
-        "audio": "voice/line-6691265ed70188c9.m4a"
+        "text": "Join b to i!",
+        "say": "Join the dots, from {b|bˈiː} to {i|ˈaɪ}. What will it be?",
+        "audio": "voice/line-5566b6d3e5213df7.m4a"
       },
       "card": {
-        "text": "A big red bus and a little yellow chick!",
+        "text": "b → i",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "b",
+          "c",
+          "d",
+          "e",
+          "f",
+          "g",
+          "h",
+          "i"
+        ],
+        "points": [
+          [
+            8,
+            44
+          ],
+          [
+            40,
+            44
+          ],
+          [
+            40,
+            10
+          ],
+          [
+            60,
+            10
+          ],
+          [
+            60,
+            44
+          ],
+          [
+            92,
+            44
+          ],
+          [
+            92,
+            94
+          ],
+          [
+            8,
+            94
+          ]
+        ],
         "picture": {
-          "key": "red_bus",
-          "label": "red bus",
+          "key": "cake",
+          "label": "cake",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "A big red bus and a little yellow chick!"
+        "done": {
+          "text": "A cake!",
+          "say": "It's a cake!",
+          "audio": "voice/line-603810a81e3a93a1.m4a"
+        }
       }
     },
     {

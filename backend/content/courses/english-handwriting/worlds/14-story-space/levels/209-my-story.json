@@ -194,23 +194,92 @@
     },
     {
       "id": "level-209-r5",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: Once upon a time, there was a cat.",
-        "say": "Once upon a time, there was a cat. Now you say it!",
-        "audio": "voice/line-e6deedc41ba86dd6.m4a"
+        "text": "Join f to q!",
+        "say": "Join the dots, from {f|ˈɛf} to {q|kjˈuː}. What will it be?",
+        "audio": "voice/line-8c71f1aa1ab8023e.m4a"
       },
       "card": {
-        "text": "Once upon a time, there was a cat.",
+        "text": "f → q",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "f",
+          "g",
+          "h",
+          "i",
+          "j",
+          "k",
+          "l",
+          "m",
+          "n",
+          "o",
+          "p",
+          "q"
+        ],
+        "points": [
+          [
+            50,
+            3
+          ],
+          [
+            66,
+            22
+          ],
+          [
+            91,
+            27
+          ],
+          [
+            82,
+            50
+          ],
+          [
+            91,
+            74
+          ],
+          [
+            66,
+            78
+          ],
+          [
+            50,
+            97
+          ],
+          [
+            34,
+            78
+          ],
+          [
+            9,
+            74
+          ],
+          [
+            18,
+            50
+          ],
+          [
+            9,
+            26
+          ],
+          [
+            34,
+            22
+          ]
+        ],
         "picture": {
-          "key": "cat",
-          "label": "cat",
+          "key": "sun",
+          "label": "sun",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "Once upon a time, there was a cat."
+        "done": {
+          "text": "A sun!",
+          "say": "It's a sun!",
+          "audio": "voice/line-f71c516d1c115862.m4a"
+        }
       }
     },
     {

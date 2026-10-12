@@ -385,23 +385,34 @@
     },
     {
       "id": "level-207-r9",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: I see a tall green tree.",
-        "say": "I see a tall green tree. Now you say it!",
-        "audio": "voice/line-4a7e09c74222e37c.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "I see a tall green tree. Tap the drum once for every word!",
+        "audio": "voice/line-873958faabffc4e3.m4a"
       },
       "card": {
-        "text": "I see a tall green tree.",
-        "picture": {
-          "key": "tree",
-          "label": "tree",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "I see a tall green tree."
+      "beats": {
+        "text": "I see a tall green tree.",
+        "parts": [
+          "I",
+          "see",
+          "a",
+          "tall",
+          "green",
+          "tree"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "I see a tall green tree",
+          "say": "I see a tall green tree. Six words!",
+          "audio": "voice/line-847864e4efad9dec.m4a"
+        }
       }
     },
     {

@@ -316,23 +316,35 @@
     },
     {
       "id": "level-184-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Look at the picture for a clue!",
-        "say": "Look at the picture for a clue! Now you say it!",
-        "audio": "voice/line-95da3c81e727ec54.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Look at the picture for a clue! Tap the drum once for every word!",
+        "audio": "voice/line-07ed0853dca83b05.m4a"
       },
       "card": {
-        "text": "Look at the picture for a clue!",
-        "picture": {
-          "key": "storybook",
-          "label": "storybook",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Look at the picture for a clue!"
+      "beats": {
+        "text": "Look at the picture for a clue!",
+        "parts": [
+          "Look",
+          "at",
+          "the",
+          "picture",
+          "for",
+          "a",
+          "clue"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Look at the picture for a clue",
+          "say": "Look at the picture for a clue! Seven words!",
+          "audio": "voice/line-d67bde28748fa361.m4a"
+        }
       }
     },
     {

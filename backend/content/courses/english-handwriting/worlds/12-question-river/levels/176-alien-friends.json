@@ -2,16 +2,16 @@
   "$schema": "../../../../../schema/level.schema.json",
   "id": "level-176",
   "number": 176,
-  "name": "Talk to Aliens",
-  "skill": "Speaking",
-  "icon": "record_voice_over",
+  "name": "Alien Friends",
+  "skill": "Asking and answering",
+  "icon": "question_answer",
   "isBoss": false,
   "requiresSubscription": true,
   "intro": {
     "text": "Hi!",
     "word": "alien",
-    "say": "Hi! Let's talk to the friendly aliens.",
-    "audio": "voice/line-76da4c3be4a265e4.m4a",
+    "say": "Hi! Let's read and write with the friendly aliens.",
+    "audio": "voice/line-baca5c4e5bb1fc0e.m4a",
     "picture": {
       "key": "alien",
       "label": "alien",
@@ -27,18 +27,29 @@
   "rounds": [
     {
       "id": "level-176-r1",
-      "type": "speak",
+      "type": "order",
       "prompt": {
-        "text": "What is your name?",
-        "audio": "voice/line-83fafdb33504dfb4.m4a"
+        "text": "Put the words in order!",
+        "say": "My name is Ali. Put the words in order.",
+        "audio": "voice/line-45e2b73af3753303.m4a"
       },
       "card": {
-        "text": "What is your name?",
-        "picture": null,
-        "listen": true
+        "text": null,
+        "picture": {
+          "key": "alien",
+          "label": "alien",
+          "url": null
+        },
+        "listen": false
       },
-      "speak": {
-        "expected": null
+      "order": {
+        "tiles": [
+          "My",
+          "name",
+          "is",
+          "Ali"
+        ],
+        "slot": "stripe"
       }
     },
     {
@@ -66,33 +77,6 @@
     },
     {
       "id": "level-176-r3",
-      "type": "order",
-      "prompt": {
-        "text": "Put the words in order!",
-        "say": "My name is Ali. Put the words in order.",
-        "audio": "voice/line-45e2b73af3753303.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": {
-          "key": "alien",
-          "label": "alien",
-          "url": null
-        },
-        "listen": false
-      },
-      "order": {
-        "tiles": [
-          "My",
-          "name",
-          "is",
-          "Ali"
-        ],
-        "slot": "stripe"
-      }
-    },
-    {
-      "id": "level-176-r4",
       "type": "write",
       "prompt": {
         "text": "Write the sentence",
@@ -115,7 +99,7 @@
       }
     },
     {
-      "id": "level-176-r5",
+      "id": "level-176-r4",
       "type": "pick",
       "prompt": {
         "text": "Answer: How old are you?",
@@ -134,21 +118,21 @@
       "pick": {
         "options": [
           {
-            "id": "level-176-r5-o1",
+            "id": "level-176-r4-o1",
             "label": "I am six.",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-176-r5-o2",
+            "id": "level-176-r4-o2",
             "label": "I am a cat.",
             "picture": null,
             "color": null,
             "hideLabel": false
           },
           {
-            "id": "level-176-r5-o3",
+            "id": "level-176-r4-o3",
             "label": "It is red.",
             "picture": null,
             "color": null,
@@ -164,6 +148,96 @@
         "count": null,
         "choiceKey": null,
         "fixCapital": false
+      }
+    },
+    {
+      "id": "level-176-r5",
+      "type": "connect",
+      "prompt": {
+        "text": "Join O to Z!",
+        "say": "Join the dots, from {O|ˈoʊ} to {Z|zˈiː}. What will it be?",
+        "audio": "voice/line-e452dcf56ea494a4.m4a"
+      },
+      "card": {
+        "text": "O → Z",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ],
+        "points": [
+          [
+            50,
+            22
+          ],
+          [
+            66,
+            12
+          ],
+          [
+            86,
+            22
+          ],
+          [
+            92,
+            48
+          ],
+          [
+            82,
+            76
+          ],
+          [
+            68,
+            94
+          ],
+          [
+            50,
+            84
+          ],
+          [
+            32,
+            94
+          ],
+          [
+            18,
+            76
+          ],
+          [
+            8,
+            48
+          ],
+          [
+            14,
+            22
+          ],
+          [
+            34,
+            12
+          ]
+        ],
+        "picture": {
+          "key": "apple",
+          "label": "apple",
+          "url": null
+        },
+        "done": {
+          "text": "An apple!",
+          "say": "It's an apple!",
+          "audio": "voice/line-eb257727166de7e7.m4a"
+        }
       }
     },
     {

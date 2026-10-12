@@ -99,23 +99,67 @@
     },
     {
       "id": "level-164-r4",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: I can jump.",
-        "say": "I can jump. Now you say it!",
-        "audio": "voice/line-4a5a5f63bc0a9557.m4a"
+        "text": "Join C to I!",
+        "say": "Join the dots, from {C|sˈiː} to {I|ˈaɪ}. What will it be?",
+        "audio": "voice/line-e750fbf310b881ff.m4a"
       },
       "card": {
-        "text": "I can jump.",
+        "text": "C → I",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I"
+        ],
+        "points": [
+          [
+            6,
+            28
+          ],
+          [
+            30,
+            54
+          ],
+          [
+            50,
+            10
+          ],
+          [
+            70,
+            54
+          ],
+          [
+            94,
+            28
+          ],
+          [
+            84,
+            88
+          ],
+          [
+            16,
+            88
+          ]
+        ],
         "picture": {
-          "key": "jump",
-          "label": "jump",
+          "key": "crown",
+          "label": "crown",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "I can jump."
+        "done": {
+          "text": "A crown!",
+          "say": "It's a crown!",
+          "audio": "voice/line-9649373564b61d61.m4a"
+        }
       }
     },
     {

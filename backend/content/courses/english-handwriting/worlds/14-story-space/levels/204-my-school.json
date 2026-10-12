@@ -415,23 +415,36 @@
     },
     {
       "id": "level-204-r9",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: I read, I write, I play at school!",
-        "say": "I read, I write, I play at school! Now you say it!",
-        "audio": "voice/line-f2e227a3eb23b193.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "I read, I write, I play at school! Tap the drum once for every word!",
+        "audio": "voice/line-adbec0528a59c6ab.m4a"
       },
       "card": {
-        "text": "I read, I write, I play at school!",
-        "picture": {
-          "key": "school",
-          "label": "school",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "I read, I write, I play at school!"
+      "beats": {
+        "text": "I read, I write, I play at school!",
+        "parts": [
+          "I",
+          "read",
+          "I",
+          "write",
+          "I",
+          "play",
+          "at",
+          "school"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "I read I write I play at school",
+          "say": "I read, I write, I play at school! Eight words!",
+          "audio": "voice/line-727fcd1b76280084.m4a"
+        }
       }
     },
     {

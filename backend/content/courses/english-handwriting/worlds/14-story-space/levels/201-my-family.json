@@ -161,23 +161,32 @@
     },
     {
       "id": "level-201-r4",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: This is my mother.",
-        "say": "This is my mother. Now you say it!",
-        "audio": "voice/line-293cf15ad9243df9.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "This is my mother. Tap the drum once for every word!",
+        "audio": "voice/line-2eef54f55e7086d7.m4a"
       },
       "card": {
-        "text": "This is my mother.",
-        "picture": {
-          "key": "family_mother",
-          "label": "family mother",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "This is my mother."
+      "beats": {
+        "text": "This is my mother.",
+        "parts": [
+          "This",
+          "is",
+          "my",
+          "mother"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "This is my mother",
+          "say": "This is my mother. Four words!",
+          "audio": "voice/line-b6fe046a7d47eafb.m4a"
+        }
       }
     },
     {

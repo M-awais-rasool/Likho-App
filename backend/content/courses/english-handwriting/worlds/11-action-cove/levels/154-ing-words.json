@@ -255,23 +255,32 @@
     },
     {
       "id": "level-154-r7",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Run, running! Jump, jumping!",
-        "say": "Run, running! Jump, jumping! Now you say it!",
-        "audio": "voice/line-27aa908287a09375.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Run, running! Jump, jumping! Tap the drum once for every word!",
+        "audio": "voice/line-3f4cfbca55d160b9.m4a"
       },
       "card": {
-        "text": "Run, running! Jump, jumping!",
-        "picture": {
-          "key": "run",
-          "label": "run",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Run, running! Jump, jumping!"
+      "beats": {
+        "text": "Run, running! Jump, jumping!",
+        "parts": [
+          "Run",
+          "running",
+          "Jump",
+          "jumping"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Run running Jump jumping",
+          "say": "Run, running! Jump, jumping! Four words!",
+          "audio": "voice/line-3860da7439293dba.m4a"
+        }
       }
     },
     {

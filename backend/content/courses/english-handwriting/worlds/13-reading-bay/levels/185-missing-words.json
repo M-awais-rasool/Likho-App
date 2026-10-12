@@ -153,23 +153,77 @@
     },
     {
       "id": "level-185-r5",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: A bird can fly.",
-        "say": "A bird can fly. Now you say it!",
-        "audio": "voice/line-1d531ff1e39a36ae.m4a"
+        "text": "Join p to x!",
+        "say": "Join the dots, from {p|pˈiː} to {x|ˈɛks}. What will it be?",
+        "audio": "voice/line-553f29e9f620bc46.m4a"
       },
       "card": {
-        "text": "A bird can fly.",
+        "text": "p → x",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "p",
+          "q",
+          "r",
+          "s",
+          "t",
+          "u",
+          "v",
+          "w",
+          "x"
+        ],
+        "points": [
+          [
+            62,
+            4
+          ],
+          [
+            30,
+            10
+          ],
+          [
+            10,
+            36
+          ],
+          [
+            8,
+            64
+          ],
+          [
+            28,
+            88
+          ],
+          [
+            62,
+            96
+          ],
+          [
+            44,
+            74
+          ],
+          [
+            36,
+            50
+          ],
+          [
+            44,
+            26
+          ]
+        ],
         "picture": {
-          "key": "bird_in_sky",
-          "label": "bird in sky",
+          "key": "moon",
+          "label": "moon",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "A bird can fly."
+        "done": {
+          "text": "A moon!",
+          "say": "It's a moon!",
+          "audio": "voice/line-24627cec3ea7f4e6.m4a"
+        }
       }
     },
     {

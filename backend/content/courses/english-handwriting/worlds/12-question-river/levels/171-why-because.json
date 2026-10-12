@@ -285,23 +285,36 @@
     },
     {
       "id": "level-171-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Why do you smile? Because I am happy!",
-        "say": "Why do you smile? Because I am happy! Now you say it!",
-        "audio": "voice/line-c33aaa925afb3bda.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Why do you smile? Because I am happy! Tap the drum once for every word!",
+        "audio": "voice/line-1b0e91a9bc717e2d.m4a"
       },
       "card": {
-        "text": "Why do you smile? Because I am happy!",
-        "picture": {
-          "key": "happy",
-          "label": "happy",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Why do you smile? Because I am happy!"
+      "beats": {
+        "text": "Why do you smile? Because I am happy!",
+        "parts": [
+          "Why",
+          "do",
+          "you",
+          "smile",
+          "Because",
+          "I",
+          "am",
+          "happy"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Why do you smile Because I am happy",
+          "say": "Why do you smile? Because I am happy! Eight words!",
+          "audio": "voice/line-f1dd1905830980cc.m4a"
+        }
       }
     },
     {

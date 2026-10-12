@@ -370,23 +370,35 @@
     },
     {
       "id": "level-180-r10",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: What is this? It is a turtle!",
-        "say": "What is this? It is a turtle! Now you say it!",
-        "audio": "voice/line-ece26a9999877b18.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "What is this? It is a turtle! Tap the drum once for every word!",
+        "audio": "voice/line-0237e8a5c3dee520.m4a"
       },
       "card": {
-        "text": "What is this? It is a turtle!",
-        "picture": {
-          "key": "turtle",
-          "label": "turtle",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "What is this? It is a turtle!"
+      "beats": {
+        "text": "What is this? It is a turtle!",
+        "parts": [
+          "What",
+          "is",
+          "this",
+          "It",
+          "is",
+          "a",
+          "turtle"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "What is this It is a turtle",
+          "say": "What is this? It is a turtle! Seven words!",
+          "audio": "voice/line-5b1a741529b8f409.m4a"
+        }
       }
     }
   ]

@@ -166,23 +166,32 @@
     },
     {
       "id": "level-192-r4",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Twinkle, twinkle, little star!",
-        "say": "Twinkle, twinkle, little star! Now you say it!",
-        "audio": "voice/line-f1efa5bc68bc5c85.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Twinkle, twinkle, little star! Tap the drum once for every word!",
+        "audio": "voice/line-f416c7b5b57a1d71.m4a"
       },
       "card": {
-        "text": "Twinkle, twinkle, little star!",
-        "picture": {
-          "key": "star",
-          "label": "star",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Twinkle, twinkle, little star!"
+      "beats": {
+        "text": "Twinkle, twinkle, little star!",
+        "parts": [
+          "Twinkle",
+          "twinkle",
+          "little",
+          "star"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Twinkle twinkle little star",
+          "say": "Twinkle, twinkle, little star! Four words!",
+          "audio": "voice/line-80d48bc0520a58a8.m4a"
+        }
       }
     },
     {
