@@ -155,23 +155,31 @@
     },
     {
       "id": "level-196-r4",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: First, next, last!",
-        "say": "First, next, last! Now you say it!",
-        "audio": "voice/line-2dc1b654a9513c16.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "First, next, last! Tap the drum once for every word!",
+        "audio": "voice/line-a9827954d628e01e.m4a"
       },
       "card": {
-        "text": "First, next, last!",
-        "picture": {
-          "key": "chick",
-          "label": "chick",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "First, next, last!"
+      "beats": {
+        "text": "First, next, last!",
+        "parts": [
+          "First",
+          "next",
+          "last"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "First next last",
+          "say": "First, next, last! Three words!",
+          "audio": "voice/line-0d2532606907c82c.m4a"
+        }
       }
     },
     {

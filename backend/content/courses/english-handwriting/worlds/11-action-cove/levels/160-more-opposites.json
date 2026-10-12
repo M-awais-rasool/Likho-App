@@ -383,23 +383,34 @@
     },
     {
       "id": "level-160-r9",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Open and closed, loud and quiet!",
-        "say": "Open and closed, loud and quiet! Now you say it!",
-        "audio": "voice/line-f856b663c986718f.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Open and closed, loud and quiet! Tap the drum once for every word!",
+        "audio": "voice/line-a9a6d4bddd1aa0bd.m4a"
       },
       "card": {
-        "text": "Open and closed, loud and quiet!",
-        "picture": {
-          "key": "loud",
-          "label": "loud",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Open and closed, loud and quiet!"
+      "beats": {
+        "text": "Open and closed, loud and quiet!",
+        "parts": [
+          "Open",
+          "and",
+          "closed",
+          "loud",
+          "and",
+          "quiet"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Open and closed loud and quiet",
+          "say": "Open and closed, loud and quiet! Six words!",
+          "audio": "voice/line-66960dd82400cf5b.m4a"
+        }
       }
     },
     {

@@ -153,23 +153,33 @@
     },
     {
       "id": "level-169-r5",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: It is on the box.",
-        "say": "It is on the box. Now you say it!",
-        "audio": "voice/line-779c6236d26dcf53.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "It is on the box. Tap the drum once for every word!",
+        "audio": "voice/line-f57c14fb307587ad.m4a"
       },
       "card": {
-        "text": "It is on the box.",
-        "picture": {
-          "key": "cat_on_box",
-          "label": "cat on box",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "It is on the box."
+      "beats": {
+        "text": "It is on the box.",
+        "parts": [
+          "It",
+          "is",
+          "on",
+          "the",
+          "box"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "It is on the box",
+          "say": "It is on the box. Five words!",
+          "audio": "voice/line-3e07e0edd8c5bbd3.m4a"
+        }
       }
     },
     {

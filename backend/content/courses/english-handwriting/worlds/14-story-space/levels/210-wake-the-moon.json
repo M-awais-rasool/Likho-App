@@ -185,18 +185,49 @@
     },
     {
       "id": "level-210-r4",
-      "type": "speak",
+      "type": "pick",
       "prompt": {
-        "text": "Say: I love to read!",
-        "audio": "voice/line-38ce3a23511ec922.m4a"
+        "text": "Who has a kite?",
+        "audio": "voice/line-4694c6dbe7f12188.m4a"
       },
       "card": {
-        "text": "I love to read!",
+        "text": "Ali has a kite. Sara has a ball.",
         "picture": null,
         "listen": false
       },
-      "speak": {
-        "expected": null
+      "pick": {
+        "options": [
+          {
+            "label": "Ali",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-210-r4-o1"
+          },
+          {
+            "label": "Sara",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-210-r4-o2"
+          },
+          {
+            "label": "Sam",
+            "picture": null,
+            "color": null,
+            "hideLabel": false,
+            "id": "level-210-r4-o3"
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "Ali"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
       }
     },
     {
@@ -228,53 +259,6 @@
     },
     {
       "id": "level-210-r6",
-      "type": "pick",
-      "prompt": {
-        "text": "Who has a kite?",
-        "audio": "voice/line-4694c6dbe7f12188.m4a"
-      },
-      "card": {
-        "text": "Ali has a kite. Sara has a ball.",
-        "picture": null,
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "label": "Ali",
-            "picture": null,
-            "color": null,
-            "hideLabel": false,
-            "id": "level-210-r6-o1"
-          },
-          {
-            "label": "Sara",
-            "picture": null,
-            "color": null,
-            "hideLabel": false,
-            "id": "level-210-r6-o2"
-          },
-          {
-            "label": "Sam",
-            "picture": null,
-            "color": null,
-            "hideLabel": false,
-            "id": "level-210-r6-o3"
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "Ali"
-        },
-        "shape": "card",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
-      }
-    },
-    {
-      "id": "level-210-r7",
       "type": "write",
       "prompt": {
         "text": "I can read.",
@@ -293,6 +277,40 @@
         "missingIndex": null,
         "sentence": true,
         "story": false
+      }
+    },
+    {
+      "id": "level-210-r7",
+      "type": "beats",
+      "prompt": {
+        "text": "Tap a beat for each word!",
+        "say": "I did it! I can read and write! Tap the drum once for every word!",
+        "audio": "voice/line-244c6a490bc07d3e.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "beats": {
+        "text": "I did it! I can read and write!",
+        "parts": [
+          "I",
+          "did",
+          "it",
+          "I",
+          "can",
+          "read",
+          "and",
+          "write"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "I did it I can read and write",
+          "say": "I did it! I can read and write! Eight words!",
+          "audio": "voice/line-9b4326c303be46ba.m4a"
+        }
       }
     },
     {

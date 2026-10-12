@@ -356,23 +356,67 @@
     },
     {
       "id": "level-202-r9",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: My pet is a dog. His name is Max.",
-        "say": "My pet is a dog. His name is Max. Now you say it!",
-        "audio": "voice/line-66fdea383013d367.m4a"
+        "text": "Join Q to W!",
+        "say": "Join the dots, from {Q|kjˈuː} to {W|dˈʌbəljuː}. What will it be?",
+        "audio": "voice/line-bd976a4c36930df9.m4a"
       },
       "card": {
-        "text": "My pet is a dog. His name is Max.",
+        "text": "Q → W",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V",
+          "W"
+        ],
+        "points": [
+          [
+            6,
+            28
+          ],
+          [
+            30,
+            54
+          ],
+          [
+            50,
+            10
+          ],
+          [
+            70,
+            54
+          ],
+          [
+            94,
+            28
+          ],
+          [
+            84,
+            88
+          ],
+          [
+            16,
+            88
+          ]
+        ],
         "picture": {
-          "key": "dog",
-          "label": "dog",
+          "key": "crown",
+          "label": "crown",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "My pet is a dog. His name is Max."
+        "done": {
+          "text": "A crown!",
+          "say": "It's a crown!",
+          "audio": "voice/line-9649373564b61d61.m4a"
+        }
       }
     },
     {

@@ -389,23 +389,34 @@
     },
     {
       "id": "level-165-r10",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: I can run, jump and swim!",
-        "say": "I can run, jump and swim! Now you say it!",
-        "audio": "voice/line-c42199d1282197ba.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "I can run, jump and swim! Tap the drum once for every word!",
+        "audio": "voice/line-9c6063c9d67fbf57.m4a"
       },
       "card": {
-        "text": "I can run, jump and swim!",
-        "picture": {
-          "key": "monkey",
-          "label": "monkey",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "I can run, jump and swim!"
+      "beats": {
+        "text": "I can run, jump and swim!",
+        "parts": [
+          "I",
+          "can",
+          "run",
+          "jump",
+          "and",
+          "swim"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "I can run jump and swim",
+          "say": "I can run, jump and swim! Six words!",
+          "audio": "voice/line-e1302bab65c6ef16.m4a"
+        }
       }
     }
   ]

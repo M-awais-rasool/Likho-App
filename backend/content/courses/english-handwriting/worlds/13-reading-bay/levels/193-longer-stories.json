@@ -380,23 +380,35 @@
     },
     {
       "id": "level-193-r9",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Every morning, they go to the park.",
-        "say": "Every morning, they go to the park. Now you say it!",
-        "audio": "voice/line-451174ee39e25a45.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Every morning, they go to the park. Tap the drum once for every word!",
+        "audio": "voice/line-1c1d68743550018e.m4a"
       },
       "card": {
-        "text": "Every morning, they go to the park.",
-        "picture": {
-          "key": "play",
-          "label": "play",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Every morning, they go to the park."
+      "beats": {
+        "text": "Every morning, they go to the park.",
+        "parts": [
+          "Every",
+          "morning",
+          "they",
+          "go",
+          "to",
+          "the",
+          "park"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Every morning they go to the park",
+          "say": "Every morning, they go to the park. Seven words!",
+          "audio": "voice/line-43feccddb8fcbba6.m4a"
+        }
       }
     },
     {

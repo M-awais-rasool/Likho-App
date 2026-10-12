@@ -217,23 +217,34 @@
     },
     {
       "id": "level-159-r5",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Up and down, big and small!",
-        "say": "Up and down, big and small! Now you say it!",
-        "audio": "voice/line-83348840f62e6957.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Up and down, big and small! Tap the drum once for every word!",
+        "audio": "voice/line-d677b20ded24d733.m4a"
       },
       "card": {
-        "text": "Up and down, big and small!",
-        "picture": {
-          "key": "up",
-          "label": "up",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Up and down, big and small!"
+      "beats": {
+        "text": "Up and down, big and small!",
+        "parts": [
+          "Up",
+          "and",
+          "down",
+          "big",
+          "and",
+          "small"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Up and down big and small",
+          "say": "Up and down, big and small! Six words!",
+          "audio": "voice/line-edbf20c565d37d49.m4a"
+        }
       }
     },
     {

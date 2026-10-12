@@ -150,23 +150,31 @@
     },
     {
       "id": "level-190-r5",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: It is hot.",
-        "say": "It is hot. Now you say it!",
-        "audio": "voice/line-89d639c51c228d4d.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "It is hot. Tap the drum once for every word!",
+        "audio": "voice/line-1ebaf224b5719351.m4a"
       },
       "card": {
-        "text": "It is hot.",
-        "picture": {
-          "key": "fish_in_sea",
-          "label": "fish in sea",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "It is hot."
+      "beats": {
+        "text": "It is hot.",
+        "parts": [
+          "It",
+          "is",
+          "hot"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "It is hot",
+          "say": "It is hot. Three words!",
+          "audio": "voice/line-c12f7b225fa9ce6a.m4a"
+        }
       }
     },
     {

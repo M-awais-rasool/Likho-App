@@ -153,23 +153,62 @@
     },
     {
       "id": "level-198-r5",
-      "type": "speak",
+      "type": "connect",
       "prompt": {
-        "text": "Say: Once upon a time, a fish lived in the sea.",
-        "say": "Once upon a time, a fish lived in the sea. Now you say it!",
-        "audio": "voice/line-9b0294331f421759.m4a"
+        "text": "Join O to T!",
+        "say": "Join the dots, from {O|ˈoʊ} to {T|tˈiː}. What will it be?",
+        "audio": "voice/line-c8e49f19867a70d6.m4a"
       },
       "card": {
-        "text": "Once upon a time, a fish lived in the sea.",
+        "text": "O → T",
+        "picture": null,
+        "listen": false
+      },
+      "connect": {
+        "labels": [
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T"
+        ],
+        "points": [
+          [
+            50,
+            3
+          ],
+          [
+            88,
+            38
+          ],
+          [
+            69,
+            68
+          ],
+          [
+            50,
+            97
+          ],
+          [
+            31,
+            68
+          ],
+          [
+            12,
+            38
+          ]
+        ],
         "picture": {
-          "key": "fish_in_sea",
-          "label": "fish in sea",
+          "key": "kite",
+          "label": "kite",
           "url": null
         },
-        "listen": true
-      },
-      "speak": {
-        "expected": "Once upon a time, a fish lived in the sea."
+        "done": {
+          "text": "A kite!",
+          "say": "It's a kite!",
+          "audio": "voice/line-84a0b92f93e00a15.m4a"
+        }
       }
     },
     {
@@ -209,19 +248,19 @@
             "bin": 1
           },
           {
-            "label": "web",
+            "label": "whale",
             "picture": {
-              "key": "web",
-              "label": "web",
+              "key": "whale",
+              "label": "whale",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "nail",
+            "label": "nut",
             "picture": {
-              "key": "nail",
-              "label": "nail",
+              "key": "nut",
+              "label": "nut",
               "url": null
             },
             "bin": 1
@@ -236,10 +275,10 @@
             "bin": 1
           },
           {
-            "label": "whale",
+            "label": "watch",
             "picture": {
-              "key": "whale",
-              "label": "whale",
+              "key": "watch",
+              "label": "watch",
               "url": null
             },
             "bin": 0
@@ -285,6 +324,38 @@
     },
     {
       "id": "level-198-r8",
+      "type": "beats",
+      "prompt": {
+        "text": "Tap a beat for each word!",
+        "say": "The fish is in the sea. Tap the drum once for every word!",
+        "audio": "voice/line-b8edb4cbb35f7d4e.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": null,
+        "listen": true
+      },
+      "beats": {
+        "text": "The fish is in the sea.",
+        "parts": [
+          "The",
+          "fish",
+          "is",
+          "in",
+          "the",
+          "sea"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "The fish is in the sea",
+          "say": "The fish is in the sea. Six words!",
+          "audio": "voice/line-b050d72eb8524cff.m4a"
+        }
+      }
+    },
+    {
+      "id": "level-198-r9",
       "type": "hunt",
       "prompt": {
         "text": "Find every down!",
@@ -309,66 +380,6 @@
           "down",
           "under"
         ]
-      }
-    },
-    {
-      "id": "level-198-r9",
-      "type": "pick",
-      "prompt": {
-        "text": "I see a red car.",
-        "say": "I see a red car. Find the picture!",
-        "audio": "voice/line-8f06ca97b8d110b3.m4a"
-      },
-      "card": {
-        "text": "I see a red car.",
-        "picture": null,
-        "listen": false
-      },
-      "pick": {
-        "options": [
-          {
-            "id": "level-198-r9-o1",
-            "label": "red car",
-            "picture": {
-              "key": "red_car",
-              "label": "red car",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-198-r9-o2",
-            "label": "dog running",
-            "picture": {
-              "key": "dog_running",
-              "label": "dog running",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          },
-          {
-            "id": "level-198-r9-o3",
-            "label": "hot sun",
-            "picture": {
-              "key": "hot_sun",
-              "label": "hot sun",
-              "url": null
-            },
-            "color": null,
-            "hideLabel": true
-          }
-        ],
-        "answer": {
-          "kind": "label",
-          "value": "red car"
-        },
-        "shape": "planet",
-        "layout": null,
-        "count": null,
-        "choiceKey": null,
-        "fixCapital": false
       }
     },
     {

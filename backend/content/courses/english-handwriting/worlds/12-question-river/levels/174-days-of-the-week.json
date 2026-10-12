@@ -270,23 +270,35 @@
     },
     {
       "id": "level-174-r7",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday!",
-        "say": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday! Now you say it!",
-        "audio": "voice/line-f20f264367ba99cd.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday! Tap the drum once for every word!",
+        "audio": "voice/line-baf0350bb57470c2.m4a"
       },
       "card": {
-        "text": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday!",
-        "picture": {
-          "key": "calendar",
-          "label": "calendar",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday!"
+      "beats": {
+        "text": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday!",
+        "parts": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Monday Tuesday Wednesday Thursday Friday Saturday Sunday",
+          "say": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday! Seven words!",
+          "audio": "voice/line-3bfa00f5be94bb5d.m4a"
+        }
       }
     },
     {

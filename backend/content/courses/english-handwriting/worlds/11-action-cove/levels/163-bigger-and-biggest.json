@@ -318,23 +318,31 @@
     },
     {
       "id": "level-163-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Big, bigger, biggest!",
-        "say": "Big, bigger, biggest! Now you say it!",
-        "audio": "voice/line-5bedaee1e4e91ab3.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Big, bigger, biggest! Tap the drum once for every word!",
+        "audio": "voice/line-790705d5c9b2842b.m4a"
       },
       "card": {
-        "text": "Big, bigger, biggest!",
-        "picture": {
-          "key": "sizes",
-          "label": "sizes",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Big, bigger, biggest!"
+      "beats": {
+        "text": "Big, bigger, biggest!",
+        "parts": [
+          "Big",
+          "bigger",
+          "biggest"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Big bigger biggest",
+          "say": "Big, bigger, biggest! Three words!",
+          "audio": "voice/line-0c3c4b0ffc27ef7e.m4a"
+        }
       }
     },
     {

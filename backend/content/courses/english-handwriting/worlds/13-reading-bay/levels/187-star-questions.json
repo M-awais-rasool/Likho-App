@@ -209,23 +209,31 @@
     },
     {
       "id": "level-187-r5",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Sam can swim.",
-        "say": "Sam can swim. Now you say it!",
-        "audio": "voice/line-4cdc76de2d5124bd.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Sam can swim. Tap the drum once for every word!",
+        "audio": "voice/line-55a9654d40bddd98.m4a"
       },
       "card": {
-        "text": "Sam can swim.",
-        "picture": {
-          "key": "swim",
-          "label": "swim",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Sam can swim."
+      "beats": {
+        "text": "Sam can swim.",
+        "parts": [
+          "Sam",
+          "can",
+          "swim"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Sam can swim",
+          "say": "Sam can swim. Three words!",
+          "audio": "voice/line-6c7dfdaad73e0736.m4a"
+        }
       }
     },
     {

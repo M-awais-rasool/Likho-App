@@ -123,23 +123,35 @@
     },
     {
       "id": "level-183-r5",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Yes, the cat is on the box!",
-        "say": "Yes, the cat is on the box! Now you say it!",
-        "audio": "voice/line-575473f2a6c85877.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Yes, the cat is on the box! Tap the drum once for every word!",
+        "audio": "voice/line-0160f980da113a05.m4a"
       },
       "card": {
-        "text": "Yes, the cat is on the box!",
-        "picture": {
-          "key": "cat_on_box",
-          "label": "cat on box",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Yes, the cat is on the box!"
+      "beats": {
+        "text": "Yes, the cat is on the box!",
+        "parts": [
+          "Yes",
+          "the",
+          "cat",
+          "is",
+          "on",
+          "the",
+          "box"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Yes the cat is on the box",
+          "say": "Yes, the cat is on the box! Seven words!",
+          "audio": "voice/line-2e6fecdd7870272e.m4a"
+        }
       }
     },
     {

@@ -210,23 +210,35 @@
     },
     {
       "id": "level-166-r5",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Is it a cat? Yes, it is!",
-        "say": "Is it a cat? Yes, it is! Now you say it!",
-        "audio": "voice/line-5e3c4fae29a81fe6.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Is it a cat? Yes, it is! Tap the drum once for every word!",
+        "audio": "voice/line-366552d2b8a31b69.m4a"
       },
       "card": {
-        "text": "Is it a cat? Yes, it is!",
-        "picture": {
-          "key": "cat",
-          "label": "cat",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Is it a cat? Yes, it is!"
+      "beats": {
+        "text": "Is it a cat? Yes, it is!",
+        "parts": [
+          "Is",
+          "it",
+          "a",
+          "cat",
+          "Yes",
+          "it",
+          "is"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Is it a cat Yes it is",
+          "say": "Is it a cat? Yes, it is! Seven words!",
+          "audio": "voice/line-60d80d2a33dc1afc.m4a"
+        }
       }
     },
     {

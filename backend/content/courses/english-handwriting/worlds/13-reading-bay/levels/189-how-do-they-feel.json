@@ -368,23 +368,33 @@
     },
     {
       "id": "level-189-r9",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: How do you feel today?",
-        "say": "How do you feel today? Now you say it!",
-        "audio": "voice/line-4efca74012593920.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "How do you feel today? Tap the drum once for every word!",
+        "audio": "voice/line-93bebb4f60a3c8a2.m4a"
       },
       "card": {
-        "text": "How do you feel today?",
-        "picture": {
-          "key": "happy",
-          "label": "happy",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "How do you feel today?"
+      "beats": {
+        "text": "How do you feel today?",
+        "parts": [
+          "How",
+          "do",
+          "you",
+          "feel",
+          "today"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "How do you feel today",
+          "say": "How do you feel today? Five words!",
+          "audio": "voice/line-f4a0ebdbe37a37df.m4a"
+        }
       }
     },
     {

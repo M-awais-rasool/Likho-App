@@ -364,23 +364,35 @@
     },
     {
       "id": "level-208-r9",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Dear Ali, thank you for the gift!",
-        "say": "Dear Ali, thank you for the gift! Now you say it!",
-        "audio": "voice/line-9b25d6c7f1f0eb9d.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Dear Ali, thank you for the gift! Tap the drum once for every word!",
+        "audio": "voice/line-3c6c6060533e85b2.m4a"
       },
       "card": {
-        "text": "Dear Ali, thank you for the gift!",
-        "picture": {
-          "key": "gift",
-          "label": "gift",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Dear Ali, thank you for the gift!"
+      "beats": {
+        "text": "Dear Ali, thank you for the gift!",
+        "parts": [
+          "Dear",
+          "Ali",
+          "thank",
+          "you",
+          "for",
+          "the",
+          "gift"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Dear Ali thank you for the gift",
+          "say": "Dear Ali, thank you for the gift! Seven words!",
+          "audio": "voice/line-3c40e9ae810054c9.m4a"
+        }
       }
     },
     {

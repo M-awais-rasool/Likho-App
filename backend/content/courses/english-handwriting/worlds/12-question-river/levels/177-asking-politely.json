@@ -384,23 +384,34 @@
     },
     {
       "id": "level-177-r9",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Excuse me, may I come in?",
-        "say": "Excuse me, may I come in? Now you say it!",
-        "audio": "voice/line-4cdb7a6203d1784a.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Excuse me, may I come in? Tap the drum once for every word!",
+        "audio": "voice/line-28afbddbc6f1e8f7.m4a"
       },
       "card": {
-        "text": "Excuse me, may I come in?",
-        "picture": {
-          "key": "door",
-          "label": "door",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Excuse me, may I come in?"
+      "beats": {
+        "text": "Excuse me, may I come in?",
+        "parts": [
+          "Excuse",
+          "me",
+          "may",
+          "I",
+          "come",
+          "in"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Excuse me may I come in",
+          "say": "Excuse me, may I come in? Six words!",
+          "audio": "voice/line-e5a07bb50fe2ee93.m4a"
+        }
       }
     },
     {

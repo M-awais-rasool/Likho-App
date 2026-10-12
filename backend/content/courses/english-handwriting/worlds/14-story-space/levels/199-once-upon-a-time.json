@@ -286,23 +286,34 @@
     },
     {
       "id": "level-199-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Once upon a time... The End!",
-        "say": "Once upon a time... The End! Now you say it!",
-        "audio": "voice/line-040330a34a74d1c9.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Once upon a time... The End! Tap the drum once for every word!",
+        "audio": "voice/line-339c29dbc3b522d8.m4a"
       },
       "card": {
-        "text": "Once upon a time... The End!",
-        "picture": {
-          "key": "storybook",
-          "label": "storybook",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Once upon a time... The End!"
+      "beats": {
+        "text": "Once upon a time... The End!",
+        "parts": [
+          "Once",
+          "upon",
+          "a",
+          "time",
+          "The",
+          "End"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Once upon a time The End",
+          "say": "Once upon a time... The End! Six words!",
+          "audio": "voice/line-314fff4d26785d48.m4a"
+        }
       }
     },
     {

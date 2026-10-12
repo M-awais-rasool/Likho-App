@@ -113,19 +113,37 @@
         ],
         "items": [
           {
-            "label": "dog",
+            "label": "duck",
             "picture": {
-              "key": "dog",
-              "label": "dog",
+              "key": "duck",
+              "label": "duck",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "duck",
+            "label": "hand",
             "picture": {
-              "key": "duck",
-              "label": "duck",
+              "key": "hand",
+              "label": "hand",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "hat",
+            "picture": {
+              "key": "hat",
+              "label": "hat",
+              "url": null
+            },
+            "bin": 1
+          },
+          {
+            "label": "dog",
+            "picture": {
+              "key": "dog",
+              "label": "dog",
               "url": null
             },
             "bin": 0
@@ -144,24 +162,6 @@
             "picture": {
               "key": "hen",
               "label": "hen",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "hat",
-            "picture": {
-              "key": "hat",
-              "label": "hat",
-              "url": null
-            },
-            "bin": 1
-          },
-          {
-            "label": "hut",
-            "picture": {
-              "key": "hut",
-              "label": "hut",
               "url": null
             },
             "bin": 1
@@ -328,23 +328,68 @@
     },
     {
       "id": "level-152-r8",
-      "type": "speak",
+      "type": "sounds",
       "prompt": {
-        "text": "Say: kick, sing, fly, sit!",
-        "say": "Say them with me! kick, sing, fly, sit!",
-        "audio": "voice/line-acbb7f45ad4097b8.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "kick, sing, fly, sit!",
-        "picture": {
-          "key": "ball",
-          "label": "kick",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "kick, sing, fly, sit!"
+      "sounds": {
+        "word": "kick",
+        "parts": [
+          {
+            "text": "k",
+            "say": "{/k/|kʌ}",
+            "audio": "voice/line-eec1fee16c5c51e0.m4a"
+          },
+          {
+            "text": "i",
+            "say": "{/i/|ɪ}",
+            "audio": "voice/line-55c556f50179c6d4.m4a"
+          },
+          {
+            "text": "ck",
+            "say": "{/ck/|kʌ}",
+            "audio": "voice/line-eec1fee16c5c51e0.m4a"
+          }
+        ],
+        "blend": {
+          "text": "kick",
+          "say": "kick!",
+          "audio": "voice/line-8222e6b8b97e404a.m4a"
+        },
+        "choices": [
+          {
+            "label": "kick",
+            "picture": {
+              "key": "ball",
+              "label": "kick",
+              "url": null
+            }
+          },
+          {
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            }
+          },
+          {
+            "label": "fly",
+            "picture": {
+              "key": "bird_in_sky",
+              "label": "fly",
+              "url": null
+            }
+          }
+        ],
+        "answer": 0
       }
     },
     {

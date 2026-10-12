@@ -297,23 +297,32 @@
     },
     {
       "id": "level-162-r8",
-      "type": "speak",
+      "type": "beats",
       "prompt": {
-        "text": "Say: Behind, next to, between!",
-        "say": "Behind, next to, between! Now you say it!",
-        "audio": "voice/line-61b6e0fc48508a76.m4a"
+        "text": "Tap a beat for each word!",
+        "say": "Behind, next to, between! Tap the drum once for every word!",
+        "audio": "voice/line-16635a860f8c831b.m4a"
       },
       "card": {
-        "text": "Behind, next to, between!",
-        "picture": {
-          "key": "cat_between_boxes",
-          "label": "cat between boxes",
-          "url": null
-        },
+        "text": null,
+        "picture": null,
         "listen": true
       },
-      "speak": {
-        "expected": "Behind, next to, between!"
+      "beats": {
+        "text": "Behind, next to, between!",
+        "parts": [
+          "Behind",
+          "next",
+          "to",
+          "between"
+        ],
+        "unit": "word",
+        "picture": null,
+        "hint": {
+          "text": "Behind next to between",
+          "say": "Behind, next to, between! Four words!",
+          "audio": "voice/line-93ed55bca4dd1519.m4a"
+        }
       }
     },
     {
