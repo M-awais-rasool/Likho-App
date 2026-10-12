@@ -19,6 +19,7 @@ var statusOf = map[domain.Kind]int{
 	domain.KindConflict:        http.StatusConflict,
 	domain.KindForbidden:       http.StatusForbidden,
 	domain.KindUnavailable:     http.StatusServiceUnavailable,
+	domain.KindTooMany:         http.StatusTooManyRequests,
 }
 
 // writeError answers {"error": "<code>", "message": "<text>"}. Domain errors
