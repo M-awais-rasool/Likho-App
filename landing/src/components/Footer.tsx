@@ -54,13 +54,6 @@ export function Footer() {
           <p>
             © {new Date().getFullYear()} {site.developer}. All rights reserved.
           </p>
-          <p>
-            Course pictures:{" "}
-            <a href="https://github.com/microsoft/fluentui-emoji" className="underline underline-offset-2 hover:text-ink" target="_blank" rel="noopener noreferrer">
-              Microsoft Fluent Emoji
-            </a>{" "}
-            (MIT licence)
-          </p>
         </div>
       </div>
     </footer>
