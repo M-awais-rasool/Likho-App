@@ -56,8 +56,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write some",
-        "say": "Look at the word some. Then write it from memory!",
-        "audio": "voice/line-ad078854ad99be58.m4a"
+        "say": "Look at the word some. It will hide. Then write it!",
+        "audio": "voice/line-2abbd7effc6242f4.m4a"
       },
       "card": {
         "text": null,
@@ -102,8 +102,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join C to I!",
-        "say": "Join the dots, from {C|sˈiː} to {I|ˈaɪ}. What will it be?",
-        "audio": "voice/line-e750fbf310b881ff.m4a"
+        "say": "Tap the dots in order, from {C|sˈiː} to {I|ˈaɪ}. What will it make?",
+        "audio": "voice/line-f228e6bd9ff764ac.m4a"
       },
       "card": {
         "text": "C → I",
@@ -298,8 +298,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every some!",
-        "say": "Find every word some!",
-        "audio": "voice/line-754c13b9440d77de.m4a"
+        "say": "Tap every word that says \"some\"!",
+        "audio": "voice/line-2835ecf4f7ba1178.m4a"
       },
       "card": {
         "text": "some",

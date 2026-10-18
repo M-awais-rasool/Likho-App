@@ -297,31 +297,76 @@
     },
     {
       "id": "level-162-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "Behind, next to, between! Tap the drum once for every word!",
-        "audio": "voice/line-16635a860f8c831b.m4a"
+        "text": "Join r to z!",
+        "say": "Tap the dots in order, from {r|ˈɑːɹ} to {z|zˈiː}. What will it make?",
+        "audio": "voice/line-4e098793c118534c.m4a"
       },
       "card": {
-        "text": null,
+        "text": "r → z",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "Behind, next to, between!",
-        "parts": [
-          "Behind",
-          "next",
-          "to",
-          "between"
+      "connect": {
+        "labels": [
+          "r",
+          "s",
+          "t",
+          "u",
+          "v",
+          "w",
+          "x",
+          "y",
+          "z"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "Behind next to between",
-          "say": "Behind, next to, between! Four words!",
-          "audio": "voice/line-93ed55bca4dd1519.m4a"
+        "points": [
+          [
+            62,
+            4
+          ],
+          [
+            30,
+            10
+          ],
+          [
+            10,
+            36
+          ],
+          [
+            8,
+            64
+          ],
+          [
+            28,
+            88
+          ],
+          [
+            62,
+            96
+          ],
+          [
+            44,
+            74
+          ],
+          [
+            36,
+            50
+          ],
+          [
+            44,
+            26
+          ]
+        ],
+        "picture": {
+          "key": "moon",
+          "label": "moon",
+          "url": null
+        },
+        "done": {
+          "text": "A moon!",
+          "say": "It's a moon!",
+          "audio": "voice/line-24627cec3ea7f4e6.m4a"
         }
       }
     },
@@ -357,8 +402,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",

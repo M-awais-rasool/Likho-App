@@ -214,8 +214,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/h/|hʌ} or {/c/|kʌ}?",
-        "audio": "voice/line-6e7f1708b63f993d.m4a"
+        "say": "Sort the pictures! Does each one start with the {h|hʌ} sound, or the {c|kʌ} sound?",
+        "audio": "voice/line-f1bfdb17fb1565a3.m4a"
       },
       "card": {
         "text": "h c",
@@ -298,8 +298,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every cold!",
-        "say": "Find every word cold!",
-        "audio": "voice/line-a1d7f10a7b7b02de.m4a"
+        "say": "Tap every word that says \"cold\"!",
+        "audio": "voice/line-6619f34b34487383.m4a"
       },
       "card": {
         "text": "cold",
@@ -339,17 +339,17 @@
         "parts": [
           {
             "text": "b",
-            "say": "{/b/|bʌ}",
+            "say": "{b|bʌ}",
             "audio": "voice/line-54284489cdcd15c3.m4a"
           },
           {
             "text": "i",
-            "say": "{/i/|ɪ}",
+            "say": "{i|ɪ}",
             "audio": "voice/line-55c556f50179c6d4.m4a"
           },
           {
             "text": "g",
-            "say": "{/g/|ɡʌ}",
+            "say": "{g|ɡʌ}",
             "audio": "voice/line-be23dfaf66221347.m4a"
           }
         ],
@@ -392,8 +392,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write sad",
-        "say": "Look at the word sad. Then write it from memory!",
-        "audio": "voice/line-70f4ea11e3eb63bd.m4a"
+        "say": "Look at the word sad. It will hide. Then write it!",
+        "audio": "voice/line-db0121a818d41b4c.m4a"
       },
       "card": {
         "text": null,

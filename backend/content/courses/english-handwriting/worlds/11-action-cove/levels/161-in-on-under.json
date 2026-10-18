@@ -90,8 +90,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/j/|ʤʌ} or {/l/|lːː}?",
-        "audio": "voice/line-b76663fe54b1f267.m4a"
+        "say": "Sort the pictures! Does each one start with the {j|ʤʌ} sound, or the {l|lːː} sound?",
+        "audio": "voice/line-5edf4754de933674.m4a"
       },
       "card": {
         "text": "j l",
@@ -265,8 +265,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write some",
-        "say": "Look at the word some. Then write it from memory!",
-        "audio": "voice/line-ad078854ad99be58.m4a"
+        "say": "Look at the word some. It will hide. Then write it!",
+        "audio": "voice/line-2abbd7effc6242f4.m4a"
       },
       "card": {
         "text": null,
@@ -311,8 +311,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join Q to Y!",
-        "say": "Join the dots, from {Q|kjˈuː} to {Y|wˈaɪ}. What will it be?",
-        "audio": "voice/line-8cbe42fbafb2c0f3.m4a"
+        "say": "Tap the dots in order, from {Q|kjˈuː} to {Y|wˈaɪ}. What will it make?",
+        "audio": "voice/line-fcd2e258c420f4b1.m4a"
       },
       "card": {
         "text": "Q → Y",
@@ -386,8 +386,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every on!",
-        "say": "Find every word on!",
-        "audio": "voice/line-678ac9b7a5410b28.m4a"
+        "say": "Tap every word that says \"on\"!",
+        "audio": "voice/line-a65d6f2a0cc7fbc2.m4a"
       },
       "card": {
         "text": "on",

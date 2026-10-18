@@ -258,8 +258,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -347,8 +347,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join o to t!",
-        "say": "Join the dots, from {o|ˈoʊ} to {t|tˈiː}. What will it be?",
-        "audio": "voice/line-c8e49f19867a70d6.m4a"
+        "say": "Tap the dots in order, from {o|ˈoʊ} to {t|tˈiː}. What will it make?",
+        "audio": "voice/line-330487a3e0acddac.m4a"
       },
       "card": {
         "text": "o → t",
@@ -407,8 +407,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write look",
-        "say": "Look at the word look. Then write it from memory!",
-        "audio": "voice/line-c6c8f27c36221a71.m4a"
+        "say": "Look at the word look. It will hide. Then write it!",
+        "audio": "voice/line-8a413b33e40e17c8.m4a"
       },
       "card": {
         "text": null,

@@ -90,8 +90,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -252,8 +252,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every eat!",
-        "say": "Find every word eat!",
-        "audio": "voice/line-2a66ec62e8d23129.m4a"
+        "say": "Tap every word that says \"eat\"!",
+        "audio": "voice/line-a514ac8092f6ea82.m4a"
       },
       "card": {
         "text": "eat",
@@ -280,8 +280,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join O to Y!",
-        "say": "Join the dots, from {O|ˈoʊ} to {Y|wˈaɪ}. What will it be?",
-        "audio": "voice/line-e160275a8bcc31b1.m4a"
+        "say": "Tap the dots in order, from {O|ˈoʊ} to {Y|wˈaɪ}. What will it make?",
+        "audio": "voice/line-8526808d62eef109.m4a"
       },
       "card": {
         "text": "O → Y",
@@ -365,8 +365,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/w/|wʌ} or {/f/|fːː}?",
-        "audio": "voice/line-07f3d6eb3760666e.m4a"
+        "say": "Sort the pictures! Does each one start with the {w|wʌ} sound, or the {f|fːː} sound?",
+        "audio": "voice/line-98ca60d6613c9f46.m4a"
       },
       "card": {
         "text": "w f",

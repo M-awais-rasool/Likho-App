@@ -90,8 +90,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write big",
-        "say": "Look at the word big. Then write it from memory!",
-        "audio": "voice/line-c1abff97d9bf4571.m4a"
+        "say": "Look at the word big. It will hide. Then write it!",
+        "audio": "voice/line-9c940c8939618417.m4a"
       },
       "card": {
         "text": null,
@@ -318,8 +318,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join b to i!",
-        "say": "Join the dots, from {b|bˈiː} to {i|ˈaɪ}. What will it be?",
-        "audio": "voice/line-5566b6d3e5213df7.m4a"
+        "say": "Tap the dots in order, from {b|bˈiː} to {i|ˈaɪ}. What will it make?",
+        "audio": "voice/line-f47e8bec19b3b53a.m4a"
       },
       "card": {
         "text": "b → i",
