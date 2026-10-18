@@ -10,9 +10,10 @@ speech model (Apache-2.0, runs on this computer) and writes, per line:
                                   it next to the .m4a)
 
 and puts the recording's path in the content (`intro.audio`, `prompt.audio`).
-Pencil's lines outside the course (APP_LINES: onboarding) go into the app
-itself, app/assets/voice/<id>.m4a + .lip, so they play before anything is
-downloaded; app/lib/feedback/pencil_lines.dart names them.
+Pencil's lines outside the course (APP_LINES: onboarding, coaching in the
+games) go into the app itself, app/assets/voice/<id>.m4a + .lip, so they
+play before anything is downloaded; app/lib/feedback/pencil_lines.dart and
+app/lib/game/coach.dart name them.
 Lines are `intro.say` and `prompt.say`, or the prompt's `text`, and the lines
 said inside a game (sound buttons, the word read, a beats hint, what the dots
 made). A
@@ -79,6 +80,32 @@ APP_LINES = {
     "onb_age": "Nice to meet you! How old are you? Tap your birthday cake.",
     "onb_colour": "Now pick my colour! Which one do you like?",
     "lets_start": "Let's get started!",
+    # coaching in the games, step by step (app/lib/game/coach.dart, CoachLines.words:
+    # the same words, which the bubble shows while Pencil says them)
+    "coach_pick": "Tap the right one!",
+    "coach_pick_choose": "Tap the one you like!",
+    "coach_hunt": "Tap every one you can find!",
+    "coach_pop": "Pop the right bubbles!",
+    "coach_fix": "Tap the ones that are wrong!",
+    "coach_feed": "Drag the right pictures to the monster!",
+    "coach_feed_boss": "Tap the snacks the boss can eat!",
+    "coach_baskets": "Drag each picture to the right basket!",
+    "coach_baskets_boss": "Tap the right pile for each one!",
+    "coach_match": "Tap two cards to find a pair!",
+    "coach_order": "Tap them in the right order!",
+    "coach_truth": "Is it true? Tap thumbs up. Is it silly? Tap thumbs down.",
+    "coach_truth_boss": "Is it true? Tap the sun. Is it silly? Tap the moon.",
+    "coach_connect": "Tap the dots in {A|ˈeɪ} B C order!",
+    "coach_sounds_tap": "Tap each dot under the word!",
+    "coach_sounds_slide": "Now slide the arrow to read the word!",
+    "coach_sounds_pick": "Which picture is it? Tap it!",
+    "coach_trace": "Start at the blue dot. Follow the arrow!",
+    "coach_write": "Write it on the lines. Then tap Done!",
+    "coach_flash": "Look at it. It will hide. Then write it!",
+    "coach_one_more": "Just one more!",
+    "coach_start_dot": "Start at the blue dot!",
+    "coach_follow_arrow": "Follow the arrow!",
+    "coach_stay_on_line": "Stay on the line!",
 }
 
 def level_files():

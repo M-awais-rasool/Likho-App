@@ -14,5 +14,101 @@
  "lets_start": {
   "says": "Let's get started!",
   "made": "4842d3b8de7f4102"
+ },
+ "coach_pick": {
+  "says": "Tap the right one!",
+  "made": "19e0700faf3a79ac"
+ },
+ "coach_pick_choose": {
+  "says": "Tap the one you like!",
+  "made": "bd3a9d734a4482f1"
+ },
+ "coach_hunt": {
+  "says": "Tap every one you can find!",
+  "made": "e1a22a7e7b4be28d"
+ },
+ "coach_pop": {
+  "says": "Pop the right bubbles!",
+  "made": "b5efce2bf64ee351"
+ },
+ "coach_fix": {
+  "says": "Tap the ones that are wrong!",
+  "made": "70ee39150788d1b1"
+ },
+ "coach_feed": {
+  "says": "Drag the right pictures to the monster!",
+  "made": "f73c2480060abe11"
+ },
+ "coach_feed_boss": {
+  "says": "Tap the snacks the boss can eat!",
+  "made": "7ec0079b87104ffe"
+ },
+ "coach_baskets": {
+  "says": "Drag each picture to the right basket!",
+  "made": "47944f494ab78e6b"
+ },
+ "coach_baskets_boss": {
+  "says": "Tap the right pile for each one!",
+  "made": "94f02d96c44adc0e"
+ },
+ "coach_match": {
+  "says": "Tap two cards to find a pair!",
+  "made": "7fdb25404dc00a46"
+ },
+ "coach_order": {
+  "says": "Tap them in the right order!",
+  "made": "17536cc46eb90188"
+ },
+ "coach_truth": {
+  "says": "Is it true? Tap thumbs up. Is it silly? Tap thumbs down.",
+  "made": "99b5ac85926a53b0"
+ },
+ "coach_truth_boss": {
+  "says": "Is it true? Tap the sun. Is it silly? Tap the moon.",
+  "made": "9468f6dd3b773fe7"
+ },
+ "coach_connect": {
+  "says": "Tap the dots in A B C order!",
+  "made": "4e6a9de42cee6fba"
+ },
+ "coach_sounds_tap": {
+  "says": "Tap each dot under the word!",
+  "made": "91813701d1032ebd"
+ },
+ "coach_sounds_slide": {
+  "says": "Now slide the arrow to read the word!",
+  "made": "17145b37e51cd48d"
+ },
+ "coach_sounds_pick": {
+  "says": "Which picture is it? Tap it!",
+  "made": "cd8d24dc2892b87e"
+ },
+ "coach_trace": {
+  "says": "Start at the blue dot. Follow the arrow!",
+  "made": "39dd0051cb9c29be"
+ },
+ "coach_write": {
+  "says": "Write it on the lines. Then tap Done!",
+  "made": "4f9f498846c7d7e1"
+ },
+ "coach_flash": {
+  "says": "Look at it. It will hide. Then write it!",
+  "made": "00d5dd57b20ce513"
+ },
+ "coach_one_more": {
+  "says": "Just one more!",
+  "made": "d1375f31c0b24c33"
+ },
+ "coach_start_dot": {
+  "says": "Start at the blue dot!",
+  "made": "567d4fab4a45e9ed"
+ },
+ "coach_follow_arrow": {
+  "says": "Follow the arrow!",
+  "made": "e441f319ad4c2648"
+ },
+ "coach_stay_on_line": {
+  "says": "Stay on the line!",
+  "made": "f5e7a677bf44346d"
  }
 }
