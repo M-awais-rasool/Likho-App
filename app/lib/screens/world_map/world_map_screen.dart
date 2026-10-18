@@ -11,6 +11,8 @@ import '../../data/course_providers.dart';
 import '../../data/media.dart';
 import '../../data/models/course_models.dart';
 import '../../data/progress.dart';
+import '../../data/story.dart';
+import '../stories/story_art.dart';
 import '../../design/icon_registry.dart';
 import '../../design/tokens.dart';
 import '../../dev/reference_overlay.dart';
@@ -27,13 +29,16 @@ import 'map_painters.dart';
 /// at 55 % of the screen. Nodes pop in, staggered by distance from the
 /// current level; the mascot stands on the current level.
 class WorldMapScreen extends ConsumerStatefulWidget {
-  const WorldMapScreen({super.key, this.onOpenLevel, this.onProfile, this.onRoom, this.onSettings});
+  const WorldMapScreen({super.key, this.onOpenLevel, this.onProfile, this.onRoom, this.onSettings, this.onStories});
 
   /// Tapped an unlocked level (Gameplay is the next screen to build).
   final ValueChanged<int>? onOpenLevel;
   final VoidCallback? onProfile;
   final VoidCallback? onRoom;
   final VoidCallback? onSettings;
+
+  /// Stories (the button under Pencil's room).
+  final VoidCallback? onStories;
 
   static const String reference = 'assets/reference/screens/world_map.png';
 
@@ -187,6 +192,12 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen> with SingleTick
                   onRoom: widget.onRoom,
                   onSettings: widget.onSettings,
                 ),
+                if (widget.onStories != null)
+                  Positioned(
+                    right: 74,
+                    top: MediaQuery.paddingOf(context).top + 5 + 64 + 14,
+                    child: _StoriesButton(time: _time, fresh: ref.watch(myStoryStarsProvider).isEmpty, onTap: widget.onStories!),
+                  ),
               ],
             );
           }),
@@ -756,9 +767,61 @@ class _Header extends StatelessWidget {
   }
 }
 
+/// Stories, under Pencil's room: a blue button with a shiny apple and
+/// "Stories"; "NEW" (and a little hop) until the child has played one.
+class _StoriesButton extends StatelessWidget {
+  const _StoriesButton({required this.time, required this.fresh, required this.onTap});
+  final ValueNotifier<double> time;
+  final bool fresh;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) => _Pressable(
+    key: const ValueKey('stories-button'),
+    onTap: onTap,
+    pressOffset: 3,
+    child: ValueListenableBuilder<double>(
+      valueListenable: time,
+      builder: (context, t, child) => Transform.translate(offset: Offset(0, fresh ? -math.max(0, math.sin(t * 3)) * 3 : 0), child: child),
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Container(
+            width: 64,
+            height: 64,
+            decoration: BoxDecoration(
+              color: LikhoColors.secondary,
+              borderRadius: BorderRadius.circular(22),
+              boxShadow: const [BoxShadow(color: GameColors.secondaryDeep, offset: Offset(0, 5))],
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(width: 34, height: 32, child: Image.asset(StoryArt.prop('a', 'apple_leaf'), fit: BoxFit.contain)),
+                const SizedBox(height: 1),
+                Text('Stories', style: LikhoFonts.title(size: 12.5, weight: FontWeight.w800, color: LikhoColors.surface).copyWith(height: 1)),
+              ],
+            ),
+          ),
+          if (fresh)
+            Positioned(
+              right: -8,
+              top: -8,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                decoration: BoxDecoration(color: LikhoColors.hint, borderRadius: BorderRadius.circular(10), border: Border.all(color: LikhoColors.surface, width: 2)),
+                child: Text('NEW', style: LikhoFonts.title(size: 11, weight: FontWeight.w800, color: LikhoColors.surface).copyWith(height: 1)),
+              ),
+            ),
+        ],
+      ),
+    ),
+  );
+}
+
 /// Press feedback from the prototype: scale(.9), or translateY for the room button.
 class _Pressable extends StatefulWidget {
-  const _Pressable({required this.child, this.onTap, this.pressOffset});
+  const _Pressable({super.key, required this.child, this.onTap, this.pressOffset});
   final Widget child;
   final VoidCallback? onTap;
   final double? pressOffset;
