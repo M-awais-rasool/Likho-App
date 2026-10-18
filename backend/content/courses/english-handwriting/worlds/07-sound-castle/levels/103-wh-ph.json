@@ -90,8 +90,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write when",
-        "say": "Look at the word when. Then write it from memory!",
-        "audio": "voice/line-4f253dfe1e05b435.m4a"
+        "say": "Look at the word when. It will hide. Then write it!",
+        "audio": "voice/line-e7c84f92e9550800.m4a"
       },
       "card": {
         "text": null,
@@ -191,8 +191,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every dolphin!",
-        "say": "Find every word dolphin!",
-        "audio": "voice/line-558f4bb1fdf1a987.m4a"
+        "say": "Tap every word that says \"dolphin\"!",
+        "audio": "voice/line-0d2909eaeb37a5d4.m4a"
       },
       "card": {
         "text": "dolphin",
@@ -289,8 +289,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join Q to Z!",
-        "say": "Join the dots, from {Q|kjˈuː} to {Z|zˈiː}. What will it be?",
-        "audio": "voice/line-3edfb136e734afee.m4a"
+        "say": "Tap the dots in order, from {Q|kjˈuː} to {Z|zˈiː}. What will it make?",
+        "audio": "voice/line-725d8d425c18b5a5.m4a"
       },
       "card": {
         "text": "Q → Z",

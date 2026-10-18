@@ -90,8 +90,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/l/|lːː} or {/d/|dʌ}?",
-        "audio": "voice/line-5f8f3ed64cb22854.m4a"
+        "say": "Sort the pictures! Does each one start with the {l|lːː} sound, or the {d|dʌ} sound?",
+        "audio": "voice/line-1d8c3e3336f433c9.m4a"
       },
       "card": {
         "text": "l d",
@@ -275,8 +275,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write seed",
-        "say": "Look at the word seed. Then write it from memory!",
-        "audio": "voice/line-6ff833c065d9154c.m4a"
+        "say": "Look at the word seed. It will hide. Then write it!",
+        "audio": "voice/line-f55103dec48ce3dc.m4a"
       },
       "card": {
         "text": null,
@@ -302,8 +302,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every feet!",
-        "say": "Find every word feet!",
-        "audio": "voice/line-51ab0aacd95c3924.m4a"
+        "say": "Tap every word that says \"feet\"!",
+        "audio": "voice/line-73f0a202da4894cc.m4a"
       },
       "card": {
         "text": "feet",
@@ -343,17 +343,17 @@
         "parts": [
           {
             "text": "t",
-            "say": "{/t/|tʌ}",
+            "say": "{t|tʌ}",
             "audio": "voice/line-570d1fc0dffd834f.m4a"
           },
           {
             "text": "r",
-            "say": "{/r/|ɹːː}",
+            "say": "{r|ɹːː}",
             "audio": "voice/line-c9097eface293028.m4a"
           },
           {
             "text": "ee",
-            "say": "{/ee/|iː}",
+            "say": "{ee|iː}",
             "audio": "voice/line-701f08c8f6944cca.m4a"
           }
         ],

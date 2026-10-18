@@ -89,9 +89,9 @@
       "id": "level-98-r2",
       "type": "sort",
       "prompt": {
-        "text": "Feed it /ai/!",
-        "say": "This monster only eats words with {/ai/|eɪ}. Feed it!",
-        "audio": "voice/line-007934a46bcf6e01.m4a"
+        "text": "Feed it \"ai\"!",
+        "say": "This monster eats words with the {ai|eɪ} sound. Feed it!",
+        "audio": "voice/line-52f9052ae1454bd1.m4a"
       },
       "card": {
         "text": "ai",
@@ -270,8 +270,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write nail",
-        "say": "Look at the word nail. Then write it from memory!",
-        "audio": "voice/line-ecda78d3368ae532.m4a"
+        "say": "Look at the word nail. It will hide. Then write it!",
+        "audio": "voice/line-909625c02fba20d1.m4a"
       },
       "card": {
         "text": null,
@@ -297,8 +297,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every nail!",
-        "say": "Find every word nail!",
-        "audio": "voice/line-eb880f8f49e8bed8.m4a"
+        "say": "Tap every word that says \"nail\"!",
+        "audio": "voice/line-773942a5a4b108d0.m4a"
       },
       "card": {
         "text": "nail",
@@ -338,17 +338,17 @@
         "parts": [
           {
             "text": "r",
-            "say": "{/r/|ɹːː}",
+            "say": "{r|ɹːː}",
             "audio": "voice/line-c9097eface293028.m4a"
           },
           {
             "text": "ai",
-            "say": "{/ai/|eɪ}",
+            "say": "{ai|eɪ}",
             "audio": "voice/line-a13be2668ad3e15d.m4a"
           },
           {
             "text": "n",
-            "say": "{/n/|nːː}",
+            "say": "{n|nːː}",
             "audio": "voice/line-1f9de0e8fd168b84.m4a"
           }
         ],

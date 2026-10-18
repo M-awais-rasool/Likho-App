@@ -90,8 +90,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -102,18 +102,18 @@
         "items": [
           {
             "text": "bird",
-            "wrong": "mirror",
-            "at": 0
+            "wrong": null,
+            "at": null
           },
           {
             "text": "girl",
             "wrong": "mirror",
-            "at": 2
+            "at": 0
           },
           {
             "text": "her",
-            "wrong": null,
-            "at": null
+            "wrong": "mirror",
+            "at": 2
           },
           {
             "text": "turtle",
@@ -205,8 +205,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every turtle!",
-        "say": "Find every word turtle!",
-        "audio": "voice/line-b73d0cb7e8970397.m4a"
+        "say": "Tap every word that says \"turtle\"!",
+        "audio": "voice/line-63b6ff44e6fcf952.m4a"
       },
       "card": {
         "text": "turtle",
@@ -310,34 +310,68 @@
     },
     {
       "id": "level-102-r8",
-      "type": "beats",
+      "type": "sounds",
       "prompt": {
-        "text": "Clap the beats!",
-        "say": "Turtle! Tap the drum for every beat in turtle.",
-        "audio": "voice/line-65ffb16f76a75159.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
         "text": null,
         "picture": null,
         "listen": true
       },
-      "beats": {
-        "text": "turtle",
+      "sounds": {
+        "word": "bird",
         "parts": [
-          "tur",
-          "tle"
+          {
+            "text": "b",
+            "say": "{b|bʌ}",
+            "audio": "voice/line-54284489cdcd15c3.m4a"
+          },
+          {
+            "text": "ir",
+            "say": "{ir|ɜː}",
+            "audio": "voice/line-165a273a4a7a1323.m4a"
+          },
+          {
+            "text": "d",
+            "say": "{d|dʌ}",
+            "audio": "voice/line-f06c02b8a2619c78.m4a"
+          }
         ],
-        "unit": "syllable",
-        "picture": {
-          "key": "turtle",
-          "label": "turtle",
-          "url": null
+        "blend": {
+          "text": "bird",
+          "say": "bird!",
+          "audio": "voice/line-ecad4ae122af9270.m4a"
         },
-        "hint": {
-          "text": "tur-tle",
-          "say": "Turtle. Two beats!",
-          "audio": "voice/line-d0e54bb40d3cfa7d.m4a"
-        }
+        "choices": [
+          {
+            "label": "fish",
+            "picture": {
+              "key": "fish",
+              "label": "fish",
+              "url": null
+            }
+          },
+          {
+            "label": "turtle",
+            "picture": {
+              "key": "turtle",
+              "label": "turtle",
+              "url": null
+            }
+          },
+          {
+            "label": "bird",
+            "picture": {
+              "key": "bird",
+              "label": "bird",
+              "url": null
+            }
+          }
+        ],
+        "answer": 2
       }
     },
     {
@@ -345,8 +379,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write her",
-        "say": "Look at the word her. Then write it from memory!",
-        "audio": "voice/line-5f9baa325c368e87.m4a"
+        "say": "Look at the word her. It will hide. Then write it!",
+        "audio": "voice/line-e60e454eb05c1c08.m4a"
       },
       "card": {
         "text": null,

@@ -90,8 +90,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write cow",
-        "say": "Look at the word cow. Then write it from memory!",
-        "audio": "voice/line-f569ce2582277909.m4a"
+        "say": "Look at the word cow. It will hide. Then write it!",
+        "audio": "voice/line-d9b87910269ef001.m4a"
       },
       "card": {
         "text": null,
@@ -193,8 +193,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every mouse!",
-        "say": "Find every word mouse!",
-        "audio": "voice/line-e028dbebed6def4d.m4a"
+        "say": "Tap every word that says \"mouse\"!",
+        "audio": "voice/line-2a313898ad34527c.m4a"
       },
       "card": {
         "text": "mouse",
@@ -301,8 +301,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join E to P!",
-        "say": "Join the dots, from {E|ˈiː} to {P|pˈiː}. What will it be?",
-        "audio": "voice/line-52d8e57c659e9bc9.m4a"
+        "say": "Tap the dots in order, from {E|ˈiː} to {P|pˈiː}. What will it make?",
+        "audio": "voice/line-7bf87940b5f99714.m4a"
       },
       "card": {
         "text": "E → P",

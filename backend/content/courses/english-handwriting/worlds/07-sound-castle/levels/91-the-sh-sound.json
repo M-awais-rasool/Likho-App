@@ -89,9 +89,9 @@
       "id": "level-91-r2",
       "type": "sort",
       "prompt": {
-        "text": "Feed it /sh/!",
-        "say": "This monster only eats words with {/sh/|ʃːː}. Feed it!",
-        "audio": "voice/line-068ff4828e4d05f7.m4a"
+        "text": "Feed it \"sh\"!",
+        "say": "This monster eats words with the {sh|ʃːː} sound. Feed it!",
+        "audio": "voice/line-2a96a7679cf2bca4.m4a"
       },
       "card": {
         "text": "sh",
@@ -270,8 +270,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write ship",
-        "say": "Look at the word ship. Then write it from memory!",
-        "audio": "voice/line-c55703f2b84b212c.m4a"
+        "say": "Look at the word ship. It will hide. Then write it!",
+        "audio": "voice/line-5f06b695208b9e74.m4a"
       },
       "card": {
         "text": null,
@@ -297,8 +297,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every shell!",
-        "say": "Find every word shell!",
-        "audio": "voice/line-185f4047ba2d878c.m4a"
+        "say": "Tap every word that says \"shell\"!",
+        "audio": "voice/line-c34c033fbc6f9786.m4a"
       },
       "card": {
         "text": "shell",
@@ -325,8 +325,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join d to n!",
-        "say": "Join the dots, from {d|dˈiː} to {n|ˈɛn}. What will it be?",
-        "audio": "voice/line-59371e17ce323ed6.m4a"
+        "say": "Tap the dots in order, from {d|dˈiː} to {n|ˈɛn}. What will it make?",
+        "audio": "voice/line-65b644ecb875e7b8.m4a"
       },
       "card": {
         "text": "d → n",
