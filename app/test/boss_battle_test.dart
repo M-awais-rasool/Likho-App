@@ -8,7 +8,6 @@ import 'package:likho/screens/boss_battle/boss_overlays.dart';
 import 'package:likho/screens/boss_battle/boss_rounds.dart';
 import 'package:likho/screens/boss_battle/boss_stage.dart';
 import 'package:likho/screens/gameplay/gameplay_screen.dart';
-import 'package:likho/screens/gameplay/rounds/beats_round_view.dart';
 import 'package:likho/screens/gameplay/rounds/connect_round_view.dart';
 import 'package:likho/screens/gameplay/rounds/sounds_round_view.dart';
 
@@ -100,7 +99,6 @@ void main() {
       ((r) => r is PickRound && PillowFightView.fits(r), PillowFightView),
       ((r) => r is PopRound, SnoreBubblesView),
       ((r) => r is SoundsRound, SoundsRoundView),
-      ((r) => r is BeatsRound, BeatsRoundView),
       ((r) => r is ConnectRound, ConnectRoundView),
       ((r) => r is TruthRound, SunMoonView),
       ((r) => r is WriteRound, MagicFrame),

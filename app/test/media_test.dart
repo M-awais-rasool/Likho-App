@@ -9,6 +9,7 @@ import 'package:http/testing.dart';
 import 'package:likho/data/media.dart';
 import 'package:likho/data/models/course_models.dart';
 import 'package:likho/feedback/pencil_lines.dart';
+import 'package:likho/game/coach.dart';
 import 'package:likho/mascot/lip_sync.dart';
 
 import 'fake_backend.dart';
@@ -41,13 +42,13 @@ void main() {
   }, skip: folder.existsSync() ? false : 'no media folder here (the server checks it)');
 
   test('Pencil\'s app lines are in the app, each with its mouth movement', () {
-    for (final line in PencilLines.all) {
+    for (final line in [...PencilLines.all, ...CoachLines.all]) {
       expect(File(line).existsSync(), isTrue, reason: '$line: run tools/voice/generate_voice.py --app');
       expect(File(LipSyncEnvelope.lipFileOf(line)).existsSync(), isTrue, reason: '$line has no .lip');
     }
     // the generator's list (its lock) and the app's are the same lines
     final lock = jsonDecode(File('../tools/voice/app_lines.lock.json').readAsStringSync()) as Map<String, dynamic>;
-    expect({for (final k in lock.keys) 'assets/voice/$k.m4a'}, PencilLines.all.toSet());
+    expect({for (final k in lock.keys) 'assets/voice/$k.m4a'}, {...PencilLines.all, ...CoachLines.all});
     expect(File('pubspec.yaml').readAsStringSync(), contains('- assets/voice/'));
   });
 
