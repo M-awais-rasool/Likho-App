@@ -90,8 +90,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write pen",
-        "say": "Look at the word pen. Then write it from memory!",
-        "audio": "voice/line-f7dbaf5a0b70b8d4.m4a"
+        "say": "Look at the word pen. It will hide. Then write it!",
+        "audio": "voice/line-6861af15cb82e698.m4a"
       },
       "card": {
         "text": null,
@@ -242,8 +242,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every pencil!",
-        "say": "Find every word pencil!",
-        "audio": "voice/line-a04168b49c390b8b.m4a"
+        "say": "Tap every word that says \"pencil\"!",
+        "audio": "voice/line-73fd5cd02f536a35.m4a"
       },
       "card": {
         "text": "pencil",
@@ -270,8 +270,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join n to v!",
-        "say": "Join the dots, from {n|ˈɛn} to {v|vˈiː}. What will it be?",
-        "audio": "voice/line-3a2fadcff6076ba4.m4a"
+        "say": "Tap the dots in order, from {n|ˈɛn} to {v|vˈiː}. What will it make?",
+        "audio": "voice/line-2ba55d34bc5c43c8.m4a"
       },
       "card": {
         "text": "n → v",

@@ -90,8 +90,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/c/|kʌ}?",
-        "audio": "voice/line-07357af1eadc431a.m4a"
+        "say": "Sort the pictures! Does each one start with the {d|dʌ} sound, or the {c|kʌ} sound?",
+        "audio": "voice/line-b0152552f5d61c85.m4a"
       },
       "card": {
         "text": "d c",
@@ -277,8 +277,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write bath",
-        "say": "Look at the word bath. Then write it from memory!",
-        "audio": "voice/line-1d8eb69d0f3d7aef.m4a"
+        "say": "Look at the word bath. It will hide. Then write it!",
+        "audio": "voice/line-98ea290c70c9d5d5.m4a"
       },
       "card": {
         "text": null,
@@ -304,8 +304,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every bath!",
-        "say": "Find every word bath!",
-        "audio": "voice/line-c3f7d61dbc594503.m4a"
+        "say": "Tap every word that says \"bath\"!",
+        "audio": "voice/line-009413e367e51794.m4a"
       },
       "card": {
         "text": "bath",
@@ -345,17 +345,17 @@
         "parts": [
           {
             "text": "b",
-            "say": "{/b/|bʌ}",
+            "say": "{b|bʌ}",
             "audio": "voice/line-54284489cdcd15c3.m4a"
           },
           {
             "text": "e",
-            "say": "{/e/|ɛ}",
+            "say": "{e|ɛ}",
             "audio": "voice/line-26b8405a6ef65e10.m4a"
           },
           {
             "text": "d",
-            "say": "{/d/|dʌ}",
+            "say": "{d|dʌ}",
             "audio": "voice/line-f06c02b8a2619c78.m4a"
           }
         ],

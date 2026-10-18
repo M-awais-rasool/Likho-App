@@ -90,8 +90,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/s/|sːː} or {/h/|hʌ}?",
-        "audio": "voice/line-f105ab757293d8af.m4a"
+        "say": "Sort the pictures! Does each one start with the {s|sːː} sound, or the {h|hʌ} sound?",
+        "audio": "voice/line-336dae8e106bd112.m4a"
       },
       "card": {
         "text": "s h",
@@ -276,8 +276,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write shoe",
-        "say": "Look at the word shoe. Then write it from memory!",
-        "audio": "voice/line-951723cdceed9b27.m4a"
+        "say": "Look at the word shoe. It will hide. Then write it!",
+        "audio": "voice/line-795100f5919939b4.m4a"
       },
       "card": {
         "text": null,
@@ -303,8 +303,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every dress!",
-        "say": "Find every word dress!",
-        "audio": "voice/line-8516ccfbee655a29.m4a"
+        "say": "Tap every word that says \"dress\"!",
+        "audio": "voice/line-118a9fe6907c24f9.m4a"
       },
       "card": {
         "text": "dress",
@@ -344,17 +344,17 @@
         "parts": [
           {
             "text": "c",
-            "say": "{/c/|kʌ}",
+            "say": "{c|kʌ}",
             "audio": "voice/line-eec1fee16c5c51e0.m4a"
           },
           {
             "text": "oa",
-            "say": "{/oa/|oʊ}",
+            "say": "{oa|oʊ}",
             "audio": "voice/line-6ba096958ec4e79c.m4a"
           },
           {
             "text": "t",
-            "say": "{/t/|tʌ}",
+            "say": "{t|tʌ}",
             "audio": "voice/line-570d1fc0dffd834f.m4a"
           }
         ],

@@ -90,8 +90,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write cat",
-        "say": "Look at the word cat. Then write it from memory!",
-        "audio": "voice/line-1287718e1719c23c.m4a"
+        "say": "Look at the word cat. It will hide. Then write it!",
+        "audio": "voice/line-2c99da34c4dc0b6f.m4a"
       },
       "card": {
         "text": null,
@@ -244,8 +244,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every rabbit!",
-        "say": "Find every word rabbit!",
-        "audio": "voice/line-11378a223e6ce919.m4a"
+        "say": "Tap every word that says \"rabbit\"!",
+        "audio": "voice/line-d176fe75a82a1b1b.m4a"
       },
       "card": {
         "text": "rabbit",
@@ -285,17 +285,17 @@
         "parts": [
           {
             "text": "f",
-            "say": "{/f/|fːː}",
+            "say": "{f|fːː}",
             "audio": "voice/line-f8e06cf8534c2a27.m4a"
           },
           {
             "text": "i",
-            "say": "{/i/|ɪ}",
+            "say": "{i|ɪ}",
             "audio": "voice/line-55c556f50179c6d4.m4a"
           },
           {
             "text": "sh",
-            "say": "{/sh/|ʃːː}",
+            "say": "{sh|ʃːː}",
             "audio": "voice/line-9800483307c29bf6.m4a"
           }
         ],

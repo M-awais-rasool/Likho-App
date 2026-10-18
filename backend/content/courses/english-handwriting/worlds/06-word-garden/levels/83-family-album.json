@@ -230,8 +230,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -295,8 +295,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every baby!",
-        "say": "Find every word baby!",
-        "audio": "voice/line-4ff5f5640689c1b5.m4a"
+        "say": "Tap every word that says \"baby\"!",
+        "audio": "voice/line-15eb322a627b5f2c.m4a"
       },
       "card": {
         "text": "baby",
@@ -323,8 +323,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join M to S!",
-        "say": "Join the dots, from {M|ˈɛm} to {S|ˈɛs}. What will it be?",
-        "audio": "voice/line-b63e07704e0133de.m4a"
+        "say": "Tap the dots in order, from {M|ˈɛm} to {S|ˈɛs}. What will it make?",
+        "audio": "voice/line-cbe1669847c588db.m4a"
       },
       "card": {
         "text": "M → S",

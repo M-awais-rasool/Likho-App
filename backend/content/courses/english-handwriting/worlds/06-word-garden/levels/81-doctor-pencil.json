@@ -91,8 +91,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -265,8 +265,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every leg!",
-        "say": "Find every word leg!",
-        "audio": "voice/line-ef4d627f5ebddd19.m4a"
+        "say": "Tap every word that says \"leg\"!",
+        "audio": "voice/line-7b764657df37db13.m4a"
       },
       "card": {
         "text": "leg",
@@ -306,22 +306,22 @@
         "parts": [
           {
             "text": "h",
-            "say": "{/h/|hʌ}",
+            "say": "{h|hʌ}",
             "audio": "voice/line-cf2e19ba9b889302.m4a"
           },
           {
             "text": "a",
-            "say": "{/a/|æ}",
+            "say": "{a|æ}",
             "audio": "voice/line-6a230dad287fe9e9.m4a"
           },
           {
             "text": "n",
-            "say": "{/n/|nːː}",
+            "say": "{n|nːː}",
             "audio": "voice/line-1f9de0e8fd168b84.m4a"
           },
           {
             "text": "d",
-            "say": "{/d/|dʌ}",
+            "say": "{d|dʌ}",
             "audio": "voice/line-f06c02b8a2619c78.m4a"
           }
         ],
@@ -364,8 +364,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/n/|nːː} or {/e/|ɛ}?",
-        "audio": "voice/line-8f00f771965733f8.m4a"
+        "say": "Sort the pictures! Does each one start with the {n|nːː} sound, or the {e|ɛ} sound?",
+        "audio": "voice/line-eee7024049cfcbb1.m4a"
       },
       "card": {
         "text": "n e",

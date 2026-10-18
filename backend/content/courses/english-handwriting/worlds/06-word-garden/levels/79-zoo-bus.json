@@ -214,8 +214,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/l/|lːː}?",
-        "audio": "voice/line-9d1dd00f8db33bf3.m4a"
+        "say": "Sort the pictures! Does each one start with the {d|dʌ} sound, or the {l|lːː} sound?",
+        "audio": "voice/line-cf1fc2a2487bc114.m4a"
       },
       "card": {
         "text": "d l",
@@ -298,8 +298,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every horse!",
-        "say": "Find every word horse!",
-        "audio": "voice/line-d623ac27fe2e0019.m4a"
+        "say": "Tap every word that says \"horse\"!",
+        "audio": "voice/line-d241c4504a6d6f71.m4a"
       },
       "card": {
         "text": "horse",
@@ -326,8 +326,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join E to O!",
-        "say": "Join the dots, from {E|ˈiː} to {O|ˈoʊ}. What will it be?",
-        "audio": "voice/line-34b2c5e70caccfda.m4a"
+        "say": "Tap the dots in order, from {E|ˈiː} to {O|ˈoʊ}. What will it make?",
+        "audio": "voice/line-465dcffdc6a24c38.m4a"
       },
       "card": {
         "text": "E → O",
@@ -411,8 +411,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write goat",
-        "say": "Look at the word goat. Then write it from memory!",
-        "audio": "voice/line-de397e118d76e662.m4a"
+        "say": "Look at the word goat. It will hide. Then write it!",
+        "audio": "voice/line-23be715285601791.m4a"
       },
       "card": {
         "text": null,

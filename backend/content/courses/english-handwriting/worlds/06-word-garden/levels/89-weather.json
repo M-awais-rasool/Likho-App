@@ -90,8 +90,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/s/|sːː} or {/r/|ɹːː}?",
-        "audio": "voice/line-1fed2d6421905a62.m4a"
+        "say": "Sort the pictures! Does each one start with the {s|sːː} sound, or the {r|ɹːː} sound?",
+        "audio": "voice/line-94e97ad8b25033ac.m4a"
       },
       "card": {
         "text": "s r",
@@ -277,8 +277,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write sun",
-        "say": "Look at the word sun. Then write it from memory!",
-        "audio": "voice/line-b826f034d5d868d2.m4a"
+        "say": "Look at the word sun. It will hide. Then write it!",
+        "audio": "voice/line-e8b561ab2ee864b7.m4a"
       },
       "card": {
         "text": null,
@@ -327,8 +327,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join H to M!",
-        "say": "Join the dots, from {H|ˈeɪʧ} to {M|ˈɛm}. What will it be?",
-        "audio": "voice/line-a520f2e424efc0c7.m4a"
+        "say": "Tap the dots in order, from {H|ˈeɪʧ} to {M|ˈɛm}. What will it make?",
+        "audio": "voice/line-56354f16d097ef2a.m4a"
       },
       "card": {
         "text": "H → M",
