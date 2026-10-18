@@ -90,8 +90,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/b/|bʌ} or {/s/|sːː}?",
-        "audio": "voice/line-3b89475e1ac5d27c.m4a"
+        "say": "Sort the pictures! Does each one start with the {b|bʌ} sound, or the {s|sːː} sound?",
+        "audio": "voice/line-b89a633f0add0f63.m4a"
       },
       "card": {
         "text": "b s",
@@ -271,8 +271,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write big",
-        "say": "Look at the word big. Then write it from memory!",
-        "audio": "voice/line-c1abff97d9bf4571.m4a"
+        "say": "Look at the word big. It will hide. Then write it!",
+        "audio": "voice/line-9c940c8939618417.m4a"
       },
       "card": {
         "text": null,
@@ -318,30 +318,91 @@
     },
     {
       "id": "level-163-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "Big, bigger, biggest! Tap the drum once for every word!",
-        "audio": "voice/line-790705d5c9b2842b.m4a"
+        "text": "Join G to R!",
+        "say": "Tap the dots in order, from {G|ʤˈiː} to {R|ˈɑːɹ}. What will it make?",
+        "audio": "voice/line-56abcd8e991055d6.m4a"
       },
       "card": {
-        "text": null,
+        "text": "G → R",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "Big, bigger, biggest!",
-        "parts": [
-          "Big",
-          "bigger",
-          "biggest"
+      "connect": {
+        "labels": [
+          "G",
+          "H",
+          "I",
+          "J",
+          "K",
+          "L",
+          "M",
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "Big bigger biggest",
-          "say": "Big, bigger, biggest! Three words!",
-          "audio": "voice/line-0c3c4b0ffc27ef7e.m4a"
+        "points": [
+          [
+            50,
+            22
+          ],
+          [
+            66,
+            12
+          ],
+          [
+            86,
+            22
+          ],
+          [
+            92,
+            48
+          ],
+          [
+            82,
+            76
+          ],
+          [
+            68,
+            94
+          ],
+          [
+            50,
+            84
+          ],
+          [
+            32,
+            94
+          ],
+          [
+            18,
+            76
+          ],
+          [
+            8,
+            48
+          ],
+          [
+            14,
+            22
+          ],
+          [
+            34,
+            12
+          ]
+        ],
+        "picture": {
+          "key": "apple",
+          "label": "apple",
+          "url": null
+        },
+        "done": {
+          "text": "An apple!",
+          "say": "It's an apple!",
+          "audio": "voice/line-eb257727166de7e7.m4a"
         }
       }
     },

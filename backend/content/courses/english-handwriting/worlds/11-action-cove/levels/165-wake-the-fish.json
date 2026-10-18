@@ -82,8 +82,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -280,8 +280,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every run!",
-        "say": "Find every word run!",
-        "audio": "voice/line-c65aad11ddebccd3.m4a"
+        "say": "Tap every word that says \"run\"!",
+        "audio": "voice/line-cda2550b03b1a9ce.m4a"
       },
       "card": {
         "text": "run",
@@ -308,8 +308,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/s/|sːː} or {/h/|hʌ}?",
-        "audio": "voice/line-f105ab757293d8af.m4a"
+        "say": "Sort the pictures! Does each one start with the {s|sːː} sound, or the {h|hʌ} sound?",
+        "audio": "voice/line-336dae8e106bd112.m4a"
       },
       "card": {
         "text": "s h",
@@ -389,33 +389,71 @@
     },
     {
       "id": "level-165-r10",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "I can run, jump and swim! Tap the drum once for every word!",
-        "audio": "voice/line-9c6063c9d67fbf57.m4a"
+        "text": "Join e to l!",
+        "say": "Tap the dots in order, from {e|ˈiː} to {l|ˈɛl}. What will it make?",
+        "audio": "voice/line-6e63967460bf8a65.m4a"
       },
       "card": {
-        "text": null,
+        "text": "e → l",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "I can run, jump and swim!",
-        "parts": [
-          "I",
-          "can",
-          "run",
-          "jump",
-          "and",
-          "swim"
+      "connect": {
+        "labels": [
+          "e",
+          "f",
+          "g",
+          "h",
+          "i",
+          "j",
+          "k",
+          "l"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "I can run jump and swim",
-          "say": "I can run, jump and swim! Six words!",
-          "audio": "voice/line-e1302bab65c6ef16.m4a"
+        "points": [
+          [
+            8,
+            44
+          ],
+          [
+            40,
+            44
+          ],
+          [
+            40,
+            10
+          ],
+          [
+            60,
+            10
+          ],
+          [
+            60,
+            44
+          ],
+          [
+            92,
+            44
+          ],
+          [
+            92,
+            94
+          ],
+          [
+            8,
+            94
+          ]
+        ],
+        "picture": {
+          "key": "cake",
+          "label": "cake",
+          "url": null
+        },
+        "done": {
+          "text": "A cake!",
+          "say": "It's a cake!",
+          "audio": "voice/line-603810a81e3a93a1.m4a"
         }
       }
     }

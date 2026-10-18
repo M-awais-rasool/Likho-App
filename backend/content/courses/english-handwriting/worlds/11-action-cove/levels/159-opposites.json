@@ -82,8 +82,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/f/|fːː} or {/d/|dʌ}?",
-        "audio": "voice/line-27f67eb9d3dcde7f.m4a"
+        "say": "Sort the pictures! Does each one start with the {f|fːː} sound, or the {d|dʌ} sound?",
+        "audio": "voice/line-7126528272c97699.m4a"
       },
       "card": {
         "text": "f d",
@@ -217,33 +217,71 @@
     },
     {
       "id": "level-159-r5",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "Up and down, big and small! Tap the drum once for every word!",
-        "audio": "voice/line-d677b20ded24d733.m4a"
+        "text": "Join f to m!",
+        "say": "Tap the dots in order, from {f|ˈɛf} to {m|ˈɛm}. What will it make?",
+        "audio": "voice/line-0646daad6d77a914.m4a"
       },
       "card": {
-        "text": null,
+        "text": "f → m",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "Up and down, big and small!",
-        "parts": [
-          "Up",
-          "and",
-          "down",
-          "big",
-          "and",
-          "small"
+      "connect": {
+        "labels": [
+          "f",
+          "g",
+          "h",
+          "i",
+          "j",
+          "k",
+          "l",
+          "m"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "Up and down big and small",
-          "say": "Up and down, big and small! Six words!",
-          "audio": "voice/line-edbf20c565d37d49.m4a"
+        "points": [
+          [
+            8,
+            8
+          ],
+          [
+            78,
+            8
+          ],
+          [
+            78,
+            30
+          ],
+          [
+            98,
+            30
+          ],
+          [
+            98,
+            66
+          ],
+          [
+            78,
+            66
+          ],
+          [
+            72,
+            94
+          ],
+          [
+            14,
+            94
+          ]
+        ],
+        "picture": {
+          "key": "cup",
+          "label": "cup",
+          "url": null
+        },
+        "done": {
+          "text": "A cup!",
+          "say": "It's a cup!",
+          "audio": "voice/line-b59d914d7fd7fbc2.m4a"
         }
       }
     },
@@ -252,8 +290,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write for",
-        "say": "Look at the word for. Then write it from memory!",
-        "audio": "voice/line-94b575bf0bfb37f3.m4a"
+        "say": "Look at the word for. It will hide. Then write it!",
+        "audio": "voice/line-c0754f5fb302e3c4.m4a"
       },
       "card": {
         "text": null,
@@ -298,8 +336,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every up!",
-        "say": "Find every word up!",
-        "audio": "voice/line-6b1ec91f9205962b.m4a"
+        "say": "Tap every word that says \"up\"!",
+        "audio": "voice/line-63eda460aab8bbd3.m4a"
       },
       "card": {
         "text": "up",

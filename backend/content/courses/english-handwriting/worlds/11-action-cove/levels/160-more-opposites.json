@@ -82,8 +82,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -261,8 +261,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/j/|ʤʌ} or {/c/|kʌ}?",
-        "audio": "voice/line-b86f46949ea87bb0.m4a"
+        "say": "Sort the pictures! Does each one start with the {j|ʤʌ} sound, or the {c|kʌ} sound?",
+        "audio": "voice/line-5664728f1330723d.m4a"
       },
       "card": {
         "text": "j c",
@@ -383,33 +383,66 @@
     },
     {
       "id": "level-160-r9",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "Open and closed, loud and quiet! Tap the drum once for every word!",
-        "audio": "voice/line-a9a6d4bddd1aa0bd.m4a"
+        "text": "Join C to I!",
+        "say": "Tap the dots in order, from {C|sˈiː} to {I|ˈaɪ}. What will it make?",
+        "audio": "voice/line-f228e6bd9ff764ac.m4a"
       },
       "card": {
-        "text": null,
+        "text": "C → I",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "Open and closed, loud and quiet!",
-        "parts": [
-          "Open",
-          "and",
-          "closed",
-          "loud",
-          "and",
-          "quiet"
+      "connect": {
+        "labels": [
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "Open and closed loud and quiet",
-          "say": "Open and closed, loud and quiet! Six words!",
-          "audio": "voice/line-66960dd82400cf5b.m4a"
+        "points": [
+          [
+            6,
+            28
+          ],
+          [
+            30,
+            54
+          ],
+          [
+            50,
+            10
+          ],
+          [
+            70,
+            54
+          ],
+          [
+            94,
+            28
+          ],
+          [
+            84,
+            88
+          ],
+          [
+            16,
+            88
+          ]
+        ],
+        "picture": {
+          "key": "crown",
+          "label": "crown",
+          "url": null
+        },
+        "done": {
+          "text": "A crown!",
+          "say": "It's a crown!",
+          "audio": "voice/line-9649373564b61d61.m4a"
         }
       }
     },
@@ -418,8 +451,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write old",
-        "say": "Look at the word old. Then write it from memory!",
-        "audio": "voice/line-bdb82f1b9ee36723.m4a"
+        "say": "Look at the word old. It will hide. Then write it!",
+        "audio": "voice/line-b5e03cce0074b0f9.m4a"
       },
       "card": {
         "text": null,

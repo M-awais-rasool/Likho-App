@@ -90,8 +90,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/h/|hʌ}?",
-        "audio": "voice/line-c7ac37372e7b32ac.m4a"
+        "say": "Sort the pictures! Does each one start with the {d|dʌ} sound, or the {h|hʌ} sound?",
+        "audio": "voice/line-ce2c9f8b12822edb.m4a"
       },
       "card": {
         "text": "d h",
@@ -276,8 +276,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write sing",
-        "say": "Look at the word sing. Then write it from memory!",
-        "audio": "voice/line-4cb254660433357b.m4a"
+        "say": "Look at the word sing. It will hide. Then write it!",
+        "audio": "voice/line-2ccdab96ada53b14.m4a"
       },
       "card": {
         "text": null,
@@ -303,8 +303,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every sit!",
-        "say": "Find every word sit!",
-        "audio": "voice/line-19c1abf51d1ccffe.m4a"
+        "say": "Tap every word that says \"sit\"!",
+        "audio": "voice/line-93529b15f32f97d5.m4a"
       },
       "card": {
         "text": "sit",
@@ -344,17 +344,17 @@
         "parts": [
           {
             "text": "k",
-            "say": "{/k/|kʌ}",
+            "say": "{k|kʌ}",
             "audio": "voice/line-eec1fee16c5c51e0.m4a"
           },
           {
             "text": "i",
-            "say": "{/i/|ɪ}",
+            "say": "{i|ɪ}",
             "audio": "voice/line-55c556f50179c6d4.m4a"
           },
           {
             "text": "ck",
-            "say": "{/ck/|kʌ}",
+            "say": "{ck|kʌ}",
             "audio": "voice/line-eec1fee16c5c51e0.m4a"
           }
         ],

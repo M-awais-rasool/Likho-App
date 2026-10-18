@@ -78,8 +78,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/h/|hʌ} or {/f/|fːː}?",
-        "audio": "voice/line-38a14f117e2ae253.m4a"
+        "say": "Sort the pictures! Does each one start with the {h|hʌ} sound, or the {f|fːː} sound?",
+        "audio": "voice/line-512c86ffd8e56733.m4a"
       },
       "card": {
         "text": "h f",
@@ -235,8 +235,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write some",
-        "say": "Look at the word some. Then write it from memory!",
-        "audio": "voice/line-ad078854ad99be58.m4a"
+        "say": "Look at the word some. It will hide. Then write it!",
+        "audio": "voice/line-2abbd7effc6242f4.m4a"
       },
       "card": {
         "text": null,
@@ -255,31 +255,71 @@
     },
     {
       "id": "level-154-r7",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "Run, running! Jump, jumping! Tap the drum once for every word!",
-        "audio": "voice/line-3f4cfbca55d160b9.m4a"
+        "text": "Join b to i!",
+        "say": "Tap the dots in order, from {b|bˈiː} to {i|ˈaɪ}. What will it make?",
+        "audio": "voice/line-f47e8bec19b3b53a.m4a"
       },
       "card": {
-        "text": null,
+        "text": "b → i",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "Run, running! Jump, jumping!",
-        "parts": [
-          "Run",
-          "running",
-          "Jump",
-          "jumping"
+      "connect": {
+        "labels": [
+          "b",
+          "c",
+          "d",
+          "e",
+          "f",
+          "g",
+          "h",
+          "i"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "Run running Jump jumping",
-          "say": "Run, running! Jump, jumping! Four words!",
-          "audio": "voice/line-3860da7439293dba.m4a"
+        "points": [
+          [
+            8,
+            44
+          ],
+          [
+            40,
+            44
+          ],
+          [
+            40,
+            10
+          ],
+          [
+            60,
+            10
+          ],
+          [
+            60,
+            44
+          ],
+          [
+            92,
+            44
+          ],
+          [
+            92,
+            94
+          ],
+          [
+            8,
+            94
+          ]
+        ],
+        "picture": {
+          "key": "cake",
+          "label": "cake",
+          "url": null
+        },
+        "done": {
+          "text": "A cake!",
+          "say": "It's a cake!",
+          "audio": "voice/line-603810a81e3a93a1.m4a"
         }
       }
     },
@@ -288,8 +328,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every ing!",
-        "say": "Find every word ing!",
-        "audio": "voice/line-7ba4ee64812e5111.m4a"
+        "say": "Tap every word that says \"ing\"!",
+        "audio": "voice/line-62b560a145ef6b53.m4a"
       },
       "card": {
         "text": "ing",
