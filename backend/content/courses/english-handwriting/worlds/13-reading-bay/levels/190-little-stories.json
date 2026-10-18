@@ -150,30 +150,81 @@
     },
     {
       "id": "level-190-r5",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "It is hot. Tap the drum once for every word!",
-        "audio": "voice/line-1ebaf224b5719351.m4a"
+        "text": "Join J to S!",
+        "say": "Tap the dots in order, from {J|ʤˈeɪ} to {S|ˈɛs}. What will it make?",
+        "audio": "voice/line-ed15022f31ffef7c.m4a"
       },
       "card": {
-        "text": null,
+        "text": "J → S",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "It is hot.",
-        "parts": [
-          "It",
-          "is",
-          "hot"
+      "connect": {
+        "labels": [
+          "J",
+          "K",
+          "L",
+          "M",
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "It is hot",
-          "say": "It is hot. Three words!",
-          "audio": "voice/line-c12f7b225fa9ce6a.m4a"
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            62,
+            36
+          ],
+          [
+            96,
+            37
+          ],
+          [
+            69,
+            58
+          ],
+          [
+            78,
+            91
+          ],
+          [
+            50,
+            72
+          ],
+          [
+            22,
+            91
+          ],
+          [
+            31,
+            58
+          ],
+          [
+            4,
+            37
+          ],
+          [
+            38,
+            36
+          ]
+        ],
+        "picture": {
+          "key": "star",
+          "label": "star",
+          "url": null
+        },
+        "done": {
+          "text": "A star!",
+          "say": "It's a star!",
+          "audio": "voice/line-8b6bccb5c1f3e6a4.m4a"
         }
       }
     },
@@ -325,8 +376,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -363,8 +414,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every sad!",
-        "say": "Find every word sad!",
-        "audio": "voice/line-29f9f3600528429a.m4a"
+        "say": "Tap every word that says \"sad\"!",
+        "audio": "voice/line-198a82a1cd8bc0f6.m4a"
       },
       "card": {
         "text": "sad",

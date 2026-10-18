@@ -90,8 +90,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/b/|bʌ}?",
-        "audio": "voice/line-55e04600648a8763.m4a"
+        "say": "Sort the pictures! Does each one start with the {d|dʌ} sound, or the {b|bʌ} sound?",
+        "audio": "voice/line-ea9437fb9d79aac1.m4a"
       },
       "card": {
         "text": "d b",
@@ -351,8 +351,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write go",
-        "say": "Look at the word go. Then write it from memory!",
-        "audio": "voice/line-9d91bf90ce65904b.m4a"
+        "say": "Look at the word go. It will hide. Then write it!",
+        "audio": "voice/line-47c52b64364b5399.m4a"
       },
       "card": {
         "text": null,

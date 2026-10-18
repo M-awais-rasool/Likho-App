@@ -79,8 +79,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/b/|bʌ}?",
-        "audio": "voice/line-55e04600648a8763.m4a"
+        "say": "Sort the pictures! Does each one start with the {d|dʌ} sound, or the {b|bʌ} sound?",
+        "audio": "voice/line-ea9437fb9d79aac1.m4a"
       },
       "card": {
         "text": "d b",
@@ -294,8 +294,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write sad",
-        "say": "Look at the word sad. Then write it from memory!",
-        "audio": "voice/line-70f4ea11e3eb63bd.m4a"
+        "say": "Look at the word sad. It will hide. Then write it!",
+        "audio": "voice/line-db0121a818d41b4c.m4a"
       },
       "card": {
         "text": null,
@@ -368,32 +368,76 @@
     },
     {
       "id": "level-189-r9",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "How do you feel today? Tap the drum once for every word!",
-        "audio": "voice/line-93bebb4f60a3c8a2.m4a"
+        "text": "Join p to x!",
+        "say": "Tap the dots in order, from {p|pˈiː} to {x|ˈɛks}. What will it make?",
+        "audio": "voice/line-2b4690199a8021c0.m4a"
       },
       "card": {
-        "text": null,
+        "text": "p → x",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "How do you feel today?",
-        "parts": [
-          "How",
-          "do",
-          "you",
-          "feel",
-          "today"
+      "connect": {
+        "labels": [
+          "p",
+          "q",
+          "r",
+          "s",
+          "t",
+          "u",
+          "v",
+          "w",
+          "x"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "How do you feel today",
-          "say": "How do you feel today? Five words!",
-          "audio": "voice/line-f4a0ebdbe37a37df.m4a"
+        "points": [
+          [
+            62,
+            4
+          ],
+          [
+            30,
+            10
+          ],
+          [
+            10,
+            36
+          ],
+          [
+            8,
+            64
+          ],
+          [
+            28,
+            88
+          ],
+          [
+            62,
+            96
+          ],
+          [
+            44,
+            74
+          ],
+          [
+            36,
+            50
+          ],
+          [
+            44,
+            26
+          ]
+        ],
+        "picture": {
+          "key": "moon",
+          "label": "moon",
+          "url": null
+        },
+        "done": {
+          "text": "A moon!",
+          "say": "It's a moon!",
+          "audio": "voice/line-24627cec3ea7f4e6.m4a"
         }
       }
     },

@@ -189,8 +189,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -310,8 +310,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/w/|wʌ} or {/n/|nːː}?",
-        "audio": "voice/line-8b9754fbfa980d2c.m4a"
+        "say": "Sort the pictures! Does each one start with the {w|wʌ} sound, or the {n|nːː} sound?",
+        "audio": "voice/line-31e28c2b0fe7c4fd.m4a"
       },
       "card": {
         "text": "w n",
@@ -394,8 +394,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every sad!",
-        "say": "Find every word sad!",
-        "audio": "voice/line-29f9f3600528429a.m4a"
+        "say": "Tap every word that says \"sad\"!",
+        "audio": "voice/line-198a82a1cd8bc0f6.m4a"
       },
       "card": {
         "text": "sad",
@@ -419,32 +419,66 @@
     },
     {
       "id": "level-195-r10",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "I can read a story! Tap the drum once for every word!",
-        "audio": "voice/line-770e6f147dfd8ee8.m4a"
+        "text": "Join Q to W!",
+        "say": "Tap the dots in order, from {Q|kjˈuː} to {W|dˈʌbəljuː}. What will it make?",
+        "audio": "voice/line-98f89404b7e8b27b.m4a"
       },
       "card": {
-        "text": null,
+        "text": "Q → W",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "I can read a story!",
-        "parts": [
-          "I",
-          "can",
-          "read",
-          "a",
-          "story"
+      "connect": {
+        "labels": [
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V",
+          "W"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "I can read a story",
-          "say": "I can read a story! Five words!",
-          "audio": "voice/line-470c100f383c1184.m4a"
+        "points": [
+          [
+            6,
+            28
+          ],
+          [
+            30,
+            54
+          ],
+          [
+            50,
+            10
+          ],
+          [
+            70,
+            54
+          ],
+          [
+            94,
+            28
+          ],
+          [
+            84,
+            88
+          ],
+          [
+            16,
+            88
+          ]
+        ],
+        "picture": {
+          "key": "crown",
+          "label": "crown",
+          "url": null
+        },
+        "done": {
+          "text": "A crown!",
+          "say": "It's a crown!",
+          "audio": "voice/line-9649373564b61d61.m4a"
         }
       }
     }

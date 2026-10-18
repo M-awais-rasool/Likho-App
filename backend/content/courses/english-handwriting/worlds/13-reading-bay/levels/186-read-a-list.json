@@ -114,8 +114,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -374,32 +374,61 @@
     },
     {
       "id": "level-186-r9",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "Milk, eggs, bread and rice! Tap the drum once for every word!",
-        "audio": "voice/line-51124f84ba2b9036.m4a"
+        "text": "Join A to F!",
+        "say": "Tap the dots in order, from {A|ˈeɪ} to {F|ˈɛf}. What will it make?",
+        "audio": "voice/line-fdfb7df8eff11ea1.m4a"
       },
       "card": {
-        "text": null,
+        "text": "A → F",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "Milk, eggs, bread and rice!",
-        "parts": [
-          "Milk",
-          "eggs",
-          "bread",
-          "and",
-          "rice"
+      "connect": {
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "Milk eggs bread and rice",
-          "say": "Milk, eggs, bread and rice! Five words!",
-          "audio": "voice/line-2e5b2857fb0a514d.m4a"
+        "points": [
+          [
+            50,
+            3
+          ],
+          [
+            88,
+            38
+          ],
+          [
+            69,
+            68
+          ],
+          [
+            50,
+            97
+          ],
+          [
+            31,
+            68
+          ],
+          [
+            12,
+            38
+          ]
+        ],
+        "picture": {
+          "key": "kite",
+          "label": "kite",
+          "url": null
+        },
+        "done": {
+          "text": "A kite!",
+          "say": "It's a kite!",
+          "audio": "voice/line-84a0b92f93e00a15.m4a"
         }
       }
     },
@@ -408,8 +437,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write rice",
-        "say": "Look at the word rice. Then write it from memory!",
-        "audio": "voice/line-6a44069c8b300cf4.m4a"
+        "say": "Look at the word rice. It will hide. Then write it!",
+        "audio": "voice/line-217d678e711dc32e.m4a"
       },
       "card": {
         "text": null,

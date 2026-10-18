@@ -79,8 +79,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/n/|nːː} or {/m/|mːː}?",
-        "audio": "voice/line-b59f47fa50169e60.m4a"
+        "say": "Sort the pictures! Does each one start with the {n|nːː} sound, or the {m|mːː} sound?",
+        "audio": "voice/line-e20b9026ca0adf98.m4a"
       },
       "card": {
         "text": "n m",
@@ -297,8 +297,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write grow",
-        "say": "Look at the word grow. Then write it from memory!",
-        "audio": "voice/line-fd93365b5902aa45.m4a"
+        "say": "Look at the word grow. It will hide. Then write it!",
+        "audio": "voice/line-0e6ca950f2e5db37.m4a"
       },
       "card": {
         "text": null,
@@ -366,8 +366,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join l to s!",
-        "say": "Join the dots, from {l|ˈɛl} to {s|ˈɛs}. What will it be?",
-        "audio": "voice/line-e1147f0fbf21bdd6.m4a"
+        "say": "Tap the dots in order, from {l|ˈɛl} to {s|ˈɛs}. What will it make?",
+        "audio": "voice/line-6864fe8cce37559b.m4a"
       },
       "card": {
         "text": "l → s",

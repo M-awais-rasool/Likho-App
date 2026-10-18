@@ -59,8 +59,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/b/|bʌ} or {/w/|wʌ}?",
-        "audio": "voice/line-0ff4e05d6c5560cb.m4a"
+        "say": "Sort the pictures! Does each one start with the {b|bʌ} sound, or the {w|wʌ} sound?",
+        "audio": "voice/line-5afb583255a1a84a.m4a"
       },
       "card": {
         "text": "b w",
@@ -166,8 +166,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join H to S!",
-        "say": "Join the dots, from {H|ˈeɪʧ} to {S|ˈɛs}. What will it be?",
-        "audio": "voice/line-75eb7a0e460113fe.m4a"
+        "say": "Tap the dots in order, from {H|ˈeɪʧ} to {S|ˈɛs}. What will it make?",
+        "audio": "voice/line-4a688579785480ab.m4a"
       },
       "card": {
         "text": "H → S",
@@ -316,8 +316,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write jump",
-        "say": "Look at the word jump. Then write it from memory!",
-        "audio": "voice/line-db2df7e90ad5e116.m4a"
+        "say": "Look at the word jump. It will hide. Then write it!",
+        "audio": "voice/line-233a96b59ec0d8f9.m4a"
       },
       "card": {
         "text": null,
@@ -391,8 +391,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every sad!",
-        "say": "Find every word sad!",
-        "audio": "voice/line-29f9f3600528429a.m4a"
+        "say": "Tap every word that says \"sad\"!",
+        "audio": "voice/line-198a82a1cd8bc0f6.m4a"
       },
       "card": {
         "text": "sad",
