@@ -215,21 +215,34 @@ class WritePadController extends ChangeNotifier {
   }
 }
 
-/// The writing pad (prototype write area): ruled paper.
+/// The writing pad (prototype write area): ruled paper, or [paper] (the
+/// wooden sign of a story).
 class WritePad extends StatefulWidget {
   const WritePad({
     super.key,
     required this.controller,
-    required this.state,
+    required this.correct,
+    this.hint = false,
     required this.round,
     required this.glyphs,
     required this.time,
     required this.onPen,
+    this.paper = LikhoColors.surface,
+    this.radius = LikhoRadius.writingPad,
   });
 
   final WritePadController controller;
-  final SessionState state;
+
+  /// The writing was accepted (no more ink; it glows).
+  final bool correct;
+
+  /// After a mistake: show where to start.
+  final bool hint;
   final WriteRound round;
+
+  /// What the pad is drawn on.
+  final Color paper;
+  final double radius;
   final Map<String, List<String>> glyphs;
   final ValueNotifier<double> time;
 
@@ -293,7 +306,7 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
   double get _now => _sparkClock.lastElapsedDuration == null ? 0 : _sparkClock.lastElapsedDuration!.inMicroseconds / 1e6;
 
   void _down(PointerDownEvent e) {
-    if (widget.state.correct || _pointer != null || _flashing) return;
+    if (widget.correct || _pointer != null || _flashing) return;
     _pointer = e.pointer;
     widget.controller.start(e.localPosition);
     widget.onPen(e.position);
@@ -306,7 +319,7 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
   }
 
   void _move(PointerMoveEvent e) {
-    if (widget.state.correct || e.pointer != _pointer) return;
+    if (widget.correct || e.pointer != _pointer) return;
     widget.onPen(e.position);
     if (!widget.controller.extend(e.localPosition)) return; // outside the lane: no ink, no sparks
     if (_rnd.nextDouble() < .35) {
@@ -319,19 +332,19 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
   Widget build(BuildContext context) {
     final raw = WritePadController.rawGuides(widget.round, widget.glyphs, letter: widget.controller.letter);
     final noGuide = widget.controller.guides.isEmpty;
-    final freeHint = widget.round.mode == WriteMode.free && widget.round.sentence && !widget.state.correct
+    final freeHint = widget.round.mode == WriteMode.free && widget.round.sentence && !widget.correct
         ? 'Write: ${widget.round.target ?? 'your own story'}'
         : null;
     return DecoratedBox(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(LikhoRadius.writingPad),
+        borderRadius: BorderRadius.circular(widget.radius),
         boxShadow: const [
           BoxShadow(color: GameColors.ink06, offset: Offset(0, 8)),
           BoxShadow(color: GameColors.ink10, offset: Offset(0, 16), blurRadius: 40),
         ],
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(LikhoRadius.writingPad),
+        borderRadius: BorderRadius.circular(widget.radius),
         child: LayoutBuilder(
           builder: (context, box) {
             widget.controller.padSize = box.biggest;
@@ -344,7 +357,7 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
               child: Stack(
                 children: [
                   Positioned.fill(
-                    child: const ColoredBox(color: LikhoColors.surface),
+                    child: ColoredBox(color: widget.paper),
                   ),
                   Positioned.fill(
                     child: RepaintBoundary(
@@ -353,7 +366,7 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
                           mode: widget.round.mode,
                           guides: widget.controller.guides,
                           raw: raw,
-                          hint: widget.state.hint,
+                          hint: widget.hint,
                           time: widget.time,
                           controller: widget.controller,
                           flashUntil: _flashUntil,
@@ -374,12 +387,12 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
                         ),
                       ),
                     ),
-                  if (widget.state.hint && noGuide) Positioned(left: 24, top: 24, child: _StartHere(time: widget.time)),
+                  if (widget.hint && noGuide) Positioned(left: 24, top: 24, child: _StartHere(time: widget.time)),
                   if (widget.round.mode == WriteMode.flash) Positioned.fill(child: _FlashCover(text: widget.round.target ?? '', word: noGuide, until: _flashUntil, time: widget.time)),
                   Positioned.fill(
                     child: RepaintBoundary(
                       child: CustomPaint(
-                        painter: _InkPainter(controller: widget.controller, correct: widget.state.correct),
+                        painter: _InkPainter(controller: widget.controller, correct: widget.correct),
                       ),
                     ),
                   ),
@@ -390,7 +403,7 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
                           child: CustomPaint(
                             painter: _StepPainter(
                               controller: widget.controller,
-                              hint: widget.state.hint,
+                              hint: widget.hint,
                               time: widget.time,
                               memory: widget.round.mode == WriteMode.flash,
                               flashUntil: _flashUntil,
@@ -407,7 +420,7 @@ class _WritePadState extends State<WritePad> with SingleTickerProviderStateMixin
                       ),
                     ),
                   ),
-                  if (widget.state.correct) const Positioned.fill(child: CorrectGlow(inner: true)),
+                  if (widget.correct) const Positioned.fill(child: CorrectGlow(inner: true)),
                 ],
               ),
             );

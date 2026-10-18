@@ -16,7 +16,30 @@ enum Follow {
 }
 
 /// The shape of one stroke, for the mascot's instruction.
-enum StrokeShape { dot, down, up, right, left, slantDown, slantUp, curve, zigzag }
+enum StrokeShape {
+  dot,
+  down,
+  up,
+  right,
+  left,
+  slantDown,
+  slantUp,
+  curve,
+  zigzag;
+
+  /// What to do with the stroke, as Pencil says it.
+  String get instruction => switch (this) {
+    dot => 'Add a dot',
+    down => 'Top to bottom',
+    up => 'Bottom to top',
+    right => 'Left to right',
+    left => 'Right to left',
+    slantDown => 'Slant down',
+    slantUp => 'Slant up',
+    curve => 'Curve around',
+    zigzag => 'Follow the arrow',
+  };
+}
 
 /// Writing a letter step by step: one stroke at a time, in the letter's
 /// order, starting at the stroke's start and moving in its direction.
