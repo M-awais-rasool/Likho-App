@@ -126,8 +126,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every out!",
-        "say": "Find every word out!",
-        "audio": "voice/line-c771db218b44c909.m4a"
+        "say": "Tap every word that says \"out\"!",
+        "audio": "voice/line-6c863449979a3a83.m4a"
       },
       "card": {
         "text": "out",
@@ -225,8 +225,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -286,33 +286,81 @@
     },
     {
       "id": "level-132-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "The cat is under the chair. Tap the drum once for every word!",
-        "audio": "voice/line-7cc74d3387157dce.m4a"
+        "text": "Join I to R!",
+        "say": "Tap the dots in order, from {I|ˈaɪ} to {R|ˈɑːɹ}. What will it make?",
+        "audio": "voice/line-43dbd005f81c1dc2.m4a"
       },
       "card": {
-        "text": null,
+        "text": "I → R",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "The cat is under the chair.",
-        "parts": [
-          "The",
-          "cat",
-          "is",
-          "under",
-          "the",
-          "chair"
+      "connect": {
+        "labels": [
+          "I",
+          "J",
+          "K",
+          "L",
+          "M",
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "The cat is under the chair",
-          "say": "The cat is under the chair. Six words!",
-          "audio": "voice/line-5a2d2eea9b9fb24c.m4a"
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            62,
+            36
+          ],
+          [
+            96,
+            37
+          ],
+          [
+            69,
+            58
+          ],
+          [
+            78,
+            91
+          ],
+          [
+            50,
+            72
+          ],
+          [
+            22,
+            91
+          ],
+          [
+            31,
+            58
+          ],
+          [
+            4,
+            37
+          ],
+          [
+            38,
+            36
+          ]
+        ],
+        "picture": {
+          "key": "star",
+          "label": "star",
+          "url": null
+        },
+        "done": {
+          "text": "A star!",
+          "say": "It's a star!",
+          "audio": "voice/line-8b6bccb5c1f3e6a4.m4a"
         }
       }
     },

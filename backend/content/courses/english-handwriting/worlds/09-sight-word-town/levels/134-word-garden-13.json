@@ -101,8 +101,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every his!",
-        "say": "Find every word his!",
-        "audio": "voice/line-2966d2cd1c624fac.m4a"
+        "say": "Tap every word that says \"his\"!",
+        "audio": "voice/line-507afe02bce7a770.m4a"
       },
       "card": {
         "text": "his",
@@ -275,8 +275,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join A to I!",
-        "say": "Join the dots, from {A|ˈeɪ} to {I|ˈaɪ}. What will it be?",
-        "audio": "voice/line-0062248febf8dee1.m4a"
+        "say": "Tap the dots in order, from {A|ˈeɪ} to {I|ˈaɪ}. What will it make?",
+        "audio": "voice/line-6f6b8c0ec6230a99.m4a"
       },
       "card": {
         "text": "A → I",
@@ -373,8 +373,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",

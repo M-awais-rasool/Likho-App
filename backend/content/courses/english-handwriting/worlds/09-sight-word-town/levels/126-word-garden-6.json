@@ -78,8 +78,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/l/|lːː} or {/s/|sːː}?",
-        "audio": "voice/line-b6c439fac7c04efd.m4a"
+        "say": "Sort the pictures! Does each one start with the {l|lːː} sound, or the {s|sːː} sound?",
+        "audio": "voice/line-af126b455f332436.m4a"
       },
       "card": {
         "text": "l s",
@@ -162,8 +162,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every said!",
-        "say": "Find every word said!",
-        "audio": "voice/line-6f89fb4b319f7b6e.m4a"
+        "say": "Tap every word that says \"said\"!",
+        "audio": "voice/line-a6c54644f1d6c014.m4a"
       },
       "card": {
         "text": "said",
@@ -261,8 +261,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write said",
-        "say": "Look at the word said. Then write it from memory!",
-        "audio": "voice/line-951bc85a6398b9fd.m4a"
+        "say": "Look at the word said. It will hide. Then write it!",
+        "audio": "voice/line-f4fdcfe4fc28ccae.m4a"
       },
       "card": {
         "text": null,
@@ -308,32 +308,61 @@
     },
     {
       "id": "level-126-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "I have a red ball. Tap the drum once for every word!",
-        "audio": "voice/line-cecdc63e93090dde.m4a"
+        "text": "Join H to M!",
+        "say": "Tap the dots in order, from {H|ˈeɪʧ} to {M|ˈɛm}. What will it make?",
+        "audio": "voice/line-56354f16d097ef2a.m4a"
       },
       "card": {
-        "text": null,
+        "text": "H → M",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "I have a red ball.",
-        "parts": [
+      "connect": {
+        "labels": [
+          "H",
           "I",
-          "have",
-          "a",
-          "red",
-          "ball"
+          "J",
+          "K",
+          "L",
+          "M"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "I have a red ball",
-          "say": "I have a red ball. Five words!",
-          "audio": "voice/line-88782dc59432cacc.m4a"
+        "points": [
+          [
+            50,
+            3
+          ],
+          [
+            88,
+            38
+          ],
+          [
+            69,
+            68
+          ],
+          [
+            50,
+            97
+          ],
+          [
+            31,
+            68
+          ],
+          [
+            12,
+            38
+          ]
+        ],
+        "picture": {
+          "key": "kite",
+          "label": "kite",
+          "url": null
+        },
+        "done": {
+          "text": "A kite!",
+          "say": "It's a kite!",
+          "audio": "voice/line-84a0b92f93e00a15.m4a"
         }
       }
     },

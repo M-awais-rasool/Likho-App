@@ -78,8 +78,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -116,8 +116,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every he!",
-        "say": "Find every word he!",
-        "audio": "voice/line-d8a2f9b648b0fd57.m4a"
+        "say": "Tap every word that says \"he\"!",
+        "audio": "voice/line-ebedbc6999b335ca.m4a"
       },
       "card": {
         "text": "he",
@@ -262,31 +262,61 @@
     },
     {
       "id": "level-123-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "She is my sister. Tap the drum once for every word!",
-        "audio": "voice/line-aafef219bc951502.m4a"
+        "text": "Join h to m!",
+        "say": "Tap the dots in order, from {h|ˈeɪʧ} to {m|ˈɛm}. What will it make?",
+        "audio": "voice/line-56354f16d097ef2a.m4a"
       },
       "card": {
-        "text": null,
+        "text": "h → m",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "She is my sister.",
-        "parts": [
-          "She",
-          "is",
-          "my",
-          "sister"
+      "connect": {
+        "labels": [
+          "h",
+          "i",
+          "j",
+          "k",
+          "l",
+          "m"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "She is my sister",
-          "say": "She is my sister. Four words!",
-          "audio": "voice/line-93cf462bb89d1b1d.m4a"
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            95,
+            42
+          ],
+          [
+            80,
+            94
+          ],
+          [
+            50,
+            94
+          ],
+          [
+            20,
+            94
+          ],
+          [
+            5,
+            42
+          ]
+        ],
+        "picture": {
+          "key": "house",
+          "label": "house",
+          "url": null
+        },
+        "done": {
+          "text": "A house!",
+          "say": "It's a house!",
+          "audio": "voice/line-d592a37832458791.m4a"
         }
       }
     },
@@ -318,8 +348,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/w/|wʌ} or {/m/|mːː}?",
-        "audio": "voice/line-26719b59d349ebd0.m4a"
+        "say": "Sort the pictures! Does each one start with the {w|wʌ} sound, or the {m|mːː} sound?",
+        "audio": "voice/line-d2d471cd9d3e20a4.m4a"
       },
       "card": {
         "text": "w m",

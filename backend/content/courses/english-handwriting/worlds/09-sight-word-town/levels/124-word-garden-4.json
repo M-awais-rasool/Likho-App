@@ -78,8 +78,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/b/|bʌ} or {/s/|sːː}?",
-        "audio": "voice/line-3b89475e1ac5d27c.m4a"
+        "say": "Sort the pictures! Does each one start with the {b|bʌ} sound, or the {s|sːː} sound?",
+        "audio": "voice/line-b89a633f0add0f63.m4a"
       },
       "card": {
         "text": "b s",
@@ -162,8 +162,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every you!",
-        "say": "Find every word you!",
-        "audio": "voice/line-67f494978782721f.m4a"
+        "say": "Tap every word that says \"you\"!",
+        "audio": "voice/line-27196486b5ee0bd3.m4a"
       },
       "card": {
         "text": "you",
@@ -261,8 +261,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write on",
-        "say": "Look at the word on. Then write it from memory!",
-        "audio": "voice/line-20d5f8acdb33ba9e.m4a"
+        "say": "Look at the word on. It will hide. Then write it!",
+        "audio": "voice/line-4fefbbd7d44f33a0.m4a"
       },
       "card": {
         "text": null,
@@ -309,33 +309,86 @@
     },
     {
       "id": "level-124-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "The cat is on the box. Tap the drum once for every word!",
-        "audio": "voice/line-efeb2a5e89b4022d.m4a"
+        "text": "Join K to U!",
+        "say": "Tap the dots in order, from {K|kˈeɪ} to {U|jˈuː}. What will it make?",
+        "audio": "voice/line-0af17a69a8b60ed0.m4a"
       },
       "card": {
-        "text": null,
+        "text": "K → U",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "The cat is on the box.",
-        "parts": [
-          "The",
-          "cat",
-          "is",
-          "on",
-          "the",
-          "box"
+      "connect": {
+        "labels": [
+          "K",
+          "L",
+          "M",
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "The cat is on the box",
-          "say": "The cat is on the box. Six words!",
-          "audio": "voice/line-6acfdc4778120a40.m4a"
+        "points": [
+          [
+            50,
+            2
+          ],
+          [
+            80,
+            36
+          ],
+          [
+            60,
+            36
+          ],
+          [
+            88,
+            66
+          ],
+          [
+            60,
+            66
+          ],
+          [
+            60,
+            96
+          ],
+          [
+            40,
+            96
+          ],
+          [
+            40,
+            66
+          ],
+          [
+            12,
+            66
+          ],
+          [
+            40,
+            36
+          ],
+          [
+            20,
+            36
+          ]
+        ],
+        "picture": {
+          "key": "tree",
+          "label": "tree",
+          "url": null
+        },
+        "done": {
+          "text": "A tree!",
+          "say": "It's a tree!",
+          "audio": "voice/line-9f1ccab9d42ec40f.m4a"
         }
       }
     },

@@ -101,8 +101,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every what!",
-        "say": "Find every word what!",
-        "audio": "voice/line-640ff94f9745ce06.m4a"
+        "say": "Tap every word that says \"what\"!",
+        "audio": "voice/line-a6b367a04a534720.m4a"
       },
       "card": {
         "text": "what",
@@ -200,8 +200,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/h/|hʌ} or {/c/|kʌ}?",
-        "audio": "voice/line-6e7f1708b63f993d.m4a"
+        "say": "Sort the pictures! Does each one start with the {h|hʌ} sound, or the {c|kʌ} sound?",
+        "audio": "voice/line-f1bfdb17fb1565a3.m4a"
       },
       "card": {
         "text": "h c",
@@ -310,8 +310,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join G to M!",
-        "say": "Join the dots, from {G|ʤˈiː} to {M|ˈɛm}. What will it be?",
-        "audio": "voice/line-b8bb91170eee573b.m4a"
+        "say": "Tap the dots in order, from {G|ʤˈiː} to {M|ˈɛm}. What will it make?",
+        "audio": "voice/line-475c337e0593e414.m4a"
       },
       "card": {
         "text": "G → M",
@@ -398,8 +398,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write you",
-        "say": "Look at the word you. Then write it from memory!",
-        "audio": "voice/line-d78b3ba09c239bc9.m4a"
+        "say": "Look at the word you. It will hide. Then write it!",
+        "audio": "voice/line-35d3b9a8d0957bc6.m4a"
       },
       "card": {
         "text": null,

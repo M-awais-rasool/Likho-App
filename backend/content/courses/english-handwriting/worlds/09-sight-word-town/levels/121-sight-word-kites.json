@@ -107,8 +107,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every the!",
-        "say": "Find every word the!",
-        "audio": "voice/line-752e9283e18836d9.m4a"
+        "say": "Tap every word that says \"the\"!",
+        "audio": "voice/line-6a195db6aba0ff9c.m4a"
       },
       "card": {
         "text": "the",
@@ -206,8 +206,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/f/|fːː}?",
-        "audio": "voice/line-7b4dba625cd77da5.m4a"
+        "say": "Sort the pictures! Does each one start with the {d|dʌ} sound, or the {f|fːː} sound?",
+        "audio": "voice/line-43703463c7340f82.m4a"
       },
       "card": {
         "text": "d f",
@@ -314,31 +314,66 @@
     },
     {
       "id": "level-121-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "It is a dog. Tap the drum once for every word!",
-        "audio": "voice/line-ff7e7798443e6d91.m4a"
+        "text": "Join E to K!",
+        "say": "Tap the dots in order, from {E|ˈiː} to {K|kˈeɪ}. What will it make?",
+        "audio": "voice/line-c7507da975425ed5.m4a"
       },
       "card": {
-        "text": null,
+        "text": "E → K",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "It is a dog.",
-        "parts": [
-          "It",
-          "is",
-          "a",
-          "dog"
+      "connect": {
+        "labels": [
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J",
+          "K"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "It is a dog",
-          "say": "It is a dog. Four words!",
-          "audio": "voice/line-ea0fe3af8a3dbf12.m4a"
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            82,
+            50
+          ],
+          [
+            98,
+            64
+          ],
+          [
+            80,
+            94
+          ],
+          [
+            20,
+            94
+          ],
+          [
+            2,
+            64
+          ],
+          [
+            50,
+            64
+          ]
+        ],
+        "picture": {
+          "key": "boat",
+          "label": "boat",
+          "url": null
+        },
+        "done": {
+          "text": "A boat!",
+          "say": "It's a boat!",
+          "audio": "voice/line-a705e55e86a2309a.m4a"
         }
       }
     },
@@ -370,8 +405,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write the",
-        "say": "Look at the word the. Then write it from memory!",
-        "audio": "voice/line-9ca35a4f6e45755e.m4a"
+        "say": "Look at the word the. It will hide. Then write it!",
+        "audio": "voice/line-50a47de1c7448526.m4a"
       },
       "card": {
         "text": null,

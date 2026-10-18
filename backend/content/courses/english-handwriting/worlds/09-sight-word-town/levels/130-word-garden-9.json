@@ -78,8 +78,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -116,8 +116,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every for!",
-        "say": "Find every word for!",
-        "audio": "voice/line-7c82e6d0e79611e8.m4a"
+        "say": "Tap every word that says \"for\"!",
+        "audio": "voice/line-1f5cf046837800d0.m4a"
       },
       "card": {
         "text": "for",
@@ -263,32 +263,91 @@
     },
     {
       "id": "level-130-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "I play with my dog. Tap the drum once for every word!",
-        "audio": "voice/line-0d6d808f9207fea7.m4a"
+        "text": "Join F to Q!",
+        "say": "Tap the dots in order, from {F|ˈɛf} to {Q|kjˈuː}. What will it make?",
+        "audio": "voice/line-41eedbf1bee58b23.m4a"
       },
       "card": {
-        "text": null,
+        "text": "F → Q",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "I play with my dog.",
-        "parts": [
+      "connect": {
+        "labels": [
+          "F",
+          "G",
+          "H",
           "I",
-          "play",
-          "with",
-          "my",
-          "dog"
+          "J",
+          "K",
+          "L",
+          "M",
+          "N",
+          "O",
+          "P",
+          "Q"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "I play with my dog",
-          "say": "I play with my dog. Five words!",
-          "audio": "voice/line-48e0a8af042b955b.m4a"
+        "points": [
+          [
+            50,
+            22
+          ],
+          [
+            66,
+            12
+          ],
+          [
+            86,
+            22
+          ],
+          [
+            92,
+            48
+          ],
+          [
+            82,
+            76
+          ],
+          [
+            68,
+            94
+          ],
+          [
+            50,
+            84
+          ],
+          [
+            32,
+            94
+          ],
+          [
+            18,
+            76
+          ],
+          [
+            8,
+            48
+          ],
+          [
+            14,
+            22
+          ],
+          [
+            34,
+            12
+          ]
+        ],
+        "picture": {
+          "key": "apple",
+          "label": "apple",
+          "url": null
+        },
+        "done": {
+          "text": "An apple!",
+          "say": "It's an apple!",
+          "audio": "voice/line-eb257727166de7e7.m4a"
         }
       }
     },
@@ -320,8 +379,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/w/|wʌ} or {/b/|bʌ}?",
-        "audio": "voice/line-d3f336cf53f2aa60.m4a"
+        "say": "Sort the pictures! Does each one start with the {w|wʌ} sound, or the {b|bʌ} sound?",
+        "audio": "voice/line-20c83438f6f35bdb.m4a"
       },
       "card": {
         "text": "w b",

@@ -78,8 +78,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/w/|wʌ} or {/f/|fːː}?",
-        "audio": "voice/line-07f3d6eb3760666e.m4a"
+        "say": "Sort the pictures! Does each one start with the {w|wʌ} sound, or the {f|fːː} sound?",
+        "audio": "voice/line-98ca60d6613c9f46.m4a"
       },
       "card": {
         "text": "w f",
@@ -162,8 +162,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every some!",
-        "say": "Find every word some!",
-        "audio": "voice/line-754c13b9440d77de.m4a"
+        "say": "Tap every word that says \"some\"!",
+        "audio": "voice/line-2835ecf4f7ba1178.m4a"
       },
       "card": {
         "text": "some",
@@ -261,8 +261,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write some",
-        "say": "Look at the word some. Then write it from memory!",
-        "audio": "voice/line-ad078854ad99be58.m4a"
+        "say": "Look at the word some. It will hide. Then write it!",
+        "audio": "voice/line-2abbd7effc6242f4.m4a"
       },
       "card": {
         "text": null,
@@ -308,31 +308,86 @@
     },
     {
       "id": "level-133-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "It is very hot. Tap the drum once for every word!",
-        "audio": "voice/line-f78af7d8ad69a5bf.m4a"
+        "text": "Join j to t!",
+        "say": "Tap the dots in order, from {j|ʤˈeɪ} to {t|tˈiː}. What will it make?",
+        "audio": "voice/line-aaf71ba76c918e29.m4a"
       },
       "card": {
-        "text": null,
+        "text": "j → t",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "It is very hot.",
-        "parts": [
-          "It",
-          "is",
-          "very",
-          "hot"
+      "connect": {
+        "labels": [
+          "j",
+          "k",
+          "l",
+          "m",
+          "n",
+          "o",
+          "p",
+          "q",
+          "r",
+          "s",
+          "t"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "It is very hot",
-          "say": "It is very hot. Four words!",
-          "audio": "voice/line-169d29dcf62ab695.m4a"
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            76,
+            14
+          ],
+          [
+            88,
+            38
+          ],
+          [
+            78,
+            62
+          ],
+          [
+            60,
+            78
+          ],
+          [
+            66,
+            96
+          ],
+          [
+            34,
+            96
+          ],
+          [
+            40,
+            78
+          ],
+          [
+            22,
+            62
+          ],
+          [
+            12,
+            38
+          ],
+          [
+            24,
+            14
+          ]
+        ],
+        "picture": {
+          "key": "balloon",
+          "label": "balloon",
+          "url": null
+        },
+        "done": {
+          "text": "A balloon!",
+          "say": "It's a balloon!",
+          "audio": "voice/line-02f6767f455aad89.m4a"
         }
       }
     },
