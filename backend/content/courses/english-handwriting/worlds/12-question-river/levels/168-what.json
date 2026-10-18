@@ -82,8 +82,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/w/|wʌ} or {/s/|sːː}?",
-        "audio": "voice/line-1eb89568f87268cd.m4a"
+        "say": "Sort the pictures! Does each one start with the {w|wʌ} sound, or the {s|sːː} sound?",
+        "audio": "voice/line-ecaea40ed41b0371.m4a"
       },
       "card": {
         "text": "w s",
@@ -213,31 +213,86 @@
     },
     {
       "id": "level-168-r5",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "It is a cup. Tap the drum once for every word!",
-        "audio": "voice/line-17e83776aefd31b2.m4a"
+        "text": "Join n to x!",
+        "say": "Tap the dots in order, from {n|ˈɛn} to {x|ˈɛks}. What will it make?",
+        "audio": "voice/line-7906eb14fa87b49f.m4a"
       },
       "card": {
-        "text": null,
+        "text": "n → x",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "It is a cup.",
-        "parts": [
-          "It",
-          "is",
-          "a",
-          "cup"
+      "connect": {
+        "labels": [
+          "n",
+          "o",
+          "p",
+          "q",
+          "r",
+          "s",
+          "t",
+          "u",
+          "v",
+          "w",
+          "x"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "It is a cup",
-          "say": "It is a cup. Four words!",
-          "audio": "voice/line-aaead03532274839.m4a"
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            76,
+            14
+          ],
+          [
+            88,
+            38
+          ],
+          [
+            78,
+            62
+          ],
+          [
+            60,
+            78
+          ],
+          [
+            66,
+            96
+          ],
+          [
+            34,
+            96
+          ],
+          [
+            40,
+            78
+          ],
+          [
+            22,
+            62
+          ],
+          [
+            12,
+            38
+          ],
+          [
+            24,
+            14
+          ]
+        ],
+        "picture": {
+          "key": "balloon",
+          "label": "balloon",
+          "url": null
+        },
+        "done": {
+          "text": "A balloon!",
+          "say": "It's a balloon!",
+          "audio": "voice/line-02f6767f455aad89.m4a"
         }
       }
     },
@@ -246,8 +301,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write who",
-        "say": "Look at the word who. Then write it from memory!",
-        "audio": "voice/line-4563f325ff6fe97c.m4a"
+        "say": "Look at the word who. It will hide. Then write it!",
+        "audio": "voice/line-9efb3a0ed77a57a2.m4a"
       },
       "card": {
         "text": null,
@@ -292,8 +347,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every what!",
-        "say": "Find every word what!",
-        "audio": "voice/line-640ff94f9745ce06.m4a"
+        "say": "Tap every word that says \"what\"!",
+        "audio": "voice/line-a6b367a04a534720.m4a"
       },
       "card": {
         "text": "what",

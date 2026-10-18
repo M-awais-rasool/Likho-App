@@ -78,8 +78,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/w/|wʌ} or {/s/|sːː}?",
-        "audio": "voice/line-1eb89568f87268cd.m4a"
+        "say": "Sort the pictures! Does each one start with the {w|wʌ} sound, or the {s|sːː} sound?",
+        "audio": "voice/line-ecaea40ed41b0371.m4a"
       },
       "card": {
         "text": "w s",
@@ -212,8 +212,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write down",
-        "say": "Look at the word down. Then write it from memory!",
-        "audio": "voice/line-7a7e40edfc29c9cb.m4a"
+        "say": "Look at the word down. It will hide. Then write it!",
+        "audio": "voice/line-ac8ba60281f3eabb.m4a"
       },
       "card": {
         "text": null,
@@ -262,8 +262,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every what!",
-        "say": "Find every word what!",
-        "audio": "voice/line-640ff94f9745ce06.m4a"
+        "say": "Tap every word that says \"what\"!",
+        "audio": "voice/line-a6b367a04a534720.m4a"
       },
       "card": {
         "text": "what",
@@ -370,34 +370,61 @@
     },
     {
       "id": "level-180-r10",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "What is this? It is a turtle! Tap the drum once for every word!",
-        "audio": "voice/line-0237e8a5c3dee520.m4a"
+        "text": "Join A to F!",
+        "say": "Tap the dots in order, from {A|ˈeɪ} to {F|ˈɛf}. What will it make?",
+        "audio": "voice/line-fdfb7df8eff11ea1.m4a"
       },
       "card": {
-        "text": null,
+        "text": "A → F",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "What is this? It is a turtle!",
-        "parts": [
-          "What",
-          "is",
-          "this",
-          "It",
-          "is",
-          "a",
-          "turtle"
+      "connect": {
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "What is this It is a turtle",
-          "say": "What is this? It is a turtle! Seven words!",
-          "audio": "voice/line-5b1a741529b8f409.m4a"
+        "points": [
+          [
+            50,
+            3
+          ],
+          [
+            88,
+            38
+          ],
+          [
+            69,
+            68
+          ],
+          [
+            50,
+            97
+          ],
+          [
+            31,
+            68
+          ],
+          [
+            12,
+            38
+          ]
+        ],
+        "picture": {
+          "key": "kite",
+          "label": "kite",
+          "url": null
+        },
+        "done": {
+          "text": "A kite!",
+          "say": "It's a kite!",
+          "audio": "voice/line-84a0b92f93e00a15.m4a"
         }
       }
     }

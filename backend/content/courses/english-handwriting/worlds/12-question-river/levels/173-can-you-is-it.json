@@ -75,8 +75,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write do",
-        "say": "Look at the word do. Then write it from memory!",
-        "audio": "voice/line-bb36c585222cff12.m4a"
+        "say": "Look at the word do. It will hide. Then write it!",
+        "audio": "voice/line-527ff81c2f4a62ca.m4a"
       },
       "card": {
         "text": null,
@@ -346,8 +346,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join s to z!",
-        "say": "Join the dots, from {s|ˈɛs} to {z|zˈiː}. What will it be?",
-        "audio": "voice/line-467f95193800c08b.m4a"
+        "say": "Tap the dots in order, from {s|ˈɛs} to {z|zˈiː}. What will it make?",
+        "audio": "voice/line-95150e7b077311e2.m4a"
       },
       "card": {
         "text": "s → z",

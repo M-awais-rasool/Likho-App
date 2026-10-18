@@ -82,8 +82,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write hop",
-        "say": "Look at the word hop. Then write it from memory!",
-        "audio": "voice/line-9cc3f318354f1260.m4a"
+        "say": "Look at the word hop. It will hide. Then write it!",
+        "audio": "voice/line-5e4171ffdca6a808.m4a"
       },
       "card": {
         "text": null,
@@ -151,33 +151,71 @@
     },
     {
       "id": "level-178-r5",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "Can you swim? Yes, I can! Tap the drum once for every word!",
-        "audio": "voice/line-a6bd528380e852af.m4a"
+        "text": "Join c to j!",
+        "say": "Tap the dots in order, from {c|sˈiː} to {j|ʤˈeɪ}. What will it make?",
+        "audio": "voice/line-fc8044997eda5b2f.m4a"
       },
       "card": {
-        "text": null,
+        "text": "c → j",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "Can you swim? Yes, I can!",
-        "parts": [
-          "Can",
-          "you",
-          "swim",
-          "Yes",
-          "I",
-          "can"
+      "connect": {
+        "labels": [
+          "c",
+          "d",
+          "e",
+          "f",
+          "g",
+          "h",
+          "i",
+          "j"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "Can you swim Yes I can",
-          "say": "Can you swim? Yes, I can! Six words!",
-          "audio": "voice/line-a459be24037ebc2a.m4a"
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            88,
+            20
+          ],
+          [
+            98,
+            50
+          ],
+          [
+            64,
+            46
+          ],
+          [
+            50,
+            96
+          ],
+          [
+            36,
+            46
+          ],
+          [
+            2,
+            50
+          ],
+          [
+            12,
+            20
+          ]
+        ],
+        "picture": {
+          "key": "umbrella",
+          "label": "umbrella",
+          "url": null
+        },
+        "done": {
+          "text": "An umbrella!",
+          "say": "It's an umbrella!",
+          "audio": "voice/line-4a730bcd271939db.m4a"
         }
       }
     },
@@ -209,8 +247,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every jumping!",
-        "say": "Find every word jumping!",
-        "audio": "voice/line-809ab75a3969324a.m4a"
+        "say": "Tap every word that says \"jumping\"!",
+        "audio": "voice/line-1df395105dd35070.m4a"
       },
       "card": {
         "text": "jumping",

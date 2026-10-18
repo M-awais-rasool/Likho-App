@@ -79,8 +79,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -350,32 +350,61 @@
     },
     {
       "id": "level-172-r9",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "How many? One, two, three! Tap the drum once for every word!",
-        "audio": "voice/line-7c7ad7bf93d60d67.m4a"
+        "text": "Join H to M!",
+        "say": "Tap the dots in order, from {H|ˈeɪʧ} to {M|ˈɛm}. What will it make?",
+        "audio": "voice/line-56354f16d097ef2a.m4a"
       },
       "card": {
-        "text": null,
+        "text": "H → M",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "How many? One, two, three!",
-        "parts": [
-          "How",
-          "many",
-          "One",
-          "two",
-          "three"
+      "connect": {
+        "labels": [
+          "H",
+          "I",
+          "J",
+          "K",
+          "L",
+          "M"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "How many One two three",
-          "say": "How many? One, two, three! Five words!",
-          "audio": "voice/line-7b0fe69d103cf337.m4a"
+        "points": [
+          [
+            50,
+            3
+          ],
+          [
+            88,
+            38
+          ],
+          [
+            69,
+            68
+          ],
+          [
+            50,
+            97
+          ],
+          [
+            31,
+            68
+          ],
+          [
+            12,
+            38
+          ]
+        ],
+        "picture": {
+          "key": "kite",
+          "label": "kite",
+          "url": null
+        },
+        "done": {
+          "text": "A kite!",
+          "say": "It's a kite!",
+          "audio": "voice/line-84a0b92f93e00a15.m4a"
         }
       }
     },
@@ -384,8 +413,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/h/|hʌ} or {/m/|mːː}?",
-        "audio": "voice/line-8ab30bcd9107681f.m4a"
+        "say": "Sort the pictures! Does each one start with the {h|hʌ} sound, or the {m|mːː} sound?",
+        "audio": "voice/line-acc2db6db19e8eee.m4a"
       },
       "card": {
         "text": "h m",

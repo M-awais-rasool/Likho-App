@@ -78,8 +78,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -395,8 +395,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/b/|bʌ} or {/w/|wʌ}?",
-        "audio": "voice/line-0ff4e05d6c5560cb.m4a"
+        "say": "Sort the pictures! Does each one start with the {b|bʌ} sound, or the {w|wʌ} sound?",
+        "audio": "voice/line-5afb583255a1a84a.m4a"
       },
       "card": {
         "text": "b w",

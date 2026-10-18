@@ -81,8 +81,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write why",
-        "say": "Look at the word why. Then write it from memory!",
-        "audio": "voice/line-8af675c000916376.m4a"
+        "say": "Look at the word why. It will hide. Then write it!",
+        "audio": "voice/line-6167559162c78430.m4a"
       },
       "card": {
         "text": null,
@@ -285,35 +285,86 @@
     },
     {
       "id": "level-171-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "Why do you smile? Because I am happy! Tap the drum once for every word!",
-        "audio": "voice/line-1b0e91a9bc717e2d.m4a"
+        "text": "Join A to K!",
+        "say": "Tap the dots in order, from {A|ˈeɪ} to {K|kˈeɪ}. What will it make?",
+        "audio": "voice/line-d8f2b56abc0f6b65.m4a"
       },
       "card": {
-        "text": null,
+        "text": "A → K",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "Why do you smile? Because I am happy!",
-        "parts": [
-          "Why",
-          "do",
-          "you",
-          "smile",
-          "Because",
+      "connect": {
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
           "I",
-          "am",
-          "happy"
+          "J",
+          "K"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "Why do you smile Because I am happy",
-          "say": "Why do you smile? Because I am happy! Eight words!",
-          "audio": "voice/line-f1dd1905830980cc.m4a"
+        "points": [
+          [
+            50,
+            2
+          ],
+          [
+            80,
+            36
+          ],
+          [
+            60,
+            36
+          ],
+          [
+            88,
+            66
+          ],
+          [
+            60,
+            66
+          ],
+          [
+            60,
+            96
+          ],
+          [
+            40,
+            96
+          ],
+          [
+            40,
+            66
+          ],
+          [
+            12,
+            66
+          ],
+          [
+            40,
+            36
+          ],
+          [
+            20,
+            36
+          ]
+        ],
+        "picture": {
+          "key": "tree",
+          "label": "tree",
+          "url": null
+        },
+        "done": {
+          "text": "A tree!",
+          "say": "It's a tree!",
+          "audio": "voice/line-9f1ccab9d42ec40f.m4a"
         }
       }
     },
@@ -370,8 +421,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
