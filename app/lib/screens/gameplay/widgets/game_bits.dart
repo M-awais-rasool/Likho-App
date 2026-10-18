@@ -268,15 +268,20 @@ class RenderBalancedText extends RenderBox {
 /// his face. [step] (writing) puts the stroke number in a blue dot, the
 /// same dot that marks where the stroke starts on the pad.
 class SpeechBubble extends StatelessWidget {
-  const SpeechBubble({super.key, required this.text, this.step});
+  const SpeechBubble({super.key, required this.text, this.step, this.nudge = 0});
   final String text;
   final int? step;
 
+  /// Counts Pencil's reminders: a new one pops the bubble again.
+  final int nudge;
+
   @override
   Widget build(BuildContext context) {
-    final style = LikhoFonts.title(size: 16, weight: FontWeight.w800).copyWith(height: 1);
+    // one line; up to three, a little smaller, for a longer sentence
+    final size = text.length > 60 ? 14.0 : (text.length > 26 ? 15.0 : 16.0);
+    final style = LikhoFonts.title(size: size, weight: FontWeight.w800).copyWith(height: text.length > 26 ? 1.15 : 1);
     return TweenAnimationBuilder<double>(
-      key: ValueKey((text, step)),
+      key: ValueKey((text, step, nudge)),
       tween: Tween(begin: 0, end: 1),
       duration: const Duration(milliseconds: 300),
       builder: (context, t, child) {
@@ -312,7 +317,7 @@ class SpeechBubble extends StatelessWidget {
                 ),
                 const SizedBox(width: 7),
               ],
-              Flexible(child: Text(text, softWrap: false, overflow: TextOverflow.fade, style: style)),
+              Flexible(child: Text(text, maxLines: 3, overflow: TextOverflow.ellipsis, style: style)),
             ],
           ),
         ),
