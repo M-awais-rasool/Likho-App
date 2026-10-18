@@ -115,9 +115,9 @@
       "id": "level-49-r3",
       "type": "pick",
       "prompt": {
-        "text": "What starts with /q/?",
-        "say": "{q|kjˈuː} says {/q/|kwʌ}. Which one starts with {/q/|kwʌ}?",
-        "audio": "voice/line-c6b3c40ca4fab971.m4a"
+        "text": "What starts with \"q\"?",
+        "say": "{q|kjˈuː} makes the {q|kwʌ} sound. Which one starts with that sound?",
+        "audio": "voice/line-8c5d9409fb0333a0.m4a"
       },
       "card": {
         "text": "q",
@@ -274,8 +274,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write small q",
-        "say": "Look at small {q|kjˈuː}. Then write it from memory!",
-        "audio": "voice/line-38aa038608481194.m4a"
+        "say": "Look at small {q|kjˈuː}. It will hide. Then write it!",
+        "audio": "voice/line-fb4a291f0edad930.m4a"
       },
       "card": {
         "text": null,
@@ -298,68 +298,67 @@
     },
     {
       "id": "level-49-r8",
-      "type": "sounds",
+      "type": "connect",
       "prompt": {
-        "text": "Tap each sound, then read!",
-        "say": "Tap each sound. Then slide the arrow to read the word!",
-        "audio": "voice/line-df066702317736d8.m4a"
+        "text": "Join n to t!",
+        "say": "Tap the dots in order, from {n|ˈɛn} to {t|tˈiː}. What will it make?",
+        "audio": "voice/line-84c442480e1b12f6.m4a"
       },
       "card": {
-        "text": null,
+        "text": "n → t",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "sounds": {
-        "word": "queen",
-        "parts": [
-          {
-            "text": "qu",
-            "say": "{/qu/|kwʌ}",
-            "audio": "voice/line-e37fc06cb9fd0ae9.m4a"
-          },
-          {
-            "text": "ee",
-            "say": "{/ee/|iː}",
-            "audio": "voice/line-701f08c8f6944cca.m4a"
-          },
-          {
-            "text": "n",
-            "say": "{/n/|nːː}",
-            "audio": "voice/line-1f9de0e8fd168b84.m4a"
-          }
+      "connect": {
+        "labels": [
+          "n",
+          "o",
+          "p",
+          "q",
+          "r",
+          "s",
+          "t"
         ],
-        "blend": {
-          "text": "queen",
-          "say": "queen!",
-          "audio": "voice/line-1baf49ab2dada123.m4a"
+        "points": [
+          [
+            6,
+            28
+          ],
+          [
+            30,
+            54
+          ],
+          [
+            50,
+            10
+          ],
+          [
+            70,
+            54
+          ],
+          [
+            94,
+            28
+          ],
+          [
+            84,
+            88
+          ],
+          [
+            16,
+            88
+          ]
+        ],
+        "picture": {
+          "key": "crown",
+          "label": "crown",
+          "url": null
         },
-        "choices": [
-          {
-            "label": "queen",
-            "picture": {
-              "key": "queen",
-              "label": "queen",
-              "url": null
-            }
-          },
-          {
-            "label": "pig",
-            "picture": {
-              "key": "pig",
-              "label": "pig",
-              "url": null
-            }
-          },
-          {
-            "label": "zebra",
-            "picture": {
-              "key": "zebra",
-              "label": "zebra",
-              "url": null
-            }
-          }
-        ],
-        "answer": 0
+        "done": {
+          "text": "A crown!",
+          "say": "It's a crown!",
+          "audio": "voice/line-9649373564b61d61.m4a"
+        }
       }
     }
   ]

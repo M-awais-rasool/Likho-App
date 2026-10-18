@@ -261,8 +261,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join s to z!",
-        "say": "Join the dots, from {s|ˈɛs} to {z|zˈiː}. What will it be?",
-        "audio": "voice/line-467f95193800c08b.m4a"
+        "say": "Tap the dots in order, from {s|ˈɛs} to {z|zˈiː}. What will it make?",
+        "audio": "voice/line-95150e7b077311e2.m4a"
       },
       "card": {
         "text": "s → z",

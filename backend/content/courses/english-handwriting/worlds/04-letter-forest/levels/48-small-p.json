@@ -154,9 +154,9 @@
       "id": "level-48-r5",
       "type": "pick",
       "prompt": {
-        "text": "What starts with /p/?",
-        "say": "{p|pˈiː} says {/p/|pʌ}. Which one starts with {/p/|pʌ}?",
-        "audio": "voice/line-3f4758ddb5061779.m4a"
+        "text": "What starts with \"p\"?",
+        "say": "{p|pˈiː} makes the {p|pʌ} sound. Which one starts with that sound?",
+        "audio": "voice/line-2f93448e255c207f.m4a"
       },
       "card": {
         "text": "p",
@@ -262,32 +262,71 @@
     },
     {
       "id": "level-48-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Clap the beats!",
-        "say": "Pig! Tap the drum for every beat in pig.",
-        "audio": "voice/line-67d832084732c5d0.m4a"
+        "text": "Join l to s!",
+        "say": "Tap the dots in order, from {l|ˈɛl} to {s|ˈɛs}. What will it make?",
+        "audio": "voice/line-6864fe8cce37559b.m4a"
       },
       "card": {
-        "text": null,
+        "text": "l → s",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "pig",
-        "parts": [
-          "pig"
+      "connect": {
+        "labels": [
+          "l",
+          "m",
+          "n",
+          "o",
+          "p",
+          "q",
+          "r",
+          "s"
         ],
-        "unit": "syllable",
+        "points": [
+          [
+            8,
+            44
+          ],
+          [
+            40,
+            44
+          ],
+          [
+            40,
+            10
+          ],
+          [
+            60,
+            10
+          ],
+          [
+            60,
+            44
+          ],
+          [
+            92,
+            44
+          ],
+          [
+            92,
+            94
+          ],
+          [
+            8,
+            94
+          ]
+        ],
         "picture": {
-          "key": "pig",
-          "label": "pig",
+          "key": "cake",
+          "label": "cake",
           "url": null
         },
-        "hint": {
-          "text": "pig",
-          "say": "Pig. One beat!",
-          "audio": "voice/line-376df7ded4ba5bed.m4a"
+        "done": {
+          "text": "A cake!",
+          "say": "It's a cake!",
+          "audio": "voice/line-603810a81e3a93a1.m4a"
         }
       }
     }
