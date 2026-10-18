@@ -148,8 +148,8 @@ HOW KIDS LEARN TO WRITE
 • Colourful pictures for every word: a is for apple!
 • Older letters keep coming back, so children remember them
 
-12 KINDS OF GAMES
-Every level mixes writing with short games: pop the bubbles, find the picture, sort into baskets, match the pairs, build the word, hunt for the letter, true or silly, fix Pencil's mistakes, tap the sound buttons to read a word, clap the beats on a drum, connect the dots in ABC order and, of course, write it.
+11 KINDS OF GAMES
+Every level mixes writing with short games: pop the bubbles, find the picture, sort into baskets, match the pairs, build the word, hunt for the letter, true or silly, fix Pencil's mistakes, tap the sound buttons to read a word, connect the dots in ABC order and, of course, write it.
 
 14 WORLDS, 210 LEVELS
 1. Letter Land: capital letters A to M
@@ -202,6 +202,8 @@ Notes on the full description:
   microphone permission). Their place went to three games without speaking: sound buttons, clap
   the beats and connect the dots (12 kinds of games now). Update the full description in Play
   Console with this text.
+- 18 October 2026: the drum game (clap the beats) was taken out, so 11 kinds of games. Paste
+  the full description into Play Console again.
 - Not claimed on purpose:
   - anything about speaking or the microphone (the app has no microphone permission)
   - left-handed mode (a stored setting that does not change the game yet)
