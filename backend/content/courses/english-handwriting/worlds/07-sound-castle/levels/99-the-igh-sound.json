@@ -263,8 +263,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every right!",
-        "say": "Find every word right!",
-        "audio": "voice/line-08c75470d87fbbe8.m4a"
+        "say": "Tap every word that says \"right\"!",
+        "audio": "voice/line-e21ad48fc7140654.m4a"
       },
       "card": {
         "text": "right",
@@ -291,8 +291,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join d to k!",
-        "say": "Join the dots, from {d|dˈiː} to {k|kˈeɪ}. What will it be?",
-        "audio": "voice/line-9d5f77c16671a75b.m4a"
+        "say": "Tap the dots in order, from {d|dˈiː} to {k|kˈeɪ}. What will it make?",
+        "audio": "voice/line-60e9afb438db683b.m4a"
       },
       "card": {
         "text": "d → k",
@@ -361,8 +361,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",

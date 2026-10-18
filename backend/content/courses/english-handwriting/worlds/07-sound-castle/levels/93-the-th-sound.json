@@ -214,9 +214,9 @@
       "id": "level-93-r6",
       "type": "sort",
       "prompt": {
-        "text": "Feed it /th/!",
-        "say": "This monster only eats words with {/th/|θːː}. Feed it!",
-        "audio": "voice/line-0ac8cbf692f7405a.m4a"
+        "text": "Feed it \"th\"!",
+        "say": "This monster eats words with the {th|θːː} sound. Feed it!",
+        "audio": "voice/line-f7f7074a6b7a68a3.m4a"
       },
       "card": {
         "text": "th",
@@ -294,8 +294,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every three!",
-        "say": "Find every word three!",
-        "audio": "voice/line-dd4b889423260050.m4a"
+        "say": "Tap every word that says \"three\"!",
+        "audio": "voice/line-33b4ffb2dfc6323b.m4a"
       },
       "card": {
         "text": "three",
@@ -335,17 +335,17 @@
         "parts": [
           {
             "text": "b",
-            "say": "{/b/|bʌ}",
+            "say": "{b|bʌ}",
             "audio": "voice/line-54284489cdcd15c3.m4a"
           },
           {
             "text": "a",
-            "say": "{/a/|æ}",
+            "say": "{a|æ}",
             "audio": "voice/line-6a230dad287fe9e9.m4a"
           },
           {
             "text": "th",
-            "say": "{/th/|θːː}",
+            "say": "{th|θːː}",
             "audio": "voice/line-a0d1b465a64ebbb2.m4a"
           }
         ],
@@ -388,8 +388,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write bath",
-        "say": "Look at the word bath. Then write it from memory!",
-        "audio": "voice/line-1d8eb69d0f3d7aef.m4a"
+        "say": "Look at the word bath. It will hide. Then write it!",
+        "audio": "voice/line-98ea290c70c9d5d5.m4a"
       },
       "card": {
         "text": null,

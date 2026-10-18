@@ -204,8 +204,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -242,8 +242,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every tree!",
-        "say": "Find every word tree!",
-        "audio": "voice/line-2f3013948625be39.m4a"
+        "say": "Tap every word that says \"tree\"!",
+        "audio": "voice/line-46d2f6686df8ee08.m4a"
       },
       "card": {
         "text": "tree",
@@ -363,17 +363,17 @@
         "parts": [
           {
             "text": "sh",
-            "say": "{/sh/|ʃːː}",
+            "say": "{sh|ʃːː}",
             "audio": "voice/line-9800483307c29bf6.m4a"
           },
           {
             "text": "i",
-            "say": "{/i/|ɪ}",
+            "say": "{i|ɪ}",
             "audio": "voice/line-55c556f50179c6d4.m4a"
           },
           {
             "text": "p",
-            "say": "{/p/|pʌ}",
+            "say": "{p|pʌ}",
             "audio": "voice/line-6b361a2ef876dccb.m4a"
           }
         ],

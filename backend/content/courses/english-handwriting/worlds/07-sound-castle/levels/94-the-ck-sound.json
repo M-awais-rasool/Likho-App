@@ -90,8 +90,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write duck",
-        "say": "Look at the word duck. Then write it from memory!",
-        "audio": "voice/line-d621043f1ab01cfc.m4a"
+        "say": "Look at the word duck. It will hide. Then write it!",
+        "audio": "voice/line-dd02cd887d042db1.m4a"
       },
       "card": {
         "text": null,
@@ -241,8 +241,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every rock!",
-        "say": "Find every word rock!",
-        "audio": "voice/line-87fb42d443239006.m4a"
+        "say": "Tap every word that says \"rock\"!",
+        "audio": "voice/line-7ba8cd057108557e.m4a"
       },
       "card": {
         "text": "rock",
@@ -282,17 +282,17 @@
         "parts": [
           {
             "text": "d",
-            "say": "{/d/|dʌ}",
+            "say": "{d|dʌ}",
             "audio": "voice/line-f06c02b8a2619c78.m4a"
           },
           {
             "text": "u",
-            "say": "{/u/|ʌ}",
+            "say": "{u|ʌ}",
             "audio": "voice/line-6094ce3b4313c3cc.m4a"
           },
           {
             "text": "ck",
-            "say": "{/ck/|kʌ}",
+            "say": "{ck|kʌ}",
             "audio": "voice/line-eec1fee16c5c51e0.m4a"
           }
         ],

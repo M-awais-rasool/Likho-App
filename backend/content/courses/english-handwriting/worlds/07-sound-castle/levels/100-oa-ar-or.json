@@ -215,8 +215,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/b/|bʌ} or {/g/|ɡʌ}?",
-        "audio": "voice/line-ec84937b60d1ec60.m4a"
+        "say": "Sort the pictures! Does each one start with the {b|bʌ} sound, or the {g|ɡʌ} sound?",
+        "audio": "voice/line-9a2ab756d13c3122.m4a"
       },
       "card": {
         "text": "b g",
@@ -290,8 +290,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every star!",
-        "say": "Find every word star!",
-        "audio": "voice/line-6992dbfd2b2df6e4.m4a"
+        "say": "Tap every word that says \"star\"!",
+        "audio": "voice/line-624669d43ba87688.m4a"
       },
       "card": {
         "text": "star",
@@ -331,17 +331,17 @@
         "parts": [
           {
             "text": "b",
-            "say": "{/b/|bʌ}",
+            "say": "{b|bʌ}",
             "audio": "voice/line-54284489cdcd15c3.m4a"
           },
           {
             "text": "oa",
-            "say": "{/oa/|oʊ}",
+            "say": "{oa|oʊ}",
             "audio": "voice/line-6ba096958ec4e79c.m4a"
           },
           {
             "text": "t",
-            "say": "{/t/|tʌ}",
+            "say": "{t|tʌ}",
             "audio": "voice/line-570d1fc0dffd834f.m4a"
           }
         ],
@@ -384,8 +384,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write star",
-        "say": "Look at the word star. Then write it from memory!",
-        "audio": "voice/line-2b1987733fd4b077.m4a"
+        "say": "Look at the word star. It will hide. Then write it!",
+        "audio": "voice/line-13d2b6c6cdcba097.m4a"
       },
       "card": {
         "text": null,

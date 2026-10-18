@@ -57,8 +57,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/p/|pʌ} or {/d/|dʌ}?",
-        "audio": "voice/line-23a2f6ba528599e7.m4a"
+        "say": "Sort the pictures! Does each one start with the {p|pʌ} sound, or the {d|dʌ} sound?",
+        "audio": "voice/line-7a5fe7b95dd66e89.m4a"
       },
       "card": {
         "text": "p d",
@@ -189,8 +189,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every thumb!",
-        "say": "Find every word thumb!",
-        "audio": "voice/line-283d698c1d2f89a0.m4a"
+        "say": "Tap every word that says \"thumb\"!",
+        "audio": "voice/line-d9452bb2a351dc56.m4a"
       },
       "card": {
         "text": "thumb",
@@ -217,8 +217,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write cow",
-        "say": "Look at the word cow. Then write it from memory!",
-        "audio": "voice/line-f569ce2582277909.m4a"
+        "say": "Look at the word cow. It will hide. Then write it!",
+        "audio": "voice/line-d9b87910269ef001.m4a"
       },
       "card": {
         "text": null,
@@ -317,33 +317,76 @@
     },
     {
       "id": "level-105-r9",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "The fish is in the sea. Tap the drum once for every word!",
-        "audio": "voice/line-b8edb4cbb35f7d4e.m4a"
+        "text": "Join d to l!",
+        "say": "Tap the dots in order, from {d|dˈiː} to {l|ˈɛl}. What will it make?",
+        "audio": "voice/line-9f2472f7ab77dc1f.m4a"
       },
       "card": {
-        "text": null,
+        "text": "d → l",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "The fish is in the sea.",
-        "parts": [
-          "The",
-          "fish",
-          "is",
-          "in",
-          "the",
-          "sea"
+      "connect": {
+        "labels": [
+          "d",
+          "e",
+          "f",
+          "g",
+          "h",
+          "i",
+          "j",
+          "k",
+          "l"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "The fish is in the sea",
-          "say": "The fish is in the sea. Six words!",
-          "audio": "voice/line-b050d72eb8524cff.m4a"
+        "points": [
+          [
+            62,
+            4
+          ],
+          [
+            30,
+            10
+          ],
+          [
+            10,
+            36
+          ],
+          [
+            8,
+            64
+          ],
+          [
+            28,
+            88
+          ],
+          [
+            62,
+            96
+          ],
+          [
+            44,
+            74
+          ],
+          [
+            36,
+            50
+          ],
+          [
+            44,
+            26
+          ]
+        ],
+        "picture": {
+          "key": "moon",
+          "label": "moon",
+          "url": null
+        },
+        "done": {
+          "text": "A moon!",
+          "say": "It's a moon!",
+          "audio": "voice/line-24627cec3ea7f4e6.m4a"
         }
       }
     },
@@ -365,17 +408,17 @@
         "parts": [
           {
             "text": "sh",
-            "say": "{/sh/|ʃːː}",
+            "say": "{sh|ʃːː}",
             "audio": "voice/line-9800483307c29bf6.m4a"
           },
           {
             "text": "i",
-            "say": "{/i/|ɪ}",
+            "say": "{i|ɪ}",
             "audio": "voice/line-55c556f50179c6d4.m4a"
           },
           {
             "text": "p",
-            "say": "{/p/|pʌ}",
+            "say": "{p|pʌ}",
             "audio": "voice/line-6b361a2ef876dccb.m4a"
           }
         ],

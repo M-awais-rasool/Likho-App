@@ -275,8 +275,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every cherry!",
-        "say": "Find every word cherry!",
-        "audio": "voice/line-d605ebc65a041dc5.m4a"
+        "say": "Tap every word that says \"cherry\"!",
+        "audio": "voice/line-d6a55cb748da43b8.m4a"
       },
       "card": {
         "text": "cherry",
@@ -316,17 +316,17 @@
         "parts": [
           {
             "text": "ch",
-            "say": "{/ch/|ʧʌ}",
+            "say": "{ch|ʧʌ}",
             "audio": "voice/line-c992235ba2e2738f.m4a"
           },
           {
             "text": "i",
-            "say": "{/i/|ɪ}",
+            "say": "{i|ɪ}",
             "audio": "voice/line-55c556f50179c6d4.m4a"
           },
           {
             "text": "ck",
-            "say": "{/ck/|kʌ}",
+            "say": "{ck|kʌ}",
             "audio": "voice/line-eec1fee16c5c51e0.m4a"
           }
         ],
@@ -369,8 +369,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
