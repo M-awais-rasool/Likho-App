@@ -115,9 +115,9 @@
       "id": "level-05-r3",
       "type": "sort",
       "prompt": {
-        "text": "Feed it /e/!",
-        "say": "This monster only eats things that start with {/e/|ɛ}. Feed it!",
-        "audio": "voice/line-31053af8c2b0a3fd.m4a"
+        "text": "Feed it \"e\"!",
+        "say": "This monster eats things that start with the {e|ɛ} sound. Feed it!",
+        "audio": "voice/line-d4b3fb3bfcde82db.m4a"
       },
       "card": {
         "text": "E",
@@ -273,8 +273,8 @@
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
+        "say": "Put the letters in {A|ˈeɪ} B C order!",
+        "audio": "voice/line-060eae3d379a9a2b.m4a"
       },
       "card": {
         "text": null,
@@ -298,8 +298,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write E",
-        "say": "Look at {E|ˈiː}. Then write it from memory!",
-        "audio": "voice/line-20e933cbcbfc706f.m4a"
+        "say": "Look at {E|ˈiː}. It will hide. Then write it!",
+        "audio": "voice/line-efe82003f0adff71.m4a"
       },
       "card": {
         "text": null,
@@ -322,32 +322,66 @@
     },
     {
       "id": "level-05-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Clap the beats!",
-        "say": "Egg! Tap the drum for every beat in egg.",
-        "audio": "voice/line-db589d41d871a3e9.m4a"
+        "text": "Join B to H!",
+        "say": "Tap the dots in order, from {B|bˈiː} to {H|ˈeɪʧ}. What will it make?",
+        "audio": "voice/line-714ff1edee3eda75.m4a"
       },
       "card": {
-        "text": null,
+        "text": "B → H",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "egg",
-        "parts": [
-          "egg"
+      "connect": {
+        "labels": [
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H"
         ],
-        "unit": "syllable",
+        "points": [
+          [
+            6,
+            28
+          ],
+          [
+            30,
+            54
+          ],
+          [
+            50,
+            10
+          ],
+          [
+            70,
+            54
+          ],
+          [
+            94,
+            28
+          ],
+          [
+            84,
+            88
+          ],
+          [
+            16,
+            88
+          ]
+        ],
         "picture": {
-          "key": "egg",
-          "label": "egg",
+          "key": "crown",
+          "label": "crown",
           "url": null
         },
-        "hint": {
-          "text": "egg",
-          "say": "Egg. One beat!",
-          "audio": "voice/line-9a41eeaa436a221c.m4a"
+        "done": {
+          "text": "A crown!",
+          "say": "It's a crown!",
+          "audio": "voice/line-9649373564b61d61.m4a"
         }
       }
     }

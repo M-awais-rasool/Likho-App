@@ -154,9 +154,9 @@
       "id": "level-04-r5",
       "type": "pick",
       "prompt": {
-        "text": "What starts with /d/?",
-        "say": "{D|dˈiː} says {/d/|dʌ}. Which one starts with {/d/|dʌ}?",
-        "audio": "voice/line-b0a6cb3ca9733855.m4a"
+        "text": "What starts with \"d\"?",
+        "say": "{D|dˈiː} makes the {d|dʌ} sound. Which one starts with that sound?",
+        "audio": "voice/line-7c15c35916e4a70f.m4a"
       },
       "card": {
         "text": "D",
@@ -265,8 +265,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join A to H!",
-        "say": "Join the dots, from {A|ˈeɪ} to {H|ˈeɪʧ}. What will it be?",
-        "audio": "voice/line-e5d4c83d8c1f0a42.m4a"
+        "say": "Tap the dots in order, from {A|ˈeɪ} to {H|ˈeɪʧ}. What will it make?",
+        "audio": "voice/line-190a20d349a9a17c.m4a"
       },
       "card": {
         "text": "A → H",

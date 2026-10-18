@@ -115,9 +115,9 @@
       "id": "level-09-r3",
       "type": "sort",
       "prompt": {
-        "text": "Feed it /h/!",
-        "say": "This monster only eats things that start with {/h/|hʌ}. Feed it!",
-        "audio": "voice/line-5ee181652f351087.m4a"
+        "text": "Feed it \"h\"!",
+        "say": "This monster eats things that start with the {h|hʌ} sound. Feed it!",
+        "audio": "voice/line-cfb09c6c462aa7d5.m4a"
       },
       "card": {
         "text": "H",
@@ -249,8 +249,8 @@
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
+        "say": "Put the letters in {A|ˈeɪ} B C order!",
+        "audio": "voice/line-060eae3d379a9a2b.m4a"
       },
       "card": {
         "text": null,
@@ -274,8 +274,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write H",
-        "say": "Look at {H|ˈeɪʧ}. Then write it from memory!",
-        "audio": "voice/line-a0db1c1c7d7e79d4.m4a"
+        "say": "Look at {H|ˈeɪʧ}. It will hide. Then write it!",
+        "audio": "voice/line-51f5e61db2fe195e.m4a"
       },
       "card": {
         "text": null,
@@ -301,8 +301,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join E to J!",
-        "say": "Join the dots, from {E|ˈiː} to {J|ʤˈeɪ}. What will it be?",
-        "audio": "voice/line-59a4f58ae78aea9b.m4a"
+        "say": "Tap the dots in order, from {E|ˈiː} to {J|ʤˈeɪ}. What will it make?",
+        "audio": "voice/line-ec1ca816aae5c74b.m4a"
       },
       "card": {
         "text": "E → J",

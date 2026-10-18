@@ -161,8 +161,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/m/|mːː} or {/l/|lːː}?",
-        "audio": "voice/line-2802c9b9f7cc68b4.m4a"
+        "say": "Sort the pictures! Does each one start with the {m|mːː} sound, or the {l|lːː} sound?",
+        "audio": "voice/line-154c39771bd0e231.m4a"
       },
       "card": {
         "text": "M L",
@@ -259,8 +259,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join I to P!",
-        "say": "Join the dots, from {I|ˈaɪ} to {P|pˈiː}. What will it be?",
-        "audio": "voice/line-069a924e3cf5fa3b.m4a"
+        "say": "Tap the dots in order, from {I|ˈaɪ} to {P|pˈiː}. What will it make?",
+        "audio": "voice/line-cd467d391b14e949.m4a"
       },
       "card": {
         "text": "I → P",

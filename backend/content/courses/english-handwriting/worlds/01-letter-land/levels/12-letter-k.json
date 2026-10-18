@@ -154,9 +154,9 @@
       "id": "level-12-r5",
       "type": "sort",
       "prompt": {
-        "text": "Feed it /k/!",
-        "say": "This monster only eats things that start with {/k/|kʌ}. Feed it!",
-        "audio": "voice/line-e10cafb53ca96c00.m4a"
+        "text": "Feed it \"k\"!",
+        "say": "This monster eats things that start with the {k|kʌ} sound. Feed it!",
+        "audio": "voice/line-358418d84d9a2692.m4a"
       },
       "card": {
         "text": "K",
@@ -225,8 +225,8 @@
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
+        "say": "Put the letters in {A|ˈeɪ} B C order!",
+        "audio": "voice/line-060eae3d379a9a2b.m4a"
       },
       "card": {
         "text": null,
@@ -270,32 +270,91 @@
     },
     {
       "id": "level-12-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Clap the beats!",
-        "say": "Kite! Tap the drum for every beat in kite.",
-        "audio": "voice/line-01a073449fb3738c.m4a"
+        "text": "Join E to P!",
+        "say": "Tap the dots in order, from {E|ˈiː} to {P|pˈiː}. What will it make?",
+        "audio": "voice/line-7bf87940b5f99714.m4a"
       },
       "card": {
-        "text": null,
+        "text": "E → P",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "kite",
-        "parts": [
-          "kite"
+      "connect": {
+        "labels": [
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J",
+          "K",
+          "L",
+          "M",
+          "N",
+          "O",
+          "P"
         ],
-        "unit": "syllable",
+        "points": [
+          [
+            50,
+            3
+          ],
+          [
+            66,
+            22
+          ],
+          [
+            91,
+            27
+          ],
+          [
+            82,
+            50
+          ],
+          [
+            91,
+            74
+          ],
+          [
+            66,
+            78
+          ],
+          [
+            50,
+            97
+          ],
+          [
+            34,
+            78
+          ],
+          [
+            9,
+            74
+          ],
+          [
+            18,
+            50
+          ],
+          [
+            9,
+            26
+          ],
+          [
+            34,
+            22
+          ]
+        ],
         "picture": {
-          "key": "kite",
-          "label": "kite",
+          "key": "sun",
+          "label": "sun",
           "url": null
         },
-        "hint": {
-          "text": "kite",
-          "say": "Kite. One beat!",
-          "audio": "voice/line-737eca8daaff1441.m4a"
+        "done": {
+          "text": "A sun!",
+          "say": "It's a sun!",
+          "audio": "voice/line-f71c516d1c115862.m4a"
         }
       }
     }

@@ -193,8 +193,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/c/|kʌ} or {/b/|bʌ}?",
-        "audio": "voice/line-762e4a4c7adc5164.m4a"
+        "say": "Sort the pictures! Does each one start with the {c|kʌ} sound, or the {b|bʌ} sound?",
+        "audio": "voice/line-c45b173988c270d0.m4a"
       },
       "card": {
         "text": "C B",
@@ -268,8 +268,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write C",
-        "say": "Look at {C|sˈiː}. Then write it from memory!",
-        "audio": "voice/line-f4395db0c59e1cda.m4a"
+        "say": "Look at {C|sˈiː}. It will hide. Then write it!",
+        "audio": "voice/line-a68b32802b26eafb.m4a"
       },
       "card": {
         "text": null,
@@ -292,32 +292,66 @@
     },
     {
       "id": "level-03-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Clap the beats!",
-        "say": "Cat! Tap the drum for every beat in cat.",
-        "audio": "voice/line-fb02bf693b69c841.m4a"
+        "text": "Join A to G!",
+        "say": "Tap the dots in order, from {A|ˈeɪ} to {G|ʤˈiː}. What will it make?",
+        "audio": "voice/line-e683026f8b4de1ca.m4a"
       },
       "card": {
-        "text": null,
+        "text": "A → G",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "cat",
-        "parts": [
-          "cat"
+      "connect": {
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G"
         ],
-        "unit": "syllable",
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            82,
+            50
+          ],
+          [
+            98,
+            64
+          ],
+          [
+            80,
+            94
+          ],
+          [
+            20,
+            94
+          ],
+          [
+            2,
+            64
+          ],
+          [
+            50,
+            64
+          ]
+        ],
         "picture": {
-          "key": "cat",
-          "label": "cat",
+          "key": "boat",
+          "label": "boat",
           "url": null
         },
-        "hint": {
-          "text": "cat",
-          "say": "Cat. One beat!",
-          "audio": "voice/line-bf31acba7ff32396.m4a"
+        "done": {
+          "text": "A boat!",
+          "say": "It's a boat!",
+          "audio": "voice/line-a705e55e86a2309a.m4a"
         }
       }
     }

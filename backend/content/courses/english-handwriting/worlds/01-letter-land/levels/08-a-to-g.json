@@ -112,8 +112,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/b/|bʌ} or {/c/|kʌ}?",
-        "audio": "voice/line-5eb8aa7012d026dc.m4a"
+        "say": "Sort the pictures! Does each one start with the {b|bʌ} sound, or the {c|kʌ} sound?",
+        "audio": "voice/line-71e5ae92fbf35b65.m4a"
       },
       "card": {
         "text": "B C",
@@ -272,8 +272,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write E",
-        "say": "Look at {E|ˈiː}. Then write it from memory!",
-        "audio": "voice/line-20e933cbcbfc706f.m4a"
+        "say": "Look at {E|ˈiː}. It will hide. Then write it!",
+        "audio": "voice/line-efe82003f0adff71.m4a"
       },
       "card": {
         "text": null,
@@ -299,8 +299,8 @@
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
+        "say": "Put the letters in {A|ˈeɪ} B C order!",
+        "audio": "voice/line-060eae3d379a9a2b.m4a"
       },
       "card": {
         "text": null,
@@ -324,8 +324,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join A to G!",
-        "say": "Join the dots, from {A|ˈeɪ} to {G|ʤˈiː}. What will it be?",
-        "audio": "voice/line-df1bb029866491f4.m4a"
+        "say": "Tap the dots in order, from {A|ˈeɪ} to {G|ʤˈiː}. What will it make?",
+        "audio": "voice/line-e683026f8b4de1ca.m4a"
       },
       "card": {
         "text": "A → G",

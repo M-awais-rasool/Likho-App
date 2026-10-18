@@ -83,9 +83,9 @@
       "id": "level-11-r3",
       "type": "pick",
       "prompt": {
-        "text": "What starts with /j/?",
-        "say": "{J|ʤˈeɪ} says {/j/|ʤʌ}. Which one starts with {/j/|ʤʌ}?",
-        "audio": "voice/line-24770a447035cd96.m4a"
+        "text": "What starts with \"j\"?",
+        "say": "{J|ʤˈeɪ} makes the {j|ʤʌ} sound. Which one starts with that sound?",
+        "audio": "voice/line-1477506e3aeaf49d.m4a"
       },
       "card": {
         "text": "J",
@@ -225,8 +225,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write J",
-        "say": "Look at {J|ʤˈeɪ}. Then write it from memory!",
-        "audio": "voice/line-8574db380bd3d7cc.m4a"
+        "say": "Look at {J|ʤˈeɪ}. It will hide. Then write it!",
+        "audio": "voice/line-eca00db5f28fcb26.m4a"
       },
       "card": {
         "text": null,
@@ -252,8 +252,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join E to N!",
-        "say": "Join the dots, from {E|ˈiː} to {N|ˈɛn}. What will it be?",
-        "audio": "voice/line-74bb39855cf0e067.m4a"
+        "say": "Tap the dots in order, from {E|ˈiː} to {N|ˈɛn}. What will it make?",
+        "audio": "voice/line-58793f734f1cc872.m4a"
       },
       "card": {
         "text": "E → N",
