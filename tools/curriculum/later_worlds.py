@@ -273,11 +273,11 @@ class Words:
     # -- in place of saying words aloud (the app does not listen): sound
     #    buttons, clapping the beats, connecting the dots
     def say(self, words, pic_word=None):
-        """One of the level's words: sound it out, or clap its beats, or join the dots; whichever fits, turning with
+        """One of the level's words: sound it out, or join the dots; whichever fits, turning with
         the level so neighbours differ."""
-        # sound buttons most (reading is the point), then beats, sometimes the dots
-        order = {0: "bkc", 1: "bck", 2: "kbc", 3: "cbk"}[self.L.number % 4]
-        game = {"b": self.buttons, "k": self.beats_word, "c": lambda _: self.connect()}
+        # sound buttons most (reading is the point), sometimes the dots (no drum game since 2026-10-18)
+        order = {0: "bc", 1: "bc", 2: "bc", 3: "cb"}[self.L.number % 4]
+        game = {"b": self.buttons, "c": lambda _: self.connect()}
         for g in order:
             if game[g](words):
                 return
@@ -290,21 +290,6 @@ class Words:
                   if w != word and has_picture(w) and w[0] != word[0]]
         self.rnd.shuffle(others)
         self.L.sounds(word, B.sound_parts(word), B.say_part, {w: picture(w) for w in [word] + others[:2]})
-        return True
-
-    def beats_word(self, words):
-        word = next((w for w in words if has_picture(w) and (B.beats_of(w) or []).__len__() > 1), None)
-        if word is None:
-            return False
-        self.L.beats(word, B.beats_of(word), picture(word))
-        return True
-
-    def beats_line(self, line):
-        """A beat for each word of a sentence (2 to 8 words)."""
-        words = re.findall(r"[A-Za-z']+", line)
-        if not 2 <= len(words) <= 8:
-            return False
-        self.L.beats(line, words, words=True)
         return True
 
     def connect(self):
@@ -381,10 +366,9 @@ class Words:
         self.L.rounds[-1]["order"]["slot"] = "panel"
 
     def speak_line(self, line, pic_key=None):
-        """A line the level would say aloud: a beat for each of its words, or (every third level, or a long line)
-        connect the dots."""
-        if self.L.number % 3 == 2 or not self.beats_line(line):
-            self.connect()
+        """A line the level would say aloud: connect the dots (it was a beat for each word, a drum game the
+        user removed on 2026-10-18)."""
+        self.connect()
 
     # -- the games that make levels differ (finalize() adds some to every level)
     def pop_word(self, word, pool):

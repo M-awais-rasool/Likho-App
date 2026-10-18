@@ -35,6 +35,8 @@ import random
 import re
 import shutil
 
+from easy_words import easy_fix, easy_part, easy_prompt
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
 COURSE = ROOT / "backend" / "content" / "courses" / "english-handwriting"
 WORLDS = COURSE / "worlds"
@@ -118,35 +120,6 @@ SHAPES = {
     "balloon": [[50, 4], [76, 14], [88, 38], [78, 62], [60, 78], [66, 96], [34, 96], [40, 78], [22, 62], [12, 38], [24, 14]],
     "apple": [[50, 22], [66, 12], [86, 22], [92, 48], [82, 76], [68, 94], [50, 84], [32, 94], [18, 76], [8, 48], [14, 22], [34, 12]],
 }
-
-# Beats (syllables) of the multi-beat words the games clap; a word not here
-# with one vowel group is one beat.
-SYLLABLES = {
-    "apple": "ap-ple", "insect": "in-sect", "octopus": "oc-to-pus", "lion": "li-on", "robot": "ro-bot", "tiger": "ti-ger",
-    "umbrella": "um-brel-la", "violin": "vi-o-lin", "yo-yo": "yo-yo", "zebra": "ze-bra", "monkey": "mon-key", "rabbit": "rab-bit",
-    "butterfly": "but-ter-fly", "elephant": "el-e-phant", "banana": "ba-na-na", "pencil": "pen-cil", "rainbow": "rain-bow",
-    "sunflower": "sun-flow-er", "flower": "flow-er", "water": "wa-ter", "teacher": "teach-er", "garden": "gar-den",
-    "dinosaur": "di-no-saur", "carrot": "car-rot", "tomato": "to-ma-to", "potato": "po-ta-to", "mango": "man-go",
-    "rocket": "rock-et", "window": "win-dow", "basket": "bas-ket", "kitten": "kit-ten", "puppy": "pup-py", "table": "ta-ble",
-    "football": "foot-ball", "popcorn": "pop-corn", "cupcake": "cup-cake", "jellyfish": "jel-ly-fish", "seven": "sev-en",
-    "spider": "spi-der", "tractor": "trac-tor", "pumpkin": "pump-kin", "lemon": "lem-on", "melon": "mel-on", "happy": "hap-py",
-    "yellow": "yel-low", "purple": "pur-ple", "orange": "or-ange", "family": "fam-i-ly", "doctor": "doc-tor", "camel": "cam-el",
-    "candle": "can-dle", "kangaroo": "kan-ga-roo", "bedroom": "bed-room", "toothbrush": "tooth-brush", "starfish": "star-fish",
-    "snowman": "snow-man", "sandwich": "sand-wich", "hamburger": "ham-bur-ger", "pizza": "piz-za", "dragon": "drag-on",
-    "giraffe": "gi-raffe", "penguin": "pen-guin", "turtle": "tur-tle", "parrot": "par-rot", "chicken": "chick-en",
-    "zero": "ze-ro", "eleven": "e-lev-en", "computer": "com-pu-ter", "bicycle": "bi-cy-cle", "airplane": "air-plane",
-    "ladybug": "la-dy-bug", "caterpillar": "cat-er-pil-lar", "watermelon": "wa-ter-mel-on", "strawberry": "straw-ber-ry",
-}
-
-NUMBER_WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
-
-
-def beats_of(word):
-    """The word's beats (syllables), or None when it is not in SYLLABLES and has more than one."""
-    if word in SYLLABLES:
-        return SYLLABLES[word].split("-")
-    return [word] if len(re.findall(r"[aeiouy]+", word.lower().rstrip("e"))) <= 1 else None
-
 
 # Sound buttons: the letter pairs that are one sound, and words whose letters
 # do not all say their own sound (they are never sound-buttoned).
@@ -266,6 +239,10 @@ class Level:
 
     def _add(self, kind, text, say, crd, payload):
         rid = f"{self.id}-r{len(self.rounds) + 1}"
+        # the bubble shows what Pencil says: easy words, no /b/ marks
+        text, say = easy_prompt(text, say)
+        if kind == "fix":
+            say = easy_fix(say or text, sum(1 for i in payload["items"] if i.get("wrong"))) if say else say
         prompt = {"text": text}
         if say and say != text:
             prompt["say"] = say
@@ -300,24 +277,10 @@ class Level:
         self.rnd.shuffle(labels)
         self._add("sounds", "Tap each sound, then read!", "Tap each sound. Then slide the arrow to read the word!", card(None, None, listen=True), {
             "word": word,
-            "parts": [{"text": p, "say": sound_say(p, word)} for p in parts],
+            "parts": [{"text": p, "say": easy_part(sound_say(p, word))} for p in parts],
             "blend": {"text": word, "say": f"{word}!"},
             "choices": [{"label": lab, "picture": choices[lab]} for lab in labels],
             "answer": labels.index(word),
-        })
-
-    def beats(self, text, parts, picture=None, words=False):
-        """Clap the beats: tap the drum once per syllable of the word [text] (or per word of the sentence)."""
-        n = NUMBER_WORDS[len(parts)].capitalize()
-        if words:
-            prompt, say = "Tap a beat for each word!", f"{text} Tap the drum once for every word!"
-            hint = f"{text} {n} word{'s' if len(parts) > 1 else ''}!"
-        else:
-            prompt, say = "Clap the beats!", f"{text.capitalize()}! Tap the drum for every beat in {text}."
-            hint = f"{text.capitalize()}. {n} beat{'s' if len(parts) > 1 else ''}!"
-        self._add("beats", prompt, say, card(None, None, listen=True), {
-            "text": text, "parts": parts, "unit": "word" if words else "syllable", "picture": picture,
-            "hint": {"text": "-".join(parts) if not words else " ".join(parts), "say": hint},
         })
 
     def connect(self, labels, shape, say_label=None):
@@ -555,9 +518,6 @@ def letter_level(number, ch, small, step):
     def flash():
         L.write(f"Look, then write {shown}", f"Look at {tag}. Then write it from memory!", card(None, picture), "flash", ch)
 
-    def beats():
-        L.beats(word, beats_of(word), picture)
-
     def connect():
         shape = sorted(SHAPES)[step % len(SHAPES)]
         n = len(SHAPES[shape])
@@ -570,13 +530,12 @@ def letter_level(number, ch, small, step):
 
     games = {"find": find, "pop": pop, "trace": trace, "sound": sound_pick, "monster": monster, "truth": truth, "dots": dots,
              "hunt": hunt, "fix": fix, "match": match, "missing": missing, "order": order, "baskets": baskets, "free": free,
-             "flash": flash, "beats": beats, "connect": connect, "buttons": buttons}
+             "flash": flash, "connect": connect, "buttons": buttons}
     feasible = lambda g: {"monster": len(STARTS[ch.lower()]) >= 2, "fix": fix_how(ch) is not None,
-                          "beats": beats_of(word) is not None,
                           "buttons": small and sound_parts(word) is not None}.get(g, True)
     picked = choose([(["find", "pop"], 0), (["trace"], 0), (["sound", "monster", "truth"], 0), (["dots"], 0),
                      (["hunt", "fix", "match"], 1), (["missing", "order", "baskets"], 0), (["free", "flash"], 1),
-                     (["buttons", "beats", "connect"], 0)],
+                     (["buttons", "connect"], 0)],  # no drum game: the user removed it (2026-10-18)
                     step, feasible)
     if step % 2:  # every other letter: its look game before its sound game
         picked[2], picked[4] = picked[4], picked[2]
