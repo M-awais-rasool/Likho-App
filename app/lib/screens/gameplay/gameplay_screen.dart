@@ -23,7 +23,6 @@ import '../../game/coach.dart';
 import '../../game/level_resume.dart';
 import '../../game/level_session.dart';
 import '../../game/speech/prompt_voice.dart';
-import '../../game/writing/stroke_guide.dart';
 import '../../mascot/mascot.dart';
 import 'rounds/beats_round_view.dart';
 import 'rounds/connect_round_view.dart';
@@ -370,19 +369,6 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
     }
   }
 
-  /// What to do with the stroke being written, as Pencil says it.
-  static String stepText(StrokeShape s) => switch (s) {
-    StrokeShape.dot => 'Add a dot',
-    StrokeShape.down => 'Top to bottom',
-    StrokeShape.up => 'Bottom to top',
-    StrokeShape.right => 'Left to right',
-    StrokeShape.left => 'Right to left',
-    StrokeShape.slantDown => 'Slant down',
-    StrokeShape.slantUp => 'Slant up',
-    StrokeShape.curve => 'Curve around',
-    StrokeShape.zigzag => 'Follow the arrow',
-  };
-
   /// The bubble: what Pencil is saying, word for word; else a passing
   /// remark, the instruction for the stroke being written, what he said
   /// last (until the child moves on), or what to do now (the coach step).
@@ -392,7 +378,7 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
     if (_bubble != null) return (_bubble!, null);
     if (_view.correct) return null;
     final g = _pad?.guide;
-    if (g != null && !g.done) return (stepText(g.shapeOf(g.stroke)), g.stroke + 1);
+    if (g != null && !g.done) return (g.shapeOf(g.stroke).instruction, g.stroke + 1);
     if (caption != null && _captionStep == _stepKey) return (caption, null);
     final c = _coach;
     return c == null ? null : (c.text, null);
@@ -953,7 +939,7 @@ class _RoundArea extends ConsumerWidget {
             return MagicFrame(
               theme: theme,
               time: time,
-              child: WritePad(key: ValueKey(r.id), controller: p, state: state, round: r, glyphs: glyphs, time: time, onPen: onPen),
+              child: WritePad(key: ValueKey(r.id), controller: p, correct: state.correct, hint: state.hint, round: r, glyphs: glyphs, time: time, onPen: onPen),
             );
           }
         default:
@@ -971,7 +957,7 @@ class _RoundArea extends ConsumerWidget {
       final WriteRound r =>
         pad == null
             ? const SizedBox.shrink()
-            : WritePad(key: ValueKey(r.id), controller: pad!, state: state, round: r, glyphs: glyphs, time: time, onPen: onPen),
+            : WritePad(key: ValueKey(r.id), controller: pad!, correct: state.correct, hint: state.hint, round: r, glyphs: glyphs, time: time, onPen: onPen),
       final SoundsRound r => SoundsRoundView(
         key: ValueKey(r.id),
         state: state,
