@@ -96,4 +96,15 @@ void main() {
     c.removeAccessory();
     expect(c.accessory, isNull);
   });
+
+  test('hush stops talking (a cut line does not leave the mouth moving)', () {
+    final c = MascotController();
+    c.play(MascotState.talking);
+    c.hush();
+    expect(c.state, MascotState.idle);
+    expect(c.speakingListenable.value, isFalse);
+    c.play(MascotState.happy);
+    c.hush(); // other poses are left alone
+    expect(c.state, MascotState.happy);
+  });
 }

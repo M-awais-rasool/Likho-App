@@ -69,13 +69,14 @@ class MascotController extends ChangeNotifier {
 
   /// Plays [audio] with lip-sync and returns when it finishes: an app
   /// asset ("assets/…"), a file on the phone (a kept course recording, see
-  /// MediaStore, with its mouth movement in [lipFile]) or a URL.
-  Future<void> say(String audio, {String? lipFile}) async {
+  /// MediaStore, with its mouth movement in [lipFile]) or a URL. True when
+  /// the line played to its end (not cut, and it could be played).
+  Future<bool> say(String audio, {String? lipFile}) async {
     final session = ++_sayId;
     _stopAudio();
     final player = _player ??= AudioPlayer();
     _envelope = await LipSyncEnvelope.load(audio, lipFile: lipFile);
-    if (session != _sayId) return;
+    if (session != _sayId) return false;
     try {
       if (audio.startsWith('assets/')) {
         await player.setAsset(audio);
@@ -86,14 +87,14 @@ class MascotController extends ChangeNotifier {
       }
     } catch (e) {
       debugPrint('PencilMascot.say: cannot load $audio: $e');
-      return;
+      return false;
     }
-    if (session != _sayId) return;
+    if (session != _sayId) return false;
     _frozen = false;
     _speaking = true;
     _speakingValue.value = true;
     _switchTo(MascotState.talking);
-    final done = Completer<void>();
+    final done = _sayDone = Completer<void>();
     _playerSub = player.playerStateStream.listen((s) {
       if (s.processingState == ProcessingState.completed && !done.isCompleted) done.complete();
     }, onError: (Object e) {
@@ -101,7 +102,16 @@ class MascotController extends ChangeNotifier {
     });
     unawaited(player.play());
     await done.future;
-    if (session != _sayId) return;
+    if (session != _sayId || !_speaking) return false; // cut
+    _stopAudio();
+    if (_state == MascotState.talking) _switchTo(MascotState.idle);
+    return true;
+  }
+
+  /// Stops [say] at once: a line that is playing is cut, one still loading
+  /// never starts. A talking pose goes back to idle.
+  void hush() {
+    _sayId++;
     _stopAudio();
     if (_state == MascotState.talking) _switchTo(MascotState.idle);
   }
@@ -163,6 +173,7 @@ class MascotController extends ChangeNotifier {
 
   AudioPlayer? _player;
   StreamSubscription<PlayerState>? _playerSub;
+  Completer<void>? _sayDone; // completes [say] when its line is cut
   LipSyncEnvelope? _envelope;
   bool _speaking = false;
   int _sayId = 0;
@@ -234,6 +245,9 @@ class MascotController extends ChangeNotifier {
     _speakingValue.value = false;
     _playerSub?.cancel();
     _playerSub = null;
+    final done = _sayDone;
+    _sayDone = null;
+    if (done != null && !done.isCompleted) done.complete();
     final p = _player;
     if (p != null && p.playing) unawaited(p.stop());
   }
