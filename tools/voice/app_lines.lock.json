@@ -110,5 +110,161 @@
  "coach_stay_on_line": {
   "says": "Stay on the line!",
   "made": "f5e7a677bf44346d"
+ },
+ "story_a_knock": {
+  "says": "Pencil! Pencil! Dada needs help. Come to the apple garden!",
+  "made": "548a77159da43b73"
+ },
+ "story_a_go": {
+  "says": "Let's go, Ayan!",
+  "made": "c682c6293a850496"
+ },
+ "story_a_worried": {
+  "says": "Oh no! The rain washed my shop sign away. And the market opens soon!",
+  "made": "c050f1bfbd6ee9cd"
+ },
+ "story_a_help": {
+  "says": "Don't worry, Dada. We will help!",
+  "made": "e570aa040caa4b2b"
+ },
+ "story_a_pick": {
+  "says": "First, we need apples. Tap the red apples on the tree!",
+  "made": "e627d75a4081ebcb"
+ },
+ "story_a_n1": {
+  "says": "One!",
+  "made": "fa21ce80fb909f6c"
+ },
+ "story_a_n2": {
+  "says": "Two!",
+  "made": "aa15c77721409959"
+ },
+ "story_a_n3": {
+  "says": "Three!",
+  "made": "ed8a22557274d447"
+ },
+ "story_a_n4": {
+  "says": "Four!",
+  "made": "8786ba1eeaeec9c4"
+ },
+ "story_a_n5": {
+  "says": "Five apples!",
+  "made": "9cf2cb02c7a022dc"
+ },
+ "story_a_full": {
+  "says": "The basket is full!",
+  "made": "830b65ffb85e4938"
+ },
+ "story_a_sound": {
+  "says": "Apple starts with A. A says a, a, apple!",
+  "made": "f761da97545473cf"
+ },
+ "story_a_find": {
+  "says": "Look around! Can you find more things that start with A? Tap them!",
+  "made": "2f2ff907989d10bd"
+ },
+ "story_a_airplane": {
+  "says": "Airplane! a, a, airplane!",
+  "made": "1721465a3cbf104f"
+ },
+ "story_a_ant": {
+  "says": "Hi! I'm an ant. a, a, ant!",
+  "made": "3f3c93c42a330135"
+ },
+ "story_a_apple": {
+  "says": "Another apple! a, a, apple!",
+  "made": "e4a9774cff9dcee2"
+ },
+ "story_a_bird": {
+  "says": "That's a bird. Bird starts with B. Try again!",
+  "made": "80715f1e2ea75c42"
+ },
+ "story_a_flower": {
+  "says": "That's a flower. Try again!",
+  "made": "8cd8dd1dfb7a60b2"
+ },
+ "story_a_sun": {
+  "says": "That's the sun. Try again!",
+  "made": "cab7ac33c65d88cb"
+ },
+ "story_a_found": {
+  "says": "Wonderful! Now let's go to the market!",
+  "made": "90140c18228d2014"
+ },
+ "story_a_shop": {
+  "says": "Here is my shop. But look, the sign is empty!",
+  "made": "8d80fde5823e1916"
+ },
+ "story_a_sign": {
+  "says": "Let's write A on the sign. A for apples!",
+  "made": "763e219188feb9ab"
+ },
+ "story_a_signed": {
+  "says": "Wow! A for apples. Now everyone can see it!",
+  "made": "6f9363f19f81fff1"
+ },
+ "story_a_tags": {
+  "says": "Now let's write A on the apple baskets too.",
+  "made": "b75933f6f617f70b"
+ },
+ "story_a_trace": {
+  "says": "Trace A on the first tag.",
+  "made": "49c2010908ae8642"
+ },
+ "story_a_dots": {
+  "says": "Now join the dots.",
+  "made": "2d4619e62ee01421"
+ },
+ "story_a_free": {
+  "says": "Now write A all by yourself!",
+  "made": "27d4ccaf43b546a2"
+ },
+ "story_a_tagged": {
+  "says": "Yay! The shop is ready!",
+  "made": "be08f8d73415ed65"
+ },
+ "story_a_hello": {
+  "says": "Hello! Can I have three apples, please?",
+  "made": "8ae8a7361510fded"
+ },
+ "story_a_give": {
+  "says": "Tap an apple to put it in Aunty's bag.",
+  "made": "099ab4011cb00ed9"
+ },
+ "story_a_a1": {
+  "says": "One!",
+  "made": "fa21ce80fb909f6c"
+ },
+ "story_a_a2": {
+  "says": "Two!",
+  "made": "aa15c77721409959"
+ },
+ "story_a_a3": {
+  "says": "Three!",
+  "made": "ed8a22557274d447"
+ },
+ "story_a_thanks": {
+  "says": "Thank you! Here you go. A for apple. Yum!",
+  "made": "1e10c49fe118f01e"
+ },
+ "story_a_saved": {
+  "says": "Thank you, my little friend! You saved my shop. This golden apple is for you!",
+  "made": "c96d6cbfd3f4da32"
+ },
+ "story_a_bye": {
+  "says": "A is for apple! Next time, let's visit the bakery!",
+  "made": "4d3698968ffef656"
+ },
+ "story_a_nudge_pick": {
+  "says": "Tap a red apple on the tree!",
+  "made": "3a6a7e4c6a5a9f6f"
+ },
+ "story_a_nudge_find": {
+  "says": "Look in the sky, and on the grass!",
+  "made": "6fb67acf30763136"
+ },
+ "story_a_nudge_give": {
+  "says": "Tap an apple in the basket!",
+  "made": "3ba4fc4d856e5ee1"
  }
 }
