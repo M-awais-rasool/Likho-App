@@ -51,8 +51,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/n/|nːː} or {/h/|hʌ}?",
-        "audio": "voice/line-d6290dbc7593a0f4.m4a"
+        "say": "Sort the pictures! Does each one start with the {n|nːː} sound, or the {h|hʌ} sound?",
+        "audio": "voice/line-f1f7a9bbcb835111.m4a"
       },
       "card": {
         "text": "n h",
@@ -155,30 +155,71 @@
     },
     {
       "id": "level-196-r4",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "First, next, last! Tap the drum once for every word!",
-        "audio": "voice/line-a9827954d628e01e.m4a"
+        "text": "Join k to r!",
+        "say": "Tap the dots in order, from {k|kˈeɪ} to {r|ˈɑːɹ}. What will it make?",
+        "audio": "voice/line-0097e5a56dfd5ae6.m4a"
       },
       "card": {
-        "text": null,
+        "text": "k → r",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "First, next, last!",
-        "parts": [
-          "First",
-          "next",
-          "last"
+      "connect": {
+        "labels": [
+          "k",
+          "l",
+          "m",
+          "n",
+          "o",
+          "p",
+          "q",
+          "r"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "First next last",
-          "say": "First, next, last! Three words!",
-          "audio": "voice/line-0d2532606907c82c.m4a"
+        "points": [
+          [
+            8,
+            44
+          ],
+          [
+            40,
+            44
+          ],
+          [
+            40,
+            10
+          ],
+          [
+            60,
+            10
+          ],
+          [
+            60,
+            44
+          ],
+          [
+            92,
+            44
+          ],
+          [
+            92,
+            94
+          ],
+          [
+            8,
+            94
+          ]
+        ],
+        "picture": {
+          "key": "cake",
+          "label": "cake",
+          "url": null
+        },
+        "done": {
+          "text": "A cake!",
+          "say": "It's a cake!",
+          "audio": "voice/line-603810a81e3a93a1.m4a"
         }
       }
     },
@@ -235,8 +276,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write nest",
-        "say": "Look at the word nest. Then write it from memory!",
-        "audio": "voice/line-ed53318ca1f53e0c.m4a"
+        "say": "Look at the word nest. It will hide. Then write it!",
+        "audio": "voice/line-86ab1b3f7b37390f.m4a"
       },
       "card": {
         "text": null,
@@ -262,8 +303,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every sad!",
-        "say": "Find every word sad!",
-        "audio": "voice/line-29f9f3600528429a.m4a"
+        "say": "Tap every word that says \"sad\"!",
+        "audio": "voice/line-198a82a1cd8bc0f6.m4a"
       },
       "card": {
         "text": "sad",

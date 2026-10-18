@@ -78,8 +78,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/b/|bʌ}?",
-        "audio": "voice/line-55e04600648a8763.m4a"
+        "say": "Sort the pictures! Does each one start with the {d|dʌ} sound, or the {b|bʌ} sound?",
+        "audio": "voice/line-ea9437fb9d79aac1.m4a"
       },
       "card": {
         "text": "d b",
@@ -298,8 +298,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write kind",
-        "say": "Look at the word kind. Then write it from memory!",
-        "audio": "voice/line-cbd8c58bd7dd699c.m4a"
+        "say": "Look at the word kind. It will hide. Then write it!",
+        "audio": "voice/line-33a17c45e0d4062a.m4a"
       },
       "card": {
         "text": null,
@@ -344,8 +344,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join Q to W!",
-        "say": "Join the dots, from {Q|kjˈuː} to {W|dˈʌbəljuː}. What will it be?",
-        "audio": "voice/line-bd976a4c36930df9.m4a"
+        "say": "Tap the dots in order, from {Q|kjˈuː} to {W|dˈʌbəljuː}. What will it make?",
+        "audio": "voice/line-98f89404b7e8b27b.m4a"
       },
       "card": {
         "text": "Q → W",

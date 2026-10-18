@@ -79,8 +79,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/j/|ʤʌ} or {/w/|wʌ}?",
-        "audio": "voice/line-e48ccae55ea807d9.m4a"
+        "say": "Sort the pictures! Does each one start with the {j|ʤʌ} sound, or the {w|wʌ} sound?",
+        "audio": "voice/line-9f5d127920bc0176.m4a"
       },
       "card": {
         "text": "j w",
@@ -293,8 +293,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write dear",
-        "say": "Look at the word dear. Then write it from memory!",
-        "audio": "voice/line-8e353b35e4862c3c.m4a"
+        "say": "Look at the word dear. It will hide. Then write it!",
+        "audio": "voice/line-904fa590248f4515.m4a"
       },
       "card": {
         "text": null,
@@ -364,34 +364,76 @@
     },
     {
       "id": "level-208-r9",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "Dear Ali, thank you for the gift! Tap the drum once for every word!",
-        "audio": "voice/line-3c6c6060533e85b2.m4a"
+        "text": "Join E to M!",
+        "say": "Tap the dots in order, from {E|ˈiː} to {M|ˈɛm}. What will it make?",
+        "audio": "voice/line-d4c529c6a7753693.m4a"
       },
       "card": {
-        "text": null,
+        "text": "E → M",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "Dear Ali, thank you for the gift!",
-        "parts": [
-          "Dear",
-          "Ali",
-          "thank",
-          "you",
-          "for",
-          "the",
-          "gift"
+      "connect": {
+        "labels": [
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J",
+          "K",
+          "L",
+          "M"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "Dear Ali thank you for the gift",
-          "say": "Dear Ali, thank you for the gift! Seven words!",
-          "audio": "voice/line-3c40e9ae810054c9.m4a"
+        "points": [
+          [
+            6,
+            50
+          ],
+          [
+            30,
+            24
+          ],
+          [
+            56,
+            22
+          ],
+          [
+            76,
+            36
+          ],
+          [
+            96,
+            16
+          ],
+          [
+            96,
+            84
+          ],
+          [
+            76,
+            64
+          ],
+          [
+            56,
+            78
+          ],
+          [
+            30,
+            76
+          ]
+        ],
+        "picture": {
+          "key": "fish",
+          "label": "fish",
+          "url": null
+        },
+        "done": {
+          "text": "A fish!",
+          "say": "It's a fish!",
+          "audio": "voice/line-141ec1a5d1f6e869.m4a"
         }
       }
     },

@@ -197,8 +197,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join f to q!",
-        "say": "Join the dots, from {f|ˈɛf} to {q|kjˈuː}. What will it be?",
-        "audio": "voice/line-8c71f1aa1ab8023e.m4a"
+        "say": "Tap the dots in order, from {f|ˈɛf} to {q|kjˈuː}. What will it make?",
+        "audio": "voice/line-41eedbf1bee58b23.m4a"
       },
       "card": {
         "text": "f → q",
@@ -287,8 +287,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -373,8 +373,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every jump!",
-        "say": "Find every word jump!",
-        "audio": "voice/line-bfc374f0da48ec34.m4a"
+        "say": "Tap every word that says \"jump\"!",
+        "audio": "voice/line-7409d4787bbc4e73.m4a"
       },
       "card": {
         "text": "jump",

@@ -415,35 +415,91 @@
     },
     {
       "id": "level-204-r9",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "I read, I write, I play at school! Tap the drum once for every word!",
-        "audio": "voice/line-adbec0528a59c6ab.m4a"
+        "text": "Join A to L!",
+        "say": "Tap the dots in order, from {A|ˈeɪ} to {L|ˈɛl}. What will it make?",
+        "audio": "voice/line-a8b8b94f12aff7e8.m4a"
       },
       "card": {
-        "text": null,
+        "text": "A → L",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "I read, I write, I play at school!",
-        "parts": [
+      "connect": {
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
           "I",
-          "read",
-          "I",
-          "write",
-          "I",
-          "play",
-          "at",
-          "school"
+          "J",
+          "K",
+          "L"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "I read I write I play at school",
-          "say": "I read, I write, I play at school! Eight words!",
-          "audio": "voice/line-727fcd1b76280084.m4a"
+        "points": [
+          [
+            50,
+            22
+          ],
+          [
+            66,
+            12
+          ],
+          [
+            86,
+            22
+          ],
+          [
+            92,
+            48
+          ],
+          [
+            82,
+            76
+          ],
+          [
+            68,
+            94
+          ],
+          [
+            50,
+            84
+          ],
+          [
+            32,
+            94
+          ],
+          [
+            18,
+            76
+          ],
+          [
+            8,
+            48
+          ],
+          [
+            14,
+            22
+          ],
+          [
+            34,
+            12
+          ]
+        ],
+        "picture": {
+          "key": "apple",
+          "label": "apple",
+          "url": null
+        },
+        "done": {
+          "text": "An apple!",
+          "say": "It's an apple!",
+          "audio": "voice/line-eb257727166de7e7.m4a"
         }
       }
     },
@@ -452,8 +508,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",

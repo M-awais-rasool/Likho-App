@@ -82,8 +82,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -252,8 +252,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/f/|fːː} or {/b/|bʌ}?",
-        "audio": "voice/line-7e2ab78f7a6e6e84.m4a"
+        "say": "Sort the pictures! Does each one start with the {f|fːː} sound, or the {b|bʌ} sound?",
+        "audio": "voice/line-0b4bafc26a68b5d3.m4a"
       },
       "card": {
         "text": "f b",
@@ -385,33 +385,86 @@
     },
     {
       "id": "level-207-r9",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "I see a tall green tree. Tap the drum once for every word!",
-        "audio": "voice/line-873958faabffc4e3.m4a"
+        "text": "Join d to n!",
+        "say": "Tap the dots in order, from {d|dˈiː} to {n|ˈɛn}. What will it make?",
+        "audio": "voice/line-65b644ecb875e7b8.m4a"
       },
       "card": {
-        "text": null,
+        "text": "d → n",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "I see a tall green tree.",
-        "parts": [
-          "I",
-          "see",
-          "a",
-          "tall",
-          "green",
-          "tree"
+      "connect": {
+        "labels": [
+          "d",
+          "e",
+          "f",
+          "g",
+          "h",
+          "i",
+          "j",
+          "k",
+          "l",
+          "m",
+          "n"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "I see a tall green tree",
-          "say": "I see a tall green tree. Six words!",
-          "audio": "voice/line-847864e4efad9dec.m4a"
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            76,
+            14
+          ],
+          [
+            88,
+            38
+          ],
+          [
+            78,
+            62
+          ],
+          [
+            60,
+            78
+          ],
+          [
+            66,
+            96
+          ],
+          [
+            34,
+            96
+          ],
+          [
+            40,
+            78
+          ],
+          [
+            22,
+            62
+          ],
+          [
+            12,
+            38
+          ],
+          [
+            24,
+            14
+          ]
+        ],
+        "picture": {
+          "key": "balloon",
+          "label": "balloon",
+          "url": null
+        },
+        "done": {
+          "text": "A balloon!",
+          "say": "It's a balloon!",
+          "audio": "voice/line-02f6767f455aad89.m4a"
         }
       }
     },
@@ -420,8 +473,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write tall",
-        "say": "Look at the word tall. Then write it from memory!",
-        "audio": "voice/line-392289d4ee5f255f.m4a"
+        "say": "Look at the word tall. It will hide. Then write it!",
+        "audio": "voice/line-ff25417f79cea549.m4a"
       },
       "card": {
         "text": null,

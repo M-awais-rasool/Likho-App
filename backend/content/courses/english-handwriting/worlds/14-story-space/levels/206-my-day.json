@@ -56,8 +56,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write jump",
-        "say": "Look at the word jump. Then write it from memory!",
-        "audio": "voice/line-db2df7e90ad5e116.m4a"
+        "say": "Look at the word jump. It will hide. Then write it!",
+        "audio": "voice/line-233a96b59ec0d8f9.m4a"
       },
       "card": {
         "text": null,
@@ -106,8 +106,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join Q to W!",
-        "say": "Join the dots, from {Q|kjˈuː} to {W|dˈʌbəljuː}. What will it be?",
-        "audio": "voice/line-bd976a4c36930df9.m4a"
+        "say": "Tap the dots in order, from {Q|kjˈuː} to {W|dˈʌbəljuː}. What will it make?",
+        "audio": "voice/line-98f89404b7e8b27b.m4a"
       },
       "card": {
         "text": "Q → W",
@@ -171,8 +171,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every jump!",
-        "say": "Find every word jump!",
-        "audio": "voice/line-bfc374f0da48ec34.m4a"
+        "say": "Tap every word that says \"jump\"!",
+        "audio": "voice/line-7409d4787bbc4e73.m4a"
       },
       "card": {
         "text": "jump",
