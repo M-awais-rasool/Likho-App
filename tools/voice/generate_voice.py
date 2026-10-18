@@ -11,7 +11,8 @@ speech model (Apache-2.0, runs on this computer) and writes, per line:
 
 and puts the recording's path in the content (`intro.audio`, `prompt.audio`).
 Pencil's lines outside the course (APP_LINES: onboarding, coaching in the
-games) go into the app itself, app/assets/voice/<id>.m4a + .lip, so they
+games) and the story episodes' lines (app/assets/stories/<episode>/story.json,
+each speaker in their own voice) go into the app itself, app/assets/voice/<id>.m4a + .lip, so they
 play before anything is downloaded; app/lib/feedback/pencil_lines.dart and
 app/lib/game/coach.dart name them.
 Lines are `intro.say` and `prompt.say`, or the prompt's `text`, and the lines
@@ -63,6 +64,7 @@ CONTENT = ROOT / "backend" / "content" / "courses" / COURSE
 OUT = ROOT / "media" / "voice"  # served by the API at /media/voice/ (MEDIA_DIR); not in git
 LOCK = HERE / "voice.lock.json"
 APP_OUT = ROOT / "app" / "assets" / "voice"  # bundled with the app
+STORIES = ROOT / "app" / "assets" / "stories"  # story episodes: <episode>/story.json, lines recorded as story_<episode>_<id>
 APP_LOCK = HERE / "app_lines.lock.json"
 CACHE = HERE / ".cache"
 
@@ -107,6 +109,17 @@ APP_LINES = {
     "coach_follow_arrow": "Follow the arrow!",
     "coach_stay_on_line": "Stay on the line!",
 }
+
+def story_lines():
+    """The story episodes' lines: story_<episode>_<id> -> (words, voice of who says it)."""
+    out = {}
+    for f in sorted(STORIES.glob("*/story.json")):
+        d = json.loads(f.read_text(encoding="utf-8"))
+        voices = {k: c.get("voice", VOICE) for k, c in d["characters"].items()}
+        for line in d["lines"]:
+            out[f"story_{d['id']}_{line['id']}"] = (line["text"], voices[line["who"]])
+    return out
+
 
 def level_files():
     return sorted(CONTENT.glob("worlds/*/levels/*.json")) + [CONTENT / "placement.json"]
@@ -179,8 +192,8 @@ class Voice:
         # no space before punctuation after an IPA part ("ˈeɪ ," -> "ˈeɪ,")
         return re.sub(r"\s+([,.!?;:…])", r"\1", re.sub(r"\s+", " ", joined)).strip()
 
-    def speak(self, phonemes):
-        samples, rate = self.k.create(phonemes, voice=VOICE, speed=SPEED, lang=LANG, is_phonemes=True)
+    def speak(self, phonemes, voice=VOICE):
+        samples, rate = self.k.create(phonemes, voice=voice, speed=SPEED, lang=LANG, is_phonemes=True)
         assert rate == RATE
         return np.asarray(samples, np.float32)
 
@@ -237,19 +250,21 @@ def set_audio(f, where, path):
 
 
 def app_lines(voice, args):
-    """Records APP_LINES into the app (by id; the lock says what each says)."""
+    """Records APP_LINES and the story episodes' lines into the app (by id; the lock says what each says)."""
     lock = json.loads(APP_LOCK.read_text(encoding="utf-8")) if APP_LOCK.exists() else {}
     out, recorded = {}, 0
     APP_OUT.mkdir(parents=True, exist_ok=True)
-    for key, words in APP_LINES.items():
+    every = {k: (w, VOICE) for k, w in APP_LINES.items()} | story_lines()
+    for key, (words, who) in every.items():
         ph = voice.phonemes(words)
         if args.print:
             print(f"{key:22} {words!r}\n{'':22} {ph}")
             continue
-        made = hashlib.sha1(json.dumps([VOICE, SPEED, ph]).encode()).hexdigest()[:16]
+        # Pencil's lines keep their old names (the voice joined the hash later)
+        made = hashlib.sha1(json.dumps([VOICE, SPEED, ph] if who == VOICE else [who, SPEED, ph]).encode()).hexdigest()[:16]
         m4a, lipf = APP_OUT / f"{key}.m4a", APP_OUT / f"{key}.lip"
         if args.all or lock.get(key, {}).get("made") != made or not m4a.exists() or not lipf.exists():
-            x = polish(voice.speak(ph))
+            x = polish(voice.speak(ph, who))
             encode(x, m4a)
             lipf.write_bytes(lip(x))
             recorded += 1
@@ -258,7 +273,7 @@ def app_lines(voice, args):
     if args.print:
         return
     for old in APP_OUT.iterdir():  # lines the app no longer has
-        if old.stem not in APP_LINES and old.suffix in (".m4a", ".lip"):
+        if old.stem not in every and old.suffix in (".m4a", ".lip"):
             old.unlink()
     APP_LOCK.write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"{recorded} app lines recorded, {len(out)} in the app")
