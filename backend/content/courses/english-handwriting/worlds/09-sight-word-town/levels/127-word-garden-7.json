@@ -101,8 +101,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every like!",
-        "say": "Find every word like!",
-        "audio": "voice/line-ef09687e3c13ecc5.m4a"
+        "say": "Tap every word that says \"like\"!",
+        "audio": "voice/line-56126dc140c9a4f3.m4a"
       },
       "card": {
         "text": "like",
@@ -272,30 +272,71 @@
     },
     {
       "id": "level-127-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "What is this? Tap the drum once for every word!",
-        "audio": "voice/line-5a7a2c076b192fa8.m4a"
+        "text": "Join j to q!",
+        "say": "Tap the dots in order, from {j|ʤˈeɪ} to {q|kjˈuː}. What will it make?",
+        "audio": "voice/line-b11059220b5c1b87.m4a"
       },
       "card": {
-        "text": null,
+        "text": "j → q",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "What is this?",
-        "parts": [
-          "What",
-          "is",
-          "this"
+      "connect": {
+        "labels": [
+          "j",
+          "k",
+          "l",
+          "m",
+          "n",
+          "o",
+          "p",
+          "q"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "What is this",
-          "say": "What is this? Three words!",
-          "audio": "voice/line-350605bc86bc336f.m4a"
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            88,
+            20
+          ],
+          [
+            98,
+            50
+          ],
+          [
+            64,
+            46
+          ],
+          [
+            50,
+            96
+          ],
+          [
+            36,
+            46
+          ],
+          [
+            2,
+            50
+          ],
+          [
+            12,
+            20
+          ]
+        ],
+        "picture": {
+          "key": "umbrella",
+          "label": "umbrella",
+          "url": null
+        },
+        "done": {
+          "text": "An umbrella!",
+          "say": "It's an umbrella!",
+          "audio": "voice/line-4a730bcd271939db.m4a"
         }
       }
     },
@@ -327,8 +368,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",

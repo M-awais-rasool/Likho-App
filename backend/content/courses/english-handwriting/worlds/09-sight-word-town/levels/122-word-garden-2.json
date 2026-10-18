@@ -78,8 +78,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write to",
-        "say": "Look at the word to. Then write it from memory!",
-        "audio": "voice/line-42a9fdb03c605aad.m4a"
+        "say": "Look at the word to. It will hide. Then write it!",
+        "audio": "voice/line-44a6136b32b5e723.m4a"
       },
       "card": {
         "text": null,
@@ -101,8 +101,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every and!",
-        "say": "Find every word and!",
-        "audio": "voice/line-3779725e51b55a1f.m4a"
+        "say": "Tap every word that says \"and\"!",
+        "audio": "voice/line-724df0431cfbb30a.m4a"
       },
       "card": {
         "text": "and",
@@ -251,8 +251,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join E to K!",
-        "say": "Join the dots, from {E|ˈiː} to {K|kˈeɪ}. What will it be?",
-        "audio": "voice/line-3431ce9d888b9b73.m4a"
+        "say": "Tap the dots in order, from {E|ˈiː} to {K|kˈeɪ}. What will it make?",
+        "audio": "voice/line-c7507da975425ed5.m4a"
       },
       "card": {
         "text": "E → K",

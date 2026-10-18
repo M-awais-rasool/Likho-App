@@ -78,8 +78,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write help",
-        "say": "Look at the word help. Then write it from memory!",
-        "audio": "voice/line-207c41758edc94f3.m4a"
+        "say": "Look at the word help. It will hide. Then write it!",
+        "audio": "voice/line-50a21e5d73abf6b9.m4a"
       },
       "card": {
         "text": null,
@@ -101,8 +101,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every help!",
-        "say": "Find every word help!",
-        "audio": "voice/line-e7b88acf673ee20d.m4a"
+        "say": "Tap every word that says \"help\"!",
+        "audio": "voice/line-c3c66eb40e42ad37.m4a"
       },
       "card": {
         "text": "help",
@@ -248,32 +248,76 @@
     },
     {
       "id": "level-129-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "Help me find my cat. Tap the drum once for every word!",
-        "audio": "voice/line-e3db84ad2796e02f.m4a"
+        "text": "Join b to j!",
+        "say": "Tap the dots in order, from {b|bˈiː} to {j|ʤˈeɪ}. What will it make?",
+        "audio": "voice/line-e6d017ba82195bb7.m4a"
       },
       "card": {
-        "text": null,
+        "text": "b → j",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "Help me find my cat.",
-        "parts": [
-          "Help",
-          "me",
-          "find",
-          "my",
-          "cat"
+      "connect": {
+        "labels": [
+          "b",
+          "c",
+          "d",
+          "e",
+          "f",
+          "g",
+          "h",
+          "i",
+          "j"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "Help me find my cat",
-          "say": "Help me find my cat. Five words!",
-          "audio": "voice/line-d5cd203d238f3525.m4a"
+        "points": [
+          [
+            62,
+            4
+          ],
+          [
+            30,
+            10
+          ],
+          [
+            10,
+            36
+          ],
+          [
+            8,
+            64
+          ],
+          [
+            28,
+            88
+          ],
+          [
+            62,
+            96
+          ],
+          [
+            44,
+            74
+          ],
+          [
+            36,
+            50
+          ],
+          [
+            44,
+            26
+          ]
+        ],
+        "picture": {
+          "key": "moon",
+          "label": "moon",
+          "url": null
+        },
+        "done": {
+          "text": "A moon!",
+          "say": "It's a moon!",
+          "audio": "voice/line-24627cec3ea7f4e6.m4a"
         }
       }
     },

@@ -124,8 +124,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every they!",
-        "say": "Find every word they!",
-        "audio": "voice/line-b20b4cb5865f0671.m4a"
+        "say": "Tap every word that says \"they\"!",
+        "audio": "voice/line-3dee9ba01b8a82ec.m4a"
       },
       "card": {
         "text": "they",
@@ -152,8 +152,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/f/|fːː} or {/d/|dʌ}?",
-        "audio": "voice/line-27f67eb9d3dcde7f.m4a"
+        "say": "Sort the pictures! Does each one start with the {f|fːː} sound, or the {d|dʌ} sound?",
+        "audio": "voice/line-7126528272c97699.m4a"
       },
       "card": {
         "text": "f d",
@@ -175,10 +175,10 @@
         ],
         "items": [
           {
-            "label": "foot",
+            "label": "four",
             "picture": {
-              "key": "foot",
-              "label": "foot",
+              "key": "four",
+              "label": "four",
               "url": null
             },
             "bin": 0
@@ -193,13 +193,13 @@
             "bin": 1
           },
           {
-            "label": "four",
+            "label": "doctor",
             "picture": {
-              "key": "four",
-              "label": "four",
+              "key": "doctor",
+              "label": "doctor",
               "url": null
             },
-            "bin": 0
+            "bin": 1
           },
           {
             "label": "duck",
@@ -211,6 +211,15 @@
             "bin": 1
           },
           {
+            "label": "foot",
+            "picture": {
+              "key": "foot",
+              "label": "foot",
+              "url": null
+            },
+            "bin": 0
+          },
+          {
             "label": "fish",
             "picture": {
               "key": "fish",
@@ -218,21 +227,59 @@
               "url": null
             },
             "bin": 0
-          },
-          {
-            "label": "doctor",
-            "picture": {
-              "key": "doctor",
-              "label": "doctor",
-              "url": null
-            },
-            "bin": 1
           }
         ]
       }
     },
     {
       "id": "level-135-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "audio": "voice/line-7a2c7d4750e1443e.m4a"
+      },
+      "card": {
+        "text": "with",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-135-r6-o1",
+            "label": "the",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-135-r6-o2",
+            "label": "like",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-135-r6-o3",
+            "label": "with",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "with"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-135-r7",
       "type": "write",
       "prompt": {
         "text": "Write many",
@@ -255,7 +302,7 @@
       }
     },
     {
-      "id": "level-135-r7",
+      "id": "level-135-r8",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -278,12 +325,12 @@
       }
     },
     {
-      "id": "level-135-r8",
+      "id": "level-135-r9",
       "type": "write",
       "prompt": {
         "text": "Look, then write they",
-        "say": "Look at the word they. Then write it from memory!",
-        "audio": "voice/line-61c10e8813fda106.m4a"
+        "say": "Look at the word they. It will hide. Then write it!",
+        "audio": "voice/line-32d296737659d255.m4a"
       },
       "card": {
         "text": null,
@@ -301,44 +348,12 @@
       }
     },
     {
-      "id": "level-135-r9",
-      "type": "beats",
-      "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "The fish is in the sea. Tap the drum once for every word!",
-        "audio": "voice/line-b8edb4cbb35f7d4e.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": null,
-        "listen": true
-      },
-      "beats": {
-        "text": "The fish is in the sea.",
-        "parts": [
-          "The",
-          "fish",
-          "is",
-          "in",
-          "the",
-          "sea"
-        ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "The fish is in the sea",
-          "say": "The fish is in the sea. Six words!",
-          "audio": "voice/line-b050d72eb8524cff.m4a"
-        }
-      }
-    },
-    {
       "id": "level-135-r10",
       "type": "connect",
       "prompt": {
         "text": "Join r to y!",
-        "say": "Join the dots, from {r|ˈɑːɹ} to {y|wˈaɪ}. What will it be?",
-        "audio": "voice/line-7f7017e625198520.m4a"
+        "say": "Tap the dots in order, from {r|ˈɑːɹ} to {y|wˈaɪ}. What will it make?",
+        "audio": "voice/line-34b907b5f8ac316d.m4a"
       },
       "card": {
         "text": "r → y",
