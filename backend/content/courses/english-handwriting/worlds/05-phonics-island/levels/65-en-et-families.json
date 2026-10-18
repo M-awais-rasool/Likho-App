@@ -166,8 +166,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write pen",
-        "say": "Look at the word pen. Then write it from memory!",
-        "audio": "voice/line-f7dbaf5a0b70b8d4.m4a"
+        "say": "Look at the word pen. It will hide. Then write it!",
+        "audio": "voice/line-6861af15cb82e698.m4a"
       },
       "card": {
         "text": null,
@@ -193,8 +193,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every jet!",
-        "say": "Find every word jet!",
-        "audio": "voice/line-ae7e2bc84fadb984.m4a"
+        "say": "Tap every word that says \"jet\"!",
+        "audio": "voice/line-a9475db9193289df.m4a"
       },
       "card": {
         "text": "jet",
@@ -304,17 +304,17 @@
         "parts": [
           {
             "text": "w",
-            "say": "{/w/|wʌ}",
+            "say": "{w|wʌ}",
             "audio": "voice/line-9b908be90fdc574f.m4a"
           },
           {
             "text": "e",
-            "say": "{/e/|ɛ}",
+            "say": "{e|ɛ}",
             "audio": "voice/line-26b8405a6ef65e10.m4a"
           },
           {
             "text": "t",
-            "say": "{/t/|tʌ}",
+            "say": "{t|tʌ}",
             "audio": "voice/line-570d1fc0dffd834f.m4a"
           }
         ],

@@ -90,8 +90,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/h/|hʌ} or {/n/|nːː}?",
-        "audio": "voice/line-983d4c135ee07a2c.m4a"
+        "say": "Sort the pictures! Does each one start with the {h|hʌ} sound, or the {n|nːː} sound?",
+        "audio": "voice/line-da7e7eba2a7aa046.m4a"
       },
       "card": {
         "text": "h n",
@@ -275,8 +275,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write bug",
-        "say": "Look at the word bug. Then write it from memory!",
-        "audio": "voice/line-d02e4561cd0660d8.m4a"
+        "say": "Look at the word bug. It will hide. Then write it!",
+        "audio": "voice/line-e525cbaebeb28b71.m4a"
       },
       "card": {
         "text": null,
@@ -302,8 +302,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every bug!",
-        "say": "Find every word bug!",
-        "audio": "voice/line-b961d3d9c906e543.m4a"
+        "say": "Tap every word that says \"bug\"!",
+        "audio": "voice/line-9b9873dcce12c26c.m4a"
       },
       "card": {
         "text": "bug",
@@ -343,17 +343,17 @@
         "parts": [
           {
             "text": "b",
-            "say": "{/b/|bʌ}",
+            "say": "{b|bʌ}",
             "audio": "voice/line-54284489cdcd15c3.m4a"
           },
           {
             "text": "u",
-            "say": "{/u/|ʌ}",
+            "say": "{u|ʌ}",
             "audio": "voice/line-6094ce3b4313c3cc.m4a"
           },
           {
             "text": "s",
-            "say": "{/s/|sːː}",
+            "say": "{s|sːː}",
             "audio": "voice/line-176638e56286fdf8.m4a"
           }
         ],

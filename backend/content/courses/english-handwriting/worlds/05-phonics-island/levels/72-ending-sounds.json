@@ -104,9 +104,9 @@
       "id": "level-72-r3",
       "type": "pick",
       "prompt": {
-        "text": "Which one ends with /n/?",
-        "say": "Which one ends with {/n/|nːː}?",
-        "audio": "voice/line-bef4f8120cf6256b.m4a"
+        "text": "Which one ends with \"n\"?",
+        "say": "Which one ends with the {n|nːː} sound?",
+        "audio": "voice/line-a75faff686a64481.m4a"
       },
       "card": {
         "text": "n",
@@ -165,8 +165,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they end with {/t/|tʌ} or {/g/|ɡʌ}?",
-        "audio": "voice/line-7aec805ebc7eb920.m4a"
+        "say": "Sort the pictures! Do they end with the {t|tʌ} sound or the {g|ɡʌ} sound?",
+        "audio": "voice/line-c48eca166f0ce7cf.m4a"
       },
       "card": {
         "text": "t g",
@@ -276,8 +276,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write pig",
-        "say": "Look at the word pig. Then write it from memory!",
-        "audio": "voice/line-a132d4699f254e7b.m4a"
+        "say": "Look at the word pig. It will hide. Then write it!",
+        "audio": "voice/line-a926030cb04182a0.m4a"
       },
       "card": {
         "text": null,
@@ -300,35 +300,66 @@
     },
     {
       "id": "level-72-r7",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "Cat, hat, bat! They all end the same. Tap the drum once for every word!",
-        "audio": "voice/line-40621319bfe8991e.m4a"
+        "text": "Join M to S!",
+        "say": "Tap the dots in order, from {M|ˈɛm} to {S|ˈɛs}. What will it make?",
+        "audio": "voice/line-cbe1669847c588db.m4a"
       },
       "card": {
-        "text": null,
+        "text": "M → S",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "Cat, hat, bat! They all end the same.",
-        "parts": [
-          "Cat",
-          "hat",
-          "bat",
-          "They",
-          "all",
-          "end",
-          "the",
-          "same"
+      "connect": {
+        "labels": [
+          "M",
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "Cat hat bat They all end the same",
-          "say": "Cat, hat, bat! They all end the same. Eight words!",
-          "audio": "voice/line-8214f4d03dd827e8.m4a"
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            82,
+            50
+          ],
+          [
+            98,
+            64
+          ],
+          [
+            80,
+            94
+          ],
+          [
+            20,
+            94
+          ],
+          [
+            2,
+            64
+          ],
+          [
+            50,
+            64
+          ]
+        ],
+        "picture": {
+          "key": "boat",
+          "label": "boat",
+          "url": null
+        },
+        "done": {
+          "text": "A boat!",
+          "say": "It's a boat!",
+          "audio": "voice/line-a705e55e86a2309a.m4a"
         }
       }
     },

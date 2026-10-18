@@ -90,8 +90,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/p/|pʌ} or {/f/|fːː}?",
-        "audio": "voice/line-30e167af2e0d4319.m4a"
+        "say": "Sort the pictures! Does each one start with the {p|pʌ} sound, or the {f|fːː} sound?",
+        "audio": "voice/line-07fd63d6f6290147.m4a"
       },
       "card": {
         "text": "p f",
@@ -275,8 +275,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write pot",
-        "say": "Look at the word pot. Then write it from memory!",
-        "audio": "voice/line-c572ae0c9011cbe9.m4a"
+        "say": "Look at the word pot. It will hide. Then write it!",
+        "audio": "voice/line-b8671e1a29929779.m4a"
       },
       "card": {
         "text": null,
@@ -302,8 +302,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every fox!",
-        "say": "Find every word fox!",
-        "audio": "voice/line-c70894259015e19e.m4a"
+        "say": "Tap every word that says \"fox\"!",
+        "audio": "voice/line-027e7df6d097335f.m4a"
       },
       "card": {
         "text": "fox",
@@ -343,17 +343,17 @@
         "parts": [
           {
             "text": "d",
-            "say": "{/d/|dʌ}",
+            "say": "{d|dʌ}",
             "audio": "voice/line-f06c02b8a2619c78.m4a"
           },
           {
             "text": "o",
-            "say": "{/o/|ɑ}",
+            "say": "{o|ɑ}",
             "audio": "voice/line-253bbb0325fbe7e3.m4a"
           },
           {
             "text": "g",
-            "say": "{/g/|ɡʌ}",
+            "say": "{g|ɡʌ}",
             "audio": "voice/line-be23dfaf66221347.m4a"
           }
         ],

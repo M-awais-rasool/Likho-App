@@ -251,8 +251,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -289,8 +289,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every map!",
-        "say": "Find every word map!",
-        "audio": "voice/line-ad594b9d7a81175d.m4a"
+        "say": "Tap every word that says \"map\"!",
+        "audio": "voice/line-5461315aac0a4c82.m4a"
       },
       "card": {
         "text": "map",
@@ -330,17 +330,17 @@
         "parts": [
           {
             "text": "c",
-            "say": "{/c/|kʌ}",
+            "say": "{c|kʌ}",
             "audio": "voice/line-eec1fee16c5c51e0.m4a"
           },
           {
             "text": "a",
-            "say": "{/a/|æ}",
+            "say": "{a|æ}",
             "audio": "voice/line-6a230dad287fe9e9.m4a"
           },
           {
             "text": "t",
-            "say": "{/t/|tʌ}",
+            "say": "{t|tʌ}",
             "audio": "voice/line-570d1fc0dffd834f.m4a"
           }
         ],
