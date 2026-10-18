@@ -7,6 +7,7 @@ import 'package:likho/game/level_session.dart';
 import 'package:fake_async/fake_async.dart';
 
 import 'fake_backend.dart';
+import 'new_games_test.dart' as games;
 import 'test_course.dart';
 
 void main() {
@@ -166,9 +167,9 @@ void main() {
     });
   });
 
-  test('clap the beats: a tap a beat, Done checks; a wrong count is a mistake, Pencil says the hint, the drum starts over', () {
+  test('clap the beats (an old level; no longer in the course): a tap a beat, Done checks; a wrong count is a mistake, Pencil says the hint, the drum starts over', () {
     fakeAsync((clock) {
-      final level = onlyRounds(levelWith((r) => r is BeatsRound), (r) => r is BeatsRound);
+      final level = levelWithRounds(testCourse.level(5), [games.beats]);
       final c = ProviderContainer();
       addTearDown(c.dispose);
       final sub = c.listen(levelSessionProvider(level), (_, _) {});
@@ -236,7 +237,8 @@ void main() {
   test('the course never asks a child to speak (the app does not listen)', () {
     final types = {for (final l in testCourse.levels) for (final r in l.rounds) r.type};
     expect(types, isNot(contains('speak')));
-    expect(types, containsAll(['sounds', 'beats', 'connect']));
+    expect(types, containsAll(['sounds', 'connect']));
+    expect(types, isNot(contains('beats')), reason: 'the drum game was taken out (2026-10-18)');
     expect(testCourse.levels.expand((l) => l.rounds).whereType<UnknownRound>(), isEmpty);
   });
 
