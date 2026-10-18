@@ -258,33 +258,76 @@
     },
     {
       "id": "level-40-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Clap the beats!",
-        "say": "Insect! Tap the drum for every beat in insect.",
-        "audio": "voice/line-854d2ea39415b568.m4a"
+        "text": "Join e to m!",
+        "say": "Tap the dots in order, from {e|ˈiː} to {m|ˈɛm}. What will it make?",
+        "audio": "voice/line-d4c529c6a7753693.m4a"
       },
       "card": {
-        "text": null,
+        "text": "e → m",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "insect",
-        "parts": [
-          "in",
-          "sect"
+      "connect": {
+        "labels": [
+          "e",
+          "f",
+          "g",
+          "h",
+          "i",
+          "j",
+          "k",
+          "l",
+          "m"
         ],
-        "unit": "syllable",
+        "points": [
+          [
+            62,
+            4
+          ],
+          [
+            30,
+            10
+          ],
+          [
+            10,
+            36
+          ],
+          [
+            8,
+            64
+          ],
+          [
+            28,
+            88
+          ],
+          [
+            62,
+            96
+          ],
+          [
+            44,
+            74
+          ],
+          [
+            36,
+            50
+          ],
+          [
+            44,
+            26
+          ]
+        ],
         "picture": {
-          "key": "insect",
-          "label": "insect",
+          "key": "moon",
+          "label": "moon",
           "url": null
         },
-        "hint": {
-          "text": "in-sect",
-          "say": "Insect. Two beats!",
-          "audio": "voice/line-fcebe32c403375b9.m4a"
+        "done": {
+          "text": "A moon!",
+          "say": "It's a moon!",
+          "audio": "voice/line-24627cec3ea7f4e6.m4a"
         }
       }
     }

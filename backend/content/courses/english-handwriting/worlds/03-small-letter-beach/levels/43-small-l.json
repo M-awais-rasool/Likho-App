@@ -115,9 +115,9 @@
       "id": "level-43-r3",
       "type": "sort",
       "prompt": {
-        "text": "Feed it /l/!",
-        "say": "This monster only eats things that start with {/l/|lːː}. Feed it!",
-        "audio": "voice/line-20e2be1ecd963863.m4a"
+        "text": "Feed it \"l\"!",
+        "say": "This monster eats things that start with the {l|lːː} sound. Feed it!",
+        "audio": "voice/line-d2f19e9ac8076314.m4a"
       },
       "card": {
         "text": "l",
@@ -266,8 +266,8 @@
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
+        "say": "Put the letters in {A|ˈeɪ} B C order!",
+        "audio": "voice/line-060eae3d379a9a2b.m4a"
       },
       "card": {
         "text": null,
@@ -291,8 +291,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write small l",
-        "say": "Look at small {l|ˈɛl}. Then write it from memory!",
-        "audio": "voice/line-9ff4b6dd8aa6f66d.m4a"
+        "say": "Look at small {l|ˈɛl}. It will hide. Then write it!",
+        "audio": "voice/line-009944991da2cfbe.m4a"
       },
       "card": {
         "text": null,
@@ -315,33 +315,86 @@
     },
     {
       "id": "level-43-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Clap the beats!",
-        "say": "Lion! Tap the drum for every beat in lion.",
-        "audio": "voice/line-0f34de4ca491d719.m4a"
+        "text": "Join g to q!",
+        "say": "Tap the dots in order, from {g|ʤˈiː} to {q|kjˈuː}. What will it make?",
+        "audio": "voice/line-1f5d4b34540771c9.m4a"
       },
       "card": {
-        "text": null,
+        "text": "g → q",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "lion",
-        "parts": [
-          "li",
-          "on"
+      "connect": {
+        "labels": [
+          "g",
+          "h",
+          "i",
+          "j",
+          "k",
+          "l",
+          "m",
+          "n",
+          "o",
+          "p",
+          "q"
         ],
-        "unit": "syllable",
+        "points": [
+          [
+            50,
+            2
+          ],
+          [
+            80,
+            36
+          ],
+          [
+            60,
+            36
+          ],
+          [
+            88,
+            66
+          ],
+          [
+            60,
+            66
+          ],
+          [
+            60,
+            96
+          ],
+          [
+            40,
+            96
+          ],
+          [
+            40,
+            66
+          ],
+          [
+            12,
+            66
+          ],
+          [
+            40,
+            36
+          ],
+          [
+            20,
+            36
+          ]
+        ],
         "picture": {
-          "key": "lion",
-          "label": "lion",
+          "key": "tree",
+          "label": "tree",
           "url": null
         },
-        "hint": {
-          "text": "li-on",
-          "say": "Lion. Two beats!",
-          "audio": "voice/line-8357039d450f08d2.m4a"
+        "done": {
+          "text": "A tree!",
+          "say": "It's a tree!",
+          "audio": "voice/line-9f1ccab9d42ec40f.m4a"
         }
       }
     }

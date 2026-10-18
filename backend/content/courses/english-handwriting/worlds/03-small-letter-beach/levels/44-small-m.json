@@ -161,8 +161,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/m/|mːː} or {/l/|lːː}?",
-        "audio": "voice/line-2802c9b9f7cc68b4.m4a"
+        "say": "Sort the pictures! Does each one start with the {m|mːː} sound, or the {l|lːː} sound?",
+        "audio": "voice/line-154c39771bd0e231.m4a"
       },
       "card": {
         "text": "m l",
@@ -256,68 +256,72 @@
     },
     {
       "id": "level-44-r8",
-      "type": "sounds",
+      "type": "connect",
       "prompt": {
-        "text": "Tap each sound, then read!",
-        "say": "Tap each sound. Then slide the arrow to read the word!",
-        "audio": "voice/line-df066702317736d8.m4a"
+        "text": "Join i to p!",
+        "say": "Tap the dots in order, from {i|ˈaɪ} to {p|pˈiː}. What will it make?",
+        "audio": "voice/line-cd467d391b14e949.m4a"
       },
       "card": {
-        "text": null,
+        "text": "i → p",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "sounds": {
-        "word": "moon",
-        "parts": [
-          {
-            "text": "m",
-            "say": "{/m/|mːː}",
-            "audio": "voice/line-26d6be66a61da36b.m4a"
-          },
-          {
-            "text": "oo",
-            "say": "{/oo/|uː}",
-            "audio": "voice/line-2979e2dbcbe276e4.m4a"
-          },
-          {
-            "text": "n",
-            "say": "{/n/|nːː}",
-            "audio": "voice/line-1f9de0e8fd168b84.m4a"
-          }
+      "connect": {
+        "labels": [
+          "i",
+          "j",
+          "k",
+          "l",
+          "m",
+          "n",
+          "o",
+          "p"
         ],
-        "blend": {
-          "text": "moon",
-          "say": "moon!",
-          "audio": "voice/line-ce8af1c87b70420c.m4a"
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            88,
+            20
+          ],
+          [
+            98,
+            50
+          ],
+          [
+            64,
+            46
+          ],
+          [
+            50,
+            96
+          ],
+          [
+            36,
+            46
+          ],
+          [
+            2,
+            50
+          ],
+          [
+            12,
+            20
+          ]
+        ],
+        "picture": {
+          "key": "umbrella",
+          "label": "umbrella",
+          "url": null
         },
-        "choices": [
-          {
-            "label": "ball",
-            "picture": {
-              "key": "ball",
-              "label": "ball",
-              "url": null
-            }
-          },
-          {
-            "label": "box",
-            "picture": {
-              "key": "box",
-              "label": "box",
-              "url": null
-            }
-          },
-          {
-            "label": "moon",
-            "picture": {
-              "key": "moon",
-              "label": "moon",
-              "url": null
-            }
-          }
-        ],
-        "answer": 2
+        "done": {
+          "text": "An umbrella!",
+          "say": "It's an umbrella!",
+          "audio": "voice/line-4a730bcd271939db.m4a"
+        }
       }
     }
   ]

@@ -210,8 +210,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/g/|ɡʌ} or {/f/|fːː}?",
-        "audio": "voice/line-06d60b0b1e61c1ac.m4a"
+        "say": "Sort the pictures! Does each one start with the {g|ɡʌ} sound, or the {f|fːː} sound?",
+        "audio": "voice/line-a0227e2430ea4953.m4a"
       },
       "card": {
         "text": "g f",
@@ -276,8 +276,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write small g",
-        "say": "Look at small {g|ʤˈiː}. Then write it from memory!",
-        "audio": "voice/line-3a199cc27593fddf.m4a"
+        "say": "Look at small {g|ʤˈiː}. It will hide. Then write it!",
+        "audio": "voice/line-f005eb0514e4490f.m4a"
       },
       "card": {
         "text": null,
@@ -300,32 +300,76 @@
     },
     {
       "id": "level-37-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Clap the beats!",
-        "say": "Goat! Tap the drum for every beat in goat.",
-        "audio": "voice/line-971003ace6334351.m4a"
+        "text": "Join c to k!",
+        "say": "Tap the dots in order, from {c|sˈiː} to {k|kˈeɪ}. What will it make?",
+        "audio": "voice/line-e69a372914bcb975.m4a"
       },
       "card": {
-        "text": null,
+        "text": "c → k",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "goat",
-        "parts": [
-          "goat"
+      "connect": {
+        "labels": [
+          "c",
+          "d",
+          "e",
+          "f",
+          "g",
+          "h",
+          "i",
+          "j",
+          "k"
         ],
-        "unit": "syllable",
+        "points": [
+          [
+            6,
+            50
+          ],
+          [
+            30,
+            24
+          ],
+          [
+            56,
+            22
+          ],
+          [
+            76,
+            36
+          ],
+          [
+            96,
+            16
+          ],
+          [
+            96,
+            84
+          ],
+          [
+            76,
+            64
+          ],
+          [
+            56,
+            78
+          ],
+          [
+            30,
+            76
+          ]
+        ],
         "picture": {
-          "key": "goat",
-          "label": "goat",
+          "key": "fish",
+          "label": "fish",
           "url": null
         },
-        "hint": {
-          "text": "goat",
-          "say": "Goat. One beat!",
-          "audio": "voice/line-96e4cbf827fa6f9c.m4a"
+        "done": {
+          "text": "A fish!",
+          "say": "It's a fish!",
+          "audio": "voice/line-141ec1a5d1f6e869.m4a"
         }
       }
     }

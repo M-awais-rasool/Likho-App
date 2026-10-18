@@ -154,9 +154,9 @@
       "id": "level-34-r5",
       "type": "pick",
       "prompt": {
-        "text": "What starts with /d/?",
-        "say": "{d|dˈiː} says {/d/|dʌ}. Which one starts with {/d/|dʌ}?",
-        "audio": "voice/line-b0a6cb3ca9733855.m4a"
+        "text": "What starts with \"d\"?",
+        "say": "{d|dˈiː} makes the {d|dʌ} sound. Which one starts with that sound?",
+        "audio": "voice/line-7c15c35916e4a70f.m4a"
       },
       "card": {
         "text": "d",
@@ -262,68 +262,72 @@
     },
     {
       "id": "level-34-r8",
-      "type": "sounds",
+      "type": "connect",
       "prompt": {
-        "text": "Tap each sound, then read!",
-        "say": "Tap each sound. Then slide the arrow to read the word!",
-        "audio": "voice/line-df066702317736d8.m4a"
+        "text": "Join a to h!",
+        "say": "Tap the dots in order, from {a|ˈeɪ} to {h|ˈeɪʧ}. What will it make?",
+        "audio": "voice/line-190a20d349a9a17c.m4a"
       },
       "card": {
-        "text": null,
+        "text": "a → h",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "sounds": {
-        "word": "dog",
-        "parts": [
-          {
-            "text": "d",
-            "say": "{/d/|dʌ}",
-            "audio": "voice/line-f06c02b8a2619c78.m4a"
-          },
-          {
-            "text": "o",
-            "say": "{/o/|ɑ}",
-            "audio": "voice/line-253bbb0325fbe7e3.m4a"
-          },
-          {
-            "text": "g",
-            "say": "{/g/|ɡʌ}",
-            "audio": "voice/line-be23dfaf66221347.m4a"
-          }
+      "connect": {
+        "labels": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f",
+          "g",
+          "h"
         ],
-        "blend": {
-          "text": "dog",
-          "say": "dog!",
-          "audio": "voice/line-b153f0b84aa91128.m4a"
+        "points": [
+          [
+            8,
+            44
+          ],
+          [
+            40,
+            44
+          ],
+          [
+            40,
+            10
+          ],
+          [
+            60,
+            10
+          ],
+          [
+            60,
+            44
+          ],
+          [
+            92,
+            44
+          ],
+          [
+            92,
+            94
+          ],
+          [
+            8,
+            94
+          ]
+        ],
+        "picture": {
+          "key": "cake",
+          "label": "cake",
+          "url": null
         },
-        "choices": [
-          {
-            "label": "cat",
-            "picture": {
-              "key": "cat",
-              "label": "cat",
-              "url": null
-            }
-          },
-          {
-            "label": "apple",
-            "picture": {
-              "key": "apple",
-              "label": "apple",
-              "url": null
-            }
-          },
-          {
-            "label": "dog",
-            "picture": {
-              "key": "dog",
-              "label": "dog",
-              "url": null
-            }
-          }
-        ],
-        "answer": 2
+        "done": {
+          "text": "A cake!",
+          "say": "It's a cake!",
+          "audio": "voice/line-603810a81e3a93a1.m4a"
+        }
       }
     }
   ]

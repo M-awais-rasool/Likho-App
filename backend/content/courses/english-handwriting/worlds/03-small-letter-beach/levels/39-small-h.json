@@ -115,9 +115,9 @@
       "id": "level-39-r3",
       "type": "sort",
       "prompt": {
-        "text": "Feed it /h/!",
-        "say": "This monster only eats things that start with {/h/|hʌ}. Feed it!",
-        "audio": "voice/line-5ee181652f351087.m4a"
+        "text": "Feed it \"h\"!",
+        "say": "This monster eats things that start with the {h|hʌ} sound. Feed it!",
+        "audio": "voice/line-cfb09c6c462aa7d5.m4a"
       },
       "card": {
         "text": "h",
@@ -266,8 +266,8 @@
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
+        "say": "Put the letters in {A|ˈeɪ} B C order!",
+        "audio": "voice/line-060eae3d379a9a2b.m4a"
       },
       "card": {
         "text": null,
@@ -291,8 +291,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write small h",
-        "say": "Look at small {h|ˈeɪʧ}. Then write it from memory!",
-        "audio": "voice/line-18b5ecd332e5583c.m4a"
+        "say": "Look at small {h|ˈeɪʧ}. It will hide. Then write it!",
+        "audio": "voice/line-cd7ebef1fd5878b8.m4a"
       },
       "card": {
         "text": null,
@@ -315,68 +315,62 @@
     },
     {
       "id": "level-39-r8",
-      "type": "sounds",
+      "type": "connect",
       "prompt": {
-        "text": "Tap each sound, then read!",
-        "say": "Tap each sound. Then slide the arrow to read the word!",
-        "audio": "voice/line-df066702317736d8.m4a"
+        "text": "Join e to j!",
+        "say": "Tap the dots in order, from {e|ˈiː} to {j|ʤˈeɪ}. What will it make?",
+        "audio": "voice/line-ec1ca816aae5c74b.m4a"
       },
       "card": {
-        "text": null,
+        "text": "e → j",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "sounds": {
-        "word": "hat",
-        "parts": [
-          {
-            "text": "h",
-            "say": "{/h/|hʌ}",
-            "audio": "voice/line-cf2e19ba9b889302.m4a"
-          },
-          {
-            "text": "a",
-            "say": "{/a/|æ}",
-            "audio": "voice/line-6a230dad287fe9e9.m4a"
-          },
-          {
-            "text": "t",
-            "say": "{/t/|tʌ}",
-            "audio": "voice/line-570d1fc0dffd834f.m4a"
-          }
+      "connect": {
+        "labels": [
+          "e",
+          "f",
+          "g",
+          "h",
+          "i",
+          "j"
         ],
-        "blend": {
-          "text": "hat",
-          "say": "hat!",
-          "audio": "voice/line-286b6f1ba138cf7a.m4a"
+        "points": [
+          [
+            50,
+            3
+          ],
+          [
+            88,
+            38
+          ],
+          [
+            69,
+            68
+          ],
+          [
+            50,
+            97
+          ],
+          [
+            31,
+            68
+          ],
+          [
+            12,
+            38
+          ]
+        ],
+        "picture": {
+          "key": "kite",
+          "label": "kite",
+          "url": null
         },
-        "choices": [
-          {
-            "label": "violin",
-            "picture": {
-              "key": "violin",
-              "label": "violin",
-              "url": null
-            }
-          },
-          {
-            "label": "octopus",
-            "picture": {
-              "key": "octopus",
-              "label": "octopus",
-              "url": null
-            }
-          },
-          {
-            "label": "hat",
-            "picture": {
-              "key": "hat",
-              "label": "hat",
-              "url": null
-            }
-          }
-        ],
-        "answer": 2
+        "done": {
+          "text": "A kite!",
+          "say": "It's a kite!",
+          "audio": "voice/line-84a0b92f93e00a15.m4a"
+        }
       }
     }
   ]
