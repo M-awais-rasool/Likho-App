@@ -193,8 +193,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/c/|kʌ} or {/b/|bʌ}?",
-        "audio": "voice/line-762e4a4c7adc5164.m4a"
+        "say": "Sort the pictures! Does each one start with the {c|kʌ} sound, or the {b|bʌ} sound?",
+        "audio": "voice/line-c45b173988c270d0.m4a"
       },
       "card": {
         "text": "c b",
@@ -268,8 +268,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write small c",
-        "say": "Look at small {c|sˈiː}. Then write it from memory!",
-        "audio": "voice/line-c77023c0cce54bc0.m4a"
+        "say": "Look at small {c|sˈiː}. It will hide. Then write it!",
+        "audio": "voice/line-5006badc4c2521d5.m4a"
       },
       "card": {
         "text": null,
@@ -292,67 +292,68 @@
     },
     {
       "id": "level-33-r8",
-      "type": "connect",
+      "type": "sounds",
       "prompt": {
-        "text": "Join a to g!",
-        "say": "Join the dots, from {a|ˈeɪ} to {g|ʤˈiː}. What will it be?",
-        "audio": "voice/line-df1bb029866491f4.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
-        "text": "a → g",
+        "text": null,
         "picture": null,
-        "listen": false
+        "listen": true
       },
-      "connect": {
-        "labels": [
-          "a",
-          "b",
-          "c",
-          "d",
-          "e",
-          "f",
-          "g"
+      "sounds": {
+        "word": "cat",
+        "parts": [
+          {
+            "text": "c",
+            "say": "{c|kʌ}",
+            "audio": "voice/line-eec1fee16c5c51e0.m4a"
+          },
+          {
+            "text": "a",
+            "say": "{a|æ}",
+            "audio": "voice/line-6a230dad287fe9e9.m4a"
+          },
+          {
+            "text": "t",
+            "say": "{t|tʌ}",
+            "audio": "voice/line-570d1fc0dffd834f.m4a"
+          }
         ],
-        "points": [
-          [
-            50,
-            4
-          ],
-          [
-            82,
-            50
-          ],
-          [
-            98,
-            64
-          ],
-          [
-            80,
-            94
-          ],
-          [
-            20,
-            94
-          ],
-          [
-            2,
-            64
-          ],
-          [
-            50,
-            64
-          ]
-        ],
-        "picture": {
-          "key": "boat",
-          "label": "boat",
-          "url": null
+        "blend": {
+          "text": "cat",
+          "say": "cat!",
+          "audio": "voice/line-0bed5f04580b7f83.m4a"
         },
-        "done": {
-          "text": "A boat!",
-          "say": "It's a boat!",
-          "audio": "voice/line-a705e55e86a2309a.m4a"
-        }
+        "choices": [
+          {
+            "label": "cat",
+            "picture": {
+              "key": "cat",
+              "label": "cat",
+              "url": null
+            }
+          },
+          {
+            "label": "box",
+            "picture": {
+              "key": "box",
+              "label": "box",
+              "url": null
+            }
+          },
+          {
+            "label": "pig",
+            "picture": {
+              "key": "pig",
+              "label": "pig",
+              "url": null
+            }
+          }
+        ],
+        "answer": 0
       }
     }
   ]

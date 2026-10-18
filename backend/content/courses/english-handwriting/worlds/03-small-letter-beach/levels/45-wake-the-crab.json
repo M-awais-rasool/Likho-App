@@ -79,9 +79,9 @@
       "id": "level-45-r3",
       "type": "pick",
       "prompt": {
-        "text": "What starts with /g/?",
-        "say": "Which one starts with {/g/|ɡʌ}?",
-        "audio": "voice/line-068a4d2e0c5febd7.m4a"
+        "text": "What starts with \"g\"?",
+        "say": "Which one starts with the {g|ɡʌ} sound?",
+        "audio": "voice/line-ee55ecd4bbd60d9c.m4a"
       },
       "card": {
         "text": null,
@@ -244,8 +244,8 @@
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
+        "say": "Put the letters in {A|ˈeɪ} B C order!",
+        "audio": "voice/line-060eae3d379a9a2b.m4a"
       },
       "card": {
         "text": null,
@@ -269,8 +269,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join b to m!",
-        "say": "Join the dots, from {b|bˈiː} to {m|ˈɛm}. What will it be?",
-        "audio": "voice/line-8b061a9eadba7f9a.m4a"
+        "say": "Tap the dots in order, from {b|bˈiː} to {m|ˈɛm}. What will it make?",
+        "audio": "voice/line-d8192334ce85e748.m4a"
       },
       "card": {
         "text": "b → m",

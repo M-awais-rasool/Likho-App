@@ -115,9 +115,9 @@
       "id": "level-35-r3",
       "type": "sort",
       "prompt": {
-        "text": "Feed it /e/!",
-        "say": "This monster only eats things that start with {/e/|ɛ}. Feed it!",
-        "audio": "voice/line-31053af8c2b0a3fd.m4a"
+        "text": "Feed it \"e\"!",
+        "say": "This monster eats things that start with the {e|ɛ} sound. Feed it!",
+        "audio": "voice/line-d4b3fb3bfcde82db.m4a"
       },
       "card": {
         "text": "e",
@@ -257,8 +257,8 @@
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
+        "say": "Put the letters in {A|ˈeɪ} B C order!",
+        "audio": "voice/line-060eae3d379a9a2b.m4a"
       },
       "card": {
         "text": null,
@@ -282,8 +282,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write small e",
-        "say": "Look at small {e|ˈiː}. Then write it from memory!",
-        "audio": "voice/line-143e48e6cca862ee.m4a"
+        "say": "Look at small {e|ˈiː}. It will hide. Then write it!",
+        "audio": "voice/line-dd62fe42bad1756c.m4a"
       },
       "card": {
         "text": null,
@@ -306,33 +306,63 @@
     },
     {
       "id": "level-35-r8",
-      "type": "beats",
+      "type": "sounds",
       "prompt": {
-        "text": "Clap the beats!",
-        "say": "Egg! Tap the drum for every beat in egg.",
-        "audio": "voice/line-db589d41d871a3e9.m4a"
+        "text": "Tap each sound, then read!",
+        "say": "Tap each sound. Then slide the arrow to read the word!",
+        "audio": "voice/line-df066702317736d8.m4a"
       },
       "card": {
         "text": null,
         "picture": null,
         "listen": true
       },
-      "beats": {
-        "text": "egg",
+      "sounds": {
+        "word": "egg",
         "parts": [
-          "egg"
+          {
+            "text": "e",
+            "say": "{e|ɛ}",
+            "audio": "voice/line-26b8405a6ef65e10.m4a"
+          },
+          {
+            "text": "gg",
+            "say": "{gg|ɡʌ}",
+            "audio": "voice/line-be23dfaf66221347.m4a"
+          }
         ],
-        "unit": "syllable",
-        "picture": {
-          "key": "egg",
-          "label": "egg",
-          "url": null
-        },
-        "hint": {
+        "blend": {
           "text": "egg",
-          "say": "Egg. One beat!",
-          "audio": "voice/line-9a41eeaa436a221c.m4a"
-        }
+          "say": "egg!",
+          "audio": "voice/line-1e26ba23c0501980.m4a"
+        },
+        "choices": [
+          {
+            "label": "egg",
+            "picture": {
+              "key": "egg",
+              "label": "egg",
+              "url": null
+            }
+          },
+          {
+            "label": "queen",
+            "picture": {
+              "key": "queen",
+              "label": "queen",
+              "url": null
+            }
+          },
+          {
+            "label": "octopus",
+            "picture": {
+              "key": "octopus",
+              "label": "octopus",
+              "url": null
+            }
+          }
+        ],
+        "answer": 0
       }
     }
   ]
