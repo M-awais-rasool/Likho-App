@@ -168,8 +168,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write straw",
-        "say": "Look at the word straw. Then write it from memory!",
-        "audio": "voice/line-e6cad1f3045a658d.m4a"
+        "say": "Look at the word straw. It will hide. Then write it!",
+        "audio": "voice/line-d378bbae5125d4d3.m4a"
       },
       "card": {
         "text": null,
@@ -195,8 +195,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every splash!",
-        "say": "Find every word splash!",
-        "audio": "voice/line-8f3fac2db47d2854.m4a"
+        "say": "Tap every word that says \"splash\"!",
+        "audio": "voice/line-25b37100ac0c709c.m4a"
       },
       "card": {
         "text": "splash",
@@ -316,27 +316,27 @@
         "parts": [
           {
             "text": "s",
-            "say": "{/s/|sːː}",
+            "say": "{s|sːː}",
             "audio": "voice/line-176638e56286fdf8.m4a"
           },
           {
             "text": "p",
-            "say": "{/p/|pʌ}",
+            "say": "{p|pʌ}",
             "audio": "voice/line-6b361a2ef876dccb.m4a"
           },
           {
             "text": "l",
-            "say": "{/l/|lːː}",
+            "say": "{l|lːː}",
             "audio": "voice/line-46d949fa5b946ccb.m4a"
           },
           {
             "text": "a",
-            "say": "{/a/|æ}",
+            "say": "{a|æ}",
             "audio": "voice/line-6a230dad287fe9e9.m4a"
           },
           {
             "text": "sh",
-            "say": "{/sh/|ʃːː}",
+            "say": "{sh|ʃːː}",
             "audio": "voice/line-9800483307c29bf6.m4a"
           }
         ],

@@ -128,8 +128,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every frog!",
-        "say": "Find every word frog!",
-        "audio": "voice/line-8678b02ddf2f0541.m4a"
+        "say": "Tap every word that says \"frog\"!",
+        "audio": "voice/line-a2f891eaa4ce9044.m4a"
       },
       "card": {
         "text": "frog",
@@ -270,8 +270,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -305,33 +305,91 @@
     },
     {
       "id": "level-120-r9",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "The fish is in the sea. Tap the drum once for every word!",
-        "audio": "voice/line-b8edb4cbb35f7d4e.m4a"
+        "text": "Join M to X!",
+        "say": "Tap the dots in order, from {M|ˈɛm} to {X|ˈɛks}. What will it make?",
+        "audio": "voice/line-39d0fe6a8fb3b375.m4a"
       },
       "card": {
-        "text": null,
+        "text": "M → X",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "The fish is in the sea.",
-        "parts": [
-          "The",
-          "fish",
-          "is",
-          "in",
-          "the",
-          "sea"
+      "connect": {
+        "labels": [
+          "M",
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V",
+          "W",
+          "X"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "The fish is in the sea",
-          "say": "The fish is in the sea. Six words!",
-          "audio": "voice/line-b050d72eb8524cff.m4a"
+        "points": [
+          [
+            50,
+            22
+          ],
+          [
+            66,
+            12
+          ],
+          [
+            86,
+            22
+          ],
+          [
+            92,
+            48
+          ],
+          [
+            82,
+            76
+          ],
+          [
+            68,
+            94
+          ],
+          [
+            50,
+            84
+          ],
+          [
+            32,
+            94
+          ],
+          [
+            18,
+            76
+          ],
+          [
+            8,
+            48
+          ],
+          [
+            14,
+            22
+          ],
+          [
+            34,
+            12
+          ]
+        ],
+        "picture": {
+          "key": "apple",
+          "label": "apple",
+          "url": null
+        },
+        "done": {
+          "text": "An apple!",
+          "say": "It's an apple!",
+          "audio": "voice/line-eb257727166de7e7.m4a"
         }
       }
     },
@@ -353,17 +411,17 @@
         "parts": [
           {
             "text": "s",
-            "say": "{/s/|sːː}",
+            "say": "{s|sːː}",
             "audio": "voice/line-176638e56286fdf8.m4a"
           },
           {
             "text": "t",
-            "say": "{/t/|tʌ}",
+            "say": "{t|tʌ}",
             "audio": "voice/line-570d1fc0dffd834f.m4a"
           },
           {
             "text": "ar",
-            "say": "{/ar/|ɑːɹ}",
+            "say": "{ar|ɑːɹ}",
             "audio": "voice/line-9a62cc86666d5529.m4a"
           }
         ],

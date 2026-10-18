@@ -90,8 +90,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -253,8 +253,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every crab!",
-        "say": "Find every word crab!",
-        "audio": "voice/line-c7b4a5bfb670f61e.m4a"
+        "say": "Tap every word that says \"crab\"!",
+        "audio": "voice/line-1a3549ad64143225.m4a"
       },
       "card": {
         "text": "crab",
@@ -294,22 +294,22 @@
         "parts": [
           {
             "text": "f",
-            "say": "{/f/|fːː}",
+            "say": "{f|fːː}",
             "audio": "voice/line-f8e06cf8534c2a27.m4a"
           },
           {
             "text": "r",
-            "say": "{/r/|ɹːː}",
+            "say": "{r|ɹːː}",
             "audio": "voice/line-c9097eface293028.m4a"
           },
           {
             "text": "o",
-            "say": "{/o/|ɑ}",
+            "say": "{o|ɑ}",
             "audio": "voice/line-253bbb0325fbe7e3.m4a"
           },
           {
             "text": "g",
-            "say": "{/g/|ɡʌ}",
+            "say": "{g|ɡʌ}",
             "audio": "voice/line-be23dfaf66221347.m4a"
           }
         ],
@@ -352,8 +352,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/b/|bʌ} or {/s/|sːː}?",
-        "audio": "voice/line-3b89475e1ac5d27c.m4a"
+        "say": "Sort the pictures! Does each one start with the {b|bʌ} sound, or the {s|sːː} sound?",
+        "audio": "voice/line-b89a633f0add0f63.m4a"
       },
       "card": {
         "text": "b s",

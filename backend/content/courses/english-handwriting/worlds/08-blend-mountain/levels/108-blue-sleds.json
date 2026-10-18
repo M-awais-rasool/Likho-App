@@ -90,8 +90,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write blue",
-        "say": "Look at the word blue. Then write it from memory!",
-        "audio": "voice/line-d751542f6a831381.m4a"
+        "say": "Look at the word blue. It will hide. Then write it!",
+        "audio": "voice/line-b12282cdcb6b27af.m4a"
       },
       "card": {
         "text": null,
@@ -242,8 +242,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every black!",
-        "say": "Find every word black!",
-        "audio": "voice/line-a287ab3e3297d066.m4a"
+        "say": "Tap every word that says \"black\"!",
+        "audio": "voice/line-7b56bba9fd9954bc.m4a"
       },
       "card": {
         "text": "black",
@@ -283,22 +283,22 @@
         "parts": [
           {
             "text": "s",
-            "say": "{/s/|sːː}",
+            "say": "{s|sːː}",
             "audio": "voice/line-176638e56286fdf8.m4a"
           },
           {
             "text": "l",
-            "say": "{/l/|lːː}",
+            "say": "{l|lːː}",
             "audio": "voice/line-46d949fa5b946ccb.m4a"
           },
           {
             "text": "e",
-            "say": "{/e/|ɛ}",
+            "say": "{e|ɛ}",
             "audio": "voice/line-26b8405a6ef65e10.m4a"
           },
           {
             "text": "d",
-            "say": "{/d/|dʌ}",
+            "say": "{d|dʌ}",
             "audio": "voice/line-f06c02b8a2619c78.m4a"
           }
         ],

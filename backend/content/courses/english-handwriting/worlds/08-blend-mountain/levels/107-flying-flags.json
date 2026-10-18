@@ -215,8 +215,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/b/|bʌ} or {/s/|sːː}?",
-        "audio": "voice/line-3b89475e1ac5d27c.m4a"
+        "say": "Sort the pictures! Does each one start with the {b|bʌ} sound, or the {s|sːː} sound?",
+        "audio": "voice/line-b89a633f0add0f63.m4a"
       },
       "card": {
         "text": "b s",
@@ -299,8 +299,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every flower!",
-        "say": "Find every word flower!",
-        "audio": "voice/line-9dbd7ca962813e8a.m4a"
+        "say": "Tap every word that says \"flower\"!",
+        "audio": "voice/line-469e57ca77001672.m4a"
       },
       "card": {
         "text": "flower",
@@ -327,8 +327,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join j to u!",
-        "say": "Join the dots, from {j|ʤˈeɪ} to {u|jˈuː}. What will it be?",
-        "audio": "voice/line-5182c65c6893e49d.m4a"
+        "say": "Tap the dots in order, from {j|ʤˈeɪ} to {u|jˈuː}. What will it make?",
+        "audio": "voice/line-b0fa002fa1ad4d12.m4a"
       },
       "card": {
         "text": "j → u",
@@ -417,8 +417,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write flag",
-        "say": "Look at the word flag. Then write it from memory!",
-        "audio": "voice/line-a5b7ad26333d5d8f.m4a"
+        "say": "Look at the word flag. It will hide. Then write it!",
+        "audio": "voice/line-083777c0f5771ca6.m4a"
       },
       "card": {
         "text": null,

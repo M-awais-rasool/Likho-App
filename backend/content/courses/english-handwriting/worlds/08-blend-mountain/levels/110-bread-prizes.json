@@ -90,8 +90,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/g/|ɡʌ} or {/h/|hʌ}?",
-        "audio": "voice/line-3a5448a6011a54ca.m4a"
+        "say": "Sort the pictures! Does each one start with the {g|ɡʌ} sound, or the {h|hʌ} sound?",
+        "audio": "voice/line-73267325578efa05.m4a"
       },
       "card": {
         "text": "g h",
@@ -268,8 +268,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write brick",
-        "say": "Look at the word brick. Then write it from memory!",
-        "audio": "voice/line-c52e642ba385b46c.m4a"
+        "say": "Look at the word brick. It will hide. Then write it!",
+        "audio": "voice/line-02428d8bb08d6be1.m4a"
       },
       "card": {
         "text": null,
@@ -295,8 +295,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every brush!",
-        "say": "Find every word brush!",
-        "audio": "voice/line-755c1bcc9d98c139.m4a"
+        "say": "Tap every word that says \"brush\"!",
+        "audio": "voice/line-271d376e3806a341.m4a"
       },
       "card": {
         "text": "brush",
@@ -336,22 +336,22 @@
         "parts": [
           {
             "text": "b",
-            "say": "{/b/|bʌ}",
+            "say": "{b|bʌ}",
             "audio": "voice/line-54284489cdcd15c3.m4a"
           },
           {
             "text": "r",
-            "say": "{/r/|ɹːː}",
+            "say": "{r|ɹːː}",
             "audio": "voice/line-c9097eface293028.m4a"
           },
           {
             "text": "oo",
-            "say": "{/oo/|uː}",
+            "say": "{oo|uː}",
             "audio": "voice/line-2979e2dbcbe276e4.m4a"
           },
           {
             "text": "m",
-            "say": "{/m/|mːː}",
+            "say": "{m|mːː}",
             "audio": "voice/line-26d6be66a61da36b.m4a"
           }
         ],

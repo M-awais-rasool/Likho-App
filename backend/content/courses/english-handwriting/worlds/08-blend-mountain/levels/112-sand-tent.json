@@ -90,8 +90,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/t/|tʌ} or {/l/|lːː}?",
-        "audio": "voice/line-4d800cb2f76f529e.m4a"
+        "say": "Sort the pictures! Does each one start with the {t|tʌ} sound, or the {l|lːː} sound?",
+        "audio": "voice/line-d8f803144ed17eda.m4a"
       },
       "card": {
         "text": "t l",
@@ -276,8 +276,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write nest",
-        "say": "Look at the word nest. Then write it from memory!",
-        "audio": "voice/line-ed53318ca1f53e0c.m4a"
+        "say": "Look at the word nest. It will hide. Then write it!",
+        "audio": "voice/line-86ab1b3f7b37390f.m4a"
       },
       "card": {
         "text": null,
@@ -303,8 +303,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every nest!",
-        "say": "Find every word nest!",
-        "audio": "voice/line-b0f5d59955781631.m4a"
+        "say": "Tap every word that says \"nest\"!",
+        "audio": "voice/line-95467c627e00025c.m4a"
       },
       "card": {
         "text": "nest",
@@ -344,22 +344,22 @@
         "parts": [
           {
             "text": "h",
-            "say": "{/h/|hʌ}",
+            "say": "{h|hʌ}",
             "audio": "voice/line-cf2e19ba9b889302.m4a"
           },
           {
             "text": "a",
-            "say": "{/a/|æ}",
+            "say": "{a|æ}",
             "audio": "voice/line-6a230dad287fe9e9.m4a"
           },
           {
             "text": "n",
-            "say": "{/n/|nːː}",
+            "say": "{n|nːː}",
             "audio": "voice/line-1f9de0e8fd168b84.m4a"
           },
           {
             "text": "d",
-            "say": "{/d/|dʌ}",
+            "say": "{d|dʌ}",
             "audio": "voice/line-f06c02b8a2619c78.m4a"
           }
         ],

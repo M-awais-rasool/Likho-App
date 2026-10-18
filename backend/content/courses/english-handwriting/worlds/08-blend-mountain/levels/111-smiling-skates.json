@@ -253,8 +253,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -291,8 +291,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every skunk!",
-        "say": "Find every word skunk!",
-        "audio": "voice/line-74649994f6f536c1.m4a"
+        "say": "Tap every word that says \"skunk\"!",
+        "audio": "voice/line-3b0657d3787e0fa0.m4a"
       },
       "card": {
         "text": "skunk",
@@ -319,8 +319,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join l to s!",
-        "say": "Join the dots, from {l|ˈɛl} to {s|ˈɛs}. What will it be?",
-        "audio": "voice/line-e1147f0fbf21bdd6.m4a"
+        "say": "Tap the dots in order, from {l|ˈɛl} to {s|ˈɛs}. What will it make?",
+        "audio": "voice/line-6864fe8cce37559b.m4a"
       },
       "card": {
         "text": "l → s",

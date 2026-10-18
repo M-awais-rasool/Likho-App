@@ -90,8 +90,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write drum",
-        "say": "Look at the word drum. Then write it from memory!",
-        "audio": "voice/line-4ba89b6c436290ea.m4a"
+        "say": "Look at the word drum. It will hide. Then write it!",
+        "audio": "voice/line-74ad3f76f6cd017f.m4a"
       },
       "card": {
         "text": null,
@@ -194,8 +194,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every sled!",
-        "say": "Find every word sled!",
-        "audio": "voice/line-53eb053629d18974.m4a"
+        "say": "Tap every word that says \"sled\"!",
+        "audio": "voice/line-eecacc20241691b7.m4a"
       },
       "card": {
         "text": "sled",
@@ -302,8 +302,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join M to X!",
-        "say": "Join the dots, from {M|ˈɛm} to {X|ˈɛks}. What will it be?",
-        "audio": "voice/line-c446da2ad32376a9.m4a"
+        "say": "Tap the dots in order, from {M|ˈɛm} to {X|ˈɛks}. What will it make?",
+        "audio": "voice/line-39d0fe6a8fb3b375.m4a"
       },
       "card": {
         "text": "M → X",
