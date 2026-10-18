@@ -78,8 +78,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write sad",
-        "say": "Look at the word sad. Then write it from memory!",
-        "audio": "voice/line-70f4ea11e3eb63bd.m4a"
+        "say": "Look at the word sad. It will hide. Then write it!",
+        "audio": "voice/line-db0121a818d41b4c.m4a"
       },
       "card": {
         "text": null,
@@ -156,8 +156,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join p to x!",
-        "say": "Join the dots, from {p|pˈiː} to {x|ˈɛks}. What will it be?",
-        "audio": "voice/line-553f29e9f620bc46.m4a"
+        "say": "Tap the dots in order, from {p|pˈiː} to {x|ˈɛks}. What will it make?",
+        "audio": "voice/line-2b4690199a8021c0.m4a"
       },
       "card": {
         "text": "p → x",
@@ -254,8 +254,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every sad!",
-        "say": "Find every word sad!",
-        "audio": "voice/line-29f9f3600528429a.m4a"
+        "say": "Tap every word that says \"sad\"!",
+        "audio": "voice/line-198a82a1cd8bc0f6.m4a"
       },
       "card": {
         "text": "sad",

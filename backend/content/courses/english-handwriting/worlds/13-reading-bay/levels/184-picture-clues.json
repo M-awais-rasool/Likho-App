@@ -82,8 +82,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/k/|kʌ} or {/s/|sːː}?",
-        "audio": "voice/line-746a7644c6ebde96.m4a"
+        "say": "Sort the pictures! Does each one start with the {k|kʌ} sound, or the {s|sːː} sound?",
+        "audio": "voice/line-4573c39440fa6b82.m4a"
       },
       "card": {
         "text": "k s",
@@ -269,8 +269,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write kite",
-        "say": "Look at the word kite. Then write it from memory!",
-        "audio": "voice/line-8aae881f92d14e22.m4a"
+        "say": "Look at the word kite. It will hide. Then write it!",
+        "audio": "voice/line-4d0ded17f332209b.m4a"
       },
       "card": {
         "text": null,
@@ -316,34 +316,61 @@
     },
     {
       "id": "level-184-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "Look at the picture for a clue! Tap the drum once for every word!",
-        "audio": "voice/line-07ed0853dca83b05.m4a"
+        "text": "Join a to f!",
+        "say": "Tap the dots in order, from {a|ˈeɪ} to {f|ˈɛf}. What will it make?",
+        "audio": "voice/line-fdfb7df8eff11ea1.m4a"
       },
       "card": {
-        "text": null,
+        "text": "a → f",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "Look at the picture for a clue!",
-        "parts": [
-          "Look",
-          "at",
-          "the",
-          "picture",
-          "for",
+      "connect": {
+        "labels": [
           "a",
-          "clue"
+          "b",
+          "c",
+          "d",
+          "e",
+          "f"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "Look at the picture for a clue",
-          "say": "Look at the picture for a clue! Seven words!",
-          "audio": "voice/line-d67bde28748fa361.m4a"
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            95,
+            42
+          ],
+          [
+            80,
+            94
+          ],
+          [
+            50,
+            94
+          ],
+          [
+            20,
+            94
+          ],
+          [
+            5,
+            42
+          ]
+        ],
+        "picture": {
+          "key": "house",
+          "label": "house",
+          "url": null
+        },
+        "done": {
+          "text": "A house!",
+          "say": "It's a house!",
+          "audio": "voice/line-d592a37832458791.m4a"
         }
       }
     },

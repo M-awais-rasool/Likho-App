@@ -94,8 +94,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write sad",
-        "say": "Look at the word sad. Then write it from memory!",
-        "audio": "voice/line-70f4ea11e3eb63bd.m4a"
+        "say": "Look at the word sad. It will hide. Then write it!",
+        "audio": "voice/line-db0121a818d41b4c.m4a"
       },
       "card": {
         "text": null,
@@ -166,31 +166,86 @@
     },
     {
       "id": "level-192-r4",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "Twinkle, twinkle, little star! Tap the drum once for every word!",
-        "audio": "voice/line-f416c7b5b57a1d71.m4a"
+        "text": "Join b to l!",
+        "say": "Tap the dots in order, from {b|bˈiː} to {l|ˈɛl}. What will it make?",
+        "audio": "voice/line-08d8f8c17b49b1b5.m4a"
       },
       "card": {
-        "text": null,
+        "text": "b → l",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "Twinkle, twinkle, little star!",
-        "parts": [
-          "Twinkle",
-          "twinkle",
-          "little",
-          "star"
+      "connect": {
+        "labels": [
+          "b",
+          "c",
+          "d",
+          "e",
+          "f",
+          "g",
+          "h",
+          "i",
+          "j",
+          "k",
+          "l"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "Twinkle twinkle little star",
-          "say": "Twinkle, twinkle, little star! Four words!",
-          "audio": "voice/line-80d48bc0520a58a8.m4a"
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            76,
+            14
+          ],
+          [
+            88,
+            38
+          ],
+          [
+            78,
+            62
+          ],
+          [
+            60,
+            78
+          ],
+          [
+            66,
+            96
+          ],
+          [
+            34,
+            96
+          ],
+          [
+            40,
+            78
+          ],
+          [
+            22,
+            62
+          ],
+          [
+            12,
+            38
+          ],
+          [
+            24,
+            14
+          ]
+        ],
+        "picture": {
+          "key": "balloon",
+          "label": "balloon",
+          "url": null
+        },
+        "done": {
+          "text": "A balloon!",
+          "say": "It's a balloon!",
+          "audio": "voice/line-02f6767f455aad89.m4a"
         }
       }
     },
@@ -274,8 +329,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every at!",
-        "say": "Find every word at!",
-        "audio": "voice/line-41ea3ebb0f7f77d4.m4a"
+        "say": "Tap every word that says \"at\"!",
+        "audio": "voice/line-5ac7acf1dd79a2ff.m4a"
       },
       "card": {
         "text": "at",

@@ -79,8 +79,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -276,8 +276,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/p/|pʌ}?",
-        "audio": "voice/line-58e5a65228fecd70.m4a"
+        "say": "Sort the pictures! Does each one start with the {d|dʌ} sound, or the {p|pʌ} sound?",
+        "audio": "voice/line-e2f6086e1db67039.m4a"
       },
       "card": {
         "text": "d p",
@@ -380,34 +380,86 @@
     },
     {
       "id": "level-193-r9",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "Every morning, they go to the park. Tap the drum once for every word!",
-        "audio": "voice/line-1c1d68743550018e.m4a"
+        "text": "Join b to l!",
+        "say": "Tap the dots in order, from {b|bˈiː} to {l|ˈɛl}. What will it make?",
+        "audio": "voice/line-08d8f8c17b49b1b5.m4a"
       },
       "card": {
-        "text": null,
+        "text": "b → l",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "Every morning, they go to the park.",
-        "parts": [
-          "Every",
-          "morning",
-          "they",
-          "go",
-          "to",
-          "the",
-          "park"
+      "connect": {
+        "labels": [
+          "b",
+          "c",
+          "d",
+          "e",
+          "f",
+          "g",
+          "h",
+          "i",
+          "j",
+          "k",
+          "l"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "Every morning they go to the park",
-          "say": "Every morning, they go to the park. Seven words!",
-          "audio": "voice/line-43feccddb8fcbba6.m4a"
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            76,
+            14
+          ],
+          [
+            88,
+            38
+          ],
+          [
+            78,
+            62
+          ],
+          [
+            60,
+            78
+          ],
+          [
+            66,
+            96
+          ],
+          [
+            34,
+            96
+          ],
+          [
+            40,
+            78
+          ],
+          [
+            22,
+            62
+          ],
+          [
+            12,
+            38
+          ],
+          [
+            24,
+            14
+          ]
+        ],
+        "picture": {
+          "key": "balloon",
+          "label": "balloon",
+          "url": null
+        },
+        "done": {
+          "text": "A balloon!",
+          "say": "It's a balloon!",
+          "audio": "voice/line-02f6767f455aad89.m4a"
         }
       }
     },
@@ -416,8 +468,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write dog",
-        "say": "Look at the word dog. Then write it from memory!",
-        "audio": "voice/line-cea7cf2d92dba27b.m4a"
+        "say": "Look at the word dog. It will hide. Then write it!",
+        "audio": "voice/line-9a5dc5c7e7ddac86.m4a"
       },
       "card": {
         "text": null,

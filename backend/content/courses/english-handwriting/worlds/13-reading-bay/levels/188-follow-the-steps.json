@@ -257,8 +257,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -366,8 +366,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join S to Y!",
-        "say": "Join the dots, from {S|ˈɛs} to {Y|wˈaɪ}. What will it be?",
-        "audio": "voice/line-b64d771099a46ca0.m4a"
+        "say": "Tap the dots in order, from {S|ˈɛs} to {Y|wˈaɪ}. What will it make?",
+        "audio": "voice/line-88413fceceafabed.m4a"
       },
       "card": {
         "text": "S → Y",
@@ -431,8 +431,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/s/|sːː} or {/d/|dʌ}?",
-        "audio": "voice/line-b506d5a2b1764767.m4a"
+        "say": "Sort the pictures! Does each one start with the {s|sːː} sound, or the {d|dʌ} sound?",
+        "audio": "voice/line-b51ce278b6d07051.m4a"
       },
       "card": {
         "text": "s d",
