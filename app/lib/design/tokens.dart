@@ -726,6 +726,28 @@ abstract final class ParentColors {
   static const featurePurple = Color(0xFF7659C9);
 }
 
+/// Stories (lib/screens/stories): the bubble, the shadows under people,
+/// the paper tags and rings round things found. The pictures themselves
+/// are art (assets/stories).
+abstract final class StoryColors {
+  static const shadow = Color(0x33223311);
+  static const bubble = Color(0xFFFFFFFF);
+  static const bubbleShadow = Color(0x332B2D42);
+  static const name = Color(0xFF8A6A4F);
+  static const veil = Color(0x99201A14); // behind a close-up
+  static const tag = Color(0xFFFFF6E3);
+  static const tagEdge = Color(0xFFC9935B);
+  static const string = Color(0xFF8A6A4F);
+  static const ink = Color(0xFF7A4A24); // the child's letter painted on the sign
+  static const found = Color(0xFF3BB273);
+  static const glow = Color(0x66FFE27A);
+  static const gold = Color(0xFFFFC83D);
+  static const panel = Color(0xFFFFFFFF);
+  static const panelShadow = Color(0x332B2D42);
+  static const locked = Color(0xFFEDE6DA);
+  static const lockedInk = Color(0xFFB3A796);
+}
+
 /// 8pt grid spacing.
 abstract final class LikhoSpace {
   static const double s1 = 8;
