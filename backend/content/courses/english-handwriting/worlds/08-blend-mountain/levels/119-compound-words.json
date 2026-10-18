@@ -78,8 +78,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/h/|hʌ} or {/b/|bʌ}?",
-        "audio": "voice/line-3ed5a497a2c0ae72.m4a"
+        "say": "Sort the pictures! Does each one start with the {h|hʌ} sound, or the {b|bʌ} sound?",
+        "audio": "voice/line-3a5d4a9b5f3d4b3f.m4a"
       },
       "card": {
         "text": "h b",
@@ -295,8 +295,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write log",
-        "say": "Look at the word log. Then write it from memory!",
-        "audio": "voice/line-674662177fd859f4.m4a"
+        "say": "Look at the word log. It will hide. Then write it!",
+        "audio": "voice/line-6d6acf55dc4d89e1.m4a"
       },
       "card": {
         "text": null,
@@ -322,8 +322,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join g to n!",
-        "say": "Join the dots, from {g|ʤˈiː} to {n|ˈɛn}. What will it be?",
-        "audio": "voice/line-b47f01fbef746d9c.m4a"
+        "say": "Tap the dots in order, from {g|ʤˈiː} to {n|ˈɛn}. What will it make?",
+        "audio": "voice/line-006f12121c65a610.m4a"
       },
       "card": {
         "text": "g → n",

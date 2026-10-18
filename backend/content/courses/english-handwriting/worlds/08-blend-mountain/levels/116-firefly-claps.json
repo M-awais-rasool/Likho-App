@@ -81,8 +81,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -257,8 +257,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every rainbow!",
-        "say": "Find every word rainbow!",
-        "audio": "voice/line-2f2b702123428c3e.m4a"
+        "say": "Tap every word that says \"rainbow\"!",
+        "audio": "voice/line-36f7b419a7e7126a.m4a"
       },
       "card": {
         "text": "rainbow",
@@ -282,33 +282,86 @@
     },
     {
       "id": "level-116-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Clap the beats!",
-        "say": "Rabbit! Tap the drum for every beat in rabbit.",
-        "audio": "voice/line-28aa33791504d260.m4a"
+        "text": "Join h to r!",
+        "say": "Tap the dots in order, from {h|ˈeɪʧ} to {r|ˈɑːɹ}. What will it make?",
+        "audio": "voice/line-79a3f20b8817f60b.m4a"
       },
       "card": {
-        "text": null,
+        "text": "h → r",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "rabbit",
-        "parts": [
-          "rab",
-          "bit"
+      "connect": {
+        "labels": [
+          "h",
+          "i",
+          "j",
+          "k",
+          "l",
+          "m",
+          "n",
+          "o",
+          "p",
+          "q",
+          "r"
         ],
-        "unit": "syllable",
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            76,
+            14
+          ],
+          [
+            88,
+            38
+          ],
+          [
+            78,
+            62
+          ],
+          [
+            60,
+            78
+          ],
+          [
+            66,
+            96
+          ],
+          [
+            34,
+            96
+          ],
+          [
+            40,
+            78
+          ],
+          [
+            22,
+            62
+          ],
+          [
+            12,
+            38
+          ],
+          [
+            24,
+            14
+          ]
+        ],
         "picture": {
-          "key": "rabbit",
-          "label": "rabbit",
+          "key": "balloon",
+          "label": "balloon",
           "url": null
         },
-        "hint": {
-          "text": "rab-bit",
-          "say": "Rabbit. Two beats!",
-          "audio": "voice/line-329ce753d74f3075.m4a"
+        "done": {
+          "text": "A balloon!",
+          "say": "It's a balloon!",
+          "audio": "voice/line-02f6767f455aad89.m4a"
         }
       }
     },
@@ -317,8 +370,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/f/|fːː}?",
-        "audio": "voice/line-7b4dba625cd77da5.m4a"
+        "say": "Sort the pictures! Does each one start with the {d|dʌ} sound, or the {f|fːː} sound?",
+        "audio": "voice/line-43703463c7340f82.m4a"
       },
       "card": {
         "text": "d f",

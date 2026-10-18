@@ -312,8 +312,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -347,31 +347,61 @@
     },
     {
       "id": "level-118-r7",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "But, ter, fly! Butterfly! Tap the drum once for every word!",
-        "audio": "voice/line-cd43efefc34130a0.m4a"
+        "text": "Join O to T!",
+        "say": "Tap the dots in order, from {O|ˈoʊ} to {T|tˈiː}. What will it make?",
+        "audio": "voice/line-330487a3e0acddac.m4a"
       },
       "card": {
-        "text": null,
+        "text": "O → T",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "But, ter, fly! Butterfly!",
-        "parts": [
-          "But",
-          "ter",
-          "fly",
-          "Butterfly"
+      "connect": {
+        "labels": [
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "But ter fly Butterfly",
-          "say": "But, ter, fly! Butterfly! Four words!",
-          "audio": "voice/line-7b8a41fe21bd491d.m4a"
+        "points": [
+          [
+            50,
+            3
+          ],
+          [
+            88,
+            38
+          ],
+          [
+            69,
+            68
+          ],
+          [
+            50,
+            97
+          ],
+          [
+            31,
+            68
+          ],
+          [
+            12,
+            38
+          ]
+        ],
+        "picture": {
+          "key": "kite",
+          "label": "kite",
+          "url": null
+        },
+        "done": {
+          "text": "A kite!",
+          "say": "It's a kite!",
+          "audio": "voice/line-84a0b92f93e00a15.m4a"
         }
       }
     },

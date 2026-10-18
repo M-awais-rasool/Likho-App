@@ -227,8 +227,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every milk!",
-        "say": "Find every word milk!",
-        "audio": "voice/line-89e322225b968c3c.m4a"
+        "say": "Tap every word that says \"milk\"!",
+        "audio": "voice/line-d2def379e858a8d8.m4a"
       },
       "card": {
         "text": "milk",
@@ -268,22 +268,22 @@
         "parts": [
           {
             "text": "m",
-            "say": "{/m/|mːː}",
+            "say": "{m|mːː}",
             "audio": "voice/line-26d6be66a61da36b.m4a"
           },
           {
             "text": "a",
-            "say": "{/a/|æ}",
+            "say": "{a|æ}",
             "audio": "voice/line-6a230dad287fe9e9.m4a"
           },
           {
             "text": "s",
-            "say": "{/s/|sːː}",
+            "say": "{s|sːː}",
             "audio": "voice/line-176638e56286fdf8.m4a"
           },
           {
             "text": "k",
-            "say": "{/k/|kʌ}",
+            "say": "{k|kʌ}",
             "audio": "voice/line-eec1fee16c5c51e0.m4a"
           }
         ],
@@ -349,8 +349,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -387,8 +387,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join I to S!",
-        "say": "Join the dots, from {I|ˈaɪ} to {S|ˈɛs}. What will it be?",
-        "audio": "voice/line-99ec9c61da075cfb.m4a"
+        "say": "Tap the dots in order, from {I|ˈaɪ} to {S|ˈɛs}. What will it make?",
+        "audio": "voice/line-1912f7e7d80dec1a.m4a"
       },
       "card": {
         "text": "I → S",

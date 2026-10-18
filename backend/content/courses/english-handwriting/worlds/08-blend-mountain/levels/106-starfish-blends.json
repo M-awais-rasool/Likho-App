@@ -275,8 +275,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every spoon!",
-        "say": "Find every word spoon!",
-        "audio": "voice/line-c225ba1e0bcd62cc.m4a"
+        "say": "Tap every word that says \"spoon\"!",
+        "audio": "voice/line-082813675074a8c5.m4a"
       },
       "card": {
         "text": "spoon",
@@ -316,17 +316,17 @@
         "parts": [
           {
             "text": "s",
-            "say": "{/s/|sːː}",
+            "say": "{s|sːː}",
             "audio": "voice/line-176638e56286fdf8.m4a"
           },
           {
             "text": "t",
-            "say": "{/t/|tʌ}",
+            "say": "{t|tʌ}",
             "audio": "voice/line-570d1fc0dffd834f.m4a"
           },
           {
             "text": "ar",
-            "say": "{/ar/|ɑːɹ}",
+            "say": "{ar|ɑːɹ}",
             "audio": "voice/line-9a62cc86666d5529.m4a"
           }
         ],
@@ -369,8 +369,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
