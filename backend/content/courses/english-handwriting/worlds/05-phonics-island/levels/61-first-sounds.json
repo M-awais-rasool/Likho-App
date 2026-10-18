@@ -88,8 +88,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/c/|kʌ} or {/d/|dʌ}?",
-        "audio": "voice/line-90dbd022dea91b70.m4a"
+        "say": "Sort the pictures! Does each one start with the {c|kʌ} sound, or the {d|dʌ} sound?",
+        "audio": "voice/line-07f7369941d5511e.m4a"
       },
       "card": {
         "text": "c d",
@@ -258,8 +258,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write cat",
-        "say": "Look at the word cat. Then write it from memory!",
-        "audio": "voice/line-1287718e1719c23c.m4a"
+        "say": "Look at the word cat. It will hide. Then write it!",
+        "audio": "voice/line-2c99da34c4dc0b6f.m4a"
       },
       "card": {
         "text": null,
@@ -312,8 +312,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every hen!",
-        "say": "Find every word hen!",
-        "audio": "voice/line-eafce1e629eb297d.m4a"
+        "say": "Tap every word that says \"hen\"!",
+        "audio": "voice/line-658e3d678eea55f4.m4a"
       },
       "card": {
         "text": "hen",
@@ -353,17 +353,17 @@
         "parts": [
           {
             "text": "c",
-            "say": "{/c/|kʌ}",
+            "say": "{c|kʌ}",
             "audio": "voice/line-eec1fee16c5c51e0.m4a"
           },
           {
             "text": "a",
-            "say": "{/a/|æ}",
+            "say": "{a|æ}",
             "audio": "voice/line-6a230dad287fe9e9.m4a"
           },
           {
             "text": "t",
-            "say": "{/t/|tʌ}",
+            "say": "{t|tʌ}",
             "audio": "voice/line-570d1fc0dffd834f.m4a"
           }
         ],

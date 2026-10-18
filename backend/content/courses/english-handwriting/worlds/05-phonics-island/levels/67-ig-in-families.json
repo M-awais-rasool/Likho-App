@@ -90,8 +90,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -204,8 +204,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every big!",
-        "say": "Find every word big!",
-        "audio": "voice/line-20ea45cfe890c0ac.m4a"
+        "say": "Tap every word that says \"big\"!",
+        "audio": "voice/line-2360c5e12c9793c6.m4a"
       },
       "card": {
         "text": "big",
@@ -302,8 +302,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join C to M!",
-        "say": "Join the dots, from {C|sˈiː} to {M|ˈɛm}. What will it be?",
-        "audio": "voice/line-e6ea77117a6c1d47.m4a"
+        "say": "Tap the dots in order, from {C|sˈiː} to {M|ˈɛm}. What will it make?",
+        "audio": "voice/line-983de8fab4bc9a46.m4a"
       },
       "card": {
         "text": "C → M",
@@ -387,8 +387,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write win",
-        "say": "Look at the word win. Then write it from memory!",
-        "audio": "voice/line-1993eeedd496576b.m4a"
+        "say": "Look at the word win. It will hide. Then write it!",
+        "audio": "voice/line-b42db25a41827384.m4a"
       },
       "card": {
         "text": null,

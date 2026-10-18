@@ -90,8 +90,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write fan",
-        "say": "Look at the word fan. Then write it from memory!",
-        "audio": "voice/line-f50bdcb7097a3cdb.m4a"
+        "say": "Look at the word fan. It will hide. Then write it!",
+        "audio": "voice/line-b78c0c2e79a6f8e3.m4a"
       },
       "card": {
         "text": null,
@@ -193,8 +193,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every bat!",
-        "say": "Find every word bat!",
-        "audio": "voice/line-983a5e936b8d061e.m4a"
+        "say": "Tap every word that says \"bat\"!",
+        "audio": "voice/line-972b3303ce2093df.m4a"
       },
       "card": {
         "text": "bat",
@@ -291,8 +291,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join O to W!",
-        "say": "Join the dots, from {O|ˈoʊ} to {W|dˈʌbəljuː}. What will it be?",
-        "audio": "voice/line-ab32c11c0a11ec68.m4a"
+        "say": "Tap the dots in order, from {O|ˈoʊ} to {W|dˈʌbəljuː}. What will it make?",
+        "audio": "voice/line-eadc545dabf34a27.m4a"
       },
       "card": {
         "text": "O → W",

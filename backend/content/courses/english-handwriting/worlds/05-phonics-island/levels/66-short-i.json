@@ -90,8 +90,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write pig",
-        "say": "Look at the word pig. Then write it from memory!",
-        "audio": "voice/line-a132d4699f254e7b.m4a"
+        "say": "Look at the word pig. It will hide. Then write it!",
+        "audio": "voice/line-a926030cb04182a0.m4a"
       },
       "card": {
         "text": null,
@@ -241,8 +241,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every lip!",
-        "say": "Find every word lip!",
-        "audio": "voice/line-b846ab72fc2aebf0.m4a"
+        "say": "Tap every word that says \"lip\"!",
+        "audio": "voice/line-7db141206708945a.m4a"
       },
       "card": {
         "text": "lip",
@@ -282,17 +282,17 @@
         "parts": [
           {
             "text": "p",
-            "say": "{/p/|pʌ}",
+            "say": "{p|pʌ}",
             "audio": "voice/line-6b361a2ef876dccb.m4a"
           },
           {
             "text": "i",
-            "say": "{/i/|ɪ}",
+            "say": "{i|ɪ}",
             "audio": "voice/line-55c556f50179c6d4.m4a"
           },
           {
             "text": "g",
-            "say": "{/g/|ɡʌ}",
+            "say": "{g|ɡʌ}",
             "audio": "voice/line-be23dfaf66221347.m4a"
           }
         ],

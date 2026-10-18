@@ -56,8 +56,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/b/|bʌ} or {/j/|ʤʌ}?",
-        "audio": "voice/line-7fb14b51a11df96a.m4a"
+        "say": "Sort the pictures! Does each one start with the {b|bʌ} sound, or the {j|ʤʌ} sound?",
+        "audio": "voice/line-6afa819827d2e29b.m4a"
       },
       "card": {
         "text": "b j",
@@ -88,10 +88,10 @@
             "bin": 1
           },
           {
-            "label": "bat",
+            "label": "ball",
             "picture": {
-              "key": "bat",
-              "label": "bat",
+              "key": "ball",
+              "label": "ball",
               "url": null
             },
             "bin": 0
@@ -106,10 +106,10 @@
             "bin": 1
           },
           {
-            "label": "bed",
+            "label": "boat",
             "picture": {
-              "key": "bed",
-              "label": "bed",
+              "key": "boat",
+              "label": "boat",
               "url": null
             },
             "bin": 0
@@ -179,8 +179,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every pig!",
-        "say": "Find every word pig!",
-        "audio": "voice/line-64736420c6b7bf64.m4a"
+        "say": "Tap every word that says \"pig\"!",
+        "audio": "voice/line-d8be0977ec73d04c.m4a"
       },
       "card": {
         "text": "pig",
@@ -207,8 +207,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write pig",
-        "say": "Look at the word pig. Then write it from memory!",
-        "audio": "voice/line-a132d4699f254e7b.m4a"
+        "say": "Look at the word pig. It will hide. Then write it!",
+        "audio": "voice/line-a926030cb04182a0.m4a"
       },
       "card": {
         "text": null,
@@ -231,6 +231,58 @@
     },
     {
       "id": "level-75-r6",
+      "type": "pick",
+      "prompt": {
+        "text": "What is this?",
+        "say": "What is this? Find the word!",
+        "audio": "voice/line-69b2bf73b2b7783d.m4a"
+      },
+      "card": {
+        "text": null,
+        "picture": {
+          "key": "dog",
+          "label": "dog",
+          "url": null
+        },
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-75-r6-o1",
+            "label": "dog",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-75-r6-o2",
+            "label": "jam",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          },
+          {
+            "id": "level-75-r6-o3",
+            "label": "cat",
+            "picture": null,
+            "color": null,
+            "hideLabel": false
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "dog"
+        },
+        "shape": "card",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
+      "id": "level-75-r7",
       "type": "write",
       "prompt": {
         "text": "Write bus",
@@ -257,7 +309,7 @@
       }
     },
     {
-      "id": "level-75-r7",
+      "id": "level-75-r8",
       "type": "order",
       "prompt": {
         "text": "Build the word!",
@@ -283,7 +335,7 @@
       }
     },
     {
-      "id": "level-75-r8",
+      "id": "level-75-r9",
       "type": "pop",
       "prompt": {
         "text": "Pop every pig!",
@@ -306,44 +358,12 @@
       }
     },
     {
-      "id": "level-75-r9",
-      "type": "beats",
-      "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "The fish is in the sea. Tap the drum once for every word!",
-        "audio": "voice/line-b8edb4cbb35f7d4e.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": null,
-        "listen": true
-      },
-      "beats": {
-        "text": "The fish is in the sea.",
-        "parts": [
-          "The",
-          "fish",
-          "is",
-          "in",
-          "the",
-          "sea"
-        ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "The fish is in the sea",
-          "say": "The fish is in the sea. Six words!",
-          "audio": "voice/line-b050d72eb8524cff.m4a"
-        }
-      }
-    },
-    {
       "id": "level-75-r10",
       "type": "connect",
       "prompt": {
         "text": "Join E to M!",
-        "say": "Join the dots, from {E|ˈiː} to {M|ˈɛm}. What will it be?",
-        "audio": "voice/line-b07431628f222fb0.m4a"
+        "say": "Tap the dots in order, from {E|ˈiː} to {M|ˈɛm}. What will it make?",
+        "audio": "voice/line-d4c529c6a7753693.m4a"
       },
       "card": {
         "text": "E → M",

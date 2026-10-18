@@ -93,8 +93,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write cat",
-        "say": "Look at the word cat. Then write it from memory!",
-        "audio": "voice/line-1287718e1719c23c.m4a"
+        "say": "Look at the word cat. It will hide. Then write it!",
+        "audio": "voice/line-2c99da34c4dc0b6f.m4a"
       },
       "card": {
         "text": null,
@@ -244,8 +244,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every sun!",
-        "say": "Find every word sun!",
-        "audio": "voice/line-182ae71a36b0f9f5.m4a"
+        "say": "Tap every word that says \"sun\"!",
+        "audio": "voice/line-97e8af1d6c5e0a71.m4a"
       },
       "card": {
         "text": "sun",
@@ -285,17 +285,17 @@
         "parts": [
           {
             "text": "c",
-            "say": "{/c/|kʌ}",
+            "say": "{c|kʌ}",
             "audio": "voice/line-eec1fee16c5c51e0.m4a"
           },
           {
             "text": "a",
-            "say": "{/a/|æ}",
+            "say": "{a|æ}",
             "audio": "voice/line-6a230dad287fe9e9.m4a"
           },
           {
             "text": "t",
-            "say": "{/t/|tʌ}",
+            "say": "{t|tʌ}",
             "audio": "voice/line-570d1fc0dffd834f.m4a"
           }
         ],
