@@ -115,9 +115,9 @@
       "id": "level-55-r3",
       "type": "pick",
       "prompt": {
-        "text": "What starts with /v/?",
-        "say": "{v|vˈiː} says {/v/|vːː}. Which one starts with {/v/|vːː}?",
-        "audio": "voice/line-1fa631ef270a2086.m4a"
+        "text": "What starts with \"v\"?",
+        "say": "{v|vˈiː} makes the {v|vːː} sound. Which one starts with that sound?",
+        "audio": "voice/line-c982bbe0d82ba74a.m4a"
       },
       "card": {
         "text": "v",
@@ -307,8 +307,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write small v",
-        "say": "Look at small {v|vˈiː}. Then write it from memory!",
-        "audio": "voice/line-fec08b951b1282bd.m4a"
+        "say": "Look at small {v|vˈiː}. It will hide. Then write it!",
+        "audio": "voice/line-5275ee624d7da65d.m4a"
       },
       "card": {
         "text": null,
@@ -331,34 +331,81 @@
     },
     {
       "id": "level-55-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Clap the beats!",
-        "say": "Violin! Tap the drum for every beat in violin.",
-        "audio": "voice/line-2da9ff23e74e8f14.m4a"
+        "text": "Join q to z!",
+        "say": "Tap the dots in order, from {q|kjˈuː} to {z|zˈiː}. What will it make?",
+        "audio": "voice/line-725d8d425c18b5a5.m4a"
       },
       "card": {
-        "text": null,
+        "text": "q → z",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "violin",
-        "parts": [
-          "vi",
-          "o",
-          "lin"
+      "connect": {
+        "labels": [
+          "q",
+          "r",
+          "s",
+          "t",
+          "u",
+          "v",
+          "w",
+          "x",
+          "y",
+          "z"
         ],
-        "unit": "syllable",
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            62,
+            36
+          ],
+          [
+            96,
+            37
+          ],
+          [
+            69,
+            58
+          ],
+          [
+            78,
+            91
+          ],
+          [
+            50,
+            72
+          ],
+          [
+            22,
+            91
+          ],
+          [
+            31,
+            58
+          ],
+          [
+            4,
+            37
+          ],
+          [
+            38,
+            36
+          ]
+        ],
         "picture": {
-          "key": "violin",
-          "label": "violin",
+          "key": "star",
+          "label": "star",
           "url": null
         },
-        "hint": {
-          "text": "vi-o-lin",
-          "say": "Violin. Three beats!",
-          "audio": "voice/line-9333b241b8db025e.m4a"
+        "done": {
+          "text": "A star!",
+          "say": "It's a star!",
+          "audio": "voice/line-8b6bccb5c1f3e6a4.m4a"
         }
       }
     }

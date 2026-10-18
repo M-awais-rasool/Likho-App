@@ -112,8 +112,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/n/|nːː} or {/p/|pʌ}?",
-        "audio": "voice/line-97ecc326ad5f1f69.m4a"
+        "say": "Sort the pictures! Does each one start with the {n|nːː} sound, or the {p|pʌ} sound?",
+        "audio": "voice/line-87a6f9c90fa340a8.m4a"
       },
       "card": {
         "text": "n p",
@@ -250,8 +250,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write small u",
-        "say": "Look at small {u|jˈuː}. Then write it from memory!",
-        "audio": "voice/line-5f2c8dc6062ab2c4.m4a"
+        "say": "Look at small {u|jˈuː}. It will hide. Then write it!",
+        "audio": "voice/line-fac67fdaf9349eac.m4a"
       },
       "card": {
         "text": null,
@@ -277,8 +277,8 @@
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
+        "say": "Put the letters in {A|ˈeɪ} B C order!",
+        "audio": "voice/line-060eae3d379a9a2b.m4a"
       },
       "card": {
         "text": null,
@@ -302,8 +302,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join n to y!",
-        "say": "Join the dots, from {n|ˈɛn} to {y|wˈaɪ}. What will it be?",
-        "audio": "voice/line-179ffe61e22b5bc8.m4a"
+        "say": "Tap the dots in order, from {n|ˈɛn} to {y|wˈaɪ}. What will it make?",
+        "audio": "voice/line-4584d9a1aa58809f.m4a"
       },
       "card": {
         "text": "n → y",

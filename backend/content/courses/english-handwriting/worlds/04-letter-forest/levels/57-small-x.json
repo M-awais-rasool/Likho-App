@@ -115,9 +115,9 @@
       "id": "level-57-r3",
       "type": "pick",
       "prompt": {
-        "text": "Which one has /x/?",
-        "say": "{x|ˈɛks} says {/x/|ks}. Which one has {/x/|ks}?",
-        "audio": "voice/line-f489ff6b944404ed.m4a"
+        "text": "Which one has \"x\"?",
+        "say": "{x|ˈɛks} makes the {x|ks} sound. Which one has that sound?",
+        "audio": "voice/line-2399701fcb031961.m4a"
       },
       "card": {
         "text": "x",
@@ -247,8 +247,8 @@
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
+        "say": "Put the letters in {A|ˈeɪ} B C order!",
+        "audio": "voice/line-060eae3d379a9a2b.m4a"
       },
       "card": {
         "text": null,
@@ -272,8 +272,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write small x",
-        "say": "Look at small {x|ˈɛks}. Then write it from memory!",
-        "audio": "voice/line-4201250707fa6f3d.m4a"
+        "say": "Look at small {x|ˈɛks}. It will hide. Then write it!",
+        "audio": "voice/line-5375436f7686d1c5.m4a"
       },
       "card": {
         "text": null,
@@ -312,17 +312,17 @@
         "parts": [
           {
             "text": "b",
-            "say": "{/b/|bʌ}",
+            "say": "{b|bʌ}",
             "audio": "voice/line-54284489cdcd15c3.m4a"
           },
           {
             "text": "o",
-            "say": "{/o/|ɑ}",
+            "say": "{o|ɑ}",
             "audio": "voice/line-253bbb0325fbe7e3.m4a"
           },
           {
             "text": "x",
-            "say": "{/x/|ks}",
+            "say": "{x|ks}",
             "audio": "voice/line-4371ec034ddd580a.m4a"
           }
         ],

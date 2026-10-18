@@ -193,8 +193,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/s/|sːː} or {/r/|ɹːː}?",
-        "audio": "voice/line-1fed2d6421905a62.m4a"
+        "say": "Sort the pictures! Does each one start with the {s|sːː} sound, or the {r|ɹːː} sound?",
+        "audio": "voice/line-94e97ad8b25033ac.m4a"
       },
       "card": {
         "text": "s r",
@@ -268,8 +268,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write small s",
-        "say": "Look at small {s|ˈɛs}. Then write it from memory!",
-        "audio": "voice/line-b19c65ee6e9d6fbb.m4a"
+        "say": "Look at small {s|ˈɛs}. It will hide. Then write it!",
+        "audio": "voice/line-8c827194701c6170.m4a"
       },
       "card": {
         "text": null,
@@ -295,8 +295,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join o to w!",
-        "say": "Join the dots, from {o|ˈoʊ} to {w|dˈʌbəljuː}. What will it be?",
-        "audio": "voice/line-ab32c11c0a11ec68.m4a"
+        "say": "Tap the dots in order, from {o|ˈoʊ} to {w|dˈʌbəljuː}. What will it make?",
+        "audio": "voice/line-eadc545dabf34a27.m4a"
       },
       "card": {
         "text": "o → w",

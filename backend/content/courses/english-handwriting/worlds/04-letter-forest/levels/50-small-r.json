@@ -154,9 +154,9 @@
       "id": "level-50-r5",
       "type": "sort",
       "prompt": {
-        "text": "Feed it /r/!",
-        "say": "This monster only eats things that start with {/r/|ɹːː}. Feed it!",
-        "audio": "voice/line-bb87e167b1dc2d85.m4a"
+        "text": "Feed it \"r\"!",
+        "say": "This monster eats things that start with the {r|ɹːː} sound. Feed it!",
+        "audio": "voice/line-81419de265d8986c.m4a"
       },
       "card": {
         "text": "r",
@@ -234,8 +234,8 @@
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
+        "say": "Put the letters in {A|ˈeɪ} B C order!",
+        "audio": "voice/line-060eae3d379a9a2b.m4a"
       },
       "card": {
         "text": null,
@@ -279,33 +279,71 @@
     },
     {
       "id": "level-50-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Clap the beats!",
-        "say": "Robot! Tap the drum for every beat in robot.",
-        "audio": "voice/line-a52d03075e16d9ec.m4a"
+        "text": "Join n to u!",
+        "say": "Tap the dots in order, from {n|ˈɛn} to {u|jˈuː}. What will it make?",
+        "audio": "voice/line-9cf23e3fbc6af69a.m4a"
       },
       "card": {
-        "text": null,
+        "text": "n → u",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "robot",
-        "parts": [
-          "ro",
-          "bot"
+      "connect": {
+        "labels": [
+          "n",
+          "o",
+          "p",
+          "q",
+          "r",
+          "s",
+          "t",
+          "u"
         ],
-        "unit": "syllable",
+        "points": [
+          [
+            8,
+            8
+          ],
+          [
+            78,
+            8
+          ],
+          [
+            78,
+            30
+          ],
+          [
+            98,
+            30
+          ],
+          [
+            98,
+            66
+          ],
+          [
+            78,
+            66
+          ],
+          [
+            72,
+            94
+          ],
+          [
+            14,
+            94
+          ]
+        ],
         "picture": {
-          "key": "robot",
-          "label": "robot",
+          "key": "cup",
+          "label": "cup",
           "url": null
         },
-        "hint": {
-          "text": "ro-bot",
-          "say": "Robot. Two beats!",
-          "audio": "voice/line-541bc8f9cd1eca51.m4a"
+        "done": {
+          "text": "A cup!",
+          "say": "It's a cup!",
+          "audio": "voice/line-b59d914d7fd7fbc2.m4a"
         }
       }
     }

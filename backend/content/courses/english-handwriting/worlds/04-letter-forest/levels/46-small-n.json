@@ -137,9 +137,9 @@
       "id": "level-46-r5",
       "type": "sort",
       "prompt": {
-        "text": "Feed it /n/!",
-        "say": "This monster only eats things that start with {/n/|nːː}. Feed it!",
-        "audio": "voice/line-ae673e18c58442de.m4a"
+        "text": "Feed it \"n\"!",
+        "say": "This monster eats things that start with the {n|nːː} sound. Feed it!",
+        "audio": "voice/line-9b8d5b5059803b00.m4a"
       },
       "card": {
         "text": "n",
@@ -217,8 +217,8 @@
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
+        "say": "Put the letters in {A|ˈeɪ} B C order!",
+        "audio": "voice/line-060eae3d379a9a2b.m4a"
       },
       "card": {
         "text": null,
@@ -265,8 +265,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join i to s!",
-        "say": "Join the dots, from {i|ˈaɪ} to {s|ˈɛs}. What will it be?",
-        "audio": "voice/line-99ec9c61da075cfb.m4a"
+        "say": "Tap the dots in order, from {i|ˈaɪ} to {s|ˈɛs}. What will it make?",
+        "audio": "voice/line-1912f7e7d80dec1a.m4a"
       },
       "card": {
         "text": "i → s",
