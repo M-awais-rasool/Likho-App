@@ -115,9 +115,9 @@
       "id": "level-27-r3",
       "type": "pick",
       "prompt": {
-        "text": "Which one has /x/?",
-        "say": "{X|ˈɛks} says {/x/|ks}. Which one has {/x/|ks}?",
-        "audio": "voice/line-f489ff6b944404ed.m4a"
+        "text": "Which one has \"x\"?",
+        "say": "{X|ˈɛks} makes the {x|ks} sound. Which one has that sound?",
+        "audio": "voice/line-2399701fcb031961.m4a"
       },
       "card": {
         "text": "X",
@@ -263,8 +263,8 @@
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
+        "say": "Put the letters in {A|ˈeɪ} B C order!",
+        "audio": "voice/line-060eae3d379a9a2b.m4a"
       },
       "card": {
         "text": null,
@@ -288,8 +288,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write X",
-        "say": "Look at {X|ˈɛks}. Then write it from memory!",
-        "audio": "voice/line-eeeb63fad16d581d.m4a"
+        "say": "Look at {X|ˈɛks}. It will hide. Then write it!",
+        "audio": "voice/line-009df4727a3cdb8a.m4a"
       },
       "card": {
         "text": null,
@@ -312,32 +312,86 @@
     },
     {
       "id": "level-27-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Clap the beats!",
-        "say": "Box! Tap the drum for every beat in box.",
-        "audio": "voice/line-feeecd6508f310fa.m4a"
+        "text": "Join P to Z!",
+        "say": "Tap the dots in order, from {P|pˈiː} to {Z|zˈiː}. What will it make?",
+        "audio": "voice/line-1dea9445402aad19.m4a"
       },
       "card": {
-        "text": null,
+        "text": "P → Z",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "box",
-        "parts": [
-          "box"
+      "connect": {
+        "labels": [
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z"
         ],
-        "unit": "syllable",
+        "points": [
+          [
+            50,
+            2
+          ],
+          [
+            80,
+            36
+          ],
+          [
+            60,
+            36
+          ],
+          [
+            88,
+            66
+          ],
+          [
+            60,
+            66
+          ],
+          [
+            60,
+            96
+          ],
+          [
+            40,
+            96
+          ],
+          [
+            40,
+            66
+          ],
+          [
+            12,
+            66
+          ],
+          [
+            40,
+            36
+          ],
+          [
+            20,
+            36
+          ]
+        ],
         "picture": {
-          "key": "box",
-          "label": "box",
+          "key": "tree",
+          "label": "tree",
           "url": null
         },
-        "hint": {
-          "text": "box",
-          "say": "Box. One beat!",
-          "audio": "voice/line-b318406d154b42e8.m4a"
+        "done": {
+          "text": "A tree!",
+          "say": "It's a tree!",
+          "audio": "voice/line-9f1ccab9d42ec40f.m4a"
         }
       }
     }

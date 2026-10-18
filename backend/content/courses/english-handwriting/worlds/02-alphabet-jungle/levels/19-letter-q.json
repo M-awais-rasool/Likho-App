@@ -115,9 +115,9 @@
       "id": "level-19-r3",
       "type": "pick",
       "prompt": {
-        "text": "What starts with /q/?",
-        "say": "{Q|kjˈuː} says {/q/|kwʌ}. Which one starts with {/q/|kwʌ}?",
-        "audio": "voice/line-c6b3c40ca4fab971.m4a"
+        "text": "What starts with \"q\"?",
+        "say": "{Q|kjˈuː} makes the {q|kwʌ} sound. Which one starts with that sound?",
+        "audio": "voice/line-8c5d9409fb0333a0.m4a"
       },
       "card": {
         "text": "Q",
@@ -274,8 +274,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write Q",
-        "say": "Look at {Q|kjˈuː}. Then write it from memory!",
-        "audio": "voice/line-31819b7a2196e880.m4a"
+        "say": "Look at {Q|kjˈuː}. It will hide. Then write it!",
+        "audio": "voice/line-2102981a84c2f13e.m4a"
       },
       "card": {
         "text": null,
@@ -301,8 +301,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join N to T!",
-        "say": "Join the dots, from {N|ˈɛn} to {T|tˈiː}. What will it be?",
-        "audio": "voice/line-053be731b0fb4a62.m4a"
+        "say": "Tap the dots in order, from {N|ˈɛn} to {T|tˈiː}. What will it make?",
+        "audio": "voice/line-84c442480e1b12f6.m4a"
       },
       "card": {
         "text": "N → T",

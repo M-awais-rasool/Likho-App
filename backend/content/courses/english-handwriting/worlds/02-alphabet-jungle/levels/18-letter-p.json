@@ -170,9 +170,9 @@
       "id": "level-18-r5",
       "type": "pick",
       "prompt": {
-        "text": "What starts with /p/?",
-        "say": "{P|pˈiː} says {/p/|pʌ}. Which one starts with {/p/|pʌ}?",
-        "audio": "voice/line-3f4758ddb5061779.m4a"
+        "text": "What starts with \"p\"?",
+        "say": "{P|pˈiː} makes the {p|pʌ} sound. Which one starts with that sound?",
+        "audio": "voice/line-2f93448e255c207f.m4a"
       },
       "card": {
         "text": "P",
@@ -281,8 +281,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join L to S!",
-        "say": "Join the dots, from {L|ˈɛl} to {S|ˈɛs}. What will it be?",
-        "audio": "voice/line-e1147f0fbf21bdd6.m4a"
+        "say": "Tap the dots in order, from {L|ˈɛl} to {S|ˈɛs}. What will it make?",
+        "audio": "voice/line-6864fe8cce37559b.m4a"
       },
       "card": {
         "text": "L → S",

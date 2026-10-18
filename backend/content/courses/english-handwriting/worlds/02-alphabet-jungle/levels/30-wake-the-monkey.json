@@ -112,8 +112,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/p/|pʌ} or {/r/|ɹːː}?",
-        "audio": "voice/line-32a5b13c92c49a18.m4a"
+        "say": "Sort the pictures! Does each one start with the {p|pʌ} sound, or the {r|ɹːː} sound?",
+        "audio": "voice/line-41758ee8174c8039.m4a"
       },
       "card": {
         "text": "P R",
@@ -250,8 +250,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write W",
-        "say": "Look at {W|dˈʌbəljuː}. Then write it from memory!",
-        "audio": "voice/line-b63e89bc58218b5a.m4a"
+        "say": "Look at {W|dˈʌbəljuː}. It will hide. Then write it!",
+        "audio": "voice/line-cadbe8a204db9315.m4a"
       },
       "card": {
         "text": null,
@@ -277,8 +277,8 @@
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
+        "say": "Put the letters in {A|ˈeɪ} B C order!",
+        "audio": "voice/line-060eae3d379a9a2b.m4a"
       },
       "card": {
         "text": null,
@@ -302,8 +302,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join P to Z!",
-        "say": "Join the dots, from {P|pˈiː} to {Z|zˈiː}. What will it be?",
-        "audio": "voice/line-6c11cc3abf8488bf.m4a"
+        "say": "Tap the dots in order, from {P|pˈiː} to {Z|zˈiː}. What will it make?",
+        "audio": "voice/line-1dea9445402aad19.m4a"
       },
       "card": {
         "text": "P → Z",

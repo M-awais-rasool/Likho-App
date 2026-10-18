@@ -241,34 +241,76 @@
     },
     {
       "id": "level-24-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Clap the beats!",
-        "say": "Umbrella! Tap the drum for every beat in umbrella.",
-        "audio": "voice/line-06b47482af42f3bf.m4a"
+        "text": "Join Q to Y!",
+        "say": "Tap the dots in order, from {Q|kjˈuː} to {Y|wˈaɪ}. What will it make?",
+        "audio": "voice/line-fcd2e258c420f4b1.m4a"
       },
       "card": {
-        "text": null,
+        "text": "Q → Y",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "umbrella",
-        "parts": [
-          "um",
-          "brel",
-          "la"
+      "connect": {
+        "labels": [
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V",
+          "W",
+          "X",
+          "Y"
         ],
-        "unit": "syllable",
+        "points": [
+          [
+            62,
+            4
+          ],
+          [
+            30,
+            10
+          ],
+          [
+            10,
+            36
+          ],
+          [
+            8,
+            64
+          ],
+          [
+            28,
+            88
+          ],
+          [
+            62,
+            96
+          ],
+          [
+            44,
+            74
+          ],
+          [
+            36,
+            50
+          ],
+          [
+            44,
+            26
+          ]
+        ],
         "picture": {
-          "key": "umbrella",
-          "label": "umbrella",
+          "key": "moon",
+          "label": "moon",
           "url": null
         },
-        "hint": {
-          "text": "um-brel-la",
-          "say": "Umbrella. Three beats!",
-          "audio": "voice/line-7a7c9223f404f582.m4a"
+        "done": {
+          "text": "A moon!",
+          "say": "It's a moon!",
+          "audio": "voice/line-24627cec3ea7f4e6.m4a"
         }
       }
     }

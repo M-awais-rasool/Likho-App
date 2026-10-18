@@ -115,9 +115,9 @@
       "id": "level-17-r3",
       "type": "pick",
       "prompt": {
-        "text": "What starts with /o/?",
-        "say": "{O|ˈoʊ} says {/o/|ɑ}. Which one starts with {/o/|ɑ}?",
-        "audio": "voice/line-a488d47b0b46e2b8.m4a"
+        "text": "What starts with \"o\"?",
+        "say": "{O|ˈoʊ} makes the {o|ɑ} sound. Which one starts with that sound?",
+        "audio": "voice/line-7dc1bd90d65a38e8.m4a"
       },
       "card": {
         "text": "O",
@@ -323,8 +323,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write O",
-        "say": "Look at {O|ˈoʊ}. Then write it from memory!",
-        "audio": "voice/line-27c0166c5b74807f.m4a"
+        "say": "Look at {O|ˈoʊ}. It will hide. Then write it!",
+        "audio": "voice/line-2d910c84b6850126.m4a"
       },
       "card": {
         "text": null,
@@ -347,34 +347,66 @@
     },
     {
       "id": "level-17-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Clap the beats!",
-        "say": "Octopus! Tap the drum for every beat in octopus.",
-        "audio": "voice/line-ea285b408845a0e8.m4a"
+        "text": "Join L to R!",
+        "say": "Tap the dots in order, from {L|ˈɛl} to {R|ˈɑːɹ}. What will it make?",
+        "audio": "voice/line-7f1d5c2c9b6c89b6.m4a"
       },
       "card": {
-        "text": null,
+        "text": "L → R",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "octopus",
-        "parts": [
-          "oc",
-          "to",
-          "pus"
+      "connect": {
+        "labels": [
+          "L",
+          "M",
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R"
         ],
-        "unit": "syllable",
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            82,
+            50
+          ],
+          [
+            98,
+            64
+          ],
+          [
+            80,
+            94
+          ],
+          [
+            20,
+            94
+          ],
+          [
+            2,
+            64
+          ],
+          [
+            50,
+            64
+          ]
+        ],
         "picture": {
-          "key": "octopus",
-          "label": "octopus",
+          "key": "boat",
+          "label": "boat",
           "url": null
         },
-        "hint": {
-          "text": "oc-to-pus",
-          "say": "Octopus. Three beats!",
-          "audio": "voice/line-43eee4ce011cfd6c.m4a"
+        "done": {
+          "text": "A boat!",
+          "say": "It's a boat!",
+          "audio": "voice/line-a705e55e86a2309a.m4a"
         }
       }
     }

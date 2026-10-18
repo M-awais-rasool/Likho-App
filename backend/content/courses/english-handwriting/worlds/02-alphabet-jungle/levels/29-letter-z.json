@@ -83,9 +83,9 @@
       "id": "level-29-r3",
       "type": "pick",
       "prompt": {
-        "text": "What starts with /z/?",
-        "say": "{Z|zˈiː} says {/z/|zːː}. Which one starts with {/z/|zːː}?",
-        "audio": "voice/line-20791d7030802652.m4a"
+        "text": "What starts with \"z\"?",
+        "say": "{Z|zˈiː} makes the {z|zːː} sound. Which one starts with that sound?",
+        "audio": "voice/line-0602a169cde2a6f0.m4a"
       },
       "card": {
         "text": "Z",
@@ -225,8 +225,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write Z",
-        "say": "Look at {Z|zˈiː}. Then write it from memory!",
-        "audio": "voice/line-d38d5212d14ebcaa.m4a"
+        "say": "Look at {Z|zˈiː}. It will hide. Then write it!",
+        "audio": "voice/line-0935787bd7904f49.m4a"
       },
       "card": {
         "text": null,
@@ -249,33 +249,91 @@
     },
     {
       "id": "level-29-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Clap the beats!",
-        "say": "Zebra! Tap the drum for every beat in zebra.",
-        "audio": "voice/line-9fd7e56a4559c113.m4a"
+        "text": "Join O to Z!",
+        "say": "Tap the dots in order, from {O|ˈoʊ} to {Z|zˈiː}. What will it make?",
+        "audio": "voice/line-ec43260e894fcd36.m4a"
       },
       "card": {
-        "text": null,
+        "text": "O → Z",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "zebra",
-        "parts": [
-          "ze",
-          "bra"
+      "connect": {
+        "labels": [
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z"
         ],
-        "unit": "syllable",
+        "points": [
+          [
+            50,
+            22
+          ],
+          [
+            66,
+            12
+          ],
+          [
+            86,
+            22
+          ],
+          [
+            92,
+            48
+          ],
+          [
+            82,
+            76
+          ],
+          [
+            68,
+            94
+          ],
+          [
+            50,
+            84
+          ],
+          [
+            32,
+            94
+          ],
+          [
+            18,
+            76
+          ],
+          [
+            8,
+            48
+          ],
+          [
+            14,
+            22
+          ],
+          [
+            34,
+            12
+          ]
+        ],
         "picture": {
-          "key": "zebra",
-          "label": "zebra",
+          "key": "apple",
+          "label": "apple",
           "url": null
         },
-        "hint": {
-          "text": "ze-bra",
-          "say": "Zebra. Two beats!",
-          "audio": "voice/line-5b5cdfc5ad17f466.m4a"
+        "done": {
+          "text": "An apple!",
+          "say": "It's an apple!",
+          "audio": "voice/line-eb257727166de7e7.m4a"
         }
       }
     }

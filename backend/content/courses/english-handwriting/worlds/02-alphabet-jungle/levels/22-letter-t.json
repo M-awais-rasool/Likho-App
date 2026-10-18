@@ -154,9 +154,9 @@
       "id": "level-22-r5",
       "type": "pick",
       "prompt": {
-        "text": "What starts with /t/?",
-        "say": "{T|tˈiː} says {/t/|tʌ}. Which one starts with {/t/|tʌ}?",
-        "audio": "voice/line-9335f1ac7a21afb4.m4a"
+        "text": "What starts with \"t\"?",
+        "say": "{T|tˈiː} makes the {t|tʌ} sound. Which one starts with that sound?",
+        "audio": "voice/line-9fcf8892aa198aa0.m4a"
       },
       "card": {
         "text": "T",
@@ -262,33 +262,61 @@
     },
     {
       "id": "level-22-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Clap the beats!",
-        "say": "Tiger! Tap the drum for every beat in tiger.",
-        "audio": "voice/line-76e654d16004ee99.m4a"
+        "text": "Join Q to V!",
+        "say": "Tap the dots in order, from {Q|kjˈuː} to {V|vˈiː}. What will it make?",
+        "audio": "voice/line-cd05dc49551c3928.m4a"
       },
       "card": {
-        "text": null,
+        "text": "Q → V",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "tiger",
-        "parts": [
-          "ti",
-          "ger"
+      "connect": {
+        "labels": [
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V"
         ],
-        "unit": "syllable",
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            95,
+            42
+          ],
+          [
+            80,
+            94
+          ],
+          [
+            50,
+            94
+          ],
+          [
+            20,
+            94
+          ],
+          [
+            5,
+            42
+          ]
+        ],
         "picture": {
-          "key": "tiger",
-          "label": "tiger",
+          "key": "house",
+          "label": "house",
           "url": null
         },
-        "hint": {
-          "text": "ti-ger",
-          "say": "Tiger. Two beats!",
-          "audio": "voice/line-a773e77f68d3d704.m4a"
+        "done": {
+          "text": "A house!",
+          "say": "It's a house!",
+          "audio": "voice/line-d592a37832458791.m4a"
         }
       }
     }
