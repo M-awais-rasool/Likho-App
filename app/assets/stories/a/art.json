@@ -1,0 +1,140 @@
+{
+ "ayan": {
+  "poses": [
+   "idle",
+   "talk",
+   "wave",
+   "happy",
+   "point",
+   "thumbs",
+   "surprised",
+   "basket"
+  ],
+  "size": [
+   384,
+   560
+  ]
+ },
+ "dada": {
+  "poses": [
+   "idle",
+   "talk",
+   "worried",
+   "happy",
+   "point",
+   "thumbs",
+   "give",
+   "wave"
+  ],
+  "size": [
+   465,
+   560
+  ]
+ },
+ "aunty": {
+  "poses": [
+   "idle",
+   "talk",
+   "think",
+   "happy",
+   "pay",
+   "apples",
+   "surprised",
+   "wave"
+  ],
+  "size": [
+   351,
+   560
+  ]
+ },
+ "ant": {
+  "poses": [
+   "idle",
+   "wave",
+   "happy",
+   "surprised"
+  ],
+  "size": [
+   331,
+   560
+  ]
+ },
+ "apple_leaf": {
+  "size": [
+   311,
+   360
+  ]
+ },
+ "apple": {
+  "size": [
+   349,
+   360
+  ]
+ },
+ "basket": {
+  "size": [
+   338,
+   360
+  ]
+ },
+ "basket_full": {
+  "size": [
+   338,
+   360
+  ]
+ },
+ "leaf": {
+  "size": [
+   298,
+   360
+  ]
+ },
+ "airplane": {
+  "size": [
+   360,
+   191
+  ]
+ },
+ "cloud": {
+  "size": [
+   360,
+   230
+  ]
+ },
+ "flower": {
+  "size": [
+   291,
+   282
+  ]
+ },
+ "bird": {
+  "size": [
+   360,
+   280
+  ]
+ },
+ "sun": {
+  "size": [
+   360,
+   360
+  ]
+ },
+ "bg_house": {
+  "size": [
+   1080,
+   1935
+  ]
+ },
+ "bg_garden": {
+  "size": [
+   1080,
+   1935
+  ]
+ },
+ "bg_market": {
+  "size": [
+   1080,
+   1935
+  ]
+ }
+}

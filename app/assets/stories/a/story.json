@@ -1,0 +1,61 @@
+{
+  "id": "a",
+  "letter": "A",
+  "title": "Dada's Apple Garden",
+  "about": "Story A. Every line is said by its speaker in their own voice and shown in the bubble word for word ({shown|IPA} gives a sound). Recorded into the app by tools/voice/generate_voice.py --app as story_a_<id>. The art is in this folder (tools/stories/cut_art.py).",
+  "characters": {
+    "pencil": { "name": "Pencil", "voice": "af_heart" },
+    "ayan": { "name": "Ayan", "voice": "am_puck" },
+    "dada": { "name": "Dada ji", "voice": "am_onyx" },
+    "aunty": { "name": "Aunty", "voice": "af_sarah" },
+    "ant": { "name": "Little Ant", "voice": "af_sky" }
+  },
+  "lines": [
+    { "id": "knock", "who": "ayan", "text": "Pencil! Pencil! Dada needs help. Come to the apple garden!" },
+    { "id": "go", "who": "pencil", "text": "Let's go, Ayan!" },
+
+    { "id": "worried", "who": "dada", "text": "Oh no! The rain washed my shop sign away. And the market opens soon!" },
+    { "id": "help", "who": "pencil", "text": "Don't worry, Dada. We will help!" },
+    { "id": "pick", "who": "dada", "text": "First, we need apples. Tap the red apples on the tree!" },
+    { "id": "n1", "who": "pencil", "text": "One!" },
+    { "id": "n2", "who": "pencil", "text": "Two!" },
+    { "id": "n3", "who": "pencil", "text": "Three!" },
+    { "id": "n4", "who": "pencil", "text": "Four!" },
+    { "id": "n5", "who": "pencil", "text": "Five apples!" },
+    { "id": "full", "who": "ayan", "text": "The basket is full!" },
+    { "id": "sound", "who": "pencil", "text": "Apple starts with {A|ˈeɪ}. {A|ˈeɪ} says {a|ˈæː}, {a|ˈæː}, apple!" },
+
+    { "id": "find", "who": "pencil", "text": "Look around! Can you find more things that start with {A|ˈeɪ}? Tap them!" },
+    { "id": "airplane", "who": "pencil", "text": "Airplane! {a|ˈæː}, {a|ˈæː}, airplane!" },
+    { "id": "ant", "who": "ant", "text": "Hi! I'm an ant. {a|ˈæː}, {a|ˈæː}, ant!" },
+    { "id": "apple", "who": "pencil", "text": "Another apple! {a|ˈæː}, {a|ˈæː}, apple!" },
+    { "id": "bird", "who": "pencil", "text": "That's a bird. Bird starts with {B|bˈiː}. Try again!" },
+    { "id": "flower", "who": "pencil", "text": "That's a flower. Try again!" },
+    { "id": "sun", "who": "pencil", "text": "That's the sun. Try again!" },
+    { "id": "found", "who": "dada", "text": "Wonderful! Now let's go to the market!" },
+
+    { "id": "shop", "who": "dada", "text": "Here is my shop. But look, the sign is empty!" },
+    { "id": "sign", "who": "pencil", "text": "Let's write {A|ˈeɪ} on the sign. {A|ˈeɪ} for apples!" },
+    { "id": "signed", "who": "dada", "text": "Wow! {A|ˈeɪ} for apples. Now everyone can see it!" },
+
+    { "id": "tags", "who": "dada", "text": "Now let's write {A|ˈeɪ} on the apple baskets too." },
+    { "id": "trace", "who": "pencil", "text": "Trace {A|ˈeɪ} on the first tag." },
+    { "id": "dots", "who": "pencil", "text": "Now join the dots." },
+    { "id": "free", "who": "pencil", "text": "Now write {A|ˈeɪ} all by yourself!" },
+    { "id": "tagged", "who": "ayan", "text": "Yay! The shop is ready!" },
+
+    { "id": "hello", "who": "aunty", "text": "Hello! Can I have three apples, please?" },
+    { "id": "give", "who": "pencil", "text": "Tap an apple to put it in Aunty's bag." },
+    { "id": "a1", "who": "pencil", "text": "One!" },
+    { "id": "a2", "who": "pencil", "text": "Two!" },
+    { "id": "a3", "who": "pencil", "text": "Three!" },
+    { "id": "thanks", "who": "aunty", "text": "Thank you! Here you go. {A|ˈeɪ} for apple. Yum!" },
+
+    { "id": "saved", "who": "dada", "text": "Thank you, my little friend! You saved my shop. This golden apple is for you!" },
+    { "id": "bye", "who": "pencil", "text": "{A|ˈeɪ} is for apple! Next time, let's visit the bakery!" },
+
+    { "id": "nudge_pick", "who": "pencil", "text": "Tap a red apple on the tree!" },
+    { "id": "nudge_find", "who": "pencil", "text": "Look in the sky, and on the grass!" },
+    { "id": "nudge_give", "who": "pencil", "text": "Tap an apple in the basket!" }
+  ]
+}
