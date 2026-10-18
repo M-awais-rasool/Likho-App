@@ -216,8 +216,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/f/|fːː}?",
-        "audio": "voice/line-7b4dba625cd77da5.m4a"
+        "say": "Sort the pictures! Does each one start with the {d|dʌ} sound, or the {f|fːː} sound?",
+        "audio": "voice/line-43703463c7340f82.m4a"
       },
       "card": {
         "text": "d f",
@@ -300,8 +300,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every apple!",
-        "say": "Find every word apple!",
-        "audio": "voice/line-b103d4368d4064cf.m4a"
+        "say": "Tap every word that says \"apple\"!",
+        "audio": "voice/line-26ab48ea07c15574.m4a"
       },
       "card": {
         "text": "apple",
@@ -325,33 +325,66 @@
     },
     {
       "id": "level-86-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Clap the beats!",
-        "say": "Mango! Tap the drum for every beat in mango.",
-        "audio": "voice/line-ec7495c61dfd0a2f.m4a"
+        "text": "Join M to S!",
+        "say": "Tap the dots in order, from {M|ˈɛm} to {S|ˈɛs}. What will it make?",
+        "audio": "voice/line-cbe1669847c588db.m4a"
       },
       "card": {
-        "text": null,
+        "text": "M → S",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "mango",
-        "parts": [
-          "man",
-          "go"
+      "connect": {
+        "labels": [
+          "M",
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S"
         ],
-        "unit": "syllable",
+        "points": [
+          [
+            6,
+            28
+          ],
+          [
+            30,
+            54
+          ],
+          [
+            50,
+            10
+          ],
+          [
+            70,
+            54
+          ],
+          [
+            94,
+            28
+          ],
+          [
+            84,
+            88
+          ],
+          [
+            16,
+            88
+          ]
+        ],
         "picture": {
-          "key": "mango",
-          "label": "mango",
+          "key": "crown",
+          "label": "crown",
           "url": null
         },
-        "hint": {
-          "text": "man-go",
-          "say": "Mango. Two beats!",
-          "audio": "voice/line-67c9e5451511303a.m4a"
+        "done": {
+          "text": "A crown!",
+          "say": "It's a crown!",
+          "audio": "voice/line-9649373564b61d61.m4a"
         }
       }
     },
@@ -360,8 +393,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write pear",
-        "say": "Look at the word pear. Then write it from memory!",
-        "audio": "voice/line-803d4ae1b6c156c3.m4a"
+        "say": "Look at the word pear. It will hide. Then write it!",
+        "audio": "voice/line-4e0fb0fbf2d60aac.m4a"
       },
       "card": {
         "text": null,

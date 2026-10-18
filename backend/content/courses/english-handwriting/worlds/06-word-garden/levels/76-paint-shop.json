@@ -225,8 +225,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -290,8 +290,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every yellow!",
-        "say": "Find every word yellow!",
-        "audio": "voice/line-e6343ec83756dc40.m4a"
+        "say": "Tap every word that says \"yellow\"!",
+        "audio": "voice/line-9bcd468dc7b7dbc3.m4a"
       },
       "card": {
         "text": "yellow",
@@ -331,17 +331,17 @@
         "parts": [
           {
             "text": "r",
-            "say": "{/r/|ɹːː}",
+            "say": "{r|ɹːː}",
             "audio": "voice/line-c9097eface293028.m4a"
           },
           {
             "text": "e",
-            "say": "{/e/|ɛ}",
+            "say": "{e|ɛ}",
             "audio": "voice/line-26b8405a6ef65e10.m4a"
           },
           {
             "text": "d",
-            "say": "{/d/|dʌ}",
+            "say": "{d|dʌ}",
             "audio": "voice/line-f06c02b8a2619c78.m4a"
           }
         ],

@@ -164,8 +164,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every cow!",
-        "say": "Find every word cow!",
-        "audio": "voice/line-c4655e3cade7e00d.m4a"
+        "say": "Tap every word that says \"cow\"!",
+        "audio": "voice/line-b215f5669b78e915.m4a"
       },
       "card": {
         "text": "cow",
@@ -192,8 +192,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -304,33 +304,66 @@
     },
     {
       "id": "level-90-r9",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "The fish is in the sea. Tap the drum once for every word!",
-        "audio": "voice/line-b8edb4cbb35f7d4e.m4a"
+        "text": "Join M to S!",
+        "say": "Tap the dots in order, from {M|ˈɛm} to {S|ˈɛs}. What will it make?",
+        "audio": "voice/line-cbe1669847c588db.m4a"
       },
       "card": {
-        "text": null,
+        "text": "M → S",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "The fish is in the sea.",
-        "parts": [
-          "The",
-          "fish",
-          "is",
-          "in",
-          "the",
-          "sea"
+      "connect": {
+        "labels": [
+          "M",
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "The fish is in the sea",
-          "say": "The fish is in the sea. Six words!",
-          "audio": "voice/line-b050d72eb8524cff.m4a"
+        "points": [
+          [
+            6,
+            28
+          ],
+          [
+            30,
+            54
+          ],
+          [
+            50,
+            10
+          ],
+          [
+            70,
+            54
+          ],
+          [
+            94,
+            28
+          ],
+          [
+            84,
+            88
+          ],
+          [
+            16,
+            88
+          ]
+        ],
+        "picture": {
+          "key": "crown",
+          "label": "crown",
+          "url": null
+        },
+        "done": {
+          "text": "A crown!",
+          "say": "It's a crown!",
+          "audio": "voice/line-9649373564b61d61.m4a"
         }
       }
     },
@@ -352,17 +385,17 @@
         "parts": [
           {
             "text": "r",
-            "say": "{/r/|ɹːː}",
+            "say": "{r|ɹːː}",
             "audio": "voice/line-c9097eface293028.m4a"
           },
           {
             "text": "e",
-            "say": "{/e/|ɛ}",
+            "say": "{e|ɛ}",
             "audio": "voice/line-26b8405a6ef65e10.m4a"
           },
           {
             "text": "d",
-            "say": "{/d/|dʌ}",
+            "say": "{d|dʌ}",
             "audio": "voice/line-f06c02b8a2619c78.m4a"
           }
         ],

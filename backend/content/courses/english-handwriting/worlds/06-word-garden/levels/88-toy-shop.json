@@ -90,8 +90,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -254,8 +254,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every drum!",
-        "say": "Find every word drum!",
-        "audio": "voice/line-371c81b13004ebda.m4a"
+        "say": "Tap every word that says \"drum\"!",
+        "audio": "voice/line-8fde8f068b20ddae.m4a"
       },
       "card": {
         "text": "drum",
@@ -295,22 +295,22 @@
         "parts": [
           {
             "text": "d",
-            "say": "{/d/|dʌ}",
+            "say": "{d|dʌ}",
             "audio": "voice/line-f06c02b8a2619c78.m4a"
           },
           {
             "text": "r",
-            "say": "{/r/|ɹːː}",
+            "say": "{r|ɹːː}",
             "audio": "voice/line-c9097eface293028.m4a"
           },
           {
             "text": "u",
-            "say": "{/u/|ʌ}",
+            "say": "{u|ʌ}",
             "audio": "voice/line-6094ce3b4313c3cc.m4a"
           },
           {
             "text": "m",
-            "say": "{/m/|mːː}",
+            "say": "{m|mːː}",
             "audio": "voice/line-26d6be66a61da36b.m4a"
           }
         ],
@@ -353,8 +353,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/f/|fːː} or {/g/|ɡʌ}?",
-        "audio": "voice/line-50bc4e75f05dae0e.m4a"
+        "say": "Sort the pictures! Does each one start with the {f|fːː} sound, or the {g|ɡʌ} sound?",
+        "audio": "voice/line-f09280aaebd4282b.m4a"
       },
       "card": {
         "text": "f g",

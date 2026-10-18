@@ -294,31 +294,66 @@
     },
     {
       "id": "level-78-r7",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "Seven, eight, nine, ten! Tap the drum once for every word!",
-        "audio": "voice/line-d08241cafeac6db9.m4a"
+        "text": "Join O to U!",
+        "say": "Tap the dots in order, from {O|ˈoʊ} to {U|jˈuː}. What will it make?",
+        "audio": "voice/line-7f8ca29ac17907ae.m4a"
       },
       "card": {
-        "text": null,
+        "text": "O → U",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "Seven, eight, nine, ten!",
-        "parts": [
-          "Seven",
-          "eight",
-          "nine",
-          "ten"
+      "connect": {
+        "labels": [
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "Seven eight nine ten",
-          "say": "Seven, eight, nine, ten! Four words!",
-          "audio": "voice/line-53759848405f13b4.m4a"
+        "points": [
+          [
+            6,
+            28
+          ],
+          [
+            30,
+            54
+          ],
+          [
+            50,
+            10
+          ],
+          [
+            70,
+            54
+          ],
+          [
+            94,
+            28
+          ],
+          [
+            84,
+            88
+          ],
+          [
+            16,
+            88
+          ]
+        ],
+        "picture": {
+          "key": "crown",
+          "label": "crown",
+          "url": null
+        },
+        "done": {
+          "text": "A crown!",
+          "say": "It's a crown!",
+          "audio": "voice/line-9649373564b61d61.m4a"
         }
       }
     },
@@ -402,8 +437,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
