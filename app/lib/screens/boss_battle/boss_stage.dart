@@ -131,7 +131,9 @@ class BossStage extends StatelessWidget {
                         Positioned(
                           left: 84,
                           top: 10,
-                          right: br.width * .55,
+                          // what Pencil says can be a whole sentence: the
+                          // bubble may reach over the boss's sky
+                          right: 16,
                           child: Align(alignment: Alignment.topLeft, child: bubble),
                         ),
                       if (battle.combo >= 2) Positioned(top: 10, right: 12, child: ComboBadge(combo: battle.combo)),

@@ -18,6 +18,8 @@ import '../../data/models/course_models.dart';
 import '../../data/progress.dart';
 import '../../design/tokens.dart';
 import '../../feedback/app_feedback.dart';
+import '../../feedback/pencil_lines.dart';
+import '../../game/coach.dart';
 import '../../game/level_resume.dart';
 import '../../game/level_session.dart';
 import '../../game/speech/prompt_voice.dart';
@@ -77,6 +79,19 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
   int _burst = 0;
   bool _done = false;
 
+  // ---- coaching: Pencil says what to do, step by step
+  late final bool _voiceOn = ref.read(pencilVoiceProvider); // his recorded coach lines
+  int _talkId = 0; // a new line (or a stop) drops the lines still queued
+  Future<void> _talk = Future.value();
+  String? _stepKey; // the step being coached
+  final _taught = <String>{}; // "how to play" lines said in this level
+  Timer? _idle; // nudges the child after a quiet while
+  int _nudges = 0, _nudge = 0; // nudges in this step; the bubble's wiggle
+  double _padLineAt = -10;
+  String? _caption; // what Pencil says (or said last): his bubble shows it
+  String? _captionStep; // the step he said it in
+  bool _talking = false; // a line is being said now
+
   // ---- boss battle (boss levels only)
   BossBattle? _battle;
   final _rootKey = GlobalKey();
@@ -98,6 +113,7 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
     _ticker = createTicker((e) => _time.value = e.inMicroseconds / 1e6)..start();
     _mascot.setBodyColor(ref.read(progressProvider).color.key);
     _voice; // resolve while mounted (ref is not usable in dispose)
+    _voiceOn;
     final back = _resume();
     _view = ref.read(levelSessionProvider(level));
     _fb; // resolve while mounted
@@ -143,6 +159,7 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
     _flip.dispose();
     _shake.dispose();
     _bubbleTimer?.cancel();
+    _idle?.cancel();
     for (final t in _timers) {
       t.cancel();
     }
@@ -164,11 +181,147 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
   void _startRound() {
     if (!mounted) return;
     final r = _view.current;
-    _setPad(r is WriteRound ? r : null);
-    final say = r.prompt.text;
-    _say(say.length <= 14 ? say : 'Listen!', const Duration(milliseconds: 1600));
+    setState(() => _setPad(r is WriteRound ? r : null));
+    // the pad lays its guide out in the next frame: then its first step shows
+    if (_guided) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) setState(() {});
+      });
+    }
     _lookAtArea();
-    _voice.speak(r.prompt, _mascot, after: _resting);
+    _stepKey = _coach?.key;
+    _nudges = 0;
+    _speakThenTeach(r.prompt);
+    _restartIdle();
+  }
+
+  /// Says the round's prompt, then (the first time this game comes up in
+  /// the level, or when [always]) how to play it, once the prompt was said
+  /// to its end.
+  Future<void> _speakThenTeach(Prompt prompt, {bool always = false}) async {
+    final round = _view.round;
+    final whole = await _speak(prompt);
+    if (!whole || !mounted || _view.round != round || _view.correct) return;
+    final line = _howLine;
+    if (line != null && (_taught.add(line) || always)) _sayLine(line, queue: true);
+  }
+
+  /// The line that says how to play this round now.
+  String? get _howLine => _coach?.line ?? (_guided ? CoachLines.trace : null);
+
+  /// The writing pad shows guide strokes (Pencil explains each one).
+  bool get _guided => _pad?.guides.isNotEmpty ?? false;
+
+  // ------------------------------------------------------------ coaching
+
+  /// What Pencil tells the child to do now (see [coachStep]).
+  CoachStep? get _coach => coachStep(_view, boss: _battle != null, guided: _guided);
+
+  /// Pencil says [prompt], and his bubble shows the same words while he
+  /// does (and after, until the child moves on). It cuts what he is saying,
+  /// unless [queue]: then it waits for it. A line still waiting is dropped
+  /// by the next line that cuts in, and by [_hush]. True when it was said to
+  /// its end.
+  Future<bool> _speak(Prompt prompt, {bool queue = false}) {
+    if (!queue) _talkId++;
+    final id = _talkId, step = _stepKey;
+    final next = (queue ? _talk : Future<bool>.value(true)).then((_) async {
+      if (!mounted || id != _talkId) return false;
+      setState(() {
+        _caption = _captionOf(prompt);
+        _captionStep = step;
+        _talking = true;
+      });
+      final said = _voice.speak(prompt, _mascot, after: _resting);
+      // the voice off (tests): the line counts as said after a moment
+      final whole = _voiceOn ? await said : await _wait(const Duration(milliseconds: 1200)).then((_) => true);
+      if (!mounted || id != _talkId) return false;
+      setState(() => _talking = false);
+      _restartIdle(); // quiet time counts from when he stops
+      return whole;
+    });
+    return _talk = next.catchError((_) => false);
+  }
+
+  /// What the bubble shows for [prompt]: what Pencil says, as written
+  /// ({c|kʌ} -> c). A reading passage already on the card is not shown
+  /// again: only the question after it.
+  String _captionOf(Prompt prompt) {
+    final words = prompt.spoken.trim();
+    final card = _view.current.card?.text?.trim();
+    if (card != null && card.length > 20 && words.startsWith(card) && words.length > card.length) {
+      return words.substring(card.length).trim();
+    }
+    return words;
+  }
+
+  /// One of Pencil's recorded coach lines (silent where they are off).
+  Future<bool> _sayLine(String asset, {bool queue = false}) =>
+      _voiceOn ? _speak(CoachLines.prompt(asset), queue: queue) : Future<bool>.value(false);
+
+  /// Pencil stops talking at once; nothing queued is said.
+  void _hush() {
+    _talkId++;
+    _voice.stop();
+    if (_talking && mounted) setState(() => _talking = false);
+  }
+
+  /// A pose for what just happened; never while Pencil talks (it would cut
+  /// his line).
+  void _react(MascotState state) {
+    if (!_talking) _mascot.play(state);
+  }
+
+  /// A new step: its line is said when it asks for it. Quiet time starts
+  /// again.
+  void _checkStep() {
+    final c = _coach;
+    if (c?.key == _stepKey) return;
+    _stepKey = c?.key;
+    _nudges = 0;
+    final line = c?.line;
+    if (c != null && c.sayNow && line != null) _sayLine(line, queue: true);
+    _restartIdle();
+  }
+
+  void _restartIdle() {
+    _idle?.cancel();
+    if (_done || _introAt != null) return;
+    _idle = Timer(const Duration(seconds: 8), _nudgeNow);
+  }
+
+  /// The child has done nothing for a while: Pencil says the step again
+  /// (twice at most) and his bubble pops.
+  void _nudgeNow() {
+    if (!mounted || _done || _view.correct || _nudges >= 2) return;
+    if (_talking) {
+      _restartIdle();
+      return;
+    }
+    _nudges++;
+    setState(() => _nudge++);
+    final line = _coach?.line ?? _howLine;
+    if (line != null && _voiceOn) {
+      _sayLine(line);
+    } else {
+      _speak(_view.current.prompt);
+    }
+    _restartIdle();
+  }
+
+  /// Waits [d]; never completes when the screen closes first.
+  Future<void> _wait(Duration d) {
+    final c = Completer<void>();
+    _later(d, c.complete);
+    return c.future;
+  }
+
+  /// A writing slip (wrong start, off the path): Pencil says it too, at
+  /// most every few seconds, and never over another line.
+  void _padLine(String asset) {
+    if (_time.value - _padLineAt < 4 || _talking) return;
+    _padLineAt = _time.value;
+    _sayLine(asset);
   }
 
   /// Runs [f] after [d] unless the screen is gone by then.
@@ -191,13 +344,14 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
   /// Step-by-step writing: Pencil says what to do next.
   void _onPad(PadEvent e) {
     if (!mounted) return;
+    _restartIdle();
     switch (e) {
       case PadEvent.strokeDone:
-        _mascot.play(MascotState.happy);
+        _react(MascotState.happy);
         _bubbleTimer?.cancel();
         setState(() => _bubble = null); // the next stroke's instruction shows
         _later(const Duration(milliseconds: 600), () {
-          if (!ref.read(levelSessionProvider(level)).correct) _mascot.play(MascotState.watching);
+          if (!ref.read(levelSessionProvider(level)).correct) _react(MascotState.watching);
         });
       case PadEvent.letterDone:
         final pad = _pad;
@@ -207,10 +361,12 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
         });
       case PadEvent.wrongStart:
         _say('Start at the blue dot!', const Duration(milliseconds: 1500));
+        _padLine(CoachLines.startDot);
       case PadEvent.leftPath:
         // off right after the start: most likely the wrong way
         final early = (_pad?.guide?.progress ?? 1) < .35;
         _say(early ? 'Follow the arrow!' : 'Stay on the line!', const Duration(milliseconds: 1300));
+        _padLine(early ? CoachLines.followArrow : CoachLines.stayOnLine);
     }
   }
 
@@ -227,19 +383,27 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
     StrokeShape.zigzag => 'Follow the arrow',
   };
 
-  /// The bubble: a passing remark, else the instruction for the stroke
-  /// being written.
+  /// The bubble: what Pencil is saying, word for word; else a passing
+  /// remark, the instruction for the stroke being written, what he said
+  /// last (until the child moves on), or what to do now (the coach step).
   (String, int?)? get _speech {
+    final caption = _caption;
+    if (_talking && caption != null) return (caption, null);
     if (_bubble != null) return (_bubble!, null);
+    if (_view.correct) return null;
     final g = _pad?.guide;
-    if (g == null || g.done || _view.correct) return null;
-    return (stepText(g.shapeOf(g.stroke)), g.stroke + 1);
+    if (g != null && !g.done) return (stepText(g.shapeOf(g.stroke)), g.stroke + 1);
+    if (caption != null && _captionStep == _stepKey) return (caption, null);
+    final c = _coach;
+    return c == null ? null : (c.text, null);
   }
 
+  /// The replay button: the prompt again, then how to play.
   void _replay() {
     _bubbleTimer?.cancel();
     setState(() => _bubble = null);
-    _voice.speak(_view.current.prompt, _mascot, after: _resting);
+    _speakThenTeach(_view.current.prompt, always: true);
+    _restartIdle();
   }
 
   void _say(String? text, Duration d) {
@@ -267,6 +431,9 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
       ref.read(levelResumeProvider.notifier).save(child, level, round: next.round, mistakes: next.mistakes, choices: next.choices);
     }
     if (next.round != prev.round) {
+      _hush(); // nothing of the last round is heard over the next one
+      _idle?.cancel();
+      _caption = null;
       _roundStartMistakes = next.mistakes;
       // flip the old round away, then flip the new one in (prototype next())
       _flipOut = true;
@@ -289,7 +456,8 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
       switch (next.feedback) {
         case RoundFeedback.correct:
           _burst++;
-          _voice.stop();
+          _hush();
+          _idle?.cancel();
           _mascot.play(MascotState.happy);
           _say(_praise[next.round % 4], const Duration(milliseconds: 1350));
           HapticFeedback.lightImpact();
@@ -301,24 +469,25 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
             _fb.bossSnore();
           }
           _shake.forward(from: 0);
-          _mascot.play(MascotState.encourage);
+          _react(MascotState.encourage);
           _say('Try again!', const Duration(milliseconds: 1300));
         case RoundFeedback.none:
-          if (prev.feedback == RoundFeedback.wrong) _mascot.play(_resting);
+          if (prev.feedback == RoundFeedback.wrong) _react(_resting);
       }
     }
     if (next.spellFilled > prev.spellFilled && !next.correct) {
       final r = next.current;
       if (r is WriteRound && next.spellFilled < (r.word ?? r.target ?? '').length) _setPad(r, letter: next.spellFilled);
-      _mascot.play(MascotState.happy);
+      _react(MascotState.happy);
       _say('Wow!', const Duration(milliseconds: 700));
       _later(const Duration(milliseconds: 700), () {
-        if (!ref.read(levelSessionProvider(level)).correct) _mascot.play(MascotState.watching);
+        if (!ref.read(levelSessionProvider(level)).correct) _react(MascotState.watching);
       });
     }
     // a sound, a word or a hint the round asks Pencil to say
     final line = next.saying;
-    if (line != null && next.said != prev.said && !next.correct) _voice.speak(line, _mascot, after: _resting);
+    if (line != null && next.said != prev.said && !next.correct) _speak(line);
+    if (!next.correct) _checkStep();
     if (next.finished && !_done) {
       _done = true;
       if (child != null) ref.read(levelResumeProvider.notifier).clear(child, level);
@@ -382,7 +551,8 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
   /// All rounds won: the alarm clock comes out. The child rings it (or it
   /// rings itself when nobody taps), then the boss wakes up.
   void _startFinale(SessionState s) {
-    _voice.stop();
+    _hush();
+    _idle?.cancel();
     setState(() => _finishedState = s);
     _mascot.play(MascotState.happy);
     _say('Ring the alarm!', const Duration(milliseconds: 2200));
@@ -423,9 +593,9 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
   /// Halfway through a long level: Pencil cheers and confetti flies.
   void _halfway() {
     _burst++;
-    _mascot.play(MascotState.happy);
+    _react(MascotState.happy);
     _say('Halfway there!', const Duration(milliseconds: 1600));
-    _later(const Duration(milliseconds: 900), () => _mascot.play(_resting));
+    _later(const Duration(milliseconds: 900), () => _react(_resting));
   }
 
   // ------------------------------------------------------------ build
@@ -433,6 +603,16 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
   @override
   Widget build(BuildContext context) {
     ref.listen(levelSessionProvider(level), _onSession);
+    // any touch: the child is busy, Pencil waits before nudging
+    return Listener(
+      behavior: HitTestBehavior.translucent,
+      onPointerDown: (_) => _restartIdle(),
+      onPointerUp: (_) => _restartIdle(),
+      child: _screen(context),
+    );
+  }
+
+  Widget _screen(BuildContext context) {
     final course = ref.watch(courseProvider).value;
     final world = course?.worldOf(level);
     final theme = LikhoWorlds.byId(world?.themeId ?? 'letterLand');
@@ -486,11 +666,11 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             SizedBox(
-                              height: 36,
+                              height: 64,
                               child: Align(
                                 alignment: Alignment.centerLeft,
                                 child: switch (_speech) {
-                                  (final text, final step) => SpeechBubble(text: text, step: step),
+                                  (final text, final step) => SpeechBubble(text: text, step: step, nudge: _nudge),
                                   null => const SizedBox.shrink(),
                                 },
                               ),
@@ -595,7 +775,7 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
                         bossKey: _bossKey,
                         pencil: OverflowBox(maxWidth: 100, maxHeight: 120, child: PencilMascot(controller: _mascot, size: 104)),
                         bubble: switch (_speech) {
-                          (final text, final step) => SpeechBubble(text: text, step: step),
+                          (final text, final step) => SpeechBubble(text: text, step: step, nudge: _nudge),
                           null => null,
                         },
                       ),
@@ -671,7 +851,17 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
   Widget _animatedArea(SessionState s, {WorldTheme? boss}) {
     final area = KeyedSubtree(
       key: _areaKey,
-      child: _RoundArea(state: s, pad: _pad, glyphs: _glyphs, time: _time, onPen: _mascot.lookAt, boss: boss),
+      child: _RoundArea(
+        state: s,
+        pad: _pad,
+        glyphs: _glyphs,
+        time: _time,
+        onPen: (p) {
+          _mascot.lookAt(p);
+          _idle?.cancel(); // writing: not quiet
+        },
+        boss: boss,
+      ),
     );
     return ConfettiBurst(
       trigger: _burst,
@@ -710,7 +900,14 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
 /// Chooses the view for the round type. Sealed [Round] makes this switch
 /// exhaustive: a new round type does not compile until it has a view here.
 class _RoundArea extends ConsumerWidget {
-  const _RoundArea({required this.state, required this.pad, required this.glyphs, required this.time, required this.onPen, this.boss});
+  const _RoundArea({
+    required this.state,
+    required this.pad,
+    required this.glyphs,
+    required this.time,
+    required this.onPen,
+    this.boss,
+  });
   final SessionState state;
   final WritePadController? pad;
   final Map<String, List<String>> glyphs;
