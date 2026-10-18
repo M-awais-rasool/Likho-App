@@ -78,8 +78,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/l/|lːː} or {/s/|sːː}?",
-        "audio": "voice/line-b6c439fac7c04efd.m4a"
+        "say": "Sort the pictures! Does each one start with the {l|lːː} sound, or the {s|sːː} sound?",
+        "audio": "voice/line-af126b455f332436.m4a"
       },
       "card": {
         "text": "l s",
@@ -213,8 +213,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join r to y!",
-        "say": "Join the dots, from {r|ˈɑːɹ} to {y|wˈaɪ}. What will it be?",
-        "audio": "voice/line-7f7017e625198520.m4a"
+        "say": "Tap the dots in order, from {r|ˈɑːɹ} to {y|wˈaɪ}. What will it make?",
+        "audio": "voice/line-34b907b5f8ac316d.m4a"
       },
       "card": {
         "text": "r → y",
@@ -283,8 +283,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write for",
-        "say": "Look at the word for. Then write it from memory!",
-        "audio": "voice/line-94b575bf0bfb37f3.m4a"
+        "say": "Look at the word for. It will hide. Then write it!",
+        "audio": "voice/line-c0754f5fb302e3c4.m4a"
       },
       "card": {
         "text": null,
@@ -306,8 +306,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every said!",
-        "say": "Find every word said!",
-        "audio": "voice/line-6f89fb4b319f7b6e.m4a"
+        "say": "Tap every word that says \"said\"!",
+        "audio": "voice/line-a6c54644f1d6c014.m4a"
       },
       "card": {
         "text": "said",

@@ -56,8 +56,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/h/|hʌ} or {/l/|lːː}?",
-        "audio": "voice/line-dfb3bb467ce2a295.m4a"
+        "say": "Sort the pictures! Does each one start with the {h|hʌ} sound, or the {l|lːː} sound?",
+        "audio": "voice/line-b9f8b23958920624.m4a"
       },
       "card": {
         "text": "h l",
@@ -160,33 +160,86 @@
     },
     {
       "id": "level-145-r4",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "The fish is in the sea. Tap the drum once for every word!",
-        "audio": "voice/line-b8edb4cbb35f7d4e.m4a"
+        "text": "Join l to v!",
+        "say": "Tap the dots in order, from {l|ˈɛl} to {v|vˈiː}. What will it make?",
+        "audio": "voice/line-6876aa5a76bb905f.m4a"
       },
       "card": {
-        "text": null,
+        "text": "l → v",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "The fish is in the sea.",
-        "parts": [
-          "The",
-          "fish",
-          "is",
-          "in",
-          "the",
-          "sea"
+      "connect": {
+        "labels": [
+          "l",
+          "m",
+          "n",
+          "o",
+          "p",
+          "q",
+          "r",
+          "s",
+          "t",
+          "u",
+          "v"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "The fish is in the sea",
-          "say": "The fish is in the sea. Six words!",
-          "audio": "voice/line-b050d72eb8524cff.m4a"
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            76,
+            14
+          ],
+          [
+            88,
+            38
+          ],
+          [
+            78,
+            62
+          ],
+          [
+            60,
+            78
+          ],
+          [
+            66,
+            96
+          ],
+          [
+            34,
+            96
+          ],
+          [
+            40,
+            78
+          ],
+          [
+            22,
+            62
+          ],
+          [
+            12,
+            38
+          ],
+          [
+            24,
+            14
+          ]
+        ],
+        "picture": {
+          "key": "balloon",
+          "label": "balloon",
+          "url": null
+        },
+        "done": {
+          "text": "A balloon!",
+          "say": "It's a balloon!",
+          "audio": "voice/line-02f6767f455aad89.m4a"
         }
       }
     },
@@ -255,8 +308,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write he",
-        "say": "Look at the word he. Then write it from memory!",
-        "audio": "voice/line-6948979307e987b7.m4a"
+        "say": "Look at the word he. It will hide. Then write it!",
+        "audio": "voice/line-32697c5221c5a3e7.m4a"
       },
       "card": {
         "text": null,
@@ -278,8 +331,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every said!",
-        "say": "Find every word said!",
-        "audio": "voice/line-6f89fb4b319f7b6e.m4a"
+        "say": "Tap every word that says \"said\"!",
+        "audio": "voice/line-a6c54644f1d6c014.m4a"
       },
       "card": {
         "text": "said",

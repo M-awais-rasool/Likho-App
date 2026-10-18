@@ -265,8 +265,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/f/|fːː} or {/d/|dʌ}?",
-        "audio": "voice/line-27f67eb9d3dcde7f.m4a"
+        "say": "Sort the pictures! Does each one start with the {f|fːː} sound, or the {d|dʌ} sound?",
+        "audio": "voice/line-7126528272c97699.m4a"
       },
       "card": {
         "text": "f d",
@@ -400,8 +400,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join c to j!",
-        "say": "Join the dots, from {c|sˈiː} to {j|ʤˈeɪ}. What will it be?",
-        "audio": "voice/line-f97afdd49840e722.m4a"
+        "say": "Tap the dots in order, from {c|sˈiː} to {j|ʤˈeɪ}. What will it make?",
+        "audio": "voice/line-fc8044997eda5b2f.m4a"
       },
       "card": {
         "text": "c → j",
@@ -470,8 +470,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write like",
-        "say": "Look at the word like. Then write it from memory!",
-        "audio": "voice/line-9a2f243b1f870b80.m4a"
+        "say": "Look at the word like. It will hide. Then write it!",
+        "audio": "voice/line-178487e0403c6c53.m4a"
       },
       "card": {
         "text": null,

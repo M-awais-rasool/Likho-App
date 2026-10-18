@@ -99,30 +99,61 @@
     },
     {
       "id": "level-148-r4",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "I can run. Tap the drum once for every word!",
-        "audio": "voice/line-a51cc77fbdd38440.m4a"
+        "text": "Join A to F!",
+        "say": "Tap the dots in order, from {A|ˈeɪ} to {F|ˈɛf}. What will it make?",
+        "audio": "voice/line-fdfb7df8eff11ea1.m4a"
       },
       "card": {
-        "text": null,
+        "text": "A → F",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "I can run.",
-        "parts": [
-          "I",
-          "can",
-          "run"
+      "connect": {
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "I can run",
-          "say": "I can run. Three words!",
-          "audio": "voice/line-5f47e90dd8992bb1.m4a"
+        "points": [
+          [
+            50,
+            3
+          ],
+          [
+            88,
+            38
+          ],
+          [
+            69,
+            68
+          ],
+          [
+            50,
+            97
+          ],
+          [
+            31,
+            68
+          ],
+          [
+            12,
+            38
+          ]
+        ],
+        "picture": {
+          "key": "kite",
+          "label": "kite",
+          "url": null
+        },
+        "done": {
+          "text": "A kite!",
+          "say": "It's a kite!",
+          "audio": "voice/line-84a0b92f93e00a15.m4a"
         }
       }
     },
@@ -287,8 +318,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every said!",
-        "say": "Find every word said!",
-        "audio": "voice/line-6f89fb4b319f7b6e.m4a"
+        "say": "Tap every word that says \"said\"!",
+        "audio": "voice/line-a6c54644f1d6c014.m4a"
       },
       "card": {
         "text": "said",
@@ -338,8 +369,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",

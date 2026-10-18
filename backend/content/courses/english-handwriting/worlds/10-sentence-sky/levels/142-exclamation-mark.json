@@ -265,8 +265,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/l/|lːː} or {/f/|fːː}?",
-        "audio": "voice/line-ad5ac4293b9ce3da.m4a"
+        "say": "Sort the pictures! Does each one start with the {l|lːː} sound, or the {f|fːː} sound?",
+        "audio": "voice/line-f022fe6601eb5752.m4a"
       },
       "card": {
         "text": "l f",
@@ -397,32 +397,86 @@
     },
     {
       "id": "level-142-r9",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "Wow! What a big cake! Tap the drum once for every word!",
-        "audio": "voice/line-e8a126c54d93634e.m4a"
+        "text": "Join M to W!",
+        "say": "Tap the dots in order, from {M|ˈɛm} to {W|dˈʌbəljuː}. What will it make?",
+        "audio": "voice/line-6aa4f54b4620b73c.m4a"
       },
       "card": {
-        "text": null,
+        "text": "M → W",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "Wow! What a big cake!",
-        "parts": [
-          "Wow",
-          "What",
-          "a",
-          "big",
-          "cake"
+      "connect": {
+        "labels": [
+          "M",
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V",
+          "W"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "Wow What a big cake",
-          "say": "Wow! What a big cake! Five words!",
-          "audio": "voice/line-eb0a384262a2d32a.m4a"
+        "points": [
+          [
+            50,
+            2
+          ],
+          [
+            80,
+            36
+          ],
+          [
+            60,
+            36
+          ],
+          [
+            88,
+            66
+          ],
+          [
+            60,
+            66
+          ],
+          [
+            60,
+            96
+          ],
+          [
+            40,
+            96
+          ],
+          [
+            40,
+            66
+          ],
+          [
+            12,
+            66
+          ],
+          [
+            40,
+            36
+          ],
+          [
+            20,
+            36
+          ]
+        ],
+        "picture": {
+          "key": "tree",
+          "label": "tree",
+          "url": null
+        },
+        "done": {
+          "text": "A tree!",
+          "say": "It's a tree!",
+          "audio": "voice/line-9f1ccab9d42ec40f.m4a"
         }
       }
     },
@@ -431,8 +485,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write stop",
-        "say": "Look at the word stop. Then write it from memory!",
-        "audio": "voice/line-fcaa5d9fd2317c14.m4a"
+        "say": "Look at the word stop. It will hide. Then write it!",
+        "audio": "voice/line-e97009c3016188c5.m4a"
       },
       "card": {
         "text": null,

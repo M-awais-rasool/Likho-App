@@ -85,8 +85,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
@@ -244,8 +244,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/h/|hʌ} or {/l/|lːː}?",
-        "audio": "voice/line-dfb3bb467ce2a295.m4a"
+        "say": "Sort the pictures! Does each one start with the {h|hʌ} sound, or the {l|lːː} sound?",
+        "audio": "voice/line-b9f8b23958920624.m4a"
       },
       "card": {
         "text": "h l",
@@ -348,33 +348,76 @@
     },
     {
       "id": "level-139-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "Names start with a capital letter! Tap the drum once for every word!",
-        "audio": "voice/line-0b61294c0cd89450.m4a"
+        "text": "Join A to I!",
+        "say": "Tap the dots in order, from {A|ˈeɪ} to {I|ˈaɪ}. What will it make?",
+        "audio": "voice/line-6f6b8c0ec6230a99.m4a"
       },
       "card": {
-        "text": null,
+        "text": "A → I",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "Names start with a capital letter!",
-        "parts": [
-          "Names",
-          "start",
-          "with",
-          "a",
-          "capital",
-          "letter"
+      "connect": {
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "Names start with a capital letter",
-          "say": "Names start with a capital letter! Six words!",
-          "audio": "voice/line-21d304d4368ef92f.m4a"
+        "points": [
+          [
+            6,
+            50
+          ],
+          [
+            30,
+            24
+          ],
+          [
+            56,
+            22
+          ],
+          [
+            76,
+            36
+          ],
+          [
+            96,
+            16
+          ],
+          [
+            96,
+            84
+          ],
+          [
+            76,
+            64
+          ],
+          [
+            56,
+            78
+          ],
+          [
+            30,
+            76
+          ]
+        ],
+        "picture": {
+          "key": "fish",
+          "label": "fish",
+          "url": null
+        },
+        "done": {
+          "text": "A fish!",
+          "say": "It's a fish!",
+          "audio": "voice/line-141ec1a5d1f6e869.m4a"
         }
       }
     },
@@ -383,8 +426,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every Ali!",
-        "say": "Find every word Ali!",
-        "audio": "voice/line-437eb5a5cbea5082.m4a"
+        "say": "Tap every word that says \"Ali\"!",
+        "audio": "voice/line-17f44703044455b2.m4a"
       },
       "card": {
         "text": "Ali",
@@ -411,8 +454,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write Mia",
-        "say": "Look at the word Mia. Then write it from memory!",
-        "audio": "voice/line-773f187844f7b92b.m4a"
+        "say": "Look at the word Mia. It will hide. Then write it!",
+        "audio": "voice/line-c760970458dd72f7.m4a"
       },
       "card": {
         "text": null,

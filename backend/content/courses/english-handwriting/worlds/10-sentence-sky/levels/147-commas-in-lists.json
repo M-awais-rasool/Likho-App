@@ -82,8 +82,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/s/|sːː} or {/w/|wʌ}?",
-        "audio": "voice/line-919af3a167ea56ed.m4a"
+        "say": "Sort the pictures! Does each one start with the {s|sːː} sound, or the {w|wʌ} sound?",
+        "audio": "voice/line-c08a2f5751e1dc47.m4a"
       },
       "card": {
         "text": "s w",
@@ -313,8 +313,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write pink",
-        "say": "Look at the word pink. Then write it from memory!",
-        "audio": "voice/line-f145c7d52270d0d3.m4a"
+        "say": "Look at the word pink. It will hide. Then write it!",
+        "audio": "voice/line-87f8dcb4f6fcf298.m4a"
       },
       "card": {
         "text": null,
@@ -360,31 +360,66 @@
     },
     {
       "id": "level-147-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "Mangoes, bananas and apples! Tap the drum once for every word!",
-        "audio": "voice/line-590e91ee7791e7a8.m4a"
+        "text": "Join E to K!",
+        "say": "Tap the dots in order, from {E|ˈiː} to {K|kˈeɪ}. What will it make?",
+        "audio": "voice/line-c7507da975425ed5.m4a"
       },
       "card": {
-        "text": null,
+        "text": "E → K",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "Mangoes, bananas and apples!",
-        "parts": [
-          "Mangoes",
-          "bananas",
-          "and",
-          "apples"
+      "connect": {
+        "labels": [
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J",
+          "K"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "Mangoes bananas and apples",
-          "say": "Mangoes, bananas and apples! Four words!",
-          "audio": "voice/line-12b8eaabe5b8d69b.m4a"
+        "points": [
+          [
+            6,
+            28
+          ],
+          [
+            30,
+            54
+          ],
+          [
+            50,
+            10
+          ],
+          [
+            70,
+            54
+          ],
+          [
+            94,
+            28
+          ],
+          [
+            84,
+            88
+          ],
+          [
+            16,
+            88
+          ]
+        ],
+        "picture": {
+          "key": "crown",
+          "label": "crown",
+          "url": null
+        },
+        "done": {
+          "text": "A crown!",
+          "say": "It's a crown!",
+          "audio": "voice/line-9649373564b61d61.m4a"
         }
       }
     },
