@@ -226,8 +226,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/g/|ɡʌ} or {/f/|fːː}?",
-        "audio": "voice/line-06d60b0b1e61c1ac.m4a"
+        "say": "Sort the pictures! Does each one start with the {g|ɡʌ} sound, or the {f|fːː} sound?",
+        "audio": "voice/line-a0227e2430ea4953.m4a"
       },
       "card": {
         "text": "G F",
@@ -292,8 +292,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write G",
-        "say": "Look at {G|ʤˈiː}. Then write it from memory!",
-        "audio": "voice/line-dfb8e9cc92aaddc7.m4a"
+        "say": "Look at {G|ʤˈiː}. It will hide. Then write it!",
+        "audio": "voice/line-1562124b6c7d3c28.m4a"
       },
       "card": {
         "text": null,
@@ -319,8 +319,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join C to K!",
-        "say": "Join the dots, from {C|sˈiː} to {K|kˈeɪ}. What will it be?",
-        "audio": "voice/line-0c26de6659d36975.m4a"
+        "say": "Tap the dots in order, from {C|sˈiː} to {K|kˈeɪ}. What will it make?",
+        "audio": "voice/line-e69a372914bcb975.m4a"
       },
       "card": {
         "text": "C → K",

@@ -170,9 +170,9 @@
       "id": "level-02-r5",
       "type": "sort",
       "prompt": {
-        "text": "Feed it /b/!",
-        "say": "This monster only eats things that start with {/b/|bʌ}. Feed it!",
-        "audio": "voice/line-8b2d3c5fa67cddd5.m4a"
+        "text": "Feed it \"b\"!",
+        "say": "This monster eats things that start with the {b|bʌ} sound. Feed it!",
+        "audio": "voice/line-2e8229d6d3dc76ad.m4a"
       },
       "card": {
         "text": "B",
@@ -250,8 +250,8 @@
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
+        "say": "Put the letters in {A|ˈeɪ} B C order!",
+        "audio": "voice/line-060eae3d379a9a2b.m4a"
       },
       "card": {
         "text": null,
@@ -298,8 +298,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join A to K!",
-        "say": "Join the dots, from {A|ˈeɪ} to {K|kˈeɪ}. What will it be?",
-        "audio": "voice/line-c5a7b60a8edc6b51.m4a"
+        "say": "Tap the dots in order, from {A|ˈeɪ} to {K|kˈeɪ}. What will it make?",
+        "audio": "voice/line-d8f2b56abc0f6b65.m4a"
       },
       "card": {
         "text": "A → K",
