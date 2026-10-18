@@ -79,9 +79,9 @@
       "id": "level-23-r3",
       "type": "pick",
       "prompt": {
-        "text": "What starts with /p/?",
-        "say": "Which one starts with {/p/|pʌ}?",
-        "audio": "voice/line-2dd20a31652d675b.m4a"
+        "text": "What starts with \"p\"?",
+        "say": "Which one starts with the {p|pʌ} sound?",
+        "audio": "voice/line-2153fa311fbb6b87.m4a"
       },
       "card": {
         "text": null,
@@ -260,8 +260,8 @@
       "type": "order",
       "prompt": {
         "text": "Put the letters in ABC order!",
-        "say": "Put the letters in A B C order!",
-        "audio": "voice/line-536b4806363a47e0.m4a"
+        "say": "Put the letters in {A|ˈeɪ} B C order!",
+        "audio": "voice/line-060eae3d379a9a2b.m4a"
       },
       "card": {
         "text": null,
@@ -285,8 +285,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join N to T!",
-        "say": "Join the dots, from {N|ˈɛn} to {T|tˈiː}. What will it be?",
-        "audio": "voice/line-053be731b0fb4a62.m4a"
+        "say": "Tap the dots in order, from {N|ˈɛn} to {T|tˈiː}. What will it make?",
+        "audio": "voice/line-84c442480e1b12f6.m4a"
       },
       "card": {
         "text": "N → T",
