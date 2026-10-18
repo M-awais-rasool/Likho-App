@@ -75,8 +75,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/j/|ʤʌ} or {/d/|dʌ}?",
-        "audio": "voice/line-14dbe49e4f932a3d.m4a"
+        "say": "Sort the pictures! Does each one start with the {j|ʤʌ} sound, or the {d|dʌ} sound?",
+        "audio": "voice/line-1b047f81b393926d.m4a"
       },
       "card": {
         "text": "j d",
@@ -314,8 +314,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write may",
-        "say": "Look at the word may. Then write it from memory!",
-        "audio": "voice/line-94fff85ebf77368c.m4a"
+        "say": "Look at the word may. It will hide. Then write it!",
+        "audio": "voice/line-9d0836e6adc3ac01.m4a"
       },
       "card": {
         "text": null,
@@ -384,33 +384,71 @@
     },
     {
       "id": "level-177-r9",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "Excuse me, may I come in? Tap the drum once for every word!",
-        "audio": "voice/line-28afbddbc6f1e8f7.m4a"
+        "text": "Join i to p!",
+        "say": "Tap the dots in order, from {i|ˈaɪ} to {p|pˈiː}. What will it make?",
+        "audio": "voice/line-cd467d391b14e949.m4a"
       },
       "card": {
-        "text": null,
+        "text": "i → p",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "Excuse me, may I come in?",
-        "parts": [
-          "Excuse",
-          "me",
-          "may",
-          "I",
-          "come",
-          "in"
+      "connect": {
+        "labels": [
+          "i",
+          "j",
+          "k",
+          "l",
+          "m",
+          "n",
+          "o",
+          "p"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "Excuse me may I come in",
-          "say": "Excuse me, may I come in? Six words!",
-          "audio": "voice/line-e5a07bb50fe2ee93.m4a"
+        "points": [
+          [
+            8,
+            8
+          ],
+          [
+            78,
+            8
+          ],
+          [
+            78,
+            30
+          ],
+          [
+            98,
+            30
+          ],
+          [
+            98,
+            66
+          ],
+          [
+            78,
+            66
+          ],
+          [
+            72,
+            94
+          ],
+          [
+            14,
+            94
+          ]
+        ],
+        "picture": {
+          "key": "cup",
+          "label": "cup",
+          "url": null
+        },
+        "done": {
+          "text": "A cup!",
+          "say": "It's a cup!",
+          "audio": "voice/line-b59d914d7fd7fbc2.m4a"
         }
       }
     },

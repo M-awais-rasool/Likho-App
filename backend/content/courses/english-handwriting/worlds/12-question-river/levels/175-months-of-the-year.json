@@ -56,8 +56,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/s/|sːː} or {/h/|hʌ}?",
-        "audio": "voice/line-f105ab757293d8af.m4a"
+        "say": "Sort the pictures! Does each one start with the {s|sːː} sound, or the {h|hʌ} sound?",
+        "audio": "voice/line-336dae8e106bd112.m4a"
       },
       "card": {
         "text": "s h",
@@ -297,8 +297,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write May",
-        "say": "Look at the word May. Then write it from memory!",
-        "audio": "voice/line-94fff85ebf77368c.m4a"
+        "say": "Look at the word May. It will hide. Then write it!",
+        "audio": "voice/line-9d0836e6adc3ac01.m4a"
       },
       "card": {
         "text": null,
@@ -388,33 +388,76 @@
     },
     {
       "id": "level-175-r9",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "January, February, March, April, May, June! Tap the drum once for every word!",
-        "audio": "voice/line-d13f4100e4de2554.m4a"
+        "text": "Join h to p!",
+        "say": "Tap the dots in order, from {h|ˈeɪʧ} to {p|pˈiː}. What will it make?",
+        "audio": "voice/line-bb0a08724c596ed7.m4a"
       },
       "card": {
-        "text": null,
+        "text": "h → p",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "January, February, March, April, May, June!",
-        "parts": [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June"
+      "connect": {
+        "labels": [
+          "h",
+          "i",
+          "j",
+          "k",
+          "l",
+          "m",
+          "n",
+          "o",
+          "p"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "January February March April May June",
-          "say": "January, February, March, April, May, June! Six words!",
-          "audio": "voice/line-8bed607475006351.m4a"
+        "points": [
+          [
+            62,
+            4
+          ],
+          [
+            30,
+            10
+          ],
+          [
+            10,
+            36
+          ],
+          [
+            8,
+            64
+          ],
+          [
+            28,
+            88
+          ],
+          [
+            62,
+            96
+          ],
+          [
+            44,
+            74
+          ],
+          [
+            36,
+            50
+          ],
+          [
+            44,
+            26
+          ]
+        ],
+        "picture": {
+          "key": "moon",
+          "label": "moon",
+          "url": null
+        },
+        "done": {
+          "text": "A moon!",
+          "say": "It's a moon!",
+          "audio": "voice/line-24627cec3ea7f4e6.m4a"
         }
       }
     },

@@ -241,8 +241,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/b/|bʌ}?",
-        "audio": "voice/line-55e04600648a8763.m4a"
+        "say": "Sort the pictures! Does each one start with the {d|dʌ} sound, or the {b|bʌ} sound?",
+        "audio": "voice/line-ea9437fb9d79aac1.m4a"
       },
       "card": {
         "text": "d b",
@@ -348,8 +348,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join h to m!",
-        "say": "Join the dots, from {h|ˈeɪʧ} to {m|ˈɛm}. What will it be?",
-        "audio": "voice/line-a520f2e424efc0c7.m4a"
+        "say": "Tap the dots in order, from {h|ˈeɪʧ} to {m|ˈɛm}. What will it make?",
+        "audio": "voice/line-56354f16d097ef2a.m4a"
       },
       "card": {
         "text": "h → m",
@@ -456,8 +456,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write when",
-        "say": "Look at the word when. Then write it from memory!",
-        "audio": "voice/line-4f253dfe1e05b435.m4a"
+        "say": "Look at the word when. It will hide. Then write it!",
+        "audio": "voice/line-e7c84f92e9550800.m4a"
       },
       "card": {
         "text": null,

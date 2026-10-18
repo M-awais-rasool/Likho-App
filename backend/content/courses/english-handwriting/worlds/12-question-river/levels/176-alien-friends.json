@@ -155,8 +155,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join O to Z!",
-        "say": "Join the dots, from {O|ˈoʊ} to {Z|zˈiː}. What will it be?",
-        "audio": "voice/line-e452dcf56ea494a4.m4a"
+        "say": "Tap the dots in order, from {O|ˈoʊ} to {Z|zˈiː}. What will it make?",
+        "audio": "voice/line-ec43260e894fcd36.m4a"
       },
       "card": {
         "text": "O → Z",
@@ -305,8 +305,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every jumping!",
-        "say": "Find every word jumping!",
-        "audio": "voice/line-809ab75a3969324a.m4a"
+        "say": "Tap every word that says \"jumping\"!",
+        "audio": "voice/line-1df395105dd35070.m4a"
       },
       "card": {
         "text": "jumping",
@@ -420,8 +420,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",

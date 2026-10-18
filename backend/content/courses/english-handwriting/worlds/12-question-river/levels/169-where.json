@@ -153,32 +153,76 @@
     },
     {
       "id": "level-169-r5",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "It is on the box. Tap the drum once for every word!",
-        "audio": "voice/line-f57c14fb307587ad.m4a"
+        "text": "Join Q to Y!",
+        "say": "Tap the dots in order, from {Q|kjˈuː} to {Y|wˈaɪ}. What will it make?",
+        "audio": "voice/line-fcd2e258c420f4b1.m4a"
       },
       "card": {
-        "text": null,
+        "text": "Q → Y",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "It is on the box.",
-        "parts": [
-          "It",
-          "is",
-          "on",
-          "the",
-          "box"
+      "connect": {
+        "labels": [
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V",
+          "W",
+          "X",
+          "Y"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "It is on the box",
-          "say": "It is on the box. Five words!",
-          "audio": "voice/line-3e07e0edd8c5bbd3.m4a"
+        "points": [
+          [
+            6,
+            50
+          ],
+          [
+            30,
+            24
+          ],
+          [
+            56,
+            22
+          ],
+          [
+            76,
+            36
+          ],
+          [
+            96,
+            16
+          ],
+          [
+            96,
+            84
+          ],
+          [
+            76,
+            64
+          ],
+          [
+            56,
+            78
+          ],
+          [
+            30,
+            76
+          ]
+        ],
+        "picture": {
+          "key": "fish",
+          "label": "fish",
+          "url": null
+        },
+        "done": {
+          "text": "A fish!",
+          "say": "It's a fish!",
+          "audio": "voice/line-141ec1a5d1f6e869.m4a"
         }
       }
     },
@@ -270,8 +314,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every where!",
-        "say": "Find every word where!",
-        "audio": "voice/line-2c0235790c506dda.m4a"
+        "say": "Tap every word that says \"where\"!",
+        "audio": "voice/line-85dc7ef898321642.m4a"
       },
       "card": {
         "text": "where",
@@ -358,8 +402,8 @@
       "type": "fix",
       "prompt": {
         "text": "Fix Pencil's mistakes!",
-        "say": "Oops! Pencil wrote a letter the wrong way. Tap the words to fix them!",
-        "audio": "voice/line-93f5d64fbf0e8d6d.m4a"
+        "say": "Oops! Some words have a letter the wrong way. Tap them to fix them!",
+        "audio": "voice/line-b06fdb843f66c1fd.m4a"
       },
       "card": {
         "text": "Fix it!",
