@@ -30,6 +30,7 @@ import '../screens/app_flow.dart';
 import '../screens/gameplay/gameplay_screen.dart';
 import '../screens/level_complete/level_complete_screen.dart';
 import '../screens/level_intro/level_intro_screen.dart';
+import '../screens/stories/episode_a_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -131,7 +132,12 @@ class _PreviewAppState extends State<PreviewApp> {
         title: 'Likho preview',
         debugShowCheckedModeBanner: false,
         theme: likhoTheme(),
-        home: r.screen == 'map' ? Builder(builder: AppFlow.mapScreen) : _LevelRun(level: r.course.level(r.level)),
+        home: switch (r.screen) {
+          'map' => Builder(builder: AppFlow.mapScreen),
+          'stories' => _StoryOpener(child: Builder(builder: AppFlow.mapScreen)),
+          final s when s.startsWith('story-') => _StoryOpener(step: StepA.values.byName(s.substring(6)), child: Builder(builder: AppFlow.mapScreen)),
+          _ => _LevelRun(level: r.course.level(r.level)),
+        },
       ),
     );
   }
@@ -201,3 +207,29 @@ class _LevelRunState extends ConsumerState<_LevelRun> {
 
 /// The media of the API this preview is served from (same origin).
 final _media = MediaStore(baseUrl: Uri.base.origin, files: const LocalFiles());
+
+/// Opens Stories over the map (the preview's "stories" screen), or story A
+/// at one of its parts ("story-pick").
+class _StoryOpener extends StatefulWidget {
+  const _StoryOpener({required this.child, this.step});
+  final Widget child;
+  final StepA? step;
+
+  @override
+  State<_StoryOpener> createState() => _StoryOpenerState();
+}
+
+class _StoryOpenerState extends State<_StoryOpener> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final step = widget.step;
+      step == null ? AppFlow.openStories(context) : AppFlow.openStory(context, 'a', from: step);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) => widget.child;
+}

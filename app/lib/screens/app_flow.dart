@@ -37,6 +37,8 @@ import 'profiles/whos_playing_screen.dart';
 import 'room/mascot_room_screen.dart';
 import 'session_end/session_end_screen.dart';
 import 'stickers/sticker_book_screen.dart';
+import 'stories/episode_a_screen.dart';
+import 'stories/stories_screen.dart';
 import 'world_map/world_map_screen.dart';
 
 /// Navigation between all screens, in one place (the prototype's go / back).
@@ -204,8 +206,33 @@ abstract final class AppFlow {
         AppFeedback.of(ctx).tap();
         _member(ctx, () => _gated(ctx, () => Navigator.of(ctx).push(_dashboard())));
       },
+      onStories: () {
+        AppFeedback.of(ctx).press();
+        openStories(ctx);
+      },
     ),
   );
+
+  // ------------------------------------------------------------------ stories
+
+  /// Stories (the map's button): the list, and an episode on top.
+  static void openStories(BuildContext context) => Navigator.of(context).push(
+    LikhoRoute<void>(
+      builder: (ctx) => StoriesScreen(
+        onBack: () {
+          AppFeedback.of(ctx).back();
+          Navigator.of(ctx).pop();
+        },
+        onOpen: (id) => openStory(ctx, id),
+      ),
+    ),
+  );
+
+  /// Story [id] (only A so far); [from] starts it part way (QA).
+  static void openStory(BuildContext context, String id, {StepA from = StepA.house}) {
+    AppFeedback.of(context).levelStart();
+    Navigator.of(context).push(LikhoRoute<void>(builder: (c) => EpisodeAScreen(startAt: from, onDone: () => Navigator.of(c).pop())));
+  }
 
   /// Back to the World Map: pops to it when it is open, otherwise opens it
   /// right above Who's playing (or as the only screen).
@@ -468,7 +495,7 @@ abstract final class AppFlow {
 abstract final class AppFlowJump {
   static const screens = [
     'welcome', 'signIn', 'offline', 'whos', 'onb', 'edit', 'placement', 'placementDone', //
-    'map', 'complete', 'complete1', 'boss', 'bosses', 'sessionEnd', 'certificate', 'room', 'profile', 'stickers', //
+    'map', 'stories', 'storyA', 'complete', 'complete1', 'boss', 'bosses', 'sessionEnd', 'certificate', 'room', 'profile', 'stickers', //
     'gate', 'dashboard', 'course', 'settings', 'paywall',
   ];
 
@@ -509,6 +536,10 @@ abstract final class AppFlowJump {
         push((c) => PlacementDoneScreen(onDone: () => AppFlow.toMap(c)));
       case 'map':
         AppFlow.toMap(context);
+      case 'stories':
+        AppFlow.openStories(context);
+      case 'storyA':
+        AppFlow.openStory(context, 'a');
       case 'complete':
         complete(cur, 3, 5);
       case 'complete1':
