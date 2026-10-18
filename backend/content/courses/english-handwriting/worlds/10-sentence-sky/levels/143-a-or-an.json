@@ -75,8 +75,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write some",
-        "say": "Look at the word some. Then write it from memory!",
-        "audio": "voice/line-ad078854ad99be58.m4a"
+        "say": "Look at the word some. It will hide. Then write it!",
+        "audio": "voice/line-2abbd7effc6242f4.m4a"
       },
       "card": {
         "text": null,
@@ -148,8 +148,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join l to v!",
-        "say": "Join the dots, from {l|ˈɛl} to {v|vˈiː}. What will it be?",
-        "audio": "voice/line-97a206b32f3e13be.m4a"
+        "say": "Tap the dots in order, from {l|ˈɛl} to {v|vˈiː}. What will it make?",
+        "audio": "voice/line-6876aa5a76bb905f.m4a"
       },
       "card": {
         "text": "l → v",
@@ -256,8 +256,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every said!",
-        "say": "Find every word said!",
-        "audio": "voice/line-6f89fb4b319f7b6e.m4a"
+        "say": "Tap every word that says \"said\"!",
+        "audio": "voice/line-a6c54644f1d6c014.m4a"
       },
       "card": {
         "text": "said",

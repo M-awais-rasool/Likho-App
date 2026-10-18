@@ -84,8 +84,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/d/|dʌ} or {/h/|hʌ}?",
-        "audio": "voice/line-c7ac37372e7b32ac.m4a"
+        "say": "Sort the pictures! Does each one start with the {d|dʌ} sound, or the {h|hʌ} sound?",
+        "audio": "voice/line-ce2c9f8b12822edb.m4a"
       },
       "card": {
         "text": "d h",
@@ -263,8 +263,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write what",
-        "say": "Look at the word what. Then write it from memory!",
-        "audio": "voice/line-6468b14d1ebfca5e.m4a"
+        "say": "Look at the word what. It will hide. Then write it!",
+        "audio": "voice/line-8541f874275e21b3.m4a"
       },
       "card": {
         "text": null,
@@ -283,34 +283,66 @@
     },
     {
       "id": "level-138-r7",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "A sentence starts with a capital letter. Tap the drum once for every word!",
-        "audio": "voice/line-53f044c7ddf7501a.m4a"
+        "text": "Join E to K!",
+        "say": "Tap the dots in order, from {E|ˈiː} to {K|kˈeɪ}. What will it make?",
+        "audio": "voice/line-c7507da975425ed5.m4a"
       },
       "card": {
-        "text": null,
+        "text": "E → K",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "A sentence starts with a capital letter.",
-        "parts": [
-          "A",
-          "sentence",
-          "starts",
-          "with",
-          "a",
-          "capital",
-          "letter"
+      "connect": {
+        "labels": [
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J",
+          "K"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "A sentence starts with a capital letter",
-          "say": "A sentence starts with a capital letter. Seven words!",
-          "audio": "voice/line-74187350f16d9fb3.m4a"
+        "points": [
+          [
+            6,
+            28
+          ],
+          [
+            30,
+            54
+          ],
+          [
+            50,
+            10
+          ],
+          [
+            70,
+            54
+          ],
+          [
+            94,
+            28
+          ],
+          [
+            84,
+            88
+          ],
+          [
+            16,
+            88
+          ]
+        ],
+        "picture": {
+          "key": "crown",
+          "label": "crown",
+          "url": null
+        },
+        "done": {
+          "text": "A crown!",
+          "say": "It's a crown!",
+          "audio": "voice/line-9649373564b61d61.m4a"
         }
       }
     },
@@ -319,8 +351,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every said!",
-        "say": "Find every word said!",
-        "audio": "voice/line-6f89fb4b319f7b6e.m4a"
+        "say": "Tap every word that says \"said\"!",
+        "audio": "voice/line-a6c54644f1d6c014.m4a"
       },
       "card": {
         "text": "said",

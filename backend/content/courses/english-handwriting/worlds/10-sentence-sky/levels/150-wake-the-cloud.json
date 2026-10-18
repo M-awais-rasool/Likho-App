@@ -52,8 +52,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write what",
-        "say": "Look at the word what. Then write it from memory!",
-        "audio": "voice/line-6468b14d1ebfca5e.m4a"
+        "say": "Look at the word what. It will hide. Then write it!",
+        "audio": "voice/line-8541f874275e21b3.m4a"
       },
       "card": {
         "text": null,
@@ -221,8 +221,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every said!",
-        "say": "Find every word said!",
-        "audio": "voice/line-6f89fb4b319f7b6e.m4a"
+        "say": "Tap every word that says \"said\"!",
+        "audio": "voice/line-a6c54644f1d6c014.m4a"
       },
       "card": {
         "text": "said",
@@ -317,32 +317,86 @@
     },
     {
       "id": "level-150-r10",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "I can write a sentence! Tap the drum once for every word!",
-        "audio": "voice/line-e100b07a4dd92499.m4a"
+        "text": "Join O to Y!",
+        "say": "Tap the dots in order, from {O|ˈoʊ} to {Y|wˈaɪ}. What will it make?",
+        "audio": "voice/line-8526808d62eef109.m4a"
       },
       "card": {
-        "text": null,
+        "text": "O → Y",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "I can write a sentence!",
-        "parts": [
-          "I",
-          "can",
-          "write",
-          "a",
-          "sentence"
+      "connect": {
+        "labels": [
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V",
+          "W",
+          "X",
+          "Y"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "I can write a sentence",
-          "say": "I can write a sentence! Five words!",
-          "audio": "voice/line-15945995e243202d.m4a"
+        "points": [
+          [
+            50,
+            2
+          ],
+          [
+            80,
+            36
+          ],
+          [
+            60,
+            36
+          ],
+          [
+            88,
+            66
+          ],
+          [
+            60,
+            66
+          ],
+          [
+            60,
+            96
+          ],
+          [
+            40,
+            96
+          ],
+          [
+            40,
+            66
+          ],
+          [
+            12,
+            66
+          ],
+          [
+            40,
+            36
+          ],
+          [
+            20,
+            36
+          ]
+        ],
+        "picture": {
+          "key": "tree",
+          "label": "tree",
+          "url": null
+        },
+        "done": {
+          "text": "A tree!",
+          "say": "It's a tree!",
+          "audio": "voice/line-9f1ccab9d42ec40f.m4a"
         }
       }
     }

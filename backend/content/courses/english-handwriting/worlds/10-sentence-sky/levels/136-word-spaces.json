@@ -57,8 +57,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write said",
-        "say": "Look at the word said. Then write it from memory!",
-        "audio": "voice/line-951bc85a6398b9fd.m4a"
+        "say": "Look at the word said. It will hide. Then write it!",
+        "audio": "voice/line-f4fdcfe4fc28ccae.m4a"
       },
       "card": {
         "text": null,
@@ -100,31 +100,66 @@
     },
     {
       "id": "level-136-r4",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "I see a cat. Tap the drum once for every word!",
-        "audio": "voice/line-e3b09454daa74a4b.m4a"
+        "text": "Join G to M!",
+        "say": "Tap the dots in order, from {G|ʤˈiː} to {M|ˈɛm}. What will it make?",
+        "audio": "voice/line-475c337e0593e414.m4a"
       },
       "card": {
-        "text": null,
+        "text": "G → M",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "I see a cat.",
-        "parts": [
+      "connect": {
+        "labels": [
+          "G",
+          "H",
           "I",
-          "see",
-          "a",
-          "cat"
+          "J",
+          "K",
+          "L",
+          "M"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "I see a cat",
-          "say": "I see a cat. Four words!",
-          "audio": "voice/line-c9ccae21419cf345.m4a"
+        "points": [
+          [
+            6,
+            28
+          ],
+          [
+            30,
+            54
+          ],
+          [
+            50,
+            10
+          ],
+          [
+            70,
+            54
+          ],
+          [
+            94,
+            28
+          ],
+          [
+            84,
+            88
+          ],
+          [
+            16,
+            88
+          ]
+        ],
+        "picture": {
+          "key": "crown",
+          "label": "crown",
+          "url": null
+        },
+        "done": {
+          "text": "A crown!",
+          "say": "It's a crown!",
+          "audio": "voice/line-9649373564b61d61.m4a"
         }
       }
     },
@@ -264,8 +299,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every said!",
-        "say": "Find every word said!",
-        "audio": "voice/line-6f89fb4b319f7b6e.m4a"
+        "say": "Tap every word that says \"said\"!",
+        "audio": "voice/line-a6c54644f1d6c014.m4a"
       },
       "card": {
         "text": "said",
