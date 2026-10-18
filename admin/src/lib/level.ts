@@ -28,7 +28,7 @@ export const ROUND_TYPES: { value: string; label: string; hint: string }[] = [
   { value: 'match', label: 'Memory match', hint: 'Find the pairs' },
   { value: 'truth', label: 'True or silly', hint: 'Is the sentence true?' },
   { value: 'sounds', label: 'Sound buttons', hint: 'Tap each sound, read the word, pick its picture' },
-  { value: 'beats', label: 'Clap the beats', hint: 'Tap the drum once for every beat' },
+  // no drum game ('beats'): removed from the course on 2026-10-18; old levels still load
   { value: 'connect', label: 'Connect the dots', hint: 'Join the letters in ABC order' },
 ]
 
