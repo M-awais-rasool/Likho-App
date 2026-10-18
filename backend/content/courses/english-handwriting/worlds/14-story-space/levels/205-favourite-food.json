@@ -238,8 +238,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/b/|bʌ} or {/j/|ʤʌ}?",
-        "audio": "voice/line-7fb14b51a11df96a.m4a"
+        "say": "Sort the pictures! Does each one start with the {b|bʌ} sound, or the {j|ʤʌ} sound?",
+        "audio": "voice/line-6afa819827d2e29b.m4a"
       },
       "card": {
         "text": "b j",
@@ -333,33 +333,91 @@
     },
     {
       "id": "level-205-r8",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "Yum! My favourite food is mango! Tap the drum once for every word!",
-        "audio": "voice/line-c75173d74089bf1f.m4a"
+        "text": "Join A to L!",
+        "say": "Tap the dots in order, from {A|ˈeɪ} to {L|ˈɛl}. What will it make?",
+        "audio": "voice/line-a8b8b94f12aff7e8.m4a"
       },
       "card": {
-        "text": null,
+        "text": "A → L",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "Yum! My favourite food is mango!",
-        "parts": [
-          "Yum",
-          "My",
-          "favourite",
-          "food",
-          "is",
-          "mango"
+      "connect": {
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J",
+          "K",
+          "L"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "Yum My favourite food is mango",
-          "say": "Yum! My favourite food is mango! Six words!",
-          "audio": "voice/line-c8aa579319268d0a.m4a"
+        "points": [
+          [
+            50,
+            22
+          ],
+          [
+            66,
+            12
+          ],
+          [
+            86,
+            22
+          ],
+          [
+            92,
+            48
+          ],
+          [
+            82,
+            76
+          ],
+          [
+            68,
+            94
+          ],
+          [
+            50,
+            84
+          ],
+          [
+            32,
+            94
+          ],
+          [
+            18,
+            76
+          ],
+          [
+            8,
+            48
+          ],
+          [
+            14,
+            22
+          ],
+          [
+            34,
+            12
+          ]
+        ],
+        "picture": {
+          "key": "apple",
+          "label": "apple",
+          "url": null
+        },
+        "done": {
+          "text": "An apple!",
+          "say": "It's an apple!",
+          "audio": "voice/line-eb257727166de7e7.m4a"
         }
       }
     },
@@ -395,8 +453,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write rice",
-        "say": "Look at the word rice. Then write it from memory!",
-        "audio": "voice/line-6a44069c8b300cf4.m4a"
+        "say": "Look at the word rice. It will hide. Then write it!",
+        "audio": "voice/line-217d678e711dc32e.m4a"
       },
       "card": {
         "text": null,

@@ -78,8 +78,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/f/|fːː} or {/b/|bʌ}?",
-        "audio": "voice/line-7e2ab78f7a6e6e84.m4a"
+        "say": "Sort the pictures! Does each one start with the {f|fːː} sound, or the {b|bʌ} sound?",
+        "audio": "voice/line-0b4bafc26a68b5d3.m4a"
       },
       "card": {
         "text": "f b",
@@ -235,8 +235,8 @@
       "type": "write",
       "prompt": {
         "text": "Look, then write food",
-        "say": "Look at the word food. Then write it from memory!",
-        "audio": "voice/line-852c0cb6ca538218.m4a"
+        "say": "Look at the word food. It will hide. Then write it!",
+        "audio": "voice/line-79633fb29ddad234.m4a"
       },
       "card": {
         "text": null,
@@ -281,35 +281,66 @@
     },
     {
       "id": "level-210-r7",
-      "type": "beats",
+      "type": "connect",
       "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "I did it! I can read and write! Tap the drum once for every word!",
-        "audio": "voice/line-244c6a490bc07d3e.m4a"
+        "text": "Join M to S!",
+        "say": "Tap the dots in order, from {M|ˈɛm} to {S|ˈɛs}. What will it make?",
+        "audio": "voice/line-cbe1669847c588db.m4a"
       },
       "card": {
-        "text": null,
+        "text": "M → S",
         "picture": null,
-        "listen": true
+        "listen": false
       },
-      "beats": {
-        "text": "I did it! I can read and write!",
-        "parts": [
-          "I",
-          "did",
-          "it",
-          "I",
-          "can",
-          "read",
-          "and",
-          "write"
+      "connect": {
+        "labels": [
+          "M",
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S"
         ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "I did it I can read and write",
-          "say": "I did it! I can read and write! Eight words!",
-          "audio": "voice/line-9b4326c303be46ba.m4a"
+        "points": [
+          [
+            50,
+            4
+          ],
+          [
+            82,
+            50
+          ],
+          [
+            98,
+            64
+          ],
+          [
+            80,
+            94
+          ],
+          [
+            20,
+            94
+          ],
+          [
+            2,
+            64
+          ],
+          [
+            50,
+            64
+          ]
+        ],
+        "picture": {
+          "key": "boat",
+          "label": "boat",
+          "url": null
+        },
+        "done": {
+          "text": "A boat!",
+          "say": "It's a boat!",
+          "audio": "voice/line-a705e55e86a2309a.m4a"
         }
       }
     },
@@ -341,8 +372,8 @@
       "type": "hunt",
       "prompt": {
         "text": "Find every jump!",
-        "say": "Find every word jump!",
-        "audio": "voice/line-bfc374f0da48ec34.m4a"
+        "say": "Tap every word that says \"jump\"!",
+        "audio": "voice/line-7409d4787bbc4e73.m4a"
       },
       "card": {
         "text": "jump",

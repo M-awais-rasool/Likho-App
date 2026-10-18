@@ -156,8 +156,8 @@
       "type": "connect",
       "prompt": {
         "text": "Join O to T!",
-        "say": "Join the dots, from {O|ˈoʊ} to {T|tˈiː}. What will it be?",
-        "audio": "voice/line-c8e49f19867a70d6.m4a"
+        "say": "Tap the dots in order, from {O|ˈoʊ} to {T|tˈiː}. What will it make?",
+        "audio": "voice/line-330487a3e0acddac.m4a"
       },
       "card": {
         "text": "O → T",
@@ -216,8 +216,8 @@
       "type": "sort",
       "prompt": {
         "text": "Sort the pictures!",
-        "say": "Sort the pictures! Do they start with {/w/|wʌ} or {/n/|nːː}?",
-        "audio": "voice/line-8b9754fbfa980d2c.m4a"
+        "say": "Sort the pictures! Does each one start with the {w|wʌ} sound, or the {n|nːː} sound?",
+        "audio": "voice/line-31e28c2b0fe7c4fd.m4a"
       },
       "card": {
         "text": "w n",
@@ -248,19 +248,19 @@
             "bin": 1
           },
           {
-            "label": "whale",
+            "label": "web",
             "picture": {
-              "key": "whale",
-              "label": "whale",
+              "key": "web",
+              "label": "web",
               "url": null
             },
             "bin": 0
           },
           {
-            "label": "nut",
+            "label": "nail",
             "picture": {
-              "key": "nut",
-              "label": "nut",
+              "key": "nail",
+              "label": "nail",
               "url": null
             },
             "bin": 1
@@ -275,10 +275,10 @@
             "bin": 1
           },
           {
-            "label": "watch",
+            "label": "whale",
             "picture": {
-              "key": "watch",
-              "label": "watch",
+              "key": "whale",
+              "label": "whale",
               "url": null
             },
             "bin": 0
@@ -324,43 +324,11 @@
     },
     {
       "id": "level-198-r8",
-      "type": "beats",
-      "prompt": {
-        "text": "Tap a beat for each word!",
-        "say": "The fish is in the sea. Tap the drum once for every word!",
-        "audio": "voice/line-b8edb4cbb35f7d4e.m4a"
-      },
-      "card": {
-        "text": null,
-        "picture": null,
-        "listen": true
-      },
-      "beats": {
-        "text": "The fish is in the sea.",
-        "parts": [
-          "The",
-          "fish",
-          "is",
-          "in",
-          "the",
-          "sea"
-        ],
-        "unit": "word",
-        "picture": null,
-        "hint": {
-          "text": "The fish is in the sea",
-          "say": "The fish is in the sea. Six words!",
-          "audio": "voice/line-b050d72eb8524cff.m4a"
-        }
-      }
-    },
-    {
-      "id": "level-198-r9",
       "type": "hunt",
       "prompt": {
         "text": "Find every down!",
-        "say": "Find every word down!",
-        "audio": "voice/line-562c2debd7ccadc8.m4a"
+        "say": "Tap every word that says \"down\"!",
+        "audio": "voice/line-5d716de123debd7a.m4a"
       },
       "card": {
         "text": "down",
@@ -383,12 +351,72 @@
       }
     },
     {
+      "id": "level-198-r9",
+      "type": "pick",
+      "prompt": {
+        "text": "I see a red car.",
+        "say": "I see a red car. Find the picture!",
+        "audio": "voice/line-8f06ca97b8d110b3.m4a"
+      },
+      "card": {
+        "text": "I see a red car.",
+        "picture": null,
+        "listen": false
+      },
+      "pick": {
+        "options": [
+          {
+            "id": "level-198-r9-o1",
+            "label": "red car",
+            "picture": {
+              "key": "red_car",
+              "label": "red car",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-198-r9-o2",
+            "label": "dog running",
+            "picture": {
+              "key": "dog_running",
+              "label": "dog running",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          },
+          {
+            "id": "level-198-r9-o3",
+            "label": "hot sun",
+            "picture": {
+              "key": "hot_sun",
+              "label": "hot sun",
+              "url": null
+            },
+            "color": null,
+            "hideLabel": true
+          }
+        ],
+        "answer": {
+          "kind": "label",
+          "value": "red car"
+        },
+        "shape": "planet",
+        "layout": null,
+        "count": null,
+        "choiceKey": null,
+        "fixCapital": false
+      }
+    },
+    {
       "id": "level-198-r10",
       "type": "write",
       "prompt": {
         "text": "Look, then write nest",
-        "say": "Look at the word nest. Then write it from memory!",
-        "audio": "voice/line-ed53318ca1f53e0c.m4a"
+        "say": "Look at the word nest. It will hide. Then write it!",
+        "audio": "voice/line-86ab1b3f7b37390f.m4a"
       },
       "card": {
         "text": null,
