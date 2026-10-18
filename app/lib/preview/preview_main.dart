@@ -24,6 +24,7 @@ import '../data/repositories/course_repository.dart';
 import '../design/tokens.dart';
 import '../feedback/app_feedback.dart';
 import '../feedback/game_feedback.dart';
+import '../feedback/pencil_lines.dart';
 import '../feedback/sound_engine.dart';
 import '../screens/app_flow.dart';
 import '../screens/gameplay/gameplay_screen.dart';
@@ -123,6 +124,8 @@ class _PreviewAppState extends State<PreviewApp> {
         familyProvider.overrideWith(() => DemoFamilyNotifier(_previewFamily(r.level))),
         // pictures and recordings from the API that serves the admin panel
         mediaProvider.overrideWithValue(_media),
+        // Pencil's own lines (his coaching in the games), as in the app
+        pencilVoiceProvider.overrideWithValue(true),
       ],
       child: MaterialApp(
         title: 'Likho preview',
