@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { Map as MapIcon, Play, RotateCcw, Smartphone, TriangleAlert } from 'lucide-react'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { localStorageGet, localStorageSet } from '../lib/session'
 import { Segmented, Select } from './ui'
 
@@ -20,12 +20,41 @@ const DEVICES = [
 
 export type PreviewScreen = 'level' | 'map'
 
-export function PhonePreview({ course, level, height = 640 }: { course: unknown | null; level: number; height?: number }) {
+const levelScreens = [
+  { value: 'level', label: 'Play level' },
+  { value: 'map', label: 'On the map' },
+]
+
+/** The phone. [screens] (default: the level editor's two) are the screens
+ *  to pick from; [screen] + [onScreen] make the pick the page's; [extra]
+ *  goes along with every message (the App controls page sends its
+ *  unsaved controls); [note] replaces the line under the phone. */
+export function PhonePreview({
+  course,
+  level,
+  height = 640,
+  screens = levelScreens,
+  screen: shown,
+  onScreen,
+  extra,
+  note,
+}: {
+  course: unknown | null
+  level: number
+  height?: number
+  screens?: { value: string; label: string }[]
+  screen?: string
+  onScreen?: (s: string) => void
+  extra?: Record<string, unknown>
+  note?: ReactNode
+}) {
   const frame = useRef<HTMLIFrameElement>(null)
   const [ready, setReady] = useState(false)
   const [missing, setMissing] = useState(false)
   const [error, setError] = useState('')
-  const [screen, setScreen] = useState<PreviewScreen>('level')
+  const [ownScreen, setOwnScreen] = useState(screens[0]?.value ?? 'level')
+  const screen = shown ?? ownScreen
+  const setScreen = (s: string) => (onScreen ? onScreen(s) : setOwnScreen(s))
   const [deviceId, setDeviceId] = useState(() => localStorageGet('likho.device') ?? 'iphone-15')
   const [nonce, setNonce] = useState(1)
   const device = DEVICES.find((d) => d.id === deviceId) ?? DEVICES[1]
@@ -55,8 +84,8 @@ export function PhonePreview({ course, level, height = 640 }: { course: unknown 
   const send = useCallback(() => {
     if (!ready || !course || !frame.current?.contentWindow) return
     setError('')
-    frame.current.contentWindow.postMessage(JSON.stringify({ type: 'likho-preview', nonce: Date.now(), screen, level, course }), location.origin)
-  }, [ready, course, screen, level])
+    frame.current.contentWindow.postMessage(JSON.stringify({ type: 'likho-preview', nonce: Date.now(), screen, level, course, ...extra }), location.origin)
+  }, [ready, course, screen, level, extra])
 
   // re-send when the level changes (debounced by the editor) or on restart
   useEffect(() => {
@@ -70,14 +99,17 @@ export function PhonePreview({ course, level, height = 640 }: { course: unknown 
   return (
     <div className="flex flex-col items-center">
       <div className="mb-3 flex w-full flex-wrap items-center justify-between gap-2">
-        <Segmented
-          value={screen}
-          onChange={setScreen}
-          options={[
-            { value: 'level', label: 'Play level' },
-            { value: 'map', label: 'On the map' },
-          ]}
-        />
+        {screens.length > 3 ? (
+          <Select value={screen} onChange={(e) => setScreen(e.target.value)} className="h-8 w-auto text-[12.5px]" aria-label="Screen">
+            {screens.map((s) => (
+              <option key={s.value} value={s.value}>
+                {s.label}
+              </option>
+            ))}
+          </Select>
+        ) : (
+          <Segmented value={screen} onChange={setScreen} options={screens} />
+        )}
         <div className="flex items-center gap-1.5">
           <Select
             value={deviceId}
@@ -94,7 +126,7 @@ export function PhonePreview({ course, level, height = 640 }: { course: unknown 
               </option>
             ))}
           </Select>
-          <button onClick={() => setNonce((n) => n + 1)} className="grid size-8 cursor-pointer place-items-center rounded-lg border border-line-strong text-ink-2 hover:bg-surface-2" title="Restart the level" aria-label="Restart">
+          <button onClick={() => setNonce((n) => n + 1)} className="grid size-8 cursor-pointer place-items-center rounded-lg border border-line-strong text-ink-2 hover:bg-surface-2" title="Start over" aria-label="Restart">
             <RotateCcw className="size-4" />
           </button>
         </div>
@@ -138,13 +170,13 @@ export function PhonePreview({ course, level, height = 640 }: { course: unknown 
         </div>
       )}
       <p className={clsx('mt-3 text-center text-[12px] text-ink-3')}>
-        {screen === 'map' ? (
+        {note ?? (screen === 'map' ? (
           <span className="inline-flex items-center gap-1">
             <MapIcon className="size-3.5" /> The sample child has finished every level before this one.
           </span>
         ) : (
           'The real app, playing this level with your unsaved changes. Tap and drag like on a phone.'
-        )}
+        ))}
       </p>
     </div>
   )
