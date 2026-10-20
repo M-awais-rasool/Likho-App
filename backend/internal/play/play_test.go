@@ -26,7 +26,8 @@ const v2 = `{
     "productId": "likho_plus",
     "expiryTime": "2026-10-18T10:00:00.120Z",
     "autoRenewingPlan": {"autoRenewEnabled": true},
-    "offerDetails": {"basePlanId": "yearly", "offerId": "free-trial-7d"}
+    "offerDetails": {"basePlanId": "yearly", "offerId": "free-trial-7d"},
+    "offerPhase": {"freeTrial": {}}
   }]
 }`
 
@@ -56,7 +57,7 @@ func TestClient(t *testing.T) {
 	}
 	want := Subscription{State: StateActive, ProductID: "likho_plus", BasePlanID: "yearly", OfferID: "free-trial-7d",
 		Expiry: time.Date(2026, 10, 18, 10, 0, 0, 120e6, time.UTC), AutoRenewing: true, AccountID: "abc123",
-		OrderID: "GPA.3300-1111-2222-33333", Test: true}
+		OrderID: "GPA.3300-1111-2222-33333", Test: true, FreeTrial: true}
 	if !s.Expiry.Equal(want.Expiry) {
 		t.Fatalf("expiry %v", s.Expiry)
 	}
