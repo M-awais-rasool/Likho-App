@@ -24,6 +24,9 @@ var Items = map[string]Item{
 	"rug":    {"rug", 16, false},
 }
 
+// ItemOrder is the shop's order (the app's ShopItem.all).
+var ItemOrder = []string{"party", "cap", "wizard", "round", "stars", "scarf", "cape", "crown", "phones", "bow", "lamp", "poster", "plant", "rug"}
+
 // Tap results.
 const (
 	Bought   = "bought"
