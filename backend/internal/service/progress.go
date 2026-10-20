@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"fmt"
+	"time"
 
 	"likho/backend/internal/cache"
 	"likho/backend/internal/catalog"
@@ -12,16 +13,19 @@ import (
 )
 
 // ProgressService: finished levels. The course content decides which levels
-// exist and which need Likho Plus; the rules decide stars and unlocks.
+// exist, the App controls which need Likho Plus (the free levels, the
+// trial's levels); the rules decide stars and unlocks.
 type ProgressService struct {
 	progress *repository.ProgressRepository
 	catalog  *catalog.Store
 	cache    *cache.Cache
 	activity *ActivityService
+	controls *ControlsService
+	account  *AccountService
 }
 
-func NewProgressService(progress *repository.ProgressRepository, cat *catalog.Store, c *cache.Cache, activity *ActivityService) *ProgressService {
-	return &ProgressService{progress: progress, catalog: cat, cache: c, activity: activity}
+func NewProgressService(progress *repository.ProgressRepository, cat *catalog.Store, c *cache.Cache, activity *ActivityService, controls *ControlsService, account *AccountService) *ProgressService {
+	return &ProgressService{progress: progress, catalog: cat, cache: c, activity: activity, controls: controls, account: account}
 }
 
 // Record saves a finished level of a course: the best stars are kept, the
@@ -41,7 +45,19 @@ func (s *ProgressService) Record(ctx context.Context, parentID, childID, courseI
 	}
 	in.Seconds = domain.LevelSeconds(in.Seconds)
 
-	out, err := s.progress.Record(ctx, parentID, childID, courseID, in, level.RequiresSubscription)
+	now := time.Now()
+	billing := s.controls.Controls(ctx).Billing
+	needsPlus := billing.NeedsPlus(level.Number, now)
+	if billing.TrialBlocks(level.Number, now) {
+		sub, err := s.account.Subscription(ctx, parentID)
+		if err != nil {
+			return model.Outcome{}, err
+		}
+		if sub.Active && sub.Trial {
+			return model.Outcome{}, domain.ErrTrialLimit
+		}
+	}
+	out, err := s.progress.Record(ctx, parentID, childID, courseID, in, needsPlus)
 	if err == nil {
 		s.cache.ForgetMe(ctx, parentID)
 		s.activity.LevelCompleted(ctx, parentID, childID, courseID, out, in.Seconds, course.LastLevel())
