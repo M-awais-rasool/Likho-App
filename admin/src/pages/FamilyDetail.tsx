@@ -3,6 +3,7 @@ import { ArrowLeft, Crown, LogOut, Smartphone, Star, Trash2 } from 'lucide-react
 import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { EventRow } from '../components/EventRow'
+import { FamilyFeatures } from '../components/FamilyFeatures'
 import { Avatar, Badge, Button, Card, Empty, ErrorBox, Field, Input, Loading, Modal, Select, Stars, useConfirm, useToast } from '../components/ui'
 import { del, get, post, qs, type ChildView, type ContentCourse, type FamilyDetail as Detail } from '../lib/api'
 import { ago, countryName, countrySourceName, date, dateTime, flag, initials, num, platformName } from '../lib/format'
@@ -193,6 +194,7 @@ export default function FamilyDetail() {
           </Card>
         </div>
         <div className="space-y-5">
+          <FamilyFeatures parentId={id} editable={editor} />
           {d.purchases.length > 0 && (
             <Card title="Google Play purchases" padded={false}>
               <ul className="divide-y divide-line">
