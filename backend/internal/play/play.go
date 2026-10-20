@@ -39,6 +39,7 @@ type Subscription struct {
 	ProductID    string
 	BasePlanID   string // e.g. "monthly", "yearly"
 	OfferID      string // e.g. the free trial offer
+	FreeTrial    bool   // in the offer's free trial phase (no payment yet)
 	Expiry       time.Time
 	AutoRenewing bool
 	Acknowledged bool
@@ -115,6 +116,9 @@ type subscriptionV2 struct {
 			BasePlanID string `json:"basePlanId"`
 			OfferID    string `json:"offerId"`
 		} `json:"offerDetails"`
+		OfferPhase *struct {
+			FreeTrial *struct{} `json:"freeTrial"`
+		} `json:"offerPhase"`
 	} `json:"lineItems"`
 }
 
@@ -151,6 +155,7 @@ func (v subscriptionV2) subscription() Subscription {
 		s.Expiry, s.ProductID = exp, li.ProductID
 		s.AutoRenewing = li.AutoRenewingPlan != nil && li.AutoRenewingPlan.AutoRenewEnabled
 		s.BasePlanID, s.OfferID = "", ""
+		s.FreeTrial = li.OfferPhase != nil && li.OfferPhase.FreeTrial != nil
 		if li.OfferDetails != nil {
 			s.BasePlanID, s.OfferID = li.OfferDetails.BasePlanID, li.OfferDetails.OfferID
 		}
