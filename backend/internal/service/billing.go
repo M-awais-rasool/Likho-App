@@ -139,13 +139,34 @@ func subscriptionOf(ctx context.Context, repo *repository.PlayRepository, p mode
 	if err != nil {
 		return out, err
 	}
+	paid := false
+	var trialEnd time.Time // the latest end of a free trial behind the Plus
 	for _, r := range rows {
-		if (play.Subscription{State: r.State, Expiry: r.ExpiresAt}).Entitled(now) {
+		if !(play.Subscription{State: r.State, Expiry: r.ExpiresAt}).Entitled(now) {
+			continue
+		}
+		if out.Store == "" {
 			out.Store, out.Plan, out.AutoRenewing = "google_play", r.BasePlanID, r.AutoRenewing
-			break
+		}
+		if r.FreeTrial {
+			trialEnd = later(trialEnd, r.ExpiresAt)
+		} else {
+			paid = true
 		}
 	}
+	if p.TrialEndsAt != nil && p.TrialEndsAt.After(now) {
+		trialEnd = later(trialEnd, *p.TrialEndsAt)
+	}
+	// a trial, unless a payment or a longer grant gives the Plus as well
+	out.Trial = out.Active && !paid && !trialEnd.IsZero() && p.PlusUntil != nil && !p.PlusUntil.After(trialEnd.Add(time.Minute))
 	return out, nil
+}
+
+func later(a, b time.Time) time.Time {
+	if b.After(a) {
+		return b
+	}
+	return a
 }
 
 // lookUp asks Google about the token.
@@ -185,7 +206,7 @@ func (s *BillingService) apply(ctx context.Context, parentID, token string, sub 
 	}
 	now := s.now()
 	row := model.PlaySubscription{
-		PurchaseToken: token, ParentID: parentID, ProductID: sub.ProductID, BasePlanID: sub.BasePlanID, OfferID: sub.OfferID,
+		PurchaseToken: token, ParentID: parentID, ProductID: sub.ProductID, BasePlanID: sub.BasePlanID, OfferID: sub.OfferID, FreeTrial: sub.FreeTrial,
 		State: sub.State, ExpiresAt: sub.Expiry.UTC().Truncate(time.Microsecond), AutoRenewing: sub.AutoRenewing,
 		Acknowledged: sub.Acknowledged, OrderID: sub.OrderID, LinkedToken: sub.LinkedToken, Test: sub.Test,
 	}
