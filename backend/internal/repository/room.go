@@ -15,13 +15,10 @@ type RoomRepository struct {
 	db *gorm.DB
 }
 
-// Tap is a tap on a Mascot Room item: buy it (if affordable), or wear /
-// take off / place / remove it once owned.
-func (r *RoomRepository) Tap(ctx context.Context, parentID, childID, itemID string) (model.RoomState, error) {
-	item, ok := domain.Items[itemID]
-	if !ok {
-		return model.RoomState{}, domain.ErrUnknownItem
-	}
+// Tap is a tap on a Mascot Room item (at its current price): buy it (if
+// affordable), or wear / take off / place / remove it once owned.
+func (r *RoomRepository) Tap(ctx context.Context, parentID, childID string, item domain.Item) (model.RoomState, error) {
+	itemID := item.ID
 	var st model.RoomState
 	err := r.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
 		c, err := lockChild(tx, parentID, childID)
