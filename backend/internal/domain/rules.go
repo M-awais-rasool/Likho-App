@@ -1,6 +1,9 @@
 package domain
 
-import "strings"
+import (
+	"strings"
+	"time"
+)
 
 const (
 	MaxChildren = 4
@@ -14,6 +17,10 @@ const (
 	DefaultLevelSeconds = 180
 	MaxLevelSeconds     = 1800
 )
+
+// PlusGrace: a level finished this long after Likho Plus ended (e.g. the
+// trial ran out while the child played) still counts.
+const PlusGrace = MaxLevelSeconds * time.Second
 
 // Gain = stars added for finishing a level: the improvement over the best
 // result so far, plus 2 the first time (the app's FamilyNotifier.recordResult).
