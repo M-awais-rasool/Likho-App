@@ -80,7 +80,8 @@ func BuildApp(d Deps) *Built {
 
 	closedTest := service.NewClosedTestService(repos.ClosedTest, repos.Accounts, repos.Admin, c)
 	activity := service.NewActivityService(repos.Activity, repos.Admin, c, d.Geo, closedTest)
-	account := service.NewAccountService(repos.Accounts, repos.Children, repos.Play, c, activity)
+	controls := service.NewControlsService(repos.Admin, repos.Accounts, store)
+	account := service.NewAccountService(repos.Accounts, repos.Children, repos.Play, c, activity, controls)
 	if d.PlayPackage == "" {
 		d.PlayPackage = "com.likho.abcwriting"
 	}
@@ -92,8 +93,9 @@ func BuildApp(d Deps) *Built {
 		Auth:     service.NewAuthService(repos.Accounts, repos.Sessions, d.Google, d.Tokens, account, activity, d.ReviewAccounts),
 		Account:  account,
 		Children: service.NewChildService(repos.Children, c, activity),
-		Progress: service.NewProgressService(repos.Progress, store, c, activity),
-		Room:     service.NewRoomService(repos.Room, c, activity),
+		Progress: service.NewProgressService(repos.Progress, store, c, activity, controls, account),
+		Room:     service.NewRoomService(repos.Room, c, activity, controls),
+		Controls: controls,
 		Courses:  service.NewCourseService(store),
 		Billing:  billing,
 	}
@@ -105,7 +107,7 @@ func BuildApp(d Deps) *Built {
 	admins := service.NewAdminAuthService(repos.Admin, c)
 	adminHandler := &handler.AdminHandler{
 		Auth: admins, Admin: service.NewAdminService(repos, store, c, activity, account), Content: content,
-		ClosedTest: closedTest, Health: health, Info: d.System, Secure: d.Production,
+		ClosedTest: closedTest, AppControls: controls, Health: health, Info: d.System, Secure: d.Production,
 	}
 	handlers := handler.New(services, health)
 	if d.Media == nil {
