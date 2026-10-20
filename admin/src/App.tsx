@@ -19,6 +19,7 @@ const Audit = lazy(() => import('./pages/Audit'))
 const Settings = lazy(() => import('./pages/Settings'))
 const System = lazy(() => import('./pages/System'))
 const ClosedTest = lazy(() => import('./pages/ClosedTest'))
+const Controls = lazy(() => import('./pages/Controls'))
 
 export default function App() {
   const { admin, loading, can } = useSession()
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="content/levels/new" element={<LevelEditor />} />
           <Route path="content/levels/:number" element={<LevelEditor />} />
           <Route path="insights" element={<Insights />} />
+          <Route path="controls" element={<Controls />} />
           {can('owner') && <Route path="team" element={<Team />} />}
           <Route path="audit" element={<Audit />} />
           <Route path="settings" element={<Settings />} />
