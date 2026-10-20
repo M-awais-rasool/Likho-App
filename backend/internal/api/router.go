@@ -65,6 +65,8 @@ func NewRouter(h *handler.Handlers, admin *handler.AdminHandler, tokens service.
 	// public: the learning content, its pictures and recordings, and signing in
 	v1.GET("/courses", h.Courses.List)
 	v1.GET("/courses/:courseId", h.Courses.Get)
+	// what is on in the app (App controls): for the family when signed in
+	v1.GET("/config", middleware.OptionalAuth(tokens), middleware.RateLimit(c, "config", apiPerMinute, time.Minute), h.Controls.Config)
 	if h.Media != nil {
 		v1.GET("/media", h.Media.Manifest)
 		r.GET("/media/*path", h.Media.File)
@@ -155,6 +157,8 @@ func adminRoutes(r *gin.Engine, h *handler.AdminHandler, c *cache.Cache) {
 	in.GET("/audit", h.Audit)
 	in.GET("/system", h.System)
 	in.GET("/closed-test", h.ClosedTestBoard)
+	in.GET("/controls", h.Controls)
+	in.GET("/families/:parentId/features", h.FamilyFeatures)
 
 	edit := in.Group("", middleware.RequireRole(model.RoleEditor))
 	edit.POST("/families/:parentId/plus", h.GrantPlus)
@@ -162,6 +166,8 @@ func adminRoutes(r *gin.Engine, h *handler.AdminHandler, c *cache.Cache) {
 	edit.POST("/families/:parentId/sign-out", h.SignOut)
 	edit.POST("/children/:childId/stars", h.AdjustStars)
 	edit.PUT("/settings/alerts", h.SetAlertRules)
+	edit.PUT("/controls", h.SaveControls)
+	edit.PATCH("/families/:parentId/features", h.SetFamilyFeatures)
 	edit.POST("/content/courses/:courseId/levels", h.SaveLevel)
 	edit.PUT("/content/courses/:courseId/levels/:number", h.SaveLevel)
 	edit.POST("/content/courses/:courseId/levels/:number/publish", h.LevelAction("publish"))
