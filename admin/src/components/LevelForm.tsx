@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import { ArrowDown, ArrowUp, Copy, Mic, Plus, Trash2, Volume2 } from 'lucide-react'
 import { useState, type ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 import {
   COLORS,
   DOT_SHAPES,
@@ -124,7 +125,13 @@ export function BasicsForm({ doc, change }: { doc: Doc; change: Change }) {
         </div>
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           <Toggle checked={!!doc.isBoss} onChange={(v) => change(['isBoss'], v)} label="Boss level" hint="Wakes the world's boss at the end" />
-          <Toggle checked={!!doc.requiresSubscription} onChange={(v) => change(['requiresSubscription'], v)} label="Likho Plus only" hint="Free families see the paywall" />
+          <p className="rounded-lg bg-surface-2 px-3 py-2 text-[12px] text-ink-2">
+            <b className="font-medium text-ink">Likho Plus:</b> which levels need Plus is set for the whole course in{' '}
+            <Link to="/controls?tab=plus" className="font-medium text-brand hover:underline">
+              App controls › Likho Plus
+            </Link>
+            .
+          </p>
         </div>
       </Section>
       <Section title="Look" hint="Empty = the app's default. Rounds can override shape and layout.">
