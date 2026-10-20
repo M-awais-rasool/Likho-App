@@ -31,7 +31,8 @@ func (r *ProgressRepository) Record(ctx context.Context, parentID, childID, cour
 		if err := tx.Select("plus_until", "tester").Take(&p, "id = ?", parentID).Error; err != nil {
 			return notFound(err)
 		}
-		if needsPlus && !p.PlusActive(time.Now()) {
+		// a level started just before Plus ended still counts
+		if needsPlus && !p.PlusActive(time.Now().Add(-domain.PlusGrace)) {
 			return domain.ErrPlusRequired
 		}
 
