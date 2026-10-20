@@ -25,9 +25,11 @@ type AdminHandler struct {
 	Admin      *service.AdminService
 	Content    *service.ContentService
 	ClosedTest *service.ClosedTestService
-	Health     *HealthHandler
-	Info       SystemInfo
-	Secure     bool // cookie only over HTTPS (production)
+	// AppControls: the App controls page and each family's own switches
+	AppControls *service.ControlsService
+	Health      *HealthHandler
+	Info        SystemInfo
+	Secure      bool // cookie only over HTTPS (production)
 }
 
 // SystemInfo is shown on the panel's system page.
