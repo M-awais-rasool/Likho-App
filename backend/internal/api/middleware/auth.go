@@ -40,3 +40,16 @@ func Auth(tokens service.Tokens) gin.HandlerFunc {
 		c.Next()
 	}
 }
+
+// OptionalAuth is Auth for routes guests use too: no Authorization header
+// = a guest; a bad or expired token is refused (the app refreshes it).
+func OptionalAuth(tokens service.Tokens) gin.HandlerFunc {
+	auth := Auth(tokens)
+	return func(c *gin.Context) {
+		if c.GetHeader("Authorization") == "" {
+			c.Next()
+			return
+		}
+		auth(c)
+	}
+}
