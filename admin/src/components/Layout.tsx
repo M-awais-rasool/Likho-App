@@ -13,6 +13,7 @@ import {
   Menu,
   Moon,
   ScrollText,
+  SlidersHorizontal,
   Server,
   Shield,
   Sun,
@@ -37,6 +38,7 @@ const nav: { to: string; label: string; icon: ReactNode; owner?: boolean }[] = [
   { to: '/alerts', label: 'Alerts', icon: <Bell className="size-4" /> },
   { to: '/content', label: 'Levels & content', icon: <BookOpen className="size-4" /> },
   { to: '/insights', label: 'Level insights', icon: <ChartColumn className="size-4" /> },
+  { to: '/controls', label: 'App controls', icon: <SlidersHorizontal className="size-4" /> },
 ]
 const navAdmin: { to: string; label: string; icon: ReactNode; owner?: boolean }[] = [
   { to: '/team', label: 'Team', icon: <Shield className="size-4" />, owner: true },
