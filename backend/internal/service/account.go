@@ -20,10 +20,11 @@ type AccountService struct {
 	play     *repository.PlayRepository
 	cache    *cache.Cache
 	activity *ActivityService
+	controls *ControlsService
 }
 
-func NewAccountService(accounts *repository.AccountRepository, children *repository.ChildRepository, playRepo *repository.PlayRepository, c *cache.Cache, activity *ActivityService) *AccountService {
-	return &AccountService{accounts: accounts, children: children, play: playRepo, cache: c, activity: activity}
+func NewAccountService(accounts *repository.AccountRepository, children *repository.ChildRepository, playRepo *repository.PlayRepository, c *cache.Cache, activity *ActivityService, controls *ControlsService) *AccountService {
+	return &AccountService{accounts: accounts, children: children, play: playRepo, cache: c, activity: activity, controls: controls}
 }
 
 // Me loads the whole account: parent, settings, subscription and every
@@ -45,6 +46,15 @@ func (s *AccountService) Me(ctx context.Context, parentID string) (model.Me, err
 		return model.Me{}, err
 	}
 	return model.Me{Account: p.Account(), Settings: p.Settings(), Subscription: sub, Children: kids}, nil
+}
+
+// Subscription is the account's Likho Plus now.
+func (s *AccountService) Subscription(ctx context.Context, parentID string) (model.Subscription, error) {
+	p, err := s.accounts.Get(ctx, parentID)
+	if err != nil {
+		return model.Subscription{}, err
+	}
+	return subscriptionOf(ctx, s.play, p, time.Now())
 }
 
 // MeJSON is Me as JSON, from the cache when possible (hit = it was).
@@ -75,10 +85,15 @@ func (s *AccountService) UpdateSettings(ctx context.Context, parentID string, pa
 	return out, err
 }
 
-// StartTrial gives 7 days of Likho Plus, once per account. Store purchases
-// (App Store / Google Play) will extend plusUntil the same way.
+// StartTrial gives Likho Plus for the trial's days (App controls, 7 at
+// first), once per account, when the controls offer the server's trial.
+// Google Play purchases extend plusUntil the same way.
 func (s *AccountService) StartTrial(ctx context.Context, parentID string) (model.Subscription, error) {
-	out, err := s.accounts.StartTrial(ctx, parentID, domain.TrialDays)
+	b := s.controls.Controls(ctx).Billing
+	if !b.Enabled || !b.ServerTrial {
+		return model.Subscription{}, domain.ErrTrialUnavailable
+	}
+	out, err := s.accounts.StartTrial(ctx, parentID, b.TrialDays)
 	if err == nil {
 		s.cache.ForgetMe(ctx, parentID)
 		s.activity.TrialStarted(ctx, parentID)
