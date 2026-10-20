@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Badge, Button, Card, ErrorBox, Field, Input, Loading, Modal, PageHeader, Select, Stars, useConfirm, useToast } from '../components/ui'
 import { del, get, post, qs, type ContentCourse, type ContentLevel, type ContentWorld, type LevelStats } from '../lib/api'
+import type { SavedControls } from '../lib/controls'
 import { num } from '../lib/format'
 import { useSession } from '../lib/session'
 
@@ -76,6 +77,9 @@ export default function Content() {
   const { course, can } = useSession()
   const q = useContent()
   const stats = useQuery({ queryKey: ['levelstats', course], queryFn: () => get<LevelStats>('/levels/stats' + qs({ course })), enabled: !!course })
+  // which levels need Likho Plus comes from the App controls
+  const billing = useQuery({ queryKey: ['controls'], queryFn: () => get<{ saved: SavedControls }>('/controls') }).data?.saved.controls.billing
+  const needsPlus = (n: number) => (billing ? billing.enabled && n > billing.freeLevels : false)
   const [addLevel, setAddLevel] = useState(false)
   const [addWorld, setAddWorld] = useState(false)
   const qc = useQueryClient()
@@ -168,7 +172,7 @@ export default function Content() {
                         <div className="flex items-center gap-1.5">
                           <span className="truncate font-medium group-hover:text-brand-ink">{l.name}</span>
                           {l.isBoss && <Swords className="size-3.5 shrink-0 text-ink-3" aria-label="Boss level" />}
-                          {l.requiresSubscription && <Crown className="size-3.5 shrink-0 text-star" aria-label="Likho Plus" />}
+                          {needsPlus(l.number) && <Crown className="size-3.5 shrink-0 text-star" aria-label="Likho Plus" />}
                         </div>
                         <div className="truncate text-[12px] text-ink-3">
                           {l.skill} · {l.rounds} rounds
