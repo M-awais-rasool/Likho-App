@@ -64,6 +64,32 @@ paths:
         "304": { description: The client already has this version }
         "404": { $ref: "#/components/responses/Error" }
 
+  /v1/config:
+    get:
+      tags: [courses]
+      summary: What is on in the app (the admin panel's App controls)
+      description: |
+        Features, story episodes, Mascot Room items and prices, game types, Pencil's colours,
+        Likho Plus (free levels, guest levels, the trial's levels and days, plans) and the app's
+        state (oldest version allowed, maintenance, a message to parents). Switches come resolved
+        for the signed-in family (its own switches applied; send the access token) or for a guest
+        (no token): `off`, `on`, or `plus` (on while the family has Likho Plus). Send the last
+        `ETag` as `If-None-Match` to get `304` when unchanged. The app asks every 2 minutes.
+      parameters:
+        - in: header
+          name: If-None-Match
+          schema: { type: string }
+      responses:
+        "200":
+          description: The controls for this family
+          headers:
+            ETag: { schema: { type: string } }
+          content:
+            application/json:
+              schema: { type: object, additionalProperties: true }
+        "304": { description: Unchanged }
+        "401": { description: The access token is invalid or expired (refresh it) }
+
   /v1/media:
     get:
       tags: [courses]
@@ -341,9 +367,10 @@ components:
     Error:
       description: |
         Error codes: `invalid_input`, `unauthorized`, `token_expired`, `invalid_google_token`,
-        `session_invalid`, `session_reused`, `account_deleted`, `plus_required`, `not_found`,
-        `course_not_found`, `unknown_item`, `too_many_children`, `last_child`, `level_locked`,
-        `not_enough_stars`, `trial_used`, `in_progress`, `rate_limited`, `internal`.
+        `session_invalid`, `session_reused`, `account_deleted`, `plus_required`, `trial_limit`,
+        `not_found`, `course_not_found`, `unknown_item`, `item_unavailable`, `too_many_children`,
+        `last_child`, `level_locked`, `not_enough_stars`, `trial_used`, `trial_unavailable`,
+        `in_progress`, `rate_limited`, `internal`.
       content:
         application/json:
           schema:
@@ -418,6 +445,7 @@ components:
         active: { type: boolean }
         plusUntil: { type: [string, "null"], format: date-time }
         trialUsed: { type: boolean }
+        trial: { type: boolean, description: "the Plus comes from a free trial right now (it may open fewer levels)" }
         store: { type: string, description: '"google_play" when a Play subscription gives the Plus' }
         plan: { type: string, description: "monthly | yearly (the Play base plan)" }
         autoRenewing: { type: boolean }
