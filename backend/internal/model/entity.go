@@ -30,6 +30,13 @@ type Parent struct {
 	// Likho Plus: trial or paid access ends at PlusUntil
 	PlusUntil *time.Time
 	TrialUsed bool `gorm:"not null;default:false"`
+	// TrialEndsAt: the end of the server's free trial (nil = never had it
+	// since this was kept).
+	TrialEndsAt *time.Time
+
+	// Features are this family's own switches from the admin panel (App
+	// controls): feature id or "story.<id>" -> on / off.
+	Features JSON `gorm:"type:jsonb;not null;default:'{}'"`
 
 	// Tester: a test account; every level is open (set in the database or
 	// the admin panel, never by the app).
@@ -285,8 +292,9 @@ type PlaySubscription struct {
 	PurchaseToken string    `gorm:"primaryKey"`
 	ParentID      string    `gorm:"type:uuid;not null;index"`
 	ProductID     string    `gorm:"not null"`
-	BasePlanID    string    `gorm:"not null;default:''"` // monthly | yearly
-	OfferID       string    `gorm:"not null;default:''"` // e.g. the free trial
+	BasePlanID    string    `gorm:"not null;default:''"`    // monthly | yearly
+	OfferID       string    `gorm:"not null;default:''"`    // e.g. the free trial
+	FreeTrial     bool      `gorm:"not null;default:false"` // in the offer's free trial phase
 	State         string    `gorm:"type:varchar(48);not null"`
 	ExpiresAt     time.Time `gorm:"not null"`
 	AutoRenewing  bool      `gorm:"not null;default:false"`
