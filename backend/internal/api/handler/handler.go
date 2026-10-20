@@ -23,6 +23,7 @@ type Services struct {
 	Room     *service.RoomService
 	Courses  *service.CourseService
 	Billing  *service.BillingService
+	Controls *service.ControlsService
 }
 
 // Handlers groups one handler per resource; the router maps URLs to them.
@@ -34,6 +35,7 @@ type Handlers struct {
 	Room     *RoomHandler
 	Courses  *CourseHandler
 	Billing  *BillingHandler
+	Controls *ControlsHandler
 	Health   *HealthHandler
 	Media    *MediaHandler
 }
@@ -47,6 +49,7 @@ func New(s Services, health *HealthHandler) *Handlers {
 		Room:     &RoomHandler{room: s.Room},
 		Courses:  &CourseHandler{courses: s.Courses},
 		Billing:  &BillingHandler{billing: s.Billing},
+		Controls: &ControlsHandler{controls: s.Controls},
 		Health:   health,
 	}
 }
