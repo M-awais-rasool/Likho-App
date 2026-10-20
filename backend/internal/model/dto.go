@@ -37,6 +37,9 @@ type Subscription struct {
 	Active    bool       `json:"active"`
 	PlusUntil *time.Time `json:"plusUntil"`
 	TrialUsed bool       `json:"trialUsed"`
+	// Trial: Likho Plus comes from a free trial right now (the server's or
+	// Google Play's), not a payment or a grant.
+	Trial bool `json:"trial"`
 
 	// A Google Play subscription behind it ("" = none: a trial or a
 	// grant): its base plan (monthly | yearly) and whether it renews.
