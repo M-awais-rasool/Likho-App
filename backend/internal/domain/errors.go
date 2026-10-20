@@ -52,6 +52,9 @@ var (
 	ErrNotEnoughStars       = &Error{KindConflict, "not_enough_stars", "Not enough stars for this item"}
 	ErrTrialUsed            = &Error{KindConflict, "trial_used", "The free trial was already used"}
 	ErrPlusRequired         = &Error{KindPaymentRequired, "plus_required", "This level needs Likho Plus"}
+	ErrTrialLimit           = &Error{KindPaymentRequired, "trial_limit", "The free trial does not open this level"}
+	ErrTrialUnavailable     = &Error{KindConflict, "trial_unavailable", "There is no free trial right now"}
+	ErrItemUnavailable      = &Error{KindNotFound, "item_unavailable", "This item is not in the shop right now"}
 	ErrPurchaseInvalid      = &Error{KindInvalid, "purchase_invalid", "Google Play does not know this purchase"}
 	ErrPurchasePending      = &Error{KindConflict, "purchase_pending", "The payment is not finished yet"}
 	ErrPurchaseOtherAccount = &Error{KindConflict, "purchase_other_account", "This purchase belongs to another Likho account"}
