@@ -2,6 +2,7 @@ package repository
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"time"
 
@@ -91,7 +92,7 @@ func (r *AccountRepository) StartTrial(ctx context.Context, parentID string, day
 	var p model.Parent
 	res := r.db.WithContext(ctx).Model(&p).Clauses(clause.Returning{}).
 		Where("id = ? AND NOT trial_used", parentID).
-		Updates(map[string]any{"plus_until": until, "trial_used": true})
+		Updates(map[string]any{"plus_until": until, "trial_used": true, "trial_ends_at": until})
 	if res.Error != nil {
 		return model.Subscription{}, res.Error
 	}
@@ -101,7 +102,31 @@ func (r *AccountRepository) StartTrial(ctx context.Context, parentID string, day
 		}
 		return model.Subscription{}, domain.ErrTrialUsed
 	}
-	return model.Subscription{Active: true, PlusUntil: p.PlusUntil, TrialUsed: true}, nil
+	return model.Subscription{Active: true, PlusUntil: p.PlusUntil, TrialUsed: true, Trial: true}, nil
+}
+
+// Features are the family's own switches (App controls), key -> on/off.
+func (r *AccountRepository) Features(ctx context.Context, parentID string) (map[string]bool, error) {
+	var p model.Parent
+	if err := r.db.WithContext(ctx).Select("features").Take(&p, "id = ?", parentID).Error; err != nil {
+		return nil, notFound(err)
+	}
+	out := map[string]bool{}
+	if len(p.Features) > 0 {
+		if err := json.Unmarshal(p.Features, &out); err != nil {
+			return map[string]bool{}, nil // a broken value counts as none
+		}
+	}
+	return out, nil
+}
+
+// SetFeatures replaces the family's own switches.
+func (r *AccountRepository) SetFeatures(ctx context.Context, parentID string, f map[string]bool) error {
+	res := r.db.WithContext(ctx).Model(&model.Parent{}).Where("id = ?", parentID).Update("features", model.JSONOf(f))
+	if res.Error == nil && res.RowsAffected == 0 {
+		return domain.ErrNotFound
+	}
+	return res.Error
 }
 
 // Delete removes the parent and, by cascade, children, progress and
@@ -130,4 +155,20 @@ func (r *AccountRepository) GiveFullAccess(ctx context.Context, parentID string,
 		Where("id = ? AND (NOT tester OR plus_until IS NULL OR plus_until < ?)", parentID, until).
 		Updates(map[string]any{"tester": true, "plus_until": gorm.Expr("GREATEST(COALESCE(plus_until, ?), ?)", until, until)})
 	return res.RowsAffected > 0, res.Error
+}
+
+// FeatureCount is how many families have their own switch [Key] set to
+// [On].
+type FeatureCount struct {
+	Key   string `json:"key"`
+	On    bool   `json:"on"`
+	Count int64  `json:"count"`
+}
+
+// FeatureCounts counts the families' own switches.
+func (r *AccountRepository) FeatureCounts(ctx context.Context) ([]FeatureCount, error) {
+	var out []FeatureCount
+	err := r.db.WithContext(ctx).Raw(`SELECT f.key, f.value = 'true'::jsonb AS "on", count(*) AS count
+		FROM parents p, jsonb_each(p.features) f GROUP BY 1, 2 ORDER BY 1, 2`).Scan(&out).Error
+	return out, err
 }
