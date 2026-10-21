@@ -7,6 +7,7 @@ import '../data/family.dart';
 import 'haptics.dart';
 import 'sfx.dart';
 import 'sound_engine.dart';
+import '../data/app_controls.dart';
 
 /// The sound engine. Silent by default (tests); main() installs
 /// [JustAudioSoundEngine].
@@ -21,7 +22,8 @@ final feedbackProvider = Provider<AppFeedback>(AppFeedback.new);
 /// Every sound + haptic in the app, by meaning. Screens say what happened
 /// ("correct", "star landed", "item bought"); this class decides how it
 /// sounds and feels, so the whole app stays one consistent system.
-/// Respects the parent's "Sound effects" and "Vibration" settings.
+/// Respects the parent's "Sound effects" and "Vibration" settings, and the
+/// team's switches for them (App controls).
 /// See docs/sound_and_haptics.md.
 class AppFeedback {
   AppFeedback(this._ref);
@@ -33,11 +35,14 @@ class AppFeedback {
   static AppFeedback of(BuildContext context) => ProviderScope.containerOf(context, listen: false).read(feedbackProvider);
 
   AppSettings get _settings => _ref.read(familyProvider).settings;
+  AppControls get _controls => _ref.read(appControlsProvider);
+
+  bool get _sfx => _settings.sfx && _controls.on(Feature.sfx);
+  bool get _haptics => _settings.haptics && _controls.on(Feature.haptics);
 
   void _go(Sfx? sound, HapticCue? cue, {double volume = 1}) {
-    final s = _settings;
-    if (sound != null && s.sfx) _ref.read(soundEngineProvider).play(sound, volume: volume);
-    if (cue != null && s.haptics) _ref.read(hapticsProvider).play(cue);
+    if (sound != null && _sfx) _ref.read(soundEngineProvider).play(sound, volume: volume);
+    if (cue != null && _haptics) _ref.read(hapticsProvider).play(cue);
   }
 
   /// Rotates small pitch variants of frequent sounds so they never feel
@@ -47,7 +52,7 @@ class AppFeedback {
   /// Loads the sounds a screen is about to use (e.g. its celebration
   /// timeline), so they start on the beat.
   void prepare(Iterable<Sfx> sounds) {
-    if (_settings.sfx) _ref.read(soundEngineProvider).preload(sounds);
+    if (_sfx) _ref.read(soundEngineProvider).preload(sounds);
   }
 
   // ---------------------------------------------------------- UI
@@ -163,7 +168,7 @@ class AppFeedback {
 
   // ---------------------------------------------------------- writing
   void startWriting() {
-    if (_settings.sfx) _ref.read(soundEngineProvider).loop(Sfx.scribbleLoop, volume: .9);
+    if (_sfx) _ref.read(soundEngineProvider).loop(Sfx.scribbleLoop, volume: .9);
   }
 
   void stopWriting() => _ref.read(soundEngineProvider).stopLoop(Sfx.scribbleLoop);

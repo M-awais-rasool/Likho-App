@@ -79,7 +79,7 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
   bool _done = false;
 
   // ---- coaching: Pencil says what to do, step by step
-  late final bool _voiceOn = ref.read(pencilVoiceProvider); // his recorded coach lines
+  late final bool _voiceOn = ref.read(voiceOnProvider); // his recorded coach lines
   int _talkId = 0; // a new line (or a stop) drops the lines still queued
   Future<void> _talk = Future.value();
   String? _stepKey; // the step being coached

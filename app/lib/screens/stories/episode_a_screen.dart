@@ -64,7 +64,7 @@ class _EpisodeAScreenState extends ConsumerState<EpisodeAScreen> with SingleTick
   final _pencil = MascotController();
   final _voiceOf = MascotController(); // speaks for the others (never shown)
   late final PromptVoice _voice = ref.read(promptVoiceProvider);
-  late final bool _voiceOn = ref.read(pencilVoiceProvider);
+  late final bool _voiceOn = ref.read(voiceOnProvider);
   late final AppFeedback _fb = ref.read(feedbackProvider);
   StoryEpisode? _story;
   bool _alive = true;
