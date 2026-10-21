@@ -40,6 +40,7 @@ import 'stickers/sticker_book_screen.dart';
 import 'stories/episode_a_screen.dart';
 import 'stories/stories_screen.dart';
 import 'world_map/world_map_screen.dart';
+import '../data/app_controls.dart';
 
 /// Navigation between all screens, in one place (the prototype's go / back).
 ///
@@ -83,13 +84,15 @@ abstract final class AppFlow {
 
   static Route<void> welcomeRoutePage() => LikhoRoute<void>(
     settings: const RouteSettings(name: welcomeRoute),
-    builder: (ctx) => WelcomeScreen(
+    builder: (ctx) => Consumer(
+      builder: (ctx, ref, _) => WelcomeScreen(
       onGoogle: () async {
         final ok = await _signIn(ctx);
         if (ok && ctx.mounted) _home(ctx);
         return ok;
       },
-      onTryFirst: () => openPlacement(ctx),
+      // "Try it first" can be switched off (App controls)
+      onTryFirst: ref.watch(featureOnProvider(Feature.guest)) ? () => openPlacement(ctx) : null,
       onTerms: () => Toast.show(ctx, 'Terms and Privacy Policy coming soon'),
       onTestUser: TestUser.enabled
           ? () async {
@@ -98,6 +101,7 @@ abstract final class AppFlow {
               return ok;
             }
           : null,
+      ),
     ),
   );
 
@@ -200,6 +204,8 @@ abstract final class AppFlow {
       },
       onRoom: () {
         AppFeedback.of(ctx).press();
+        // Plus-only room (App controls): the paywall first
+        if (!_c(ctx).read(featureOnProvider(Feature.room))) return _plusFeature(ctx);
         _member(ctx, () => Navigator.of(ctx).push(LikhoRoute<void>(builder: (c) => MascotRoomScreen(onBack: () => Navigator.of(c).pop()))));
       },
       onSettings: () {
@@ -208,6 +214,7 @@ abstract final class AppFlow {
       },
       onStories: () {
         AppFeedback.of(ctx).press();
+        if (!_c(ctx).read(featureOnProvider(Feature.stories))) return _plusFeature(ctx);
         openStories(ctx);
       },
     ),
@@ -223,10 +230,20 @@ abstract final class AppFlow {
           AppFeedback.of(ctx).back();
           Navigator.of(ctx).pop();
         },
-        onOpen: (id) => openStory(ctx, id),
+        onOpen: (id) {
+          final c = _c(ctx);
+          // a Plus-only episode (App controls): the paywall first
+          if (!c.read(appControlsProvider).episodeOn(id, subscribed: c.read(familyProvider).subscribed)) return _plusFeature(ctx);
+          openStory(ctx, id);
+        },
       ),
     ),
   );
+
+  /// A feature for Likho Plus families only was tapped: the paywall.
+  static void _plusFeature(BuildContext context) {
+    if (_c(context).read(appControlsProvider).billing.showPlus) Navigator.of(context).push(_paywall());
+  }
 
   /// Story [id] (only A so far); [from] starts it part way (QA).
   static void openStory(BuildContext context, String id, {StepA from = StepA.house}) {
@@ -256,7 +273,10 @@ abstract final class AppFlow {
     builder: (ctx) => ChildProfileScreen(
       onBack: () => Navigator.of(ctx).pop(),
       onEdit: () => _gated(ctx, () => Navigator.of(ctx).push(_childSetup(ChildSetupMode.edit))),
-      onStickers: () => Navigator.of(ctx).push(LikhoRoute<void>(builder: (c) => StickerBookScreen(onBack: () => Navigator.of(c).pop()))),
+      onStickers: () {
+        if (!_c(ctx).read(featureOnProvider(Feature.stickers))) return _plusFeature(ctx);
+        Navigator.of(ctx).push(LikhoRoute<void>(builder: (c) => StickerBookScreen(onBack: () => Navigator.of(c).pop())));
+      },
     ),
   );
 
@@ -330,13 +350,21 @@ abstract final class AppFlow {
         final store = ref.watch(storeProvider) != null;
         final billing = ref.watch(billingProvider);
         final family = ref.watch(familyProvider);
+        final rules = ref.watch(appControlsProvider.select((c) => c.billing));
         return PaywallScreen(
           store: store,
           plans: billing.plans,
           busy: billing.busy,
+          rules: rules,
           // Plus already on: show the plan, and Google Play's page to manage it
           current: family.subscribed
-              ? PlusNow(plan: family.plusPlan, until: family.plusUntil, renews: family.plusRenews, store: family.plusStore == 'google_play')
+              ? PlusNow(
+                  plan: family.plusPlan,
+                  until: family.plusUntil,
+                  renews: family.plusRenews,
+                  store: family.plusStore == 'google_play',
+                  trialLevels: family.plusTrial && rules.trialLevels > 0 && !rules.plusFree ? rules.trialLevels : null,
+                )
               : null,
           onManage: () async {
             if (!await LikhoLinks.open(LikhoLinks.playSubscription) && ctx.mounted) Toast.show(ctx, 'Open Google Play › Payments & subscriptions.');
@@ -356,14 +384,16 @@ abstract final class AppFlow {
               if (!ctx.mounted) return;
               Toast.show(ctx, switch (e.code) {
                 'trial_used' => 'The free trial has already been used.',
+                'trial_unavailable' => 'There is no free trial right now.',
                 'offline' => 'No internet connection. Please try again.',
                 _ => "Couldn't start the trial. Please try again.",
               });
               if (e.code == 'trial_used') unawaited(family.refreshMe());
+              if (e.code == 'trial_unavailable') unawaited(ref.read(appControlsProvider.notifier).refresh(force: true));
               return;
             }
             if (!ctx.mounted) return;
-            Toast.show(ctx, 'Your 7-day free trial has started!');
+            Toast.show(ctx, 'Your ${rules.trialDays}-day free trial has started!');
             unlocked();
           },
         );
@@ -379,13 +409,17 @@ abstract final class AppFlow {
     final container = _c(context);
     final course = container.read(courseProvider).value;
     if (course == null) return;
-    final level = course.level(number);
+    final controls = container.read(appControlsProvider);
+    final family = container.read(familyProvider);
+    // round types the team switched off are left out (App controls)
+    final level = controls.playable(course.level(number));
     final nav = Navigator.of(context);
-    if (number > 1 && container.read(familyProvider).guest) {
+    if (number > controls.billing.guestLevels && family.guest) {
       _member(context, () {});
       return;
     }
-    if (level.requiresSubscription && !container.read(familyProvider).subscribed) {
+    final rules = controls.billing;
+    if (rules.needsPlus(level) && (!family.subscribed || (family.plusTrial && rules.trialBlocks(level)))) {
       nav.push(_paywall(pendingLevel: number));
       return;
     }
@@ -438,7 +472,8 @@ abstract final class AppFlow {
       onNext: () {
         final nav = Navigator.of(ctx);
         final session = container.read(playSessionProvider);
-        if (level.number == container.read(courseProvider).value?.levels.last.number) {
+        final certificate = container.read(featureOnProvider(Feature.certificate));
+        if (certificate && level.number == container.read(courseProvider).value?.levels.last.number) {
           nav.pushReplacement(
             LikhoRoute<void>(
               rise: false,
@@ -469,8 +504,10 @@ abstract final class AppFlow {
   /// then "Let's get started!" and the map.
   static void openPlacement(BuildContext context, {bool replace = false}) {
     final container = _c(context);
-    final level = container.read(courseProvider).value?.placement;
-    if (level == null) return toMap(context);
+    // the warm-up can be switched off (App controls)
+    final warmUp = container.read(courseProvider).value?.placement;
+    if (warmUp == null || !container.read(featureOnProvider(Feature.placement))) return toMap(context);
+    final level = container.read(appControlsProvider).playable(warmUp);
     final route = LikhoRoute<void>(
       builder: (ctx) => GameFeedback(
         level: level,
