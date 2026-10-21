@@ -112,10 +112,12 @@ class CourseLevel {
   final List<Round> rounds;
 
   /// The same level shown in world [id]'s colours.
-  CourseLevel inWorld(String id) => CourseLevel(
-        id: this.id,
+  CourseLevel inWorld(String id) => copyWith(worldId: id);
+
+  CourseLevel copyWith({String? worldId, List<Round>? rounds}) => CourseLevel(
+        id: id,
         number: number,
-        worldId: id,
+        worldId: worldId ?? this.worldId,
         placement: placement,
         name: name,
         skill: skill,
@@ -124,7 +126,7 @@ class CourseLevel {
         requiresSubscription: requiresSubscription,
         intro: intro,
         presentation: presentation,
-        rounds: rounds,
+        rounds: rounds ?? this.rounds,
       );
 
   factory CourseLevel.fromJson(Map<String, dynamic> json, String path) {
