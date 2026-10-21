@@ -29,7 +29,8 @@ class WelcomeScreen extends StatefulWidget {
 
   /// Signs in as the shared test account (test builds only; null hides it).
   final Future<bool> Function()? onTestUser;
-  final VoidCallback onTryFirst;
+  /// "Not now, try it first" (null hides it: App controls).
+  final VoidCallback? onTryFirst;
   final VoidCallback? onTerms;
 
   static const catchDelay = Duration(milliseconds: 1500);
@@ -156,13 +157,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         style: LikhoFonts.body(size: 14, weight: FontWeight.w600, color: LikhoColors.inkMuted),
                       ),
                       const SizedBox(height: 8),
-                      TextLink(
-                        text: 'Not now, try it first',
-                        underline: true,
-                        padding: const EdgeInsets.all(10),
-                        style: LikhoFonts.body(size: 16, weight: FontWeight.w700, color: LikhoColors.inkMuted),
-                        onTap: _busy ? () {} : widget.onTryFirst,
-                      ),
+                      if (widget.onTryFirst case final tryFirst?)
+                        TextLink(
+                          text: 'Not now, try it first',
+                          underline: true,
+                          padding: const EdgeInsets.all(10),
+                          style: LikhoFonts.body(size: 16, weight: FontWeight.w700, color: LikhoColors.inkMuted),
+                          onTap: _busy ? () {} : tryFirst,
+                        ),
                       if (widget.onTerms != null)
                         TextLink(
                           text: 'By continuing, you agree to the Terms and Privacy Policy',
