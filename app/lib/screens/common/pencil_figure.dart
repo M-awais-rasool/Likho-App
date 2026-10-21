@@ -4,9 +4,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/family.dart';
-import '../../data/shop_items.dart';
 import '../../feedback/pencil_lines.dart';
 import '../../mascot/mascot.dart';
+import '../../data/app_controls.dart';
 
 /// Pencil in a box of the prototype's size ([width] x [height], e.g. 170 x
 /// 240), like the prototype's `<Mascot color expr wear>` tag: change [state],
@@ -83,7 +83,7 @@ class _PencilFigureState extends ConsumerState<PencilFigure> {
     if (widget.lookDown) WidgetsBinding.instance.addPostFrameCallback((_) => _look());
     final line = widget.say;
     if (line == null) return;
-    if (!ref.read(pencilVoiceProvider)) {
+    if (!ref.read(voiceOnProvider)) {
       WidgetsBinding.instance.addPostFrameCallback((_) => _done());
       return;
     }
@@ -174,7 +174,7 @@ class _PencilFigureState extends ConsumerState<PencilFigure> {
     final family = ref.watch(familyProvider);
     final color = widget.color ?? family.active.color;
     if (_c.swatch.key.toARGB32() != color.toARGB32()) _c.setBodyColor(color);
-    final acc = widget.accessory ?? (widget.childAccessory ? ShopItem.byId(family.record.wearing)?.accessory : null);
+    final acc = widget.accessory ?? (widget.childAccessory ? ref.watch(appControlsProvider).accessoryFor(family.record.wearing) : null);
     if (_c.accessory != acc) {
       if (acc == null) {
         _c.removeAccessory();
