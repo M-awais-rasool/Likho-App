@@ -12,6 +12,7 @@ import '../../design/tokens.dart';
 import '../common/kid_widgets.dart';
 import '../common/pencil_figure.dart';
 import 'parent_widgets.dart';
+import '../../data/app_controls.dart';
 
 /// 19 Parent dashboard, from the prototype: the child's week, letters
 /// learnt, first-day vs today handwriting, quick settings and Likho Plus.
@@ -62,6 +63,8 @@ class DashboardScreen extends ConsumerWidget {
     final p = family.active, r = family.record;
     final letters = letterStatus(r, course);
     final label = LikhoFonts.parent(size: 13, weight: FontWeight.w600, color: LikhoColors.inkMuted);
+    final message = ref.watch(parentMessageProvider);
+    final billing = ref.watch(appControlsProvider.select((c) => c.billing));
     return ParentPage(
       children: [
         ParentHeader(
@@ -70,6 +73,7 @@ class DashboardScreen extends ConsumerWidget {
           title: 'Parents',
           trailing: ParentIconButton(icon: Symbols.settings_rounded, onTap: onSettings),
         ),
+        if (message != null) _TeamMessage(message: message, onClose: () => ref.read(closedNoticeProvider.notifier).close(message.id)),
         ParentCard(
           child: Column(
             children: [
@@ -202,13 +206,6 @@ class DashboardScreen extends ConsumerWidget {
                 ),
               ),
               SettingsRow(
-                label: 'Music',
-                trailing: ParentSwitch(
-                  value: family.settings.music,
-                  onChanged: (v) => ref.read(familyProvider.notifier).updateSettings((s) => s.copyWith(music: v)),
-                ),
-              ),
-              SettingsRow(
                 label: 'Left-handed mode',
                 last: true,
                 trailing: ParentSwitch(
@@ -219,7 +216,8 @@ class DashboardScreen extends ConsumerWidget {
             ],
           ),
         ),
-        _PlusCard(worlds: course?.worlds.length ?? 6, levels: total, onPlans: onPlans, onRestore: onRestore),
+        // Likho Plus can be off, or free for everyone for a while (App controls)
+        if (billing.enabled || family.subscribed) _PlusCard(worlds: course?.worlds.length ?? 6, levels: total, onPlans: onPlans, onRestore: onRestore),
       ],
     );
   }
@@ -487,6 +485,56 @@ class _SampleA extends CustomPainter {
   bool shouldRepaint(_SampleA old) => old.shaky != shaky;
 }
 
+/// A message from the Likho team (App controls), until the parent closes it.
+class _TeamMessage extends StatelessWidget {
+  const _TeamMessage({required this.message, required this.onClose});
+  final TeamNotice message;
+  final VoidCallback onClose;
+
+  @override
+  Widget build(BuildContext context) => Container(
+    key: const ValueKey('team-message'),
+    padding: const EdgeInsets.fromLTRB(16, 14, 8, 16),
+    decoration: BoxDecoration(
+      color: ParentColors.featureBlueBg,
+      borderRadius: BorderRadius.circular(22),
+      border: Border.all(color: ParentColors.featureBlue.withValues(alpha: .25), width: 1.5),
+    ),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(color: LikhoColors.surface, borderRadius: BorderRadius.circular(13)),
+          child: const Center(child: SymbolIcon(Symbols.campaign_rounded, size: 24, fill: true, color: ParentColors.featureBlue)),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 2),
+              Text(message.title.isEmpty ? 'From the Likho team' : message.title, style: LikhoFonts.parent(size: 16, weight: FontWeight.w800)),
+              const SizedBox(height: 4),
+              Text(message.text, style: LikhoFonts.parent(size: 14, weight: FontWeight.w600, color: UiColors.inkBody).copyWith(height: 1.45)),
+            ],
+          ),
+        ),
+        GestureDetector(
+          key: const ValueKey('team-message-close'),
+          behavior: HitTestBehavior.opaque,
+          onTap: withSound(context, ButtonSound.tap, onClose),
+          child: const Padding(
+            padding: EdgeInsets.all(8),
+            child: SymbolIcon(Symbols.close_rounded, size: 20, color: LikhoColors.inkMuted),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
 class _PlusCard extends ConsumerWidget {
   const _PlusCard({required this.worlds, required this.levels, required this.onPlans, required this.onRestore});
   final int worlds, levels;
@@ -509,7 +557,11 @@ class _PlusCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final family = ref.watch(familyProvider);
+    final rules = ref.watch(appControlsProvider.select((c) => c.billing));
     final on = family.subscribed;
+    final free = !on && rules.freeForAll;
+    final until = rules.freeForAllUntil;
+    final offer = ' First ${rules.trialDays} days free.';
     return Container(
     padding: const EdgeInsets.all(18),
     decoration: BoxDecoration(color: LikhoColors.ink, borderRadius: BorderRadius.circular(24)),
@@ -530,12 +582,16 @@ class _PlusCard extends ConsumerWidget {
         Opacity(
           opacity: .8,
           child: Text(
-            on ? _active(family) : 'All $worlds worlds, $levels levels and weekly progress. First 7 days free.',
+            on
+                ? _active(family)
+                : free
+                ? 'Every world and level is free for everyone${until == null ? '' : ' until ${formatDay(until)}'}. Enjoy!'
+                : 'All $worlds worlds, $levels levels and weekly progress.$offer',
             style: LikhoFonts.parent(size: 14, weight: FontWeight.w600, color: LikhoColors.surface).copyWith(height: 1.5),
           ),
         ),
-        const SizedBox(height: 12),
-        Wrap(
+        if (!free) const SizedBox(height: 12),
+        if (!free) Wrap(
           spacing: 10,
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
