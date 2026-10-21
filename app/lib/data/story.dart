@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'api/likho_api.dart';
+import 'app_controls.dart';
 import 'family.dart';
 import 'models/course_models.dart';
 
@@ -124,3 +125,15 @@ final myStoryStarsProvider = Provider<Map<String, int>>((ref) {
   final child = ref.watch(familyProvider.select((f) => f.active.id));
   return ref.watch(storyProgressProvider)[child] ?? const {};
 });
+
+/// The episodes the Stories screen shows (App controls), in alphabet
+/// order; a Plus-only one opens the paywall without Plus.
+final shownEpisodesProvider = Provider<List<String>>((ref) {
+  final c = ref.watch(appControlsProvider);
+  final plus = ref.watch(familyProvider.select((f) => f.subscribed));
+  return [for (final id in storyEpisodes) if (c.episodeShown(id, subscribed: plus)) id];
+});
+
+/// Whether Stories shows on the map: switched on (or Plus-only), with an
+/// episode to show.
+final storiesShownProvider = Provider<bool>((ref) => ref.watch(featureShownProvider(Feature.stories)) && ref.watch(shownEpisodesProvider).isNotEmpty);

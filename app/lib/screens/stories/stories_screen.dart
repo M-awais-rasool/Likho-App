@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import '../../data/app_controls.dart';
 import '../../data/story.dart';
 import '../../design/tokens.dart';
 import '../gameplay/widgets/game_buttons.dart';
@@ -10,7 +11,7 @@ import 'story_art.dart';
 
 /// Stories: one letter an episode. Story A is a big card (its garden, Ayan
 /// and Dada ji, a Play button, its stars); the letters still to come wait
-/// below.
+/// below. The App controls can hide an episode and the letters to come.
 class StoriesScreen extends ConsumerWidget {
   const StoriesScreen({super.key, required this.onBack, required this.onOpen});
   final VoidCallback onBack;
@@ -19,6 +20,8 @@ class StoriesScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final stars = ref.watch(myStoryStarsProvider);
+    final shown = ref.watch(shownEpisodesProvider);
+    final comingSoon = ref.watch(appControlsProvider.select((c) => c.comingSoon));
     final pad = MediaQuery.paddingOf(context);
     const letters = 'BCDEFGHIJKLMNOPQRSTUVWXYZ';
     return AnnotatedRegion<SystemUiOverlayStyle>(
@@ -47,32 +50,36 @@ class StoriesScreen extends ConsumerWidget {
                 ),
               ),
             ),
-            SliverPadding(
-              padding: const EdgeInsets.fromLTRB(16, 18, 16, 0),
-              sliver: SliverToBoxAdapter(child: _StoryCard(stars: stars['a'] ?? 0, onTap: () => onOpen('a'))),
-            ),
-            SliverPadding(
-              padding: const EdgeInsets.fromLTRB(20, 26, 20, 10),
-              sliver: SliverToBoxAdapter(
-                child: Text('COMING SOON', style: LikhoFonts.body(size: 13, weight: FontWeight.w800, color: StoryColors.name).copyWith(letterSpacing: 1.5)),
+            if (shown.contains('a'))
+              SliverPadding(
+                padding: const EdgeInsets.fromLTRB(16, 18, 16, 0),
+                sliver: SliverToBoxAdapter(child: _StoryCard(stars: stars['a'] ?? 0, onTap: () => onOpen('a'))),
               ),
-            ),
-            SliverPadding(
-              padding: EdgeInsets.fromLTRB(16, 0, 16, pad.bottom + 24),
-              sliver: SliverGrid.count(
-                crossAxisCount: 5,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                children: [
-                  for (final l in letters.split(''))
-                    Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(color: StoryColors.locked, borderRadius: BorderRadius.circular(18)),
-                      child: Text(l, style: LikhoFonts.letter(size: 30, color: StoryColors.lockedInk).copyWith(height: 1)),
-                    ),
-                ],
+            if (comingSoon) ...[
+              SliverPadding(
+                padding: const EdgeInsets.fromLTRB(20, 26, 20, 10),
+                sliver: SliverToBoxAdapter(
+                  child: Text('COMING SOON', style: LikhoFonts.body(size: 13, weight: FontWeight.w800, color: StoryColors.name).copyWith(letterSpacing: 1.5)),
+                ),
               ),
-            ),
+              SliverPadding(
+                padding: EdgeInsets.fromLTRB(16, 0, 16, pad.bottom + 24),
+                sliver: SliverGrid.count(
+                  crossAxisCount: 5,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                  children: [
+                    for (final l in letters.split(''))
+                      Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(color: StoryColors.locked, borderRadius: BorderRadius.circular(18)),
+                        child: Text(l, style: LikhoFonts.letter(size: 30, color: StoryColors.lockedInk).copyWith(height: 1)),
+                      ),
+                  ],
+                ),
+              ),
+            ] else
+              SliverToBoxAdapter(child: SizedBox(height: pad.bottom + 24)),
           ],
         ),
       ),
