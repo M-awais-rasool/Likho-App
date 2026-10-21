@@ -145,6 +145,7 @@ class FamilyState {
     this.plusUntil,
     this.plusRenews = false,
     this.plusStore,
+    this.plusTrial = false,
     this.storeAccountId = '',
     this.account,
     this.mode = FamilyMode.demo,
@@ -166,6 +167,10 @@ class FamilyState {
   final bool plusRenews;
   final String? plusStore;
 
+  /// Likho Plus comes from a free trial right now (the server's or Google
+  /// Play's): the trial may open fewer levels (App controls).
+  final bool plusTrial;
+
   /// The account's ID for the store (the server's hash), sent with a purchase.
   final String storeAccountId;
   final Account? account;
@@ -181,7 +186,7 @@ class FamilyState {
   ChildRecord recordOf(String id) => records[id] ?? const ChildRecord();
   bool get canAddChild => profiles.length < maxProfiles;
 
-  FamilyState copyWith({List<ChildProfile>? profiles, String? activeId, Map<String, ChildRecord>? records, AppSettings? settings, bool? subscribed}) =>
+  FamilyState copyWith({List<ChildProfile>? profiles, String? activeId, Map<String, ChildRecord>? records, AppSettings? settings, bool? subscribed, bool? plusTrial}) =>
       FamilyState(
         profiles: profiles ?? this.profiles,
         activeId: activeId ?? this.activeId,
@@ -192,6 +197,7 @@ class FamilyState {
         plusUntil: plusUntil,
         plusRenews: plusRenews,
         plusStore: plusStore,
+        plusTrial: plusTrial ?? this.plusTrial,
         storeAccountId: storeAccountId,
         account: account,
         mode: mode,
@@ -212,6 +218,7 @@ class FamilyState {
       plusUntil: DateTime.tryParse((me['subscription'] as Map?)?['plusUntil'] as String? ?? '')?.toLocal(),
       plusRenews: (me['subscription'] as Map?)?['autoRenewing'] == true,
       plusStore: (me['subscription'] as Map?)?['active'] == true ? (me['subscription'] as Map)['store'] as String? : null,
+      plusTrial: (me['subscription'] as Map?)?['active'] == true && (me['subscription'] as Map)['trial'] == true,
       storeAccountId: (me['subscription'] as Map?)?['storeAccountId'] as String? ?? '',
       account: Account(
         id: acc['id'] as String,
@@ -548,15 +555,16 @@ class FamilyNotifier extends Notifier<FamilyState> {
 
   // ------------------------------------------------------------ parent
 
-  /// Starts the 7-day Likho Plus trial. Throws [ApiException] on failure.
+  /// Starts the server's free trial of Likho Plus (its days are in the App
+  /// controls). Throws [ApiException] on failure.
   Future<void> subscribe() async {
     if (state.online) {
       final s = await _api.startTrial();
       if (!ref.mounted) return;
-      state = state.copyWith(subscribed: s['active'] == true);
+      state = state.copyWith(subscribed: s['active'] == true, plusTrial: s['active'] == true);
       return;
     }
-    state = state.copyWith(subscribed: true);
+    state = state.copyWith(subscribed: true, plusTrial: true);
   }
 
   void updateSettings(AppSettings Function(AppSettings s) f) {
