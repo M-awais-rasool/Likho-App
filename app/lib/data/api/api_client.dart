@@ -175,6 +175,22 @@ class ApiClient {
     return _decode(res);
   }
 
+  /// A signed-in GET that keeps the body as text, for ETag handling: (status,
+  /// body, ETag). A 304 is not an error.
+  Future<(int, String?, String)> requestRaw(String method, String path, {Map<String, String> headers = const {}}) async {
+    if (_access == null || DateTime.now().isAfter(_accessExpires.subtract(const Duration(seconds: 30)))) {
+      await _refresh();
+    }
+    var res = await _send(method, path, null, true, headers);
+    if (res.statusCode == 401) {
+      await _refresh();
+      res = await _send(method, path, null, true, headers);
+    }
+    if (res.statusCode == 304) return (304, null, res.headers['etag'] ?? '');
+    _decode(res); // throws on errors
+    return (res.statusCode, utf8.decode(res.bodyBytes), res.headers['etag'] ?? '');
+  }
+
   /// A raw GET (for ETag handling), without auth.
   Future<http.Response> getRaw(String path, {Map<String, String> headers = const {}}) => _send('GET', path, null, false, headers);
 

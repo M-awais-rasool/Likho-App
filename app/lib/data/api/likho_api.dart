@@ -88,6 +88,21 @@ class LikhoApi {
     for (final c in _map(await client.request('GET', '/v1/courses', auth: false))['courses'] as List) _map(c),
   ];
 
+  // ------------------------------------------------------------ controls
+  /// The App controls as JSON (GET /v1/config, the family's own when
+  /// [signedIn]), or null when the phone already has version [etag].
+  Future<(String?, String)> config({String? etag, bool signedIn = false}) async {
+    if (!signedIn) {
+      final res = await client.getRaw('/v1/config', headers: {'If-None-Match': ?etag});
+      if (res.statusCode == 304) return (null, etag ?? '');
+      if (res.statusCode != 200) throw ApiException(res.statusCode, 'config_unavailable', 'Controls could not be loaded');
+      return (utf8.decode(res.bodyBytes), res.headers['etag'] ?? '');
+    }
+    final (status, body, tag) = await client.requestRaw('GET', '/v1/config', headers: {'If-None-Match': ?etag});
+    if (status == 304) return (null, etag ?? '');
+    return (body, tag);
+  }
+
   // ------------------------------------------------------------ course
   /// A whole course as JSON, or null when the phone already has version
   /// [etag].
