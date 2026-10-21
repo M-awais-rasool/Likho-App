@@ -12,13 +12,19 @@ import 'app_flow.dart';
 import 'common/kid_widgets.dart';
 import 'common/pencil_figure.dart';
 import 'common/toast.dart';
+import '../data/api/api_client.dart';
+import '../data/app_controls.dart';
+import '../data/links.dart';
+import 'common/team_screens.dart';
 
 /// Sits around the Navigator (MaterialApp.builder) and keeps the app in
 /// step with the server:
 /// * a change that could not be saved shows as a toast
 /// * when the server ends the session, the app goes back to Welcome
 /// * when the app comes back, finished levels still waiting are sent and
-///   the account is reloaded if it was a while ago
+///   the account is reloaded if it was a while ago; the App controls are
+///   asked for again
+/// * the team's "please update" and maintenance screens cover the app
 class AppShell extends ConsumerStatefulWidget {
   const AppShell({super.key, required this.navigatorKey, required this.child});
 
@@ -31,6 +37,7 @@ class AppShell extends ConsumerStatefulWidget {
 
 class _AppShellState extends ConsumerState<AppShell> {
   late final AppLifecycleListener _life;
+  bool _retrying = false;
 
   @override
   void initState() {
@@ -39,6 +46,7 @@ class _AppShellState extends ConsumerState<AppShell> {
       onResume: () {
         ref.read(familyProvider.notifier).resumed();
         ref.read(billingProvider.notifier).finishUnfinished();
+        ref.read(appControlsProvider.notifier).refresh();
       },
     );
     // a purchase the app could not finish last time (closed, offline)
@@ -70,7 +78,25 @@ class _AppShellState extends ConsumerState<AppShell> {
       AppFlow.toWelcome(nav.context);
       if (now.expired) _toast('Please sign in again.');
     });
-    return widget.child;
+    final controls = ref.watch(appControlsProvider);
+    final Widget? cover = controls.needsUpdate(appVersion)
+        ? TeamScreen.update(
+            onUpdate: () async {
+              if (!await LikhoLinks.open(LikhoLinks.store)) _toast('Open Google Play to update Likho.');
+            },
+          )
+        : controls.maintenance.on
+        ? TeamScreen.maintenance(controls.maintenance, busy: _retrying, onRetry: _retry)
+        : null;
+    if (cover == null) return widget.child;
+    return Stack(children: [widget.child, Positioned.fill(child: cover)]);
+  }
+
+  /// Maintenance: asks the server whether it is over.
+  Future<void> _retry() async {
+    setState(() => _retrying = true);
+    await ref.read(appControlsProvider.notifier).refresh(force: true);
+    if (mounted) setState(() => _retrying = false);
   }
 }
 
