@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../design/tokens.dart';
 import 'course_providers.dart';
 import 'family.dart';
-import 'shop_items.dart';
+import 'app_controls.dart';
 
 /// One child's progress. Stars per finished level (1..3).
 @immutable
@@ -57,7 +57,7 @@ class ProgressNotifier extends Notifier<ChildProgress> {
       color: f.active.swatch,
       stars: r.stars,
       levelStars: r.levelStars,
-      accessory: ShopItem.byId(r.wearing)?.accessory,
+      accessory: ref.watch(appControlsProvider).accessoryFor(r.wearing),
       unlockAll: f.account?.tester ?? false,
     );
   }

@@ -5,12 +5,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../data/family.dart';
-import '../../data/shop_items.dart';
 import '../../feedback/app_feedback.dart';
 import '../../design/motion.dart';
 import '../../design/tokens.dart';
 import '../common/kid_widgets.dart';
 import '../common/pencil_figure.dart';
+import '../../data/app_controls.dart';
 
 /// 06 Who's playing, from the prototype: one round avatar per child (up to
 /// 4) and "Add child". Picking a child bounces the avatar and floods the
@@ -59,6 +59,7 @@ class _WhosPlayingScreenState extends ConsumerState<WhosPlayingScreen> {
   @override
   Widget build(BuildContext context) {
     final family = ref.watch(familyProvider);
+    final controls = ref.watch(appControlsProvider); // items the team hid are not worn
     final zoom = _zoom;
     return StatusBar(
       child: Material(
@@ -90,7 +91,7 @@ class _WhosPlayingScreenState extends ConsumerState<WhosPlayingScreen> {
                               _ChildAvatar(
                                 key: ValueKey(p.id),
                                 profile: p,
-                                accessory: ShopItem.byId(family.recordOf(p.id).wearing)?.accessory,
+                                accessory: controls.accessoryFor(family.recordOf(p.id).wearing),
                                 delay: i * .09,
                                 onTap: _pick,
                               ),
