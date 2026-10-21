@@ -40,6 +40,9 @@ class FakeBackend {
 
   static const prices = {'party': 8, 'plant': 8, 'rug': 16, 'crown': 40, 'lamp': 10};
 
+  /// What GET /v1/config answers (null: 404, like an older server).
+  Map<String, dynamic>? config;
+
   Map<String, dynamic> me() => {
     'account': {'id': 'acc1', 'email': 'ammi@gmail.com', 'name': 'Ammi', 'pictureUrl': ''},
     'settings': settings,
@@ -122,6 +125,12 @@ class FakeBackend {
         if (subscription['trialUsed'] == true) return error(409, 'trial_used');
         subscription = {'active': true, 'plusUntil': '2026-10-06T00:00:00Z', 'trialUsed': true};
         return json(subscription);
+      case ('GET', ['config']):
+        final c = config;
+        if (c == null) return error(404, 'not_found');
+        final etag = '"cfg-${jsonEncode(c).hashCode}"';
+        if (req.headers['If-None-Match'] == etag) return http.Response('', 304, headers: {'etag': etag});
+        return http.Response.bytes(utf8.encode(jsonEncode(c)), 200, headers: {'etag': etag, 'content-type': 'application/json'});
       case ('GET', ['courses']):
         return json({
           'courses': [
