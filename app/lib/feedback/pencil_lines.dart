@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../data/app_controls.dart';
 
 /// Pencil's spoken lines in the app's own screens (not the course), kept in
 /// the app so they play before anything is downloaded. Recorded with the
@@ -23,3 +24,8 @@ abstract final class PencilLines {
 /// Whether Pencil speaks [PencilLines]. Off by default (tests); main()
 /// turns it on.
 final pencilVoiceProvider = Provider<bool>((ref) => false);
+
+/// Whether Pencil speaks now: his voice is on in this build and the team
+/// has not switched it off (App controls); without it his bubbles still
+/// show what he says.
+final voiceOnProvider = Provider<bool>((ref) => ref.watch(pencilVoiceProvider) && ref.watch(featureOnProvider(Feature.voice)));
