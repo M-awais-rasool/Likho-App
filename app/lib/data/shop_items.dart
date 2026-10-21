@@ -22,6 +22,9 @@ class ShopItem {
 
   bool get isWear => kind == ShopKind.wear;
 
+  /// The same item at another price (App controls).
+  ShopItem withPrice(int price) => ShopItem(id: id, name: name, price: price, kind: kind, accessory: accessory, icon: icon);
+
   static ShopItem? byId(String? id) {
     for (final i in all) {
       if (i.id == id) return i;
