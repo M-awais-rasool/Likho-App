@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import '../../data/app_controls.dart';
 import '../../data/family.dart';
 import '../../data/shop_items.dart';
 import '../../feedback/app_feedback.dart';
@@ -111,6 +112,9 @@ class _MascotRoomScreenState extends ConsumerState<MascotRoomScreen> {
   }
 
   Widget _room(ChildRecord r) {
+    // furniture the team hid is not shown (App controls)
+    final controls = ref.watch(appControlsProvider);
+    bool placed(String id) => r.room.contains(id) && !controls.itemHidden(id);
     return LayoutBuilder(
       builder: (context, box) {
         final h = box.maxHeight, w = box.maxWidth, cx = w / 2;
@@ -139,25 +143,25 @@ class _MascotRoomScreenState extends ConsumerState<MascotRoomScreen> {
                 height: h * .34,
                 child: const CustomPaint(painter: _FloorPainter()),
               ),
-              if (r.room.contains('poster'))
+              if (placed('poster'))
                 Positioned(
                   right: 26,
                   top: frameTop(context, 128),
                   child: const DropIn(child: _Poster()),
                 ),
-              if (r.room.contains('lamp'))
+              if (placed('lamp'))
                 Positioned(
                   left: 30,
                   bottom: h * .18,
                   child: const DropIn(child: _Lamp()),
                 ),
-              if (r.room.contains('plant'))
+              if (placed('plant'))
                 Positioned(
                   right: 30,
                   bottom: h * .17,
                   child: const DropIn(child: _Plant()),
                 ),
-              if (r.room.contains('rug'))
+              if (placed('rug'))
                 Positioned(
                   left: cx - 110,
                   bottom: h * .09,
@@ -190,38 +194,45 @@ class _MascotRoomScreenState extends ConsumerState<MascotRoomScreen> {
     );
   }
 
-  Widget _shelf(ChildRecord r) => Container(
-    height: 236,
-    decoration: const BoxDecoration(
-      gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [RoomColors.shelfTop, RoomColors.shelfBottom]),
-    ),
-    foregroundDecoration: const BoxDecoration(
-      border: Border(top: BorderSide(color: RoomColors.shelfEdge, width: 8)),
-    ),
-    padding: const EdgeInsets.fromLTRB(0, 20, 0, 30),
-    child: ListView.separated(
-      scrollDirection: Axis.horizontal,
-      padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
-      itemCount: ShopItem.all.length,
-      separatorBuilder: (_, _) => const SizedBox(width: 12),
-      itemBuilder: (context, i) {
-        final it = ShopItem.all[i];
-        final owned = r.owned.contains(it.id);
-        return Shake(
-          trigger: _shakes[it.id] ?? 0,
-          distance: 5,
-          ms: 260,
-          child: _ItemCard(
-            item: it,
-            owned: owned,
-            worn: it.isWear ? r.wearing == it.id : r.room.contains(it.id),
-            locked: !owned && r.stars < it.price,
-            onTap: _tap,
-          ),
-        );
-      },
-    ),
-  );
+  Widget _shelf(ChildRecord r) {
+    // the shop as the team set it up: hidden items left out, their prices
+    final controls = ref.watch(appControlsProvider);
+    final items = [for (final it in ShopItem.all) ?controls.item(it)];
+    return Container(
+      height: 236,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [RoomColors.shelfTop, RoomColors.shelfBottom]),
+      ),
+      foregroundDecoration: const BoxDecoration(
+        border: Border(top: BorderSide(color: RoomColors.shelfEdge, width: 8)),
+      ),
+      padding: const EdgeInsets.fromLTRB(0, 20, 0, 30),
+      child: items.isEmpty
+          ? Center(child: Text('New things are coming soon!', style: LikhoFonts.title(size: 20, weight: FontWeight.w800, color: UiColors.inkBody)))
+          : ListView.separated(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
+        itemCount: items.length,
+        separatorBuilder: (_, _) => const SizedBox(width: 12),
+        itemBuilder: (context, i) {
+          final it = items[i];
+          final owned = r.owned.contains(it.id);
+          return Shake(
+            trigger: _shakes[it.id] ?? 0,
+            distance: 5,
+            ms: 260,
+            child: _ItemCard(
+              item: it,
+              owned: owned,
+              worn: it.isWear ? r.wearing == it.id : r.room.contains(it.id),
+              locked: !owned && r.stars < it.price,
+              onTap: _tap,
+            ),
+          );
+        },
+      ),
+    );
+  }
 }
 
 class _ItemCard extends StatefulWidget {
