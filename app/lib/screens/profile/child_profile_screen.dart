@@ -9,6 +9,7 @@ import '../../design/icon_registry.dart';
 import '../../design/tokens.dart';
 import '../common/kid_widgets.dart';
 import '../common/pencil_figure.dart';
+import '../../data/app_controls.dart';
 
 /// 16 Child profile, from the prototype: Pencil, the child's name, three
 /// counters that count up (stars, levels, days), every world of the
@@ -132,8 +133,10 @@ class _ChildProfileScreenState extends ConsumerState<ChildProfileScreen> with Si
                       ],
                     );
                   }),
-                  const SizedBox(height: 24),
-                  _StickerBookCard(count: done, total: course?.levels.length ?? 36, onTap: widget.onStickers),
+                  if (ref.watch(featureOnProvider(Feature.stickers))) ...[
+                    const SizedBox(height: 24),
+                    _StickerBookCard(count: done, total: course?.levels.length ?? 36, onTap: widget.onStickers),
+                  ],
                 ],
               ),
             ),
