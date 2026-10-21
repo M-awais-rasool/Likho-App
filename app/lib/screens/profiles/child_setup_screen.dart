@@ -16,6 +16,7 @@ import '../../mascot/mascot.dart';
 import '../common/kid_widgets.dart';
 import '../common/pencil_figure.dart';
 import '../common/toast.dart';
+import '../../data/app_controls.dart';
 
 enum ChildSetupMode { add, edit }
 
@@ -42,7 +43,8 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
   late final ChildProfile? _editing = widget.mode == ChildSetupMode.edit ? ref.read(familyProvider).active : null;
   late final _name = TextEditingController(text: _editing?.name ?? '');
   late int? _age = _editing?.age;
-  late Color _color = _editing?.color ?? LikhoColors.primary;
+  // a new child starts with the first colour the team offers (App controls)
+  late Color _color = _editing?.color ?? ref.read(pencilColorsProvider).first.key;
   int _step = 0;
   bool _happy = false;
   bool _confirmDelete = false;
@@ -126,6 +128,15 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
     ref.read(feedbackProvider).candle();
     setState(() => _age = n);
     _later(420, () => setState(() => _step = 2));
+  }
+
+  /// The colours to pick from: the ones the team offers, plus the child's
+  /// own when it is no longer offered (so editing keeps it).
+  List<BodySwatch> _swatches() {
+    final offered = ref.watch(pencilColorsProvider);
+    final mine = _editing?.color;
+    if (mine == null || offered.any((s) => s.key.toARGB32() == mine.toARGB32())) return offered;
+    return [...offered, BodySwatch.forColor(mine)];
   }
 
   void _pickColor(Color c) {
@@ -379,7 +390,7 @@ class _ChildSetupScreenState extends ConsumerState<ChildSetupScreen> {
           spacing: 26,
           runSpacing: 18,
           children: [
-            for (final s in BodySwatch.options) _Swatch(color: s.key, selected: s.key.toARGB32() == _color.toARGB32(), onTap: () => _pickColor(s.key)),
+            for (final s in _swatches()) _Swatch(color: s.key, selected: s.key.toARGB32() == _color.toARGB32(), onTap: () => _pickColor(s.key)),
           ],
         ),
       ),
