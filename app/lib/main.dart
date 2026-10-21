@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'data/app_controls.dart';
 import 'data/family.dart';
 import 'design/tokens.dart';
 import 'dev/dev_launch.dart';
@@ -32,6 +33,8 @@ Future<void> main() async {
       soundEngineProvider.overrideWithValue(sound),
       hapticsProvider.overrideWithValue(const SystemHaptics()),
       pencilVoiceProvider.overrideWithValue(true),
+      // the App controls follow the server (asked again every 2 minutes)
+      appControlsSyncProvider.overrideWithValue(const Duration(minutes: 2)),
       // QA shortcuts show the sample family and never touch the account
       if (devLevel != null || devScreen != null) familyProvider.overrideWith(DemoFamilyNotifier.new),
     ],
