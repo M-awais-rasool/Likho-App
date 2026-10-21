@@ -8,11 +8,14 @@ import '../../design/tokens.dart';
 import '../common/kid_widgets.dart';
 import '../gameplay/widgets/game_buttons.dart';
 import 'parent_widgets.dart';
+import '../../data/app_controls.dart';
 
 /// 22 Paywall (Likho Plus), from the prototype: what Plus unlocks, yearly or
 /// monthly, and the free trial. With a store ([store]: Google Play) the
 /// prices and the trial are the store's ([plans]) and [onStartTrial] buys
-/// the chosen plan; without one it starts the server's free trial.
+/// the chosen plan; without one it starts the server's free trial. Which
+/// plans show, the "best value" one, the list of what Plus gives and the
+/// server's trial come from the App controls ([BillingRules]).
 class PaywallScreen extends StatefulWidget {
   const PaywallScreen({
     super.key,
@@ -24,6 +27,7 @@ class PaywallScreen extends StatefulWidget {
     this.busy = false,
     this.current,
     this.onManage,
+    this.rules = const BillingRules(),
   });
   final VoidCallback onClose, onRestore;
 
@@ -36,20 +40,41 @@ class PaywallScreen extends StatefulWidget {
   final bool store, busy;
   final Map<Plan, StorePlan> plans;
 
+  /// Likho Plus as the team set it up.
+  final BillingRules rules;
+
   @override
   State<PaywallScreen> createState() => _PaywallScreenState();
 }
 
 class _PaywallScreenState extends State<PaywallScreen> {
-  Plan _plan = Plan.yearly;
+  late Plan _plan = _firstPlan;
+
+  /// The plans offered, in the paywall's order.
+  List<Plan> get _offered => [
+    if (widget.rules.yearly || !widget.rules.monthly) Plan.yearly,
+    if (widget.rules.monthly) Plan.monthly,
+  ];
+
+  Plan get _firstPlan => switch (widget.rules.bestValue) {
+    'monthly' when widget.rules.monthly => Plan.monthly,
+    _ => _offered.first,
+  };
+
+  /// Without a store, Plus comes only from the server's free trial.
+  bool get _canStart => widget.store || widget.rules.serverTrial;
 
   void _pick(Plan p) {
     if (p != _plan) AppFeedback.of(context).select();
     setState(() => _plan = p);
   }
 
-  /// Free days for [plan]: the store's, or the usual 7 before it answers.
-  int _trial(Plan plan) => widget.plans.isEmpty ? 7 : widget.plans[plan]?.trialDays ?? 0;
+  /// Free days for [plan]: the store's (the team's before it answers), or
+  /// the server's trial without a store.
+  int _trial(Plan plan) {
+    if (!widget.store) return widget.rules.serverTrial ? widget.rules.trialDays : 0;
+    return widget.plans.isEmpty ? widget.rules.trialDays : widget.plans[plan]?.trialDays ?? 0;
+  }
 
   String _price(Plan plan) => widget.plans[plan]?.price ?? (plan == Plan.yearly ? 'Rs 4,999' : 'Rs 799');
 
@@ -71,7 +96,9 @@ class _PaywallScreenState extends State<PaywallScreen> {
   static String _thousands(int n) => n.toString().replaceAllMapped(RegExp(r'\B(?=(\d{3})+(?!\d))'), (_) => ',');
 
   String get _finePrint {
-    if (!widget.store) return 'Your free trial starts now. Nothing is charged.';
+    if (!widget.store) {
+      return _canStart ? 'Your free trial starts now. Nothing is charged.' : 'Likho Plus can be bought in Likho from Google Play.';
+    }
     final trial = _trial(_plan);
     final every = _plan == Plan.yearly ? 'year' : 'month';
     final then = trial > 0 ? 'Free for $trial days, then ${_price(_plan)} a $every' : '${_price(_plan)} a $every';
@@ -81,7 +108,9 @@ class _PaywallScreenState extends State<PaywallScreen> {
   @override
   Widget build(BuildContext context) {
     if (widget.current case final now?) return _Current(now: now, onClose: widget.onClose, onManage: widget.onManage);
+    if (!_offered.contains(_plan)) _plan = _firstPlan; // the team changed the plans meanwhile
     final trial = _trial(_plan);
+    final benefits = widget.rules.benefits;
     return ParentPage(
       background: UiColors.parentBg,
       gradient: const LinearGradient(
@@ -124,65 +153,59 @@ class _PaywallScreenState extends State<PaywallScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
           radius: 22,
           soft: false,
-          child: const Column(
-            children: [
-              _Feature(icon: Symbols.public_rounded, bg: ParentColors.featureGreenBg, fg: ParentColors.featureGreen, text: 'Every world and every level'),
-              SizedBox(height: 12),
-              _Feature(
-                icon: Symbols.menu_book_rounded,
-                bg: ParentColors.featureBlueBg,
-                fg: ParentColors.featureBlue,
-                text: 'The full course, from phonics to stories',
-              ),
-              SizedBox(height: 12),
-              _Feature(icon: Symbols.insights_rounded, bg: ParentColors.featureCoralBg, fg: ParentColors.featureCoral, text: 'Weekly progress for parents'),
-              SizedBox(height: 12),
-              _Feature(
-                icon: Symbols.group_rounded,
-                bg: ParentColors.featurePurpleBg,
-                fg: ParentColors.featurePurple,
-                text: 'Up to 4 child profiles, no ads',
-              ),
-            ],
-          ),
+          child: benefits.isNotEmpty
+              ? Column(
+                  children: [
+                    for (final (i, text) in benefits.indexed) ...[
+                      if (i > 0) const SizedBox(height: 12),
+                      _Feature.styled(i, text),
+                    ],
+                  ],
+                )
+              : const _DefaultFeatures(),
         ),
         Column(
           children: [
-            _PlanCard(
-              selected: _plan == Plan.yearly,
-              title: 'Yearly',
-              note: '$_yearlyPerMonth / month',
-              price: _price(Plan.yearly),
-              badge: 'BEST VALUE · SAVE $_save',
-              onTap: () => _pick(Plan.yearly),
-            ),
-            const SizedBox(height: 10),
-            _PlanCard(
-              selected: _plan == Plan.monthly,
-              title: 'Monthly',
-              note: 'Billed monthly',
-              price: _price(Plan.monthly),
-              onTap: () => _pick(Plan.monthly),
-            ),
+            for (final (i, plan) in _offered.indexed) ...[
+              if (i > 0) const SizedBox(height: 10),
+              plan == Plan.yearly
+                  ? _PlanCard(
+                      selected: _plan == Plan.yearly,
+                      title: 'Yearly',
+                      note: '$_yearlyPerMonth / month',
+                      price: _price(Plan.yearly),
+                      badge: widget.rules.bestValue == 'yearly' ? 'BEST VALUE · SAVE $_save' : null,
+                      onTap: () => _pick(Plan.yearly),
+                    )
+                  : _PlanCard(
+                      selected: _plan == Plan.monthly,
+                      title: 'Monthly',
+                      note: 'Billed monthly',
+                      price: _price(Plan.monthly),
+                      badge: widget.rules.bestValue == 'monthly' ? 'BEST VALUE' : null,
+                      onTap: () => _pick(Plan.monthly),
+                    ),
+            ],
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 4),
-          child: PushButton(
-            onTap: widget.busy ? null : withSound(context, ButtonSound.press, () => widget.onStartTrial(_plan)),
-            color: LikhoColors.ink,
-            height: 64,
-            width: double.infinity,
-            pressScale: .98,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            child: widget.busy
-                ? const SizedBox.square(dimension: 26, child: CircularProgressIndicator(strokeWidth: 3, color: LikhoColors.surface))
-                : Text(
-                    trial > 0 ? 'Start $trial-day free trial' : 'Subscribe',
-                    style: LikhoFonts.parent(size: 18, weight: FontWeight.w800, color: LikhoColors.surface),
-                  ),
+        if (_canStart)
+          Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: PushButton(
+              onTap: widget.busy ? null : withSound(context, ButtonSound.press, () => widget.onStartTrial(_plan)),
+              color: LikhoColors.ink,
+              height: 64,
+              width: double.infinity,
+              pressScale: .98,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+              child: widget.busy
+                  ? const SizedBox.square(dimension: 26, child: CircularProgressIndicator(strokeWidth: 3, color: LikhoColors.surface))
+                  : Text(
+                      trial > 0 ? 'Start $trial-day free trial' : 'Subscribe',
+                      style: LikhoFonts.parent(size: 18, weight: FontWeight.w800, color: LikhoColors.surface),
+                    ),
+            ),
           ),
-        ),
         Text(
           _finePrint,
           textAlign: TextAlign.center,
@@ -204,7 +227,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
 /// The family's Likho Plus, as the paywall shows it once they have it.
 @immutable
 class PlusNow {
-  const PlusNow({this.plan, this.until, this.renews = false, this.store = false});
+  const PlusNow({this.plan, this.until, this.renews = false, this.store = false, this.trialLevels});
 
   /// The store's base plan ("monthly" / "yearly"); null: a trial or a grant.
   final String? plan;
@@ -216,11 +239,24 @@ class PlusNow {
   /// Bought in the store (it can be managed there).
   final bool store;
 
+  /// In a free trial that opens only levels up to this one (App controls).
+  final int? trialLevels;
+
   String get title => switch (plan) {
     'monthly' => 'Monthly plan',
     'yearly' => 'Yearly plan',
     _ => 'Likho Plus',
   };
+
+  /// Why some levels wait during the trial (null: they don't).
+  String? get trialNote {
+    final levels = trialLevels;
+    if (levels == null) return null;
+    final first = 'The free trial opens levels 1 to $levels.';
+    if (!store) return '$first The other levels open with a Likho Plus plan.';
+    final day = until == null ? '' : ' on ${formatDay(until!)}';
+    return '$first The other levels open when your plan starts$day.';
+  }
 
   String get status {
     final day = until == null ? null : formatDay(until!);
@@ -267,7 +303,7 @@ class _Current extends StatelessWidget {
           Text('You have Likho Plus', textAlign: TextAlign.center, style: LikhoFonts.title(size: 30, weight: FontWeight.w800)),
           const SizedBox(height: 8),
           Text(
-            'Every world and every level is open.',
+            now.trialLevels == null ? 'Every world and every level is open.' : 'Your free trial is on.',
             textAlign: TextAlign.center,
             style: LikhoFonts.parent(size: 15, weight: FontWeight.w600, color: UiColors.inkBody),
           ),
@@ -297,6 +333,30 @@ class _Current extends StatelessWidget {
           ],
         ),
       ),
+      if (now.trialNote case final note?)
+        ParentCard(
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+          radius: 22,
+          soft: false,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 36,
+                height: 36,
+                decoration: BoxDecoration(color: ParentColors.featureBlueBg, borderRadius: BorderRadius.circular(12)),
+                child: const Center(child: SymbolIcon(Symbols.lock_clock_rounded, size: 22, color: ParentColors.featureBlue)),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  note,
+                  style: LikhoFonts.parent(size: 14, weight: FontWeight.w700, color: UiColors.inkBody).copyWith(height: 1.45),
+                ),
+              ),
+            ],
+          ),
+        ),
       if (now.store && onManage != null) ...[
         PushButton(
           onTap: withSound(context, ButtonSound.press, onManage!),
@@ -317,8 +377,49 @@ class _Current extends StatelessWidget {
   );
 }
 
+/// What Likho Plus gives, as the app says it when the team wrote nothing.
+class _DefaultFeatures extends StatelessWidget {
+  const _DefaultFeatures();
+
+  @override
+  Widget build(BuildContext context) => const Column(
+    children: [
+      _Feature(icon: Symbols.public_rounded, bg: ParentColors.featureGreenBg, fg: ParentColors.featureGreen, text: 'Every world and every level'),
+      SizedBox(height: 12),
+      _Feature(
+        icon: Symbols.menu_book_rounded,
+        bg: ParentColors.featureBlueBg,
+        fg: ParentColors.featureBlue,
+        text: 'The full course, from phonics to stories',
+      ),
+      SizedBox(height: 12),
+      _Feature(icon: Symbols.insights_rounded, bg: ParentColors.featureCoralBg, fg: ParentColors.featureCoral, text: 'Weekly progress for parents'),
+      SizedBox(height: 12),
+      _Feature(
+        icon: Symbols.group_rounded,
+        bg: ParentColors.featurePurpleBg,
+        fg: ParentColors.featurePurple,
+        text: 'Up to 4 child profiles, no ads',
+      ),
+    ],
+  );
+}
+
 class _Feature extends StatelessWidget {
   const _Feature({required this.icon, required this.bg, required this.fg, required this.text});
+
+  /// The team's line number [i], in the colours of the app's own list.
+  factory _Feature.styled(int i, String text) {
+    const looks = [
+      (Symbols.public_rounded, ParentColors.featureGreenBg, ParentColors.featureGreen),
+      (Symbols.menu_book_rounded, ParentColors.featureBlueBg, ParentColors.featureBlue),
+      (Symbols.insights_rounded, ParentColors.featureCoralBg, ParentColors.featureCoral),
+      (Symbols.group_rounded, ParentColors.featurePurpleBg, ParentColors.featurePurple),
+      (Symbols.auto_awesome_rounded, ParentColors.featureGreenBg, ParentColors.featureGreen),
+    ];
+    final (icon, bg, fg) = looks[i % looks.length];
+    return _Feature(icon: icon, bg: bg, fg: fg, text: text);
+  }
   final IconData icon;
   final Color bg, fg;
   final String text;
