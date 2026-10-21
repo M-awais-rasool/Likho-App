@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import '../../data/app_controls.dart';
 import '../../data/course_providers.dart';
 import '../../data/media.dart';
 import '../../data/models/course_models.dart';
@@ -143,6 +144,9 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen> with SingleTick
     final progress = ref.watch(progressProvider);
     final current = progress.current;
     final course = ref.watch(courseProvider).value;
+    // App controls: Pencil's room and Stories can be switched off
+    final roomOn = ref.watch(featureShownProvider(Feature.room));
+    final storiesOn = ref.watch(storiesShownProvider);
     if (course != null) {
       _fetchAhead(course, current);
       _noteBeaten(course, progress);
@@ -189,13 +193,15 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen> with SingleTick
                   avatar: _avatarMascot,
                   room: _roomMascot,
                   onProfile: widget.onProfile,
-                  onRoom: widget.onRoom,
+                  onRoom: roomOn ? widget.onRoom : null,
+                  showRoom: roomOn,
                   onSettings: widget.onSettings,
                 ),
-                if (widget.onStories != null)
+                if (widget.onStories != null && storiesOn)
                   Positioned(
                     right: 74,
-                    top: MediaQuery.paddingOf(context).top + 5 + 64 + 14,
+                    // under Pencil's room, or in its place when the room is off
+                    top: MediaQuery.paddingOf(context).top + 5 + (roomOn ? 64 + 14 : 0),
                     child: _StoriesButton(time: _time, fresh: ref.watch(myStoryStarsProvider).isEmpty, onTap: widget.onStories!),
                   ),
               ],
@@ -676,12 +682,14 @@ class _Header extends StatelessWidget {
     required this.room,
     this.onProfile,
     this.onRoom,
+    this.showRoom = true,
     this.onSettings,
   });
 
   final ChildProgress progress;
   final MascotController avatar, room;
   final VoidCallback? onProfile, onRoom, onSettings;
+  final bool showRoom;
 
   @override
   Widget build(BuildContext context) {
@@ -732,25 +740,26 @@ class _Header extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          _Pressable(
-            onTap: onRoom,
-            pressOffset: 3,
-            child: Container(
-              width: 64,
-              height: 64,
-              decoration: BoxDecoration(
-                color: LikhoColors.primary,
-                borderRadius: BorderRadius.circular(22),
-                boxShadow: const [BoxShadow(color: LikhoColors.primaryDeep, offset: Offset(0, 5))],
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(22),
-                child: Stack(children: [
-                  Positioned(left: 8, top: 6, width: 48, height: 68, child: OverflowBox(maxWidth: 60, child: PencilMascot(controller: room, size: 68))),
-                ]),
+          if (showRoom)
+            _Pressable(
+              onTap: onRoom,
+              pressOffset: 3,
+              child: Container(
+                width: 64,
+                height: 64,
+                decoration: BoxDecoration(
+                  color: LikhoColors.primary,
+                  borderRadius: BorderRadius.circular(22),
+                  boxShadow: const [BoxShadow(color: LikhoColors.primaryDeep, offset: Offset(0, 5))],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(22),
+                  child: Stack(children: [
+                    Positioned(left: 8, top: 6, width: 48, height: 68, child: OverflowBox(maxWidth: 60, child: PencilMascot(controller: room, size: 68))),
+                  ]),
+                ),
               ),
             ),
-          ),
           const SizedBox(width: 10),
           _Pressable(
             onTap: onSettings,
