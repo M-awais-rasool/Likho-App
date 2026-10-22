@@ -57,6 +57,7 @@ export type Tone = 'violet' | 'blue' | 'green' | 'amber' | 'pink' | 'teal' | 'sl
 
 export const featureInfo: Record<string, FeatureInfo> = {
   stories: { title: 'Stories', text: 'The Stories button on the map and the story episodes.', tone: 'blue' },
+  games: { title: 'Games', text: 'The Games button on the map: Monster Defense, practising the letters and words the child has learned.', tone: 'violet' },
   room: { title: "Pencil's room", text: 'The Mascot Room: spend stars on clothes and furniture.', tone: 'amber' },
   stickers: { title: 'Sticker book', text: 'The sticker book on the child’s profile.', tone: 'pink' },
   certificate: { title: 'Certificate', text: 'The certificate after the last level of the course.', tone: 'violet' },
