@@ -111,6 +111,578 @@
   "says": "Stay on the line!",
   "made": "f5e7a677bf44346d"
  },
+ "md_intro": {
+  "says": "Oh no! Silly monsters are coming to our garden! Tap the one I ask for, and I'll catch it in a magic bubble!",
+  "made": "bc53e66950d31148"
+ },
+ "md_go": {
+  "says": "Here they come!",
+  "made": "7d6241d82f755d35"
+ },
+ "md_wave": {
+  "says": "Here comes the next wave!",
+  "made": "6c5253a19c6c61b1"
+ },
+ "md_boss": {
+  "says": "Uh oh! Big Bonk is coming! Catch him three times!",
+  "made": "831e09c3ee100472"
+ },
+ "md_boss_hit": {
+  "says": "Bonk! Again!",
+  "made": "3d5efd55269b1a7f"
+ },
+ "md_great_1": {
+  "says": "Got it!",
+  "made": "3bae8aaf2f42ef67"
+ },
+ "md_great_2": {
+  "says": "Great job!",
+  "made": "36c169d76ec26a4e"
+ },
+ "md_great_3": {
+  "says": "Super!",
+  "made": "45d9431f5e04769c"
+ },
+ "md_great_4": {
+  "says": "Wow, you're fast!",
+  "made": "54345c38fa14776d"
+ },
+ "md_oops_1": {
+  "says": "Oops! Not that one.",
+  "made": "24413c2f24a9e56c"
+ },
+ "md_oops_2": {
+  "says": "Try another one!",
+  "made": "d9b26ade9507ba3a"
+ },
+ "md_hurry": {
+  "says": "Hurry! It's getting close!",
+  "made": "d8a5c6319999f024"
+ },
+ "md_gate": {
+  "says": "Oh no! It got to the gate!",
+  "made": "1a83d1f07dce3eff"
+ },
+ "md_crack": {
+  "says": "It's a tough one! Again!",
+  "made": "751bc3dcee3a4a90"
+ },
+ "md_power": {
+  "says": "A power-up! Tap it!",
+  "made": "886215ece5b49b36"
+ },
+ "md_freeze": {
+  "says": "Freeze!",
+  "made": "ad9ab22426fdd5aa"
+ },
+ "md_potion": {
+  "says": "Double magic!",
+  "made": "7a3cd32edf08f9f5"
+ },
+ "md_win": {
+  "says": "You did it! All the monsters are our friends now!",
+  "made": "f66e59440f3a5760"
+ },
+ "md_lose": {
+  "says": "Good try! Let's play again!",
+  "made": "25cafb3c3b2e8b42"
+ },
+ "md_record": {
+  "says": "Wow! A new best score!",
+  "made": "9b829827a3bd6f1a"
+ },
+ "md_find_a": {
+  "says": "Find A!",
+  "made": "d3a7cbe5ab23ab03"
+ },
+ "md_small_a": {
+  "says": "Find small a!",
+  "made": "34015cd88ce652ec"
+ },
+ "md_find_b": {
+  "says": "Find B!",
+  "made": "74266253581507de"
+ },
+ "md_small_b": {
+  "says": "Find small b!",
+  "made": "5856fd2d63954a27"
+ },
+ "md_find_c": {
+  "says": "Find C!",
+  "made": "0e8f8791d0bc338c"
+ },
+ "md_small_c": {
+  "says": "Find small c!",
+  "made": "04e908788f10d18a"
+ },
+ "md_find_d": {
+  "says": "Find D!",
+  "made": "6a1937307b5b2c50"
+ },
+ "md_small_d": {
+  "says": "Find small d!",
+  "made": "4a871fa1a6ac469e"
+ },
+ "md_find_e": {
+  "says": "Find E!",
+  "made": "33a76e37cb17ac05"
+ },
+ "md_small_e": {
+  "says": "Find small e!",
+  "made": "9a5f108b3b61f54e"
+ },
+ "md_find_f": {
+  "says": "Find F!",
+  "made": "a1abcb05c22bab3d"
+ },
+ "md_small_f": {
+  "says": "Find small f!",
+  "made": "fdc9735216077d63"
+ },
+ "md_find_g": {
+  "says": "Find G!",
+  "made": "e773d8696699a1a4"
+ },
+ "md_small_g": {
+  "says": "Find small g!",
+  "made": "3140b65c6db6648f"
+ },
+ "md_find_h": {
+  "says": "Find H!",
+  "made": "dcc4a3cf8425f68f"
+ },
+ "md_small_h": {
+  "says": "Find small h!",
+  "made": "c33c7e8247cbb3d1"
+ },
+ "md_find_i": {
+  "says": "Find I!",
+  "made": "00d04d57008a1555"
+ },
+ "md_small_i": {
+  "says": "Find small i!",
+  "made": "977d4052285258b8"
+ },
+ "md_find_j": {
+  "says": "Find J!",
+  "made": "984a8b43f6290aba"
+ },
+ "md_small_j": {
+  "says": "Find small j!",
+  "made": "f0e5f19538a6150c"
+ },
+ "md_find_k": {
+  "says": "Find K!",
+  "made": "9cf02b52d80722c3"
+ },
+ "md_small_k": {
+  "says": "Find small k!",
+  "made": "59beccfe8547e64d"
+ },
+ "md_find_l": {
+  "says": "Find L!",
+  "made": "14f7e91621126d72"
+ },
+ "md_small_l": {
+  "says": "Find small l!",
+  "made": "e997c17dc1f75cb7"
+ },
+ "md_find_m": {
+  "says": "Find M!",
+  "made": "3b6612106ec430b0"
+ },
+ "md_small_m": {
+  "says": "Find small m!",
+  "made": "9aab9345a006defb"
+ },
+ "md_find_n": {
+  "says": "Find N!",
+  "made": "e6651c951108dac6"
+ },
+ "md_small_n": {
+  "says": "Find small n!",
+  "made": "e1199a7bded446b7"
+ },
+ "md_find_o": {
+  "says": "Find O!",
+  "made": "a2f10a65bac230eb"
+ },
+ "md_small_o": {
+  "says": "Find small o!",
+  "made": "0a01e1ad2c1fabf2"
+ },
+ "md_find_p": {
+  "says": "Find P!",
+  "made": "45b216284d2baded"
+ },
+ "md_small_p": {
+  "says": "Find small p!",
+  "made": "785f60c25856a208"
+ },
+ "md_find_q": {
+  "says": "Find Q!",
+  "made": "92ca34c1cedcb892"
+ },
+ "md_small_q": {
+  "says": "Find small q!",
+  "made": "80f84c887f692b5e"
+ },
+ "md_find_r": {
+  "says": "Find R!",
+  "made": "c99f3f5a6a4f9612"
+ },
+ "md_small_r": {
+  "says": "Find small r!",
+  "made": "4acb0166c56845bf"
+ },
+ "md_find_s": {
+  "says": "Find S!",
+  "made": "6de6ac254fa9aaac"
+ },
+ "md_small_s": {
+  "says": "Find small s!",
+  "made": "1c4d6574ec954249"
+ },
+ "md_find_t": {
+  "says": "Find T!",
+  "made": "c362111d3e9622f7"
+ },
+ "md_small_t": {
+  "says": "Find small t!",
+  "made": "9bc5d0f09fcfff62"
+ },
+ "md_find_u": {
+  "says": "Find U!",
+  "made": "ce079d478a42f734"
+ },
+ "md_small_u": {
+  "says": "Find small u!",
+  "made": "7b0c3c941576cb8b"
+ },
+ "md_find_v": {
+  "says": "Find V!",
+  "made": "cd8d47d4643d6db1"
+ },
+ "md_small_v": {
+  "says": "Find small v!",
+  "made": "e68dbd8832d76a45"
+ },
+ "md_find_w": {
+  "says": "Find W!",
+  "made": "5942369580872edf"
+ },
+ "md_small_w": {
+  "says": "Find small w!",
+  "made": "46b08bc5233d61f4"
+ },
+ "md_find_x": {
+  "says": "Find X!",
+  "made": "4e1e3e943477e652"
+ },
+ "md_small_x": {
+  "says": "Find small x!",
+  "made": "8fd980ba7c58247f"
+ },
+ "md_find_y": {
+  "says": "Find Y!",
+  "made": "ce95d43e4ea5257b"
+ },
+ "md_small_y": {
+  "says": "Find small y!",
+  "made": "755d1896beba643d"
+ },
+ "md_find_z": {
+  "says": "Find Z!",
+  "made": "419ba0336f26cd98"
+ },
+ "md_small_z": {
+  "says": "Find small z!",
+  "made": "31919b9d14ea4b1e"
+ },
+ "md_first_apple": {
+  "says": "Apple! Which letter does it start with?",
+  "made": "a98e1953edf30293"
+ },
+ "md_first_ball": {
+  "says": "Ball! Which letter does it start with?",
+  "made": "80f6aad49d616da8"
+ },
+ "md_first_cat": {
+  "says": "Cat! Which letter does it start with?",
+  "made": "fead422af48865dc"
+ },
+ "md_first_dog": {
+  "says": "Dog! Which letter does it start with?",
+  "made": "d78dc4e79b8eaa8e"
+ },
+ "md_first_egg": {
+  "says": "Egg! Which letter does it start with?",
+  "made": "27ba076da655d1e5"
+ },
+ "md_first_fish": {
+  "says": "Fish! Which letter does it start with?",
+  "made": "4ca113eaa6900877"
+ },
+ "md_first_goat": {
+  "says": "Goat! Which letter does it start with?",
+  "made": "78f5e908830d78a8"
+ },
+ "md_first_hat": {
+  "says": "Hat! Which letter does it start with?",
+  "made": "4d948464a4cbfb77"
+ },
+ "md_first_insect": {
+  "says": "Insect! Which letter does it start with?",
+  "made": "d2ebab296d6cf539"
+ },
+ "md_first_jam": {
+  "says": "Jam! Which letter does it start with?",
+  "made": "2c2657f7de855b26"
+ },
+ "md_first_kite": {
+  "says": "Kite! Which letter does it start with?",
+  "made": "5a96ba4a004bbe50"
+ },
+ "md_first_lion": {
+  "says": "Lion! Which letter does it start with?",
+  "made": "9d5fadc3bcb1fff7"
+ },
+ "md_first_moon": {
+  "says": "Moon! Which letter does it start with?",
+  "made": "92e3af0bb05bcc4e"
+ },
+ "md_first_net": {
+  "says": "Net! Which letter does it start with?",
+  "made": "95cfc3ed7d15ea5a"
+ },
+ "md_first_octopus": {
+  "says": "Octopus! Which letter does it start with?",
+  "made": "a534cb1f07a08ea8"
+ },
+ "md_first_pig": {
+  "says": "Pig! Which letter does it start with?",
+  "made": "58cf4d21d1b95f3b"
+ },
+ "md_first_queen": {
+  "says": "Queen! Which letter does it start with?",
+  "made": "cd83375bd28e071a"
+ },
+ "md_first_rabbit": {
+  "says": "Rabbit! Which letter does it start with?",
+  "made": "471e00356a4e3e00"
+ },
+ "md_first_sun": {
+  "says": "Sun! Which letter does it start with?",
+  "made": "55389db50b709051"
+ },
+ "md_first_tiger": {
+  "says": "Tiger! Which letter does it start with?",
+  "made": "d5b6f5bdfdc2601e"
+ },
+ "md_first_umbrella": {
+  "says": "Umbrella! Which letter does it start with?",
+  "made": "e20e0462b9509ddd"
+ },
+ "md_first_van": {
+  "says": "Van! Which letter does it start with?",
+  "made": "2859acdd7c32520c"
+ },
+ "md_first_web": {
+  "says": "Web! Which letter does it start with?",
+  "made": "b3a806eb1c34a033"
+ },
+ "md_first_yoyo": {
+  "says": "Yoyo! Which letter does it start with?",
+  "made": "b3266cf66eb84c79"
+ },
+ "md_first_zebra": {
+  "says": "Zebra! Which letter does it start with?",
+  "made": "1f54375b979de7f0"
+ },
+ "md_word_cat": {
+  "says": "Find the word cat!",
+  "made": "3a6e1e0d755a7ca1"
+ },
+ "md_word_dog": {
+  "says": "Find the word dog!",
+  "made": "11a2ea36855b8a45"
+ },
+ "md_word_sun": {
+  "says": "Find the word sun!",
+  "made": "a7bf67a931e64dfc"
+ },
+ "md_word_bus": {
+  "says": "Find the word bus!",
+  "made": "6288cb7368f3a1f2"
+ },
+ "md_word_bed": {
+  "says": "Find the word bed!",
+  "made": "d81066e7fb026b6c"
+ },
+ "md_word_hat": {
+  "says": "Find the word hat!",
+  "made": "f2463fea7649dcb6"
+ },
+ "md_word_pig": {
+  "says": "Find the word pig!",
+  "made": "0daba60ede48ea17"
+ },
+ "md_word_fox": {
+  "says": "Find the word fox!",
+  "made": "6f0a8cf17a681980"
+ },
+ "md_word_hen": {
+  "says": "Find the word hen!",
+  "made": "dcbc07eeaee4aae3"
+ },
+ "md_word_pen": {
+  "says": "Find the word pen!",
+  "made": "5bce3f91060cc072"
+ },
+ "md_word_cup": {
+  "says": "Find the word cup!",
+  "made": "c5b857dcf61638cd"
+ },
+ "md_word_box": {
+  "says": "Find the word box!",
+  "made": "92b93c7018230ee8"
+ },
+ "md_word_bat": {
+  "says": "Find the word bat!",
+  "made": "4f5b7637334f2e7b"
+ },
+ "md_word_bag": {
+  "says": "Find the word bag!",
+  "made": "d171f8d67ce00183"
+ },
+ "md_word_net": {
+  "says": "Find the word net!",
+  "made": "6a70e57e9ed8216a"
+ },
+ "md_word_pan": {
+  "says": "Find the word pan!",
+  "made": "e13ba7d45de1d860"
+ },
+ "md_word_pin": {
+  "says": "Find the word pin!",
+  "made": "da182fc42ee7a059"
+ },
+ "md_word_pot": {
+  "says": "Find the word pot!",
+  "made": "b217b15063f6d187"
+ },
+ "md_word_rat": {
+  "says": "Find the word rat!",
+  "made": "8a5e97a56a19beb7"
+ },
+ "md_word_van": {
+  "says": "Find the word van!",
+  "made": "0b0bb29ca0c5c9d3"
+ },
+ "md_word_web": {
+  "says": "Find the word web!",
+  "made": "b0a56b1d3e098343"
+ },
+ "md_word_bug": {
+  "says": "Find the word bug!",
+  "made": "c73b7eaff6cb645f"
+ },
+ "md_word_nut": {
+  "says": "Find the word nut!",
+  "made": "843bbe6dd2813d4b"
+ },
+ "md_word_log": {
+  "says": "Find the word log!",
+  "made": "eabb0d8a0a4077be"
+ },
+ "md_word_fan": {
+  "says": "Find the word fan!",
+  "made": "bba8d1d22bc26e8a"
+ },
+ "md_word_jam": {
+  "says": "Find the word jam!",
+  "made": "5460ed3a7cebf936"
+ },
+ "md_word_tin": {
+  "says": "Find the word tin!",
+  "made": "a19c15c37ae47012"
+ },
+ "md_word_hut": {
+  "says": "Find the word hut!",
+  "made": "797d9bb53ae9665e"
+ },
+ "md_word_bun": {
+  "says": "Find the word bun!",
+  "made": "df317de894c76238"
+ },
+ "md_word_egg": {
+  "says": "Find the word egg!",
+  "made": "01e9cc92246a0b73"
+ },
+ "md_word_fish": {
+  "says": "Find the word fish!",
+  "made": "9cf4e7166699d9fe"
+ },
+ "md_word_duck": {
+  "says": "Find the word duck!",
+  "made": "0fbc4f66a92e8b3d"
+ },
+ "md_word_frog": {
+  "says": "Find the word frog!",
+  "made": "b65768e0e0b88756"
+ },
+ "md_word_ship": {
+  "says": "Find the word ship!",
+  "made": "05f2714531e5c599"
+ },
+ "md_word_star": {
+  "says": "Find the word star!",
+  "made": "3f05e006f0ccefb9"
+ },
+ "md_word_moon": {
+  "says": "Find the word moon!",
+  "made": "7315b36736e08c19"
+ },
+ "md_word_book": {
+  "says": "Find the word book!",
+  "made": "53f2084ec2443944"
+ },
+ "md_word_ball": {
+  "says": "Find the word ball!",
+  "made": "e5271529192f48dc"
+ },
+ "md_word_cake": {
+  "says": "Find the word cake!",
+  "made": "8e2865b5624c063c"
+ },
+ "md_word_kite": {
+  "says": "Find the word kite!",
+  "made": "67fc1c62fd3aa438"
+ },
+ "md_word_boat": {
+  "says": "Find the word boat!",
+  "made": "2a27540382255ef4"
+ },
+ "md_word_tent": {
+  "says": "Find the word tent!",
+  "made": "593a54b2343d9970"
+ },
+ "md_word_drum": {
+  "says": "Find the word drum!",
+  "made": "3523f9fc6ed81045"
+ },
+ "md_word_nest": {
+  "says": "Find the word nest!",
+  "made": "d1a6357276f2d607"
+ },
+ "md_word_crab": {
+  "says": "Find the word crab!",
+  "made": "c924e9f2e461ca98"
+ },
+ "md_word_sock": {
+  "says": "Find the word sock!",
+  "made": "d7e6bd0461238141"
+ },
  "story_a_knock": {
   "says": "Pencil! Pencil! Dada needs help. Come to the apple garden!",
   "made": "548a77159da43b73"
