@@ -1,0 +1,160 @@
+{
+ "gloop": {
+  "poses": [
+   "walk_a",
+   "walk_b",
+   "roar",
+   "bonked",
+   "surprised",
+   "friendly"
+  ],
+  "size": [
+   410,
+   420
+  ]
+ },
+ "gloop_idle": {
+  "size": [
+   336,
+   360
+  ]
+ },
+ "fuzz": {
+  "poses": [
+   "walk_a",
+   "walk_b",
+   "roar",
+   "bonked",
+   "surprised",
+   "friendly"
+  ],
+  "size": [
+   461,
+   420
+  ]
+ },
+ "fuzz_idle": {
+  "size": [
+   349,
+   360
+  ]
+ },
+ "bonk": {
+  "poses": [
+   "walk_a",
+   "walk_b",
+   "roar",
+   "bonked",
+   "surprised",
+   "friendly"
+  ],
+  "size": [
+   417,
+   420
+  ]
+ },
+ "bonk_idle": {
+  "size": [
+   269,
+   360
+  ]
+ },
+ "boo": {
+  "poses": [
+   "walk_a",
+   "walk_b",
+   "roar",
+   "bonked",
+   "surprised",
+   "friendly"
+  ],
+  "size": [
+   439,
+   420
+  ]
+ },
+ "boo_idle": {
+  "size": [
+   315,
+   360
+  ]
+ },
+ "wand": {
+  "size": [
+   317,
+   360
+  ]
+ },
+ "heart": {
+  "size": [
+   360,
+   313
+  ]
+ },
+ "star": {
+  "size": [
+   360,
+   347
+  ]
+ },
+ "ice": {
+  "size": [
+   319,
+   360
+  ]
+ },
+ "potion": {
+  "size": [
+   244,
+   360
+  ]
+ },
+ "chest": {
+  "size": [
+   360,
+   335
+  ]
+ },
+ "chest_open": {
+  "size": [
+   348,
+   360
+  ]
+ },
+ "trophy": {
+  "size": [
+   358,
+   360
+  ]
+ },
+ "sign": {
+  "size": [
+   273,
+   360
+  ]
+ },
+ "books": {
+  "size": [
+   360,
+   349
+  ]
+ },
+ "bg_path_day": {
+  "size": [
+   1080,
+   1935
+  ]
+ },
+ "bg_path_sunset": {
+  "size": [
+   1080,
+   1935
+  ]
+ },
+ "cover": {
+  "size": [
+   720,
+   720
+  ]
+ }
+}
