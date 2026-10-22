@@ -12,7 +12,10 @@ import '../../data/course_providers.dart';
 import '../../data/media.dart';
 import '../../data/models/course_models.dart';
 import '../../data/progress.dart';
+import '../../data/games.dart';
 import '../../data/story.dart';
+import '../../game/monster_defense/md_engine.dart';
+import '../games/monster_defense/md_scene.dart';
 import '../stories/story_art.dart';
 import '../../design/icon_registry.dart';
 import '../../design/tokens.dart';
@@ -30,7 +33,7 @@ import 'map_painters.dart';
 /// at 55 % of the screen. Nodes pop in, staggered by distance from the
 /// current level; the mascot stands on the current level.
 class WorldMapScreen extends ConsumerStatefulWidget {
-  const WorldMapScreen({super.key, this.onOpenLevel, this.onProfile, this.onRoom, this.onSettings, this.onStories});
+  const WorldMapScreen({super.key, this.onOpenLevel, this.onProfile, this.onRoom, this.onSettings, this.onStories, this.onGames});
 
   /// Tapped an unlocked level (Gameplay is the next screen to build).
   final ValueChanged<int>? onOpenLevel;
@@ -40,6 +43,9 @@ class WorldMapScreen extends ConsumerStatefulWidget {
 
   /// Stories (the button under Pencil's room).
   final VoidCallback? onStories;
+
+  /// Games (the button under Stories).
+  final VoidCallback? onGames;
 
   static const String reference = 'assets/reference/screens/world_map.png';
 
@@ -147,6 +153,7 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen> with SingleTick
     // App controls: Pencil's room and Stories can be switched off
     final roomOn = ref.watch(featureShownProvider(Feature.room));
     final storiesOn = ref.watch(storiesShownProvider);
+    final gamesOn = ref.watch(gamesShownProvider);
     if (course != null) {
       _fetchAhead(course, current);
       _noteBeaten(course, progress);
@@ -203,6 +210,13 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen> with SingleTick
                     // under Pencil's room, or in its place when the room is off
                     top: MediaQuery.paddingOf(context).top + 5 + (roomOn ? 64 + 14 : 0),
                     child: _StoriesButton(time: _time, fresh: ref.watch(myStoryStarsProvider).isEmpty, onTap: widget.onStories!),
+                  ),
+                if (widget.onGames != null && gamesOn)
+                  Positioned(
+                    right: 74,
+                    // under Stories (and the room), moving up when they are off
+                    top: MediaQuery.paddingOf(context).top + 5 + (roomOn ? 64 + 14 : 0) + (widget.onStories != null && storiesOn ? 64 + 14 : 0),
+                    child: _GamesButton(time: _time, fresh: ref.watch(myGamesProvider).isEmpty, onTap: widget.onGames!),
                   ),
               ],
             );
@@ -809,6 +823,58 @@ class _StoriesButton extends StatelessWidget {
                 SizedBox(width: 34, height: 32, child: Image.asset(StoryArt.prop('a', 'apple_leaf'), fit: BoxFit.contain)),
                 const SizedBox(height: 1),
                 Text('Stories', style: LikhoFonts.title(size: 12.5, weight: FontWeight.w800, color: LikhoColors.surface).copyWith(height: 1)),
+              ],
+            ),
+          ),
+          if (fresh)
+            Positioned(
+              right: -8,
+              top: -8,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                decoration: BoxDecoration(color: LikhoColors.hint, borderRadius: BorderRadius.circular(10), border: Border.all(color: LikhoColors.surface, width: 2)),
+                child: Text('NEW', style: LikhoFonts.title(size: 11, weight: FontWeight.w800, color: LikhoColors.surface).copyWith(height: 1)),
+              ),
+            ),
+        ],
+      ),
+    ),
+  );
+}
+
+/// Games, under Stories: a violet button with Gloop waving and "Games";
+/// "NEW" (and a little hop) until the child has played one.
+class _GamesButton extends StatelessWidget {
+  const _GamesButton({required this.time, required this.fresh, required this.onTap});
+  final ValueNotifier<double> time;
+  final bool fresh;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) => _Pressable(
+    key: const ValueKey('games-button'),
+    onTap: onTap,
+    pressOffset: 3,
+    child: ValueListenableBuilder<double>(
+      valueListenable: time,
+      builder: (context, t, child) => Transform.translate(offset: Offset(0, fresh ? -math.max(0, math.sin(t * 3 + 1.5)) * 3 : 0), child: child),
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Container(
+            width: 64,
+            height: 64,
+            decoration: BoxDecoration(
+              color: MonsterColors.ribbon,
+              borderRadius: BorderRadius.circular(22),
+              boxShadow: const [BoxShadow(color: MonsterColors.ribbonDeep, offset: Offset(0, 5))],
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(width: 36, height: 33, child: Image.asset(MdArt.pose(MdKind.gloop, 'friendly'), fit: BoxFit.contain)),
+                const SizedBox(height: 1),
+                Text('Games', style: LikhoFonts.title(size: 12.5, weight: FontWeight.w800, color: LikhoColors.surface).copyWith(height: 1)),
               ],
             ),
           ),
