@@ -166,6 +166,51 @@ class AppFeedback {
 
   void splashChime() => _go(Sfx.splashChime, HapticCue.press);
 
+  // ---------------------------------------------------------- Monster Defense
+  void monsterOut() => _go(Sfx.mdSpawn, null, volume: .7);
+
+  /// Pencil's magic flies at a monster.
+  void zap() => _go(Sfx.mdZap, HapticCue.press);
+
+  void bubble() => _go(Sfx.mdBubble, HapticCue.success);
+
+  /// A bubble pops: the monster is a friend.
+  void bubblePop() => _go(Sfx.mdPop, HapticCue.tick);
+
+  void roar() => _go(Sfx.mdRoar, HapticCue.gentleError);
+
+  void crack() => _go(Sfx.mdCrack, HapticCue.land);
+
+  /// A monster got to the gate: a heart is lost.
+  void gate() => _go(Sfx.mdGate, HapticCue.landBig);
+
+  void wave() => _go(Sfx.mdWave, HapticCue.press);
+
+  void bigBoss() => _go(Sfx.mdBoss, HapticCue.bossWake);
+
+  void hurry() => _go(Sfx.mdHurry, HapticCue.tick, volume: .9);
+
+  void powerUp() => _go(Sfx.mdPower, HapticCue.reward);
+
+  void freeze() => _go(Sfx.mdFreeze, HapticCue.press);
+
+  void potion() => _go(Sfx.mdPotion, HapticCue.press);
+
+  void gameLost() => _go(Sfx.mdLose, null);
+
+  /// The game's music (calm, or [tense]); the other loop stops.
+  void music({bool tense = false}) {
+    final engine = _ref.read(soundEngineProvider);
+    engine.stopLoop(tense ? Sfx.mdMusic : Sfx.mdMusicTense);
+    if (_sfx) engine.loop(tense ? Sfx.mdMusicTense : Sfx.mdMusic, volume: .55);
+  }
+
+  void stopMusic() {
+    final engine = _ref.read(soundEngineProvider);
+    engine.stopLoop(Sfx.mdMusic);
+    engine.stopLoop(Sfx.mdMusicTense);
+  }
+
   // ---------------------------------------------------------- writing
   void startWriting() {
     if (_sfx) _ref.read(soundEngineProvider).loop(Sfx.scribbleLoop, volume: .9);
