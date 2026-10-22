@@ -748,6 +748,47 @@ abstract final class StoryColors {
   static const lockedInk = Color(0xFFB3A796);
 }
 
+/// Games (Monster Defense): Pencil's magic, the bubbles, the monsters'
+/// signs, the boss's balloons and crown, the game's panels.
+abstract final class MonsterColors {
+  static const shadow = Color(0x33223311);
+  static const magic = Color(0xFF9B7BFF);
+  static const magicCore = Color(0xFFFFFFFF);
+  static const magicGlow = Color(0x669B7BFF);
+  static const spark = Color(0xFFFFD84D);
+  static const bubble = Color(0x33BDE8FF);
+  static const bubbleRim = Color(0xCCFFFFFF);
+  static const bubbleTint = Color(0xFF8FD3FF);
+  static const sign = Color(0xFFFFFFFF);
+  static const signEdge = Color(0xFFC9935B);
+  static const signInk = Color(0xFF3B2A1E);
+  static const hintGlow = Color(0xCCFFD84D);
+  static const danger = Color(0x55FF8A5B); // the edges glow when a monster is close (never red)
+  static const ice = Color(0x4D8FD3FF);
+  static const iceEdge = Color(0xB3DFF4FF);
+  static const panel = Color(0xEBFFFFFF);
+  static const panelShadow = Color(0x332B2D42);
+  static const ribbon = Color(0xFF7C5CFF);
+  static const ribbonDeep = Color(0xFF5B3FD9);
+  static const ribbonInk = Color(0xFFFFFFFF);
+  static const bossRibbon = Color(0xFFFF8A5B);
+  static const bossRibbonDeep = Color(0xFFE0673A);
+  static const gold = Color(0xFFFFC83D);
+  static const goldDeep = Color(0xFFC98A12);
+  static const gem = Color(0xFFFF5D73);
+  static const gemBlue = Color(0xFF4D9DE0);
+  static const score = Color(0xFFFFD84D);
+  static const scoreEdge = Color(0xFF6B4A12);
+  static const veil = Color(0x99201A14);
+  static const heartOff = Color(0x66FFFFFF);
+  static const string = Color(0xCC6B5A4A);
+  static const balloons = [Color(0xFFFF6B6B), Color(0xFF4D9DE0), Color(0xFF3BB273)];
+  static const balloonEdge = [Color(0xFFD94848), Color(0xFF2F7CC0), Color(0xFF268F58)];
+  static const confetti = [Color(0xFFFFC83D), Color(0xFF4D9DE0), Color(0xFFFF8A5B), Color(0xFF3BB273), Color(0xFF9B7BFF), Color(0xFFFF9EB5)];
+  static const card = Color(0xFFFFFFFF);
+  static const cardTop = Color(0xFF6FCB8B); // the Games card's top (a meadow)
+}
+
 /// 8pt grid spacing.
 abstract final class LikhoSpace {
   static const double s1 = 8;
