@@ -40,6 +40,9 @@ flutter:
     - assets/audio/
     - assets/voice/
     - assets/stories/a/
+    - assets/games/
+    - assets/games/monsters/
+    - assets/games/words/
     - assets/sfx/
     - assets/licenses/
     # dev-only reference images for the overlay check (remove from release builds)
