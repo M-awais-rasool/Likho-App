@@ -11,7 +11,7 @@ speech model (Apache-2.0, runs on this computer) and writes, per line:
 
 and puts the recording's path in the content (`intro.audio`, `prompt.audio`).
 Pencil's lines outside the course (APP_LINES: onboarding, coaching in the
-games) and the story episodes' lines (app/assets/stories/<episode>/story.json,
+games; game_lines(): Monster Defense) and the story episodes' lines (app/assets/stories/<episode>/story.json,
 each speaker in their own voice) go into the app itself, app/assets/voice/<id>.m4a + .lip, so they
 play before anything is downloaded; app/lib/feedback/pencil_lines.dart and
 app/lib/game/coach.dart name them.
@@ -66,6 +66,7 @@ LOCK = HERE / "voice.lock.json"
 APP_OUT = ROOT / "app" / "assets" / "voice"  # bundled with the app
 STORIES = ROOT / "app" / "assets" / "stories"  # story episodes: <episode>/story.json, lines recorded as story_<episode>_<id>
 APP_LOCK = HERE / "app_lines.lock.json"
+GAME_WORDS = ROOT / "app" / "assets" / "games" / "monster_words.json"  # Monster Defense's words
 CACHE = HERE / ".cache"
 
 # {shown|IPA}
@@ -109,6 +110,55 @@ APP_LINES = {
     "coach_follow_arrow": "Follow the arrow!",
     "coach_stay_on_line": "Stay on the line!",
 }
+
+# Monster Defense (app/lib/game/monster_defense/): Pencil's lines in the game
+# (app/lib/screens/games/monster_defense/md_lines.dart names them) ...
+GAME_LINES = {
+    "md_intro": "Oh no! Silly monsters are coming to our garden! Tap the one I ask for, and I'll catch it in a magic bubble!",
+    "md_go": "Here they come!",
+    "md_wave": "Here comes the next wave!",
+    "md_boss": "Uh oh! Big Bonk is coming! Catch him three times!",
+    "md_boss_hit": "Bonk! Again!",
+    "md_great_1": "Got it!",
+    "md_great_2": "Great job!",
+    "md_great_3": "Super!",
+    "md_great_4": "Wow, you're fast!",
+    "md_oops_1": "Oops! Not that one.",
+    "md_oops_2": "Try another one!",
+    "md_hurry": "Hurry! It's getting close!",
+    "md_gate": "Oh no! It got to the gate!",
+    "md_crack": "It's a tough one! Again!",
+    "md_power": "A power-up! Tap it!",
+    "md_freeze": "Freeze!",
+    "md_potion": "Double magic!",
+    "md_win": "You did it! All the monsters are our friends now!",
+    "md_lose": "Good try! Let's play again!",
+    "md_record": "Wow! A new best score!",
+}
+
+# ... and a question for every letter and word: "Find B!", "Find small b!",
+# "Apple! Which letter does it start with?", "Find the word cat!". Letter
+# names as tools/curriculum/build_levels.py says them (NAME there).
+LETTER_NAME = {
+    "a": "ˈeɪ", "b": "bˈiː", "c": "sˈiː", "d": "dˈiː", "e": "ˈiː", "f": "ˈɛf", "g": "ʤˈiː", "h": "ˈeɪʧ", "i": "ˈaɪ",
+    "j": "ʤˈeɪ", "k": "kˈeɪ", "l": "ˈɛl", "m": "ˈɛm", "n": "ˈɛn", "o": "ˈoʊ", "p": "pˈiː", "q": "kjˈuː", "r": "ˈɑːɹ",
+    "s": "ˈɛs", "t": "tˈiː", "u": "jˈuː", "v": "vˈiː", "w": "dˈʌbəljuː", "x": "ˈɛks", "y": "wˈaɪ", "z": "zˈiː",
+}
+
+
+def game_lines():
+    """Monster Defense's lines: md_<id> -> words."""
+    out = dict(GAME_LINES)
+    for l, ipa in LETTER_NAME.items():
+        out[f"md_find_{l}"] = f"Find {{{l.upper()}|{ipa}}}!"
+        out[f"md_small_{l}"] = f"Find small {{{l}|{ipa}}}!"
+    words = json.loads(GAME_WORDS.read_text(encoding="utf-8"))
+    for w in words["first"]:
+        out[f"md_first_{w}"] = f"{w.capitalize()}! Which letter does it start with?"
+    for w in words["read"]:
+        out[f"md_word_{w}"] = f"Find the word {w}!"
+    return out
+
 
 def story_lines():
     """The story episodes' lines: story_<episode>_<id> -> (words, voice of who says it)."""
@@ -254,7 +304,7 @@ def app_lines(voice, args):
     lock = json.loads(APP_LOCK.read_text(encoding="utf-8")) if APP_LOCK.exists() else {}
     out, recorded = {}, 0
     APP_OUT.mkdir(parents=True, exist_ok=True)
-    every = {k: (w, VOICE) for k, w in APP_LINES.items()} | story_lines()
+    every = {k: (w, VOICE) for k, w in (APP_LINES | game_lines()).items()} | story_lines()
     for key, (words, who) in every.items():
         ph = voice.phonemes(words)
         if args.print:
