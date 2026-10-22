@@ -55,6 +55,30 @@ class Sfx {
   static const bossSnore = Sfx('boss_snore');
   static const alarmRing = Sfx('alarm_ring');
 
+  // Monster Defense
+  static const mdSpawn = Sfx('md_spawn');
+  static const mdZap = Sfx('md_zap');
+  static const mdBubble = Sfx('md_bubble');
+  static const mdPop = Sfx('md_pop');
+  static const mdRoar = Sfx('md_roar');
+  static const mdCrack = Sfx('md_crack');
+  static const mdGate = Sfx('md_gate');
+  static const mdWave = Sfx('md_wave');
+  static const mdBoss = Sfx('md_boss');
+  static const mdHurry = Sfx('md_hurry');
+  static const mdPower = Sfx('md_power');
+  static const mdFreeze = Sfx('md_freeze');
+  static const mdPotion = Sfx('md_potion');
+  static const mdLose = Sfx('md_lose');
+
+  /// The game's music, looped: calm, and tense while a monster is close.
+  static const mdMusic = Sfx('md_music');
+  static const mdMusicTense = Sfx('md_music_tense');
+
+  static const monsterDefense = [
+    mdSpawn, mdZap, mdBubble, mdPop, mdRoar, mdCrack, mdGate, mdWave, mdBoss, mdHurry, mdPower, mdFreeze, mdPotion, mdLose, mdMusic, mdMusicTense,
+  ];
+
   // rewards, room, profiles
   static const reward = Sfx('reward');
   static const wear = Sfx('wear');
@@ -87,6 +111,7 @@ class Sfx {
     for (var k = 1; k <= 3; k++) star(k),
     reward, wear, sticker, unlock, successSoft, send, paint, candle, catchLetter,
     splashLand, splashSwish, splashChime, scribbleLoop,
+    ...monsterDefense,
   ];
 
   /// Loaded at start-up: the splash and the sounds of every answer.
