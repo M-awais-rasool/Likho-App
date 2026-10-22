@@ -1,0 +1,5 @@
+{
+ "about": "Monster Defense: the words its questions use. first: a picture whose first letter makes its usual sound (Which letter does it start with?). read: short words to read (Find the word ...). Each has a picture (assets/games/words/<word>.webp) and Pencil's lines (assets/voice/md_first_<word>, md_word_<word>); tools/games/cut_art.py and tools/voice/generate_voice.py --app make them from this list.",
+ "first": ["apple", "ball", "cat", "dog", "egg", "fish", "goat", "hat", "insect", "jam", "kite", "lion", "moon", "net", "octopus", "pig", "queen", "rabbit", "sun", "tiger", "umbrella", "van", "web", "yoyo", "zebra"],
+ "read": ["cat", "dog", "sun", "bus", "bed", "hat", "pig", "fox", "hen", "pen", "cup", "box", "bat", "bag", "net", "pan", "pin", "pot", "rat", "van", "web", "bug", "nut", "log", "fan", "jam", "tin", "hut", "bun", "egg", "fish", "duck", "frog", "ship", "star", "moon", "book", "ball", "cake", "kite", "boat", "tent", "drum", "nest", "crab", "sock"]
+}
