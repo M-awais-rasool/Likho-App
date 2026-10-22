@@ -67,6 +67,7 @@ type TabId = (typeof tabs)[number]['id']
 
 const featureIcon: Record<string, LucideIcon> = {
   stories: BookOpen,
+  games: Gamepad2,
   room: Armchair,
   stickers: Sticker,
   certificate: Award,
@@ -189,7 +190,7 @@ export default function Controls() {
   )
   const dot = (t: TabId) =>
     ({
-      features: ['stories', 'room', 'stickers', 'certificate', 'placement', 'guest'].some((f) => changed.has(`feature:${f}`)),
+      features: ['stories', 'games', 'room', 'stickers', 'certificate', 'placement', 'guest'].some((f) => changed.has(`feature:${f}`)),
       stories: changed.has('stories') || changed.has('feature:stories'),
       room: changed.has('room') || changed.has('colors') || changed.has('feature:room'),
       sound: changed.has('games') || ['sfx', 'voice', 'haptics'].some((f) => changed.has(`feature:${f}`)),
@@ -256,7 +257,7 @@ export default function Controls() {
           {tab === 'features' && (
             <div className="space-y-5">
               <Section title="In the children's app" hint="Turn a part off and it disappears from the app. “Likho Plus” keeps it for paying families; others are shown the paywall.">
-                {['stories', 'room', 'stickers', 'certificate'].map(feature)}
+                {['stories', 'games', 'room', 'stickers', 'certificate'].map(feature)}
               </Section>
               <Section title="Getting started" hint="What a new family goes through.">
                 {['placement', 'guest'].map(feature)}

@@ -42,6 +42,7 @@ var (
 // Features, in the order the panel shows them.
 var Features = []Feature{
 	{"stories", ModeOff, allModes},
+	{"games", ModeOn, allModes},
 	{"room", ModeOn, allModes},
 	{"stickers", ModeOn, allModes},
 	{"certificate", ModeOn, onOffModes},
