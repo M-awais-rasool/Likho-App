@@ -37,6 +37,7 @@ enum Access {
 /// Switches (the admin panel's features).
 abstract final class Feature {
   static const stories = 'stories';
+  static const games = 'games';
   static const room = 'room';
   static const stickers = 'stickers';
   static const certificate = 'certificate';
