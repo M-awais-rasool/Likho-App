@@ -402,7 +402,7 @@ double _tanh(double v) {
   return (e - 1) / (e + 1);
 }
 
-void writeWav(String path, Snd x) {
+void writeWav(String path, Snd x, {int rate = sr}) {
   final n = x.s.length;
   final b = BytesBuilder();
   void u32(int v) => b.add(Uint8List(4)..buffer.asByteData().setUint32(0, v, Endian.little));
@@ -413,8 +413,8 @@ void writeWav(String path, Snd x) {
   u32(16);
   u16(1);
   u16(1);
-  u32(sr);
-  u32(sr * 2);
+  u32(rate);
+  u32(rate * 2);
   u16(2);
   u16(16);
   b.add('data'.codeUnits);
@@ -425,6 +425,90 @@ void writeWav(String path, Snd x) {
   }
   b.add(pcm.buffer.asUint8List());
   File(path).writeAsBytesSync(b.toBytes());
+}
+
+// ------------------------------------------------------------------ music
+/// A plucked bass note (warm partials; phone speakers hear its overtones).
+Snd pluck(double f, {double dur = .4, double amp = 1}) => partials(f, dur, [(1, 1, 1), (2, .55, .6), (3, .3, .4), (4, .16, .3), (5, .08, .2)], attack: .004)..scale(amp);
+
+/// A game music loop: 4 bars at [bpm] in D major pentatonic (kick, shaker,
+/// plucked bass, kalimba tune). [tense] adds a running bass, a snare on 2
+/// and 4 and a pulsing pad, for when the monsters get close. The reverb's
+/// tail is folded onto the start, so the loop joins without a seam.
+Snd gameMusic({required double bpm, required bool tense, int seed = 500}) {
+  final r = math.Random(seed);
+  final eighth = 60 / bpm / 2;
+  const bars = 4;
+  final n = (bars * 8 * eighth * sr).round();
+  final x = Snd(bars * 8 * eighth + 1.6);
+  final roots = [hz('D3'), hz('B2'), hz('E3'), hz('A2')];
+  // the tune, an eighth at a time (scale degrees, null = rest)
+  const tune = [
+    [8, null, 7, 8, 10, null, 8, null],
+    [7, null, 5, 7, 8, null, null, null],
+    [8, null, 9, 10, 9, null, 8, null],
+    [7, null, 8, 7, 5, null, null, null],
+  ];
+  for (var bar = 0; bar < bars; bar++) {
+    for (var e = 0; e < 8; e++) {
+      final at = (bar * 8 + e) * eighth;
+      // kick on 1 and 3
+      if (e == 0 || e == 4) x.mix(thump(f0: 170, f1: 70, dur: .16, amp: .9), at: at);
+      // snare on 2 and 4 when tense
+      if (tense && (e == 2 || e == 6)) x.mix(strike(.06, 1900, .5, q: .7), at: at);
+      // shaker, offbeats a little louder
+      x.mix(strike(.025, 7500, e.isOdd ? .18 : .1, q: 1.4), at: at + r.nextDouble() * .006);
+      // bass
+      final root = roots[bar];
+      if (tense) {
+        x.mix(pluck(e % 4 == 3 ? root * 1.5 : root, dur: eighth * .95, amp: .55), at: at);
+      } else if (e == 0 || e == 3 || e == 4 || e == 7) {
+        x.mix(pluck(e == 7 ? root * 1.5 : root, dur: eighth * 2.2, amp: .6), at: at);
+      }
+      // the tune (an octave up, brighter, when tense)
+      final d = tune[bar][e];
+      if (d != null) {
+        final f = deg(d) * (tense && bar.isOdd ? 2 : 1);
+        x.mix(kalimba(f, dur: eighth * 2.4, amp: .42), at: at);
+        if (tense) x.mix(blip(f * 2, dur: .08, amp: .12), at: at);
+      }
+    }
+    if (tense) {
+      // a pad that pulses on every beat
+      for (var b = 0; b < 4; b++) {
+        x.mix(pad([roots[bar] * 2, roots[bar] * 3, roots[bar] * 4], dur: eighth * 2, amp: .16), at: (bar * 8 + b * 2) * eighth);
+      }
+    }
+  }
+  final wet = room(houseEq(x), wet: .14, tail: .3);
+  // fold everything after the loop's end onto its start
+  for (var i = n; i < wet.s.length; i++) {
+    wet.s[i - n] += wet.s[i];
+  }
+  wet.s = Float64List.fromList(wet.s.sublist(0, n));
+  return wet;
+}
+
+/// [master] for a loop: the loudness and the soft limit, without trimming
+/// or fading its end (that would break the loop).
+Snd masterLoop(Snd x, double targetDb) {
+  var sum = 0.0;
+  for (final v in x.s) {
+    sum += v * v;
+  }
+  final g = math.pow(10, targetDb / 20) / math.sqrt(sum / x.s.length);
+  const ceiling = .891;
+  for (var i = 0; i < x.s.length; i++) {
+    final v = x.s[i] * g;
+    x.s[i] = v.abs() < .6 ? v : v.sign * (.6 + (ceiling - .6) * _tanh((v.abs() - .6) / (ceiling - .6)));
+  }
+  return x;
+}
+
+/// Half the sample rate (music needs no more), filtered first.
+Snd halfRate(Snd x) {
+  filter(x, (b) => b.lowpass(9000, .6));
+  return Snd(0)..s = Float64List.fromList([for (var i = 0; i < x.s.length; i += 2) x.s[i]]);
 }
 
 // ------------------------------------------------------------------ the palette
@@ -790,8 +874,163 @@ Map<String, Snd Function()> palette() {
       x.mix(strike(.02, 3500, .4, q: 1.5));
       return master(houseEq(room(x, wet: .08)), feedback);
     },
+
+    // ---------------------------------------------------------- Monster Defense
+    // (after the boss battle, for the same reason)
+    // a monster comes out of the cave
+    'md_spawn': () {
+      final x = Snd(.8)
+        ..mix(whoosh(.5, 300, 1500, amp: .6, q: 1.2))
+        ..mix(boing(f0: 180, f1: 300, dur: .35, amp: .35), at: .2);
+      return master(houseEq(room(x, wet: .25)), soft);
+    },
+    // Pencil's magic flies: a sweep up and four quick notes
+    'md_zap': () {
+      final x = Snd(.8)..mix(whoosh(.32, 600, 7000, amp: .7, q: 1.6, peakAt: .7));
+      for (final (i, f) in [a5, d6, fs6, a6].indexed) {
+        x.mix(blip(f, dur: .08, amp: .5), at: .03 + i * .045);
+      }
+      x.mix(sparkle(.4, count: 5, seed: 401, amp: .25), at: .2);
+      return master(houseEq(room(x, wet: .15)), feedback);
+    },
+    // the magic bubble closes round the monster
+    'md_bubble': () {
+      final x = Snd(.8)
+        ..mix(bloop(f0: 200, f1: 700, dur: .25, amp: .9))
+        ..mix(bloop(f0: 400, f1: 1100, dur: .18, amp: .5), at: .12)
+        ..mix(bell(d6, dur: .5, amp: .3, bright: .5), at: .2);
+      return master(houseEq(room(x, wet: .2)), feedback - 1);
+    },
+    // the bubble pops up high and the monster is a friend: pop + chime
+    'md_pop': () {
+      final x = Snd(1.0)
+        ..mix(pop(1200, 300, dur: .08, amp: 1))
+        ..mix(strike(.01, 4000, .4));
+      for (final (i, f) in [d6, a6, d7].indexed) {
+        x.mix(bell(f, dur: .5, amp: .5), at: .1 + i * .07);
+      }
+      x.mix(sparkle(.6, count: 6, seed: 402, amp: .22), at: .12);
+      return master(houseEq(room(x, wet: .2)), feedback);
+    },
+    // a silly monster "rawr" (a wobbly growl through a mouth-like band)
+    'md_roar': () {
+      final x = Snd(.6);
+      var ph = 0.0;
+      for (var i = 0; i < x.s.length; i++) {
+        final t = i / sr;
+        final f = 150 + 60 * math.sin(math.pi * math.min(1, t / .5)) + 18 * math.sin(2 * math.pi * 28 * t);
+        ph += 2 * math.pi * f / sr;
+        var v = 0.0;
+        for (var k = 1; k <= 8; k++) {
+          v += math.sin(ph * k) / k;
+        }
+        final e = t < .04 ? t / .04 : math.max(0.0, 1 - (t - .04) / .5);
+        x.s[i] = v * e * .5 + noise() * .08 * e;
+      }
+      filter(x, (b) => b.bandpass(750, .8));
+      filter(x, (b) => b.peak(1600, 4, 1.2));
+      return master(houseEq(room(x, wet: .1)), feedback - 1);
+    },
+    // the stone monster's bubble breaks: a crack and little stones
+    'md_crack': () {
+      final x = Snd(.6)
+        ..mix(thump(f0: 220, f1: 90, dur: .15, amp: .9))
+        ..mix(strike(.03, 1800, .9, q: .8))
+        ..mix(strike(.02, 3200, .6, q: 1.5), at: .04);
+      for (final (k, n) in ['A4', 'D5', 'E5', 'B4', 'F#5'].indexed) {
+        x.mix(wood(hz(n), dur: .07, amp: .3, bright: 1.4), at: .08 + k * .05);
+      }
+      return master(houseEq(room(x, wet: .1)), feedback);
+    },
+    // a monster got to the gate: a heart is lost
+    'md_gate': () {
+      final x = Snd(1.0)
+        ..mix(thump(f0: 180, f1: 70, dur: .25, amp: .8))
+        ..mix(kalimba(hz('A5'), dur: .35, amp: .7), at: .05)
+        ..mix(kalimba(hz('E5'), dur: .5, amp: .7), at: .25)
+        ..mix(boing(f0: 300, f1: 180, dur: .4, amp: .4), at: .3);
+      return master(houseEq(room(x, wet: .16)), feedback);
+    },
+    // a new wave: two drum hits and a rising call
+    'md_wave': () {
+      final x = Snd(1.4)
+        ..mix(thump(f0: 160, f1: 70, dur: .25, amp: .8))
+        ..mix(thump(f0: 160, f1: 70, dur: .25, amp: .8), at: .22);
+      for (final (i, f) in [d5, a5, d6].indexed) {
+        x.mix(kalimba(f, dur: .4, amp: .7), at: .1 + i * .12);
+      }
+      x
+        ..mix(pad([d5, fs6 / 2, a5], dur: 1.0, amp: .35), at: .34)
+        ..mix(bell(d6, dur: .9, amp: .5), at: .34);
+      return master(houseEq(room(x, wet: .22)), celebrate - 1);
+    },
+    // Big Bonk arrives: three stomps and a low chord
+    'md_boss': () {
+      final x = Snd(1.8);
+      for (var k = 0; k < 3; k++) {
+        x
+          ..mix(thump(f0: 130, f1: 50, dur: .35, amp: 1), at: k * .38)
+          ..mix(strike(.05, 600, .7, q: .7), at: k * .38);
+      }
+      x
+        ..mix(pad([hz('D4'), hz('A4'), d5], dur: 1.2, amp: .4), at: .9)
+        ..mix(bell(a5, dur: .8, amp: .4, bright: .5), at: 1.0);
+      return master(houseEq(room(x, wet: .3, tail: .9)), celebrate);
+    },
+    // a monster is close: a soft heartbeat
+    'md_hurry': () => master(
+      houseEq(Snd(.6)
+        ..mix(thump(f0: 200, f1: 120, dur: .12, amp: 1))
+        ..mix(thump(f0: 190, f1: 110, dur: .12, amp: .7), at: .2)),
+      soft,
+    ),
+    // a power-up is earned
+    'md_power': () {
+      final x = Snd(.9);
+      for (final (i, f) in [d6, fs6, a6, d7].indexed) {
+        x.mix(kalimba(f, dur: .25, amp: .6), at: i * .06);
+      }
+      x.mix(sparkle(.6, count: 6, seed: 403, amp: .3), at: .15);
+      return master(houseEq(room(x, wet: .18)), feedback);
+    },
+    // Freeze: an icy shimmer
+    'md_freeze': () {
+      final x = Snd(1.3)..mix(whoosh(.6, 9000, 2500, amp: .5, q: 2, peakAt: .3));
+      for (var k = 0; k < 8; k++) {
+        x.mix(bell(deg(12 + (k * 3) % 6), dur: .5, amp: .4, bright: 1.3), at: k * .04);
+      }
+      x.mix(pad([d6, a6, e7], dur: 1.0, amp: .2), at: .1);
+      return master(houseEq(room(x, wet: .35, tail: .8)), feedback);
+    },
+    // Double magic: the potion bubbles and sparkles up
+    'md_potion': () {
+      final x = Snd(1.2);
+      for (var k = 0; k < 4; k++) {
+        x.mix(bloop(f0: 250 + k * 80.0, f1: 600 + k * 150.0, dur: .1, amp: .6), at: k * .09);
+      }
+      x.mix(whoosh(.5, 800, 6000, amp: .5), at: .3);
+      for (final (i, f) in [a5, d6, fs6, a6, d7].indexed) {
+        x.mix(bell(f, dur: .4, amp: .45), at: .4 + i * .05);
+      }
+      return master(houseEq(room(x, wet: .2)), feedback);
+    },
+    // the game is lost: a gentle "aww" going down
+    'md_lose': () {
+      final x = Snd(1.4);
+      for (final (i, f) in [a5, fs6 / 2, hz('E5'), d5].indexed) {
+        x.mix(kalimba(f, dur: .5, amp: .6), at: i * .16);
+      }
+      x.mix(pad([d5, a5], dur: 1.0, amp: .25), at: .5);
+      return master(houseEq(room(x, wet: .22)), soft + 1);
+    },
   };
 }
+
+/// The game music loops (half rate, see [halfRate]).
+Map<String, Snd Function()> music() => {
+  'md_music': () => halfRate(masterLoop(gameMusic(bpm: 112, tense: false), soft - 2)),
+  'md_music_tense': () => halfRate(masterLoop(gameMusic(bpm: 132, tense: true, seed: 501), soft - 1)),
+};
 
 void main() {
   final dir = Directory('assets/sfx')..createSync(recursive: true);
@@ -804,5 +1043,12 @@ void main() {
     bytes += File(path).lengthSync();
     stdout.writeln('${e.key.padRight(16)} ${(snd.seconds * 1000).round().toString().padLeft(5)} ms');
   }
-  stdout.writeln('${p.length} sounds, ${(bytes / 1024).round()} KB');
+  for (final e in music().entries) {
+    final snd = e.value();
+    final path = '${dir.path}/${e.key}.wav';
+    writeWav(path, snd, rate: sr ~/ 2);
+    bytes += File(path).lengthSync();
+    stdout.writeln('${e.key.padRight(16)} ${(snd.seconds * 2000).round().toString().padLeft(5)} ms (loop)');
+  }
+  stdout.writeln('${p.length + music().length} sounds, ${(bytes / 1024).round()} KB');
 }
