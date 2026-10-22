@@ -10,6 +10,7 @@ import '../data/billing.dart';
 import '../data/course_providers.dart';
 import '../data/media.dart';
 import '../data/family.dart';
+import '../data/games.dart';
 import '../data/links.dart';
 import '../data/models/course_models.dart';
 import '../feedback/app_feedback.dart';
@@ -22,6 +23,8 @@ import 'certificate/certificate_screen.dart';
 import 'common/confirm_dialog.dart';
 import 'common/toast.dart';
 import 'gameplay/gameplay_screen.dart';
+import 'games/games_screen.dart';
+import 'games/monster_defense/monster_defense_screen.dart';
 import 'level_complete/level_complete_screen.dart';
 import 'level_intro/level_intro_screen.dart';
 import 'likho_route.dart';
@@ -217,8 +220,35 @@ abstract final class AppFlow {
         if (!_c(ctx).read(featureOnProvider(Feature.stories))) return _plusFeature(ctx);
         openStories(ctx);
       },
+      onGames: () {
+        AppFeedback.of(ctx).press();
+        // Plus-only games (App controls): the paywall first
+        if (!_c(ctx).read(featureOnProvider(Feature.games))) return _plusFeature(ctx);
+        openGames(ctx);
+      },
     ),
   );
+
+  // ------------------------------------------------------------------ games
+
+  /// Games (the map's button): the list, and a game on top.
+  static void openGames(BuildContext context) => Navigator.of(context).push(
+    LikhoRoute<void>(
+      builder: (ctx) => GamesScreen(
+        onBack: () {
+          AppFeedback.of(ctx).back();
+          Navigator.of(ctx).pop();
+        },
+        onOpen: (id) => openGame(ctx, id),
+      ),
+    ),
+  );
+
+  /// Game [id] (only Monster Defense so far).
+  static void openGame(BuildContext context, String id) {
+    AppFeedback.of(context).press();
+    Navigator.of(context).push(LikhoRoute<void>(builder: (c) => MonsterDefenseScreen(onDone: () => Navigator.of(c).pop())));
+  }
 
   // ------------------------------------------------------------------ stories
 
@@ -532,7 +562,7 @@ abstract final class AppFlow {
 abstract final class AppFlowJump {
   static const screens = [
     'welcome', 'signIn', 'offline', 'whos', 'onb', 'edit', 'placement', 'placementDone', //
-    'map', 'stories', 'storyA', 'complete', 'complete1', 'boss', 'bosses', 'sessionEnd', 'certificate', 'room', 'profile', 'stickers', //
+    'map', 'stories', 'storyA', 'games', 'monsters', 'complete', 'complete1', 'boss', 'bosses', 'sessionEnd', 'certificate', 'room', 'profile', 'stickers', //
     'gate', 'dashboard', 'course', 'settings', 'paywall',
   ];
 
@@ -577,6 +607,10 @@ abstract final class AppFlowJump {
         AppFlow.openStories(context);
       case 'storyA':
         AppFlow.openStory(context, 'a');
+      case 'games':
+        AppFlow.openGames(context);
+      case 'monsters':
+        AppFlow.openGame(context, GameIds.monsters);
       case 'complete':
         complete(cur, 3, 5);
       case 'complete1':

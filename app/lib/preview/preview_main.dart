@@ -7,8 +7,9 @@
 //
 // The App controls page also sends "controls" (what GET /v1/config would
 // answer, from its unsaved changes) and "plus" (the sample family has
-// Likho Plus; default true), and asks for more screens: stories, room,
-// profile, dashboard, settings, paywall, welcome, update, maintenance.
+// Likho Plus; default true), and asks for more screens: stories, games,
+// monsters (Monster Defense), room, profile, dashboard, settings, paywall,
+// welcome, update, maintenance.
 //
 // as a JSON string. It answers {"type": "likho-preview-ready"} once it can
 // take one, and {"type": "likho-preview-error", "message": "…"} when the
@@ -155,7 +156,7 @@ class _PreviewAppState extends State<PreviewApp> {
           'map' => Builder(builder: AppFlow.mapScreen),
           'stories' => _StoryOpener(child: Builder(builder: AppFlow.mapScreen)),
           final s when s.startsWith('story-') => _StoryOpener(step: StepA.values.byName(s.substring(6)), child: Builder(builder: AppFlow.mapScreen)),
-          'room' || 'profile' || 'dashboard' || 'settings' || 'paywall' || 'welcome' => _Jump(screen: r.screen, child: Builder(builder: AppFlow.mapScreen)),
+          'games' || 'monsters' || 'room' || 'profile' || 'dashboard' || 'settings' || 'paywall' || 'welcome' => _Jump(screen: r.screen, child: Builder(builder: AppFlow.mapScreen)),
           'update' => TeamScreen.update(onUpdate: () {}),
           'maintenance' => TeamScreen.maintenance(r.controls?.maintenance ?? const TeamNotice(), onRetry: () {}),
           _ => _LevelRun(level: r.course.level(r.level)),
