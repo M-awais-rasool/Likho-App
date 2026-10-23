@@ -683,6 +683,1054 @@
   "says": "Find the word sock!",
   "made": "d7e6bd0461238141"
  },
+ "sr_intro": {
+  "says": "Hop on my skateboard! Swipe to catch the letters, and jump over the bumps!",
+  "made": "267180ec5ed58436"
+ },
+ "sr_3": {
+  "says": "Three!",
+  "made": "ed8a22557274d447"
+ },
+ "sr_2": {
+  "says": "Two!",
+  "made": "aa15c77721409959"
+ },
+ "sr_1": {
+  "says": "One!",
+  "made": "fa21ce80fb909f6c"
+ },
+ "sr_go": {
+  "says": "Go!",
+  "made": "1a0810a56f84953f"
+ },
+ "sr_great_1": {
+  "says": "Yes!",
+  "made": "a96fe324c18e2863"
+ },
+ "sr_great_2": {
+  "says": "You spelled it!",
+  "made": "cef3c6860ae92bd8"
+ },
+ "sr_great_3": {
+  "says": "Awesome!",
+  "made": "3f35d1f030e9c3b1"
+ },
+ "sr_oops": {
+  "says": "Oops! Not that letter.",
+  "made": "f0f2e6260ad08499"
+ },
+ "sr_bump": {
+  "says": "Whoa! Jump over it!",
+  "made": "2558f66959f6adde"
+ },
+ "sr_jump_hint": {
+  "says": "Swipe up to jump!",
+  "made": "b1f19f089a5240d0"
+ },
+ "sr_finish": {
+  "says": "The finish line! You did it!",
+  "made": "63085f249f1e29e2"
+ },
+ "sr_record": {
+  "says": "Wow! A new best score!",
+  "made": "9b829827a3bd6f1a"
+ },
+ "sr_longer": {
+  "says": "Super! Now longer words!",
+  "made": "fed229d7a59058c0"
+ },
+ "sr_heart": {
+  "says": "A heart!",
+  "made": "0daf024e7e1fb975"
+ },
+ "sr_crash": {
+  "says": "Oops! What a great run!",
+  "made": "b67201fbd5188cf9"
+ },
+ "sr_letter_a": {
+  "says": "a!",
+  "made": "c2af5364ad7e2821"
+ },
+ "sr_catch_a": {
+  "says": "Catch A!",
+  "made": "56d5d3866229a5f9"
+ },
+ "sr_catch_small_a": {
+  "says": "Catch small a!",
+  "made": "0130f796a8c86625"
+ },
+ "sr_letter_b": {
+  "says": "b!",
+  "made": "bd0b267afab118c0"
+ },
+ "sr_catch_b": {
+  "says": "Catch B!",
+  "made": "b3e1e8b03316962d"
+ },
+ "sr_catch_small_b": {
+  "says": "Catch small b!",
+  "made": "40826e1651c8e597"
+ },
+ "sr_letter_c": {
+  "says": "c!",
+  "made": "9bfebade86bf71c4"
+ },
+ "sr_catch_c": {
+  "says": "Catch C!",
+  "made": "017df824719b1e1a"
+ },
+ "sr_catch_small_c": {
+  "says": "Catch small c!",
+  "made": "e2ac471a53937020"
+ },
+ "sr_letter_d": {
+  "says": "d!",
+  "made": "ee63f0c7f0d61258"
+ },
+ "sr_catch_d": {
+  "says": "Catch D!",
+  "made": "2a16c10a677dec7e"
+ },
+ "sr_catch_small_d": {
+  "says": "Catch small d!",
+  "made": "a248dc2d77980bee"
+ },
+ "sr_letter_e": {
+  "says": "e!",
+  "made": "055ed56ea00ef8b3"
+ },
+ "sr_catch_e": {
+  "says": "Catch E!",
+  "made": "a362dc6c3b3e6a7d"
+ },
+ "sr_catch_small_e": {
+  "says": "Catch small e!",
+  "made": "9c09e2a2fef59fa4"
+ },
+ "sr_letter_f": {
+  "says": "f!",
+  "made": "2faf0849fcbfcacc"
+ },
+ "sr_catch_f": {
+  "says": "Catch F!",
+  "made": "938f1d60ebfb5c7e"
+ },
+ "sr_catch_small_f": {
+  "says": "Catch small f!",
+  "made": "2bce53a29a3dfbab"
+ },
+ "sr_letter_g": {
+  "says": "g!",
+  "made": "e488cfa39755282c"
+ },
+ "sr_catch_g": {
+  "says": "Catch G!",
+  "made": "12465cfb73517022"
+ },
+ "sr_catch_small_g": {
+  "says": "Catch small g!",
+  "made": "bec0c60ed54e6bb3"
+ },
+ "sr_letter_h": {
+  "says": "h!",
+  "made": "fd38ab596a3e33b4"
+ },
+ "sr_catch_h": {
+  "says": "Catch H!",
+  "made": "7f1d77e6bd3a1177"
+ },
+ "sr_catch_small_h": {
+  "says": "Catch small h!",
+  "made": "5223fca5f935a4d4"
+ },
+ "sr_letter_i": {
+  "says": "i!",
+  "made": "1c8d87966d1a0575"
+ },
+ "sr_catch_i": {
+  "says": "Catch I!",
+  "made": "b0a644262043cb2b"
+ },
+ "sr_catch_small_i": {
+  "says": "Catch small i!",
+  "made": "4ed3babb074550f1"
+ },
+ "sr_letter_j": {
+  "says": "j!",
+  "made": "7cdf577c6f9a975c"
+ },
+ "sr_catch_j": {
+  "says": "Catch J!",
+  "made": "cffedf39f3c7dd40"
+ },
+ "sr_catch_small_j": {
+  "says": "Catch small j!",
+  "made": "899e06e70452404f"
+ },
+ "sr_letter_k": {
+  "says": "k!",
+  "made": "6e3e84e6f983c980"
+ },
+ "sr_catch_k": {
+  "says": "Catch K!",
+  "made": "5bebc3f659e2099c"
+ },
+ "sr_catch_small_k": {
+  "says": "Catch small k!",
+  "made": "61db4aed308f13e2"
+ },
+ "sr_letter_l": {
+  "says": "l!",
+  "made": "efe2ee4bf238d380"
+ },
+ "sr_catch_l": {
+  "says": "Catch L!",
+  "made": "0ab3ccbf8f99bd4b"
+ },
+ "sr_catch_small_l": {
+  "says": "Catch small l!",
+  "made": "7f7b8d824e5c3c2e"
+ },
+ "sr_letter_m": {
+  "says": "m!",
+  "made": "c980150b3a8633e1"
+ },
+ "sr_catch_m": {
+  "says": "Catch M!",
+  "made": "5129568629828096"
+ },
+ "sr_catch_small_m": {
+  "says": "Catch small m!",
+  "made": "d5571311d1c8edb1"
+ },
+ "sr_letter_n": {
+  "says": "n!",
+  "made": "cafd3291455c835f"
+ },
+ "sr_catch_n": {
+  "says": "Catch N!",
+  "made": "fd82cce018ee12e7"
+ },
+ "sr_catch_small_n": {
+  "says": "Catch small n!",
+  "made": "865f995ea912c8fb"
+ },
+ "sr_letter_o": {
+  "says": "o!",
+  "made": "4b23d1beb9f56b2a"
+ },
+ "sr_catch_o": {
+  "says": "Catch O!",
+  "made": "3cc52d73c14b6fec"
+ },
+ "sr_catch_small_o": {
+  "says": "Catch small o!",
+  "made": "976506dcfa8fd8d0"
+ },
+ "sr_letter_p": {
+  "says": "p!",
+  "made": "4185d69384c74677"
+ },
+ "sr_catch_p": {
+  "says": "Catch P!",
+  "made": "7e8583a29812c0d1"
+ },
+ "sr_catch_small_p": {
+  "says": "Catch small p!",
+  "made": "f0d4443c2fa95d09"
+ },
+ "sr_letter_q": {
+  "says": "q!",
+  "made": "db7db65573784053"
+ },
+ "sr_catch_q": {
+  "says": "Catch Q!",
+  "made": "cd4ebabca27c2f87"
+ },
+ "sr_catch_small_q": {
+  "says": "Catch small q!",
+  "made": "aeb919b969e9f68d"
+ },
+ "sr_letter_r": {
+  "says": "r!",
+  "made": "dfbaf185dc24a41c"
+ },
+ "sr_catch_r": {
+  "says": "Catch R!",
+  "made": "9586df7c09697a5a"
+ },
+ "sr_catch_small_r": {
+  "says": "Catch small r!",
+  "made": "4b4a0949c5bbe250"
+ },
+ "sr_letter_s": {
+  "says": "s!",
+  "made": "1953de559bec329b"
+ },
+ "sr_catch_s": {
+  "says": "Catch S!",
+  "made": "67c7233a0b616c8b"
+ },
+ "sr_catch_small_s": {
+  "says": "Catch small s!",
+  "made": "1d13c218879c4150"
+ },
+ "sr_letter_t": {
+  "says": "t!",
+  "made": "e1dfddcd1b6c8f08"
+ },
+ "sr_catch_t": {
+  "says": "Catch T!",
+  "made": "2d62b22d80c94108"
+ },
+ "sr_catch_small_t": {
+  "says": "Catch small t!",
+  "made": "c3649ae414170c5a"
+ },
+ "sr_letter_u": {
+  "says": "u!",
+  "made": "8f057f3b2a7d61c9"
+ },
+ "sr_catch_u": {
+  "says": "Catch U!",
+  "made": "e956b103420c19ea"
+ },
+ "sr_catch_small_u": {
+  "says": "Catch small u!",
+  "made": "70385e514da8012c"
+ },
+ "sr_letter_v": {
+  "says": "v!",
+  "made": "78ae8325c4a44f4c"
+ },
+ "sr_catch_v": {
+  "says": "Catch V!",
+  "made": "33e04274c70171ac"
+ },
+ "sr_catch_small_v": {
+  "says": "Catch small v!",
+  "made": "c0c27c29541bc99e"
+ },
+ "sr_letter_w": {
+  "says": "w!",
+  "made": "e92f5b030bfc1085"
+ },
+ "sr_catch_w": {
+  "says": "Catch W!",
+  "made": "6f0b07e3aa394fd8"
+ },
+ "sr_catch_small_w": {
+  "says": "Catch small w!",
+  "made": "3049251f2f3febcc"
+ },
+ "sr_letter_x": {
+  "says": "x!",
+  "made": "524687f6f43653c5"
+ },
+ "sr_catch_x": {
+  "says": "Catch X!",
+  "made": "264e2cc21b22df0a"
+ },
+ "sr_catch_small_x": {
+  "says": "Catch small x!",
+  "made": "4e44233f352877a7"
+ },
+ "sr_letter_y": {
+  "says": "y!",
+  "made": "55228d840b8a6111"
+ },
+ "sr_catch_y": {
+  "says": "Catch Y!",
+  "made": "b47c6561e66e64dc"
+ },
+ "sr_catch_small_y": {
+  "says": "Catch small y!",
+  "made": "8e95ef6cd171d36d"
+ },
+ "sr_letter_z": {
+  "says": "z!",
+  "made": "54a3f5a9d992917c"
+ },
+ "sr_catch_z": {
+  "says": "Catch Z!",
+  "made": "345e6d58ccf13145"
+ },
+ "sr_catch_small_z": {
+  "says": "Catch small z!",
+  "made": "6c0eab8c7e34654c"
+ },
+ "sr_spell_cat": {
+  "says": "Spell cat!",
+  "made": "92bc8380b52b891c"
+ },
+ "sr_word_cat": {
+  "says": "Cat! C, A, T!",
+  "made": "ebc65caf2d190994"
+ },
+ "sr_spell_dog": {
+  "says": "Spell dog!",
+  "made": "1ace07e8a4745fb8"
+ },
+ "sr_word_dog": {
+  "says": "Dog! D, O, G!",
+  "made": "5b6aa45a0eebfbe8"
+ },
+ "sr_spell_sun": {
+  "says": "Spell sun!",
+  "made": "e8ed381117986655"
+ },
+ "sr_word_sun": {
+  "says": "Sun! S, U, N!",
+  "made": "22d26d62f789af1e"
+ },
+ "sr_spell_bus": {
+  "says": "Spell bus!",
+  "made": "71ef3f32166b3410"
+ },
+ "sr_word_bus": {
+  "says": "Bus! B, U, S!",
+  "made": "4a27319af435f9b7"
+ },
+ "sr_spell_bed": {
+  "says": "Spell bed!",
+  "made": "a55c168c9dcd85eb"
+ },
+ "sr_word_bed": {
+  "says": "Bed! B, E, D!",
+  "made": "974989cbf86b31ab"
+ },
+ "sr_spell_hat": {
+  "says": "Spell hat!",
+  "made": "49d8258b90053edc"
+ },
+ "sr_word_hat": {
+  "says": "Hat! H, A, T!",
+  "made": "10f5cdf6dd009778"
+ },
+ "sr_spell_pig": {
+  "says": "Spell pig!",
+  "made": "c11673df7c380400"
+ },
+ "sr_word_pig": {
+  "says": "Pig! P, I, G!",
+  "made": "6111ad53a203846e"
+ },
+ "sr_spell_fox": {
+  "says": "Spell fox!",
+  "made": "efb886970cb614fa"
+ },
+ "sr_word_fox": {
+  "says": "Fox! F, O, X!",
+  "made": "f1931262292bcb32"
+ },
+ "sr_spell_hen": {
+  "says": "Spell hen!",
+  "made": "fafd7db0d20d4e9e"
+ },
+ "sr_word_hen": {
+  "says": "Hen! H, E, N!",
+  "made": "be9cfb786750bce8"
+ },
+ "sr_spell_pen": {
+  "says": "Spell pen!",
+  "made": "65e2b799552da77e"
+ },
+ "sr_word_pen": {
+  "says": "Pen! P, E, N!",
+  "made": "19dd5e7712fb9653"
+ },
+ "sr_spell_cup": {
+  "says": "Spell cup!",
+  "made": "dd6e963a6675f18b"
+ },
+ "sr_word_cup": {
+  "says": "Cup! C, U, P!",
+  "made": "5b9fba5d9f9a6799"
+ },
+ "sr_spell_box": {
+  "says": "Spell box!",
+  "made": "e2a89972eb97a1b4"
+ },
+ "sr_word_box": {
+  "says": "Box! B, O, X!",
+  "made": "76ff72183bbc6e04"
+ },
+ "sr_spell_bat": {
+  "says": "Spell bat!",
+  "made": "74bccc7e84a7bf92"
+ },
+ "sr_word_bat": {
+  "says": "Bat! B, A, T!",
+  "made": "f95df4c3ca244aac"
+ },
+ "sr_spell_bag": {
+  "says": "Spell bag!",
+  "made": "3e6f2960a53f2ae3"
+ },
+ "sr_word_bag": {
+  "says": "Bag! B, A, G!",
+  "made": "1eee8e1617ee7788"
+ },
+ "sr_spell_net": {
+  "says": "Spell net!",
+  "made": "3cd8284b18a91011"
+ },
+ "sr_word_net": {
+  "says": "Net! N, E, T!",
+  "made": "bbf976d690894fc3"
+ },
+ "sr_spell_pan": {
+  "says": "Spell pan!",
+  "made": "976c784c9919dc8f"
+ },
+ "sr_word_pan": {
+  "says": "Pan! P, A, N!",
+  "made": "204367dbba81b1dd"
+ },
+ "sr_spell_pin": {
+  "says": "Spell pin!",
+  "made": "fc5e1d9c373f8032"
+ },
+ "sr_word_pin": {
+  "says": "Pin! P, I, N!",
+  "made": "404bb5135782b757"
+ },
+ "sr_spell_pot": {
+  "says": "Spell pot!",
+  "made": "4db6f271775c532c"
+ },
+ "sr_word_pot": {
+  "says": "Pot! P, O, T!",
+  "made": "e195c9e76617fa5d"
+ },
+ "sr_spell_rat": {
+  "says": "Spell rat!",
+  "made": "4fd3f572c9a5adf2"
+ },
+ "sr_word_rat": {
+  "says": "Rat! R, A, T!",
+  "made": "f2dd01774196aadc"
+ },
+ "sr_spell_van": {
+  "says": "Spell van!",
+  "made": "435ff49eb2727359"
+ },
+ "sr_word_van": {
+  "says": "Van! V, A, N!",
+  "made": "2d7ff8bb6ce36870"
+ },
+ "sr_spell_web": {
+  "says": "Spell web!",
+  "made": "d846fc296b6c58b2"
+ },
+ "sr_word_web": {
+  "says": "Web! W, E, B!",
+  "made": "e98d86d1129de971"
+ },
+ "sr_spell_bug": {
+  "says": "Spell bug!",
+  "made": "8d26b25a52a5f2d6"
+ },
+ "sr_word_bug": {
+  "says": "Bug! B, U, G!",
+  "made": "3f9bd82ca0894f64"
+ },
+ "sr_spell_nut": {
+  "says": "Spell nut!",
+  "made": "596f0bdb9c8d6fc5"
+ },
+ "sr_word_nut": {
+  "says": "Nut! N, U, T!",
+  "made": "3b275b41824d74c4"
+ },
+ "sr_spell_log": {
+  "says": "Spell log!",
+  "made": "bf73a4ed3f1a7719"
+ },
+ "sr_word_log": {
+  "says": "Log! L, O, G!",
+  "made": "71910252c8aaaef9"
+ },
+ "sr_spell_fan": {
+  "says": "Spell fan!",
+  "made": "c8a7429ca3d890a2"
+ },
+ "sr_word_fan": {
+  "says": "Fan! F, A, N!",
+  "made": "6a08a5409f089498"
+ },
+ "sr_spell_jam": {
+  "says": "Spell jam!",
+  "made": "4cb9f8f4eedc9f4a"
+ },
+ "sr_word_jam": {
+  "says": "Jam! J, A, M!",
+  "made": "4d9f9b4271cd10d7"
+ },
+ "sr_spell_tin": {
+  "says": "Spell tin!",
+  "made": "3c1484bb2d41c882"
+ },
+ "sr_word_tin": {
+  "says": "Tin! T, I, N!",
+  "made": "35a95ab57a4de315"
+ },
+ "sr_spell_hut": {
+  "says": "Spell hut!",
+  "made": "80f6c4c2882426c1"
+ },
+ "sr_word_hut": {
+  "says": "Hut! H, U, T!",
+  "made": "a4573174e597ffa5"
+ },
+ "sr_spell_bun": {
+  "says": "Spell bun!",
+  "made": "47fbdb5fcd8c6bd8"
+ },
+ "sr_word_bun": {
+  "says": "Bun! B, U, N!",
+  "made": "8831ca065f15b8fb"
+ },
+ "sr_spell_egg": {
+  "says": "Spell egg!",
+  "made": "4c218882601a7f11"
+ },
+ "sr_word_egg": {
+  "says": "Egg! E, G, G!",
+  "made": "d7dc892ab43d6d80"
+ },
+ "sr_spell_fish": {
+  "says": "Spell fish!",
+  "made": "aa08e175d7d117a3"
+ },
+ "sr_word_fish": {
+  "says": "Fish! F, I, S, H!",
+  "made": "f346e5298f8cdcee"
+ },
+ "sr_spell_duck": {
+  "says": "Spell duck!",
+  "made": "ab342862f0c96fa7"
+ },
+ "sr_word_duck": {
+  "says": "Duck! D, U, C, K!",
+  "made": "24f3c60ef7428575"
+ },
+ "sr_spell_frog": {
+  "says": "Spell frog!",
+  "made": "2f4e723f72073a23"
+ },
+ "sr_word_frog": {
+  "says": "Frog! F, R, O, G!",
+  "made": "ee11437aab2667c0"
+ },
+ "sr_spell_ship": {
+  "says": "Spell ship!",
+  "made": "7ad2ce1ee621781b"
+ },
+ "sr_word_ship": {
+  "says": "Ship! S, H, I, P!",
+  "made": "eff783d2e5538f82"
+ },
+ "sr_spell_star": {
+  "says": "Spell star!",
+  "made": "a596db17806aeee5"
+ },
+ "sr_word_star": {
+  "says": "Star! S, T, A, R!",
+  "made": "70795e02025c0ce3"
+ },
+ "sr_spell_moon": {
+  "says": "Spell moon!",
+  "made": "945925b2d3362a30"
+ },
+ "sr_word_moon": {
+  "says": "Moon! M, O, O, N!",
+  "made": "e5976bb4ac1dac38"
+ },
+ "sr_spell_book": {
+  "says": "Spell book!",
+  "made": "b21668d390337dc6"
+ },
+ "sr_word_book": {
+  "says": "Book! B, O, O, K!",
+  "made": "1c095928bc32c7ee"
+ },
+ "sr_spell_ball": {
+  "says": "Spell ball!",
+  "made": "2ad57343dd82f77d"
+ },
+ "sr_word_ball": {
+  "says": "Ball! B, A, L, L!",
+  "made": "b1433924913cac16"
+ },
+ "sr_spell_cake": {
+  "says": "Spell cake!",
+  "made": "70273a3c58f33b47"
+ },
+ "sr_word_cake": {
+  "says": "Cake! C, A, K, E!",
+  "made": "29884b00201f3875"
+ },
+ "sr_spell_kite": {
+  "says": "Spell kite!",
+  "made": "fdd5e9bbb97053d5"
+ },
+ "sr_word_kite": {
+  "says": "Kite! K, I, T, E!",
+  "made": "cbef44f03d8c644e"
+ },
+ "sr_spell_boat": {
+  "says": "Spell boat!",
+  "made": "679baa897fb44ca1"
+ },
+ "sr_word_boat": {
+  "says": "Boat! B, O, A, T!",
+  "made": "35055bae0d646527"
+ },
+ "sr_spell_tent": {
+  "says": "Spell tent!",
+  "made": "7c00461a4031b44f"
+ },
+ "sr_word_tent": {
+  "says": "Tent! T, E, N, T!",
+  "made": "635f8b2f457fa325"
+ },
+ "sr_spell_drum": {
+  "says": "Spell drum!",
+  "made": "008bc8ddc12391e0"
+ },
+ "sr_word_drum": {
+  "says": "Drum! D, R, U, M!",
+  "made": "95a3ee4693d70ec8"
+ },
+ "sr_spell_nest": {
+  "says": "Spell nest!",
+  "made": "f15636184f30e3cf"
+ },
+ "sr_word_nest": {
+  "says": "Nest! N, E, S, T!",
+  "made": "aa74550fd71493f6"
+ },
+ "sr_spell_crab": {
+  "says": "Spell crab!",
+  "made": "536faf6d33c17eab"
+ },
+ "sr_word_crab": {
+  "says": "Crab! C, R, A, B!",
+  "made": "d8718a9cabb57ff1"
+ },
+ "sr_spell_sock": {
+  "says": "Spell sock!",
+  "made": "6bc80ac0917b652a"
+ },
+ "sr_word_sock": {
+  "says": "Sock! S, O, C, K!",
+  "made": "616b005e46ca8fb4"
+ },
+ "sr_spell_apple": {
+  "says": "Spell apple!",
+  "made": "deca10730aa3b1f3"
+ },
+ "sr_word_apple": {
+  "says": "Apple! A, P, P, L, E!",
+  "made": "467262e7d0a0c0cd"
+ },
+ "sr_spell_bread": {
+  "says": "Spell bread!",
+  "made": "aec1f1e262fdac7f"
+ },
+ "sr_word_bread": {
+  "says": "Bread! B, R, E, A, D!",
+  "made": "aa0c28166190b99d"
+ },
+ "sr_spell_chair": {
+  "says": "Spell chair!",
+  "made": "14f4a7504d6650e2"
+ },
+ "sr_word_chair": {
+  "says": "Chair! C, H, A, I, R!",
+  "made": "5e53f737ade6dd3f"
+ },
+ "sr_spell_clock": {
+  "says": "Spell clock!",
+  "made": "1eec5bfaecd3c48a"
+ },
+ "sr_word_clock": {
+  "says": "Clock! C, L, O, C, K!",
+  "made": "7d6dbea81660084b"
+ },
+ "sr_spell_cloud": {
+  "says": "Spell cloud!",
+  "made": "f859813fc06ad6e9"
+ },
+ "sr_word_cloud": {
+  "says": "Cloud! C, L, O, U, D!",
+  "made": "4119c2571c072459"
+ },
+ "sr_spell_crown": {
+  "says": "Spell crown!",
+  "made": "f719dbd345ca127d"
+ },
+ "sr_word_crown": {
+  "says": "Crown! C, R, O, W, N!",
+  "made": "eabf59d63954fa60"
+ },
+ "sr_spell_horse": {
+  "says": "Spell horse!",
+  "made": "23bf08dd08ce2551"
+ },
+ "sr_word_horse": {
+  "says": "Horse! H, O, R, S, E!",
+  "made": "b43244864e5563da"
+ },
+ "sr_spell_house": {
+  "says": "Spell house!",
+  "made": "d78052272f6268b4"
+ },
+ "sr_word_house": {
+  "says": "House! H, O, U, S, E!",
+  "made": "be08d8923186018b"
+ },
+ "sr_spell_lemon": {
+  "says": "Spell lemon!",
+  "made": "b094f42b39d63c73"
+ },
+ "sr_word_lemon": {
+  "says": "Lemon! L, E, M, O, N!",
+  "made": "e39bed0ffc745891"
+ },
+ "sr_spell_mango": {
+  "says": "Spell mango!",
+  "made": "5bc612126e68c9b8"
+ },
+ "sr_word_mango": {
+  "says": "Mango! M, A, N, G, O!",
+  "made": "650698a61bea13c9"
+ },
+ "sr_spell_mouse": {
+  "says": "Spell mouse!",
+  "made": "ccd797a2b7d1ddd5"
+ },
+ "sr_word_mouse": {
+  "says": "Mouse! M, O, U, S, E!",
+  "made": "9e948919d1fde069"
+ },
+ "sr_spell_robot": {
+  "says": "Spell robot!",
+  "made": "3875ea8ae2ae3089"
+ },
+ "sr_word_robot": {
+  "says": "Robot! R, O, B, O, T!",
+  "made": "c68d9ff45427e2cf"
+ },
+ "sr_spell_sheep": {
+  "says": "Spell sheep!",
+  "made": "98b39e1829a2e95c"
+ },
+ "sr_word_sheep": {
+  "says": "Sheep! S, H, E, E, P!",
+  "made": "761950053669009c"
+ },
+ "sr_spell_snake": {
+  "says": "Spell snake!",
+  "made": "fa9f78ddaa51a71f"
+ },
+ "sr_word_snake": {
+  "says": "Snake! S, N, A, K, E!",
+  "made": "1513f639b40ee804"
+ },
+ "sr_spell_snail": {
+  "says": "Spell snail!",
+  "made": "cd631897ca50b37f"
+ },
+ "sr_word_snail": {
+  "says": "Snail! S, N, A, I, L!",
+  "made": "1076e9c9a7b1944a"
+ },
+ "sr_spell_tiger": {
+  "says": "Spell tiger!",
+  "made": "2bc094b73664c70e"
+ },
+ "sr_word_tiger": {
+  "says": "Tiger! T, I, G, E, R!",
+  "made": "3caa091b7d1aea41"
+ },
+ "sr_spell_train": {
+  "says": "Spell train!",
+  "made": "fe8eb3f49b98fa5a"
+ },
+ "sr_word_train": {
+  "says": "Train! T, R, A, I, N!",
+  "made": "223c2b4dc7aca6f2"
+ },
+ "sr_spell_truck": {
+  "says": "Spell truck!",
+  "made": "e42f52c666e91186"
+ },
+ "sr_word_truck": {
+  "says": "Truck! T, R, U, C, K!",
+  "made": "6bfc13a9df1c1c07"
+ },
+ "sr_spell_whale": {
+  "says": "Spell whale!",
+  "made": "bad9da27b5054bc3"
+ },
+ "sr_word_whale": {
+  "says": "Whale! W, H, A, L, E!",
+  "made": "23d15b66a2ef6f8d"
+ },
+ "sr_spell_plane": {
+  "says": "Spell plane!",
+  "made": "6baa95e0bb82904b"
+ },
+ "sr_word_plane": {
+  "says": "Plane! P, L, A, N, E!",
+  "made": "edc8c0f4dbca62b6"
+ },
+ "sr_spell_queen": {
+  "says": "Spell queen!",
+  "made": "b44b6e8eda042fca"
+ },
+ "sr_word_queen": {
+  "says": "Queen! Q, U, E, E, N!",
+  "made": "f9c080ca7629f8f5"
+ },
+ "sr_spell_zebra": {
+  "says": "Spell zebra!",
+  "made": "1e3d849b0678ebb7"
+ },
+ "sr_word_zebra": {
+  "says": "Zebra! Z, E, B, R, A!",
+  "made": "a18ccc126a3fcfbc"
+ },
+ "sr_spell_teddy": {
+  "says": "Spell teddy!",
+  "made": "8da316662f1c9686"
+ },
+ "sr_word_teddy": {
+  "says": "Teddy! T, E, D, D, Y!",
+  "made": "fd9514e9c7ae93e9"
+ },
+ "sr_spell_spoon": {
+  "says": "Spell spoon!",
+  "made": "eb77d56833b5a158"
+ },
+ "sr_word_spoon": {
+  "says": "Spoon! S, P, O, O, N!",
+  "made": "7538f8d7a1bb41b8"
+ },
+ "sr_spell_shirt": {
+  "says": "Spell shirt!",
+  "made": "5bbd502829c5e389"
+ },
+ "sr_word_shirt": {
+  "says": "Shirt! S, H, I, R, T!",
+  "made": "609c410eb3e8cf84"
+ },
+ "sr_spell_glove": {
+  "says": "Spell glove!",
+  "made": "ae7c690fc07e1a3f"
+ },
+ "sr_word_glove": {
+  "says": "Glove! G, L, O, V, E!",
+  "made": "2fcd53917c34ae8d"
+ },
+ "sr_spell_banana": {
+  "says": "Spell banana!",
+  "made": "40ee56c0ac8e5726"
+ },
+ "sr_word_banana": {
+  "says": "Banana! B, A, N, A, N, A!",
+  "made": "df72c58a945624d8"
+ },
+ "sr_spell_monkey": {
+  "says": "Spell monkey!",
+  "made": "a93d48e548c8cfb3"
+ },
+ "sr_word_monkey": {
+  "says": "Monkey! M, O, N, K, E, Y!",
+  "made": "a86e6ef39983bb00"
+ },
+ "sr_spell_rabbit": {
+  "says": "Spell rabbit!",
+  "made": "8d4c388c6139d48f"
+ },
+ "sr_word_rabbit": {
+  "says": "Rabbit! R, A, B, B, I, T!",
+  "made": "4344738d399beda3"
+ },
+ "sr_spell_turtle": {
+  "says": "Spell turtle!",
+  "made": "6938e7320c82d118"
+ },
+ "sr_word_turtle": {
+  "says": "Turtle! T, U, R, T, L, E!",
+  "made": "95328c72852a8b7e"
+ },
+ "sr_spell_parrot": {
+  "says": "Spell parrot!",
+  "made": "66583780a4d2472e"
+ },
+ "sr_word_parrot": {
+  "says": "Parrot! P, A, R, R, O, T!",
+  "made": "ff3081d8a1bb8081"
+ },
+ "sr_spell_dragon": {
+  "says": "Spell dragon!",
+  "made": "4cda8f43f34f88bd"
+ },
+ "sr_word_dragon": {
+  "says": "Dragon! D, R, A, G, O, N!",
+  "made": "0c4d2809c2bd6bb7"
+ },
+ "sr_spell_flower": {
+  "says": "Spell flower!",
+  "made": "d518adc8ced6ce7d"
+ },
+ "sr_word_flower": {
+  "says": "Flower! F, L, O, W, E, R!",
+  "made": "d72a65f9cf2ed518"
+ },
+ "sr_spell_orange": {
+  "says": "Spell orange!",
+  "made": "1e405d96974b8347"
+ },
+ "sr_word_orange": {
+  "says": "Orange! O, R, A, N, G, E!",
+  "made": "03592fa5b5fb1033"
+ },
+ "sr_spell_pencil": {
+  "says": "Spell pencil!",
+  "made": "4e67b183df5da77a"
+ },
+ "sr_word_pencil": {
+  "says": "Pencil! P, E, N, C, I, L!",
+  "made": "b41a45fd7c69f607"
+ },
+ "sr_spell_potato": {
+  "says": "Spell potato!",
+  "made": "75ab40cebbe1958d"
+ },
+ "sr_word_potato": {
+  "says": "Potato! P, O, T, A, T, O!",
+  "made": "ae23a0b6158c7812"
+ },
+ "sr_spell_school": {
+  "says": "Spell school!",
+  "made": "e67cc8b61b765566"
+ },
+ "sr_word_school": {
+  "says": "School! S, C, H, O, O, L!",
+  "made": "6e3ea0cb359ee847"
+ },
+ "sr_spell_grapes": {
+  "says": "Spell grapes!",
+  "made": "a812dc8498c8deee"
+ },
+ "sr_word_grapes": {
+  "says": "Grapes! G, R, A, P, E, S!",
+  "made": "c8cb5f6d18dfa89d"
+ },
  "story_a_knock": {
   "says": "Pencil! Pencil! Dada needs help. Come to the apple garden!",
   "made": "548a77159da43b73"
