@@ -52,11 +52,24 @@ class MdBit {
       ),
   ];
 
+  /// A little puff of sand where a foot lands at [c], [size] across.
+  static List<MdBit> dust(Offset c, double size, math.Random r, {int n = 3}) => [
+    for (var k = 0; k < n; k++)
+      MdBit(
+        at: c + Offset((r.nextDouble() - .5) * size * .6, 0),
+        v: Offset((r.nextDouble() - .5) * size * 1.4, -size * (.3 + r.nextDouble() * .4)),
+        life: .45 + r.nextDouble() * .2,
+        color: MonsterColors.dust,
+        size: size * (.18 + r.nextDouble() * .12),
+        kind: MdBitKind.dust,
+      ),
+  ];
+
   /// "+150" rising from [c].
   static MdBit score(Offset c, int points) => MdBit(at: c, v: const Offset(0, -70), life: 1.1, color: MonsterColors.score, kind: MdBitKind.text, text: '+$points', size: 26);
 }
 
-enum MdBitKind { spark, confetti, text }
+enum MdBitKind { spark, confetti, text, dust }
 
 /// Pencil's magic flying to a monster: a glowing arc from [from] to [to]
 /// that lands after [fly] seconds and fades.
@@ -142,6 +155,8 @@ class MdEffectsPainter extends CustomPainter {
     switch (b.kind) {
       case MdBitKind.spark:
         paintStar(canvas, b.at, b.size * (.4 + .6 * a), b.color.withValues(alpha: a), b.age * 6);
+      case MdBitKind.dust:
+        canvas.drawCircle(b.at, b.size * (1 + (1 - a) * 1.2), Paint()..color = b.color.withValues(alpha: b.color.a * a));
       case MdBitKind.confetti:
         canvas.save();
         canvas.translate(b.at.dx, b.at.dy);
