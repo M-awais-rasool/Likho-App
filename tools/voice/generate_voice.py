@@ -11,7 +11,7 @@ speech model (Apache-2.0, runs on this computer) and writes, per line:
 
 and puts the recording's path in the content (`intro.audio`, `prompt.audio`).
 Pencil's lines outside the course (APP_LINES: onboarding, coaching in the
-games; game_lines(): Monster Defense) and the story episodes' lines (app/assets/stories/<episode>/story.json,
+games; game_lines(): Monster Defense; runner_lines(): Spell Runner) and the story episodes' lines (app/assets/stories/<episode>/story.json,
 each speaker in their own voice) go into the app itself, app/assets/voice/<id>.m4a + .lip, so they
 play before anything is downloaded; app/lib/feedback/pencil_lines.dart and
 app/lib/game/coach.dart name them.
@@ -160,6 +160,45 @@ def game_lines():
     return out
 
 
+# Spell Runner (app/lib/game/spell_runner/): Pencil's lines in the game
+# (app/lib/screens/games/spell_runner/sr_lines.dart names them) ...
+RUNNER_LINES = {
+    "sr_intro": "Hop on my skateboard! Swipe to catch the letters, and jump over the bumps!",
+    "sr_3": "Three!",
+    "sr_2": "Two!",
+    "sr_1": "One!",
+    "sr_go": "Go!",
+    "sr_great_1": "Yes!",
+    "sr_great_2": "You spelled it!",
+    "sr_great_3": "Awesome!",
+    "sr_oops": "Oops! Not that letter.",
+    "sr_bump": "Whoa! Jump over it!",
+    "sr_jump_hint": "Swipe up to jump!",
+    "sr_finish": "The finish line! You did it!",
+    "sr_record": "Wow! A new best score!",
+    "sr_longer": "Super! Now longer words!",
+    "sr_heart": "A heart!",
+    "sr_crash": "Oops! What a great run!",
+}
+
+
+def runner_lines():
+    """Spell Runner's lines: sr_<id> -> words. Every word is asked
+    ("Spell cat!") and read back, spelled ("Cat! C, A, T!"); every letter is
+    said when it is caught; a hunt asks for a letter ("Catch B!")."""
+    out = dict(RUNNER_LINES)
+    name = lambda l: f"{{{l}|{LETTER_NAME[l.lower()]}}}"
+    for l in LETTER_NAME:
+        out[f"sr_letter_{l}"] = f"{name(l)}!"
+        out[f"sr_catch_{l}"] = f"Catch {name(l.upper())}!"
+        out[f"sr_catch_small_{l}"] = f"Catch small {name(l)}!"
+    words = json.loads(GAME_WORDS.read_text(encoding="utf-8"))
+    for w in words["read"] + words.get("long", []):
+        out[f"sr_spell_{w}"] = f"Spell {w}!"
+        out[f"sr_word_{w}"] = f"{w.capitalize()}! " + ", ".join(name(l.upper()) for l in w) + "!"
+    return out
+
+
 def story_lines():
     """The story episodes' lines: story_<episode>_<id> -> (words, voice of who says it)."""
     out = {}
@@ -304,7 +343,7 @@ def app_lines(voice, args):
     lock = json.loads(APP_LOCK.read_text(encoding="utf-8")) if APP_LOCK.exists() else {}
     out, recorded = {}, 0
     APP_OUT.mkdir(parents=True, exist_ok=True)
-    every = {k: (w, VOICE) for k, w in (APP_LINES | game_lines()).items()} | story_lines()
+    every = {k: (w, VOICE) for k, w in (APP_LINES | game_lines() | runner_lines()).items()} | story_lines()
     for key, (words, who) in every.items():
         ph = voice.phonemes(words)
         if args.print:
