@@ -14,7 +14,8 @@ import 'family.dart';
 /// The games made so far.
 abstract final class GameIds {
   static const monsters = 'monsters';
-  static const all = [monsters];
+  static const runner = 'runner';
+  static const all = [monsters, runner];
 }
 
 @immutable

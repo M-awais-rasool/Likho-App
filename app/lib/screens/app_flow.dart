@@ -25,6 +25,7 @@ import 'common/toast.dart';
 import 'gameplay/gameplay_screen.dart';
 import 'games/games_screen.dart';
 import 'games/monster_defense/monster_defense_screen.dart';
+import 'games/spell_runner/spell_runner_screen.dart';
 import 'level_complete/level_complete_screen.dart';
 import 'level_intro/level_intro_screen.dart';
 import 'likho_route.dart';
@@ -244,10 +245,14 @@ abstract final class AppFlow {
     ),
   );
 
-  /// Game [id] (only Monster Defense so far).
+  /// Game [id]: Monster Defense or Spell Runner.
   static void openGame(BuildContext context, String id) {
     AppFeedback.of(context).press();
-    Navigator.of(context).push(LikhoRoute<void>(builder: (c) => MonsterDefenseScreen(onDone: () => Navigator.of(c).pop())));
+    Navigator.of(context).push(
+      LikhoRoute<void>(
+        builder: (c) => id == GameIds.runner ? SpellRunnerScreen(onDone: () => Navigator.of(c).pop()) : MonsterDefenseScreen(onDone: () => Navigator.of(c).pop()),
+      ),
+    );
   }
 
   // ------------------------------------------------------------------ stories
@@ -562,7 +567,7 @@ abstract final class AppFlow {
 abstract final class AppFlowJump {
   static const screens = [
     'welcome', 'signIn', 'offline', 'whos', 'onb', 'edit', 'placement', 'placementDone', //
-    'map', 'stories', 'storyA', 'games', 'monsters', 'complete', 'complete1', 'boss', 'bosses', 'sessionEnd', 'certificate', 'room', 'profile', 'stickers', //
+    'map', 'stories', 'storyA', 'games', 'monsters', 'runner', 'complete', 'complete1', 'boss', 'bosses', 'sessionEnd', 'certificate', 'room', 'profile', 'stickers', //
     'gate', 'dashboard', 'course', 'settings', 'paywall',
   ];
 
@@ -611,6 +616,8 @@ abstract final class AppFlowJump {
         AppFlow.openGames(context);
       case 'monsters':
         AppFlow.openGame(context, GameIds.monsters);
+      case 'runner':
+        AppFlow.openGame(context, GameIds.runner);
       case 'complete':
         complete(cur, 3, 5);
       case 'complete1':

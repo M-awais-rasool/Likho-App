@@ -8,9 +8,10 @@ import '../../data/games.dart';
 import '../../design/tokens.dart';
 import '../gameplay/widgets/game_buttons.dart';
 import 'monster_defense/md_scene.dart';
+import 'spell_runner/sr_scene.dart';
 
-/// Games (the map's button): Monster Defense as a big card (its picture,
-/// the child's best score and stars, Play); more games to come below.
+/// Games (the map's button): each game as a big card (its picture, the
+/// child's best score and stars, Play); more games to come below.
 class GamesScreen extends ConsumerWidget {
   const GamesScreen({super.key, required this.onBack, required this.onOpen});
   final VoidCallback onBack;
@@ -49,12 +50,16 @@ class GamesScreen extends ConsumerWidget {
                 ),
               ),
             ),
-            SliverPadding(
-              padding: const EdgeInsets.fromLTRB(16, 18, 16, 0),
-              sliver: SliverToBoxAdapter(
-                child: _MonstersCard(record: mine[GameIds.monsters] ?? const GameRecord(), onTap: () => onOpen(GameIds.monsters)),
+            for (final (id, title, cover, hint) in [
+              (GameIds.monsters, 'Monster Defense', MdArt.cover, 'Letters and words'),
+              (GameIds.runner, 'Spell Runner', SrArt.cover, 'Spell on a skateboard'),
+            ])
+              SliverPadding(
+                padding: const EdgeInsets.fromLTRB(16, 18, 16, 0),
+                sliver: SliverToBoxAdapter(
+                  child: _GameCard(id: id, title: title, cover: cover, hint: hint, record: mine[id] ?? const GameRecord(), onTap: () => onOpen(id)),
+                ),
               ),
-            ),
             if (comingSoon) ...[
               SliverPadding(
                 padding: const EdgeInsets.fromLTRB(20, 26, 20, 10),
@@ -95,16 +100,16 @@ class GamesScreen extends ConsumerWidget {
   }
 }
 
-/// Monster Defense's card: the cover (Pencil and the monsters), the title,
-/// the best score and stars, Play.
-class _MonstersCard extends StatelessWidget {
-  const _MonstersCard({required this.record, required this.onTap});
+/// A game's card: its cover, the title, the best score and stars, Play.
+class _GameCard extends StatelessWidget {
+  const _GameCard({required this.id, required this.title, required this.cover, required this.hint, required this.record, required this.onTap});
+  final String id, title, cover, hint;
   final GameRecord record;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-    key: const ValueKey('game-monsters'),
+    key: ValueKey('game-$id'),
     onTap: onTap,
     child: Container(
       height: 360,
@@ -118,7 +123,7 @@ class _MonstersCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            child: Image.asset(MdArt.cover, fit: BoxFit.cover, alignment: const Alignment(0, -.15)),
+            child: Image.asset(cover, fit: BoxFit.cover, alignment: const Alignment(0, -.15)),
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(18, 12, 14, 14),
@@ -129,7 +134,7 @@ class _MonstersCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Monster Defense',
+                        title,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: LikhoFonts.title(size: 22, weight: FontWeight.w800),
@@ -150,7 +155,7 @@ class _MonstersCard extends StatelessWidget {
                               ],
                             )
                           : Text(
-                              'Letters and words',
+                              hint,
                               style: LikhoFonts.body(size: 14, weight: FontWeight.w700, color: StoryColors.name),
                             ),
                     ],
