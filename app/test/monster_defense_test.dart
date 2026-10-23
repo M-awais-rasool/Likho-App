@@ -374,7 +374,8 @@ void main() {
           expect(f.dx, inInclusiveRange(.2, .8), reason: 'u $u lane $lane');
         }
       }
-      expect(MdPath.depth(gate.dy), greaterThan(MdPath.depth(cave.dy) * 2.5));
+      expect(MdPath.depth(gate.dy), greaterThan(MdPath.depth(cave.dy) * 1.8), reason: "nearer is bigger");
+      expect(MdPath.depth(cave.dy), greaterThanOrEqualTo(.5), reason: "far monsters stay big enough to see");
       // on a phone and a tablet, the cave and the gate are on screen
       for (final screen in const [Size(390, 844), Size(375, 667), Size(820, 1180)]) {
         final f = MdFrame(screen);
