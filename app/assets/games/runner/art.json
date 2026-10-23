@@ -1,0 +1,142 @@
+{
+ "pencil": {
+  "poses": [
+   "ride",
+   "lean_right",
+   "lean_left",
+   "jump",
+   "wobble",
+   "cheer"
+  ],
+  "size": [
+   417,
+   520
+  ]
+ },
+ "puddle": {
+  "size": [
+   360,
+   171
+  ]
+ },
+ "log": {
+  "size": [
+   360,
+   259
+  ]
+ },
+ "rock": {
+  "size": [
+   360,
+   298
+  ]
+ },
+ "hay": {
+  "size": [
+   360,
+   328
+  ]
+ },
+ "ramp": {
+  "size": [
+   360,
+   266
+  ]
+ },
+ "cone": {
+  "size": [
+   306,
+   360
+  ]
+ },
+ "banana": {
+  "size": [
+   360,
+   300
+  ]
+ },
+ "finish": {
+  "size": [
+   325,
+   360
+  ]
+ },
+ "tree": {
+  "size": [
+   300,
+   360
+  ]
+ },
+ "pine": {
+  "size": [
+   257,
+   360
+  ]
+ },
+ "bush": {
+  "size": [
+   360,
+   277
+  ]
+ },
+ "flowers": {
+  "size": [
+   360,
+   233
+  ]
+ },
+ "sunflower": {
+  "size": [
+   172,
+   360
+  ]
+ },
+ "fence": {
+  "size": [
+   360,
+   251
+  ]
+ },
+ "lamp": {
+  "size": [
+   187,
+   360
+  ]
+ },
+ "mushrooms": {
+  "size": [
+   349,
+   360
+  ]
+ },
+ "signpost": {
+  "size": [
+   312,
+   360
+  ]
+ },
+ "apple_tree": {
+  "size": [
+   287,
+   360
+  ]
+ },
+ "bg_road_day": {
+  "size": [
+   1080,
+   1935
+  ]
+ },
+ "bg_road_sunset": {
+  "size": [
+   1080,
+   1935
+  ]
+ },
+ "cover": {
+  "size": [
+   720,
+   720
+  ]
+ }
+}
