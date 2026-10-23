@@ -47,6 +47,7 @@ MONSTERS = ["gloop", "fuzz", "bonk", "boo"]
 PROPS = ("props_game.jpeg", 2, 5, ["wand", "heart", "star", "ice", "potion", "chest", "chest_open", "trophy", "sign", "books"], {"trophy"})
 BACKGROUNDS = ["bg_path_day.jpeg", "bg_path_sunset.jpeg"]
 COVER = ("cover_monster_defense.jpeg", 720)
+BOXES = ROOT / "app" / "lib" / "screens" / "games" / "monster_defense" / "md_art_boxes.dart"
 MASTER_HEIGHT = 360
 
 
@@ -86,12 +87,34 @@ def main():
     manifest["cover"] = {"size": img.size}
     (OUT / "art.json").write_text(json.dumps(manifest, indent=1) + "\n")
     print(f"{len(list(OUT.iterdir()))} files in {OUT.relative_to(ROOT)}")
+    content_boxes()
     word_pictures()
+
+
+def content_boxes():
+    """Where the monster is inside each pose picture (the pictures share a
+    frame, so a pose can sit off-centre in it): the app puts the sign over
+    the head, aims the magic and takes taps there."""
+    lines = []
+    for m in MONSTERS:
+        for pose in POSES:
+            img = Image.open(OUT / f"{m}_{pose}.webp").convert("RGBA")
+            a = img.getchannel("A").point(lambda v: 255 if v > 40 else 0)
+            x0, y0, x1, y1 = a.getbbox()
+            w, h = img.size
+            lines.append(f"    '{m}_{pose}': Rect.fromLTRB({x0 / w:.3f}, {y0 / h:.3f}, {x1 / w:.3f}, {y1 / h:.3f}),")
+    BOXES.write_text(
+        "// Made by tools/games/cut_art.py: do not edit.\n"
+        "import 'dart:ui';\n\n"
+        "/// Where the monster is in each pose picture (fractions of the picture).\n"
+        "const mdArtBoxes = <String, Rect>{\n" + "\n".join(lines) + "\n};\n"
+    )
+    print(f"{len(lines)} content boxes in {BOXES.relative_to(ROOT)}")
 
 
 def word_pictures():
     words = json.loads(WORDS.read_text())
-    keep = sorted(set(words["first"]) | set(words["read"]))
+    keep = sorted(set(words["first"]) | set(words["read"]) | set(words.get("long", [])))
     WORD_OUT.mkdir(parents=True, exist_ok=True)
     for old in WORD_OUT.glob("*.webp"):
         if old.stem not in keep:
