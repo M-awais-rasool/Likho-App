@@ -21,6 +21,8 @@ import '../../../game/monster_defense/md_questions.dart';
 import '../../../game/speech/prompt_voice.dart';
 import '../../../mascot/mascot.dart';
 import '../../gameplay/widgets/game_buttons.dart';
+import '../game_ui.dart';
+import 'md_bodies.dart';
 import 'md_effects.dart';
 import 'md_lines.dart';
 import 'md_scene.dart';
@@ -33,12 +35,13 @@ import 'md_scene.dart';
 /// Three waves, then Big Bonk (choices in his balloons). Answers in a row
 /// earn Freeze and Double magic. See [MdGame] for the rules.
 class MonsterDefenseScreen extends ConsumerStatefulWidget {
-  const MonsterDefenseScreen({super.key, required this.onDone, this.random, this.questions});
+  const MonsterDefenseScreen({super.key, required this.onDone, this.random, this.questions, this.waves});
   final VoidCallback onDone;
 
   /// Tests: fixed dice and questions.
   final math.Random? random;
   final MdQuestionSource? questions;
+  final List<MdWave>? waves;
 
   @override
   ConsumerState<MonsterDefenseScreen> createState() => _MonsterDefenseScreenState();
@@ -88,6 +91,7 @@ class _MonsterDefenseScreenState extends ConsumerState<MonsterDefenseScreen> wit
   double _lastSpawn = -1;
 
   double? _balloonTop; // eased to [_balloonTarget]
+  final _phases = <int, double>{}; // each monster's walk phase last frame (its steps)
 
   // layout of the last build
   MdFrame _mf = const MdFrame(Size(390, 844));
@@ -115,6 +119,7 @@ class _MonsterDefenseScreenState extends ConsumerState<MonsterDefenseScreen> wit
     for (final a in MdArt.all) {
       precacheImage(AssetImage(a), context);
     }
+    MdSprites.load(createLocalImageConfiguration(context));
   }
 
   @override
@@ -151,7 +156,7 @@ class _MonsterDefenseScreenState extends ConsumerState<MonsterDefenseScreen> wit
     if (!mounted) return;
     setState(() {
       _questions = q;
-      _game = MdGame(questions: q!, random: _rnd);
+      _game = MdGame(questions: q!, random: _rnd, waves: widget.waves);
     });
     // a first game: Pencil tells what to do
     if (_firstPlay) _say(MdLines.intro, hold: true);
@@ -169,6 +174,7 @@ class _MonsterDefenseScreenState extends ConsumerState<MonsterDefenseScreen> wit
       for (final e in g.drain()) {
         _on(e, g);
       }
+      _dust(g);
       for (final b in _bits) {
         b.step(dt);
       }
@@ -234,7 +240,7 @@ class _MonsterDefenseScreenState extends ConsumerState<MonsterDefenseScreen> wit
         if (m == null) return;
         _zap(m);
         final box = _box(m);
-        _bits.add(MdBit.score(box.rect.topCenter + const Offset(0, -10), e.value));
+        _bits.add(MdBit.score(_seen(m, box.rect, 'surprised').topCenter + const Offset(0, -10), e.value));
         _pencil.play(MascotState.happy);
         if (e.kind == MdEventKind.trapped) {
           _after(320, _fb.bubble);
@@ -252,7 +258,7 @@ class _MonsterDefenseScreenState extends ConsumerState<MonsterDefenseScreen> wit
         if (m == null) return;
         _fb.bubblePop();
         final box = _box(m, popped: true);
-        _bits.addAll(MdBit.burst(box.rect.center, _rnd, n: m.kind == MdKind.boss ? 26 : 16));
+        _bits.addAll(MdBit.burst(_seen(m, box.rect, 'surprised').center, _rnd, n: m.kind == MdKind.boss ? 26 : 16));
       case MdEventKind.miss:
         _fb.roar();
         _fb.wrong();
@@ -294,6 +300,30 @@ class _MonsterDefenseScreenState extends ConsumerState<MonsterDefenseScreen> wit
     }
   }
 
+  /// Puffs of sand where feet land: each step of Gloop and Bonk (Big
+  /// Bonk's shake the ground), each landing of Fuzz.
+  void _dust(MdGame g) {
+    for (final m in g.monsters) {
+      final was = _phases[m.id];
+      final now = m.phase;
+      _phases[m.id] = now;
+      if (was == null || m.mood != MdMood.walking || g.frozen > 0 || m.u < .02 || m.kind == MdKind.boo) continue;
+      final landed = switch (m.kind) {
+        MdKind.fuzz => was > .8 && now < .2, // back on the ground
+        _ => (was < .5 && now >= .5) || (was > .9 && now < .1),
+      };
+      if (!landed) continue;
+      final b = _box(m);
+      final big = m.kind == MdKind.boss || m.kind == MdKind.bonk;
+      _bits.addAll(MdBit.dust(b.feet, b.rect.width * (m.kind == MdKind.boss ? .26 : (big ? .3 : .24)), _rnd, n: big ? 4 : 3));
+      if (m.kind == MdKind.boss) _shake = math.max(_shake, 3);
+    }
+    _phases.removeWhere((id, _) => !g.monsters.any((m) => m.id == id));
+  }
+
+  /// Where the monster itself is in its pose's frame [rect] (see MdArt.content).
+  Rect _seen(MdMonster m, Rect rect, [String pose = 'walk_a']) => MdArt.content(MdArt.pose(m.kind, pose), rect);
+
   /// Runs [f] in [ms] (unless the screen closed first).
   void _after(int ms, VoidCallback f) {
     _timers.removeWhere((t) => !t.isActive);
@@ -306,7 +336,7 @@ class _MonsterDefenseScreenState extends ConsumerState<MonsterDefenseScreen> wit
 
   void _zap(MdMonster m) {
     _fb.zap();
-    _beams.add(MdBeam(_hand, _box(m).rect.center));
+    _beams.add(MdBeam(_hand, _seen(m, _box(m).rect, 'surprised').center));
   }
 
   /// Where Pencil's magic comes from (his raised hand).
@@ -407,7 +437,7 @@ class _MonsterDefenseScreenState extends ConsumerState<MonsterDefenseScreen> wit
     _fb.press();
     _resultTimer?.cancel();
     setState(() {
-      _game = MdGame(questions: q, random: _rnd);
+      _game = MdGame(questions: q, random: _rnd, waves: widget.waves);
       _started = false;
       _showResult = false;
       _record = false;
@@ -470,7 +500,8 @@ class _MonsterDefenseScreenState extends ConsumerState<MonsterDefenseScreen> wit
     for (final m in g.monsters) {
       if (!m.tappable || !m.out) continue;
       final b = _box(m);
-      var r = b.rect.expandToInclude(Rect.fromCenter(center: b.rect.topCenter, width: 60, height: 50));
+      final body = _seen(m, b.rect);
+      var r = body.expandToInclude(Rect.fromCenter(center: body.topCenter, width: 60, height: 50));
       if (r.width < 76 || r.height < 76) r = Rect.fromCenter(center: r.center, width: math.max(76, r.width), height: math.max(76, r.height));
       if (r.contains(p) && b.feet.dy > bestY) {
         best = m;
@@ -498,7 +529,7 @@ class _MonsterDefenseScreenState extends ConsumerState<MonsterDefenseScreen> wit
     final t = m.moodTime;
     switch (m.mood) {
       case MdMood.trapped:
-        final from = boss ? .9 : .55, len = boss ? 1.6 : 1.3;
+        final from = boss ? .9 : .5, len = boss ? 1.6 : .85;
         return t < from ? 0 : top * Curves.easeOutCubic.transform(((t - from) / len).clamp(0.0, 1.0));
       case MdMood.friendly:
         // falls back down, then waves
@@ -518,11 +549,12 @@ class _MonsterDefenseScreenState extends ConsumerState<MonsterDefenseScreen> wit
     // a caught monster floats up, but its bubble stays under the top bar
     final rise = math.min(_riseOf(m, popped: popped) * _mf.screen.height, math.max(0.0, feet.dy - h * 1.2 - _pad.top - 70));
     var alpha = 1.0;
-    if (m.u < 0) {
+    if (m.u < 0 && m.mood != MdMood.fleeing) {
       alpha = 0;
-    } else if (m.mood == MdMood.walking && m.u < .04) {
-      alpha = m.u / .04;
+    } else if (m.outTime < .12) {
+      alpha = m.outTime / .12; // it pops out of the dark cave
     }
+    if (m.u < 0 && m.mood == MdMood.fleeing) alpha = 0;
     if (m.mood == MdMood.fleeing) alpha = math.min(alpha, 1 - m.moodTime / 1.4);
     if (m.mood == MdMood.friendly && m.moodTime > 1.15) alpha = 1 - (m.moodTime - 1.15) / .45;
     return _Box(feet, Rect.fromLTWH(feet.dx - w / 2, feet.dy - h - rise, w, h), alpha.clamp(0.0, 1.0));
@@ -550,70 +582,145 @@ class _MonsterDefenseScreenState extends ConsumerState<MonsterDefenseScreen> wit
     return box.feet.dy > _mf.screen.height * .5 ? high : math.max(box.feet.dy + 24, _mf.screen.height * .42);
   }
 
-  /// The picture of [m] this frame, and how it moves.
-  (String, Matrix4) _pose(MdMonster m, double h, bool frozen) {
-    var pose = 'walk_a';
-    var dx = 0.0, dy = 0.0, sx = 1.0, sy = 1.0, rot = 0.0;
+  /// The picture of [m] this frame, and how its body bends (see
+  /// [MdBodiesPainter]): a real walk for each monster, built from one
+  /// drawing so it never flickers.
+  MdMotion _motion(MdMonster m, double h, bool frozen) {
     final t = m.moodTime;
+    final pose = switch (m.mood) {
+      MdMood.walking => 'walk_a',
+      MdMood.roaring => 'roar',
+      MdMood.cracked => 'bonked',
+      MdMood.trapped || MdMood.fleeing => 'surprised',
+      MdMood.friendly => 'friendly',
+      MdMood.gone => 'walk_a',
+    };
+    final mo = MdMotion(MdArt.pose(m.kind, pose))..frozen = frozen && m.mood == MdMood.walking;
+    // a quick pop into a new pose
+    if (m.mood != MdMood.walking && t < .16) mo.punch = 1 + .14 * math.sin(t / .16 * math.pi);
     switch (m.mood) {
       case MdMood.walking:
         if (frozen) break;
-        final a = m.age;
-        switch (m.kind) {
-          case MdKind.gloop:
-            final ph = a / .52 * 2 * math.pi;
-            pose = math.sin(ph) >= 0 ? 'walk_a' : 'walk_b';
-            sy = 1 + .05 * math.sin(2 * ph);
-            sx = 1 - .035 * math.sin(2 * ph);
-          case MdKind.fuzz:
-            final ph = a / .44 * math.pi;
-            final up = math.sin(ph).abs();
-            pose = up > .45 ? 'walk_b' : 'walk_a';
-            dy = -up * h * .16;
-            sy = up < .15 ? .92 : 1.0;
-            sx = up < .15 ? 1.06 : 1.0;
-          case MdKind.bonk || MdKind.boss:
-            final ph = a / (m.kind == MdKind.boss ? .8 : .64) * 2 * math.pi;
-            pose = math.sin(ph) >= 0 ? 'walk_a' : 'walk_b';
-            dy = -math.sin(ph).abs() * h * .025;
-            rot = math.sin(ph) * .03;
-            if (m.kind == MdKind.boss && a < .55) {
-              // Big Bonk jumps down from the cave and lands with a thump
-              final f = 1 - a / .55;
-              pose = 'roar';
-              dy = -f * f * h * 1.6;
-              sy = a > .45 ? .9 : 1;
-              sx = a > .45 ? 1.08 : 1;
-            }
-          case MdKind.boo:
-            pose = math.cos(a * 1.9 + m.id) < 0 ? 'walk_a' : 'walk_b';
-            dy = math.sin(a * 3) * h * .05 - h * .06;
-            rot = math.cos(a * 1.9 + m.id) * .08;
-        }
+        _walk(m, h, mo);
       case MdMood.roaring:
-        pose = 'roar';
-        dx = math.sin(t * 50) * 3 * (1 - t / .7).clamp(0.0, 1.0);
-        sx = sy = 1 + .06 * math.sin(math.min(1, t / .15) * math.pi / 2);
+        // up on its toes, shaking with the roar
+        final k = math.exp(-t * 4);
+        mo
+          ..sy = 1 + .14 * k
+          ..sx = 1 + .08 * k
+          ..dx = math.sin(t * 46) * h * .025 * (1 - t / .7).clamp(0.0, 1.0)
+          ..sway = math.sin(t * 23) * .04 * k;
       case MdMood.cracked:
-        pose = 'bonked';
-        rot = math.sin(t * 13) * .14 * (1 - t).clamp(0.0, 1.0);
+        mo
+          ..rot = math.sin(t * 13) * .16 * (1 - t).clamp(0.0, 1.0)
+          ..sway = math.sin(t * 9) * .06 * (1 - t).clamp(0.0, 1.0)
+          ..sy = 1 - .1 * math.exp(-t * 6);
       case MdMood.trapped:
-        pose = 'surprised';
-        rot = math.sin(t * 5) * .05;
+        mo
+          ..rot = math.sin(t * 5) * .06
+          ..sx = 1 + .04 * math.sin(t * 7)
+          ..sy = 1 - .04 * math.sin(t * 7)
+          // the magic lands: a white flash and a squash
+          ..flash = t > MdBeam.fly - .02 && t < MdBeam.fly + .16 ? 1 - (t - MdBeam.fly + .02) / .18 : 0;
+        if (mo.flash > 0) mo.sy *= 1 - .12 * mo.flash;
       case MdMood.friendly:
-        pose = 'friendly';
-        if (t > .45) dy = -math.sin((t - .45) * 9).abs() * h * .05;
+        if (t > .45) {
+          // landed: little happy hops
+          final ph = (t - .45) * 8;
+          mo
+            ..dy = -math.sin(ph).abs() * h * .08
+            ..sy = math.sin(ph).abs() < .2 ? .92 : 1.04
+            ..sway = math.sin(ph * .5) * .05;
+        } else {
+          mo.sy = 1.08; // falling, stretched
+        }
       case MdMood.fleeing:
-        pose = 'surprised';
-        dy = -math.sin(t * 14).abs() * h * .05;
+        // running back to the cave, quick and scared
+        final ph = t * 15;
+        mo
+          ..dy = -math.sin(ph).abs() * h * .09
+          ..stepL = math.max(0, math.sin(ph))
+          ..stepR = math.max(0, -math.sin(ph))
+          ..rot = math.sin(ph) * .06;
       case MdMood.gone:
         break;
     }
-    final m4 = Matrix4.identity()
-      ..translateByDouble(dx, dy, 0, 1)
-      ..rotateZ(rot)
-      ..scaleByDouble(sx, sy, 1, 1);
-    return (MdArt.pose(m.kind, pose), m4);
+    // out of the cave with a jump
+    if (m.outTime < .5 && m.mood == MdMood.walking && m.kind != MdKind.boss) {
+      final k = m.outTime / .5;
+      mo
+        ..dy += -math.sin(k * math.pi) * h * .45
+        ..punch *= .7 + .3 * Curves.easeOutBack.transform(k);
+    }
+    return mo;
+  }
+
+  /// A walk: Gloop wobbles like jelly, Fuzz hops (crouch, jump, land), Bonk
+  /// stomps heavily, Boo floats with a waving hem; each leans into the way
+  /// the path goes.
+  void _walk(MdMonster m, double h, MdMotion mo) {
+    final p = m.phase, ph = 2 * math.pi * p;
+    // lean into the way it walks on the screen (the path's direction)
+    final dir = MdPath.shared.direction(m.u.clamp(0.0, 1.0));
+    final lean = (dir.dx * .07).clamp(-.07, .07);
+    switch (m.kind) {
+      case MdKind.gloop:
+        final step = math.sin(ph);
+        mo
+          ..stepL = math.max(0, step)
+          ..stepR = math.max(0, -step)
+          ..sy = 1 - .06 * math.cos(2 * ph) // squashed as a foot lands, tall mid-step
+          ..sx = 1 + .07 * math.cos(2 * ph)
+          ..dy = -h * .035 * step.abs()
+          ..sway = lean + .05 * math.sin(ph - .7) // the jelly top lags behind
+          ..rot = .045 * step;
+      case MdKind.fuzz:
+        if (p < Hop.ground) {
+          // crouched, ready to jump (squashed), then landing
+          final k = math.sin(p / Hop.ground * math.pi);
+          mo
+            ..sy = 1 - .17 * k
+            ..sx = 1 + .14 * k;
+        } else {
+          final k = (p - Hop.ground) / (1 - Hop.ground);
+          final up = math.sin(k * math.pi);
+          mo.pose = MdArt.pose(m.kind, up > .35 ? 'walk_b' : 'walk_a');
+          mo
+            ..dy = -up * h * .22
+            ..sy = 1 + .1 * math.cos(k * math.pi).clamp(0.0, 1.0)
+            ..sx = 1 - .05 * math.cos(k * math.pi).clamp(0.0, 1.0)
+            ..rot = lean * 1.5 * math.sin(k * 2 * math.pi);
+        }
+        mo.sway += lean;
+      case MdKind.bonk || MdKind.boss:
+        final step = math.sin(ph);
+        mo
+          ..stepL = math.max(0, step)
+          ..stepR = math.max(0, -step)
+          ..dy = -h * .02 * step.abs()
+          ..rot = .07 * step // heavy side-to-side rock
+          ..sy = 1 - .035 * math.cos(2 * ph)
+          ..sx = 1 + .03 * math.cos(2 * ph)
+          ..sway = lean * .6;
+        if (m.kind == MdKind.boss && m.outTime < .6) {
+          // Big Bonk jumps down from the cave and lands with a thump
+          final f = 1 - m.outTime / .6;
+          mo
+            ..dy = -f * f * h * 1.4
+            ..stepL = 0
+            ..stepR = 0
+            ..rot = 0
+            ..sy = m.outTime > .5 ? .86 : 1.06;
+          mo.pose = MdArt.pose(m.kind, 'roar');
+        }
+      case MdKind.boo:
+        mo
+          ..dy = -h * .1 + math.sin(m.walk * 2.6) * h * .05
+          ..hem = .035
+          ..sway = lean + .05 * math.sin(m.walk * 1.3)
+          ..rot = math.cos(m.age * 1.9 + m.id) * .1;
+        mo.pose = MdArt.pose(m.kind, math.cos(m.age * 1.9 + m.id) < 0 ? 'walk_a' : 'walk_b');
+    }
   }
 
   // ------------------------------------------------------------ build
@@ -655,10 +762,20 @@ class _MonsterDefenseScreenState extends ConsumerState<MonsterDefenseScreen> wit
                     child: ValueListenableBuilder<int>(valueListenable: _frame, builder: (context, _, _) => _powers(g)),
                   ),
                   // before and after the game, Pencil and his bubble stay over the card's veil
-                  if (!_started) Positioned.fill(child: _StartCard(best: _best, onPlay: _play, onBack: _exit)),
+                  if (!_started) Positioned.fill(child: GameStartCard(id: 'md', title: 'Monster Defense', cover: MdArt.cover, hint: 'Catch the silly monsters!', best: _best, onPlay: _play, onBack: _exit)),
                   if (_started && _showResult)
                     Positioned.fill(
-                      child: _ResultCard(won: g.phase == MdPhase.won, stars: g.stars, score: g.score, record: _record, onAgain: _again, onDone: _exit),
+                      child: GameResultCard(
+                        id: 'md',
+                        picture: g.phase == MdPhase.won ? MdArt.prop('chest_open') : MdArt.pose(MdKind.gloop, 'friendly'),
+                        title: g.phase == MdPhase.won ? 'You did it!' : 'Good try!',
+                        star: MdArt.prop('star'),
+                        stars: g.phase == MdPhase.won ? g.stars : null,
+                        score: g.score,
+                        record: _record,
+                        onAgain: _again,
+                        onDone: _exit,
+                      ),
                     ),
                 ],
                 Positioned(
@@ -741,67 +858,31 @@ class _MonsterDefenseScreenState extends ConsumerState<MonsterDefenseScreen> wit
       final target = g.question?.answer;
       final pointAt = _firstPlay && g.caught == 0 && g.misses == 0 && _clock - _questionAt > 3.5 && !g.isBoss;
       final signs = <Widget>[]; // over every monster, so a nearer one never hides a sign
+      final bodies = <MdBody>[];
       for (final (m, b) in shown) {
         if (b.alpha <= 0) continue;
         final h = b.rect.height;
-        final rise = b.feet.dy - b.rect.bottom;
-        // shadow
-        kids.add(
-          Positioned(
-            left: b.feet.dx - b.rect.width * .32,
-            top: b.feet.dy - h * .05,
-            width: b.rect.width * .64,
-            height: h * .1,
-            child: Opacity(
-              opacity: b.alpha * (1 - (rise / (_mf.screen.height * .2)).clamp(0.0, .8)),
-              child: const DecoratedBox(
-                decoration: BoxDecoration(color: MonsterColors.shadow, borderRadius: BorderRadius.all(Radius.elliptical(100, 30))),
-              ),
-            ),
-          ),
-        );
-        final (pose, m4) = _pose(m, h, frozen);
-        Widget body = Image.asset(pose, fit: BoxFit.fill, gaplessPlayback: true, filterQuality: FilterQuality.medium);
-        if (frozen && m.mood == MdMood.walking) body = ColorFiltered(colorFilter: const ColorFilter.mode(MonsterColors.ice, BlendMode.srcATop), child: body);
-        kids.add(
-          Positioned.fromRect(
-            rect: b.rect,
-            child: Opacity(
-              opacity: b.alpha * (m.kind == MdKind.boo ? .94 : 1),
-              child: Transform(transform: m4, alignment: Alignment.bottomCenter, child: body),
-            ),
-          ),
-        );
-        if (m.kind == MdKind.boss && m.mood != MdMood.friendly) {
-          // his crown (it falls off when he is caught)
-          final cw = b.rect.width * .42;
-          kids.add(
-            Positioned(
-              left: b.rect.center.dx - cw / 2 + b.rect.width * .03,
-              top: b.rect.top - cw * .42,
-              width: cw,
-              height: cw * .72,
-              child: Transform.rotate(
-                angle: -.12 + (m.mood == MdMood.cracked ? math.sin(m.moodTime * 13) * .2 : 0),
-                child: const CustomPaint(painter: MdCrownPainter()),
-              ),
-            ),
-          );
-        }
+        final motion = _motion(m, h, frozen);
+        bodies.add((m: m, rect: b.rect, feet: b.feet, alpha: b.alpha * (m.kind == MdKind.boo ? .94 : 1), motion: motion));
         if (m.mood == MdMood.trapped) {
           final formed = ((m.moodTime - MdBeam.fly) / .3).clamp(0.0, 1.0);
-          bubbles.add((b.rect.center, math.max(b.rect.width, b.rect.height) * .64, formed, m.id));
+          final body = _seen(m, b.rect, 'surprised');
+          bubbles.add((body.center, math.max(body.width, body.height) * .68, formed, m.id));
         }
         // the sign with its letter or word
         final signed = m.kind != MdKind.boss && (m.mood == MdMood.walking || m.mood == MdMood.roaring || m.mood == MdMood.cracked) && m.label.isNotEmpty;
         if (signed) {
           final glow = g.hint && m.label == target ? .6 + .4 * math.sin(_clock * 8) : 0.0;
-          final s = (.5 + .55 * MdPath.depth((b.feet.dy - _mf.origin.dy) / _mf.size.height)).clamp(.55, 1.1);
+          // smaller far away, never bigger than the monster's head
+          final s = (.3 + .55 * MdPath.depth((b.feet.dy - _mf.origin.dy) / _mf.size.height)).clamp(.55, .9);
+          final mo = bodies.last.motion;
+          final body = MdArt.content(mo.pose, b.rect);
           signs.add(
             Positioned(
-              left: b.rect.center.dx,
-              // over its head, but never under the top bar
-              top: math.max(b.rect.top + (m.kind == MdKind.fuzz ? -h * .06 : 0), _pad.top + 66 + 44 * s),
+              left: body.center.dx + mo.dx,
+              // over its head, going up and down with it (less, so it stays
+              // readable), but never under the top bar
+              top: math.max(body.top - h * .02 + mo.dy * .6, _pad.top + 66 + 44 * s),
               child: FractionalTranslation(
                 translation: const Offset(-.5, -1),
                 child: Opacity(
@@ -811,11 +892,12 @@ class _MonsterDefenseScreenState extends ConsumerState<MonsterDefenseScreen> wit
               ),
             ),
           );
-          if (pointAt && m.label == target && m.mood == MdMood.walking && m.u > .12) {
+          if (pointAt && m.label == target && m.mood == MdMood.walking && m.u > .3) {
+            // a finger beside its sign, tapping
             signs.add(
               Positioned(
-                left: b.rect.center.dx + 6,
-                top: b.rect.top - 10 + math.sin(_clock * 6).abs() * 10,
+                left: body.right - body.width * .15,
+                top: body.top + body.height * .15 + math.sin(_clock * 6).abs() * 10,
                 child: const IgnorePointer(
                   child: Icon(
                     Symbols.touch_app_rounded,
@@ -830,13 +912,15 @@ class _MonsterDefenseScreenState extends ConsumerState<MonsterDefenseScreen> wit
           }
         }
       }
-      kids.addAll(signs);
+      kids
+        ..add(Positioned.fill(child: IgnorePointer(child: CustomPaint(painter: MdBodiesPainter(bodies: bodies, time: _clock)))))
+        ..addAll(signs);
       // Big Bonk's balloons
       final boss = g.boss;
       final rects = _balloonRects(g);
       for (var i = 0; i < rects.length && boss != null; i++) {
         final r = rects[i];
-        final bossBox = _box(boss);
+        final bossBody = _seen(boss, _box(boss).rect);
         final glow = g.hint && g.balloons[i] == target ? .6 + .4 * math.sin(_clock * 8) : 0.0;
         final label = g.balloons[i];
         kids.add(
@@ -848,7 +932,7 @@ class _MonsterDefenseScreenState extends ConsumerState<MonsterDefenseScreen> wit
                 color: MonsterColors.balloons[i % 3],
                 edge: MonsterColors.balloonEdge[i % 3],
                 // strings down to his hands while the balloons are over him
-                string: r.bottom < bossBox.rect.top ? bossBox.rect.topCenter + Offset((i - 1) * bossBox.rect.width * .2, bossBox.rect.height * .12) - r.topLeft : null,
+                string: r.bottom < bossBody.top ? bossBody.topCenter + Offset((i - 1) * bossBody.width * .25, bossBody.height * .2) - r.topLeft : null,
                 glow: glow,
               ),
               child: Padding(
@@ -916,7 +1000,7 @@ class _MonsterDefenseScreenState extends ConsumerState<MonsterDefenseScreen> wit
           child: Icon(_started ? Symbols.pause_rounded : Symbols.arrow_back_rounded, size: 26, weight: 700, fill: 1, color: LikhoColors.ink),
         ),
         const SizedBox(width: 8),
-        _Pill(
+        GamePill(
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -938,7 +1022,7 @@ class _MonsterDefenseScreenState extends ConsumerState<MonsterDefenseScreen> wit
           flex: 6,
           child: FittedBox(
             fit: BoxFit.scaleDown,
-            child: _Pill(
+            child: GamePill(
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -960,7 +1044,7 @@ class _MonsterDefenseScreenState extends ConsumerState<MonsterDefenseScreen> wit
           ),
         ),
         const Spacer(),
-        _Pill(
+        GamePill(
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -993,7 +1077,7 @@ class _MonsterDefenseScreenState extends ConsumerState<MonsterDefenseScreen> wit
   }
 
   Widget _overlay(MdGame g, Size size) {
-    if (_paused) return _PauseCard(onResume: _resume, onExit: _exit);
+    if (_paused) return GamePauseCard(id: 'md', picture: MdArt.pose(MdKind.boo, 'surprised'), onResume: _resume, onExit: _exit);
     if (_showResult) return const SizedBox.shrink();
     if (g.phase == MdPhase.banner) {
       return IgnorePointer(
@@ -1036,23 +1120,6 @@ class _Sign extends StatelessWidget {
   }
 }
 
-/// A white rounded box in the top bar.
-class _Pill extends StatelessWidget {
-  const _Pill({required this.child});
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) => Container(
-    height: 42,
-    padding: const EdgeInsets.symmetric(horizontal: 10),
-    decoration: BoxDecoration(
-      color: MonsterColors.panel,
-      borderRadius: BorderRadius.circular(21),
-      boxShadow: const [BoxShadow(color: MonsterColors.panelShadow, offset: Offset(0, 3), blurRadius: 6)],
-    ),
-    child: Align(widthFactor: 1, child: child),
-  );
-}
 
 /// Pencil's bubble: the question (its letter or picture, what he says, a
 /// button to hear it again), or what he is saying now.
@@ -1253,7 +1320,7 @@ class _Banner extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 12),
-              _Pill(
+              GamePill(
                 child: Text(sub, style: LikhoFonts.title(size: 20, weight: FontWeight.w800)),
               ),
             ],
@@ -1316,7 +1383,7 @@ class _BossIntro extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10),
-                _Pill(
+                GamePill(
                   child: Text('Catch him 3 times!', style: LikhoFonts.title(size: 19, weight: FontWeight.w800)),
                 ),
               ],
@@ -1328,213 +1395,7 @@ class _BossIntro extends StatelessWidget {
   }
 }
 
-/// A card over the dimmed game.
-class _Card extends StatelessWidget {
-  const _Card({required this.child, this.alignment = Alignment.center});
-  final Widget child;
-  final Alignment alignment;
 
-  @override
-  Widget build(BuildContext context) => ColoredBox(
-    color: MonsterColors.veil,
-    child: SafeArea(
-      child: Align(
-        alignment: alignment,
-        child: TweenAnimationBuilder<double>(
-          tween: Tween(begin: .8, end: 1),
-          duration: const Duration(milliseconds: 380),
-          curve: Curves.easeOutBack,
-          builder: (context, v, child) => Transform.scale(scale: v, child: child),
-          child: Container(
-            width: 330,
-            margin: const EdgeInsets.all(20),
-            padding: const EdgeInsets.fromLTRB(20, 18, 20, 20),
-            decoration: BoxDecoration(
-              color: MonsterColors.card,
-              borderRadius: BorderRadius.circular(32),
-              boxShadow: const [BoxShadow(color: MonsterColors.panelShadow, offset: Offset(0, 10), blurRadius: 24)],
-            ),
-            child: child,
-          ),
-        ),
-      ),
-    ),
-  );
-}
 
-Widget _bigButton({required Key key, required String label, required IconData icon, required VoidCallback onTap, bool main = true}) => PushButton(
-  key: key,
-  onTap: onTap,
-  color: main ? LikhoColors.success : MonsterColors.panel,
-  edgeColor: main ? GameColors.successDeep : GameColors.ink15,
-  edge: 5,
-  height: 58,
-  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(22)),
-  innerHighlight: main,
-  child: Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      Icon(icon, size: 28, fill: 1, weight: 700, color: main ? LikhoColors.surface : LikhoColors.ink),
-      const SizedBox(width: 6),
-      Flexible(
-        child: FittedBox(
-          fit: BoxFit.scaleDown,
-          child: Text(
-            label,
-            style: LikhoFonts.title(size: 22, weight: FontWeight.w800, color: main ? LikhoColors.surface : LikhoColors.ink),
-          ),
-        ),
-      ),
-    ],
-  ),
-);
 
-/// Before the game: its picture, the child's best score, Play.
-class _StartCard extends StatelessWidget {
-  const _StartCard({required this.best, required this.onPlay, required this.onBack});
-  final int best;
-  final VoidCallback onPlay, onBack;
 
-  @override
-  Widget build(BuildContext context) => Stack(
-    children: [
-      _Card(
-        // high, so Pencil can introduce the game below it
-        alignment: const Alignment(0, -.55),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(22),
-              child: Image.asset(MdArt.cover, width: 260, height: 200, fit: BoxFit.cover, alignment: const Alignment(0, -.1)),
-            ),
-            const SizedBox(height: 12),
-            Text('Monster Defense', style: LikhoFonts.title(size: 30, weight: FontWeight.w800)),
-            const SizedBox(height: 2),
-            Text(
-              best > 0 ? 'Your best: $best' : 'Catch the silly monsters!',
-              style: LikhoFonts.body(size: 16, weight: FontWeight.w800, color: StoryColors.name),
-            ),
-            const SizedBox(height: 16),
-            SizedBox(
-              width: double.infinity,
-              child: _bigButton(key: const ValueKey('md-play'), label: 'Play', icon: Symbols.play_arrow_rounded, onTap: onPlay),
-            ),
-          ],
-        ),
-      ),
-      Positioned(
-        left: 12,
-        top: MediaQuery.paddingOf(context).top + 8,
-        child: PushButton(
-          key: const ValueKey('md-back'),
-          onTap: onBack,
-          color: MonsterColors.panel,
-          width: 46,
-          height: 46,
-          shape: const CircleBorder(),
-          child: const Icon(Symbols.arrow_back_rounded, size: 26, weight: 700, color: LikhoColors.ink),
-        ),
-      ),
-    ],
-  );
-}
-
-class _PauseCard extends StatelessWidget {
-  const _PauseCard({required this.onResume, required this.onExit});
-  final VoidCallback onResume, onExit;
-
-  @override
-  Widget build(BuildContext context) => _Card(
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Image.asset(MdArt.pose(MdKind.boo, 'surprised'), height: 110),
-        const SizedBox(height: 8),
-        Text('Paused', style: LikhoFonts.title(size: 32, weight: FontWeight.w800)),
-        const SizedBox(height: 16),
-        SizedBox(
-          width: double.infinity,
-          child: _bigButton(key: const ValueKey('md-resume'), label: 'Keep playing', icon: Symbols.play_arrow_rounded, onTap: onResume),
-        ),
-        const SizedBox(height: 12),
-        SizedBox(
-          width: double.infinity,
-          child: _bigButton(key: const ValueKey('md-exit'), label: 'Stop', icon: Symbols.home_rounded, onTap: onExit, main: false),
-        ),
-      ],
-    ),
-  );
-}
-
-/// The end: won (the open chest, stars) or not this time (a friendly
-/// monster); the score, a new best, Play again.
-class _ResultCard extends StatelessWidget {
-  const _ResultCard({required this.won, required this.stars, required this.score, required this.record, required this.onAgain, required this.onDone});
-  final bool won, record;
-  final int stars, score;
-  final VoidCallback onAgain, onDone;
-
-  @override
-  Widget build(BuildContext context) => _Card(
-    // high, so Pencil's words show below it
-    alignment: const Alignment(0, -.75),
-    child: Column(
-      key: const ValueKey('md-result'),
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Image.asset(won ? MdArt.prop('chest_open') : MdArt.pose(MdKind.gloop, 'friendly'), height: 120),
-        const SizedBox(height: 6),
-        Text(won ? 'You did it!' : 'Good try!', style: LikhoFonts.title(size: 32, weight: FontWeight.w800)),
-        if (won) ...[
-          const SizedBox(height: 6),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              for (var k = 1; k <= 3; k++)
-                TweenAnimationBuilder<double>(
-                  tween: Tween(begin: 0, end: 1),
-                  duration: Duration(milliseconds: 400 + k * 250),
-                  curve: Curves.elasticOut,
-                  builder: (context, v, child) => Transform.scale(scale: v, child: child),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 3),
-                    child: Opacity(
-                      opacity: stars >= k ? 1 : .25,
-                      child: Image.asset(MdArt.prop('star'), width: k == 2 ? 54 : 44),
-                    ),
-                  ),
-                ),
-            ],
-          ),
-        ],
-        const SizedBox(height: 8),
-        Text(
-          '$score points',
-          style: LikhoFonts.title(size: 22, weight: FontWeight.w800, color: StoryColors.name),
-        ),
-        if (record) ...[
-          const SizedBox(height: 8),
-          Container(
-            padding: const EdgeInsets.fromLTRB(14, 4, 14, 6),
-            decoration: BoxDecoration(color: MonsterColors.ribbon, borderRadius: BorderRadius.circular(14)),
-            child: Text(
-              'New best!',
-              style: LikhoFonts.title(size: 18, weight: FontWeight.w800, color: MonsterColors.ribbonInk),
-            ),
-          ),
-        ],
-        const SizedBox(height: 16),
-        SizedBox(
-          width: double.infinity,
-          child: _bigButton(key: const ValueKey('md-again'), label: 'Play again', icon: Symbols.replay_rounded, onTap: onAgain),
-        ),
-        const SizedBox(height: 12),
-        SizedBox(
-          width: double.infinity,
-          child: _bigButton(key: const ValueKey('md-done'), label: 'Map', icon: Symbols.map_rounded, onTap: onDone, main: false),
-        ),
-      ],
-    ),
-  );
-}
