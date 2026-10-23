@@ -752,6 +752,7 @@ abstract final class StoryColors {
 /// signs, the boss's balloons and crown, the game's panels.
 abstract final class MonsterColors {
   static const shadow = Color(0x33223311);
+  static const dust = Color(0x8CEAD7B5); // puffs of the sandy path under the steps
   static const magic = Color(0xFF9B7BFF);
   static const magicCore = Color(0xFFFFFFFF);
   static const magicGlow = Color(0x669B7BFF);
