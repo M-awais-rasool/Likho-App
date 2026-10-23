@@ -42,12 +42,16 @@ class MdQuestion {
 /// pictures whose first letter makes its usual sound, and words to read.
 @immutable
 class MdWords {
-  const MdWords({required this.first, required this.read});
+  const MdWords({required this.first, required this.read, this.long = const []});
   final List<String> first, read;
+
+  /// Longer words (5 and 6 letters) for Spell Runner's later stages.
+  final List<String> long;
 
   static const asset = 'assets/games/monster_words.json';
 
-  factory MdWords.fromJson(Map<String, dynamic> j) => MdWords(first: (j['first'] as List).cast<String>(), read: (j['read'] as List).cast<String>());
+  factory MdWords.fromJson(Map<String, dynamic> j) =>
+      MdWords(first: (j['first'] as List).cast<String>(), read: (j['read'] as List).cast<String>(), long: ((j['long'] as List?) ?? const []).cast<String>());
 
   static Future<MdWords> load() async => MdWords.fromJson(jsonDecode(await rootBundle.loadString(asset)) as Map<String, dynamic>);
 
@@ -116,15 +120,15 @@ class MdQuestions implements MdQuestionSource {
   final List<String> _recent = []; // the last answers (not asked again soon)
   final List<(MdSkill, String, int)> _again = []; // missed: (skill, answer, asks to wait)
 
-  static const _alphabet = 'abcdefghijklmnopqrstuvwxyz';
+  static const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
   /// Capitals that look alike: wrong choices that make the child look.
-  static const _likeCaps = {
+  static const likeCaps = {
     'A': 'VHR', 'B': 'DPRE', 'C': 'GOU', 'D': 'BOPQ', 'E': 'FBH', 'F': 'EPT', 'G': 'CQO', 'H': 'NMK', 'I': 'LTJ', //
     'J': 'LIU', 'K': 'XRH', 'L': 'IJT', 'M': 'NWH', 'N': 'MHZ', 'O': 'QCDG', 'P': 'BRDF', 'Q': 'OGC', 'R': 'PBK',
     'S': 'ZCG', 'T': 'IFY', 'U': 'VJC', 'V': 'UWY', 'W': 'MVN', 'X': 'KYZ', 'Y': 'VXT', 'Z': 'NSX',
   };
-  static const _likeSmalls = {
+  static const likeSmalls = {
     'a': 'oed', 'b': 'dpq', 'c': 'eoa', 'd': 'bqp', 'e': 'cao', 'f': 'tlk', 'g': 'qyp', 'h': 'nbk', 'i': 'ljt', //
     'j': 'igy', 'k': 'hxz', 'l': 'itj', 'm': 'nwh', 'n': 'muh', 'o': 'ace', 'p': 'qbd', 'q': 'pdg', 'r': 'nmt',
     's': 'zca', 't': 'fil', 'u': 'vnw', 'v': 'uwy', 'w': 'vmu', 'x': 'kzy', 'y': 'vgj', 'z': 'sxn',
@@ -184,17 +188,17 @@ class MdQuestions implements MdQuestionSource {
   MdQuestion _make(MdSkill skill, String answer, int count) {
     switch (skill) {
       case MdSkill.capitals:
-        final choices = _letters(answer, count, _likeCaps[answer] ?? '', upper: true);
+        final choices = _letters(answer, count, likeCaps[answer] ?? '', upper: true);
         return MdQuestion(skill: skill, answer: answer, choices: choices, say: 'Find $answer!', audio: _voice('md_find_${answer.toLowerCase()}'), letter: answer);
       case MdSkill.smalls:
-        final choices = _letters(answer, count, _likeSmalls[answer] ?? '', upper: false);
+        final choices = _letters(answer, count, likeSmalls[answer] ?? '', upper: false);
         return MdQuestion(skill: skill, answer: answer, choices: choices, say: 'Find small $answer!', audio: _voice('md_small_$answer'), letter: answer.toUpperCase());
       case MdSkill.firstSound:
         final first = answer[0];
         // c and k sound the same at the start: never both
         final avoid = {first, if (first == 'c') 'k', if (first == 'k') 'c'};
         final others = [
-          for (final l in _alphabet.split(''))
+          for (final l in alphabet.split(''))
             if (!avoid.contains(l) && l != 'x') l,
         ]..shuffle(_rnd);
         final known = others.where(knowledge.smalls.contains).toList();
@@ -219,7 +223,7 @@ class MdQuestions implements MdQuestionSource {
   /// [answer] and [count]-1 other letters: half of them look like it.
   List<String> _letters(String answer, int count, String like, {required bool upper}) {
     final similar = like.split('').where((l) => l.isNotEmpty).toList()..shuffle(_rnd);
-    final rest = [for (final l in _alphabet.split('')) upper ? l.toUpperCase() : l]
+    final rest = [for (final l in alphabet.split('')) upper ? l.toUpperCase() : l]
       ..removeWhere((l) => l == answer || similar.contains(l))
       ..shuffle(_rnd);
     final wrong = <String>[];
