@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/foundation.dart';
 
 import '../../../game/monster_defense/md_engine.dart';
+import 'md_art_boxes.dart';
 
 /// Monster Defense's pictures (`assets/games/monsters/`, cut from the Gemini
 /// art by tools/games/cut_art.py) and where things are in the scene.
@@ -34,6 +35,23 @@ abstract final class MdArt {
     MdKind.boo => const Size(439, 420),
   };
 
+  /// Where the monster is in pose picture [asset] (fractions; see
+  /// tools/games/cut_art.py).
+  static Rect box(String asset) => mdArtBoxes[asset.split('/').last.replaceAll('.webp', '')] ?? const Rect.fromLTRB(0, 0, 1, 1);
+
+  /// A pose's frame [rect] moved so the monster in it stands on the frame's
+  /// bottom middle (the poses of a sheet sit at different spots of it).
+  static Rect placed(String asset, Rect rect) {
+    final b = box(asset);
+    return rect.shift(Offset((.5 - b.center.dx) * rect.width, (1 - b.bottom) * rect.height));
+  }
+
+  /// The monster itself, in its placed frame.
+  static Rect content(String asset, Rect rect) {
+    final b = box(asset), p = placed(asset, rect);
+    return Rect.fromLTRB(p.left + b.left * p.width, p.top + b.top * p.height, p.left + b.right * p.width, p.top + b.bottom * p.height);
+  }
+
   /// The backgrounds' size (9:16).
   static const bgSize = Size(1080, 1935);
 
@@ -53,17 +71,18 @@ abstract final class MdArt {
 class MdPath {
   const MdPath._(this._pts, this._len);
 
+  // the middle of the sand (each point the deepest spot of the sand near
+  // a hand-placed one, measured from the picture)
   static const _points = [
-    Offset(.735, .300), Offset(.700, .318), Offset(.627, .331), Offset(.555, .343), Offset(.498, .355), //
-    Offset(.450, .369), Offset(.420, .388), Offset(.432, .405), Offset(.500, .420), Offset(.600, .437),
-    Offset(.680, .458), Offset(.700, .478), Offset(.660, .497), Offset(.580, .513), Offset(.480, .531),
-    Offset(.390, .550), Offset(.320, .570), Offset(.300, .590), Offset(.322, .608), Offset(.400, .627),
-    Offset(.500, .645), Offset(.600, .666), Offset(.672, .688), Offset(.703, .710), Offset(.690, .738),
-    Offset(.640, .765), Offset(.578, .790), Offset(.528, .812), Offset(.503, .838),
+    Offset(.734, .300), Offset(.683, .323), Offset(.623, .332), Offset(.542, .346), Offset(.481, .360), //
+    Offset(.431, .380), Offset(.419, .395), Offset(.483, .418), Offset(.620, .438), Offset(.703, .474),
+    Offset(.680, .496), Offset(.600, .516), Offset(.465, .535), Offset(.369, .554), Offset(.316, .581),
+    Offset(.303, .595), Offset(.380, .628), Offset(.520, .650), Offset(.620, .674), Offset(.671, .699),
+    Offset(.695, .722), Offset(.660, .753), Offset(.557, .778), Offset(.507, .823), Offset(.499, .845),
   ];
 
   /// The cave's mouth and the gate (where the path ends).
-  static const cave = Offset(.735, .292), gate = Offset(.503, .838);
+  static const cave = Offset(.734, .292), gate = Offset(.499, .845);
 
   static final MdPath shared = _build();
 
@@ -103,8 +122,11 @@ class MdPath {
   }
 
   /// How big things are at picture height [fy] (far away is smaller):
-  /// 0.32 at the cave, 1 at the gate.
-  static double depth(double fy) => (.32 + .68 * ((fy - cave.dy) / (gate.dy - cave.dy))).clamp(.3, 1.15);
+  /// 0.52 at the cave (still big enough to see a face), 1 at the gate.
+  static double depth(double fy) => (.52 + .48 * ((fy - cave.dy) / (gate.dy - cave.dy))).clamp(.5, 1.1);
+
+  /// The way the path goes at [u] (picture pixels, unit length).
+  Offset direction(double u) => _at(u).$2;
 
   /// Where a monster's feet are (picture fractions): [u] along the path,
   /// [lane] across it (-1..1), before the cave just inside its mouth.
@@ -112,8 +134,8 @@ class MdPath {
     final (p, dir) = _at(u);
     final fy = p.dy / MdArt.bgSize.height;
     // half the path's width there
-    // (wider than the sand far away, so monsters side by side keep apart)
-    final half = (.045 + .045 * ((fy - cave.dy) / (gate.dy - cave.dy)).clamp(0.0, 1.0)) * MdArt.bgSize.width;
+    // half the sand's width there (monsters keep their feet on it)
+    final half = (.016 + .07 * ((fy - cave.dy) / (gate.dy - cave.dy)).clamp(0.0, 1.0)) * MdArt.bgSize.width;
     final normal = Offset(-dir.dy, dir.dx);
     final at = p + normal * (lane * half);
     return Offset(at.dx / MdArt.bgSize.width, at.dy / MdArt.bgSize.height);
