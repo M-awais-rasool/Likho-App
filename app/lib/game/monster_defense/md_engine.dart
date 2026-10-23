@@ -78,8 +78,9 @@ class MdMonster {
 
   MdMood mood = MdMood.walking;
 
-  /// Seconds in [mood], and since it came out.
-  double moodTime = 0, age = 0;
+  /// Seconds in [mood], since it was made, out of the cave, and walking
+  /// (its steps: frozen in Freeze).
+  double moodTime = 0, age = 0, outTime = 0, walk = 0;
 
   bool get tappable => mood == MdMood.walking || mood == MdMood.roaring;
   bool get alive => mood != MdMood.gone;
@@ -87,6 +88,34 @@ class MdMonster {
 
   /// Boo drifts from side to side.
   double get drift => kind == MdKind.boo ? .55 * math.sin(age * 1.9 + id) : 0;
+
+  /// Seconds for one whole walk cycle: two steps (Gloop, Bonk), one hop
+  /// (Fuzz), one sway (Boo).
+  static double gait(MdKind k) => switch (k) {
+    MdKind.gloop => .72,
+    MdKind.fuzz => .52,
+    MdKind.bonk => .96,
+    MdKind.boo => 1.6,
+    MdKind.boss => 1.2,
+  };
+
+  /// Where it is in its walk cycle (0..1).
+  double get phase => (walk / gait(kind)) % 1;
+
+  /// How much of its speed it has now, so it moves with its steps instead of
+  /// sliding: a push in each step, landing slows it; Fuzz only moves in the
+  /// air. The average over a cycle is 1.
+  double get stride => switch (kind) {
+    MdKind.fuzz => phase < Hop.ground ? 0 : 1 / (1 - Hop.ground),
+    MdKind.boo => 1,
+    _ => (.35 + 1.3 * math.sin(2 * math.pi * phase).abs()) / (.35 + 1.3 * 2 / math.pi),
+  };
+}
+
+/// Fuzz's hop: crouched on the ground for the first part of a cycle, then
+/// in the air.
+abstract final class Hop {
+  static const ground = .2;
 }
 
 /// One wave: its groups, each a list of monsters walking together.
@@ -226,6 +255,7 @@ class MdGame {
     _phaseTime += dt;
     for (final m in monsters) {
       m.age += dt;
+      if (m.u >= 0) m.outTime += dt;
       m.moodTime += dt;
     }
     switch (phase) {
@@ -264,7 +294,8 @@ class MdGame {
       final k = math.ln2 / seconds;
       final before = m.u;
       // out of the cave at a steady pace, then down the path
-      m.u += m.u < 0 ? dt * .07 : dt * m.speed * k * (1 + m.u);
+      m.walk += dt;
+      m.u += m.u < 0 ? dt * .07 : dt * m.speed * k * (1 + m.u) * m.stride;
       if (before < 0 && m.u >= 0) _emit(MdEventKind.spawn, monster: m.id);
     }
     // close to the gate
@@ -303,7 +334,7 @@ class MdGame {
           _mood(m, m.u >= 1 ? MdMood.fleeing : MdMood.walking);
         case MdMood.cracked when m.moodTime > (m.kind == MdKind.boss ? 1.3 : 1.0):
           _mood(m, MdMood.walking);
-        case MdMood.trapped when m.moodTime > (m.kind == MdKind.boss ? 2.6 : 1.9):
+        case MdMood.trapped when m.moodTime > (m.kind == MdKind.boss ? 2.6 : 1.4):
           _mood(m, MdMood.friendly);
           _emit(MdEventKind.popped, monster: m.id);
         case MdMood.friendly when m.moodTime > 1.6:
@@ -325,7 +356,7 @@ class MdGame {
 
   void _spawnGroup(List<MdKind> kinds) {
     final q = questions.next(kinds.length);
-    final lanes = kinds.length == 2 ? [-.6, .6] : [-.8, 0.0, .8];
+    final lanes = kinds.length == 2 ? [-.45, .45] : [-.6, 0.0, .6];
     lanes.shuffle(_rnd);
     final group = <MdMonster>[];
     for (var i = 0; i < kinds.length; i++) {
@@ -336,7 +367,7 @@ class MdGame {
           kind: kind,
           label: q.choices[i],
           // one after another out of the cave (apart, so their signs are)
-          u: -.02 - i * .085,
+          u: -.02 - i * .12,
           lane: lanes[i],
           speed: switch (kind) {
             MdKind.fuzz => 1.3,
