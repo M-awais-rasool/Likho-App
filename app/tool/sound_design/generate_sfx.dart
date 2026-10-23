@@ -435,15 +435,15 @@ Snd pluck(double f, {double dur = .4, double amp = 1}) => partials(f, dur, [(1, 
 /// plucked bass, kalimba tune). [tense] adds a running bass, a snare on 2
 /// and 4 and a pulsing pad, for when the monsters get close. The reverb's
 /// tail is folded onto the start, so the loop joins without a seam.
-Snd gameMusic({required double bpm, required bool tense, int seed = 500}) {
+Snd gameMusic({required double bpm, required bool tense, int seed = 500, List<List<int?>>? tune, List<double>? roots}) {
   final r = math.Random(seed);
   final eighth = 60 / bpm / 2;
   const bars = 4;
   final n = (bars * 8 * eighth * sr).round();
   final x = Snd(bars * 8 * eighth + 1.6);
-  final roots = [hz('D3'), hz('B2'), hz('E3'), hz('A2')];
+  roots ??= [hz('D3'), hz('B2'), hz('E3'), hz('A2')];
   // the tune, an eighth at a time (scale degrees, null = rest)
-  const tune = [
+  tune ??= const [
     [8, null, 7, 8, 10, null, 8, null],
     [7, null, 5, 7, 8, null, null, null],
     [8, null, 9, 10, 9, null, 8, null],
@@ -1032,6 +1032,112 @@ Map<String, Snd Function()> music() => {
   'md_music_tense': () => halfRate(masterLoop(gameMusic(bpm: 132, tense: true, seed: 501), soft - 1)),
 };
 
+/// Spell Runner's sounds, made after everything else (the shared noise
+/// source then gives every older sound the same take). Loops and music are
+/// at half rate.
+Map<String, (Snd Function(), bool)> runner() {
+  final d5 = hz('D5'), a5 = hz('A5'), d6 = hz('D6'), fs6 = hz('F#6'), a6 = hz('A6');
+  Map<String, Snd Function()> sfx() => {
+    // up on the skateboard: a springy hop and a swish
+    'sr_jump': () {
+      final x = Snd(.6)
+        ..mix(boing(f0: 240, f1: 520, dur: .3, amp: .7))
+        ..mix(whoosh(.3, 900, 3800, amp: .5, q: 1.4));
+      return master(houseEq(room(x, wet: .1)), feedback - 2);
+    },
+    // back on the road: a soft thump and the wheels click
+    'sr_land': () {
+      final x = Snd(.4)
+        ..mix(thump(f0: 200, f1: 100, dur: .12, amp: .9))
+        ..mix(strike(.012, 2600, .35, q: 1.3), at: .01)
+        ..mix(strike(.01, 2900, .25, q: 1.3), at: .06);
+      return master(houseEq(x), soft);
+    },
+    // a bump into a log or a rock: a wooden knock and a dizzy boing down
+    'sr_bump': () {
+      final x = Snd(.9)
+        ..mix(thump(f0: 190, f1: 80, dur: .2, amp: 1))
+        ..mix(wood(hz('D5'), dur: .14, amp: .8, bright: 1.3))
+        ..mix(boing(f0: 420, f1: 180, dur: .45, amp: .5), at: .08);
+      return master(houseEq(room(x, wet: .12)), feedback);
+    },
+    // into a puddle: a splash with bubbly drops
+    'sr_splash': () {
+      final x = Snd(.9);
+      final n = Snd(.45);
+      for (var i = 0; i < n.s.length; i++) {
+        final t = i / sr;
+        n.s[i] = noise() * _env(t, .004, .09);
+      }
+      x.mix(filter(n, (b) => b.lowpass(2600, .8)));
+      for (var k = 0; k < 4; k++) {
+        x.mix(bloop(f0: 500 + k * 120.0, f1: 1100 + k * 160.0, dur: .07, amp: .4), at: .1 + k * .07);
+      }
+      return master(houseEq(room(x, wet: .14)), feedback - 1);
+    },
+    // on a banana peel: a squeaky slide
+    'sr_slip': () {
+      final x = Snd(.6);
+      var ph = 0.0;
+      for (var i = 0; i < x.s.length; i++) {
+        final t = i / sr;
+        final f = 700 + 900 * (t / .5) + 60 * math.sin(2 * math.pi * 18 * t);
+        ph += 2 * math.pi * f / sr;
+        x.s[i] = (math.sin(ph) + .2 * math.sin(2 * ph)) * _env(t, .01, .2) * .7;
+      }
+      return master(houseEq(room(x, wet: .1)), feedback - 2);
+    },
+    // a whole word: a rush of speed going up
+    'sr_boost': () {
+      final x = Snd(1.3)..mix(whoosh(.9, 400, 7000, amp: .7, q: 1.1, peakAt: .75));
+      for (final (i, f) in [d5, fs6 / 2, a5, d6, fs6, a6].indexed) {
+        x.mix(kalimba(f, dur: .25, amp: .5), at: .1 + i * .07);
+      }
+      x.mix(sparkle(.6, count: 7, seed: 511, amp: .25), at: .5);
+      return master(houseEq(room(x, wet: .18)), celebrate - 1);
+    },
+    // the countdown: three blips, then a higher one for "go"
+    'sr_beep': () => master(houseEq(Snd(.3)..mix(blip(a5, dur: .16, amp: 1))), feedback - 2),
+    'sr_beep_go': () => master(houseEq(room(Snd(.6)..mix(blip(d6, dur: .3, amp: 1))..mix(bell(d6, dur: .5, amp: .5)), wet: .15)), feedback),
+  };
+  return {
+    for (final e in sfx().entries) e.key: (e.value, false),
+    // Spell Runner: a bright, quick tune
+    'sr_music': (() => halfRate(
+      masterLoop(
+        gameMusic(
+          bpm: 140,
+          tense: false,
+          seed: 510,
+          roots: [hz('D3'), hz('A2'), hz('B2'), hz('A2')],
+          tune: const [
+            [10, 9, 8, null, 10, 9, 8, 7],
+            [8, null, 7, 5, 7, null, null, null],
+            [9, 10, 12, null, 10, 9, 8, null],
+            [7, 8, 9, 8, 10, null, null, null],
+          ],
+        ),
+        soft - 2,
+      ),
+    ), true),
+    // the skateboard's wheels on the road (looped while he rides)
+    'sr_roll': (() {
+      final n = (1.44 * sr).round();
+      final x = Snd(1.44);
+      for (var i = 0; i < n; i++) {
+        x.s[i] = noise() * .5;
+      }
+      filter(x, (b) => b.lowpass(420, .7));
+      // a click every seam in the road
+      for (var k = 0; k < 8; k++) {
+        x.mix(strike(.01, 1800, .12, q: 1.5), at: k * .18);
+      }
+      final out = Snd(0)..s = Float64List.fromList(x.s.sublist(0, n));
+      return halfRate(masterLoop(out, ui - 4));
+    }, true),
+  };
+}
+
 void main() {
   final dir = Directory('assets/sfx')..createSync(recursive: true);
   final p = palette();
@@ -1050,5 +1156,13 @@ void main() {
     bytes += File(path).lengthSync();
     stdout.writeln('${e.key.padRight(16)} ${(snd.seconds * 2000).round().toString().padLeft(5)} ms (loop)');
   }
-  stdout.writeln('${p.length + music().length} sounds, ${(bytes / 1024).round()} KB');
+  for (final e in runner().entries) {
+    final (make, half) = e.value;
+    final snd = make();
+    final path = '${dir.path}/${e.key}.wav';
+    writeWav(path, snd, rate: half ? sr ~/ 2 : sr);
+    bytes += File(path).lengthSync();
+    stdout.writeln('${e.key.padRight(16)} ${(snd.seconds * (half ? 2000 : 1000)).round().toString().padLeft(5)} ms');
+  }
+  stdout.writeln('${p.length + music().length + runner().length} sounds, ${(bytes / 1024).round()} KB');
 }
