@@ -79,6 +79,22 @@ class Sfx {
     mdSpawn, mdZap, mdBubble, mdPop, mdRoar, mdCrack, mdGate, mdWave, mdBoss, mdHurry, mdPower, mdFreeze, mdPotion, mdLose, mdMusic, mdMusicTense,
   ];
 
+  // Spell Runner
+  static const srJump = Sfx('sr_jump');
+  static const srLand = Sfx('sr_land');
+  static const srBump = Sfx('sr_bump');
+  static const srSplash = Sfx('sr_splash');
+  static const srSlip = Sfx('sr_slip');
+  static const srBoost = Sfx('sr_boost');
+  static const srBeep = Sfx('sr_beep');
+  static const srBeepGo = Sfx('sr_beep_go');
+
+  /// Looped while he rides: the music and the wheels.
+  static const srMusic = Sfx('sr_music');
+  static const srRoll = Sfx('sr_roll');
+
+  static const spellRunner = [srJump, srLand, srBump, srSplash, srSlip, srBoost, srBeep, srBeepGo, srMusic, srRoll];
+
   // rewards, room, profiles
   static const reward = Sfx('reward');
   static const wear = Sfx('wear');
@@ -112,6 +128,7 @@ class Sfx {
     reward, wear, sticker, unlock, successSoft, send, paint, candle, catchLetter,
     splashLand, splashSwish, splashChime, scribbleLoop,
     ...monsterDefense,
+    ...spellRunner,
   ];
 
   /// Loaded at start-up: the splash and the sounds of every answer.

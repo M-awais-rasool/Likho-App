@@ -211,6 +211,34 @@ class AppFeedback {
     engine.stopLoop(Sfx.mdMusicTense);
   }
 
+  // ---------------------------------------------------------- Spell Runner
+  void skateJump() => _go(Sfx.srJump, HapticCue.press);
+
+  void skateLand() => _go(Sfx.srLand, HapticCue.tick, volume: .8);
+
+  void skateBump() => _go(Sfx.srBump, HapticCue.landBig);
+
+  void splash() => _go(Sfx.srSplash, HapticCue.land);
+
+  void slip() => _go(Sfx.srSlip, HapticCue.land);
+
+  void boost() => _go(Sfx.srBoost, HapticCue.celebrate);
+
+  /// A countdown number, or "go".
+  void countdown({bool go = false}) => _go(go ? Sfx.srBeepGo : Sfx.srBeep, go ? HapticCue.press : HapticCue.tick);
+
+  /// The runner's music and wheels (on), or quiet (off).
+  void riding(bool on) {
+    final engine = _ref.read(soundEngineProvider);
+    if (on && _sfx) {
+      engine.loop(Sfx.srMusic, volume: .5);
+      engine.loop(Sfx.srRoll, volume: .45);
+    } else {
+      engine.stopLoop(Sfx.srMusic);
+      engine.stopLoop(Sfx.srRoll);
+    }
+  }
+
   // ---------------------------------------------------------- writing
   void startWriting() {
     if (_sfx) _ref.read(soundEngineProvider).loop(Sfx.scribbleLoop, volume: .9);
