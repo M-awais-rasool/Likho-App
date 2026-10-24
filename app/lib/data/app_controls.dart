@@ -134,6 +134,125 @@ class BillingRules {
   );
 }
 
+/// The bottom bar's tabs.
+abstract final class TabIds {
+  static const map = 'map';
+  static const stories = 'stories';
+  static const games = 'games';
+
+  /// Not a page: opens the parent gate, then the dashboard.
+  static const parents = 'parents';
+  static const all = [map, stories, games, parents];
+}
+
+/// How the bottom bar looks: [candy] (the tab pops up as a 3D button),
+/// [jelly] (a colour blob slides to the tab), [island] (a big Map button
+/// in the middle).
+enum TabBarStyle { candy, jelly, island }
+
+/// How a tab answers a tap.
+enum TabAnimation { bounce, slide, pop, none }
+
+/// The bar behind the tabs.
+enum TabSurface { white, glass, colour }
+
+/// One tab of the bottom bar, as the team set it up.
+@immutable
+class TabSpec {
+  const TabSpec(this.id, {this.shown = true, required this.label, required this.color, this.badge = false});
+  final String id;
+  final bool shown;
+  final String label;
+  final Color color;
+
+  /// "NEW" until the child has played a story or a game.
+  final bool badge;
+}
+
+/// The bottom bar (App controls, Bottom bar tab).
+@immutable
+class TabBarRules {
+  const TabBarRules({
+    this.style = TabBarStyle.candy,
+    this.animation = TabAnimation.bounce,
+    this.speed = 1,
+    this.wiggle = true,
+    this.surface = TabSurface.white,
+    this.barColor = const Color(0xFF7C5CFF),
+    this.floating = true,
+    this.roundness = 28,
+    this.labels = true,
+    this.start = TabIds.map,
+    this.tabs = defaultTabs,
+  });
+
+  final TabBarStyle style;
+  final TabAnimation animation;
+
+  /// How long the animations take: 1 normal, more is slower.
+  final double speed;
+  final bool wiggle, floating, labels;
+  final TabSurface surface;
+  final Color barColor;
+  final double roundness;
+  final String start;
+
+  /// Every tab, in the bar's order.
+  final List<TabSpec> tabs;
+
+  static const defaultTabs = [
+    TabSpec(TabIds.map, label: 'Map', color: LikhoColors.primary),
+    TabSpec(TabIds.stories, label: 'Stories', color: LikhoColors.secondary, badge: true),
+    TabSpec(TabIds.games, label: 'Games', color: MonsterColors.ribbon, badge: true),
+    TabSpec(TabIds.parents, label: 'Parents', color: LikhoColors.success),
+  ];
+
+  /// Scales a duration by [speed].
+  Duration time(int ms) => Duration(milliseconds: (ms * speed).round());
+
+  factory TabBarRules.fromJson(Map<String, dynamic> j) {
+    T pick<T extends Enum>(List<T> values, Object? v, T fallback) => values.firstWhere((e) => e.name == v, orElse: () => fallback);
+    Color? hex(Object? v) => v is String && RegExp(r'^#[0-9A-Fa-f]{6}$').hasMatch(v) ? colorFromHex(v) : null;
+    final tabs = <TabSpec>[];
+    for (final t in j['tabs'] as List? ?? const []) {
+      if (t is! Map) continue;
+      final id = t['id'];
+      final def = defaultTabs.where((d) => d.id == id).firstOrNull;
+      if (def == null || tabs.any((x) => x.id == id)) continue;
+      final label = (t['label'] as String? ?? '').trim();
+      tabs.add(TabSpec(
+        def.id,
+        shown: def.id == TabIds.map || t['shown'] != false,
+        label: label.isEmpty ? def.label : label,
+        color: hex(t['color']) ?? def.color,
+        badge: t['badge'] == true,
+      ));
+    }
+    // a tab this app has but the server did not send (an older server)
+    for (final d in defaultTabs) {
+      if (!tabs.any((x) => x.id == d.id)) tabs.add(d);
+    }
+    final start = j['start'];
+    return TabBarRules(
+      style: pick(TabBarStyle.values, j['style'], TabBarStyle.candy),
+      animation: pick(TabAnimation.values, j['animation'], TabAnimation.bounce),
+      speed: switch (j['speed']) {
+        'slow' => 1.6,
+        'fast' => .6,
+        _ => 1,
+      },
+      wiggle: j['wiggle'] != false,
+      surface: pick(TabSurface.values, j['surface'], TabSurface.white),
+      barColor: hex(j['barColor']) ?? const Color(0xFF7C5CFF),
+      floating: j['floating'] != false,
+      roundness: ((j['roundness'] as num?)?.toDouble() ?? 28).clamp(0, 36),
+      labels: j['labels'] != false,
+      start: start is String && start != TabIds.parents && TabIds.all.contains(start) ? start : TabIds.map,
+      tabs: tabs,
+    );
+  }
+}
+
 /// A message from the team (maintenance screen, parents' dashboard).
 @immutable
 class TeamNotice {
@@ -161,6 +280,7 @@ class AppControls {
     this.minVersion = '',
     this.maintenance = const TeamNotice(),
     this.parentMessage = const TeamNotice(),
+    this.tabBar = const TabBarRules(),
   });
 
   final int revision;
@@ -181,6 +301,9 @@ class AppControls {
   /// Older apps must update ('' = any).
   final String minVersion;
   final TeamNotice maintenance, parentMessage;
+
+  /// The bottom bar: its look and its tabs.
+  final TabBarRules tabBar;
 
   /// Before anything was downloaded: as the app always was, stories off.
   static const defaults = AppControls(features: {Feature.stories: Access.off});
@@ -257,6 +380,7 @@ class AppControls {
       minVersion: app['minVersion'] as String? ?? '',
       maintenance: TeamNotice.fromJson(app['maintenance']),
       parentMessage: TeamNotice.fromJson(app['parentMessage']),
+      tabBar: TabBarRules.fromJson(obj(j['tabBar'])),
     );
   }
 }
