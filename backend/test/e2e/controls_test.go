@@ -23,6 +23,9 @@ func TestAppControls(t *testing.T) {
 	if billing["freeLevels"] != 30.0 || billing["guestLevels"] != 1.0 || billing["enabled"] != true || billing["plusFree"] != false {
 		t.Fatalf("default billing: %v", billing)
 	}
+	if bar := cfg["tabBar"].(map[string]any); bar["style"] != "candy" || bar["start"] != "map" || len(bar["tabs"].([]any)) != 4 {
+		t.Fatalf("default bottom bar: %v", bar)
+	}
 	etag := r.header.Get("ETag")
 	want(t, a.do("GET", "/v1/config", "", nil, "If-None-Match", etag), http.StatusNotModified)
 	want(t, a.do("GET", "/v1/config", "garbage", nil), http.StatusUnauthorized, "token_expired")
@@ -40,6 +43,9 @@ func TestAppControls(t *testing.T) {
 	c["room"].(map[string]any)["items"].(map[string]any)["crown"] = map[string]any{"hidden": true, "price": 40}
 	b := c["billing"].(map[string]any)
 	b["freeLevels"], b["trialLevels"], b["guestLevels"] = 5, 10, 2
+	bar := c["tabBar"].(map[string]any)
+	tabs := bar["tabs"].([]any)
+	bar["style"], bar["tabs"] = "jelly", []any{tabs[2], tabs[0], tabs[1], tabs[3]} // Games first
 
 	bad := map[string]any{}
 	for k, v := range c {
@@ -59,8 +65,12 @@ func TestAppControls(t *testing.T) {
 	}
 	// a save from the old revision would undo it unseen
 	want(t, adm.do("PUT", "/controls", map[string]any{"controls": c, "revision": 0}), http.StatusConflict, "controls_changed")
-	if a.do("GET", "/v1/config", "", nil).header.Get("ETag") == etag {
+	now := a.do("GET", "/v1/config", "", nil)
+	if now.header.Get("ETag") == etag {
 		t.Fatal("the app sees the change")
+	}
+	if bar := now.json()["tabBar"].(map[string]any); bar["style"] != "jelly" || bar["tabs"].([]any)[0].(map[string]any)["id"] != "games" {
+		t.Fatalf("the app gets the new bottom bar: %v", bar)
 	}
 
 	// stories only for chosen families

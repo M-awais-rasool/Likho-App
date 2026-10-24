@@ -162,3 +162,56 @@ func TestNoticeIDChangesWithTheText(t *testing.T) {
 		t.Fatal("the id follows the words only")
 	}
 }
+
+func TestTabBarKeepsMapAndTidiesTabs(t *testing.T) {
+	c := DefaultControls(30)
+	c.TabBar.Tabs = []TabControl{
+		{ID: "games", Shown: true, Label: " Play ", Color: "#7c5cff"},
+		{ID: "map", Shown: false, Label: "Map", Color: "#FFC83D"},
+		{ID: "rockets", Shown: true, Label: "Rockets", Color: "#000000"},
+	}
+	if err := c.Validate(210); err != nil {
+		t.Fatal(err)
+	}
+	ids := []string{}
+	for _, tab := range c.TabBar.Tabs {
+		ids = append(ids, tab.ID)
+	}
+	if strings.Join(ids, ",") != "games,map,stories,parents" {
+		t.Fatalf("order kept, unknown dropped, missing added: %v", ids)
+	}
+	tabs := c.TabBar.Tabs
+	if tabs[0].Label != "Play" || tabs[0].Color != "#7C5CFF" || !tabs[1].Shown || tabs[2].Shown || tabs[3].Shown {
+		t.Fatalf("label trimmed, colour upper case, map shown, missing ones hidden: %+v", tabs)
+	}
+}
+
+func TestTabBarRefusesWhatTheAppCannotDraw(t *testing.T) {
+	cases := map[string]func(b *TabBarControls){
+		"style cannot be":   func(b *TabBarControls) { b.Style = "neon" },
+		"animation":         func(b *TabBarControls) { b.Animation = "spin" },
+		"roundness":         func(b *TabBarControls) { b.Roundness = 80 },
+		"bottom bar colour": func(b *TabBarControls) { b.BarColor = "violet" },
+		"once":              func(b *TabBarControls) { b.Tabs = append(b.Tabs, b.Tabs[0]) },
+		"a name":            func(b *TabBarControls) { b.Tabs[1].Label = "  " },
+		"12 characters":     func(b *TabBarControls) { b.Tabs[1].Label = "Stories for kids" },
+		"tab's colour":      func(b *TabBarControls) { b.Tabs[2].Color = "#12345" },
+		"open on Map":       func(b *TabBarControls) { b.Start = "parents" },
+		"when they are":     func(b *TabBarControls) { b.Start = "games"; b.Tabs[2].Shown = false },
+	}
+	for want, edit := range cases {
+		c := DefaultControls(30)
+		edit(&c.TabBar)
+		err := c.Validate(210)
+		if err == nil || !strings.Contains(err.Error(), want) {
+			t.Errorf("%s: got %v", want, err)
+		}
+	}
+}
+
+func TestFillGivesAnOldSaveTheBottomBar(t *testing.T) {
+	got := Controls{}.Fill(DefaultControls(30))
+	if got.TabBar.Style != "candy" || len(got.TabBar.Tabs) != len(TabIDs) || got.TabBar.Start != "map" {
+		t.Fatalf("default bar: %+v", got.TabBar)
+	}
+}
