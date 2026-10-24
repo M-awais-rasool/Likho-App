@@ -28,7 +28,7 @@ export type TabBar = {
 
 export type Controls = {
   features: Record<string, Mode>
-  stories: { comingSoon: boolean; episodes: Record<string, Mode> }
+  stories: { comingSoon: boolean; episodes: Record<string, Mode>; order: string[]; new: string[] }
   room: { items: Record<string, ItemControl> }
   games: Record<string, boolean>
   pencilColors: string[]
@@ -47,6 +47,8 @@ export type Controls = {
   }
   app: { minVersion: string; maintenance: Notice; parentMessage: Notice }
   tabBar: TabBar
+  /** The Games screen's games: who each is on for, the order (first at the top), the ones tagged NEW. */
+  gameList: { order: string[]; modes: Record<string, Mode>; new: string[] }
 }
 
 export type SavedControls = { controls: Controls; revision: number; updatedAt: string | null; updatedBy: string }
@@ -54,6 +56,7 @@ export type SavedControls = { controls: Controls; revision: number; updatedAt: s
 export type ControlsMeta = {
   features: { id: string; modes: Mode[] }[]
   episodes: { ID: string; Letter: string; Title: string }[]
+  gameList: { id: string; title: string }[]
   items: { id: string; price: number; wear: boolean }[]
   games: string[]
   colors: string[]
@@ -77,8 +80,8 @@ export type FeatureInfo = { title: string; text: string; tone: Tone; warn?: stri
 export type Tone = 'violet' | 'blue' | 'green' | 'amber' | 'pink' | 'teal' | 'slate'
 
 export const featureInfo: Record<string, FeatureInfo> = {
-  stories: { title: 'Stories', text: 'The Stories button on the map and the story episodes.', tone: 'blue' },
-  games: { title: 'Games', text: 'The Games button on the map: Monster Defense, practising the letters and words the child has learned.', tone: 'violet' },
+  stories: { title: 'Stories', text: 'The Stories tab (or button on the map) and the story episodes.', tone: 'blue' },
+  games: { title: 'Games', text: 'The Games tab (or button on the map): games that practise the letters and words the child has learned.', tone: 'violet' },
   room: { title: "Pencil's room", text: 'The Mascot Room: spend stars on clothes and furniture.', tone: 'amber' },
   stickers: { title: 'Sticker book', text: 'The sticker book on the child’s profile.', tone: 'pink' },
   certificate: { title: 'Certificate', text: 'The certificate after the last level of the course.', tone: 'violet' },
@@ -92,6 +95,15 @@ export const featureInfo: Record<string, FeatureInfo> = {
     warn: 'Children who cannot read yet need the voice to know what to do.',
   },
   haptics: { title: 'Vibration', text: 'Little buzzes for answers and rewards. Parents can still turn it off.', tone: 'slate' },
+}
+
+export const gameTitles: Record<string, string> = { monsters: 'Monster Defense', runner: 'Spell Runner', smash: 'Monster Smash', slice: 'Letter Slice' }
+
+export const playGameInfo: Record<string, { emoji: string; text: string; color: string }> = {
+  monsters: { emoji: '👾', text: 'Tap the monster with the letter', color: '#7C5CFF' },
+  runner: { emoji: '🛹', text: 'Spell words on a skateboard', color: '#4D9DE0' },
+  smash: { emoji: '🏰', text: 'Slingshot the letter towers', color: '#FF8A5B' },
+  slice: { emoji: '🍉', text: 'Slice the letter fruits', color: '#3BB273' },
 }
 
 export const gameInfo: Record<string, { title: string; text: string }> = {
@@ -162,6 +174,7 @@ export function changedParts(a: Controls, b: Controls): Set<string> {
   if (diff(a.billing, b.billing)) out.add('billing')
   if (diff(a.app, b.app)) out.add('app')
   if (diff(a.tabBar, b.tabBar)) out.add('tabBar')
+  if (diff(a.gameList, b.gameList)) out.add('gameList')
   return out
 }
 
@@ -180,7 +193,12 @@ export function resolveForPreview(c: Controls, revision: number, chosen: boolean
   return {
     revision,
     features: Object.fromEntries(Object.entries(c.features).map(([k, m]) => [k, resolve(m)])),
-    stories: { comingSoon: c.stories.comingSoon, episodes: Object.fromEntries(Object.entries(c.stories.episodes).map(([k, m]) => [k, resolve(m)])) },
+    stories: {
+      comingSoon: c.stories.comingSoon,
+      episodes: Object.fromEntries(Object.entries(c.stories.episodes).map(([k, m]) => [k, resolve(m)])),
+      order: c.stories.order,
+      new: c.stories.new,
+    },
     room: c.room,
     games: c.games,
     pencilColors: c.pencilColors,
@@ -191,5 +209,6 @@ export function resolveForPreview(c: Controls, revision: number, chosen: boolean
       parentMessage: { ...c.app.parentMessage, id: 'preview' },
     },
     tabBar: c.tabBar,
+    gameList: { order: c.gameList.order, modes: Object.fromEntries(Object.entries(c.gameList.modes).map(([k, m]) => [k, resolve(m)])), new: c.gameList.new },
   }
 }

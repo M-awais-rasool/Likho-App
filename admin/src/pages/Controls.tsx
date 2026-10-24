@@ -50,6 +50,7 @@ import {
   gameInfo,
   itemInfo,
   modeInfo,
+  playGameInfo,
   resolveForPreview,
   tabInfo,
   tabSwatches,
@@ -70,7 +71,8 @@ const tabs = [
   { id: 'features', label: 'Features', icon: Sparkles },
   { id: 'stories', label: 'Stories', icon: BookOpen },
   { id: 'room', label: 'Room & Pencil', icon: Armchair },
-  { id: 'sound', label: 'Sound & games', icon: Gamepad2 },
+  { id: 'games', label: 'Games', icon: Gamepad2 },
+  { id: 'sound', label: 'Sound & rounds', icon: Volume2 },
   { id: 'plus', label: 'Likho Plus', icon: Crown },
   { id: 'tabbar', label: 'Bottom bar', icon: PanelBottom },
   { id: 'app', label: 'App status', icon: Smartphone },
@@ -103,6 +105,7 @@ const toneTile: Record<Tone, string> = {
 const screens = [
   { value: 'map', label: 'World map' },
   { value: 'stories', label: 'Stories' },
+  { value: 'games', label: 'Games' },
   { value: 'room', label: "Pencil's room" },
   { value: 'profile', label: 'Child profile' },
   { value: 'dashboard', label: 'Parents' },
@@ -113,7 +116,7 @@ const screens = [
   { value: 'update', label: 'Please update' },
 ]
 
-const tabScreen: Record<TabId, string> = { features: 'map', stories: 'stories', room: 'room', sound: 'map', plus: 'paywall', tabbar: 'map', app: 'dashboard' }
+const tabScreen: Record<TabId, string> = { features: 'map', stories: 'stories', games: 'games', room: 'room', sound: 'map', plus: 'paywall', tabbar: 'map', app: 'dashboard' }
 
 export default function Controls() {
   const { can, course } = useSession()
@@ -204,6 +207,7 @@ export default function Controls() {
     ({
       features: ['stories', 'games', 'room', 'stickers', 'certificate', 'placement', 'guest'].some((f) => changed.has(`feature:${f}`)),
       stories: changed.has('stories') || changed.has('feature:stories'),
+      games: changed.has('gameList') || changed.has('feature:games'),
       room: changed.has('room') || changed.has('colors') || changed.has('feature:room'),
       sound: changed.has('games') || ['sfx', 'voice', 'haptics'].some((f) => changed.has(`feature:${f}`)),
       plus: changed.has('billing'),
@@ -284,20 +288,28 @@ export default function Controls() {
               <Section title="Stories" hint="The Stories button shows on the map only when Stories is on and at least one episode is.">
                 {feature('stories')}
               </Section>
-              <Section title="Episodes" hint="Each letter's story on its own. A family on a Plus-only episode without Plus sees the paywall.">
-                {meta.episodes.map((e) => (
-                  <Row key={e.ID} changed={changed.has('stories')}>
-                    <div className="grid size-11 shrink-0 place-items-center rounded-xl bg-good text-[20px] font-bold text-white shadow-card">{e.Letter}</div>
-                    <div className="min-w-0 flex-1">
-                      <div className="text-[14px] font-semibold text-ink">{e.Title}</div>
-                      <div className="text-[12.5px] text-ink-3">
-                        Story {e.Letter} · {e.Letter} is for apple
-                        {chosenCount(`story.${e.ID}`) > 0 && <> · {chosenCount(`story.${e.ID}`)} chosen families</>}
+              <Section title="Episodes" hint="Each letter's story on its own, in the order the app shows them (top first). A family on a Plus-only episode without Plus sees the paywall. NEW shows until the child has played it.">
+                {ordered(meta.episodes.map((e) => e.ID), d.stories.order).map((id, i, all) => {
+                  const e = meta.episodes.find((x) => x.ID === id)!
+                  return (
+                    <Row key={e.ID} changed={changed.has('stories')}>
+                      <OrderArrows index={i} count={all.length} disabled={!editable} label={e.Title} onMove={(to) => set((c) => void (c.stories.order = moved(all, i, to)))} />
+                      <div className="grid size-11 shrink-0 place-items-center rounded-xl bg-good text-[20px] font-bold text-white shadow-card">{e.Letter}</div>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-center gap-2 text-[14px] font-semibold text-ink">
+                          {e.Title}
+                          {d.stories.new.includes(e.ID) && <NewBadge />}
+                        </div>
+                        <div className="text-[12.5px] text-ink-3">
+                          Story {e.Letter} · {e.Letter} is for apple
+                          {chosenCount(`story.${e.ID}`) > 0 && <> · {chosenCount(`story.${e.ID}`)} chosen families</>}
+                        </div>
                       </div>
-                    </div>
-                    <ModePicker value={d.stories.episodes[e.ID] ?? 'on'} modes={['off', 'on', 'plus', 'chosen']} billingOn={d.billing.enabled} disabled={!editable} onChange={(m) => set((c) => void (c.stories.episodes[e.ID] = m))} />
-                  </Row>
-                ))}
+                      <NewToggle on={d.stories.new.includes(e.ID)} disabled={!editable} onChange={(v) => set((c) => void (c.stories.new = toggled(c.stories.new, e.ID, v)))} />
+                      <ModePicker value={d.stories.episodes[e.ID] ?? 'on'} modes={['off', 'on', 'plus', 'chosen']} billingOn={d.billing.enabled} disabled={!editable} onChange={(m) => set((c) => void (c.stories.episodes[e.ID] = m))} />
+                    </Row>
+                  )
+                })}
                 <Row changed={false}>
                   <div className="grid size-11 shrink-0 place-items-center rounded-xl bg-surface-2 text-[13px] font-bold tracking-wider text-ink-3">B–Z</div>
                   <div className="min-w-0 flex-1">
@@ -305,6 +317,15 @@ export default function Controls() {
                   </div>
                 </Row>
               </Section>
+            </div>
+          )}
+
+          {tab === 'games' && (
+            <div className="space-y-5">
+              <Section title="Games" hint="The Games tab (or the Games button on the map) shows only when Games is on and at least one game is.">
+                {feature('games')}
+              </Section>
+              <GameList meta={meta} c={d} editable={editable} set={set} changed={changed.has('gameList')} chosenCount={chosenCount} />
             </div>
           )}
 
@@ -668,8 +689,8 @@ function Games({ meta, c, editable, set, changed }: SectionProps) {
   const off = meta.games.filter((g) => c.games[g] === false).length
   return (
     <Section
-      title="Games in the levels"
-      hint="A game type switched off is skipped in every level. Writing always stays, and a level never ends up empty."
+      title="Rounds in the levels"
+      hint="A round type switched off is skipped in every level. Writing always stays, and a level never ends up empty."
       action={off > 0 ? <Badge tone="warn">{off} off</Badge> : <Badge tone="good">All on</Badge>}
     >
       <div className={clsx('grid grid-cols-[repeat(auto-fill,minmax(190px,1fr))] gap-2.5 p-4', changed && 'bg-warn-soft/30')}>
@@ -998,6 +1019,123 @@ function problems(c: Ctl, last: number): string[] {
 }
 
 /** Changes worth a second look before they go to every phone. */
+// ------------------------------------------------------------ games and story lists
+
+/** [ids] in the saved [order]; ids it lacks (added since) after it. */
+function ordered(ids: string[], order: string[]): string[] {
+  return [...order.filter((id) => ids.includes(id)), ...ids.filter((id) => !order.includes(id))]
+}
+
+/** [list] with the item at [from] moved to [to]. */
+function moved(list: string[], from: number, to: number): string[] {
+  const out = [...list]
+  if (to < 0 || to >= out.length) return out
+  const [x] = out.splice(from, 1)
+  out.splice(to, 0, x)
+  return out
+}
+
+function toggled(list: string[], id: string, on: boolean): string[] {
+  return on ? [...list.filter((x) => x !== id), id] : list.filter((x) => x !== id)
+}
+
+function OrderArrows({ index, count, disabled, label, onMove }: { index: number; count: number; disabled: boolean; label: string; onMove: (to: number) => void }) {
+  return (
+    <div className="flex items-center gap-1">
+      <span className="w-5 text-center text-[13px] font-semibold tabular-nums text-ink-3">{index + 1}</span>
+      <div className="flex flex-col">
+        <button disabled={disabled || index === 0} onClick={() => onMove(index - 1)} className="cursor-pointer text-ink-3 hover:text-ink disabled:opacity-30" aria-label={`Move ${label} up`}>
+          <ChevronUp className="size-4" />
+        </button>
+        <button disabled={disabled || index === count - 1} onClick={() => onMove(index + 1)} className="cursor-pointer text-ink-3 hover:text-ink disabled:opacity-30" aria-label={`Move ${label} down`}>
+          <ChevronDown className="size-4" />
+        </button>
+      </div>
+    </div>
+  )
+}
+
+function NewBadge() {
+  return <span className="inline-flex items-center gap-0.5 rounded-md bg-[#FF8A5B] px-1.5 py-0.5 text-[10.5px] font-bold tracking-wide text-white">★ NEW</span>
+}
+
+function NewToggle({ on, disabled, onChange }: { on: boolean; disabled: boolean; onChange: (v: boolean) => void }) {
+  return (
+    <button
+      disabled={disabled}
+      onClick={() => onChange(!on)}
+      aria-pressed={on}
+      title="NEW shows on the card until the child has played it"
+      className={clsx(
+        'inline-flex h-8 shrink-0 cursor-pointer items-center gap-1 rounded-lg border px-2.5 text-[12.5px] font-semibold transition-all disabled:cursor-not-allowed',
+        on ? 'border-[#FF8A5B] bg-[#FF8A5B]/15 text-[#E5643A]' : 'border-dashed border-line-strong text-ink-3 hover:border-ink-3 hover:text-ink-2',
+      )}
+    >
+      <Star className={clsx('size-3.5', on && 'fill-current')} /> NEW
+    </button>
+  )
+}
+
+/** The Games screen: each game's order, who it is on for and its NEW tag. */
+function GameList({ meta, c, editable, set, changed, chosenCount }: SectionProps & { chosenCount: (key: string) => number }) {
+  const [dragging, setDragging] = useState<number | null>(null)
+  const ids = ordered(
+    meta.gameList.map((g) => g.id),
+    c.gameList.order,
+  )
+  const off = ids.filter((id) => c.gameList.modes[id] === 'off').length
+  return (
+    <Section
+      title="Games list"
+      hint="Drag (or use the arrows) to choose which game is at the top of the Games screen. A Plus-only game shows a lock to free families and opens the paywall. NEW shows on the card until the child has played that game, and makes the Games tab say NEW."
+      action={off > 0 ? <Badge tone="warn">{off} off</Badge> : <Badge tone="good">All on</Badge>}
+    >
+      {ids.map((id, i) => {
+        const g = meta.gameList.find((x) => x.id === id)!
+        const info = playGameInfo[id] ?? { emoji: '🎮', text: '', color: '#7C5CFF' }
+        const mode = c.gameList.modes[id] ?? 'on'
+        const isNew = c.gameList.new.includes(id)
+        return (
+          <div
+            key={id}
+            draggable={editable}
+            onDragStart={() => setDragging(i)}
+            onDragEnd={() => setDragging(null)}
+            onDragOver={(e) => e.preventDefault()}
+            onDrop={() => {
+              if (dragging !== null) set((x) => void (x.gameList.order = moved(ids, dragging, i)))
+              setDragging(null)
+            }}
+            className={clsx('transition-opacity', dragging === i && 'opacity-40')}
+          >
+            <Row changed={!!changed}>
+              <GripVertical className={clsx('size-4 text-ink-3', editable && 'cursor-grab')} />
+              <OrderArrows index={i} count={ids.length} disabled={!editable} label={g.title} onMove={(to) => set((x) => void (x.gameList.order = moved(ids, i, to)))} />
+              <div
+                className={clsx('grid size-12 shrink-0 place-items-center rounded-2xl text-[24px]', mode === 'off' && 'opacity-40 grayscale')}
+                style={{ background: info.color, boxShadow: `0 4px 0 ${shade(info.color)}` }}
+              >
+                {info.emoji}
+              </div>
+              <div className="min-w-[180px] flex-1">
+                <div className="flex flex-wrap items-center gap-2 text-[14px] font-semibold text-ink">
+                  {g.title}
+                  {i === 0 && mode !== 'off' && <Badge tone="brand">Top</Badge>}
+                  {isNew && <NewBadge />}
+                  {mode === 'chosen' && chosenCount(`game.${id}`) > 0 && <Badge tone="info">{chosenCount(`game.${id}`)} chosen families</Badge>}
+                </div>
+                <div className="text-[12.5px] text-ink-3">{info.text}</div>
+              </div>
+              <NewToggle on={isNew} disabled={!editable} onChange={(v) => set((x) => void (x.gameList.new = toggled(x.gameList.new, id, v)))} />
+              <ModePicker value={mode} modes={['off', 'on', 'plus', 'chosen']} billingOn={c.billing.enabled} disabled={!editable} onChange={(m) => set((x) => void (x.gameList.modes[id] = m))} />
+            </Row>
+          </div>
+        )
+      })}
+    </Section>
+  )
+}
+
 // ------------------------------------------------------------ bottom bar
 
 const styleInfo: Record<TabBarCtl['style'], { title: string; text: string }> = {
@@ -1329,7 +1467,7 @@ function changedNames(changed: Set<string>): string[] {
   const names = new Set<string>()
   for (const k of changed) {
     if (k.startsWith('feature:')) names.add(featureInfo[k.slice(8)]?.title ?? k.slice(8))
-    else names.add({ stories: 'Stories', room: 'Shop items', games: 'Games', colors: "Pencil's colours", billing: 'Likho Plus', app: 'App status', tabBar: 'Bottom bar' }[k] ?? k)
+    else names.add({ stories: 'Stories', room: 'Shop items', games: 'Games', colors: "Pencil's colours", billing: 'Likho Plus', app: 'App status', tabBar: 'Bottom bar', gameList: 'Games list' }[k] ?? k)
   }
   return [...names]
 }
