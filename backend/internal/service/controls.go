@@ -152,7 +152,7 @@ func changedSections(a, b domain.Controls) []string {
 	}{
 		{"features", a.Features, b.Features}, {"stories", a.Stories, b.Stories}, {"room", a.Room, b.Room},
 		{"games", a.Games, b.Games}, {"pencilColors", a.PencilColors, b.PencilColors},
-		{"billing", a.Billing, b.Billing}, {"app", a.App, b.App},
+		{"billing", a.Billing, b.Billing}, {"app", a.App, b.App}, {"tabBar", a.TabBar, b.TabBar},
 	} {
 		if !same(p.x, p.y) {
 			out = append(out, p.name)
@@ -166,14 +166,15 @@ func changedSections(a, b domain.Controls) []string {
 // AppConfig is what the app follows (GET /v1/config), for one family (or
 // a guest). Switches are off, on, or plus (on while the family has Plus).
 type AppConfig struct {
-	Revision     int                 `json:"revision"`
-	Features     map[string]string   `json:"features"`
-	Stories      AppStories          `json:"stories"`
-	Room         domain.RoomControls `json:"room"`
-	Games        map[string]bool     `json:"games"`
-	PencilColors []string            `json:"pencilColors"`
-	Billing      AppBilling          `json:"billing"`
-	App          AppState            `json:"app"`
+	Revision     int                   `json:"revision"`
+	Features     map[string]string     `json:"features"`
+	Stories      AppStories            `json:"stories"`
+	Room         domain.RoomControls   `json:"room"`
+	Games        map[string]bool       `json:"games"`
+	PencilColors []string              `json:"pencilColors"`
+	Billing      AppBilling            `json:"billing"`
+	App          AppState              `json:"app"`
+	TabBar       domain.TabBarControls `json:"tabBar"`
 }
 
 type AppStories struct {
@@ -235,6 +236,7 @@ func resolveControls(saved SavedControls, own map[string]bool, now time.Time) Ap
 			Maintenance:   AppNotice{Notice: c.App.Maintenance, ID: c.App.Maintenance.ID()},
 			ParentMessage: AppNotice{Notice: c.App.ParentMessage, ID: c.App.ParentMessage.ID()},
 		},
+		TabBar: c.TabBar,
 	}
 	for id, m := range c.Features {
 		out.Features[id] = domain.Resolve(m, override(id), plusFree)

@@ -92,6 +92,7 @@ type Controls struct {
 	PencilColors []string          `json:"pencilColors"`
 	Billing      BillingControls   `json:"billing"`
 	App          AppStatus         `json:"app"`
+	TabBar       TabBarControls    `json:"tabBar"`
 }
 
 type StoryControls struct {
@@ -141,6 +142,55 @@ type Notice struct {
 	Text  string `json:"text"`
 }
 
+// TabBarControls is the app's bottom bar (Map, Stories, Games, Parents):
+// its look, how it moves, and each tab in the order it shows.
+type TabBarControls struct {
+	Style     string       `json:"style"`     // TabStyles
+	Animation string       `json:"animation"` // TabAnimations: how a tab answers a tap
+	Speed     string       `json:"speed"`     // TabSpeeds
+	Wiggle    bool         `json:"wiggle"`    // a NEW tab hops now and then
+	Surface   string       `json:"surface"`   // TabSurfaces
+	BarColor  string       `json:"barColor"`  // #RRGGBB, for the "colour" surface
+	Floating  bool         `json:"floating"`  // a pill above the bottom edge (false: on the edge)
+	Roundness int          `json:"roundness"` // corner radius, 0 to 36
+	Labels    bool         `json:"labels"`    // names under the pictures
+	Start     string       `json:"start"`     // the tab the app opens on
+	Tabs      []TabControl `json:"tabs"`
+}
+
+// TabControl is one tab of the bottom bar.
+type TabControl struct {
+	ID    string `json:"id"` // TabIDs
+	Shown bool   `json:"shown"`
+	Label string `json:"label"`
+	Color string `json:"color"` // #RRGGBB
+	Badge bool   `json:"badge"` // "NEW" until the child has opened it
+}
+
+// The bottom bar's choices. Stories and Games also follow their feature
+// switches; Map always shows; Parents opens the parent gate.
+var (
+	TabIDs        = []string{"map", "stories", "games", "parents"}
+	TabStyles     = []string{"candy", "jelly", "island"}
+	TabAnimations = []string{"bounce", "slide", "pop", "none"}
+	TabSpeeds     = []string{"slow", "normal", "fast"}
+	TabSurfaces   = []string{"white", "glass", "colour"}
+)
+
+// DefaultTabBar is the bar before the team changes it.
+func DefaultTabBar() TabBarControls {
+	return TabBarControls{
+		Style: "candy", Animation: "bounce", Speed: "normal", Wiggle: true,
+		Surface: "white", BarColor: "#7C5CFF", Floating: true, Roundness: 28, Labels: true, Start: "map",
+		Tabs: []TabControl{
+			{ID: "map", Shown: true, Label: "Map", Color: "#FFC83D"},
+			{ID: "stories", Shown: true, Label: "Stories", Color: "#4D9DE0", Badge: true},
+			{ID: "games", Shown: true, Label: "Games", Color: "#7C5CFF", Badge: true},
+			{ID: "parents", Shown: true, Label: "Parents", Color: "#3BB273"},
+		},
+	}
+}
+
 // DefaultBenefits is the paywall's list.
 var DefaultBenefits = []string{
 	"Every world and every level",
@@ -178,6 +228,7 @@ func DefaultControls(freeLevels int) Controls {
 		c.Games[g] = true
 	}
 	c.PencilColors = slices.Clone(PencilColorOrder)
+	c.TabBar = DefaultTabBar()
 	return c
 }
 
@@ -225,12 +276,21 @@ func (c Controls) Fill(def Controls) Controls {
 	if c.Billing.Benefits == nil {
 		c.Billing.Benefits = def.Billing.Benefits
 	}
+	if c.TabBar.Style == "" { // saved before the bottom bar
+		c.TabBar = def.TabBar
+	}
+	for _, t := range def.TabBar.Tabs { // a tab added since: at the end
+		if !slices.ContainsFunc(c.TabBar.Tabs, func(x TabControl) bool { return x.ID == t.ID }) {
+			c.TabBar.Tabs = append(c.TabBar.Tabs, t)
+		}
+	}
 	return c
 }
 
 var (
 	versionRe = regexp.MustCompile(`^\d{1,4}\.\d{1,4}\.\d{1,4}(\+\d{1,6})?$`)
 	dateRe    = regexp.MustCompile(`^\d{4}-\d{2}-\d{2}$`)
+	hexRe     = regexp.MustCompile(`^#[0-9A-F]{6}$`)
 )
 
 // Validate checks a save from the panel against the course's [lastLevel].
@@ -339,6 +399,63 @@ func (c *Controls) Validate(lastLevel int) error {
 	}
 	if a.ParentMessage.On && a.ParentMessage.Text == "" {
 		return Invalid("write the message to parents")
+	}
+	return c.TabBar.validate()
+}
+
+// validate checks and tidies the bottom bar: known tabs once each (a
+// missing one goes at the end, hidden), Map always shown, labels and
+// colours that the app can draw.
+func (t *TabBarControls) validate() error {
+	for _, v := range []struct {
+		name, value string
+		allowed     []string
+	}{
+		{"style", t.Style, TabStyles}, {"animation", t.Animation, TabAnimations},
+		{"speed", t.Speed, TabSpeeds}, {"surface", t.Surface, TabSurfaces},
+	} {
+		if !slices.Contains(v.allowed, v.value) {
+			return Invalid(fmt.Sprintf("bottom bar %s cannot be %q", v.name, v.value))
+		}
+	}
+	if t.Roundness < 0 || t.Roundness > 36 {
+		return Invalid("bottom bar roundness must be 0 to 36")
+	}
+	if t.BarColor = strings.ToUpper(t.BarColor); !hexRe.MatchString(t.BarColor) {
+		return Invalid("bottom bar colour must look like #7C5CFF")
+	}
+	def := DefaultTabBar()
+	tabs := []TabControl{}
+	for _, tab := range t.Tabs {
+		if !slices.Contains(TabIDs, tab.ID) {
+			continue
+		}
+		if slices.ContainsFunc(tabs, func(x TabControl) bool { return x.ID == tab.ID }) {
+			return Invalid("each tab can be in the bottom bar once")
+		}
+		if tab.Label = strings.TrimSpace(tab.Label); tab.Label == "" {
+			return Invalid("give the " + tab.ID + " tab a name")
+		}
+		if utf8.RuneCountInString(tab.Label) > 12 {
+			return Invalid("tab names can be up to 12 characters")
+		}
+		if tab.Color = strings.ToUpper(tab.Color); !hexRe.MatchString(tab.Color) {
+			return Invalid("the " + tab.ID + " tab's colour must look like #FFC83D")
+		}
+		if tab.ID == "map" {
+			tab.Shown = true // the course is the app: Map never goes
+		}
+		tabs = append(tabs, tab)
+	}
+	for _, d := range def.Tabs {
+		if !slices.ContainsFunc(tabs, func(x TabControl) bool { return x.ID == d.ID }) {
+			d.Shown = d.ID == "map"
+			tabs = append(tabs, d)
+		}
+	}
+	t.Tabs = tabs
+	if t.Start == "parents" || !slices.ContainsFunc(tabs, func(x TabControl) bool { return x.ID == t.Start && x.Shown }) {
+		return Invalid("the app can open on Map, or on Stories or Games when they are shown")
 	}
 	return nil
 }
