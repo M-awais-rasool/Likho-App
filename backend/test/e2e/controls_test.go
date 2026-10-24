@@ -1,6 +1,7 @@
 package e2e
 
 import (
+	"fmt"
 	"net/http"
 	"testing"
 )
@@ -46,6 +47,9 @@ func TestAppControls(t *testing.T) {
 	bar := c["tabBar"].(map[string]any)
 	tabs := bar["tabs"].([]any)
 	bar["style"], bar["tabs"] = "jelly", []any{tabs[2], tabs[0], tabs[1], tabs[3]} // Games first
+	gl := c["gameList"].(map[string]any)
+	gl["order"], gl["new"] = []any{"slice", "monsters"}, []any{"runner"} // the rest follow
+	gl["modes"].(map[string]any)["smash"] = "chosen"
 
 	bad := map[string]any{}
 	for k, v := range c {
@@ -100,6 +104,23 @@ func TestAppControls(t *testing.T) {
 	if stories(tokA) != "off" {
 		t.Fatal("following the controls again")
 	}
+
+	// the Games screen: the team's order and NEW tags; Monster Smash only for chosen families
+	gameList := func(tok string) map[string]any {
+		t.Helper()
+		r := a.do("GET", "/v1/config", tok, nil)
+		want(t, r, 200)
+		return r.json()["gameList"].(map[string]any)
+	}
+	g := gameList("")
+	if fmt.Sprint(g["order"]) != "[slice monsters runner smash]" || fmt.Sprint(g["new"]) != "[runner]" || g["modes"].(map[string]any)["smash"] != "off" {
+		t.Fatalf("game list for a guest: %v", g)
+	}
+	want(t, adm.do("PATCH", "/families/"+idA+"/features", map[string]any{"game.smash": true}), 200)
+	if gameList(tokA)["modes"].(map[string]any)["smash"] != "on" || gameList(tokB)["modes"].(map[string]any)["smash"] != "off" {
+		t.Fatal("only the chosen family has Monster Smash")
+	}
+	want(t, adm.do("PATCH", "/families/"+idA+"/features", map[string]any{"game.smash": nil}), 200)
 
 	// the room at the new prices; hidden items cannot be bought
 	kid := a.do("POST", "/v1/children", tokA, map[string]any{"name": "Sara", "age": 6, "color": "#FFC83D"})
