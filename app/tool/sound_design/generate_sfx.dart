@@ -1138,6 +1138,180 @@ Map<String, (Snd Function(), bool)> runner() {
   };
 }
 
+/// Monster Smash's sounds, made after Spell Runner's (so every older sound
+/// keeps its take). The music is at half rate.
+Map<String, (Snd Function(), bool)> smash() {
+  final g5 = hz('G5'), b5 = hz('B5'), d6 = hz('D6'), g6 = hz('G6');
+  Map<String, Snd Function()> sfx() => {
+    // the band pulled back: a rubbery creak going up
+    'ms_stretch': () {
+      final x = Snd(.55);
+      var ph = 0.0;
+      for (var i = 0; i < x.s.length; i++) {
+        final t = i / sr;
+        final f = 180 + 260 * (t / .5) + 25 * math.sin(2 * math.pi * 31 * t);
+        ph += 2 * math.pi * f / sr;
+        final e = math.min(1.0, t / .04) * math.exp(-math.max(0, t - .35) / .08);
+        x.s[i] = (math.sin(ph) + .35 * math.sin(3 * ph) + .15 * noise()) * e * .6;
+      }
+      return master(houseEq(filter(x, (b) => b.lowpass(2400, .8))), soft);
+    },
+    // let go: the band twangs and the ball swooshes away
+    'ms_launch': () {
+      final x = Snd(.8)
+        ..mix(partials(hz('G2'), .35, [(1, 1, .3), (2, .5, .2), (3, .3, .12)], attack: .001, detune: 3))
+        ..mix(whoosh(.45, 600, 4200, amp: .8, q: 1.2, peakAt: .35), at: .02);
+      return master(houseEq(room(x, wet: .1)), feedback - 1);
+    },
+    // knocks: wood, ice, stone
+    'ms_wood': () => master(houseEq(Snd(.35)..mix(wood(hz('D4'), dur: .18, amp: 1, bright: 1.4))..mix(thump(f0: 180, f1: 110, dur: .1, amp: .6))), feedback - 3),
+    'ms_ice': () => master(houseEq(room(Snd(.5)..mix(bell(hz('E7'), dur: .25, bright: 1.2, amp: .7))..mix(strike(.02, 5200, .5, q: 2)), wet: .12)), feedback - 4),
+    'ms_stone': () => master(houseEq(Snd(.4)..mix(thump(f0: 140, f1: 70, dur: .18, amp: 1))..mix(strike(.05, 900, .5, q: .9))), feedback - 2),
+    // breaking: wood cracks and splinters, ice shatters, stone crumbles
+    'ms_wood_break': () {
+      final x = Snd(.8)
+        ..mix(strike(.03, 1700, 1, q: .8))
+        ..mix(thump(f0: 170, f1: 90, dur: .16, amp: .8));
+      for (var k = 0; k < 5; k++) {
+        x.mix(wood(hz('A4') * (1 + k * .23), dur: .09, amp: .45, bright: 1.6), at: .03 + k * .045);
+      }
+      return master(houseEq(room(x, wet: .12)), feedback);
+    },
+    'ms_ice_break': () {
+      final x = Snd(1.0)..mix(strike(.06, 4200, 1, q: .7));
+      for (var k = 0; k < 9; k++) {
+        x.mix(bell(deg(12 + (k * 5) % 8), dur: .18, bright: 1.3, amp: .45), at: .01 + k * .035);
+      }
+      return master(houseEq(room(x, wet: .16)), feedback - 1);
+    },
+    'ms_stone_break': () {
+      final x = Snd(.9)..mix(thump(f0: 120, f1: 55, dur: .3, amp: 1));
+      for (var k = 0; k < 6; k++) {
+        x.mix(strike(.04, 600 + k * 140.0, .55, q: .9), at: .02 + k * .06);
+      }
+      return master(houseEq(room(x, wet: .12)), feedback);
+    },
+    // the asked letter's block bursts: a big pop and sparkles
+    'ms_pow': () {
+      final x = Snd(1.2)
+        ..mix(pop(300, 1300, dur: .12, amp: 1, body: .4))
+        ..mix(thump(f0: 220, f1: 90, dur: .2, amp: .8));
+      for (final (i, f) in [g5, b5, d6, g6].indexed) {
+        x.mix(kalimba(f, dur: .3, amp: .55), at: .08 + i * .06);
+      }
+      x.mix(sparkle(.6, count: 8, seed: 611, amp: .3), at: .25);
+      return master(houseEq(room(x, wet: .18)), celebrate - 1);
+    },
+    // a monster turns into a friend: a happy spring up
+    'ms_friend': () {
+      final x = Snd(.8)
+        ..mix(boing(f0: 300, f1: 640, dur: .35, amp: .7))
+        ..mix(kalimba(d6, dur: .3, amp: .4), at: .12)
+        ..mix(kalimba(g6, dur: .35, amp: .4), at: .2);
+      return master(houseEq(room(x, wet: .14)), feedback - 2);
+    },
+  };
+  return {
+    for (final e in sfx().entries) e.key: (e.value, false),
+    // Monster Smash: a bouncy, cheeky tune
+    'ms_music': (() => halfRate(
+      masterLoop(
+        gameMusic(
+          bpm: 118,
+          tense: false,
+          seed: 610,
+          roots: [hz('G2'), hz('C3'), hz('D3'), hz('G2')],
+          tune: const [
+            [7, null, 9, 7, 11, null, 9, null],
+            [8, null, 10, 8, 12, null, 10, null],
+            [11, 12, 13, null, 12, 11, 9, null],
+            [7, 9, 11, 9, 7, null, null, null],
+          ],
+        ),
+        soft - 3,
+      ),
+    ), true),
+  };
+}
+
+/// Letter Slice's sounds, made after Monster Smash's (so every older sound
+/// keeps its take). The music is at half rate.
+Map<String, (Snd Function(), bool)> slicing() {
+  final c6 = hz('C6'), e6 = hz('E6'), g6 = hz('G6'), c7 = hz('C7');
+  Map<String, Snd Function()> sfx() => {
+    // the blade through the air
+    'ls_swish': () => master(houseEq(Snd(.3)..mix(whoosh(.2, 1800, 7500, amp: .8, q: 1.6, peakAt: .3))), soft),
+    // a fruit cut: a juicy squish and a few drops
+    'ls_cut': () {
+      final x = Snd(.6);
+      final n = Snd(.2);
+      for (var i = 0; i < n.s.length; i++) {
+        final t = i / sr;
+        n.s[i] = noise() * _env(t, .002, .05);
+      }
+      x
+        ..mix(filter(n, (b) => b.bandpass(1500, .9)))
+        ..mix(whoosh(.12, 3000, 6000, amp: .4, q: 2))
+        ..mix(bloop(f0: 420, f1: 1000, dur: .08, amp: .5), at: .05)
+        ..mix(bloop(f0: 600, f1: 1300, dur: .06, amp: .35), at: .12);
+      return master(houseEq(room(x, wet: .1)), feedback - 1);
+    },
+    // a wrong letter bounces off the blade: a hollow clonk and a boing down
+    'ls_clonk': () {
+      final x = Snd(.7)
+        ..mix(wood(hz('G4'), dur: .16, amp: .9, bright: 1.2))
+        ..mix(boing(f0: 380, f1: 200, dur: .35, amp: .45), at: .05);
+      return master(houseEq(room(x, wet: .1)), feedback - 2);
+    },
+    // three or more in one swipe
+    'ls_combo': () {
+      final x = Snd(1.0);
+      for (final (i, f) in [c6, e6, g6, c7].indexed) {
+        x.mix(kalimba(f, dur: .3, amp: .6), at: i * .06);
+      }
+      x.mix(sparkle(.5, count: 6, seed: 711, amp: .25), at: .2);
+      return master(houseEq(room(x, wet: .16)), celebrate - 2);
+    },
+    // the ice berry: a frosty shimmer going down
+    'ls_freeze': () {
+      final x = Snd(1.2)..mix(whoosh(.9, 6000, 1200, amp: .5, q: 3, peakAt: .2));
+      for (var k = 0; k < 7; k++) {
+        x.mix(bell(deg(19 - k * 2), dur: .3, bright: .8, amp: .4), at: k * .08);
+      }
+      return master(houseEq(room(x, wet: .25)), feedback - 1);
+    },
+    // the banana: a fruit party fanfare
+    'ls_frenzy': () {
+      final x = Snd(1.2)..mix(whoosh(.5, 500, 5000, amp: .6, q: 1.2, peakAt: .7));
+      for (final (i, f) in [c6, g6, e6, c7, g6, c7].indexed) {
+        x.mix(kalimba(f, dur: .25, amp: .55), at: .05 + i * .08);
+      }
+      return master(houseEq(room(x, wet: .16)), celebrate - 1);
+    },
+  };
+  return {
+    for (final e in sfx().entries) e.key: (e.value, false),
+    // Letter Slice: a quick, plucky tune
+    'ls_music': (() => halfRate(
+      masterLoop(
+        gameMusic(
+          bpm: 150,
+          tense: false,
+          seed: 710,
+          roots: [hz('C3'), hz('A2'), hz('F2'), hz('G2')],
+          tune: const [
+            [12, null, 11, 9, 12, null, 14, null],
+            [9, 11, 12, null, 11, 9, 7, null],
+            [10, null, 9, 7, 10, 12, 14, null],
+            [11, 12, 11, 9, 7, null, null, null],
+          ],
+        ),
+        soft - 3,
+      ),
+    ), true),
+  };
+}
+
 void main() {
   final dir = Directory('assets/sfx')..createSync(recursive: true);
   final p = palette();
@@ -1156,7 +1330,7 @@ void main() {
     bytes += File(path).lengthSync();
     stdout.writeln('${e.key.padRight(16)} ${(snd.seconds * 2000).round().toString().padLeft(5)} ms (loop)');
   }
-  for (final e in runner().entries) {
+  for (final e in {...runner(), ...smash(), ...slicing()}.entries) {
     final (make, half) = e.value;
     final snd = make();
     final path = '${dir.path}/${e.key}.wav';
@@ -1164,5 +1338,5 @@ void main() {
     bytes += File(path).lengthSync();
     stdout.writeln('${e.key.padRight(16)} ${(snd.seconds * (half ? 2000 : 1000)).round().toString().padLeft(5)} ms');
   }
-  stdout.writeln('${p.length + music().length + runner().length} sounds, ${(bytes / 1024).round()} KB');
+  stdout.writeln('${p.length + music().length + runner().length + smash().length + slicing().length} sounds, ${(bytes / 1024).round()} KB');
 }
