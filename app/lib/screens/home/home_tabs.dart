@@ -125,8 +125,8 @@ class _HomeTabsState extends ConsumerState<HomeTabs> with SingleTickerProviderSt
       for (final t in tabs)
         if (t.badge &&
             switch (t.id) {
-              TabIds.stories => ref.watch(myStoryStarsProvider).isEmpty,
-              TabIds.games => ref.watch(myGamesProvider).isEmpty,
+              TabIds.stories => ref.watch(newEpisodesProvider).isNotEmpty,
+              TabIds.games => ref.watch(newGamesProvider).isNotEmpty,
               _ => false,
             })
           t.id,

@@ -214,14 +214,14 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen> with SingleTick
                     right: sideRight,
                     // under Pencil's room, or in its place when the room is off
                     top: MediaQuery.paddingOf(context).top + 5 + (roomOn ? 64 + 14 : 0),
-                    child: _StoriesButton(time: _time, fresh: ref.watch(myStoryStarsProvider).isEmpty, onTap: widget.onStories!),
+                    child: _StoriesButton(time: _time, fresh: ref.watch(newEpisodesProvider).isNotEmpty, onTap: widget.onStories!),
                   ),
                 if (widget.onGames != null && gamesOn)
                   Positioned(
                     right: sideRight,
                     // under Stories (and the room), moving up when they are off
                     top: MediaQuery.paddingOf(context).top + 5 + (roomOn ? 64 + 14 : 0) + (widget.onStories != null && storiesOn ? 64 + 14 : 0),
-                    child: _GamesButton(time: _time, fresh: ref.watch(myGamesProvider).isEmpty, onTap: widget.onGames!),
+                    child: _GamesButton(time: _time, fresh: ref.watch(newGamesProvider).isNotEmpty, onTap: widget.onGames!),
                   ),
               ],
             );

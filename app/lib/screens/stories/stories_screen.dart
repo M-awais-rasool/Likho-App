@@ -4,8 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../data/app_controls.dart';
+import '../../data/family.dart';
 import '../../data/story.dart';
 import '../../design/tokens.dart';
+import '../common/card_tags.dart';
 import '../gameplay/widgets/game_buttons.dart';
 import 'story_art.dart';
 
@@ -23,6 +25,9 @@ class StoriesScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final stars = ref.watch(myStoryStarsProvider);
     final shown = ref.watch(shownEpisodesProvider);
+    final fresh = ref.watch(newEpisodesProvider);
+    final c = ref.watch(appControlsProvider);
+    final plus = ref.watch(familyProvider.select((f) => f.subscribed));
     final comingSoon = ref.watch(appControlsProvider.select((c) => c.comingSoon));
     final pad = MediaQuery.paddingOf(context);
     const letters = 'BCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -54,11 +59,20 @@ class StoriesScreen extends ConsumerWidget {
                 ),
               ),
             ),
-            if (shown.contains('a'))
-              SliverPadding(
-                padding: const EdgeInsets.fromLTRB(16, 18, 16, 0),
-                sliver: SliverToBoxAdapter(child: _StoryCard(stars: stars['a'] ?? 0, onTap: () => onOpen('a'))),
-              ),
+            // in the team's order (App controls); only A has a card so far
+            for (final id in shown)
+              if (id == 'a')
+                SliverPadding(
+                  padding: const EdgeInsets.fromLTRB(16, 18, 16, 0),
+                  sliver: SliverToBoxAdapter(
+                    child: _StoryCard(
+                      stars: stars['a'] ?? 0,
+                      fresh: fresh.contains('a'),
+                      locked: !c.episodeOn('a', subscribed: plus),
+                      onTap: () => onOpen('a'),
+                    ),
+                  ),
+                ),
             if (comingSoon) ...[
               SliverPadding(
                 padding: const EdgeInsets.fromLTRB(20, 26, 20, 10),
@@ -92,11 +106,12 @@ class StoriesScreen extends ConsumerWidget {
 }
 
 /// Story A's card: the garden picture with Dada ji and Ayan in it, the
-/// title, its stars, Play.
+/// title, its stars, Play; NEW or the Plus lock on the picture.
 class _StoryCard extends StatelessWidget {
-  const _StoryCard({required this.stars, required this.onTap});
+  const _StoryCard({required this.stars, required this.onTap, this.fresh = false, this.locked = false});
   final int stars;
   final VoidCallback onTap;
+  final bool fresh, locked;
 
   @override
   Widget build(BuildContext context) => GestureDetector(
@@ -131,6 +146,8 @@ class _StoryCard extends StatelessWidget {
                     child: Text('A', style: LikhoFonts.letter(size: 28, color: LikhoColors.surface).copyWith(height: 1)),
                   ),
                 ),
+                if (fresh) const Positioned(left: 76, top: 22, child: NewTag()),
+                if (locked) const Positioned(right: 14, top: 14, child: PlusTag()),
               ],
             ),
           ),
