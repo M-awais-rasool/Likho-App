@@ -208,7 +208,7 @@ abstract final class AppFlow {
   static Widget mapScreen(BuildContext ctx) => HomeTabs(
     page: (c, id) => switch (id) {
       TabIds.stories => StoriesScreen(onOpen: (episode) => _openEpisode(c, episode)),
-      TabIds.games => GamesScreen(onOpen: (game) => openGame(c, game)),
+      TabIds.games => GamesScreen(onOpen: (game) => _openGameCard(c, game)),
       _ => _worldMap(c),
     },
     onParents: () => _member(ctx, () => _gated(ctx, () => Navigator.of(ctx).push(_dashboard()))),
@@ -287,10 +287,18 @@ abstract final class AppFlow {
             AppFeedback.of(ctx).back();
             Navigator.of(ctx).pop();
           },
-          onOpen: (id) => openGame(ctx, id),
+          onOpen: (id) => _openGameCard(ctx, id),
         ),
       ),
     );
+  }
+
+  /// Game [id] from the list; a Plus-only one (App controls) shows the
+  /// paywall first.
+  static void _openGameCard(BuildContext context, String id) {
+    final c = _c(context);
+    if (!c.read(appControlsProvider).playGameOn(id, subscribed: c.read(familyProvider).subscribed)) return _plusFeature(context);
+    openGame(context, id);
   }
 
   /// Game [id]: Monster Defense, Spell Runner, Monster Smash or Letter Slice.

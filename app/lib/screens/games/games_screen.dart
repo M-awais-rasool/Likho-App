@@ -4,8 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../data/app_controls.dart';
+import '../../data/family.dart';
 import '../../data/games.dart';
 import '../../design/tokens.dart';
+import '../common/card_tags.dart';
 import '../gameplay/widgets/game_buttons.dart';
 import 'monster_defense/md_scene.dart';
 import 'letter_slice/ls_scene.dart';
@@ -24,6 +26,10 @@ class GamesScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final mine = ref.watch(myGamesProvider);
+    final shown = ref.watch(shownGamesProvider);
+    final fresh = ref.watch(newGamesProvider);
+    final c = ref.watch(appControlsProvider);
+    final plus = ref.watch(familyProvider.select((f) => f.subscribed));
     final comingSoon = ref.watch(appControlsProvider.select((c) => c.comingSoon));
     final pad = MediaQuery.paddingOf(context);
     return AnnotatedRegion<SystemUiOverlayStyle>(
@@ -56,18 +62,24 @@ class GamesScreen extends ConsumerWidget {
                 ),
               ),
             ),
-            for (final (id, title, cover, hint) in [
-              (GameIds.monsters, 'Monster Defense', MdArt.cover, 'Letters and words'),
-              (GameIds.runner, 'Spell Runner', SrArt.cover, 'Spell on a skateboard'),
-              (GameIds.smash, 'Monster Smash', MsArt.cover, 'Smash the letter towers'),
-              (GameIds.slice, 'Letter Slice', LsArt.cover, 'Slice the letter fruits'),
-            ])
-              SliverPadding(
-                padding: const EdgeInsets.fromLTRB(16, 18, 16, 0),
-                sliver: SliverToBoxAdapter(
-                  child: _GameCard(id: id, title: title, cover: cover, hint: hint, record: mine[id] ?? const GameRecord(), onTap: () => onOpen(id)),
+            // in the team's order (App controls), each with its tags
+            for (final id in shown)
+              if (_cards[id] case (final title, final cover, final hint))
+                SliverPadding(
+                  padding: const EdgeInsets.fromLTRB(16, 18, 16, 0),
+                  sliver: SliverToBoxAdapter(
+                    child: _GameCard(
+                      id: id,
+                      title: title,
+                      cover: cover,
+                      hint: hint,
+                      record: mine[id] ?? const GameRecord(),
+                      fresh: fresh.contains(id),
+                      locked: !c.playGameOn(id, subscribed: plus),
+                      onTap: () => onOpen(id),
+                    ),
+                  ),
                 ),
-              ),
             if (comingSoon) ...[
               SliverPadding(
                 padding: const EdgeInsets.fromLTRB(20, 26, 20, 10),
@@ -108,12 +120,31 @@ class GamesScreen extends ConsumerWidget {
   }
 }
 
-/// A game's card: its cover, the title, the best score and stars, Play.
+/// Each game's title, cover and line under the title.
+const _cards = {
+  GameIds.monsters: ('Monster Defense', MdArt.cover, 'Letters and words'),
+  GameIds.runner: ('Spell Runner', SrArt.cover, 'Spell on a skateboard'),
+  GameIds.smash: ('Monster Smash', MsArt.cover, 'Smash the letter towers'),
+  GameIds.slice: ('Letter Slice', LsArt.cover, 'Slice the letter fruits'),
+};
+
+/// A game's card: its cover (with NEW or the Plus lock on it), the title,
+/// the best score and stars, Play.
 class _GameCard extends StatelessWidget {
-  const _GameCard({required this.id, required this.title, required this.cover, required this.hint, required this.record, required this.onTap});
+  const _GameCard({
+    required this.id,
+    required this.title,
+    required this.cover,
+    required this.hint,
+    required this.record,
+    required this.onTap,
+    this.fresh = false,
+    this.locked = false,
+  });
   final String id, title, cover, hint;
   final GameRecord record;
   final VoidCallback onTap;
+  final bool fresh, locked;
 
   @override
   Widget build(BuildContext context) => GestureDetector(
@@ -131,7 +162,14 @@ class _GameCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            child: Image.asset(cover, fit: BoxFit.cover, alignment: const Alignment(0, -.15)),
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                Image.asset(cover, fit: BoxFit.cover, alignment: const Alignment(0, -.15)),
+                if (fresh) const Positioned(left: 14, top: 14, child: NewTag()),
+                if (locked) const Positioned(right: 14, top: 14, child: PlusTag()),
+              ],
+            ),
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(18, 12, 14, 14),
