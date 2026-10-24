@@ -790,6 +790,40 @@ abstract final class MonsterColors {
   static const cardTop = Color(0xFF6FCB8B); // the Games card's top (a meadow)
 }
 
+/// Monster Smash: the slingshot's band, the letters on the blocks.
+abstract final class SmashColors {
+  static const band = Color(0xFF5A3A22);
+  static const bandBack = Color(0xFF3F2817);
+  static const pouch = Color(0xFF7A4E2C);
+  static const woodInk = Color(0xFF6B3A17);
+  static const iceInk = Color(0xFF1D5C8C);
+  static const stoneInk = Color(0xFF34383F);
+  static const crack = Color(0xFF3B2A1E);
+  static const aim = Color(0xFFFFFFFF);
+  static const trail = Color(0xFFFFFFFF);
+  static const splinters = {
+    'wood': [Color(0xFFC98A4B), Color(0xFF9C6230), Color(0xFFE2B07A)],
+    'ice': [Color(0xFFBFE6FF), Color(0xFFFFFFFF), Color(0xFF8FD3FF)],
+    'stone': [Color(0xFF9EA3AA), Color(0xFF7A8088), Color(0xFFC5C9CE)],
+  };
+  static const water = [Color(0xFF8FD3FF), Color(0xFFFFFFFF), Color(0xFF4D9DE0)];
+  static const pow = Color(0xFFFF8A5B);
+  static const powEdge = Color(0xFF8C3A14);
+}
+
+/// Letter Slice: the letters' stickers, the blade.
+abstract final class SliceColors {
+  static const sticker = Color(0xFFFFFFFF);
+  static const stickerOff = Color(0xFFE6E2DC);
+  static const stickerEdge = Color(0xFF7C5CFF);
+  static const ink = Color(0xFF3A2E8C);
+  static const shadow = Color(0x26000000);
+  static const blade = Color(0xFFFFFFFF);
+  static const bladeGlow = Color(0xFFBDE8FF);
+  static const freeze = Color(0x338FD3FF);
+  static const clock = Color(0xFFFF6B6B);
+}
+
 /// 8pt grid spacing.
 abstract final class LikhoSpace {
   static const double s1 = 8;

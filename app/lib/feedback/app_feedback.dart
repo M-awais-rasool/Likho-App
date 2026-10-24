@@ -238,6 +238,71 @@ class AppFeedback {
       engine.stopLoop(Sfx.srRoll);
     }
   }
+  // ---------------------------------------------------------- Monster Smash
+  /// The slingshot's band is pulled back.
+  void stretch() => _go(Sfx.msStretch, HapticCue.tick, volume: .8);
+
+  void launch() => _go(Sfx.msLaunch, HapticCue.press);
+
+  /// A block knocked ([hard] 0..1), by what it is made of.
+  void knock(String material, double hard) => _go(switch (material) {
+    'ice' => Sfx.msIce,
+    'stone' => Sfx.msStone,
+    _ => Sfx.msWood,
+  }, hard > .6 ? HapticCue.tick : null, volume: .35 + .6 * hard.clamp(0.0, 1.0));
+
+  /// A block breaks.
+  void smash(String material) => _go(switch (material) {
+    'ice' => Sfx.msIceBreak,
+    'stone' => Sfx.msStoneBreak,
+    _ => Sfx.msWoodBreak,
+  }, HapticCue.land);
+
+  /// The asked letter's block bursts.
+  void pow() => _go(Sfx.msPow, HapticCue.celebrate);
+
+  /// A monster turns into a friend.
+  void friend() => _go(Sfx.msFriend, null, volume: .8);
+
+  /// The towers' music (on), or quiet (off).
+  void smashMusic(bool on) {
+    final engine = _ref.read(soundEngineProvider);
+    if (on && _sfx) {
+      engine.loop(Sfx.msMusic, volume: .45);
+    } else {
+      engine.stopLoop(Sfx.msMusic);
+    }
+  }
+  // ---------------------------------------------------------- Letter Slice
+  /// The blade through the air ([fast] 0..1).
+  void swish(double fast) => _go(Sfx.lsSwish, null, volume: .45 + .5 * fast.clamp(0.0, 1.0));
+
+  /// A fruit sliced.
+  void sliceFruit() => _go(Sfx.lsCut, HapticCue.tick);
+
+  /// A wrong letter bounces off the blade.
+  void clonk() => _go(Sfx.lsClonk, HapticCue.nope);
+
+  /// Three or more in one swipe.
+  void combo() => _go(Sfx.lsCombo, HapticCue.success);
+
+  /// The ice berry: slow motion.
+  void slowMotion() => _go(Sfx.lsFreeze, HapticCue.press);
+
+  /// The banana: a fruit party.
+  void frenzy() => _go(Sfx.lsFrenzy, HapticCue.celebrate);
+
+  /// The round's music (on), or quiet (off).
+  void sliceMusic(bool on) {
+    final engine = _ref.read(soundEngineProvider);
+    if (on && _sfx) {
+      engine.loop(Sfx.lsMusic, volume: .45);
+    } else {
+      engine.stopLoop(Sfx.lsMusic);
+    }
+  }
+
+
 
   // ---------------------------------------------------------- writing
   void startWriting() {

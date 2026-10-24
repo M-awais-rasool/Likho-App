@@ -95,6 +95,37 @@ class Sfx {
 
   static const spellRunner = [srJump, srLand, srBump, srSplash, srSlip, srBoost, srBeep, srBeepGo, srMusic, srRoll];
 
+  // Monster Smash
+  static const msStretch = Sfx('ms_stretch');
+  static const msLaunch = Sfx('ms_launch');
+  static const msWood = Sfx('ms_wood');
+  static const msIce = Sfx('ms_ice');
+  static const msStone = Sfx('ms_stone');
+  static const msWoodBreak = Sfx('ms_wood_break');
+  static const msIceBreak = Sfx('ms_ice_break');
+  static const msStoneBreak = Sfx('ms_stone_break');
+  static const msPow = Sfx('ms_pow');
+  static const msFriend = Sfx('ms_friend');
+
+  /// Looped while the towers stand.
+  static const msMusic = Sfx('ms_music');
+
+  /// (the water balloon splashes like Spell Runner's puddle)
+  static const monsterSmash = [msStretch, msLaunch, msWood, msIce, msStone, msWoodBreak, msIceBreak, msStoneBreak, msPow, msFriend, msMusic];
+
+  // Letter Slice
+  static const lsSwish = Sfx('ls_swish');
+  static const lsCut = Sfx('ls_cut');
+  static const lsClonk = Sfx('ls_clonk');
+  static const lsCombo = Sfx('ls_combo');
+  static const lsFreeze = Sfx('ls_freeze');
+  static const lsFrenzy = Sfx('ls_frenzy');
+
+  /// Looped while the round runs.
+  static const lsMusic = Sfx('ls_music');
+
+  static const letterSlice = [lsSwish, lsCut, lsClonk, lsCombo, lsFreeze, lsFrenzy, lsMusic];
+
   // rewards, room, profiles
   static const reward = Sfx('reward');
   static const wear = Sfx('wear');
@@ -129,6 +160,8 @@ class Sfx {
     splashLand, splashSwish, splashChime, scribbleLoop,
     ...monsterDefense,
     ...spellRunner,
+    ...monsterSmash,
+    ...letterSlice,
   ];
 
   /// Loaded at start-up: the splash and the sounds of every answer.
