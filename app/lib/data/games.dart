@@ -15,7 +15,9 @@ import 'family.dart';
 abstract final class GameIds {
   static const monsters = 'monsters';
   static const runner = 'runner';
-  static const all = [monsters, runner];
+  static const smash = 'smash';
+  static const slice = 'slice';
+  static const all = [monsters, runner, smash, slice];
 }
 
 @immutable

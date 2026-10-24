@@ -8,6 +8,8 @@ import '../../data/games.dart';
 import '../../design/tokens.dart';
 import '../gameplay/widgets/game_buttons.dart';
 import 'monster_defense/md_scene.dart';
+import 'letter_slice/ls_scene.dart';
+import 'monster_smash/ms_scene.dart';
 import 'spell_runner/sr_scene.dart';
 
 /// Games (the map's button): each game as a big card (its picture, the
@@ -53,6 +55,8 @@ class GamesScreen extends ConsumerWidget {
             for (final (id, title, cover, hint) in [
               (GameIds.monsters, 'Monster Defense', MdArt.cover, 'Letters and words'),
               (GameIds.runner, 'Spell Runner', SrArt.cover, 'Spell on a skateboard'),
+              (GameIds.smash, 'Monster Smash', MsArt.cover, 'Smash the letter towers'),
+              (GameIds.slice, 'Letter Slice', LsArt.cover, 'Slice the letter fruits'),
             ])
               SliverPadding(
                 padding: const EdgeInsets.fromLTRB(16, 18, 16, 0),

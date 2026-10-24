@@ -25,6 +25,8 @@ import 'common/toast.dart';
 import 'gameplay/gameplay_screen.dart';
 import 'games/games_screen.dart';
 import 'games/monster_defense/monster_defense_screen.dart';
+import 'games/letter_slice/letter_slice_screen.dart';
+import 'games/monster_smash/monster_smash_screen.dart';
 import 'games/spell_runner/spell_runner_screen.dart';
 import 'level_complete/level_complete_screen.dart';
 import 'level_intro/level_intro_screen.dart';
@@ -245,12 +247,17 @@ abstract final class AppFlow {
     ),
   );
 
-  /// Game [id]: Monster Defense or Spell Runner.
+  /// Game [id]: Monster Defense, Spell Runner, Monster Smash or Letter Slice.
   static void openGame(BuildContext context, String id) {
     AppFeedback.of(context).press();
     Navigator.of(context).push(
       LikhoRoute<void>(
-        builder: (c) => id == GameIds.runner ? SpellRunnerScreen(onDone: () => Navigator.of(c).pop()) : MonsterDefenseScreen(onDone: () => Navigator.of(c).pop()),
+        builder: (c) => switch (id) {
+          GameIds.runner => SpellRunnerScreen(onDone: () => Navigator.of(c).pop()),
+          GameIds.smash => MonsterSmashScreen(onDone: () => Navigator.of(c).pop()),
+          GameIds.slice => LetterSliceScreen(onDone: () => Navigator.of(c).pop()),
+          _ => MonsterDefenseScreen(onDone: () => Navigator.of(c).pop()),
+        },
       ),
     );
   }
@@ -567,7 +574,7 @@ abstract final class AppFlow {
 abstract final class AppFlowJump {
   static const screens = [
     'welcome', 'signIn', 'offline', 'whos', 'onb', 'edit', 'placement', 'placementDone', //
-    'map', 'stories', 'storyA', 'games', 'monsters', 'runner', 'complete', 'complete1', 'boss', 'bosses', 'sessionEnd', 'certificate', 'room', 'profile', 'stickers', //
+    'map', 'stories', 'storyA', 'games', 'monsters', 'runner', 'smash', 'slice', 'complete', 'complete1', 'boss', 'bosses', 'sessionEnd', 'certificate', 'room', 'profile', 'stickers', //
     'gate', 'dashboard', 'course', 'settings', 'paywall',
   ];
 
@@ -618,6 +625,10 @@ abstract final class AppFlowJump {
         AppFlow.openGame(context, GameIds.monsters);
       case 'runner':
         AppFlow.openGame(context, GameIds.runner);
+      case 'smash':
+        AppFlow.openGame(context, GameIds.smash);
+      case 'slice':
+        AppFlow.openGame(context, GameIds.slice);
       case 'complete':
         complete(cur, 3, 5);
       case 'complete1':
