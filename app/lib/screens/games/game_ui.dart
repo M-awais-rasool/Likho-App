@@ -26,11 +26,16 @@ class GamePill extends StatelessWidget {
   );
 }
 
-/// A card over the dimmed game.
+/// A card over the dimmed game ([width] wide).
 class GameCard extends StatelessWidget {
-  const GameCard({super.key, required this.child, this.alignment = Alignment.center});
+  const GameCard({super.key, required this.child, this.alignment = Alignment.center, this.width = 330});
   final Widget child;
   final Alignment alignment;
+  final double width;
+
+  /// A game played sideways (Monster Smash): the cards lie their parts
+  /// side by side.
+  static bool wide(BuildContext context) => MediaQuery.sizeOf(context).aspectRatio > 1.3;
 
   @override
   Widget build(BuildContext context) => ColoredBox(
@@ -44,7 +49,7 @@ class GameCard extends StatelessWidget {
           curve: Curves.easeOutBack,
           builder: (context, v, child) => Transform.scale(scale: v, child: child),
           child: Container(
-            width: 330,
+            width: width,
             margin: const EdgeInsets.all(20),
             padding: const EdgeInsets.fromLTRB(20, 18, 20, 20),
             decoration: BoxDecoration(
@@ -96,45 +101,54 @@ class GameStartCard extends StatelessWidget {
   final VoidCallback onPlay, onBack;
 
   @override
-  Widget build(BuildContext context) => Stack(
-    children: [
-      GameCard(
-        // high, so Pencil can introduce the game below it
-        alignment: const Alignment(0, -.55),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(22),
-              child: Image.asset(cover, width: 260, height: 200, fit: BoxFit.cover, alignment: const Alignment(0, -.1)),
-            ),
-            const SizedBox(height: 12),
-            Text(title, style: LikhoFonts.title(size: 30, weight: FontWeight.w800)),
-            const SizedBox(height: 2),
-            Text(best > 0 ? 'Your best: $best' : hint, textAlign: TextAlign.center, style: LikhoFonts.body(size: 16, weight: FontWeight.w800, color: StoryColors.name)),
-            const SizedBox(height: 16),
-            SizedBox(
-              width: double.infinity,
-              child: gameButton(key: ValueKey('$id-play'), label: 'Play', icon: Symbols.play_arrow_rounded, onTap: onPlay),
-            ),
-          ],
-        ),
+  Widget build(BuildContext context) {
+    final wide = GameCard.wide(context);
+    final words = [
+      Text(title, style: LikhoFonts.title(size: 30, weight: FontWeight.w800)),
+      const SizedBox(height: 2),
+      Text(best > 0 ? 'Your best: $best' : hint, textAlign: TextAlign.center, style: LikhoFonts.body(size: 16, weight: FontWeight.w800, color: StoryColors.name)),
+      const SizedBox(height: 16),
+      SizedBox(
+        width: double.infinity,
+        child: gameButton(key: ValueKey('$id-play'), label: 'Play', icon: Symbols.play_arrow_rounded, onTap: onPlay),
       ),
-      Positioned(
-        left: 12,
-        top: MediaQuery.paddingOf(context).top + 8,
-        child: PushButton(
-          key: ValueKey('$id-back'),
-          onTap: onBack,
-          color: MonsterColors.panel,
-          width: 46,
-          height: 46,
-          shape: const CircleBorder(),
-          child: const Icon(Symbols.arrow_back_rounded, size: 26, weight: 700, color: LikhoColors.ink),
+    ];
+    final picture = ClipRRect(
+      borderRadius: BorderRadius.circular(22),
+      child: Image.asset(cover, width: wide ? 210 : 260, height: wide ? 190 : 200, fit: BoxFit.cover, alignment: const Alignment(0, -.1)),
+    );
+    return Stack(
+      children: [
+        GameCard(
+          // high, so Pencil can introduce the game below it
+          alignment: wide ? Alignment.center : const Alignment(0, -.55),
+          width: wide ? 560 : 330,
+          child: wide
+              ? Row(
+                  children: [
+                    picture,
+                    const SizedBox(width: 18),
+                    Expanded(child: Column(mainAxisSize: MainAxisSize.min, children: words)),
+                  ],
+                )
+              : Column(mainAxisSize: MainAxisSize.min, children: [picture, const SizedBox(height: 12), ...words]),
         ),
-      ),
-    ],
-  );
+        Positioned(
+          left: 12 + (wide ? MediaQuery.paddingOf(context).left : 0),
+          top: MediaQuery.paddingOf(context).top + 8,
+          child: PushButton(
+            key: ValueKey('$id-back'),
+            onTap: onBack,
+            color: MonsterColors.panel,
+            width: 46,
+            height: 46,
+            shape: const CircleBorder(),
+            child: const Icon(Symbols.arrow_back_rounded, size: 26, weight: 700, color: LikhoColors.ink),
+          ),
+        ),
+      ],
+    );
+  }
 }
 
 /// Paused: [picture], Keep playing, Stop.
@@ -148,7 +162,7 @@ class GamePauseCard extends StatelessWidget {
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Image.asset(picture, height: 110),
+        Image.asset(picture, height: GameCard.wide(context) ? 80 : 110),
         const SizedBox(height: 8),
         Text('Paused', style: LikhoFonts.title(size: 32, weight: FontWeight.w800)),
         const SizedBox(height: 16),
@@ -192,57 +206,72 @@ class GameResultCard extends StatelessWidget {
   final VoidCallback onAgain, onDone;
 
   @override
-  Widget build(BuildContext context) => GameCard(
-    // high, so Pencil's words show below it
-    alignment: const Alignment(0, -.75),
-    child: Column(
-      key: ValueKey('$id-result'),
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Image.asset(picture, height: 120),
+  Widget build(BuildContext context) {
+    final wide = GameCard.wide(context);
+    final head = [
+      Image.asset(picture, height: wide ? 100 : 120),
+      const SizedBox(height: 6),
+      Text(title, textAlign: TextAlign.center, style: LikhoFonts.title(size: 32, weight: FontWeight.w800)),
+      if (stars case final n?) ...[
         const SizedBox(height: 6),
-        Text(title, style: LikhoFonts.title(size: 32, weight: FontWeight.w800)),
-        if (stars case final n?) ...[
-          const SizedBox(height: 6),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              for (var k = 1; k <= 3; k++)
-                TweenAnimationBuilder<double>(
-                  tween: Tween(begin: 0, end: 1),
-                  duration: Duration(milliseconds: 400 + k * 250),
-                  curve: Curves.elasticOut,
-                  builder: (context, v, child) => Transform.scale(scale: v, child: child),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 3),
-                    child: Opacity(opacity: n >= k ? 1 : .25, child: Image.asset(star, width: k == 2 ? 54 : 44)),
-                  ),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            for (var k = 1; k <= 3; k++)
+              TweenAnimationBuilder<double>(
+                tween: Tween(begin: 0, end: 1),
+                duration: Duration(milliseconds: 400 + k * 250),
+                curve: Curves.elasticOut,
+                builder: (context, v, child) => Transform.scale(scale: v, child: child),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 3),
+                  child: Opacity(opacity: n >= k ? 1 : .25, child: Image.asset(star, width: k == 2 ? 54 : 44)),
                 ),
-            ],
-          ),
-        ],
-        const SizedBox(height: 8),
-        Text('$score points', style: LikhoFonts.title(size: 22, weight: FontWeight.w800, color: StoryColors.name)),
-        if (detail case final d?) Text(d, key: ValueKey('$id-detail'), style: LikhoFonts.body(size: 16, weight: FontWeight.w800, color: StoryColors.name)),
-        if (record) ...[
-          const SizedBox(height: 8),
-          Container(
-            padding: const EdgeInsets.fromLTRB(14, 4, 14, 6),
-            decoration: BoxDecoration(color: MonsterColors.ribbon, borderRadius: BorderRadius.circular(14)),
-            child: Text('New best!', style: LikhoFonts.title(size: 18, weight: FontWeight.w800, color: MonsterColors.ribbonInk)),
-          ),
-        ],
-        const SizedBox(height: 16),
-        SizedBox(
-          width: double.infinity,
-          child: gameButton(key: ValueKey('$id-again'), label: 'Play again', icon: Symbols.replay_rounded, onTap: onAgain),
-        ),
-        const SizedBox(height: 12),
-        SizedBox(
-          width: double.infinity,
-          child: gameButton(key: ValueKey('$id-done'), label: 'Map', icon: Symbols.map_rounded, onTap: onDone, main: false),
+              ),
+          ],
         ),
       ],
-    ),
-  );
+    ];
+    final rest = [
+      Text('$score points', style: LikhoFonts.title(size: 22, weight: FontWeight.w800, color: StoryColors.name)),
+      if (detail case final d?) Text(d, key: ValueKey('$id-detail'), textAlign: TextAlign.center, style: LikhoFonts.body(size: 16, weight: FontWeight.w800, color: StoryColors.name)),
+      if (record) ...[
+        const SizedBox(height: 8),
+        Container(
+          padding: const EdgeInsets.fromLTRB(14, 4, 14, 6),
+          decoration: BoxDecoration(color: MonsterColors.ribbon, borderRadius: BorderRadius.circular(14)),
+          child: Text('New best!', style: LikhoFonts.title(size: 18, weight: FontWeight.w800, color: MonsterColors.ribbonInk)),
+        ),
+      ],
+      const SizedBox(height: 16),
+      SizedBox(
+        width: double.infinity,
+        child: gameButton(key: ValueKey('$id-again'), label: 'Play again', icon: Symbols.replay_rounded, onTap: onAgain),
+      ),
+      const SizedBox(height: 12),
+      SizedBox(
+        width: double.infinity,
+        child: gameButton(key: ValueKey('$id-done'), label: 'Map', icon: Symbols.map_rounded, onTap: onDone, main: false),
+      ),
+    ];
+    return GameCard(
+      // high, so Pencil's words show below it
+      alignment: wide ? Alignment.center : const Alignment(0, -.75),
+      width: wide ? 560 : 330,
+      child: wide
+          ? Row(
+              key: ValueKey('$id-result'),
+              children: [
+                Expanded(child: Column(mainAxisSize: MainAxisSize.min, children: head)),
+                const SizedBox(width: 18),
+                Expanded(child: Column(mainAxisSize: MainAxisSize.min, children: rest)),
+              ],
+            )
+          : Column(
+              key: ValueKey('$id-result'),
+              mainAxisSize: MainAxisSize.min,
+              children: [...head, const SizedBox(height: 8), ...rest],
+            ),
+    );
+  }
 }
