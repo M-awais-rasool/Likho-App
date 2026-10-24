@@ -1731,6 +1731,298 @@
   "says": "Grapes! G, R, A, P, E, S!",
   "made": "c8cb5f6d18dfa89d"
  },
+ "ms_intro": {
+  "says": "Pull the ball back and let go! Hit the letter I ask for!",
+  "made": "a8328f379c2f1bfa"
+ },
+ "ms_pull_hint": {
+  "says": "Drag the ball back, then let go!",
+  "made": "bd53b85229dd0dec"
+ },
+ "ms_tower": {
+  "says": "Look! A monster tower!",
+  "made": "69817c5b1dc4dab3"
+ },
+ "ms_great_1": {
+  "says": "Pow! You found it!",
+  "made": "059c3c737a3e460e"
+ },
+ "ms_great_2": {
+  "says": "Great shot!",
+  "made": "7da318d78f4d8363"
+ },
+ "ms_great_3": {
+  "says": "Yes! Smash!",
+  "made": "aca28f3e9d64899d"
+ },
+ "ms_miss": {
+  "says": "So close! Try again!",
+  "made": "81196de150b08a6a"
+ },
+ "ms_hint": {
+  "says": "Look! Here it is!",
+  "made": "6f77e515bde87bab"
+ },
+ "ms_refill": {
+  "says": "More balls for you!",
+  "made": "4e7507dd26fb98d4"
+ },
+ "ms_cleared": {
+  "says": "Tower down! The monsters are our friends now!",
+  "made": "90c24d49c62cea78"
+ },
+ "ms_done": {
+  "says": "You smashed them all!",
+  "made": "96f64b2e9030fd09"
+ },
+ "ls_intro": {
+  "says": "Swipe to slice the fruit with the letter I ask for!",
+  "made": "41556d5f8d7a887a"
+ },
+ "ls_great_1": {
+  "says": "Juicy!",
+  "made": "4894ab7ea43256c1"
+ },
+ "ls_great_2": {
+  "says": "Super slicer!",
+  "made": "c2a3ed6eda9b1412"
+ },
+ "ls_great_3": {
+  "says": "Yes! All done!",
+  "made": "f0dd655d2a0341cf"
+ },
+ "ls_combo": {
+  "says": "Combo!",
+  "made": "4da5f50b7cb7aada"
+ },
+ "ls_star": {
+  "says": "A golden star!",
+  "made": "faff5d7908845c4f"
+ },
+ "ls_freeze": {
+  "says": "Slow motion!",
+  "made": "63590e203f0bb30a"
+ },
+ "ls_frenzy": {
+  "says": "Fruit party! Slice them all!",
+  "made": "e35065903c808a8c"
+ },
+ "ls_hurry": {
+  "says": "Ten seconds left!",
+  "made": "02b2ac63c58a66ff"
+ },
+ "ls_time_up": {
+  "says": "Time's up! Great slicing!",
+  "made": "35b9f84b369a3058"
+ },
+ "ls_slice_a": {
+  "says": "Slice A!",
+  "made": "2a32020dab92198f"
+ },
+ "ls_slice_small_a": {
+  "says": "Slice small a!",
+  "made": "8eab3c3db500bb5e"
+ },
+ "ls_slice_b": {
+  "says": "Slice B!",
+  "made": "c72a6a040239cba6"
+ },
+ "ls_slice_small_b": {
+  "says": "Slice small b!",
+  "made": "c0af25059257ffa4"
+ },
+ "ls_slice_c": {
+  "says": "Slice C!",
+  "made": "d3e4d25be57f2c59"
+ },
+ "ls_slice_small_c": {
+  "says": "Slice small c!",
+  "made": "f982c50dcff9fff4"
+ },
+ "ls_slice_d": {
+  "says": "Slice D!",
+  "made": "c6a8e63913019fc6"
+ },
+ "ls_slice_small_d": {
+  "says": "Slice small d!",
+  "made": "07e93b9ffdba8e70"
+ },
+ "ls_slice_e": {
+  "says": "Slice E!",
+  "made": "3d8b60fa9d72afe0"
+ },
+ "ls_slice_small_e": {
+  "says": "Slice small e!",
+  "made": "fac222853ed83fa7"
+ },
+ "ls_slice_f": {
+  "says": "Slice F!",
+  "made": "f644fc745cb53d20"
+ },
+ "ls_slice_small_f": {
+  "says": "Slice small f!",
+  "made": "1b57af955ba3900c"
+ },
+ "ls_slice_g": {
+  "says": "Slice G!",
+  "made": "91f6fff19ebbbdfb"
+ },
+ "ls_slice_small_g": {
+  "says": "Slice small g!",
+  "made": "0186e363d144203a"
+ },
+ "ls_slice_h": {
+  "says": "Slice H!",
+  "made": "3433133beac9f5cd"
+ },
+ "ls_slice_small_h": {
+  "says": "Slice small h!",
+  "made": "819a0af0771da2dc"
+ },
+ "ls_slice_i": {
+  "says": "Slice I!",
+  "made": "ad2da7f0293f4951"
+ },
+ "ls_slice_small_i": {
+  "says": "Slice small i!",
+  "made": "ba53464b48fd78a4"
+ },
+ "ls_slice_j": {
+  "says": "Slice J!",
+  "made": "66904bafbf0c0fd5"
+ },
+ "ls_slice_small_j": {
+  "says": "Slice small j!",
+  "made": "cdf0c47581305740"
+ },
+ "ls_slice_k": {
+  "says": "Slice K!",
+  "made": "9026ae93504ef3ec"
+ },
+ "ls_slice_small_k": {
+  "says": "Slice small k!",
+  "made": "0261a6d24551d18d"
+ },
+ "ls_slice_l": {
+  "says": "Slice L!",
+  "made": "f0c3f53fad321df0"
+ },
+ "ls_slice_small_l": {
+  "says": "Slice small l!",
+  "made": "19b54f92a865f869"
+ },
+ "ls_slice_m": {
+  "says": "Slice M!",
+  "made": "010fc4d72a1a28bd"
+ },
+ "ls_slice_small_m": {
+  "says": "Slice small m!",
+  "made": "30a4bec7188f5540"
+ },
+ "ls_slice_n": {
+  "says": "Slice N!",
+  "made": "2f3dae92845ad8f1"
+ },
+ "ls_slice_small_n": {
+  "says": "Slice small n!",
+  "made": "ea3d961215cb17e7"
+ },
+ "ls_slice_o": {
+  "says": "Slice O!",
+  "made": "69def374e861d635"
+ },
+ "ls_slice_small_o": {
+  "says": "Slice small o!",
+  "made": "b8c6b4fbbf9db22e"
+ },
+ "ls_slice_p": {
+  "says": "Slice P!",
+  "made": "13a590b3fa5243d1"
+ },
+ "ls_slice_small_p": {
+  "says": "Slice small p!",
+  "made": "a4716b948b74907f"
+ },
+ "ls_slice_q": {
+  "says": "Slice Q!",
+  "made": "751ddcda2e2ab5fa"
+ },
+ "ls_slice_small_q": {
+  "says": "Slice small q!",
+  "made": "b457a8a53432e452"
+ },
+ "ls_slice_r": {
+  "says": "Slice R!",
+  "made": "e7594953fb97cf5a"
+ },
+ "ls_slice_small_r": {
+  "says": "Slice small r!",
+  "made": "e14dacf79e75d8dd"
+ },
+ "ls_slice_s": {
+  "says": "Slice S!",
+  "made": "0f15eb0af28c9cbb"
+ },
+ "ls_slice_small_s": {
+  "says": "Slice small s!",
+  "made": "8651c1383dd0ae03"
+ },
+ "ls_slice_t": {
+  "says": "Slice T!",
+  "made": "554886d717e147ce"
+ },
+ "ls_slice_small_t": {
+  "says": "Slice small t!",
+  "made": "8bbef8f2aef48741"
+ },
+ "ls_slice_u": {
+  "says": "Slice U!",
+  "made": "527cd5b774c0a936"
+ },
+ "ls_slice_small_u": {
+  "says": "Slice small u!",
+  "made": "00754bb3a99bb9bd"
+ },
+ "ls_slice_v": {
+  "says": "Slice V!",
+  "made": "7b1cc476ee277181"
+ },
+ "ls_slice_small_v": {
+  "says": "Slice small v!",
+  "made": "f08989785354b2ae"
+ },
+ "ls_slice_w": {
+  "says": "Slice W!",
+  "made": "94216a6db4690541"
+ },
+ "ls_slice_small_w": {
+  "says": "Slice small w!",
+  "made": "f24901bf486726da"
+ },
+ "ls_slice_x": {
+  "says": "Slice X!",
+  "made": "244530b3f3e449e3"
+ },
+ "ls_slice_small_x": {
+  "says": "Slice small x!",
+  "made": "7710f25a9a6f4cf6"
+ },
+ "ls_slice_y": {
+  "says": "Slice Y!",
+  "made": "6daf96350bcc4f6f"
+ },
+ "ls_slice_small_y": {
+  "says": "Slice small y!",
+  "made": "4ea2f89588f2d564"
+ },
+ "ls_slice_z": {
+  "says": "Slice Z!",
+  "made": "56a50b67cd3a6eb4"
+ },
+ "ls_slice_small_z": {
+  "says": "Slice small z!",
+  "made": "2d27f691ad306242"
+ },
  "story_a_knock": {
   "says": "Pencil! Pencil! Dada needs help. Come to the apple garden!",
   "made": "548a77159da43b73"
