@@ -6,16 +6,22 @@ import {
   BookOpen,
   CalendarClock,
   Check,
+  ChevronDown,
+  ChevronUp,
   CircleAlert,
   Crown,
   DoorOpen,
   Eye,
   EyeOff,
   Gamepad2,
+  GripVertical,
+  House,
   Lock,
   Megaphone,
   Mic,
+  Paintbrush,
   Palette,
+  PanelBottom,
   Plus,
   RotateCcw,
   Smartphone,
@@ -27,6 +33,7 @@ import {
   Users,
   Vibrate,
   Volume2,
+  WandSparkles,
   Wrench,
   type LucideIcon,
 } from 'lucide-react'
@@ -44,10 +51,14 @@ import {
   itemInfo,
   modeInfo,
   resolveForPreview,
+  tabInfo,
+  tabSwatches,
   type Controls as Ctl,
   type ControlsMeta,
   type Mode,
   type SavedControls,
+  type TabBar as TabBarCtl,
+  type TabId as BarTabId,
   type Tone,
 } from '../lib/controls'
 import { ago } from '../lib/format'
@@ -61,6 +72,7 @@ const tabs = [
   { id: 'room', label: 'Room & Pencil', icon: Armchair },
   { id: 'sound', label: 'Sound & games', icon: Gamepad2 },
   { id: 'plus', label: 'Likho Plus', icon: Crown },
+  { id: 'tabbar', label: 'Bottom bar', icon: PanelBottom },
   { id: 'app', label: 'App status', icon: Smartphone },
 ] as const
 type TabId = (typeof tabs)[number]['id']
@@ -101,7 +113,7 @@ const screens = [
   { value: 'update', label: 'Please update' },
 ]
 
-const tabScreen: Record<TabId, string> = { features: 'map', stories: 'stories', room: 'room', sound: 'map', plus: 'paywall', app: 'dashboard' }
+const tabScreen: Record<TabId, string> = { features: 'map', stories: 'stories', room: 'room', sound: 'map', plus: 'paywall', tabbar: 'map', app: 'dashboard' }
 
 export default function Controls() {
   const { can, course } = useSession()
@@ -195,6 +207,7 @@ export default function Controls() {
       room: changed.has('room') || changed.has('colors') || changed.has('feature:room'),
       sound: changed.has('games') || ['sfx', 'voice', 'haptics'].some((f) => changed.has(`feature:${f}`)),
       plus: changed.has('billing'),
+      tabbar: changed.has('tabBar'),
       app: changed.has('app'),
     })[t]
 
@@ -315,6 +328,8 @@ export default function Controls() {
           )}
 
           {tab === 'plus' && <Billing meta={meta} c={d} editable={editable} set={set} changed={changed.has('billing')} />}
+
+          {tab === 'tabbar' && <TabBarEditor meta={meta} c={d} editable={editable} set={set} changed={changed.has('tabBar')} />}
 
           {tab === 'app' && (
             <AppStatus
@@ -983,6 +998,323 @@ function problems(c: Ctl, last: number): string[] {
 }
 
 /** Changes worth a second look before they go to every phone. */
+// ------------------------------------------------------------ bottom bar
+
+const styleInfo: Record<TabBarCtl['style'], { title: string; text: string }> = {
+  candy: { title: 'Candy', text: 'The open tab pops up as a chunky 3D button' },
+  jelly: { title: 'Jelly', text: 'A colour blob stretches across to the tab' },
+  island: { title: 'Island', text: 'A big round Map button in the middle' },
+}
+
+/** The bottom bar: its style, each tab (order, name, colour), its look and how it moves. */
+function TabBarEditor({ meta, c, editable, set, changed }: SectionProps) {
+  const bar = c.tabBar
+  const [dragging, setDragging] = useState<number | null>(null)
+  const edit = (f: (b: TabBarCtl) => void) => set((x) => f(x.tabBar))
+  const move = (from: number, to: number) =>
+    edit((b) => {
+      if (to < 0 || to >= b.tabs.length || from === to) return
+      const [t] = b.tabs.splice(from, 1)
+      b.tabs.splice(to, 0, t)
+    })
+  // a tab the feature switches hide does not show, whatever the bar says
+  const switchedOff = (id: BarTabId) => (id === 'stories' || id === 'games') && c.features[id] === 'off'
+  const startable = bar.tabs.filter((t) => t.id !== 'parents' && t.shown && !switchedOff(t.id))
+  const inBar = bar.tabs.filter((t) => t.shown && !switchedOff(t.id))
+  const defaults = meta.defaults.tabBar
+
+  return (
+    <div className="space-y-5">
+      <Section
+        title="Style"
+        hint="How the bar at the bottom of the children's app looks. Tap the tabs in the phone preview to feel it."
+        action={
+          editable &&
+          defaults && (
+            <Button size="sm" variant="ghost" icon={<RotateCcw className="size-3.5" />} onClick={() => edit((b) => Object.assign(b, clone(defaults)))}>
+              Reset bar
+            </Button>
+          )
+        }
+      >
+        <div className={clsx('grid gap-3 p-4 sm:grid-cols-3', changed && 'bg-warn-soft/30')}>
+          {(Object.keys(styleInfo) as TabBarCtl['style'][]).map((st) => (
+            <button
+              key={st}
+              disabled={!editable}
+              onClick={() => edit((b) => void (b.style = st))}
+              aria-pressed={bar.style === st}
+              className={clsx(
+                'group cursor-pointer rounded-xl border-2 p-3 text-left transition-all disabled:cursor-not-allowed',
+                bar.style === st ? 'border-brand bg-brand-soft/40 shadow-card' : 'border-line bg-surface hover:-translate-y-0.5 hover:border-line-strong hover:shadow-card',
+              )}
+            >
+              <MiniBar style={st} bar={bar} />
+              <div className="mt-3 flex items-center gap-1.5 text-[14px] font-semibold text-ink">
+                {styleInfo[st].title}
+                {bar.style === st && <Check className="size-4 text-brand" strokeWidth={3} />}
+                {defaults?.style === st && <Badge tone="muted">Default</Badge>}
+              </div>
+              <div className="mt-0.5 text-[12px] text-ink-3">{styleInfo[st].text}</div>
+            </button>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        title="Tabs"
+        hint={
+          <>
+            Drag to change the order. The bar shows when at least two tabs are in it; with only Map left the map keeps its own Settings button. A tab you hide here
+            gets its old button back on the map.
+          </>
+        }
+        action={<Badge tone="info">{inBar.length} in the bar</Badge>}
+      >
+        {bar.tabs.map((t, i) => {
+          const off = switchedOff(t.id)
+          const info = tabInfo[t.id]
+          return (
+            <div
+              key={t.id}
+              draggable={editable}
+              onDragStart={() => setDragging(i)}
+              onDragEnd={() => setDragging(null)}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={() => {
+                if (dragging !== null) move(dragging, i)
+                setDragging(null)
+              }}
+              className={clsx('transition-opacity', dragging === i && 'opacity-40')}
+            >
+              <Row changed={!!changed}>
+                <div className="flex items-center gap-1">
+                  <GripVertical className={clsx('size-4 text-ink-3', editable && 'cursor-grab')} />
+                  <div className="flex flex-col">
+                    <button disabled={!editable || i === 0} onClick={() => move(i, i - 1)} className="cursor-pointer text-ink-3 hover:text-ink disabled:opacity-30" aria-label={`Move ${t.label} up`}>
+                      <ChevronUp className="size-3.5" />
+                    </button>
+                    <button disabled={!editable || i === bar.tabs.length - 1} onClick={() => move(i, i + 1)} className="cursor-pointer text-ink-3 hover:text-ink disabled:opacity-30" aria-label={`Move ${t.label} down`}>
+                      <ChevronDown className="size-3.5" />
+                    </button>
+                  </div>
+                </div>
+                <div
+                  className={clsx('grid size-12 shrink-0 place-items-center rounded-2xl text-[22px] shadow-card', (!t.shown || off) && 'opacity-40 grayscale')}
+                  style={{ background: t.color, boxShadow: `0 4px 0 ${shade(t.color)}` }}
+                >
+                  {info.art}
+                </div>
+                <div className="min-w-[180px] flex-1 space-y-1.5">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Input
+                      value={t.label}
+                      maxLength={12}
+                      disabled={!editable}
+                      onChange={(e) => edit((b) => void (b.tabs[i].label = e.target.value))}
+                      className="h-8 w-36 font-semibold"
+                      aria-label={`${info.title} tab name`}
+                    />
+                    {bar.start === t.id && <Badge tone="good">Opens first</Badge>}
+                    {off && <Badge tone="warn">{info.title} switch is off</Badge>}
+                  </div>
+                  <div className="text-[12px] text-ink-3">{info.text}</div>
+                  <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
+                    {tabSwatches.map((col) => (
+                      <button
+                        key={col}
+                        disabled={!editable}
+                        onClick={() => edit((b) => void (b.tabs[i].color = col))}
+                        title={col}
+                        className={clsx('size-6 cursor-pointer rounded-full ring-offset-2 ring-offset-surface transition-transform hover:scale-110 disabled:cursor-not-allowed', t.color.toUpperCase() === col ? 'ring-2 ring-ink' : 'ring-1 ring-line')}
+                        style={{ background: col }}
+                      />
+                    ))}
+                    <label className="relative size-6 cursor-pointer overflow-hidden rounded-full ring-1 ring-line" title="Any colour">
+                      <span className="absolute inset-0 bg-[conic-gradient(red,yellow,lime,cyan,blue,magenta,red)]" />
+                      <input type="color" value={t.color} disabled={!editable} onChange={(e) => edit((b) => void (b.tabs[i].color = e.target.value.toUpperCase()))} className="absolute inset-0 cursor-pointer opacity-0" />
+                    </label>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-2">
+                  {t.id === 'map' ? (
+                    <span className="inline-flex items-center gap-1.5 text-[12.5px] text-ink-3">
+                      <Lock className="size-3.5" /> Always shown
+                    </span>
+                  ) : (
+                    <Toggle disabled={!editable} checked={t.shown} onChange={(v) => edit((b) => void (b.tabs[i].shown = v))} label="In the bar" />
+                  )}
+                  {(t.id === 'stories' || t.id === 'games') && (
+                    <Toggle disabled={!editable} checked={t.badge} onChange={(v) => edit((b) => void (b.tabs[i].badge = v))} label="NEW badge" hint="Until the child plays one" />
+                  )}
+                </div>
+              </Row>
+            </div>
+          )
+        })}
+        <Row changed={!!changed}>
+          <House className="size-5 text-ink-3" />
+          <div className="min-w-0 flex-1">
+            <div className="text-[13.5px] font-semibold text-ink">The app opens on</div>
+            <div className="text-[12px] text-ink-3">Each time a child is picked. Parents can't be first: it is behind the gate.</div>
+          </div>
+          <Select value={bar.start} disabled={!editable} onChange={(e) => edit((b) => void (b.start = e.target.value as BarTabId))} className="w-40">
+            {startable.map((t) => (
+              <option key={t.id} value={t.id}>
+                {t.label}
+              </option>
+            ))}
+          </Select>
+        </Row>
+      </Section>
+
+      <Section title="Look" hint="The bar behind the tabs.">
+        <Row changed={!!changed}>
+          <Paintbrush className="size-5 text-ink-3" />
+          <div className="min-w-[160px] flex-1 text-[13.5px] font-semibold text-ink">Bar</div>
+          <Segmented
+            value={bar.surface}
+            onChange={(v) => edit((b) => void (b.surface = v))}
+            options={[
+              { value: 'white', label: 'White' },
+              { value: 'glass', label: 'Glass' },
+              { value: 'colour', label: 'Colour' },
+            ]}
+          />
+        </Row>
+        {bar.surface === 'colour' && (
+          <Row changed={!!changed}>
+            <Palette className="size-5 text-ink-3" />
+            <div className="min-w-[160px] flex-1 text-[13.5px] font-semibold text-ink">Bar colour</div>
+            <div className="flex flex-wrap items-center gap-1.5">
+              {tabSwatches.map((col) => (
+                <button
+                  key={col}
+                  disabled={!editable}
+                  onClick={() => edit((b) => void (b.barColor = col))}
+                  className={clsx('size-7 cursor-pointer rounded-full ring-offset-2 ring-offset-surface disabled:cursor-not-allowed', bar.barColor.toUpperCase() === col ? 'ring-2 ring-ink' : 'ring-1 ring-line')}
+                  style={{ background: col }}
+                  title={col}
+                />
+              ))}
+              <input type="color" value={bar.barColor} disabled={!editable} onChange={(e) => edit((b) => void (b.barColor = e.target.value.toUpperCase()))} className="size-7 cursor-pointer rounded-full" aria-label="Any bar colour" />
+            </div>
+          </Row>
+        )}
+        <Row changed={!!changed}>
+          <div className="grid w-full gap-4 sm:grid-cols-2">
+            <Toggle disabled={!editable} checked={bar.floating} onChange={(v) => edit((b) => void (b.floating = v))} label="Floating" hint="A rounded bar above the bottom edge. Off: it sits on the edge." />
+            <Toggle disabled={!editable} checked={bar.labels} onChange={(v) => edit((b) => void (b.labels = v))} label="Names under the pictures" hint="Off: bigger pictures, no words." />
+          </div>
+        </Row>
+        <Row changed={!!changed}>
+          <div className="min-w-[160px] flex-1">
+            <div className="text-[13.5px] font-semibold text-ink">Round corners</div>
+            <div className="text-[12px] text-ink-3">0 is square, 36 is a full pill.</div>
+          </div>
+          <input
+            type="range"
+            min={0}
+            max={36}
+            step={2}
+            value={bar.roundness}
+            disabled={!editable}
+            onChange={(e) => edit((b) => void (b.roundness = Number(e.target.value)))}
+            className="w-48 accent-[var(--brand)]"
+            aria-label="Round corners"
+          />
+          <span className="w-8 text-right text-[13px] font-semibold tabular-nums text-ink">{bar.roundness}</span>
+        </Row>
+      </Section>
+
+      <Section title="Motion" hint="How a tab answers a tap. Phones with “Reduce motion” on (a parent setting) stay still.">
+        <Row changed={!!changed}>
+          <WandSparkles className="size-5 text-ink-3" />
+          <div className="min-w-[160px] flex-1 text-[13.5px] font-semibold text-ink">Animation</div>
+          <Segmented
+            value={bar.animation}
+            onChange={(v) => edit((b) => void (b.animation = v))}
+            options={[
+              { value: 'bounce', label: 'Bounce' },
+              { value: 'slide', label: 'Slide' },
+              { value: 'pop', label: 'Pop' },
+              { value: 'none', label: 'None' },
+            ]}
+          />
+        </Row>
+        <Row changed={!!changed}>
+          <div className="min-w-[160px] flex-1 pl-9 text-[13.5px] font-semibold text-ink">Speed</div>
+          <Segmented
+            value={bar.speed}
+            onChange={(v) => edit((b) => void (b.speed = v))}
+            options={[
+              { value: 'slow', label: 'Slow' },
+              { value: 'normal', label: 'Normal' },
+              { value: 'fast', label: 'Fast' },
+            ]}
+          />
+        </Row>
+        <Row changed={!!changed}>
+          <div className="pl-9">
+            <Toggle disabled={!editable} checked={bar.wiggle} onChange={(v) => edit((b) => void (b.wiggle = v))} label="NEW tabs hop" hint="A tab with a NEW badge hops now and then to be noticed." />
+          </div>
+        </Row>
+      </Section>
+    </div>
+  )
+}
+
+/** A small drawing of the bar in [style], with the tabs' colours. */
+function MiniBar({ style, bar }: { style: TabBarCtl['style']; bar: TabBarCtl }) {
+  const tabs = bar.tabs.filter((t) => t.shown)
+  const map = tabs.find((t) => t.id === 'map')
+  const first = tabs[0]
+  const fill = bar.surface === 'colour' ? bar.barColor : '#FFFFFF'
+  return (
+    <div className="relative h-20 overflow-hidden rounded-lg bg-[#EAF6DD]">
+      <div
+        className="absolute inset-x-2 bottom-2 flex h-9 items-center justify-around px-1"
+        style={{ background: fill, borderRadius: Math.min(bar.roundness, 18), boxShadow: '0 3px 0 #E6E0F2, 0 6px 14px rgba(43,45,66,.12)' }}
+      >
+        {style === 'island'
+          ? (() => {
+              const others = tabs.filter((t) => t.id !== 'map')
+              const half = Math.floor(others.length / 2)
+              return (
+                <>
+                  {others.slice(0, half).map((t) => <MiniDot key={t.id} color={t.color} />)}
+                  {map && <span className="-mt-6 size-9 rounded-full border-[3px] border-white transition-transform group-hover:-translate-y-1" style={{ background: map.color, boxShadow: `0 3px 0 ${shade(map.color)}` }} />}
+                  {others.slice(half).map((t) => <MiniDot key={t.id} color={t.color} />)}
+                </>
+              )
+            })()
+          : tabs.map((t) =>
+              t === first ? (
+                style === 'candy' ? (
+                  <span key={t.id} className="-mt-4 size-8 rounded-[10px] border-2 border-white transition-transform group-hover:-translate-y-1" style={{ background: t.color, boxShadow: `0 3px 0 ${shade(t.color)}` }} />
+                ) : (
+                  <span key={t.id} className="h-6 w-9 rounded-lg transition-all group-hover:w-11" style={{ background: t.color, boxShadow: `0 2px 0 ${shade(t.color)}` }} />
+                )
+              ) : (
+                <MiniDot key={t.id} color={t.color} />
+              ),
+            )}
+      </div>
+    </div>
+  )
+}
+
+function MiniDot({ color }: { color: string }) {
+  return <span className="size-3.5 rounded-full opacity-80" style={{ background: color }} />
+}
+
+/** [hex] a little darker: the 3D edge under a button. */
+function shade(hex: string): string {
+  const n = parseInt(hex.slice(1), 16)
+  const ch = (v: number) => Math.max(0, Math.round(v * 0.78))
+  return `rgb(${ch((n >> 16) & 255)}, ${ch((n >> 8) & 255)}, ${ch(n & 255)})`
+}
+
 function riskyChanges(before: Ctl, after: Ctl): string[] {
   const out: string[] = []
   if (after.app.maintenance.on && !before.app.maintenance.on) out.push('Maintenance goes on: nobody can use the app until you turn it off.')
@@ -997,7 +1329,7 @@ function changedNames(changed: Set<string>): string[] {
   const names = new Set<string>()
   for (const k of changed) {
     if (k.startsWith('feature:')) names.add(featureInfo[k.slice(8)]?.title ?? k.slice(8))
-    else names.add({ stories: 'Stories', room: 'Shop items', games: 'Games', colors: "Pencil's colours", billing: 'Likho Plus', app: 'App status' }[k] ?? k)
+    else names.add({ stories: 'Stories', room: 'Shop items', games: 'Games', colors: "Pencil's colours", billing: 'Likho Plus', app: 'App status', tabBar: 'Bottom bar' }[k] ?? k)
   }
   return [...names]
 }
