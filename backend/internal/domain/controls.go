@@ -68,17 +68,50 @@ type Episode struct{ ID, Letter, Title string }
 
 var StoryEpisodes = []Episode{{"a", "A", "Dada's Apple Garden"}}
 
+// PlayGame is a game on the app's Games screen (lib/data/games.dart GameIds).
+type PlayGame struct {
+	ID    string `json:"id"`
+	Title string `json:"title"`
+}
+
+var PlayGames = []PlayGame{
+	{"monsters", "Monster Defense"},
+	{"runner", "Spell Runner"},
+	{"smash", "Monster Smash"},
+	{"slice", "Letter Slice"},
+}
+
+func episodeIDs() []string {
+	out := []string{}
+	for _, e := range StoryEpisodes {
+		out = append(out, e.ID)
+	}
+	return out
+}
+
+func playGameIDs() []string {
+	out := []string{}
+	for _, g := range PlayGames {
+		out = append(out, g.ID)
+	}
+	return out
+}
+
 // GameTypes are the round types the team can switch off. Writing is the
 // heart of every level and always stays.
 var GameTypes = []string{"pick", "order", "sounds", "beats", "connect", "hunt", "fix", "sort", "match", "pop", "truth"}
 
-// ValidOverrideKey: a family's own switch is a feature id or "story.<id>".
+// ValidOverrideKey: a family's own switch is a feature id, "story.<id>"
+// or "game.<id>".
 func ValidOverrideKey(k string) bool {
 	if _, ok := FeatureByID(k); ok {
 		return true
 	}
 	if id, ok := strings.CutPrefix(k, "story."); ok {
-		return slices.ContainsFunc(StoryEpisodes, func(e Episode) bool { return e.ID == id })
+		return slices.Contains(episodeIDs(), id)
+	}
+	if id, ok := strings.CutPrefix(k, "game."); ok {
+		return slices.Contains(playGameIDs(), id)
 	}
 	return false
 }
@@ -93,11 +126,23 @@ type Controls struct {
 	Billing      BillingControls   `json:"billing"`
 	App          AppStatus         `json:"app"`
 	TabBar       TabBarControls    `json:"tabBar"`
+	GameList     GameListControls  `json:"gameList"`
 }
 
 type StoryControls struct {
 	ComingSoon bool              `json:"comingSoon"` // the letters still to come
 	Episodes   map[string]string `json:"episodes"`   // episode id -> mode
+	Order      []string          `json:"order"`      // episode ids, the first at the top
+	New        []string          `json:"new"`        // episodes tagged NEW (until the child has played them)
+}
+
+// GameListControls: the games on the Games screen, each on for everyone,
+// Plus families, chosen families or nobody, in the team's order, some
+// tagged NEW (until the child has played them).
+type GameListControls struct {
+	Order []string          `json:"order"`
+	Modes map[string]string `json:"modes"`
+	New   []string          `json:"new"`
 }
 
 type RoomControls struct {
@@ -229,7 +274,40 @@ func DefaultControls(freeLevels int) Controls {
 	}
 	c.PencilColors = slices.Clone(PencilColorOrder)
 	c.TabBar = DefaultTabBar()
+	c.Stories.Order, c.Stories.New = episodeIDs(), []string{}
+	c.GameList = GameListControls{Order: playGameIDs(), Modes: map[string]string{}, New: []string{"smash", "slice"}}
+	for _, id := range playGameIDs() {
+		c.GameList.Modes[id] = ModeOn
+	}
 	return c
+}
+
+// tidyOrder keeps the known [ids] of [order] once each, in its order, and
+// puts the ones it lacks (added since) at the end.
+func tidyOrder(order, ids []string) []string {
+	out := []string{}
+	for _, id := range order {
+		if slices.Contains(ids, id) && !slices.Contains(out, id) {
+			out = append(out, id)
+		}
+	}
+	for _, id := range ids {
+		if !slices.Contains(out, id) {
+			out = append(out, id)
+		}
+	}
+	return out
+}
+
+// tidySet keeps the known [ids] of [list] once each.
+func tidySet(list, ids []string) []string {
+	out := []string{}
+	for _, id := range list {
+		if slices.Contains(ids, id) && !slices.Contains(out, id) {
+			out = append(out, id)
+		}
+	}
+	return out
 }
 
 // PencilColorOrder is the order the app shows Pencil's colours in.
@@ -279,6 +357,28 @@ func (c Controls) Fill(def Controls) Controls {
 	if c.TabBar.Style == "" { // saved before the bottom bar
 		c.TabBar = def.TabBar
 	}
+	if c.Stories.Order == nil { // saved before the order
+		c.Stories.Order = def.Stories.Order
+	}
+	c.Stories.Order = tidyOrder(c.Stories.Order, episodeIDs())
+	if c.Stories.New == nil {
+		c.Stories.New = []string{}
+	}
+	if c.GameList.Order == nil { // saved before the game list
+		c.GameList = def.GameList
+	}
+	if c.GameList.Modes == nil {
+		c.GameList.Modes = map[string]string{}
+	}
+	for k, v := range def.GameList.Modes {
+		if _, ok := c.GameList.Modes[k]; !ok {
+			c.GameList.Modes[k] = v
+		}
+	}
+	c.GameList.Order = tidyOrder(c.GameList.Order, playGameIDs())
+	if c.GameList.New == nil {
+		c.GameList.New = []string{}
+	}
 	for _, t := range def.TabBar.Tabs { // a tab added since: at the end
 		if !slices.ContainsFunc(c.TabBar.Tabs, func(x TabControl) bool { return x.ID == t.ID }) {
 			c.TabBar.Tabs = append(c.TabBar.Tabs, t)
@@ -315,6 +415,27 @@ func (c *Controls) Validate(lastLevel int) error {
 			return Invalid(fmt.Sprintf("story %s cannot be %q", id, m))
 		}
 	}
+	c.Stories.Order = tidyOrder(c.Stories.Order, episodeIDs())
+	c.Stories.New = tidySet(c.Stories.New, episodeIDs())
+	if c.GameList.Modes == nil {
+		c.GameList.Modes = map[string]string{}
+	}
+	for id, m := range c.GameList.Modes {
+		if !slices.Contains(playGameIDs(), id) {
+			delete(c.GameList.Modes, id)
+			continue
+		}
+		if !slices.Contains(allModes, m) {
+			return Invalid(fmt.Sprintf("game %s cannot be %q", id, m))
+		}
+	}
+	for _, id := range playGameIDs() {
+		if _, ok := c.GameList.Modes[id]; !ok {
+			c.GameList.Modes[id] = ModeOn
+		}
+	}
+	c.GameList.Order = tidyOrder(c.GameList.Order, playGameIDs())
+	c.GameList.New = tidySet(c.GameList.New, playGameIDs())
 	for id, it := range c.Room.Items {
 		if _, ok := Items[id]; !ok {
 			delete(c.Room.Items, id)
