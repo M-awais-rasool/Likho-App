@@ -215,3 +215,43 @@ func TestFillGivesAnOldSaveTheBottomBar(t *testing.T) {
 		t.Fatalf("default bar: %+v", got.TabBar)
 	}
 }
+
+func TestGameListAndStoryOrderAreTidied(t *testing.T) {
+	c := DefaultControls(30)
+	if strings.Join(c.GameList.Order, ",") != "monsters,runner,smash,slice" || c.GameList.Modes["smash"] != ModeOn || len(c.GameList.New) != 2 {
+		t.Fatalf("default game list: %+v", c.GameList)
+	}
+	c.GameList.Order = []string{"slice", "rockets", "slice", "monsters"}
+	c.GameList.New = []string{"runner", "rockets", "runner"}
+	delete(c.GameList.Modes, "runner")
+	c.GameList.Modes["rockets"] = ModeOn
+	c.Stories.Order = []string{"z", "a", "a"}
+	c.Stories.New = []string{"a", "z"}
+	if err := c.Validate(210); err != nil {
+		t.Fatal(err)
+	}
+	if got := strings.Join(c.GameList.Order, ","); got != "slice,monsters,runner,smash" {
+		t.Fatalf("order kept, unknown dropped, missing at the end: %s", got)
+	}
+	if strings.Join(c.GameList.New, ",") != "runner" || c.GameList.Modes["runner"] != ModeOn || c.GameList.Modes["rockets"] != "" {
+		t.Fatalf("NEW and modes tidied: %+v", c.GameList)
+	}
+	if strings.Join(c.Stories.Order, ",") != "a" || strings.Join(c.Stories.New, ",") != "a" {
+		t.Fatalf("stories tidied: %+v", c.Stories)
+	}
+
+	c.GameList.Modes["smash"] = "sometimes"
+	if err := c.Validate(210); err == nil || !strings.Contains(err.Error(), "game smash") {
+		t.Fatalf("bad mode: %v", err)
+	}
+}
+
+func TestFillGivesAnOldSaveTheGameList(t *testing.T) {
+	got := Controls{Stories: StoryControls{Episodes: map[string]string{"a": ModePlus}}}.Fill(DefaultControls(30))
+	if len(got.GameList.Order) != len(PlayGames) || got.GameList.Modes["monsters"] != ModeOn || strings.Join(got.Stories.Order, ",") != "a" {
+		t.Fatalf("filled: %+v %+v", got.GameList, got.Stories)
+	}
+	if !ValidOverrideKey("game.smash") || ValidOverrideKey("game.rockets") {
+		t.Fatal("a family can have its own switch per game")
+	}
+}
