@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import { SlidersHorizontal } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { get, patch } from '../lib/api'
-import { featureInfo, modeInfo, type FamilySwitch, type Mode } from '../lib/controls'
+import { featureInfo, gameTitles, modeInfo, type FamilySwitch, type Mode } from '../lib/controls'
 import { Card, ErrorBox, Spinner, useToast } from './ui'
 
 /** A family's own switches (App controls): each part of the app as the
@@ -44,7 +44,11 @@ export function FamilyFeatures({ parentId, editable }: { parentId: string; edita
       )}
       <div className="divide-y divide-line">
         {(q.data ?? []).map((s) => {
-          const title = s.key.startsWith('story.') ? `Story ${s.key.slice(6).toUpperCase()}` : (featureInfo[s.key]?.title ?? s.key)
+          const title = s.key.startsWith('story.')
+            ? `Story ${s.key.slice(6).toUpperCase()}`
+            : s.key.startsWith('game.')
+              ? `Game: ${gameTitles[s.key.slice(5)] ?? s.key.slice(5)}`
+              : (featureInfo[s.key]?.title ?? s.key)
           const value = s.own === null ? 'default' : s.own ? 'on' : 'off'
           return (
             <div key={s.key} className={clsx('flex items-center justify-between gap-3 px-4 py-2.5', s.own !== null && 'bg-brand-soft/40')}>
