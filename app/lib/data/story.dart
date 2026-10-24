@@ -126,12 +126,19 @@ final myStoryStarsProvider = Provider<Map<String, int>>((ref) {
   return ref.watch(storyProgressProvider)[child] ?? const {};
 });
 
-/// The episodes the Stories screen shows (App controls), in alphabet
+/// The episodes the Stories screen shows (App controls), in the team's
 /// order; a Plus-only one opens the paywall without Plus.
 final shownEpisodesProvider = Provider<List<String>>((ref) {
   final c = ref.watch(appControlsProvider);
   final plus = ref.watch(familyProvider.select((f) => f.subscribed));
-  return [for (final id in storyEpisodes) if (c.episodeShown(id, subscribed: plus)) id];
+  return [for (final id in AppControls.ordered(storyEpisodes, c.storyOrder)) if (c.episodeShown(id, subscribed: plus)) id];
+});
+
+/// The episodes tagged NEW that this child has not played yet.
+final newEpisodesProvider = Provider<Set<String>>((ref) {
+  final tagged = ref.watch(appControlsProvider.select((c) => c.newStories));
+  final stars = ref.watch(myStoryStarsProvider);
+  return {for (final id in ref.watch(shownEpisodesProvider)) if (tagged.contains(id) && (stars[id] ?? 0) == 0) id};
 });
 
 /// Whether Stories shows on the map: switched on (or Plus-only), with an

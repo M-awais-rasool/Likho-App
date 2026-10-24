@@ -281,6 +281,11 @@ class AppControls {
     this.maintenance = const TeamNotice(),
     this.parentMessage = const TeamNotice(),
     this.tabBar = const TabBarRules(),
+    this.storyOrder = const [],
+    this.newStories = const {},
+    this.playGames = const {},
+    this.playGameOrder = const [],
+    this.newPlayGames = const {},
   });
 
   final int revision;
@@ -304,6 +309,36 @@ class AppControls {
 
   /// The bottom bar: its look and its tabs.
   final TabBarRules tabBar;
+
+  /// Stories: the team's order of the episodes (first at the top) and the
+  /// ones tagged NEW.
+  final List<String> storyOrder;
+  final Set<String> newStories;
+
+  /// The Games screen's games (not the round types in [games]): who each
+  /// is on for, the team's order and the ones tagged NEW.
+  final Map<String, Access> playGames;
+  final List<String> playGameOrder;
+  final Set<String> newPlayGames;
+
+  /// [ids] in the team's [order]; the ones it lacks keep their own order
+  /// after it.
+  static List<String> ordered(List<String> ids, List<String> order) => [
+    for (final id in order)
+      if (ids.contains(id)) id,
+    for (final id in ids)
+      if (!order.contains(id)) id,
+  ];
+
+  /// Whether game [id] can be played (unknown games are on: older servers).
+  bool playGameOn(String id, {bool subscribed = false}) => switch (playGames[id]) {
+    null || Access.on => true,
+    Access.plus => subscribed,
+    Access.off => false,
+  };
+
+  /// Whether game [id] shows (on, or Plus-only while Plus is sold).
+  bool playGameShown(String id, {bool subscribed = false}) => playGameOn(id, subscribed: subscribed) || (playGames[id] == Access.plus && billing.showPlus);
 
   /// Before anything was downloaded: as the app always was, stories off.
   static const defaults = AppControls(features: {Feature.stories: Access.off});
@@ -359,6 +394,8 @@ class AppControls {
     Map<String, dynamic> obj(Object? v) => v is Map ? v.cast<String, dynamic>() : const {};
     final stories = obj(j['stories']);
     final app = obj(j['app']);
+    final gameList = obj(j['gameList']);
+    List<String> strings(Object? v) => [for (final x in v is List ? v : const []) if (x is String) x];
     final colors = j['pencilColors'];
     return AppControls(
       revision: (j['revision'] as num?)?.toInt() ?? 0,
@@ -381,6 +418,11 @@ class AppControls {
       maintenance: TeamNotice.fromJson(app['maintenance']),
       parentMessage: TeamNotice.fromJson(app['parentMessage']),
       tabBar: TabBarRules.fromJson(obj(j['tabBar'])),
+      storyOrder: strings(stories['order']),
+      newStories: strings(stories['new']).toSet(),
+      playGames: {for (final e in obj(gameList['modes']).entries) e.key: Access.parse(e.value)},
+      playGameOrder: strings(gameList['order']),
+      newPlayGames: strings(gameList['new']).toSet(),
     );
   }
 }
