@@ -11,7 +11,8 @@ speech model (Apache-2.0, runs on this computer) and writes, per line:
 
 and puts the recording's path in the content (`intro.audio`, `prompt.audio`).
 Pencil's lines outside the course (APP_LINES: onboarding, coaching in the
-games; game_lines(): Monster Defense; runner_lines(): Spell Runner) and the story episodes' lines (app/assets/stories/<episode>/story.json,
+games; game_lines(): Monster Defense; runner_lines(): Spell Runner;
+SMASH_LINES: Monster Smash; slice_lines(): Letter Slice) and the story episodes' lines (app/assets/stories/<episode>/story.json,
 each speaker in their own voice) go into the app itself, app/assets/voice/<id>.m4a + .lip, so they
 play before anything is downloaded; app/lib/feedback/pencil_lines.dart and
 app/lib/game/coach.dart name them.
@@ -182,6 +183,51 @@ RUNNER_LINES = {
 }
 
 
+# Monster Smash (app/lib/game/monster_smash/): Pencil's lines in the game
+# (app/lib/screens/games/monster_smash/ms_lines.dart names them). The
+# questions are Monster Defense's ("Find B!") and a hit letter is said by
+# Spell Runner's letter lines.
+SMASH_LINES = {
+    "ms_intro": "Pull the ball back and let go! Hit the letter I ask for!",
+    "ms_pull_hint": "Drag the ball back, then let go!",
+    "ms_tower": "Look! A monster tower!",
+    "ms_great_1": "Pow! You found it!",
+    "ms_great_2": "Great shot!",
+    "ms_great_3": "Yes! Smash!",
+    "ms_miss": "So close! Try again!",
+    "ms_hint": "Look! Here it is!",
+    "ms_refill": "More balls for you!",
+    "ms_cleared": "Tower down! The monsters are our friends now!",
+    "ms_done": "You smashed them all!",
+}
+
+
+# Letter Slice (app/lib/game/letter_slice/): Pencil's lines in the game
+# (app/lib/screens/games/letter_slice/ls_lines.dart names them), and every
+# letter to slice ("Slice B!", "Slice small b!").
+SLICE_LINES = {
+    "ls_intro": "Swipe to slice the fruit with the letter I ask for!",
+    "ls_great_1": "Juicy!",
+    "ls_great_2": "Super slicer!",
+    "ls_great_3": "Yes! All done!",
+    "ls_combo": "Combo!",
+    "ls_star": "A golden star!",
+    "ls_freeze": "Slow motion!",
+    "ls_frenzy": "Fruit party! Slice them all!",
+    "ls_hurry": "Ten seconds left!",
+    "ls_time_up": "Time's up! Great slicing!",
+}
+
+
+def slice_lines():
+    """Letter Slice's lines: ls_<id> -> words."""
+    out = dict(SLICE_LINES)
+    for l, ipa in LETTER_NAME.items():
+        out[f"ls_slice_{l}"] = f"Slice {{{l.upper()}|{ipa}}}!"
+        out[f"ls_slice_small_{l}"] = f"Slice small {{{l}|{ipa}}}!"
+    return out
+
+
 def runner_lines():
     """Spell Runner's lines: sr_<id> -> words. Every word is asked
     ("Spell cat!") and read back, spelled ("Cat! C, A, T!"); every letter is
@@ -343,7 +389,7 @@ def app_lines(voice, args):
     lock = json.loads(APP_LOCK.read_text(encoding="utf-8")) if APP_LOCK.exists() else {}
     out, recorded = {}, 0
     APP_OUT.mkdir(parents=True, exist_ok=True)
-    every = {k: (w, VOICE) for k, w in (APP_LINES | game_lines() | runner_lines()).items()} | story_lines()
+    every = {k: (w, VOICE) for k, w in (APP_LINES | game_lines() | runner_lines() | SMASH_LINES | slice_lines()).items()} | story_lines()
     for key, (words, who) in every.items():
         ph = voice.phonemes(words)
         if args.print:
