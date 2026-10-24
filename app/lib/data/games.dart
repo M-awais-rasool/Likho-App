@@ -102,6 +102,22 @@ final myGamesProvider = Provider<Map<String, GameRecord>>((ref) {
   return ref.watch(gameProgressProvider)[child] ?? const {};
 });
 
-/// Whether Games shows on the map (App controls: on unless the team
-/// switched it off, or Plus-only while Plus is sold).
-final gamesShownProvider = Provider<bool>((ref) => ref.watch(featureShownProvider(Feature.games)));
+/// The games the Games screen shows, in the team's order (App controls):
+/// each on, or Plus-only while Plus is sold (its card then has a lock).
+final shownGamesProvider = Provider<List<String>>((ref) {
+  final c = ref.watch(appControlsProvider);
+  final plus = ref.watch(familyProvider.select((f) => f.subscribed));
+  return [for (final id in AppControls.ordered(GameIds.all, c.playGameOrder)) if (c.playGameShown(id, subscribed: plus)) id];
+});
+
+/// Whether Games shows (App controls: on unless the team switched it off,
+/// or Plus-only while Plus is sold), with a game to show.
+final gamesShownProvider = Provider<bool>((ref) => ref.watch(featureShownProvider(Feature.games)) && ref.watch(shownGamesProvider).isNotEmpty);
+
+/// The games tagged NEW that this child has not played yet (their cards,
+/// and the Games tab or button, say NEW).
+final newGamesProvider = Provider<Set<String>>((ref) {
+  final tagged = ref.watch(appControlsProvider.select((c) => c.newPlayGames));
+  final mine = ref.watch(myGamesProvider);
+  return {for (final id in ref.watch(shownGamesProvider)) if (tagged.contains(id) && (mine[id]?.plays ?? 0) == 0) id};
+});
