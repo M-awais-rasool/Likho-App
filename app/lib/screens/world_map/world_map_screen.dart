@@ -16,6 +16,7 @@ import '../../data/games.dart';
 import '../../data/story.dart';
 import '../../game/monster_defense/md_engine.dart';
 import '../games/monster_defense/md_scene.dart';
+import '../home/home_tabs.dart';
 import '../stories/story_art.dart';
 import '../../design/icon_registry.dart';
 import '../../design/tokens.dart';
@@ -154,6 +155,8 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen> with SingleTick
     final roomOn = ref.watch(featureShownProvider(Feature.room));
     final storiesOn = ref.watch(storiesShownProvider);
     final gamesOn = ref.watch(gamesShownProvider);
+    // under the room: it sits at the edge when there is no Settings button
+    final sideRight = widget.onSettings != null ? 74.0 : 20.0;
     if (course != null) {
       _fetchAhead(course, current);
       _noteBeaten(course, progress);
@@ -168,14 +171,16 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen> with SingleTick
             // still loading (Splash normally preloads it): plain app background
             if (course == null) return const SizedBox.expand(child: ColoredBox(color: LikhoColors.background));
             final g = _geometryFor(box.maxWidth, course);
-            _scrollToCurrent(g, box.maxHeight, current);
+            // the bottom bar covers the map's bottom: the levels stay above it
+            final barInset = TabBarInset.of(context);
+            _scrollToCurrent(g, box.maxHeight - barInset, current);
             final sections = [for (var w = 0; w < g.worlds; w++) g.section(w)];
             return Stack(
               children: [
                 ListView.builder(
                   controller: _scroll,
                   reverse: true,
-                  padding: EdgeInsets.zero,
+                  padding: EdgeInsets.only(bottom: barInset),
                   itemCount: g.worlds,
                   itemExtentBuilder: (i, _) => i < g.worlds ? sections[i].$2 : null,
                   itemBuilder: (context, w) => RepaintBoundary(
@@ -206,14 +211,14 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen> with SingleTick
                 ),
                 if (widget.onStories != null && storiesOn)
                   Positioned(
-                    right: 74,
+                    right: sideRight,
                     // under Pencil's room, or in its place when the room is off
                     top: MediaQuery.paddingOf(context).top + 5 + (roomOn ? 64 + 14 : 0),
                     child: _StoriesButton(time: _time, fresh: ref.watch(myStoryStarsProvider).isEmpty, onTap: widget.onStories!),
                   ),
                 if (widget.onGames != null && gamesOn)
                   Positioned(
-                    right: 74,
+                    right: sideRight,
                     // under Stories (and the room), moving up when they are off
                     top: MediaQuery.paddingOf(context).top + 5 + (roomOn ? 64 + 14 : 0) + (widget.onStories != null && storiesOn ? 64 + 14 : 0),
                     child: _GamesButton(time: _time, fresh: ref.watch(myGamesProvider).isEmpty, onTap: widget.onGames!),
@@ -687,7 +692,8 @@ class _TopFade extends StatelessWidget {
   }
 }
 
-/// Avatar, star count, room button (Pencil cheering), settings.
+/// Avatar, star count, room button (Pencil cheering), settings (when
+/// the bottom bar has no Parents tab).
 /// Prototype: row at top 52 px of the 844 frame = 5 px below its 47 px status bar.
 class _Header extends StatelessWidget {
   const _Header({
@@ -774,16 +780,19 @@ class _Header extends StatelessWidget {
                 ),
               ),
             ),
-          const SizedBox(width: 10),
-          _Pressable(
-            onTap: onSettings,
-            child: Container(
-              width: 44,
-              height: 44,
-              decoration: const BoxDecoration(color: MapColors.settingsBg, shape: BoxShape.circle),
-              child: const Icon(Symbols.settings_rounded, size: 22, opticalSize: 22, color: LikhoColors.inkMuted),
+          // no Settings here while the bottom bar has Parents
+          if (onSettings != null) ...[
+            const SizedBox(width: 10),
+            _Pressable(
+              onTap: onSettings,
+              child: Container(
+                width: 44,
+                height: 44,
+                decoration: const BoxDecoration(color: MapColors.settingsBg, shape: BoxShape.circle),
+                child: const Icon(Symbols.settings_rounded, size: 22, opticalSize: 22, color: LikhoColors.inkMuted),
+              ),
             ),
-          ),
+          ],
         ],
       ),
     );

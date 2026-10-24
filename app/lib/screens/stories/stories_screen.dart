@@ -13,8 +13,10 @@ import 'story_art.dart';
 /// and Dada ji, a Play button, its stars); the letters still to come wait
 /// below. The App controls can hide an episode and the letters to come.
 class StoriesScreen extends ConsumerWidget {
-  const StoriesScreen({super.key, required this.onBack, required this.onOpen});
-  final VoidCallback onBack;
+  const StoriesScreen({super.key, this.onBack, required this.onOpen});
+
+  /// Null: a tab of the bottom bar (no back button).
+  final VoidCallback? onBack;
   final ValueChanged<String> onOpen;
 
   @override
@@ -31,20 +33,22 @@ class StoriesScreen extends ConsumerWidget {
         child: CustomScrollView(
           slivers: [
             SliverPadding(
-              padding: EdgeInsets.fromLTRB(16, pad.top + 8, 16, 0),
+              padding: EdgeInsets.fromLTRB(onBack == null ? 22 : 16, pad.top + 8, 16, 0),
               sliver: SliverToBoxAdapter(
                 child: Row(
                   children: [
-                    PushButton(
-                      onTap: onBack,
-                      color: StoryColors.panel,
-                      width: 52,
-                      height: 52,
-                      shape: const CircleBorder(),
-                      shadows: const [BoxShadow(color: StoryColors.panelShadow, offset: Offset(0, 4), blurRadius: 8)],
-                      child: const Icon(Symbols.arrow_back_rounded, size: 28, weight: 700, color: LikhoColors.ink),
-                    ),
-                    const SizedBox(width: 14),
+                    if (onBack != null) ...[
+                      PushButton(
+                        onTap: onBack,
+                        color: StoryColors.panel,
+                        width: 52,
+                        height: 52,
+                        shape: const CircleBorder(),
+                        shadows: const [BoxShadow(color: StoryColors.panelShadow, offset: Offset(0, 4), blurRadius: 8)],
+                        child: const Icon(Symbols.arrow_back_rounded, size: 28, weight: 700, color: LikhoColors.ink),
+                      ),
+                      const SizedBox(width: 14),
+                    ],
                     Expanded(child: Text('Stories', style: LikhoFonts.title(size: 30, weight: FontWeight.w800))),
                   ],
                 ),
