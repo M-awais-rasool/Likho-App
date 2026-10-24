@@ -1,0 +1,130 @@
+{
+ "pencil": {
+  "poses": [
+   "ready",
+   "pull",
+   "throw",
+   "cheer",
+   "oops",
+   "point"
+  ],
+  "size": [
+   545,
+   440
+  ]
+ },
+ "pencil_stand": {
+  "size": [
+   201,
+   440
+  ]
+ },
+ "sling": {
+  "size": [
+   471,
+   600
+  ]
+ },
+ "hill": {
+  "size": [
+   600,
+   198
+  ]
+ },
+ "sign": {
+  "size": [
+   517,
+   567
+  ]
+ },
+ "ball_eraser": {
+  "size": [
+   479,
+   478
+  ]
+ },
+ "ball_water": {
+  "size": [
+   479,
+   540
+  ]
+ },
+ "ball_star": {
+  "size": [
+   594,
+   600
+  ]
+ },
+ "wood_square": {
+  "size": [
+   428,
+   430
+  ]
+ },
+ "wood_plank": {
+  "size": [
+   600,
+   143
+  ]
+ },
+ "wood_triangle": {
+  "size": [
+   453,
+   404
+  ]
+ },
+ "ice_square": {
+  "size": [
+   428,
+   430
+  ]
+ },
+ "ice_plank": {
+  "size": [
+   600,
+   143
+  ]
+ },
+ "ice_triangle": {
+  "size": [
+   452,
+   404
+  ]
+ },
+ "stone_square": {
+  "size": [
+   426,
+   428
+  ]
+ },
+ "stone_plank": {
+  "size": [
+   600,
+   143
+  ]
+ },
+ "stone_disc": {
+  "size": [
+   447,
+   447
+  ]
+ },
+ "bg_meadow": {
+  "size": [
+   1920,
+   1072
+  ]
+ },
+ "bg_beach": {
+  "size": [
+   1920,
+   1072
+  ]
+ },
+ "bg_snow": {
+  "size": [
+   1920,
+   1072
+  ]
+ }
+}
