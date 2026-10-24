@@ -48,6 +48,7 @@ func (h *ControlsHandler) Config(c *gin.Context) {
 type controlsMeta struct {
 	Features  []featureMeta             `json:"features"`
 	Episodes  []domain.Episode          `json:"episodes"`
+	GameList  []domain.PlayGame         `json:"gameList"` // the Games screen's games
 	Items     []itemMeta                `json:"items"`
 	Games     []string                  `json:"games"`
 	Colors    []string                  `json:"colors"`
@@ -75,7 +76,7 @@ func (h *AdminHandler) Controls(c *gin.Context) {
 		writeError(c, err)
 		return
 	}
-	meta := controlsMeta{Episodes: domain.StoryEpisodes, Games: domain.GameTypes, Colors: domain.PencilColorOrder,
+	meta := controlsMeta{Episodes: domain.StoryEpisodes, GameList: domain.PlayGames, Games: domain.GameTypes, Colors: domain.PencilColorOrder,
 		LastLevel: h.AppControls.LastLevel(), Defaults: h.AppControls.Defaults(), Families: counts}
 	for _, f := range domain.Features {
 		meta.Features = append(meta.Features, featureMeta{f.ID, f.Modes})

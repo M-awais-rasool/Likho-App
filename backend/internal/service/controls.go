@@ -152,7 +152,7 @@ func changedSections(a, b domain.Controls) []string {
 	}{
 		{"features", a.Features, b.Features}, {"stories", a.Stories, b.Stories}, {"room", a.Room, b.Room},
 		{"games", a.Games, b.Games}, {"pencilColors", a.PencilColors, b.PencilColors},
-		{"billing", a.Billing, b.Billing}, {"app", a.App, b.App}, {"tabBar", a.TabBar, b.TabBar},
+		{"billing", a.Billing, b.Billing}, {"app", a.App, b.App}, {"tabBar", a.TabBar, b.TabBar}, {"gameList", a.GameList, b.GameList},
 	} {
 		if !same(p.x, p.y) {
 			out = append(out, p.name)
@@ -175,11 +175,22 @@ type AppConfig struct {
 	Billing      AppBilling            `json:"billing"`
 	App          AppState              `json:"app"`
 	TabBar       domain.TabBarControls `json:"tabBar"`
+	GameList     AppGameList           `json:"gameList"`
 }
 
 type AppStories struct {
 	ComingSoon bool              `json:"comingSoon"`
 	Episodes   map[string]string `json:"episodes"`
+	Order      []string          `json:"order"`
+	New        []string          `json:"new"`
+}
+
+// AppGameList: each game off, on or plus for this family, the order and
+// the NEW tags.
+type AppGameList struct {
+	Order []string          `json:"order"`
+	Modes map[string]string `json:"modes"`
+	New   []string          `json:"new"`
 }
 
 type AppBilling struct {
@@ -226,7 +237,7 @@ func resolveControls(saved SavedControls, own map[string]bool, now time.Time) Ap
 	out := AppConfig{
 		Revision:     saved.Revision,
 		Features:     map[string]string{},
-		Stories:      AppStories{ComingSoon: c.Stories.ComingSoon, Episodes: map[string]string{}},
+		Stories:      AppStories{ComingSoon: c.Stories.ComingSoon, Episodes: map[string]string{}, Order: c.Stories.Order, New: c.Stories.New},
 		Room:         c.Room,
 		Games:        c.Games,
 		PencilColors: c.PencilColors,
@@ -236,13 +247,17 @@ func resolveControls(saved SavedControls, own map[string]bool, now time.Time) Ap
 			Maintenance:   AppNotice{Notice: c.App.Maintenance, ID: c.App.Maintenance.ID()},
 			ParentMessage: AppNotice{Notice: c.App.ParentMessage, ID: c.App.ParentMessage.ID()},
 		},
-		TabBar: c.TabBar,
+		TabBar:   c.TabBar,
+		GameList: AppGameList{Order: c.GameList.Order, Modes: map[string]string{}, New: c.GameList.New},
 	}
 	for id, m := range c.Features {
 		out.Features[id] = domain.Resolve(m, override(id), plusFree)
 	}
 	for id, m := range c.Stories.Episodes {
 		out.Stories.Episodes[id] = domain.Resolve(m, override("story."+id), plusFree)
+	}
+	for id, m := range c.GameList.Modes {
+		out.GameList.Modes[id] = domain.Resolve(m, override("game."+id), plusFree)
 	}
 	return out
 }
@@ -277,6 +292,9 @@ func (s *ControlsService) Family(ctx context.Context, parentID string) ([]Family
 	}
 	for _, e := range domain.StoryEpisodes {
 		add("story."+e.ID, c.Stories.Episodes[e.ID])
+	}
+	for _, g := range domain.PlayGames {
+		add("game."+g.ID, c.GameList.Modes[g.ID])
 	}
 	return out, nil
 }
