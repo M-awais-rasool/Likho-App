@@ -6,6 +6,26 @@ export type Mode = 'off' | 'on' | 'plus' | 'chosen'
 export type ItemControl = { hidden: boolean; price: number }
 export type Notice = { on: boolean; title: string; text: string }
 
+export type TabId = 'map' | 'stories' | 'games' | 'parents'
+export type TabStyle = 'candy' | 'jelly' | 'island'
+export type TabAnimation = 'bounce' | 'slide' | 'pop' | 'none'
+export type TabSpeed = 'slow' | 'normal' | 'fast'
+export type TabSurface = 'white' | 'glass' | 'colour'
+export type TabControl = { id: TabId; shown: boolean; label: string; color: string; badge: boolean }
+export type TabBar = {
+  style: TabStyle
+  animation: TabAnimation
+  speed: TabSpeed
+  wiggle: boolean
+  surface: TabSurface
+  barColor: string
+  floating: boolean
+  roundness: number
+  labels: boolean
+  start: TabId
+  tabs: TabControl[]
+}
+
 export type Controls = {
   features: Record<string, Mode>
   stories: { comingSoon: boolean; episodes: Record<string, Mode> }
@@ -26,6 +46,7 @@ export type Controls = {
     freeForAllUntil: string
   }
   app: { minVersion: string; maintenance: Notice; parentMessage: Notice }
+  tabBar: TabBar
 }
 
 export type SavedControls = { controls: Controls; revision: number; updatedAt: string | null; updatedBy: string }
@@ -104,6 +125,16 @@ export const itemInfo: Record<string, { name: string; emoji: string }> = {
   rug: { name: 'Rug', emoji: '🟣' },
 }
 
+export const tabInfo: Record<TabId, { title: string; art: string; text: string }> = {
+  map: { title: 'Map', art: '🪧', text: 'The level path. Always in the bar.' },
+  stories: { title: 'Stories', art: '🍎', text: 'Shows while the Stories switch is on.' },
+  games: { title: 'Games', art: '👾', text: 'Shows while the Games switch is on.' },
+  parents: { title: 'Parents', art: '🔒', text: 'Opens the parent gate, then the dashboard.' },
+}
+
+/** Colours to pick from for the tabs and the bar (the app's own). */
+export const tabSwatches = ['#FFC83D', '#FF8A5B', '#FF6FA8', '#7C5CFF', '#4D9DE0', '#2EC4B6', '#3BB273', '#2B2D42']
+
 export const colorNames: Record<string, string> = {
   '#FFC83D': 'Sunny yellow',
   '#4D9DE0': 'Sky blue',
@@ -130,6 +161,7 @@ export function changedParts(a: Controls, b: Controls): Set<string> {
   if (diff(a.pencilColors, b.pencilColors)) out.add('colors')
   if (diff(a.billing, b.billing)) out.add('billing')
   if (diff(a.app, b.app)) out.add('app')
+  if (diff(a.tabBar, b.tabBar)) out.add('tabBar')
   return out
 }
 
@@ -158,5 +190,6 @@ export function resolveForPreview(c: Controls, revision: number, chosen: boolean
       maintenance: { ...c.app.maintenance, id: 'preview' },
       parentMessage: { ...c.app.parentMessage, id: 'preview' },
     },
+    tabBar: c.tabBar,
   }
 }
