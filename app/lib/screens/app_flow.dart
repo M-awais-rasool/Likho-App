@@ -28,6 +28,7 @@ import 'games/monster_defense/monster_defense_screen.dart';
 import 'games/letter_slice/letter_slice_screen.dart';
 import 'games/monster_smash/monster_smash_screen.dart';
 import 'games/spell_runner/spell_runner_screen.dart';
+import 'home/home_tabs.dart';
 import 'level_complete/level_complete_screen.dart';
 import 'level_intro/level_intro_screen.dart';
 import 'likho_route.dart';
@@ -199,53 +200,98 @@ abstract final class AppFlow {
     if (await showParentGate(context) && context.mounted) open();
   }
 
-  // ------------------------------------------------------------------ map
+  // ------------------------------------------------------------------ home
 
-  static Widget mapScreen(BuildContext ctx) => CourseGate(
-    child: WorldMapScreen(
-      onOpenLevel: (n) => openLevel(ctx, n),
-      onProfile: () {
-        AppFeedback.of(ctx).tap();
-        _member(ctx, () => Navigator.of(ctx).push(_profile()));
-      },
-      onRoom: () {
-        AppFeedback.of(ctx).press();
-        // Plus-only room (App controls): the paywall first
-        if (!_c(ctx).read(featureOnProvider(Feature.room))) return _plusFeature(ctx);
-        _member(ctx, () => Navigator.of(ctx).push(LikhoRoute<void>(builder: (c) => MascotRoomScreen(onBack: () => Navigator.of(c).pop()))));
-      },
-      onSettings: () {
-        AppFeedback.of(ctx).tap();
-        _member(ctx, () => _gated(ctx, () => Navigator.of(ctx).push(_dashboard())));
-      },
-      onStories: () {
-        AppFeedback.of(ctx).press();
-        if (!_c(ctx).read(featureOnProvider(Feature.stories))) return _plusFeature(ctx);
-        openStories(ctx);
-      },
-      onGames: () {
-        AppFeedback.of(ctx).press();
-        // Plus-only games (App controls): the paywall first
-        if (!_c(ctx).read(featureOnProvider(Feature.games))) return _plusFeature(ctx);
-        openGames(ctx);
-      },
-    ),
+  /// Home: the World Map, Stories and Games as tabs of the bottom bar, and
+  /// Parents (App controls, Bottom bar). A tab the bar does not show keeps
+  /// its button on the map.
+  static Widget mapScreen(BuildContext ctx) => HomeTabs(
+    page: (c, id) => switch (id) {
+      TabIds.stories => StoriesScreen(onOpen: (episode) => _openEpisode(c, episode)),
+      TabIds.games => GamesScreen(onOpen: (game) => openGame(c, game)),
+      _ => _worldMap(c),
+    },
+    onParents: () => _member(ctx, () => _gated(ctx, () => Navigator.of(ctx).push(_dashboard()))),
+    canOpen: (id) => switch (id) {
+      TabIds.stories => _allowed(ctx, Feature.stories),
+      TabIds.games => _allowed(ctx, Feature.games),
+      _ => true,
+    },
   );
 
-  // ------------------------------------------------------------------ games
+  /// Whether [feature] is on; a Plus-only one (App controls) shows the
+  /// paywall instead.
+  static bool _allowed(BuildContext context, String feature) {
+    if (_c(context).read(featureOnProvider(feature))) return true;
+    _plusFeature(context);
+    return false;
+  }
 
-  /// Games (the map's button): the list, and a game on top.
-  static void openGames(BuildContext context) => Navigator.of(context).push(
-    LikhoRoute<void>(
-      builder: (ctx) => GamesScreen(
-        onBack: () {
-          AppFeedback.of(ctx).back();
-          Navigator.of(ctx).pop();
+  static Widget _worldMap(BuildContext ctx) => Consumer(
+    builder: (ctx, ref, _) => CourseGate(
+      child: WorldMapScreen(
+        onOpenLevel: (n) => openLevel(ctx, n),
+        onProfile: () {
+          AppFeedback.of(ctx).tap();
+          _member(ctx, () => Navigator.of(ctx).push(_profile()));
         },
-        onOpen: (id) => openGame(ctx, id),
+        onRoom: () {
+          AppFeedback.of(ctx).press();
+          // Plus-only room (App controls): the paywall first
+          if (!_c(ctx).read(featureOnProvider(Feature.room))) return _plusFeature(ctx);
+          _member(ctx, () => Navigator.of(ctx).push(LikhoRoute<void>(builder: (c) => MascotRoomScreen(onBack: () => Navigator.of(c).pop()))));
+        },
+        // Settings, Stories and Games move to the bottom bar when it has them
+        onSettings: ref.watch(tabShownProvider(TabIds.parents))
+            ? null
+            : () {
+                AppFeedback.of(ctx).tap();
+                _member(ctx, () => _gated(ctx, () => Navigator.of(ctx).push(_dashboard())));
+              },
+        onStories: ref.watch(tabShownProvider(TabIds.stories))
+            ? null
+            : () {
+                AppFeedback.of(ctx).press();
+                if (_allowed(ctx, Feature.stories)) openStories(ctx);
+              },
+        onGames: ref.watch(tabShownProvider(TabIds.games))
+            ? null
+            : () {
+                AppFeedback.of(ctx).press();
+                if (_allowed(ctx, Feature.games)) openGames(ctx);
+              },
       ),
     ),
   );
+
+  /// Opens tab [id] when the bottom bar has it (back on Home first);
+  /// false when it does not.
+  static bool _openTab(BuildContext context, String id) {
+    final c = _c(context);
+    if (!c.read(tabShownProvider(id))) return false;
+    c.read(selectedTabProvider.notifier).select(id);
+    if (observer.has(mapRoute)) Navigator.of(context).popUntil(ModalRoute.withName(mapRoute));
+    return true;
+  }
+
+  // ------------------------------------------------------------------ games
+
+  /// Games: its tab, or (not in the bottom bar) the list on top, with a
+  /// back button.
+  static void openGames(BuildContext context) {
+    if (_openTab(context, TabIds.games)) return;
+    Navigator.of(context).push(
+      LikhoRoute<void>(
+        builder: (ctx) => GamesScreen(
+          onBack: () {
+            AppFeedback.of(ctx).back();
+            Navigator.of(ctx).pop();
+          },
+          onOpen: (id) => openGame(ctx, id),
+        ),
+      ),
+    );
+  }
 
   /// Game [id]: Monster Defense, Spell Runner, Monster Smash or Letter Slice.
   static void openGame(BuildContext context, String id) {
@@ -264,23 +310,30 @@ abstract final class AppFlow {
 
   // ------------------------------------------------------------------ stories
 
-  /// Stories (the map's button): the list, and an episode on top.
-  static void openStories(BuildContext context) => Navigator.of(context).push(
-    LikhoRoute<void>(
-      builder: (ctx) => StoriesScreen(
-        onBack: () {
-          AppFeedback.of(ctx).back();
-          Navigator.of(ctx).pop();
-        },
-        onOpen: (id) {
-          final c = _c(ctx);
-          // a Plus-only episode (App controls): the paywall first
-          if (!c.read(appControlsProvider).episodeOn(id, subscribed: c.read(familyProvider).subscribed)) return _plusFeature(ctx);
-          openStory(ctx, id);
-        },
+  /// Stories: its tab, or (not in the bottom bar) the list on top, with a
+  /// back button.
+  static void openStories(BuildContext context) {
+    if (_openTab(context, TabIds.stories)) return;
+    Navigator.of(context).push(
+      LikhoRoute<void>(
+        builder: (ctx) => StoriesScreen(
+          onBack: () {
+            AppFeedback.of(ctx).back();
+            Navigator.of(ctx).pop();
+          },
+          onOpen: (id) => _openEpisode(ctx, id),
+        ),
       ),
-    ),
-  );
+    );
+  }
+
+  /// Episode [id] from the list; a Plus-only one (App controls) shows the
+  /// paywall first.
+  static void _openEpisode(BuildContext context, String id) {
+    final c = _c(context);
+    if (!c.read(appControlsProvider).episodeOn(id, subscribed: c.read(familyProvider).subscribed)) return _plusFeature(context);
+    openStory(context, id);
+  }
 
   /// A feature for Likho Plus families only was tapped: the paywall.
   static void _plusFeature(BuildContext context) {
@@ -301,6 +354,7 @@ abstract final class AppFlow {
       nav.popUntil(ModalRoute.withName(mapRoute));
       return;
     }
+    _c(context).read(selectedTabProvider.notifier).select(null); // a new Home opens on the start tab
     nav.pushAndRemoveUntil(
       LikhoRoute<void>(
         rise: false,

@@ -15,8 +15,10 @@ import 'spell_runner/sr_scene.dart';
 /// Games (the map's button): each game as a big card (its picture, the
 /// child's best score and stars, Play); more games to come below.
 class GamesScreen extends ConsumerWidget {
-  const GamesScreen({super.key, required this.onBack, required this.onOpen});
-  final VoidCallback onBack;
+  const GamesScreen({super.key, this.onBack, required this.onOpen});
+
+  /// Null: a tab of the bottom bar (no back button).
+  final VoidCallback? onBack;
   final ValueChanged<String> onOpen;
 
   @override
@@ -31,20 +33,22 @@ class GamesScreen extends ConsumerWidget {
         child: CustomScrollView(
           slivers: [
             SliverPadding(
-              padding: EdgeInsets.fromLTRB(16, pad.top + 8, 16, 0),
+              padding: EdgeInsets.fromLTRB(onBack == null ? 22 : 16, pad.top + 8, 16, 0),
               sliver: SliverToBoxAdapter(
                 child: Row(
                   children: [
-                    PushButton(
-                      onTap: onBack,
-                      color: StoryColors.panel,
-                      width: 52,
-                      height: 52,
-                      shape: const CircleBorder(),
-                      shadows: const [BoxShadow(color: StoryColors.panelShadow, offset: Offset(0, 4), blurRadius: 8)],
-                      child: const Icon(Symbols.arrow_back_rounded, size: 28, weight: 700, color: LikhoColors.ink),
-                    ),
-                    const SizedBox(width: 14),
+                    if (onBack != null) ...[
+                      PushButton(
+                        onTap: onBack,
+                        color: StoryColors.panel,
+                        width: 52,
+                        height: 52,
+                        shape: const CircleBorder(),
+                        shadows: const [BoxShadow(color: StoryColors.panelShadow, offset: Offset(0, 4), blurRadius: 8)],
+                        child: const Icon(Symbols.arrow_back_rounded, size: 28, weight: 700, color: LikhoColors.ink),
+                      ),
+                      const SizedBox(width: 14),
+                    ],
                     Expanded(
                       child: Text('Games', style: LikhoFonts.title(size: 30, weight: FontWeight.w800)),
                     ),
