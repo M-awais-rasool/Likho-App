@@ -49,7 +49,7 @@ void main() {
     // the generator's list (its lock) and the app's are the same lines
     final lock = jsonDecode(File('../tools/voice/app_lines.lock.json').readAsStringSync()) as Map<String, dynamic>;
     final stories = {for (final k in lock.keys) if (k.startsWith('story_')) 'assets/voice/$k.m4a'}; // the stories' lines (story_a_test)
-    final games = {for (final k in lock.keys) if (k.startsWith('md_') || k.startsWith('sr_')) 'assets/voice/$k.m4a'}; // the games' (monster_defense_test, spell_runner_test)
+    final games = {for (final k in lock.keys) if (k.startsWith('md_') || k.startsWith('sr_') || k.startsWith('ms_') || k.startsWith('ls_')) 'assets/voice/$k.m4a'}; // the games' (monster_defense_test, spell_runner_test, monster_smash_test, letter_slice_test)
     expect({for (final k in lock.keys) 'assets/voice/$k.m4a'}.difference(stories).difference(games), {...PencilLines.all, ...CoachLines.all});
     expect(File('pubspec.yaml').readAsStringSync(), contains('- assets/voice/'));
   });
