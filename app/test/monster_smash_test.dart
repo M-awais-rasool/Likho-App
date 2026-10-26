@@ -101,6 +101,16 @@ void main() {
     expect(v.y, greaterThan(0));
   });
 
+  test('a monster knocked onto its side hops back onto its feet', () {
+    final g = ready();
+    final m = g.monsters.first;
+    m.body.setTransform(Vector2(6, MsSize.monster + .02), math.pi / 2);
+    m.body.linearVelocity = Vector2.zero();
+    m.body.angularVelocity = 0;
+    run(g, 4);
+    expect(math.atan2(math.sin(m.angle), math.cos(m.angle)).abs(), lessThan(.35));
+  });
+
   test('the asked letter bursts when the ball hits it; the next one is asked after the shot', () {
     // the first tower of a game whose first shot goes in (the bot's aim is
     // not always clear)
