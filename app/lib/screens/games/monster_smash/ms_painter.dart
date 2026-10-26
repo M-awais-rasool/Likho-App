@@ -7,33 +7,30 @@ import 'package:forge2d/forge2d.dart' show Vector2;
 
 import '../../../design/tokens.dart';
 import '../../../game/monster_smash/ms_engine.dart';
+import 'ms_monsters.dart';
 import 'ms_scene.dart';
 
-/// How Pencil looks this frame: his pose picture, a lean and a little hop.
-class MsPencil {
-  const MsPencil({required this.pose, this.lean = 0, this.hop = 0, this.squash = 1});
-  final String pose;
-  final double lean, hop, squash;
-}
-
-/// Paints the world: the hill, Pencil, the slingshot and its band, the
-/// blocks with their letters and cracks, the monsters, the ball and its
-/// trail, and the aiming dots while the child pulls.
+/// Paints the world: the hill, the slingshot with the ball in its leather
+/// pouch, the blocks with their letters and cracks, the monsters, the ball
+/// and its trail, and the aiming dots while the child pulls.
 class MsWorldPainter extends CustomPainter {
-  MsWorldPainter({required this.view, required this.game, required this.pencil, required this.time});
+  MsWorldPainter({required this.view, required this.game, required this.lives, required this.ballIn, required this.time});
   final MsView view;
   final MsGame game;
-  final MsPencil pencil;
+  final MsMonsterLives lives;
+
+  /// How far the next ball has dropped into the pouch (0 just now, 1 in).
+  final double ballIn;
+
+  /// The screen's clock (glows, arrows); the monsters use the game's.
   final double time;
 
   static final _letters = <String, TextPainter>{};
 
-  /// Pencil's height (metres), and where he stands.
-  static const pencilHeight = 1.45, pencilX = 1.55;
-
   /// The slingshot: its height, the middle of its stick, the tips of its
   /// fork (measured from the picture).
-  static const slingHeight = 1.7, slingX = 2.9;
+  static const slingHeight = 1.7;
+  static double get slingX => MsGame.rest.x;
   static const _tipX = .41, _tipY = .06;
 
   double get _ppm => view.ppm;
@@ -44,14 +41,23 @@ class MsWorldPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     _hill(canvas);
-    _pencil(canvas);
     final sling = _sling(canvas);
-    final pulling = game.phase == MsPhase.aim && game.balls.isNotEmpty;
-    final ball = pulling ? view.of(game.ballInSling) : null;
-    // the band's back strand, the ball, its front strand
-    _band(canvas, sling.$1, ball ?? view.of(MsGame.rest));
-    if (ball != null) _ball(canvas, game.balls.first, ball, 0, 1);
-    _band(canvas, sling.$2, ball ?? view.of(MsGame.rest), front: true);
+    final loaded = game.phase == MsPhase.aim && game.balls.isNotEmpty;
+    final ball = loaded ? view.of(game.ballInSling) : null;
+    if (ball == null) {
+      // an empty band hangs between the fork's tips, the pouch in the middle
+      _emptyBand(canvas, sling.$1, sling.$2);
+    } else {
+      // the back strand, the leather pouch cupping the ball's back, the ball
+      // (dropping in with a little bounce), the front strand
+      final pull = game.pull;
+      final d = pull == null || pull.length < 1e-3 ? const Offset(1, 0) : Offset(-pull.x, pull.y) / pull.length;
+      _band(canvas, sling.$1, ball);
+      _pouch(canvas, ball, d);
+      final drop = 1 - Curves.easeOutBack.transform(ballIn);
+      _ball(canvas, game.balls.first, ball - Offset(0, drop * .9 * _ppm), 0, .6 + .4 * Curves.easeOut.transform(ballIn));
+      _band(canvas, sling.$2, ball, front: true);
+    }
     for (final b in game.blocks) {
       if (!b.gone) _block(canvas, b);
     }
@@ -81,7 +87,7 @@ class MsWorldPainter extends CustomPainter {
   /// [img]'s size on the screen for a height of [h] metres.
   Size _sized(ui.Image img, double h) => Size(h * _ppm * img.width / img.height, h * _ppm);
 
-  // ------------------------------------------------------------ Pencil's side
+  // ------------------------------------------------------------ the slingshot's side
 
   void _hill(Canvas canvas) {
     final img = MsSprites.of(MsArt.hill);
@@ -91,28 +97,6 @@ class MsWorldPainter extends CustomPainter {
     final h = w * img.height / img.width;
     final top = view.at(MsGame.hillX - w / 2, MsGame.hillTop + h * .2);
     _image(canvas, MsArt.hill, Rect.fromLTWH(top.dx, top.dy, w * _ppm, h * _ppm));
-  }
-
-  void _pencil(Canvas canvas) {
-    final asset = MsArt.pencil(pencil.pose);
-    final img = MsSprites.of(asset);
-    if (img == null) return;
-    final box = MsArt.pencilBox(asset), feet = MsArt.pencilFeet(asset);
-    // the same body height in every pose: the stand picture is all Pencil,
-    // the sheet's poses stand on nine tenths of theirs
-    final frameH = pencilHeight / (pencil.pose == 'stand' ? box.height : .9);
-    final s = _sized(img, frameH);
-    final foot = view.at(pencilX, MsGame.hillTop + pencil.hop);
-    canvas.save();
-    canvas.translate(foot.dx, foot.dy);
-    canvas.rotate(pencil.lean);
-    canvas.scale(1 / math.sqrt(pencil.squash), pencil.squash);
-    // a soft shadow on the hill
-    if (pencil.hop < .01) {
-      canvas.drawOval(Rect.fromCenter(center: Offset.zero, width: .7 * _ppm, height: .14 * _ppm), Paint()..color = MonsterColors.shadow);
-    }
-    _image(canvas, asset, Rect.fromLTWH(-feet.dx * s.width, -feet.dy * s.height, s.width, s.height));
-    canvas.restore();
   }
 
   /// Draws the slingshot; returns the tips of its fork (back, front).
@@ -133,15 +117,49 @@ class MsWorldPainter extends CustomPainter {
       ..color = front ? SmashColors.band : SmashColors.bandBack
       ..strokeWidth = (.15 - .06 * stretch) * _ppm
       ..strokeCap = StrokeCap.round;
-    // it reaches round the back of the ball
+    // the back strand runs on behind the ball to the pouch (the ball covers
+    // it); the front one stops at the ball's edge, never across its face
     final r = MsGame.ballRadius[MsBall.eraser]! * _ppm * .8;
     final dir = ball - tip;
-    final back = dir.distance < 1 ? ball : ball + dir / dir.distance * r;
-    canvas.drawLine(tip, back, paint);
-    if (front) {
-      // the leather pouch behind the ball
-      canvas.drawCircle(back, paint.strokeWidth * .9, Paint()..color = SmashColors.pouch);
-    }
+    if (dir.distance < r) return;
+    final end = ball + dir / dir.distance * (front ? -r : r);
+    canvas.drawLine(tip, end, paint);
+  }
+
+  /// The leather pouch behind the ball ([dir]: where it flies, on the
+  /// screen).
+  void _pouch(Canvas canvas, Offset ball, Offset dir) {
+    final r = MsGame.ballRadius[MsBall.eraser]! * _ppm;
+    canvas.save();
+    canvas.translate(ball.dx - dir.dx * r * .7, ball.dy - dir.dy * r * .7);
+    canvas.rotate(math.atan2(dir.dy, dir.dx));
+    final cup = Rect.fromCenter(center: Offset.zero, width: r * 1.1, height: r * 2.1);
+    canvas.drawOval(cup, Paint()..color = SmashColors.pouch);
+    canvas.drawOval(
+      cup,
+      Paint()
+        ..color = SmashColors.bandBack
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = .03 * _ppm,
+    );
+    canvas.restore();
+  }
+
+  /// The band with no ball: two strands sagging a little to the leather
+  /// pouch between the tips.
+  void _emptyBand(Canvas canvas, Offset a, Offset b) {
+    final mid = Offset.lerp(a, b, .5)! + Offset(0, .1 * _ppm);
+    final w = .15 * _ppm;
+    final back = Paint()
+      ..color = SmashColors.bandBack
+      ..strokeWidth = w * .6
+      ..strokeCap = StrokeCap.round;
+    canvas.drawLine(a, mid, back);
+    canvas.drawLine(mid, b, back..color = SmashColors.band);
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(Rect.fromCenter(center: mid, width: .34 * _ppm, height: .16 * _ppm), Radius.circular(.08 * _ppm)),
+      Paint()..color = SmashColors.pouch,
+    );
   }
 
   // ------------------------------------------------------------ the towers
@@ -251,8 +269,8 @@ class MsWorldPainter extends CustomPainter {
   void _monster(Canvas canvas, MsMonster m) {
     final pop = _pop(game.blocks.length + m.id);
     if (pop <= 0) return;
-    final pose = m.friend ? (time - m.friendAt < .9 ? 'bonked' : 'friendly') : (time - m.startled < 1.3 ? 'surprised' : 'idle');
-    final asset = MsArt.monster(m.kind, pose);
+    final look = MsMonsterLook.of(m, lives.of(m), game.time);
+    final asset = MsArt.monster(m.kind, look.pose);
     final img = MsSprites.of(asset);
     if (img == null) return;
     final box = MsArt.monsterBox(asset);
@@ -260,16 +278,44 @@ class MsWorldPainter extends CustomPainter {
     const tall = 1.0;
     final s = _sized(img, tall / box.height);
     final c = view.of(m.position);
-    final breathe = m.friend ? 1 + .04 * math.sin(time * 9 + m.id) : 1 + .025 * math.sin(time * 3 + m.id * 1.7);
     canvas.save();
     canvas.translate(c.dx, c.dy);
     canvas.rotate(-m.angle);
-    // its feet on the body's bottom
-    canvas.translate(0, MsSize.monster * _ppm);
-    canvas.scale(pop / math.sqrt(breathe), pop * breathe);
+    // its feet on the body's bottom; hops on top
+    canvas.translate(0, (MsSize.monster - look.hop) * _ppm);
+    canvas.rotate(look.turn);
+    canvas.scale(pop * look.scaleX, pop * look.scaleY);
     final dst = Rect.fromLTWH(-box.center.dx * s.width, -box.bottom * s.height, s.width, s.height);
     _image(canvas, asset, dst);
+    if (look.dizzy > 0) _dizzy(canvas, look.dizzy, -box.height * s.height * .95);
     canvas.restore();
+  }
+
+  /// Little stars going round a knocked monster's head.
+  void _dizzy(Canvas canvas, double t, double top) {
+    final fade = (1 - (t - .7) / .3).clamp(0.0, 1.0);
+    final r = .32 * _ppm;
+    for (var k = 0; k < 3; k++) {
+      final a = t * 9 + k * 2 * math.pi / 3;
+      final at = Offset(math.cos(a) * r, top + math.sin(a) * r * .32);
+      final size = (.09 + .03 * math.sin(a)) * _ppm;
+      final star = Path();
+      for (var i = 0; i < 10; i++) {
+        final rr = i.isEven ? size : size * .45;
+        final aa = -math.pi / 2 + i * math.pi / 5;
+        final p = at + Offset(math.cos(aa) * rr, math.sin(aa) * rr);
+        i == 0 ? star.moveTo(p.dx, p.dy) : star.lineTo(p.dx, p.dy);
+      }
+      star.close();
+      canvas.drawPath(star, Paint()..color = MonsterColors.gold.withValues(alpha: fade));
+      canvas.drawPath(
+        star,
+        Paint()
+          ..color = MonsterColors.goldDeep.withValues(alpha: fade)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1.5,
+      );
+    }
   }
 
   // ------------------------------------------------------------ the ball
