@@ -239,8 +239,25 @@ class AppFeedback {
     }
   }
   // ---------------------------------------------------------- Monster Smash
-  /// The slingshot's band is pulled back.
-  void stretch() => _go(Sfx.msStretch, HapticCue.tick, volume: .8);
+  /// The slingshot's band is pulled back: [level] 1, 2, 3 as it gets
+  /// tighter, each creak higher.
+  void stretch([int level = 1]) => _go(switch (level) {
+    3 => Sfx.msStretch3,
+    2 => Sfx.msStretch2,
+    _ => Sfx.msStretch,
+  }, HapticCue.tick, volume: .55 + .15 * level);
+
+  /// Pencil drops the next ball into the pouch.
+  void reload() => _go(Sfx.msReload, null, volume: .7);
+
+  /// A monster on the tower giggles at Pencil.
+  void giggle() => _go(Sfx.msGiggle, null, volume: .55);
+
+  /// A monster squeaks: the ball is coming.
+  void eek() => _go(Sfx.msEek, null, volume: .6);
+
+  /// A monster is knocked (dizzy stars).
+  void bonk() => _go(Sfx.msBonk, HapticCue.tick, volume: .8);
 
   void launch() => _go(Sfx.msLaunch, HapticCue.press);
 
@@ -273,6 +290,10 @@ class AppFeedback {
       engine.stopLoop(Sfx.msMusic);
     }
   }
+
+  /// The towers' music under Pencil's voice ([quiet]), so his words are
+  /// clear, and back up after.
+  void smashMusicQuiet(bool quiet) => _ref.read(soundEngineProvider).loopVolume(Sfx.msMusic, quiet ? .12 : .45);
   // ---------------------------------------------------------- Letter Slice
   /// The blade through the air ([fast] 0..1).
   void swish(double fast) => _go(Sfx.lsSwish, null, volume: .45 + .5 * fast.clamp(0.0, 1.0));

@@ -1312,6 +1312,79 @@ Map<String, (Snd Function(), bool)> slicing() {
   };
 }
 
+/// Monster Smash, alive: the band's tighter creaks, the ball dropped into
+/// the pouch and the monsters' voices. Made last, so every older sound keeps
+/// its take.
+Map<String, (Snd Function(), bool)> smashLife() {
+  // a rubbery creak from [f0] up to [f1]
+  Snd creak(double f0, double f1, double dur, int wobble) {
+    final x = Snd(dur + .05);
+    var ph = 0.0;
+    for (var i = 0; i < x.s.length; i++) {
+      final t = i / sr;
+      final f = f0 + (f1 - f0) * math.min(1.0, t / dur) + 20 * math.sin(2 * math.pi * wobble * t);
+      ph += 2 * math.pi * f / sr;
+      final e = math.min(1.0, t / .02) * math.exp(-math.max(0, t - dur * .7) / .05);
+      x.s[i] = (math.sin(ph) + .4 * math.sin(2 * ph) + .3 * math.sin(3 * ph) + .12 * noise()) * e * .6;
+    }
+    return filter(x, (b) => b.lowpass(2800, .8));
+  }
+
+  // a little voice: a buzzy tone that slides from [f0] to [f1], with vibrato
+  Snd voice(double f0, double f1, double dur, {double vib = 28, double depth = .05}) {
+    final x = Snd(dur + .03);
+    var ph = 0.0;
+    for (var i = 0; i < x.s.length; i++) {
+      final t = i / sr;
+      final f = (f0 + (f1 - f0) * math.min(1.0, t / dur)) * (1 + depth * math.sin(2 * math.pi * vib * t));
+      ph += 2 * math.pi * f / sr;
+      final e = math.min(1.0, t / .008) * math.exp(-math.max(0, t - dur * .55) / (dur * .25));
+      x.s[i] = (math.sin(ph) + .55 * math.sin(2 * ph) + .35 * math.sin(3 * ph) + .2 * math.sin(4 * ph)) * e * .5;
+    }
+    return filter(x, (b) => b.bandpass(1400, .7));
+  }
+
+  Map<String, Snd Function()> sfx() => {
+    // tighter, and tighter: short creaks going higher
+    'ms_stretch_2': () => master(houseEq(creak(330, 520, .22, 34)), soft),
+    'ms_stretch_3': () => master(houseEq(creak(480, 760, .2, 41)..mix(bell(hz('A6'), dur: .12, bright: .6, amp: .15), at: .12)), soft),
+    // the ball dropped into the leather pouch
+    'ms_reload': () => master(
+      houseEq(
+        Snd(.3)
+          ..mix(thump(f0: 260, f1: 140, dur: .08, amp: .8))
+          ..mix(pop(480, 900, dur: .05, amp: .5, body: .5), at: .01)
+          ..mix(wood(hz('D5'), dur: .07, amp: .3, bright: 1.2), at: .03),
+      ),
+      feedback - 4,
+    ),
+    // a cheeky monster: "hee-hee-hee"
+    'ms_giggle': () {
+      final x = Snd(.6);
+      for (final (i, f) in [760.0, 700.0, 640.0].indexed) {
+        x.mix(voice(f * 1.06, f, .09), at: i * .12);
+      }
+      return master(houseEq(room(x, wet: .1)), feedback - 3);
+    },
+    // the ball is coming: a quick squeak up
+    'ms_eek': () => master(houseEq(room(Snd(.4)..mix(voice(820, 1700, .18, vib: 34, depth: .04)), wet: .08)), feedback - 3),
+    // knocked: a hollow bonk, a boing down and little tweets
+    'ms_bonk': () => master(
+      houseEq(
+        room(
+          Snd(.9)
+            ..mix(wood(hz('A3'), dur: .2, amp: 1, bright: 1.2))
+            ..mix(boing(f0: 520, f1: 240, dur: .35, amp: .5), at: .02)
+            ..mix(sparkle(.4, count: 5, seed: 811, amp: .25), at: .16),
+          wet: .12,
+        ),
+      ),
+      feedback - 1,
+    ),
+  };
+  return {for (final e in sfx().entries) e.key: (e.value, false)};
+}
+
 void main() {
   final dir = Directory('assets/sfx')..createSync(recursive: true);
   final p = palette();
@@ -1330,7 +1403,7 @@ void main() {
     bytes += File(path).lengthSync();
     stdout.writeln('${e.key.padRight(16)} ${(snd.seconds * 2000).round().toString().padLeft(5)} ms (loop)');
   }
-  for (final e in {...runner(), ...smash(), ...slicing()}.entries) {
+  for (final e in {...runner(), ...smash(), ...slicing(), ...smashLife()}.entries) {
     final (make, half) = e.value;
     final snd = make();
     final path = '${dir.path}/${e.key}.wav';
@@ -1338,5 +1411,5 @@ void main() {
     bytes += File(path).lengthSync();
     stdout.writeln('${e.key.padRight(16)} ${(snd.seconds * (half ? 2000 : 1000)).round().toString().padLeft(5)} ms');
   }
-  stdout.writeln('${p.length + music().length + runner().length + smash().length + slicing().length} sounds, ${(bytes / 1024).round()} KB');
+  stdout.writeln('${p.length + music().length + runner().length + smash().length + slicing().length + smashLife().length} sounds, ${(bytes / 1024).round()} KB');
 }

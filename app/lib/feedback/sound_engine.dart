@@ -19,6 +19,9 @@ abstract class SoundEngine {
 
   void stopLoop(Sfx sound);
 
+  /// Turns a looping [sound] down or up (music under Pencil's voice).
+  void loopVolume(Sfx sound, double volume);
+
   void dispose();
 }
 
@@ -32,6 +35,8 @@ class SilentSoundEngine implements SoundEngine {
   void loop(Sfx sound, {double volume = 1}) {}
   @override
   void stopLoop(Sfx sound) {}
+  @override
+  void loopVolume(Sfx sound, double volume) {}
   @override
   void dispose() {}
 }
@@ -158,6 +163,13 @@ class JustAudioSoundEngine implements SoundEngine {
     if (v == null || !v.looping) return;
     v.looping = false;
     unawaited(v.player.pause().catchError((Object _) {}));
+  }
+
+  @override
+  void loopVolume(Sfx sound, double volume) {
+    final v = _loaded[sound.name];
+    if (v == null || !v.looping || v.disposed) return;
+    unawaited(v.player.setVolume(volume).catchError((Object _) {}));
   }
 
   @override
