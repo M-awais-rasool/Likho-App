@@ -107,11 +107,21 @@ class Sfx {
   static const msPow = Sfx('ms_pow');
   static const msFriend = Sfx('ms_friend');
 
+  /// The band pulled tighter (the first creak is [msStretch]), the next
+  /// ball dropped into the pouch, and the monsters: a cheeky giggle, a
+  /// squeak when the ball comes, a bonk when they are knocked.
+  static const msStretch2 = Sfx('ms_stretch_2');
+  static const msStretch3 = Sfx('ms_stretch_3');
+  static const msReload = Sfx('ms_reload');
+  static const msGiggle = Sfx('ms_giggle');
+  static const msEek = Sfx('ms_eek');
+  static const msBonk = Sfx('ms_bonk');
+
   /// Looped while the towers stand.
   static const msMusic = Sfx('ms_music');
 
   /// (the water balloon splashes like Spell Runner's puddle)
-  static const monsterSmash = [msStretch, msLaunch, msWood, msIce, msStone, msWoodBreak, msIceBreak, msStoneBreak, msPow, msFriend, msMusic];
+  static const monsterSmash = [msStretch, msLaunch, msWood, msIce, msStone, msWoodBreak, msIceBreak, msStoneBreak, msPow, msFriend, msStretch2, msStretch3, msReload, msGiggle, msEek, msBonk, msMusic];
 
   // Letter Slice
   static const lsSwish = Sfx('ls_swish');

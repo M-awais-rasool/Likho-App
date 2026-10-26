@@ -20,6 +20,7 @@ import 'test_course.dart';
 class RecordingSound implements SoundEngine {
   final List<String> played = [];
   final List<String> loops = [];
+  final Map<String, double> loopVolumes = {};
   @override
   Future<void> preload(Iterable<Sfx> sounds) async {}
   @override
@@ -28,6 +29,8 @@ class RecordingSound implements SoundEngine {
   void loop(Sfx sound, {double volume = 1}) => loops.add(sound.name);
   @override
   void stopLoop(Sfx sound) => loops.remove(sound.name);
+  @override
+  void loopVolume(Sfx sound, double volume) => loopVolumes[sound.name] = volume;
   @override
   void dispose() {}
 }
@@ -91,6 +94,20 @@ void main() {
     fb.reward();
     expect(sound.played.last, 'reward');
     expect(haptics.played.length, 2, reason: 'vibration off');
+  });
+
+  test('Monster Smash: the band creaks higher as it stretches; the music ducks under Pencil', () {
+    final (c, sound, _) = _container();
+    final fb = c.read(feedbackProvider);
+    for (final level in [1, 2, 3]) {
+      fb.stretch(level);
+    }
+    expect(sound.played, ['ms_stretch', 'ms_stretch_2', 'ms_stretch_3']);
+    fb.smashMusic(true);
+    fb.smashMusicQuiet(true);
+    expect(sound.loopVolumes['ms_music'], lessThan(.2));
+    fb.smashMusicQuiet(false);
+    expect(sound.loopVolumes['ms_music'], .45);
   });
 
   testWidgets('gameplay: the chime climbs with each right answer in a row and resets after a mistake', (t) async {
