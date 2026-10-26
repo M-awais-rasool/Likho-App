@@ -18,7 +18,7 @@ abstract final class MsArt {
   static String pencil(String pose) => '$dir/pencil_$pose.webp';
 
   static const poses = ['stand', 'ready', 'pull', 'throw', 'cheer', 'oops', 'point'];
-  static const monsterPoses = ['idle', 'surprised', 'bonked', 'friendly'];
+  static const monsterPoses = ['idle', 'surprised', 'roar', 'bonked', 'friendly'];
 
   static String monster(String kind, String pose) => 'assets/games/monsters/${kind}_$pose.webp';
 
@@ -43,8 +43,8 @@ abstract final class MsArt {
 
   static String _name(String asset) => asset.split('/').last.replaceAll('.webp', '');
 
+  /// What the world paints (Pencil is not in the game, only his voice).
   static List<String> get all => {
-    for (final p in poses) pencil(p),
     for (final k in ['gloop', 'fuzz', 'bonk', 'boo'])
       for (final p in monsterPoses) monster(k, p),
     for (final s in MsShape.values)

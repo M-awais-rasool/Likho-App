@@ -24,6 +24,7 @@ import '../../gameplay/widgets/game_buttons.dart';
 import '../game_ui.dart';
 import '../monster_defense/md_effects.dart';
 import 'ms_lines.dart';
+import 'ms_monsters.dart';
 import 'ms_painter.dart';
 import 'ms_scene.dart';
 
@@ -62,7 +63,9 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
   late final AppFeedback _fb = ref.read(feedbackProvider);
   late final PromptVoice _voice = ref.read(promptVoiceProvider);
   late final bool _voiceOn = ref.read(voiceOnProvider);
-  final _voiceOf = MascotController();
+  // Pencil's voice (he is not in this game: his words ask the letters)
+  final _mascot = MascotController();
+  late final _lives = MsMonsterLives(random: _rnd);
 
   MsGame? _game;
   MsAsks? _asks;
@@ -84,11 +87,15 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
   Timer? _captionTimer;
   final _timers = <Timer>[];
   bool _pullHinted = false;
+  int _stretch = 0;
+  bool _ballIn = false;
+  double _ballInAt = -9;
+  double _bonkAt = -9;
 
   // effects
   final _bits = <MdBit>[];
   final _pops = <_Pop>[];
-  double _shake = 0, _shownScore = 0, _clearedAt = -9, _wrongAt = -9;
+  double _shake = 0, _shownScore = 0, _clearedAt = -9;
 
   MsView? _view;
   EdgeInsets _pad = EdgeInsets.zero;
@@ -110,8 +117,12 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
     _voiceOn;
     _firstPlay = (ref.read(myGamesProvider)[GameIds.smash]?.plays ?? 0) == 0;
     _fb.prepare(Sfx.monsterSmash);
+    _mascot.speakingListenable.addListener(_duck);
     _load();
   }
+
+  /// The music goes quiet while Pencil talks.
+  void _duck() => _fb.smashMusicQuiet(_mascot.speakingListenable.value);
 
   @override
   void didChangeDependencies() {
@@ -135,7 +146,8 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
     _frame.dispose();
     _voice.stop();
     _fb.smashMusic(false);
-    _voiceOf.dispose();
+    _mascot.speakingListenable.removeListener(_duck);
+    _mascot.dispose();
     super.dispose();
   }
 
@@ -174,6 +186,15 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
         _on(e, g);
       }
       _hintPull(g);
+      // the next ball drops into the pouch
+      final ready = g.phase == MsPhase.aim && g.balls.isNotEmpty;
+      if (ready && !_ballIn) {
+        _fb.reload();
+        _ballInAt = _clock;
+      }
+      _ballIn = ready;
+      _lives.update(dt, g, giggle: _fb.giggle, eek: _fb.eek);
+      _stretched(g);
       for (final b in _bits) {
         b.step(dt);
       }
@@ -183,7 +204,21 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
       _shownScore += (g.score - _shownScore) * math.min(1, dt * 8);
       if ((g.score - _shownScore).abs() < .5) _shownScore = g.score.toDouble();
     }
+    _mascot.advance(now);
     _frame.value++;
+  }
+
+  /// The band creaks tighter as the child pulls further.
+  void _stretched(MsGame g) {
+    final p = g.pull;
+    if (p == null) {
+      _stretch = 0;
+      return;
+    }
+    final k = p.length / MsGame.maxPull;
+    final level = k > .9 ? 3 : (k > .55 ? 2 : (k > .12 ? 1 : 0));
+    if (level > _stretch) _fb.stretch(level);
+    _stretch = level;
   }
 
   /// The first shot of a game: if the child waits, Pencil says how.
@@ -205,7 +240,7 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
       case MsEventKind.ask:
         _ask(e.ask!);
       case MsEventKind.grab:
-        _fb.stretch();
+        break;
       case MsEventKind.launch:
         _fb.launch();
       case MsEventKind.hit:
@@ -222,7 +257,6 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
         _after(850, () => _say(line));
       case MsEventKind.wrong:
         _fb.nope();
-        _wrongAt = _clock;
         _pops.add(_Pop(e.text, at(), _clock, color: MonsterColors.panel, edge: GameColors.ink60, size: 40));
         _bits.addAll(MdBit.burst(at(), _rnd, n: 8, speed: 120, colors: const [MonsterColors.heartOff, MonsterColors.bubbleTint]));
         final a = g.ask;
@@ -241,7 +275,12 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
           ..addAll(MdBit.dust(at(), 46, _rnd, n: 4))
           ..add(MdBit.score(at(), e.value.round()));
       case MsEventKind.friend:
-        _fb.friend();
+        // a bonk (dizzy stars), then a happy spring as it turns friendly
+        if (_clock - _bonkAt > .2) {
+          _bonkAt = _clock;
+          _fb.bonk();
+          _after(1000, _fb.friend);
+        }
         _bits
           ..addAll(MdBit.burst(at(), _rnd, n: 10, speed: 150, colors: const [MonsterColors.gem, MonsterColors.magicCore, MonsterColors.spark]))
           ..add(MdBit.score(at() - const Offset(0, 30), e.value.round()));
@@ -323,7 +362,7 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
         if (mounted && talk == _talkId) setState(() => _caption = null);
       });
     }
-    _speaking = _voiceOn ? _voice.speak(line, _voiceOf, after: MascotState.idle).then((_) {}) : (hold ? Future<void>.value() : shown.future);
+    _speaking = _voiceOn ? _voice.speak(line, _mascot, after: MascotState.idle).then((_) {}) : (hold ? Future<void>.value() : shown.future);
   }
 
   void _endCaption() {
@@ -425,22 +464,6 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
 
   // ------------------------------------------------------------ build
 
-  MsPencil _pencil(MsGame g) {
-    final t = g.time;
-    if (g.phase == MsPhase.cleared || g.phase == MsPhase.done || t - g.cheerAt < 1.6) {
-      final since = g.phase == MsPhase.cleared || g.phase == MsPhase.done ? g.phaseTime : t - g.cheerAt;
-      return MsPencil(pose: 'cheer', hop: (math.sin(since * 9).abs() * .22) * math.exp(-since * .6));
-    }
-    if (g.pull != null) {
-      final k = (g.pull!.length / MsGame.maxPull).clamp(0.0, 1.0);
-      return MsPencil(pose: 'pull', lean: -.05 * k, squash: 1 - .04 * k);
-    }
-    if (t - g.throwAt < .55) return const MsPencil(pose: 'throw');
-    if (t - g.oopsAt < 1.4 || _clock - _wrongAt < 1.4) return const MsPencil(pose: 'oops');
-    if (_caption != null && g.phase == MsPhase.aim) return const MsPencil(pose: 'point');
-    return MsPencil(pose: 'stand', squash: 1 + .012 * math.sin(_clock * 2.4));
-  }
-
   @override
   Widget build(BuildContext context) {
     final pad = MediaQuery.paddingOf(context);
@@ -504,13 +527,13 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
                   ),
                   if (_paused)
                     Positioned.fill(
-                      child: GamePauseCard(id: 'ms', picture: MsArt.pencil('oops'), onResume: _resume, onExit: _exit),
+                      child: GamePauseCard(id: 'ms', picture: MsArt.monster('gloop', 'surprised'), onResume: _resume, onExit: _exit),
                     ),
                   if (_showResult)
                     Positioned.fill(
                       child: GameResultCard(
                         id: 'ms',
-                        picture: MsArt.pencil('cheer'),
+                        picture: MsArt.monster('fuzz', 'friendly'),
                         title: 'All smashed!',
                         star: MsArt.star,
                         stars: g.stars,
@@ -547,21 +570,10 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
               height: view.imageSize.height,
               child: Image.asset(view.bg.asset, fit: BoxFit.fill, gaplessPlayback: true, filterQuality: FilterQuality.medium),
             ),
-            if (g != null && g.phase != MsPhase.ready)
+            if (g != null)
               Positioned.fill(
                 child: CustomPaint(
-                  painter: MsWorldPainter(view: view, game: g, pencil: _pencil(g), time: _clock),
-                ),
-              ),
-            if (g != null && g.phase == MsPhase.ready)
-              Positioned.fill(
-                child: CustomPaint(
-                  painter: MsWorldPainter(
-                    view: view,
-                    game: g,
-                    pencil: const MsPencil(pose: 'stand'),
-                    time: _clock,
-                  ),
+                  painter: MsWorldPainter(view: view, game: g, lives: _lives, ballIn: ((_clock - _ballInAt) / .3).clamp(0.0, 1.0), time: _clock),
                 ),
               ),
             Positioned.fill(
