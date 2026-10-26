@@ -159,6 +159,9 @@ class MsMonster {
   /// When it became a friend.
   double friendAt = 0;
 
+  /// When it last hopped back onto its feet.
+  double upAt = -9;
+
   Vector2 get position => body.position;
   double get angle => body.angle;
 }
@@ -216,7 +219,7 @@ class MsGame {
 
   /// Where the ball sits in the slingshot, and the hill's flat top.
   static final rest = Vector2(2.9, 2.2);
-  static const hillTop = .78, hillX = 2.25;
+  static const hillTop = .78, hillX = 2.9;
 
   /// How far the ball can be pulled back, and how fast a full pull sends it.
   static const maxPull = 1.6, minPull = .3, maxSpeed = 15.5;
@@ -614,6 +617,7 @@ class MsGame {
   }
 
   void _rules(double dt) {
+    _standUp();
     switch (phase) {
       case MsPhase.flying:
         final s = shot!;
@@ -633,6 +637,19 @@ class MsGame {
       case MsPhase.cleared:
         if (phaseTime > 3.0) _nextTower();
       default:
+    }
+  }
+
+  /// A monster lying on its side or head, gone still, hops back onto its
+  /// feet (a monster upside down for good looks broken).
+  void _standUp() {
+    for (final m in monsters) {
+      final b = m.body;
+      final a = math.atan2(math.sin(b.angle), math.cos(b.angle));
+      if (a.abs() < .6 || time - m.upAt < 1.2 || b.linearVelocity.length > .3 || b.angularVelocity.abs() > .6) continue;
+      m.upAt = time;
+      b.linearVelocity = Vector2(0, 3.2);
+      b.angularVelocity = -a * 1.9;
     }
   }
 
