@@ -814,7 +814,7 @@ abstract final class SmashColors {
 /// Monster Smash's meadow around its painted layers: the sky and the
 /// ground until the pictures are ready, the sun, the windmill (its sails
 /// turn, so the app draws it, in the picture's colours), big grass in
-/// front, butterflies and birds.
+/// front, butterflies and birds, the level map's road.
 abstract final class MeadowColors {
   static const skyTop = Color(0xFF7CC8F5);
   static const skyLow = Color(0xFFCDEFFB);
@@ -831,6 +831,10 @@ abstract final class MeadowColors {
   static const millLine = Color(0xFFA88466);
   static const butterflies = [Color(0xFFFFB347), Color(0xFF8FD3FF), Color(0xFFFF8FB1)];
   static const bird = Color(0xFF5B6B7A);
+
+  /// The road through Monster Smash's level map.
+  static const road = Color(0xFFFFF1CF);
+  static const roadEdge = Color(0xFFD9B97E);
 }
 
 /// The Stationery Squad: Rubby the eraser, Inky the ink drop, Crayo the

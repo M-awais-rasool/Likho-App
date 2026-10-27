@@ -20,9 +20,11 @@ import 'ms_heroes.dart';
 import 'ms_scene.dart';
 
 /// Monster Smash's levels (sideways): Letter Land's twelve levels on a
-/// winding path over the moving meadow. A finished level shows its stars,
-/// the next one to play bounces with Rubby on it, the rest are locked. A
-/// level opens the game; its result goes on to the next.
+/// winding dotted path across a wide meadow that scrolls sideways (the
+/// meadow's layers move with it, the far ones slower). A finished level
+/// shows its stars, the next one to play bounces with Rubby on it, the rest
+/// are locked; the map opens on the next one. A level opens the game; its
+/// result goes on to the next.
 class SmashLevelsScreen extends ConsumerStatefulWidget {
   const SmashLevelsScreen({super.key, required this.onDone});
   final VoidCallback onDone;
@@ -36,7 +38,13 @@ class SmashLevelsScreen extends ConsumerStatefulWidget {
 class _SmashLevelsScreenState extends ConsumerState<SmashLevelsScreen> with SingleTickerProviderStateMixin {
   late final Ticker _ticker;
   final _frame = ValueNotifier<double>(0);
+  final _scroll = ScrollController();
   MsCamera? _cam;
+  bool _placed = false;
+
+  /// Between two levels along the path, and its sway up and down (of the
+  /// screen's height).
+  static const _step = 150.0, _sway = .12;
 
   List<MsLevel> get _levels => MsLevels.letterLand;
 
@@ -58,6 +66,7 @@ class _SmashLevelsScreenState extends ConsumerState<SmashLevelsScreen> with Sing
     SystemChrome.setPreferredOrientations(const []);
     _ticker.dispose();
     _frame.dispose();
+    _scroll.dispose();
     super.dispose();
   }
 
@@ -99,34 +108,53 @@ class _SmashLevelsScreenState extends ConsumerState<SmashLevelsScreen> with Sing
             final cam = _cam ??= MsCamera(size);
             cam.screen = size;
             final spots = _spots(size, pad);
+            final width = spots.last.dx + 110 + pad.right;
+            _placeOn(next < 0 ? _levels.length - 1 : next, spots, size, width);
             return Stack(
               children: [
                 Positioned.fill(
-                  child: ValueListenableBuilder<double>(
-                    valueListenable: _frame,
-                    builder: (context, t, _) => CustomPaint(
-                      painter: MsBackdropPainter(view: view, camera: cam, time: t, scroll: t * 14),
-                      foregroundPainter: _PathPainter(spots),
+                  child: AnimatedBuilder(
+                    animation: Listenable.merge([_frame, _scroll]),
+                    builder: (context, _) => CustomPaint(
+                      painter: MsBackdropPainter(view: view, camera: cam, time: _frame.value, scroll: _scroll.hasClients ? _scroll.offset : 0),
                     ),
                   ),
                 ),
-                for (var i = 0; i < _levels.length; i++)
-                  Positioned(
-                    left: spots[i].dx - 34,
-                    top: spots[i].dy - 34,
-                    child: ValueListenableBuilder<double>(
-                      valueListenable: _frame,
-                      builder: (context, t, _) => _LevelButton(
-                        key: ValueKey('ms-level-${_levels[i].number}'),
-                        number: _levels[i].number,
-                        stars: record.levels[_levels[i].number] ?? 0,
-                        open: record.opens(_levels[i].number),
-                        next: i == next,
-                        time: t,
-                        onTap: () => _open(i),
+                Positioned.fill(
+                  child: SingleChildScrollView(
+                    key: const ValueKey('ms-levels-map'),
+                    controller: _scroll,
+                    scrollDirection: Axis.horizontal,
+                    physics: const BouncingScrollPhysics(),
+                    child: SizedBox(
+                      width: math.max(width, size.width),
+                      height: size.height,
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          Positioned.fill(child: CustomPaint(painter: _PathPainter(spots, reached: next < 0 ? _levels.length - 1 : next))),
+                          for (var i = 0; i < _levels.length; i++)
+                            Positioned(
+                              left: spots[i].dx - 34,
+                              top: spots[i].dy - 34,
+                              child: ValueListenableBuilder<double>(
+                                valueListenable: _frame,
+                                builder: (context, t, _) => _LevelButton(
+                                  key: ValueKey('ms-level-${_levels[i].number}'),
+                                  number: _levels[i].number,
+                                  stars: record.levels[_levels[i].number] ?? 0,
+                                  open: record.opens(_levels[i].number),
+                                  next: i == next,
+                                  time: t,
+                                  onTap: () => _open(i),
+                                ),
+                              ),
+                            ),
+                        ],
                       ),
                     ),
                   ),
+                ),
                 Positioned(
                   top: pad.top + 8,
                   left: 12 + pad.left,
@@ -187,40 +215,76 @@ class _SmashLevelsScreenState extends ConsumerState<SmashLevelsScreen> with Sing
     );
   }
 
-  /// The levels along a gentle wave, left to right.
+  /// The levels along a gentle wave, left to right, [_step] apart; high
+  /// enough for Rubby over a button, low enough for its stars over the
+  /// grass.
   List<Offset> _spots(Size size, EdgeInsets pad) {
-    final left = pad.left + 70, right = size.width - pad.right - 70;
-    final n = _levels.length;
-    return [for (var i = 0; i < n; i++) Offset(left + (right - left) * i / (n - 1), size.height * (.5 + .14 * math.sin(i * .95 + .4)))];
+    final left = pad.left + 96, h = size.height;
+    return [for (var i = 0; i < _levels.length; i++) Offset(left + _step * i, h * (.585 + _sway * math.sin(i * 1.15 + .3)))];
+  }
+
+  /// Opens the map on level [i] (once, after the first layout).
+  void _placeOn(int i, List<Offset> spots, Size size, double width) {
+    if (_placed) return;
+    _placed = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || !_scroll.hasClients) return;
+      _scroll.jumpTo((spots[i].dx - size.width / 2).clamp(0.0, _scroll.position.maxScrollExtent));
+    });
   }
 }
 
-/// Dotted path between the levels.
+/// The road through the levels: a soft curve from one to the next, a cream
+/// track with dots along it (never under a button); bright up to the level
+/// [reached], faint after it.
 class _PathPainter extends CustomPainter {
-  _PathPainter(this.spots);
+  _PathPainter(this.spots, {required this.reached});
   final List<Offset> spots;
+  final int reached;
+
+  Path _leg(int i) {
+    final a = spots[i], b = spots[i + 1];
+    final half = (b.dx - a.dx) / 2;
+    return Path()
+      ..moveTo(a.dx, a.dy)
+      ..cubicTo(a.dx + half, a.dy, b.dx - half, b.dy, b.dx, b.dy);
+  }
+
+  static Paint _track(Color c, double width) => Paint()
+    ..color = c
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = width
+    ..strokeCap = StrokeCap.round;
 
   @override
   void paint(Canvas canvas, Size size) {
-    final dot = Paint()..color = MonsterColors.panel.withValues(alpha: .9);
-    final shade = Paint()..color = MonsterColors.panelShadow;
+    // the track: its edge first under every leg, then its middle
+    for (final (width, color) in [(22.0, MeadowColors.roadEdge), (16.0, MeadowColors.road)]) {
+      for (var i = 0; i + 1 < spots.length; i++) {
+        canvas.drawPath(_leg(i), _track(i < reached ? color : color.withValues(alpha: .45), width));
+      }
+    }
+    final shade = Paint()..color = MeadowColors.roadEdge;
+    final bright = Paint()..color = MonsterColors.panel;
+    final faint = Paint()..color = MonsterColors.panel.withValues(alpha: .6);
     for (var i = 0; i + 1 < spots.length; i++) {
-      final a = spots[i], b = spots[i + 1];
-      final d = b - a, len = d.distance;
-      // in the gap between the two buttons only, when it fits three dots
-      if (len < 125) continue;
-      final u = d / len;
-      final from = a + u * 42, to = b - u * 42;
-      for (var k = 0; k < 3; k++) {
-        final p = Offset.lerp(from, to, (k + .5) / 3)!;
-        canvas.drawCircle(p + const Offset(0, 2), 5, shade);
-        canvas.drawCircle(p, 5, dot);
+      final metric = _leg(i).computeMetrics().first;
+      // the dots that fit between the two buttons (and their stars)
+      const gap = 18.0, clear = 48.0;
+      final room = metric.length - clear * 2;
+      final n = (room / gap).floor();
+      if (n < 1) continue;
+      final from = clear + (room - (n - 1) * gap) / 2;
+      for (var k = 0; k < n; k++) {
+        final p = metric.getTangentForOffset(from + k * gap)!.position;
+        canvas.drawCircle(p + const Offset(0, 1.5), 4, shade);
+        canvas.drawCircle(p, 4, i < reached ? bright : faint);
       }
     }
   }
 
   @override
-  bool shouldRepaint(covariant _PathPainter old) => old.spots != spots;
+  bool shouldRepaint(covariant _PathPainter old) => old.spots != spots || old.reached != reached;
 }
 
 class _LevelButton extends StatelessWidget {
