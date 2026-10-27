@@ -26,7 +26,7 @@ import 'gameplay/gameplay_screen.dart';
 import 'games/games_screen.dart';
 import 'games/monster_defense/monster_defense_screen.dart';
 import 'games/letter_slice/letter_slice_screen.dart';
-import 'games/monster_smash/monster_smash_screen.dart';
+import 'games/monster_smash/smash_levels_screen.dart';
 import 'games/spell_runner/spell_runner_screen.dart';
 import 'home/home_tabs.dart';
 import 'level_complete/level_complete_screen.dart';
@@ -308,7 +308,7 @@ abstract final class AppFlow {
       LikhoRoute<void>(
         builder: (c) => switch (id) {
           GameIds.runner => SpellRunnerScreen(onDone: () => Navigator.of(c).pop()),
-          GameIds.smash => MonsterSmashScreen(onDone: () => Navigator.of(c).pop()),
+          GameIds.smash => SmashLevelsScreen(onDone: () => Navigator.of(c).pop()),
           GameIds.slice => LetterSliceScreen(onDone: () => Navigator.of(c).pop()),
           _ => MonsterDefenseScreen(onDone: () => Navigator.of(c).pop()),
         },

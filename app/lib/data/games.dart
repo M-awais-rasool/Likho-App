@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,15 +23,34 @@ abstract final class GameIds {
 
 @immutable
 class GameRecord {
-  const GameRecord({this.best = 0, this.stars = 0, this.plays = 0});
+  const GameRecord({this.best = 0, this.stars = 0, this.plays = 0, this.levels = const {}});
   final int best, stars, plays;
 
-  Map<String, dynamic> toJson() => {'best': best, 'stars': stars, 'plays': plays};
+  /// A game with levels (Monster Smash): the best stars of each level
+  /// played to its end (level number -> 1..3).
+  final Map<int, int> levels;
+
+  /// Whether level [n] can be played: the first, or the one after a
+  /// finished one.
+  bool opens(int n) => n <= 1 || (levels[n - 1] ?? 0) > 0;
+
+  Map<String, dynamic> toJson() => {
+    'best': best,
+    'stars': stars,
+    'plays': plays,
+    if (levels.isNotEmpty) 'levels': {for (final e in levels.entries) '${e.key}': e.value},
+  };
 
   static GameRecord fromJson(Object? j) {
     if (j is! Map<String, dynamic>) return const GameRecord();
     int n(String k) => j[k] is int ? j[k] as int : 0;
-    return GameRecord(best: n('best'), stars: n('stars'), plays: n('plays'));
+    final l = j['levels'];
+    return GameRecord(
+      best: n('best'),
+      stars: n('stars'),
+      plays: n('plays'),
+      levels: l is Map<String, dynamic> ? {for (final e in l.entries) if (int.tryParse(e.key) != null && e.value is int) int.parse(e.key): e.value as int} : const {},
+    );
   }
 }
 
@@ -66,10 +86,16 @@ class GameProgress extends Notifier<Map<String, Map<String, GameRecord>>> {
   /// A game was played to its end: one more play, the better score and
   /// stars kept. True when [score] beats the child's best (not their first
   /// game).
-  bool record(String childId, String game, {required int score, required int stars}) {
+  /// [level]: a game with levels keeps each level's best stars too.
+  bool record(String childId, String game, {required int score, required int stars, int? level}) {
     final mine = state[childId] ?? const {};
     final old = mine[game] ?? const GameRecord();
-    final next = GameRecord(best: score > old.best ? score : old.best, stars: stars > old.stars ? stars : old.stars, plays: old.plays + 1);
+    final next = GameRecord(
+      best: score > old.best ? score : old.best,
+      stars: stars > old.stars ? stars : old.stars,
+      plays: old.plays + 1,
+      levels: level == null ? old.levels : {...old.levels, level: math.max(stars, old.levels[level] ?? 0)},
+    );
     state = {
       ...state,
       childId: {...mine, game: next},
