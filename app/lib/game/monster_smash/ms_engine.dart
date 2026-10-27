@@ -4,26 +4,32 @@ import 'package:flutter/foundation.dart';
 import 'package:forge2d/forge2d.dart';
 
 import '../monster_defense/md_questions.dart';
+import 'ms_levels.dart';
 import 'ms_towers.dart';
 
+export 'ms_levels.dart' show MsHero, MsLevel, MsLevels, MsRoom;
 export 'ms_towers.dart' show MsMaterial, MsShape, MsSize;
 
-/// Monster Smash, the game itself (no drawing): like Angry Birds. Pencil
-/// stands on a little hill with a big slingshot; on the right, Monster
-/// Defense's silly monsters sit on towers of wood, ice and stone blocks,
-/// some of them with letters. Pencil asks for a letter ("Find B!"); the
-/// child pulls the ball back and lets go, and real physics (Box2D, through
-/// forge2d) does the rest: the ball flies, the B block bursts, the tower
-/// wobbles and falls, and the monsters tumbling down turn into friends.
+/// Monster Smash, the game itself (no drawing): like Angry Birds 2. A big
+/// slingshot stands on a little hill, the Stationery Squad (Rubby, Inky,
+/// Crayo) waits in line beside it; on the right, Monster Defense's silly
+/// monsters sit on towers of wood, ice and stone blocks, some with letters.
+/// Pencil's voice asks for a letter ("Find B!"); the child pulls the hero
+/// back and lets go (and taps while it flies for its power), and real
+/// physics (Box2D, through forge2d) does the rest: the B block bursts, the
+/// tower wobbles and falls, and the monsters tumbling down turn into
+/// friends.
 ///
-/// A game is three towers (a meadow, a beach, snowy hills), each bigger
-/// than the last. There is no losing: a ball that hits the wrong letter
-/// says its name, Pencil shows the right block after a few misses, and an
-/// empty basket fills up again (fewer stars).
+/// A level ([MsLevel]) is one to three rooms, played with one line of
+/// heroes; the child may pick which hero goes next. Smashing fills the
+/// Smash meter, and a full meter brings a bonus hero. There is no losing: a
+/// wrong letter is said, the right block is shown after a few misses, and
+/// an empty line fills up again (fewer stars).
 ///
 /// World units are metres, x right from the screen's left edge (16 m), y up
 /// from the ground. [tick] moves time on; [grab], [drag] and [release] are
-/// the child's finger (in world units); [drain] hands out what happened.
+/// the child's finger (in world units), [power] a tap; [drain] hands out
+/// what happened.
 
 /// What Pencil asks: the [letter] on a block, his words and their recording,
 /// a picture for a first-sound question.
@@ -116,8 +122,6 @@ class MsChildAsks implements MsAsks {
   }
 }
 
-enum MsBall { eraser, water, star }
-
 /// A block in the world.
 class MsBlock {
   MsBlock(this.id, this.shape, this.material, this.body, {this.letter}) : health = _health[material]!;
@@ -166,30 +170,50 @@ class MsMonster {
   double get angle => body.angle;
 }
 
-/// The ball in the air.
-class MsShot {
-  MsShot(this.kind, this.body);
-  final MsBall kind;
-  final Body body;
-  double time = 0, still = 0;
-
-  /// Its trail, for drawing (newest last).
-  final List<Vector2> trail = [];
+/// One fling: the hero, and Inky's drops once he split. One letter a fling.
+class MsVolley {
+  MsVolley(this.hero);
+  final MsHero hero;
+  double time = 0;
 
   /// The letter blocks it touched (the first wrong one is said).
   final Set<int> touched = {};
   bool wrongSaid = false, hitTarget = false;
 
-  /// A water balloon bursts where it first touches something.
-  Vector2? burstAt;
+  /// The tap's power was used (once a fling), and when.
+  bool powered = false;
+  double poweredAt = -9;
+}
+
+/// A hero (or one of Inky's drops) in the air.
+class MsShot {
+  MsShot(this.hero, this.body, this.volley, {required this.radius, this.drop = false});
+  final MsHero hero;
+  final Body body;
+  final MsVolley volley;
+  final double radius;
+
+  /// One of Inky's three drops.
+  final bool drop;
+  double still = 0;
+
+  /// Its trail, for drawing (newest last).
+  final List<Vector2> trail = [];
+
+  /// Crayo after his dash: wood and ice he touches break.
+  bool pierce = false;
   bool gone = false;
 
-  double get radius => MsGame.ballRadius[kind]!;
+  /// Where it stopped (the screen shows the hero resting there a moment).
+  Vector2? restAt;
+
+  /// When it last bumped into something, and how hard (0..1): it squashes.
+  double hitAt = -9, hitHard = 0;
 }
 
 enum MsPhase { ready, build, aim, flying, settle, cleared, done }
 
-enum MsEventKind { build, ask, grab, launch, hit, wrong, knock, crack, smash, friend, splash, ballGone, miss, hint, refill, cleared, done }
+enum MsEventKind { build, ask, grab, pick, launch, power, hit, wrong, knock, crack, smash, friend, ballGone, miss, hint, refill, bonus, cleared, done }
 
 class MsEvent {
   const MsEvent(this.kind, {this.x = 0, this.y = 0, this.material, this.value = 0, this.text = '', this.ask});
@@ -207,23 +231,30 @@ class MsEvent {
 }
 
 class MsGame {
-  MsGame({required this.asks, this.towers = 3, int? seed}) : _rnd = math.Random(seed);
+  MsGame({required this.asks, required this.level, int? seed}) : _rnd = math.Random(seed);
 
   final MsAsks asks;
-
-  /// How many towers a game has.
-  final int towers;
+  final MsLevel level;
   final math.Random _rnd;
+
+  /// How many rooms the level has.
+  int get rooms => level.rooms.length;
 
   static const width = 16.0, gravity = 10.0;
 
-  /// Where the ball sits in the slingshot, and the hill's flat top.
+  /// Where the hero sits in the slingshot, and the hill's flat top: wide
+  /// enough for the heroes waiting in line left of the slingshot.
   static final rest = Vector2(2.9, 2.2);
-  static const hillTop = .78, hillX = 2.9;
+  static const hillTop = .78, hillX = 2.6;
+  static const hillHalfTop = 1.7, hillHalfFoot = 2.4;
 
-  /// How far the ball can be pulled back, and how fast a full pull sends it.
+  /// How far the hero can be pulled back, and how fast a full pull sends it.
   static const maxPull = 1.6, minPull = .3, maxSpeed = 15.5;
-  static const ballRadius = {MsBall.eraser: .27, MsBall.water: .29, MsBall.star: .31};
+  static const heroRadius = {MsHero.rubby: .3, MsHero.inky: .28, MsHero.crayo: .26};
+  static const dropRadius = .18;
+
+  /// The Smash meter's points to fill (a bonus hero).
+  static const meterPoints = 320;
 
   static const _step = 1 / 60;
   static const _hillBit = 0x0002;
@@ -235,17 +266,26 @@ class MsGame {
   MsPhase phase = MsPhase.ready;
   double time = 0, phaseTime = 0;
 
-  /// The tower being smashed (0, 1, 2 …).
-  int tower = -1;
+  /// The room being smashed (0, 1, 2 …).
+  int room = -1;
 
   final List<MsBlock> blocks = [];
   final List<MsMonster> monsters = [];
-  MsShot? shot;
 
-  /// The balls left for this tower (the next one first).
-  final List<MsBall> balls = [];
+  /// What is in the air: the hero, or Inky's drops.
+  final List<MsShot> shots = [];
 
-  /// What Pencil asks about this tower, and which one now.
+  /// The hero flung last (the middle drop once Inky split), while it flies.
+  MsShot? get shot => shots.isEmpty ? null : shots.first;
+
+  /// The heroes in line (the next one first), for the whole level.
+  final List<MsHero> heroes = [];
+
+  /// The Smash meter, 0..1: smashing fills it, full brings a bonus hero.
+  double meter = 0;
+  int bonuses = 0;
+
+  /// What Pencil asks about this room, and which one now.
   List<MsAsk> towerAsks = [];
   int askAt = 0;
   MsAsk? get ask => askAt < towerAsks.length ? towerAsks[askAt] : null;
@@ -257,12 +297,12 @@ class MsGame {
   Vector2? pull;
   Vector2? _grab;
 
-  int score = 0, shots = 0, found = 0, friends = 0, refills = 0;
+  int score = 0, flings = 0, found = 0, friends = 0, refills = 0;
 
   /// The asked letters this game, and shots that found nothing.
   int asked = 0, wasted = 0;
 
-  /// When Pencil cheered / said oops / threw last (for his poses).
+  /// When a letter was found / a shot missed / a hero was flung last.
   double cheerAt = -9, oopsAt = -9, throwAt = -9;
 
   /// The block the hint points at (after misses), and when it burst.
@@ -281,12 +321,13 @@ class MsGame {
     return out;
   }
 
-  /// 3 stars for at most 2 wasted shots, 2 for at most 6.
-  int get stars => wasted <= 2 && refills == 0 ? 3 : (wasted <= 6 ? 2 : 1);
+  /// 3 stars for at most one wasted shot a room and no refill, 2 for a few
+  /// more, else 1.
+  int get stars => wasted <= rooms && refills == 0 ? 3 : (wasted <= 2 * rooms + 2 ? 2 : 1);
 
   bool get over => phase == MsPhase.done;
 
-  /// The ball in the slingshot (where it is drawn while aiming).
+  /// The hero in the slingshot (where it is drawn while aiming).
   Vector2 get ballInSling => pull == null ? rest.clone() : rest + pull!;
 
   MsBlock? blockOf(Body b) => b.userData is MsBlock ? b.userData as MsBlock : null;
@@ -294,9 +335,13 @@ class MsGame {
   // ---------------------------------------------------------------- setup
 
   void start() {
-    tower = -1;
-    score = shots = found = friends = refills = asked = wasted = 0;
-    _nextTower();
+    room = -1;
+    score = flings = found = friends = refills = asked = wasted = bonuses = 0;
+    meter = 0;
+    heroes
+      ..clear()
+      ..addAll(level.heroes);
+    _nextRoom();
   }
 
   void _newWorld() {
@@ -308,21 +353,23 @@ class MsGame {
     for (final x in [-.6, width + .4]) {
       ground.createFixture(FixtureDef(PolygonShape()..setAsBox(.2, 20, Vector2(x, 20), 0), friction: .3));
     }
-    // the hill under Pencil and the slingshot
-    // (the ball passes through it: a ball pulled down starts inside it)
+    // the hill under the slingshot and the waiting heroes
+    // (a hero passes through it: one pulled down starts inside it)
     final hill = world.createBody(BodyDef(userData: 'hill'));
     hill.createFixture(
       FixtureDef(
-        PolygonShape()..set([Vector2(hillX - 1.75, 0), Vector2(hillX + 1.75, 0), Vector2(hillX + 1.05, hillTop), Vector2(hillX - 1.05, hillTop)]),
+        PolygonShape()..set([Vector2(hillX - hillHalfFoot, 0), Vector2(hillX + hillHalfFoot, 0), Vector2(hillX + hillHalfTop, hillTop), Vector2(hillX - hillHalfTop, hillTop)]),
         friction: .8,
         filter: Filter()..categoryBits = _hillBit,
       ),
     );
   }
 
-  void _nextTower() {
-    tower++;
-    if (tower >= towers) {
+  void _nextRoom() {
+    room++;
+    if (room >= rooms) {
+      // the heroes still in line are a bonus
+      score += heroes.length * 100;
       _set(MsPhase.done);
       _events.add(MsEvent(MsEventKind.done, value: score.toDouble()));
       return;
@@ -330,14 +377,13 @@ class MsGame {
     _newWorld();
     blocks.clear();
     monsters.clear();
-    shot = null;
+    shots.clear();
     pull = null;
     hintBlock = null;
     misses = 0;
-    final plan = MsTowers.forRound(tower, _rnd);
-    final letters = [3, 4, 5][math.min(tower, 2)];
-    final count = [2, 3, 3][math.min(tower, 2)];
-    final (shown, list) = asks.tower(math.min(letters, plan.letterSpots), count);
+    final r = level.rooms[room];
+    final plan = r.build(_rnd);
+    final (shown, list) = asks.tower(math.min(r.letters, plan.letterSpots), math.min(r.asks, math.min(r.letters, plan.letterSpots)));
     towerAsks = [...list];
     askAt = 0;
     // the letters go on random letter spots
@@ -353,9 +399,6 @@ class MsGame {
     for (var i = 0; i < plan.monsters.length; i++) {
       _addMonster(plan.monsters[i], kinds[i % kinds.length]);
     }
-    balls
-      ..clear()
-      ..addAll(_ballsFor(tower, list.length));
     // let the tower settle unseen, so it stands still when it appears
     _live = false;
     for (var i = 0; i < 120; i++) {
@@ -365,21 +408,7 @@ class MsGame {
     _touches.clear();
     _live = true;
     _set(MsPhase.build);
-    _events.add(MsEvent(MsEventKind.build, value: tower.toDouble()));
-  }
-
-  /// Two spare balls; the beach brings water balloons, the snow star balls.
-  List<MsBall> _ballsFor(int t, int asks) {
-    final n = asks + 2;
-    return [
-      for (var i = 0; i < n; i++)
-        switch (t % 3) {
-          1 when i.isOdd => MsBall.water,
-          2 when i % 3 == 1 => MsBall.star,
-          2 when i % 3 == 2 => MsBall.water,
-          _ => MsBall.eraser,
-        },
-    ];
+    _events.add(MsEvent(MsEventKind.build, value: room.toDouble()));
   }
 
   void _addBlock(MsPiece p, String? letter) {
@@ -426,9 +455,9 @@ class MsGame {
   // ---------------------------------------------------------------- the finger
 
   /// The child puts a finger down at [p]: anywhere on the left part of the
-  /// screen takes hold of the ball.
+  /// screen takes hold of the hero.
   bool grab(Vector2 p) {
-    if (phase != MsPhase.aim || balls.isEmpty || p.x > width * .45) return false;
+    if (phase != MsPhase.aim || heroes.isEmpty || p.x > width * .45) return false;
     _grab = p.clone();
     pull = Vector2.zero();
     _events.add(const MsEvent(MsEventKind.grab));
@@ -453,33 +482,108 @@ class MsGame {
     launch(p);
   }
 
-  /// The ball's speed for a pull [p] (opposite to it).
+  /// The child picks hero [i] of the line to go next (a card): it jumps
+  /// into the slingshot, the one there steps back.
+  bool pick(int i) {
+    if (phase != MsPhase.aim || pull != null || i <= 0 || i >= heroes.length) return false;
+    heroes.insert(0, heroes.removeAt(i));
+    _events.add(MsEvent(MsEventKind.pick, text: heroes.first.name, value: i.toDouble()));
+    return true;
+  }
+
+  /// The hero's speed for a pull [p] (opposite to it).
   static Vector2 velocity(Vector2 p) => p * (-maxSpeed / maxPull);
 
-  /// Sends the next ball off with pull [p] (the finger, or a test).
+  /// Flings the next hero with pull [p] (the finger, or a test).
   void launch(Vector2 p) {
-    if (phase != MsPhase.aim || balls.isEmpty) return;
-    final kind = balls.removeAt(0);
-    final r = ballRadius[kind]!;
-    final body = world.createBody(BodyDef(type: BodyType.dynamic, position: rest + p, bullet: true, linearVelocity: velocity(p), angularDamping: .3));
-    final (density, bounce) = switch (kind) {
-      MsBall.eraser => (2.6, .4),
-      MsBall.water => (2.0, .05),
-      MsBall.star => (5.0, .2),
+    if (phase != MsPhase.aim || heroes.isEmpty) return;
+    final hero = heroes.removeAt(0);
+    final v = MsVolley(hero);
+    shots
+      ..clear()
+      ..add(_shoot(hero, v, rest + p, velocity(p), heroRadius[hero]!));
+    flings++;
+    throwAt = time;
+    _set(MsPhase.flying);
+    _events.add(MsEvent(MsEventKind.launch, value: p.length / maxPull, text: hero.name));
+  }
+
+  MsShot _shoot(MsHero hero, MsVolley v, Vector2 at, Vector2 speed, double r, {bool drop = false}) {
+    final body = world.createBody(BodyDef(type: BodyType.dynamic, position: at, bullet: true, linearVelocity: speed, angularDamping: .3));
+    final (density, bounce) = switch (hero) {
+      MsHero.rubby => (2.6, .4),
+      MsHero.inky => (drop ? 2.4 : 2.2, .15),
+      MsHero.crayo => (3.0, .2),
     };
     body.createFixture(
       FixtureDef(CircleShape()..radius = r, density: density, friction: .6, restitution: bounce, filter: Filter()..maskBits = 0xFFFF & ~_hillBit),
     );
-    final s = MsShot(kind, body);
+    final s = MsShot(hero, body, v, radius: r, drop: drop);
     body.userData = s;
-    shot = s;
-    shots++;
-    throwAt = time;
-    _set(MsPhase.flying);
-    _events.add(MsEvent(MsEventKind.launch, value: p.length / maxPull, text: kind.name));
+    return s;
   }
 
-  /// Where a ball pulled by [p] would go (no blocks in the way): one dot
+  /// A tap while the hero flies: its power, once a fling.
+  ///  * Rubby: a big "boing" that pushes everything in front of him.
+  ///  * Inky: splits into three drops, fanning out.
+  ///  * Crayo: zooms straight on, fast, breaking through wood and ice.
+  bool power() {
+    final s = shot;
+    if (phase != MsPhase.flying || s == null || s.gone || s.volley.powered) return false;
+    final v = s.volley;
+    v.powered = true;
+    v.poweredAt = time;
+    final at = s.body.position.clone();
+    final speed = s.body.linearVelocity.clone();
+    switch (s.hero) {
+      case MsHero.rubby:
+        final dir = speed.length < .1 ? Vector2(1, 0) : speed.normalized();
+        _boing(at, dir);
+      case MsHero.inky:
+        final drops = [
+          for (final a in [.22, 0.0, -.22])
+            _shoot(MsHero.inky, v, at + (Vector2(-speed.y, speed.x)..normalize()) * (a * 1.6), _turn(speed, a) * 1.05, dropRadius, drop: true),
+        ];
+        world.destroyBody(s.body);
+        shots
+          ..clear()
+          ..add(drops[1])
+          ..add(drops[0])
+          ..add(drops[2]);
+      case MsHero.crayo:
+        final dir = speed.length < .1 ? Vector2(1, 0) : speed.normalized();
+        s.body.linearVelocity = dir * math.max(17.0, speed.length * 1.9);
+        s.body.gravityScale = Vector2.all(.25);
+        s.pierce = true;
+    }
+    _events.add(MsEvent(MsEventKind.power, x: at.x, y: at.y, text: s.hero.name));
+    return true;
+  }
+
+  static Vector2 _turn(Vector2 v, double a) {
+    final c = math.cos(a), s = math.sin(a);
+    return Vector2(v.x * c - v.y * s, v.x * s + v.y * c);
+  }
+
+  /// Rubby's boing: everything within reach in front of him is pushed away
+  /// (and the blocks take a knock).
+  void _boing(Vector2 at, Vector2 dir) {
+    const reach = 2.6;
+    for (final o in world.bodies) {
+      if (o.bodyType != BodyType.dynamic || o.userData is MsShot) continue;
+      final d = o.position - at;
+      final dist = d.length;
+      if (dist > reach || d.dot(dir) < -.4) continue;
+      final k = 1 - dist / reach;
+      final push = (dist < .05 ? dir.clone() : (d.normalized()..add(dir)..normalize()))..scale(o.mass * 5.5 * k);
+      o.applyLinearImpulse(push);
+      final block = blockOf(o);
+      if (block != null && block.letter == null) block.health -= 1.6 * k;
+      if (o.userData case final MsMonster m when !m.friend) m.startled = time;
+    }
+  }
+
+  /// Where a hero pulled by [p] would go (no blocks in the way): one dot
   /// every [every] seconds while it is on the screen.
   static List<Vector2> path(Vector2 p, {int dots = 18, double every = .07}) {
     final v = velocity(p);
@@ -577,6 +681,7 @@ class MsGame {
     switch (phase) {
       case MsPhase.build:
         if (phaseTime > 1.3) {
+          _refill();
           _set(MsPhase.aim);
           _ask();
         }
@@ -620,22 +725,23 @@ class MsGame {
     _standUp();
     switch (phase) {
       case MsPhase.flying:
-        final s = shot!;
-        s.time += dt;
-        if (!s.gone) {
+        final v = shot?.volley;
+        if (v != null) v.time += dt;
+        for (final s in shots) {
+          if (s.gone) continue;
           final b = s.body;
           s.trail.add(b.position.clone());
           if (s.trail.length > 14) s.trail.removeAt(0);
           s.still = b.linearVelocity.length < .35 ? s.still + dt : 0;
           final out = b.position.x > width + 1 || b.position.x < -1 || b.position.y < -2;
-          if (out || s.still > .6 || s.time > 7) _ballGone(s);
+          if (out || s.still > .6 || (v?.time ?? 0) > 7) _shotGone(s);
         }
-        if (s.gone) _set(MsPhase.settle);
+        if (shots.every((s) => s.gone)) _set(MsPhase.settle);
       case MsPhase.settle:
         _quiet = _moving() ? 0 : _quiet + dt;
         if (_quiet > .45 || phaseTime > 3.2) _afterShot();
       case MsPhase.cleared:
-        if (phaseTime > 3.0) _nextTower();
+        if (phaseTime > 3.0) _nextRoom();
       default:
     }
   }
@@ -661,21 +767,22 @@ class MsGame {
     return false;
   }
 
-  void _ballGone(MsShot s) {
+  void _shotGone(MsShot s) {
     if (s.gone) return;
     s.gone = true;
-    _events.add(MsEvent(MsEventKind.ballGone, x: s.body.position.x, y: s.body.position.y, text: s.kind.name));
+    s.restAt = s.body.position.clone();
+    _events.add(MsEvent(MsEventKind.ballGone, x: s.body.position.x, y: s.body.position.y, text: s.hero.name));
     world.destroyBody(s.body);
   }
 
   void _afterShot() {
-    final s = shot;
-    shot = null;
-    var next = s != null && s.hitTarget;
-    if (s != null && !next) {
+    final v = shot?.volley;
+    shots.clear();
+    var next = v != null && v.hitTarget;
+    if (v != null && !next) {
       misses++;
       wasted++;
-      if (!s.wrongSaid) _events.add(const MsEvent(MsEventKind.miss));
+      if (!v.wrongSaid) _events.add(const MsEvent(MsEventKind.miss));
       oopsAt = time;
       final t = target;
       if (t != null && misses >= 5) {
@@ -694,19 +801,21 @@ class MsGame {
         _befriend(m, points: 20);
         m.body.applyLinearImpulse(Vector2(0, m.body.mass * 3.5));
       }
-      final bonus = balls.length * 100;
-      score += bonus;
       _set(MsPhase.cleared);
-      _events.add(MsEvent(MsEventKind.cleared, value: bonus.toDouble()));
+      _events.add(MsEvent(MsEventKind.cleared, value: room.toDouble()));
       return;
     }
     if (next) _ask();
-    if (balls.isEmpty) {
-      refills++;
-      balls.addAll([MsBall.eraser, MsBall.eraser, MsBall.eraser]);
-      _events.add(const MsEvent(MsEventKind.refill));
-    }
+    _refill();
     _set(MsPhase.aim);
+  }
+
+  /// An empty line fills up again (fewer stars): there is no losing.
+  void _refill() {
+    if (heroes.isNotEmpty) return;
+    refills++;
+    heroes.addAll([MsHero.rubby, MsHero.rubby]);
+    _events.add(const MsEvent(MsEventKind.refill));
   }
 
   // ---------------------------------------------------------------- contacts
@@ -723,8 +832,6 @@ class MsGame {
       _impact(b, a, j);
     }
     _impacts.clear();
-    final s = shot;
-    if (s != null && s.burstAt != null && !s.gone) _splash(s);
     for (final b in blocks) {
       if (!b.gone && b.health <= 0) _smash(b);
     }
@@ -735,16 +842,16 @@ class MsGame {
     final s = a.userData;
     if (s is MsMonster && !s.friend && b.userData == 'ground' && s.startY > .6) _befriend(s);
     if (s is! MsShot || s.gone) return;
-    if (s.kind == MsBall.water && s.burstAt == null && b.userData != 'hill') s.burstAt = s.body.position.clone();
     final block = blockOf(b);
-    // one letter a shot: the next one is asked first
-    if (block == null || block.letter == null || block.gone || s.hitTarget) return;
-    s.touched.add(block.id);
+    // one letter a fling: the next one is asked first
+    final v = s.volley;
+    if (block == null || block.letter == null || block.gone || v.hitTarget) return;
+    v.touched.add(block.id);
     if (block.letter == ask?.letter) {
-      s.hitTarget = true;
+      v.hitTarget = true;
       _found(block);
-    } else if (!s.wrongSaid) {
-      s.wrongSaid = true;
+    } else if (!v.wrongSaid) {
+      v.wrongSaid = true;
       _events.add(MsEvent(MsEventKind.wrong, x: block.position.x, y: block.position.y, text: block.letter!, ask: ask));
     }
   }
@@ -782,11 +889,20 @@ class MsGame {
   void _impact(Body a, Body b, double j) {
     final o = a.userData;
     final s = b.userData;
-    final fromBall = s is MsShot;
-    final hit = j * (fromBall ? (s.kind == MsBall.star ? 3.0 : 1.6) : 1.0);
+    if (o is MsShot) {
+      o.hitAt = time;
+      o.hitHard = math.min(1, j / 6);
+    }
+    final fromHero = s is MsShot;
+    final hit = j * (fromHero ? (s.hero == MsHero.crayo ? 2.2 : 1.6) : 1.0);
     if (o is MsBlock && !o.gone) {
       if (j > 1.2) _knock(o.material, o.position, j);
       if (o.letter != null) return;
+      // Crayo's dash goes through wood and ice
+      if (s is MsShot && s.pierce && o.material != MsMaterial.stone) {
+        o.health = 0;
+        return;
+      }
       if (hit > 1.0) {
         o.health -= hit - 1.0;
         if (!o.cracked && o.damage > .4 && o.health > 0) {
@@ -812,6 +928,19 @@ class MsGame {
     friends++;
     score += points;
     _events.add(MsEvent(MsEventKind.friend, x: m.position.x, y: m.position.y, text: m.kind, value: points.toDouble()));
+    _fill(points);
+  }
+
+  /// Smashing fills the Smash meter; full, a bonus hero joins the line.
+  void _fill(int points) {
+    if (phase == MsPhase.cleared || phase == MsPhase.done) return;
+    meter += points / meterPoints;
+    if (meter < 1) return;
+    meter -= 1;
+    bonuses++;
+    final hero = level.heroes.contains(MsHero.crayo) && bonuses.isEven ? MsHero.crayo : MsHero.rubby;
+    heroes.add(hero);
+    _events.add(MsEvent(MsEventKind.bonus, text: hero.name));
   }
 
   void _smash(MsBlock b) {
@@ -823,27 +952,7 @@ class MsGame {
     score += points;
     _events.add(MsEvent(MsEventKind.smash, x: b.position.x, y: b.position.y, material: b.material, value: points.toDouble(), text: b.shape.name));
     _remove(b);
-  }
-
-  /// A water balloon bursts: a splash that pushes everything near away.
-  void _splash(MsShot s) {
-    final at = s.burstAt!;
-    _events.add(MsEvent(MsEventKind.splash, x: at.x, y: at.y));
-    const reach = 2.0;
-    for (final o in world.bodies) {
-      if (o.bodyType != BodyType.dynamic || o == s.body) continue;
-      final d = o.position - at;
-      final dist = d.length;
-      if (dist > reach) continue;
-      final k = 1 - dist / reach;
-      o.applyLinearImpulse((dist < .05 ? Vector2(1, .3) : d.normalized())..scale(o.mass * 4.5 * k));
-      final block = blockOf(o);
-      if (block != null && block.letter == null) block.health -= 1.4 * k;
-      if (o.userData case final MsMonster m when !m.friend) m.startled = time;
-    }
-    s.gone = true;
-    world.destroyBody(s.body);
-    if (phase == MsPhase.flying) _set(MsPhase.settle);
+    _fill(points * 2);
   }
 }
 
