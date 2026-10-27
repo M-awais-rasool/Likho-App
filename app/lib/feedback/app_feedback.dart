@@ -259,6 +259,25 @@ class AppFeedback {
   /// A monster is knocked (dizzy stars).
   void bonk() => _go(Sfx.msBonk, HapticCue.tick, volume: .8);
 
+  /// A hero hops into the slingshot.
+  void heroHop() => _go(Sfx.msHup, null, volume: .7);
+
+  /// A hero is flung ("wheee").
+  void heroFlung() => _go(Sfx.msWhee, null, volume: .7);
+
+  /// A hero's power: Rubby's boing, Inky's split, Crayo's zoom.
+  void heroPower(String hero) => _go(switch (hero) {
+    'inky' => Sfx.msSplit,
+    'crayo' => Sfx.msZoom,
+    _ => Sfx.msBoing,
+  }, HapticCue.press);
+
+  /// A bonus hero joins the line (the Smash meter is full).
+  void bonusHero() => _go(Sfx.msBonus, HapticCue.reward);
+
+  /// A hero vanishes in a puff where it stopped.
+  void poof() => _go(Sfx.msPoof, null, volume: .6);
+
   void launch() => _go(Sfx.msLaunch, HapticCue.press);
 
   /// A block knocked ([hard] 0..1), by what it is made of.

@@ -1385,6 +1385,60 @@ Map<String, (Snd Function(), bool)> smashLife() {
   return {for (final e in sfx().entries) e.key: (e.value, false)};
 }
 
+/// Monster Smash's heroes: a hop into the slingshot, a "wheee" as they fly,
+/// each one's power, a bonus hero, a poof. Made last, so every older sound
+/// keeps its take.
+Map<String, (Snd Function(), bool)> smashHeroes() {
+  // a little voice gliding from [f0] to [f1] (the heroes' "hup" and "wheee")
+  Snd glide(double f0, double f1, double dur, {double vib = 7, double depth = .03, double formant = 1300}) {
+    final x = Snd(dur + .05);
+    var ph = 0.0;
+    for (var i = 0; i < x.s.length; i++) {
+      final t = i / sr;
+      final k = math.min(1.0, t / dur);
+      final f = (f0 + (f1 - f0) * k) * (1 + depth * math.sin(2 * math.pi * vib * t));
+      ph += 2 * math.pi * f / sr;
+      final e = math.min(1.0, t / .015) * math.exp(-math.max(0, t - dur * .7) / (dur * .2));
+      x.s[i] = (math.sin(ph) + .5 * math.sin(2 * ph) + .3 * math.sin(3 * ph) + .15 * math.sin(4 * ph)) * e * .5;
+    }
+    return filter(x, (b) => b.bandpass(formant, .7));
+  }
+
+  Map<String, Snd Function()> sfx() => {
+    // a hero hops from the line into the slingshot
+    'ms_hup': () => master(houseEq(Snd(.4)..mix(glide(420, 760, .12, formant: 1500))..mix(bloop(f0: 300, f1: 700, dur: .08, amp: .4), at: .02)), feedback - 4),
+    // flung: "wheee!"
+    'ms_whee': () => master(houseEq(room(Snd(.9)..mix(glide(880, 620, .55, vib: 9, depth: .05, formant: 1700)), wet: .1)), feedback - 3),
+    // Rubby's power: a big rubbery boing and a whomp
+    'ms_boing': () => master(
+      houseEq(room(Snd(.9)..mix(boing(f0: 180, f1: 520, dur: .45, amp: 1))..mix(thump(f0: 150, f1: 70, dur: .2, amp: .8))..mix(whoosh(.3, 500, 2500, amp: .4, q: 1.2), at: .02), wet: .12)),
+      feedback,
+    ),
+    // Inky splits: three quick plips
+    'ms_split': () {
+      final x = Snd(.6);
+      for (final (i, f) in [900.0, 1200.0, 1500.0].indexed) {
+        x.mix(bloop(f0: f * .6, f1: f, dur: .07, amp: .6), at: i * .06);
+      }
+      return master(houseEq(room(x, wet: .1)), feedback - 2);
+    },
+    // Crayo zooms: a rising rush and a zing
+    'ms_zoom': () => master(houseEq(room(Snd(.8)..mix(whoosh(.5, 400, 6000, amp: 1, q: 1.6, peakAt: .5))..mix(bell(hz('A6'), dur: .2, bright: 1.2, amp: .25), at: .2), wet: .1)), feedback - 1),
+    // a bonus hero joins the line
+    'ms_bonus': () {
+      final x = Snd(1.0);
+      for (final (i, n) in ['D6', 'F#6', 'A6', 'D7'].indexed) {
+        x.mix(kalimba(hz(n), dur: .3, amp: .6), at: i * .07);
+      }
+      x.mix(sparkle(.5, count: 7, seed: 911, amp: .3), at: .2);
+      return master(houseEq(room(x, wet: .16)), celebrate - 2);
+    },
+    // a hero vanishes in a puff
+    'ms_poof': () => master(houseEq(Snd(.45)..mix(whoosh(.25, 2500, 600, amp: .6, q: 1, peakAt: .2))..mix(pop(600, 300, dur: .06, amp: .4, body: .2))), soft),
+  };
+  return {for (final e in sfx().entries) e.key: (e.value, false)};
+}
+
 void main() {
   final dir = Directory('assets/sfx')..createSync(recursive: true);
   final p = palette();
@@ -1403,7 +1457,7 @@ void main() {
     bytes += File(path).lengthSync();
     stdout.writeln('${e.key.padRight(16)} ${(snd.seconds * 2000).round().toString().padLeft(5)} ms (loop)');
   }
-  for (final e in {...runner(), ...smash(), ...slicing(), ...smashLife()}.entries) {
+  for (final e in {...runner(), ...smash(), ...slicing(), ...smashLife(), ...smashHeroes()}.entries) {
     final (make, half) = e.value;
     final snd = make();
     final path = '${dir.path}/${e.key}.wav';
@@ -1411,5 +1465,5 @@ void main() {
     bytes += File(path).lengthSync();
     stdout.writeln('${e.key.padRight(16)} ${(snd.seconds * (half ? 2000 : 1000)).round().toString().padLeft(5)} ms');
   }
-  stdout.writeln('${p.length + music().length + runner().length + smash().length + slicing().length + smashLife().length} sounds, ${(bytes / 1024).round()} KB');
+  stdout.writeln('${p.length + music().length + runner().length + smash().length + slicing().length + smashLife().length + smashHeroes().length} sounds, ${(bytes / 1024).round()} KB');
 }
