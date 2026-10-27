@@ -7,20 +7,52 @@ import 'package:forge2d/forge2d.dart' show Vector2;
 
 import '../../../design/tokens.dart';
 import '../../../game/monster_smash/ms_engine.dart';
+import 'ms_camera.dart';
+import 'ms_heroes.dart';
 import 'ms_monsters.dart';
 import 'ms_scene.dart';
 
-/// Paints the world: the hill, the slingshot with the ball in its leather
-/// pouch, the blocks with their letters and cracks, the monsters, the ball
-/// and its trail, and the aiming dots while the child pulls.
+/// A hero to draw: where (world), how big (world radius), how it looks.
+class MsHeroSprite {
+  const MsHeroSprite(this.hero, this.at, this.radius, this.look);
+  final MsHero hero;
+  final Vector2 at;
+  final double radius;
+  final MsHeroLook look;
+}
+
+/// Paints the world as the camera sees it: the hill with the heroes waiting
+/// in line, the slingshot with the hero in its leather pouch, the blocks
+/// with their letters and cracks, the monsters, the heroes in the air with
+/// their trails, and the aiming dots while the child pulls. [shift] slides
+/// the whole room sideways (walking to the next room).
 class MsWorldPainter extends CustomPainter {
-  MsWorldPainter({required this.view, required this.game, required this.lives, required this.ballIn, required this.time});
+  MsWorldPainter({
+    required this.view,
+    required this.camera,
+    required this.game,
+    required this.lives,
+    required this.line,
+    required this.sling,
+    required this.flying,
+    required this.time,
+    this.shift = 0,
+    this.popIn = true,
+  });
   final MsView view;
+  final MsCamera camera;
   final MsGame game;
   final MsMonsterLives lives;
 
-  /// How far the next ball has dropped into the pouch (0 just now, 1 in).
-  final double ballIn;
+  /// The heroes waiting, the one in the slingshot (null: the band is
+  /// empty), and those flying or resting where they stopped.
+  final List<MsHeroSprite> line, flying;
+  final MsHeroSprite? sling;
+
+  /// Sideways (base pixels), and whether a room's blocks pop in as it is
+  /// built (the first room; the next ones walk in).
+  final double shift;
+  final bool popIn;
 
   /// The screen's clock (glows, arrows); the monsters use the game's.
   final double time;
@@ -40,23 +72,28 @@ class MsWorldPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    canvas.save();
+    camera.transform(canvas);
+    canvas.translate(shift, 0);
     _hill(canvas);
-    final sling = _sling(canvas);
-    final loaded = game.phase == MsPhase.aim && game.balls.isNotEmpty;
-    final ball = loaded ? view.of(game.ballInSling) : null;
-    if (ball == null) {
+    for (final h in line.reversed) {
+      _hero(canvas, h);
+    }
+    final tips = _sling(canvas);
+    final s = sling;
+    final pull = game.pull;
+    if (s == null) {
       // an empty band hangs between the fork's tips, the pouch in the middle
-      _emptyBand(canvas, sling.$1, sling.$2);
+      _emptyBand(canvas, tips.$1, tips.$2);
     } else {
-      // the back strand, the leather pouch cupping the ball's back, the ball
-      // (dropping in with a little bounce), the front strand
-      final pull = game.pull;
+      // both strands to the leather pouch cupping the hero's back, the
+      // hero on top (a long crayon never gets a strand across it)
+      final at = view.of(s.at);
       final d = pull == null || pull.length < 1e-3 ? const Offset(1, 0) : Offset(-pull.x, pull.y) / pull.length;
-      _band(canvas, sling.$1, ball);
-      _pouch(canvas, ball, d);
-      final drop = 1 - Curves.easeOutBack.transform(ballIn);
-      _ball(canvas, game.balls.first, ball - Offset(0, drop * .9 * _ppm), 0, .6 + .4 * Curves.easeOut.transform(ballIn));
-      _band(canvas, sling.$2, ball, front: true);
+      _band(canvas, tips.$1, at - d * (s.radius * _ppm * .6));
+      _band(canvas, tips.$2, at - d * (s.radius * _ppm * .6), front: true);
+      _pouch(canvas, at, d, s.radius * _ppm);
+      _hero(canvas, s);
     }
     for (final b in game.blocks) {
       if (!b.gone) _block(canvas, b);
@@ -64,13 +101,20 @@ class MsWorldPainter extends CustomPainter {
     for (final m in game.monsters) {
       _monster(canvas, m);
     }
-    _shot(canvas);
-    if (game.pull != null && game.pull!.length > MsGame.minPull * .6) _aim(canvas, game.pull!);
+    _trails(canvas);
+    for (final h in flying) {
+      _hero(canvas, h);
+    }
+    if (pull != null && pull.length > MsGame.minPull * .6) _aim(canvas, pull);
+    canvas.restore();
+    _offscreen(canvas);
   }
+
+  void _hero(Canvas canvas, MsHeroSprite h) => MsHeroArt.paint(canvas, h.hero, view.of(h.at), h.radius * _ppm, h.look);
 
   /// How far the build of a tower has come for thing [i] (0 hidden, 1 in).
   double _pop(int i) {
-    if (game.phase != MsPhase.build) return 1;
+    if (game.phase != MsPhase.build || !popIn) return 1;
     final t = ((game.phaseTime - .15 - i * .05) / .4).clamp(0.0, 1.0);
     return Curves.elasticOut.transform(t);
   }
@@ -92,9 +136,11 @@ class MsWorldPainter extends CustomPainter {
   void _hill(Canvas canvas) {
     final img = MsSprites.of(MsArt.hill);
     if (img == null) return;
-    // its flat top (a fifth down the picture) on the hill's top
-    const w = 4.0;
-    final h = w * img.height / img.width;
+    // its flat top (a fifth down the picture) on the hill's top, the
+    // picture stretched wide so its flat top is the hill's (a little over
+    // half the picture's width)
+    const w = MsGame.hillHalfTop * 2 / .57;
+    final h = 4.0 * img.height / img.width;
     final top = view.at(MsGame.hillX - w / 2, MsGame.hillTop + h * .2);
     _image(canvas, MsArt.hill, Rect.fromLTWH(top.dx, top.dy, w * _ppm, h * _ppm));
   }
@@ -117,23 +163,16 @@ class MsWorldPainter extends CustomPainter {
       ..color = front ? SmashColors.band : SmashColors.bandBack
       ..strokeWidth = (.15 - .06 * stretch) * _ppm
       ..strokeCap = StrokeCap.round;
-    // the back strand runs on behind the ball to the pouch (the ball covers
-    // it); the front one stops at the ball's edge, never across its face
-    final r = MsGame.ballRadius[MsBall.eraser]! * _ppm * .8;
-    final dir = ball - tip;
-    if (dir.distance < r) return;
-    final end = ball + dir / dir.distance * (front ? -r : r);
-    canvas.drawLine(tip, end, paint);
+    canvas.drawLine(tip, ball, paint);
   }
 
   /// The leather pouch behind the ball ([dir]: where it flies, on the
   /// screen).
-  void _pouch(Canvas canvas, Offset ball, Offset dir) {
-    final r = MsGame.ballRadius[MsBall.eraser]! * _ppm;
+  void _pouch(Canvas canvas, Offset ball, Offset dir, double r) {
     canvas.save();
-    canvas.translate(ball.dx - dir.dx * r * .7, ball.dy - dir.dy * r * .7);
+    canvas.translate(ball.dx - dir.dx * r * .75, ball.dy - dir.dy * r * .75);
     canvas.rotate(math.atan2(dir.dy, dir.dx));
-    final cup = Rect.fromCenter(center: Offset.zero, width: r * 1.1, height: r * 2.1);
+    final cup = Rect.fromCenter(center: Offset.zero, width: r * .8, height: r * 1.6);
     canvas.drawOval(cup, Paint()..color = SmashColors.pouch);
     canvas.drawOval(
       cup,
@@ -318,45 +357,37 @@ class MsWorldPainter extends CustomPainter {
     }
   }
 
-  // ------------------------------------------------------------ the ball
+  // ------------------------------------------------------------ the heroes in the air
 
-  void _ball(Canvas canvas, MsBall kind, Offset at, double angle, double scale) {
-    final r = MsGame.ballRadius[kind]! * _ppm * scale;
-    canvas.save();
-    canvas.translate(at.dx, at.dy);
-    canvas.rotate(-angle);
-    // the glow of the star ball is outside its circle
-    final k = kind == MsBall.star ? 1.25 : 1.05;
-    _image(canvas, MsArt.ball(kind), Rect.fromCenter(center: Offset.zero, width: r * 2 * k, height: r * 2 * k));
-    canvas.restore();
+  void _trails(Canvas canvas) {
+    for (final s in game.shots) {
+      final n = s.trail.length;
+      for (var i = 0; i < n - 1; i++) {
+        final k = (i + 1) / n;
+        canvas.drawCircle(view.of(s.trail[i]), (2 + 5 * k) * _ppm / 58 * (s.drop ? .7 : 1), Paint()..color = SmashColors.trail.withValues(alpha: .15 + .45 * k));
+      }
+    }
   }
 
-  void _shot(Canvas canvas) {
+  /// A hero above the screen: a little one on the top edge shows where.
+  void _offscreen(Canvas canvas) {
     final s = game.shot;
     if (s == null || s.gone) return;
-    final n = s.trail.length;
-    for (var i = 0; i < n - 1; i++) {
-      final k = (i + 1) / n;
-      canvas.drawCircle(view.of(s.trail[i]), (2 + 5 * k) * _ppm / 58, Paint()..color = SmashColors.trail.withValues(alpha: .15 + .45 * k));
-    }
-    final at = view.of(s.body.position);
-    _ball(canvas, s.kind, at, s.body.angle, 1);
-    // above the screen: a little ball on the top edge shows where it is
-    if (at.dy < -MsGame.ballRadius[s.kind]! * _ppm) {
-      final x = at.dx.clamp(20.0, view.screen.width - 20);
-      final far = (-at.dy / view.screen.height).clamp(0.0, 1.0);
-      canvas.drawCircle(Offset(x, _markY), 20 - 6 * far, Paint()..color = MonsterColors.panel);
-      _ball(canvas, s.kind, Offset(x, _markY), s.body.angle, .55 - .2 * far);
-      final up = Path()
-        ..moveTo(x, _markY - 34)
-        ..lineTo(x - 8, _markY - 24)
-        ..lineTo(x + 8, _markY - 24)
-        ..close();
-      canvas.drawPath(up, Paint()..color = MonsterColors.panel);
-    }
+    final at = camera.apply(view.of(s.body.position) + Offset(shift, 0));
+    if (at.dy > -s.radius * _ppm) return;
+    final x = at.dx.clamp(20.0, view.screen.width - 20);
+    final far = (-at.dy / view.screen.height).clamp(0.0, 1.0);
+    canvas.drawCircle(Offset(x, _markY), 20 - 6 * far, Paint()..color = MonsterColors.panel);
+    MsHeroArt.paint(canvas, s.hero, Offset(x, _markY), 13 - 4 * far, const MsHeroLook(face: MsFace.yell));
+    final up = Path()
+      ..moveTo(x, _markY - 34)
+      ..lineTo(x - 8, _markY - 24)
+      ..lineTo(x + 8, _markY - 24)
+      ..close();
+    canvas.drawPath(up, Paint()..color = MonsterColors.panel);
   }
 
-  /// Where the ball will go: dots along its path, smaller further on.
+  /// Where the hero will go: dots along its path, smaller further on.
   void _aim(Canvas canvas, Vector2 pull) {
     final dots = MsGame.path(pull);
     for (var i = 0; i < dots.length; i++) {

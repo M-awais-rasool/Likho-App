@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:forge2d/forge2d.dart' show Vector2;
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../../data/course_providers.dart';
@@ -23,21 +24,48 @@ import '../../../mascot/mascot.dart';
 import '../../gameplay/widgets/game_buttons.dart';
 import '../game_ui.dart';
 import '../monster_defense/md_effects.dart';
+import 'ms_backdrop.dart';
+import 'ms_camera.dart';
+import 'ms_heroes.dart';
 import 'ms_lines.dart';
 import 'ms_monsters.dart';
 import 'ms_painter.dart';
 import 'ms_scene.dart';
 
-/// Monster Smash: played sideways, like Angry Birds. Pencil stands on a
-/// little hill with a big slingshot; on the right Monster Defense's silly
+/// Monster Smash: played sideways, like Angry Birds 2. A level of one to
+/// three rooms in a meadow that moves with the camera; the Stationery Squad
+/// (Rubby, Inky, Crayo) waits in line beside the slingshot, and the cards
+/// at the bottom pick who goes next. On the right Monster Defense's silly
 /// monsters sit on towers of wood, ice and stone, some blocks with letters.
-/// Pencil asks for a letter, the child drags the ball back (dots show where
-/// it will go) and lets go: the block bursts, the tower falls and the
-/// monsters tumbling down turn into friends. Three towers make a game. See
-/// [MsGame] for the rules.
+/// Pencil's voice asks for a letter, the child drags the hero back (dots
+/// show where it will go) and lets go, taps while it flies for its power;
+/// the block bursts, the tower falls and the monsters tumbling down turn
+/// into friends. See [MsGame] for the rules.
 class MonsterSmashScreen extends ConsumerStatefulWidget {
-  const MonsterSmashScreen({super.key, required this.onDone, this.asks, this.seed});
+  const MonsterSmashScreen({
+    super.key,
+    required this.onDone,
+    this.level,
+    this.world = 'Letter Land',
+    this.onNext,
+    this.ownOrientation = true,
+    this.asks,
+    this.seed,
+  });
+
+  /// Back to the levels (or the games).
   final VoidCallback onDone;
+
+  /// The level; null plays the old three rooms (tests, the preview).
+  final MsLevel? level;
+  final String world;
+
+  /// The next level (the result's big button); null for the last.
+  final VoidCallback? onNext;
+
+  /// Turns the screen sideways itself and back on the way out (not when
+  /// the levels screen around it already did).
+  final bool ownOrientation;
 
   /// Tests: fixed letters and dice.
   final MsAsks? asks;
@@ -56,6 +84,14 @@ class _Pop {
   final Color color, edge;
 }
 
+/// A hero resting a moment where it stopped, before it vanishes in a puff.
+class _Rest {
+  _Rest(this.hero, this.at, this.radius, this.born);
+  final MsHero hero;
+  final Vector2 at;
+  final double radius, born;
+}
+
 class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   late final Ticker _ticker;
   final _frame = ValueNotifier<int>(0);
@@ -66,6 +102,7 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
   // Pencil's voice (he is not in this game: his words ask the letters)
   final _mascot = MascotController();
   late final _lives = MsMonsterLives(random: _rnd);
+  late final MsLevel _level = widget.level ?? MsLevels.classic();
 
   MsGame? _game;
   MsAsks? _asks;
@@ -76,7 +113,6 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
   Duration? _last;
   double _clock = 0;
   bool _started = false, _paused = false, _showResult = false, _record = false;
-  late bool _firstPlay;
   int _best = 0;
 
   // what Pencil says
@@ -86,10 +122,14 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
   Completer<void>? _shown;
   Timer? _captionTimer;
   final _timers = <Timer>[];
-  bool _pullHinted = false;
+  bool _pullHinted = false, _tapHinted = false;
   int _stretch = 0;
+
+  // the heroes: the next one hopping into the slingshot, the line
+  // cheering, the ones resting where they stopped
   bool _ballIn = false;
-  double _ballInAt = -9;
+  double _ballInAt = -9, _cheerAt = -9, _bonusAt = -9;
+  final _rests = <_Rest>[];
   double _bonkAt = -9;
 
   // effects
@@ -98,24 +138,17 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
   double _shake = 0, _shownScore = 0, _clearedAt = -9;
 
   MsView? _view;
+  MsCamera? _cam;
   EdgeInsets _pad = EdgeInsets.zero;
-
-  /// The tower's background (the last one stays for the result).
-  MsBackground get _bg {
-    final g = _game;
-    final t = g == null ? 0 : (g.tower.clamp(0, g.towers - 1));
-    return MsBackground.all[t % MsBackground.all.length];
-  }
 
   @override
   void initState() {
     super.initState();
-    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
+    if (widget.ownOrientation) SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
     WidgetsBinding.instance.addObserver(this);
     _ticker = createTicker(_onTick)..start();
     _voice;
     _voiceOn;
-    _firstPlay = (ref.read(myGamesProvider)[GameIds.smash]?.plays ?? 0) == 0;
     _fb.prepare(Sfx.monsterSmash);
     _mascot.speakingListenable.addListener(_duck);
     _load();
@@ -127,15 +160,12 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    for (final b in MsBackground.all) {
-      precacheImage(AssetImage(b.asset), context);
-    }
     MsSprites.load(createLocalImageConfiguration(context));
   }
 
   @override
   void dispose() {
-    SystemChrome.setPreferredOrientations(const []);
+    if (widget.ownOrientation) SystemChrome.setPreferredOrientations(const []);
     WidgetsBinding.instance.removeObserver(this);
     _captionTimer?.cancel();
     for (final t in _timers) {
@@ -168,9 +198,10 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
     if (!mounted) return;
     setState(() {
       _asks = asks;
-      _game = MsGame(asks: asks!, seed: widget.seed);
+      _game = MsGame(asks: asks!, level: _level, seed: widget.seed);
     });
-    if (_firstPlay) _say(MsLines.intro, hold: true);
+    final hero = _level.newHero;
+    if (hero != null) _say(MsLines.meet(hero), hold: true);
   }
 
   // ------------------------------------------------------------ the clock
@@ -186,12 +217,10 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
         _on(e, g);
       }
       _hintPull(g);
-      // the next ball drops into the pouch
-      final ready = g.phase == MsPhase.aim && g.balls.isNotEmpty;
-      if (ready && !_ballIn) {
-        _fb.reload();
-        _ballInAt = _clock;
-      }
+      _hintTap(g);
+      // the next hero hops into the slingshot
+      final ready = g.phase == MsPhase.aim && g.heroes.isNotEmpty;
+      if (ready && !_ballIn) _hop();
       _ballIn = ready;
       _lives.update(dt, g, giggle: _fb.giggle, eek: _fb.eek);
       _stretched(g);
@@ -200,12 +229,41 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
       }
       _bits.removeWhere((b) => b.done);
       _pops.removeWhere((p) => _clock - p.born > 1.2);
+      _rests.removeWhere((r) => _clock - r.born > .6);
       _shake *= math.exp(-dt * 9);
       _shownScore += (g.score - _shownScore) * math.min(1, dt * 8);
       if ((g.score - _shownScore).abs() < .5) _shownScore = g.score.toDouble();
+      final v = _view, cam = _cam;
+      if (v != null && cam != null) _steer(g, v, cam, dt);
     }
     _mascot.advance(now);
     _frame.value++;
+  }
+
+  void _hop() {
+    _fb.heroHop();
+    _ballInAt = _clock;
+  }
+
+  /// The camera: the towers first, then the whole room; it follows the
+  /// hero in the air, and comes back once things settle.
+  void _steer(MsGame g, MsView v, MsCamera cam, double dt) {
+    switch (g.phase) {
+      case MsPhase.build when g.room == 0:
+        if (g.phaseTime < 1.0) {
+          cam.look(v.at(12.4, 2.6), 1.35);
+        } else {
+          cam.wide();
+        }
+      case MsPhase.flying:
+        final s = g.shot;
+        if (s != null && !s.gone) cam.look(v.of(s.body.position) + Offset(v.ppm * 2.2, 0), 1.28);
+      case MsPhase.settle:
+        if (g.phaseTime > .5) cam.wide();
+      default:
+        cam.wide();
+    }
+    cam.step(dt);
   }
 
   /// The band creaks tighter as the child pulls further.
@@ -223,9 +281,17 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
 
   /// The first shot of a game: if the child waits, Pencil says how.
   void _hintPull(MsGame g) {
-    if (_pullHinted || g.shots > 0 || g.phase != MsPhase.aim || g.pull != null || g.phaseTime < 7) return;
+    if (_pullHinted || g.flings > 0 || g.phase != MsPhase.aim || g.pull != null || g.phaseTime < 7) return;
     _pullHinted = true;
     _say(MsLines.pullHint);
+  }
+
+  /// The level's new hero flies for the first time: "Tap now!".
+  void _hintTap(MsGame g) {
+    final s = g.shot;
+    if (_tapHinted || s == null || s.hero != _level.newHero || s.volley.powered || s.volley.time < .25) return;
+    _tapHinted = true;
+    _say(MsLines.tap);
   }
 
   // ------------------------------------------------------------ what happened
@@ -236,16 +302,30 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
     switch (e.kind) {
       case MsEventKind.build:
         _fb.whoosh();
-        if (e.value > 0) _say(MsLines.tower);
+        if (e.value == 0 && v != null) _cam?.snap(v.at(12.4, 2.6), 1.35);
       case MsEventKind.ask:
         _ask(e.ask!);
       case MsEventKind.grab:
         break;
+      case MsEventKind.pick:
+        _hop();
       case MsEventKind.launch:
         _fb.launch();
+        _after(60, _fb.heroFlung);
+      case MsEventKind.power:
+        _fb.heroPower(e.text);
+        _shake = math.max(_shake, 4);
+        _bits.addAll(
+          MdBit.burst(at(), _rnd, n: 14, speed: 220, colors: switch (e.text) {
+            'inky' => const [HeroColors.lid, Color(0xFF4C7BEA), Color(0xFF7DA2F2)],
+            'crayo' => const [Color(0xFFFF9A3C), Color(0xFFFFE07A), HeroColors.lid],
+            _ => const [Color(0xFFFF8DAA), HeroColors.lid, Color(0xFFFFB3C6)],
+          }),
+        );
       case MsEventKind.hit:
         _fb.pow();
         _shake = 9;
+        _cheerAt = _clock;
         _pops.add(_Pop('${e.text}!', at(), _clock, color: LikhoColors.success, edge: GameColors.successDeep, size: 56));
         _bits
           ..addAll(MdBit.burst(at(), _rnd, n: 18, speed: 260))
@@ -284,12 +364,14 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
         _bits
           ..addAll(MdBit.burst(at(), _rnd, n: 10, speed: 150, colors: const [MonsterColors.gem, MonsterColors.magicCore, MonsterColors.spark]))
           ..add(MdBit.score(at() - const Offset(0, 30), e.value.round()));
-      case MsEventKind.splash:
-        _fb.splash();
-        _shake = math.max(_shake, 6);
-        _bits.addAll(MdBit.burst(at(), _rnd, n: 22, speed: 300, colors: SmashColors.water));
       case MsEventKind.ballGone:
-        _bits.addAll(MdBit.dust(at(), 30, _rnd, n: 3));
+        final hero = MsHero.values.byName(e.text);
+        final s = g.shots.where((s) => s.restAt != null && s.restAt!.x == e.x && s.restAt!.y == e.y).firstOrNull;
+        _rests.add(_Rest(hero, Vector2(e.x, e.y), s?.radius ?? MsGame.heroRadius[hero]!, _clock));
+        _after(450, () {
+          _fb.poof();
+          _bits.addAll(MdBit.dust(at(), 40, _rnd, n: 5));
+        });
       case MsEventKind.miss:
         if (g.misses.isOdd) _say(MsLines.miss);
         final a = g.ask;
@@ -301,15 +383,19 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
       case MsEventKind.refill:
         _fb.reward();
         _say(MsLines.refill);
+      case MsEventKind.bonus:
+        _fb.bonusHero();
+        _bonusAt = _clock;
       case MsEventKind.cleared:
         _fb.levelComplete();
         _clearedAt = _clock;
+        _cheerAt = _clock;
         if (v != null) _bits.addAll(MdBit.confetti(v.screen.width, _rnd, n: 50));
         _say(MsLines.cleared);
       case MsEventKind.done:
         _fb.smashMusic(false);
         final child = ref.read(familyProvider).active.id;
-        _record = ref.read(gameProgressProvider.notifier).record(child, GameIds.smash, score: g.score, stars: g.stars);
+        _record = ref.read(gameProgressProvider.notifier).record(child, GameIds.smash, score: g.score, stars: g.stars, level: widget.level?.number);
         _after(2200, () => _say(_record ? MsLines.record : MsLines.done));
         _after(1400, () => setState(() => _showResult = true));
     }
@@ -402,13 +488,15 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
     if (asks == null) return;
     _fb.press();
     setState(() {
-      _game = MsGame(asks: asks, seed: widget.seed == null ? null : widget.seed! + 1);
+      _game = MsGame(asks: asks, level: _level, seed: widget.seed == null ? null : widget.seed! + 1);
       _started = false;
       _showResult = false;
       _record = false;
       _bits.clear();
       _pops.clear();
+      _rests.clear();
       _shownScore = 0;
+      _tapHinted = false;
     });
     _play();
   }
@@ -440,6 +528,13 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
     widget.onDone();
   }
 
+  void _next() {
+    _fb.press();
+    _voice.stop();
+    _fb.smashMusic(false);
+    widget.onNext?.call();
+  }
+
   void _repeatAsk() {
     final a = _game?.ask;
     if (a == null || _paused) return;
@@ -448,19 +543,161 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
     _say(Prompt(text: a.say, audio: a.audio));
   }
 
+  void _pick(int i) {
+    final g = _game;
+    if (g == null || _paused || !_started) return;
+    if (g.pick(i)) _fb.select();
+  }
+
+  /// A tap anywhere while a hero flies: its power.
+  void _tap(PointerDownEvent _) {
+    final g = _game;
+    if (g == null || _paused || g.phase != MsPhase.flying) return;
+    g.power();
+  }
+
+  Vector2? _world(Offset local) {
+    final v = _view, cam = _cam;
+    if (v == null || cam == null) return null;
+    return v.world(cam.unapply(local));
+  }
+
   void _panStart(DragStartDetails d) {
-    final g = _game, v = _view;
-    if (g == null || v == null || _paused || !_started) return;
-    g.grab(v.world(d.localPosition));
+    final g = _game, p = _world(d.localPosition);
+    if (g == null || p == null || _paused || !_started) return;
+    g.grab(p);
   }
 
   void _panUpdate(DragUpdateDetails d) {
-    final g = _game, v = _view;
-    if (g == null || v == null || _paused) return;
-    g.drag(v.world(d.localPosition));
+    final g = _game, p = _world(d.localPosition);
+    if (g == null || p == null || _paused) return;
+    g.drag(p);
   }
 
   void _panEnd([DragEndDetails? _]) => _game?.release();
+
+  // ------------------------------------------------------------ the heroes
+
+  /// Where the heroes wait on the hill, right to left from the slingshot.
+  static Vector2 _slot(int i, MsHero h) {
+    final r = MsGame.heroRadius[h]!;
+    return Vector2(2.15 - i * .5, MsGame.hillTop + (h == MsHero.crayo ? r * .62 : r));
+  }
+
+  static const _jump = .42;
+
+  /// The heroes waiting, the one in the slingshot and the ones in the air
+  /// (and the one hopping into the slingshot).
+  (List<MsHeroSprite>, MsHeroSprite?, List<MsHeroSprite>) _sprites(MsGame g) {
+    final t = _clock;
+    final aim = g.phase == MsPhase.aim && g.heroes.isNotEmpty;
+    final jt = aim ? ((_clock - _ballInAt) / _jump).clamp(0.0, 1.0) : 1.0;
+    final jumping = aim && jt < 1;
+    final waiting = aim ? g.heroes.sublist(1) : g.heroes;
+    final cheer = _clock - _cheerAt < 1.4;
+    final line = <MsHeroSprite>[];
+    for (var i = 0; i < waiting.length && i < 4; i++) {
+      final h = waiting[i];
+      final to = _slot(i, h);
+      final at = jumping ? Vector2(_slot(i + 1, h).x + (to.x - _slot(i + 1, h).x) * Curves.easeOut.transform(jt), to.y) : to;
+      final p = (t * .55 + i * .37) % 1.0;
+      var hop = p < .1 ? math.sin(p / .1 * math.pi) * .5 : 0.0;
+      if (cheer) hop = math.max(hop, (math.sin((t - _cheerAt) * 9 + i).abs()) * .8 * (1 - (t - _cheerAt) / 1.4));
+      if (jumping) hop = math.max(hop, math.sin(jt * math.pi) * .4);
+      line.add(
+        MsHeroSprite(
+          h,
+          at,
+          MsGame.heroRadius[h]!,
+          MsHeroLook(
+            face: cheer ? MsFace.happy : MsFace.idle,
+            lid: MsHeroArt.blink(t, i * 1.7),
+            look: const Offset(.7, -.1),
+            hop: hop,
+            turn: h == MsHero.crayo ? -.25 : 0,
+          ),
+        ),
+      );
+    }
+    MsHeroSprite? sling;
+    final flying = <MsHeroSprite>[];
+    if (aim) {
+      final h = g.heroes.first;
+      final r = MsGame.heroRadius[h]!;
+      final rest = g.ballInSling;
+      if (jumping) {
+        // the hop from the line into the pouch
+        final from = _slot(0, h);
+        final e = Curves.easeInOut.transform(jt);
+        final at = Vector2(from.x + (rest.x - from.x) * e, from.y + (rest.y - from.y) * e + math.sin(jt * math.pi) * .9);
+        flying.add(MsHeroSprite(h, at, r, MsHeroLook(face: MsFace.happy, squash: .15 * math.sin(jt * math.pi), along: -math.pi / 2)));
+      } else {
+        final pull = g.pull;
+        final k = pull == null ? 0.0 : (pull.length / MsGame.maxPull).clamp(0.0, 1.0);
+        final dir = pull == null || pull.length < 1e-3 ? const Offset(1, 0) : Offset(-pull.x, pull.y) / pull.length;
+        final settle = (_clock - _ballInAt - _jump).clamp(0.0, .3) / .3;
+        sling = MsHeroSprite(
+          h,
+          rest,
+          r,
+          MsHeroLook(
+            face: k > .45 ? MsFace.effort : MsFace.ready,
+            lid: MsHeroArt.blink(t, 5),
+            look: Offset(dir.dx * .8, dir.dy * .5),
+            squash: .14 * k - .2 * (1 - Curves.elasticOut.transform(settle)) * (1 - settle),
+            along: math.atan2(dir.dy, dir.dx),
+            turn: h == MsHero.crayo ? math.atan2(dir.dy, dir.dx) : 0,
+          ),
+        );
+      }
+    }
+    for (final s in g.shots) {
+      if (s.gone) continue;
+      final v = s.body.linearVelocity;
+      final angle = math.atan2(-v.y, v.x);
+      final hit = math.max(0.0, 1 - (g.time - s.hitAt) / .25);
+      final power = s.volley.powered && g.time - s.volley.poweredAt < .6;
+      flying.add(
+        MsHeroSprite(
+          s.hero,
+          s.body.position,
+          s.radius,
+          MsHeroLook(
+            face: power ? MsFace.power : MsFace.yell,
+            squash: hit > 0 ? -.35 * s.hitHard * hit : (v.length * .012).clamp(0.0, .22),
+            along: angle,
+            turn: switch (s.hero) {
+              MsHero.crayo => angle,
+              MsHero.inky => math.atan2(v.y, -v.x) + math.pi / 2,
+              MsHero.rubby => -s.body.angle * .6,
+            },
+          ),
+        ),
+      );
+    }
+    for (final r in _rests) {
+      final k = ((_clock - r.born) / .6).clamp(0.0, 1.0);
+      flying.add(
+        MsHeroSprite(r.hero, r.at, r.radius, MsHeroLook(face: MsFace.happy, scale: 1 - .5 * Curves.easeIn.transform(k), opacity: 1 - Curves.easeIn.transform(k))),
+      );
+    }
+    return (line, sling, flying);
+  }
+
+  /// The room sliding out (cleared) and the next sliding in (built), and
+  /// how far the meadow has walked (base pixels).
+  (double, double) _slide(MsGame g, double w) {
+    const ease = Curves.easeInOutCubic;
+    if (g.phase == MsPhase.cleared && g.phaseTime > 1.9 && g.room < g.rooms - 1) {
+      final p = ease.transform(((g.phaseTime - 1.9) / 1.1).clamp(0.0, 1.0));
+      return (-w * p, g.room * 2 * w + w * p);
+    }
+    if (g.phase == MsPhase.build && g.room > 0) {
+      final p = ease.transform((g.phaseTime / 1.1).clamp(0.0, 1.0));
+      return (w * (1 - p), (g.room - 1) * 2 * w + w + w * p);
+    }
+    return (0, math.max(0, g.room) * 2 * w);
+  }
 
   // ------------------------------------------------------------ build
 
@@ -472,27 +709,26 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark.copyWith(statusBarColor: LikhoColors.clear),
       child: Material(
-        color: LikhoColors.background,
+        color: MeadowColors.skyLow,
         child: LayoutBuilder(
           builder: (context, box) {
             final size = box.biggest;
             final g = _game;
+            final view = _view = (_view != null && _view!.screen == size) ? _view! : MsView(size, MsBackground.meadow);
+            final cam = _cam ??= MsCamera(size);
+            cam.screen = size;
             return Stack(
               children: [
                 Positioned.fill(
-                  child: GestureDetector(
-                    behavior: HitTestBehavior.opaque,
-                    onPanStart: _panStart,
-                    onPanUpdate: _panUpdate,
-                    onPanEnd: _panEnd,
-                    onPanCancel: _panEnd,
-                    child: ValueListenableBuilder<int>(
-                      valueListenable: _frame,
-                      builder: (context, _, _) {
-                        final bg = _bg;
-                        final view = _view = (_view != null && _view!.screen == size && _view!.bg == bg) ? _view! : MsView(size, bg);
-                        return _scene(view, g);
-                      },
+                  child: Listener(
+                    onPointerDown: _tap,
+                    child: GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      onPanStart: _panStart,
+                      onPanUpdate: _panUpdate,
+                      onPanEnd: _panEnd,
+                      onPanCancel: _panEnd,
+                      child: ValueListenableBuilder<int>(valueListenable: _frame, builder: (context, _, _) => _scene(view, cam, g)),
                     ),
                   ),
                 ),
@@ -503,23 +739,18 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
                     right: 12 + pad.right,
                     child: ValueListenableBuilder<int>(valueListenable: _frame, builder: (context, _, _) => _hud(g)),
                   ),
+                  if (_started && !g.over)
+                    Positioned(
+                      left: 10 + pad.left,
+                      bottom: 8 + pad.bottom,
+                      child: ValueListenableBuilder<int>(valueListenable: _frame, builder: (context, _, _) => _cards(g)),
+                    ),
                   Positioned.fill(
                     child: IgnorePointer(
-                      child: ValueListenableBuilder<int>(valueListenable: _frame, builder: (context, _, _) => _overlays(g)),
+                      child: ValueListenableBuilder<int>(valueListenable: _frame, builder: (context, _, _) => _overlays(g, cam)),
                     ),
                   ),
-                  if (!_started)
-                    Positioned.fill(
-                      child: GameStartCard(
-                        id: 'ms',
-                        title: 'Monster Smash',
-                        cover: MsArt.cover,
-                        hint: _firstPlay ? MsLines.intro.text : 'Smash the letter towers!',
-                        best: _best,
-                        onPlay: _play,
-                        onBack: _exit,
-                      ),
-                    ),
+                  if (!_started) Positioned.fill(child: _startCard()),
                   Positioned.fill(
                     child: IgnorePointer(
                       child: ValueListenableBuilder<int>(valueListenable: _frame, builder: (context, _, _) => _speech(g)),
@@ -529,21 +760,7 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
                     Positioned.fill(
                       child: GamePauseCard(id: 'ms', picture: MsArt.monster('gloop', 'surprised'), onResume: _resume, onExit: _exit),
                     ),
-                  if (_showResult)
-                    Positioned.fill(
-                      child: GameResultCard(
-                        id: 'ms',
-                        picture: MsArt.monster('fuzz', 'friendly'),
-                        title: 'All smashed!',
-                        star: MsArt.star,
-                        stars: g.stars,
-                        score: g.score,
-                        detail: '${g.found} letters · ${g.friends} new friends',
-                        record: _record,
-                        onAgain: _again,
-                        onDone: _exit,
-                      ),
-                    ),
+                  if (_showResult) Positioned.fill(child: _resultCard(g)),
                 ] else
                   const Positioned.fill(
                     child: Center(child: CircularProgressIndicator(color: MonsterColors.magic)),
@@ -556,30 +773,37 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
     );
   }
 
-  Widget _scene(MsView view, MsGame? g) {
+  Widget _scene(MsView view, MsCamera cam, MsGame? g) {
     final shake = Offset(math.sin(_clock * 61) * _shake, math.cos(_clock * 47) * _shake * .6);
+    final (shift, scroll) = g == null ? (0.0, 0.0) : _slide(g, view.screen.width);
+    final heroes = g == null || g.phase == MsPhase.ready ? null : _sprites(g);
     return ClipRect(
       child: Transform.translate(
         offset: shake,
         child: Stack(
           children: [
-            Positioned(
-              left: view.origin.dx,
-              top: view.origin.dy,
-              width: view.imageSize.width,
-              height: view.imageSize.height,
-              child: Image.asset(view.bg.asset, fit: BoxFit.fill, gaplessPlayback: true, filterQuality: FilterQuality.medium),
+            Positioned.fill(
+              child: CustomPaint(painter: MsBackdropPainter(view: view, camera: cam, time: _clock, scroll: scroll)),
             ),
-            if (g != null)
+            if (g != null && heroes != null)
               Positioned.fill(
                 child: CustomPaint(
-                  painter: MsWorldPainter(view: view, game: g, lives: _lives, ballIn: ((_clock - _ballInAt) / .3).clamp(0.0, 1.0), time: _clock),
+                  painter: MsWorldPainter(
+                    view: view,
+                    camera: cam,
+                    game: g,
+                    lives: _lives,
+                    line: heroes.$1,
+                    sling: heroes.$2,
+                    flying: heroes.$3,
+                    time: _clock,
+                    shift: shift,
+                    popIn: g.room == 0,
+                  ),
                 ),
               ),
             Positioned.fill(
-              child: CustomPaint(
-                painter: MdEffectsPainter(bits: _bits, beams: const [], bubbles: const [], time: _clock),
-              ),
+              child: CustomPaint(painter: _CameraPainter(cam, MdEffectsPainter(bits: _bits, beams: const [], bubbles: const [], time: _clock))),
             ),
           ],
         ),
@@ -606,41 +830,33 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
               child: Icon(_started ? Symbols.pause_rounded : Symbols.arrow_back_rounded, size: 26, weight: 700, fill: 1, color: LikhoColors.ink),
             ),
             const SizedBox(width: 8),
-            if (_started && !g.over) ...[
+            if (_started && !g.over)
               GamePill(
                 child: Row(
                   key: const ValueKey('ms-towers'),
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    for (var k = 0; k < g.towers; k++)
+                    if (widget.level case final l?) ...[
+                      Text('${l.number}', style: LikhoFonts.title(size: 20, weight: FontWeight.w800).copyWith(height: 1)),
+                      const SizedBox(width: 6),
+                    ],
+                    for (var k = 0; k < g.rooms; k++)
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 2.5),
                         child: Icon(
                           Symbols.castle_rounded,
                           size: 22,
                           fill: 1,
-                          color: k < g.tower || (k == g.tower && g.phase == MsPhase.cleared)
+                          color: k < g.room || (k == g.room && g.phase == MsPhase.cleared)
                               ? LikhoColors.success
-                              : (k == g.tower ? MonsterColors.ribbon : GameColors.ink15),
+                              : (k == g.room ? MonsterColors.ribbon : GameColors.ink15),
                         ),
                       ),
                   ],
                 ),
               ),
-              const SizedBox(width: 8),
-              GamePill(
-                child: Row(
-                  key: const ValueKey('ms-balls'),
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    for (final b in g.balls.take(6))
-                      Padding(padding: const EdgeInsets.symmetric(horizontal: 1.5), child: Image.asset(MsArt.ball(b), width: 24, height: 24)),
-                    if (g.balls.isEmpty) const SizedBox(width: 24),
-                  ],
-                ),
-              ),
-            ],
             const Spacer(),
+            if (_started && !g.over) ...[_meter(g), const SizedBox(width: 8)],
             GamePill(
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -666,19 +882,92 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
     ),
   );
 
+  /// The Smash meter: smashing fills it; full, a bonus hero.
+  Widget _meter(MsGame g) {
+    final flash = (_clock - _bonusAt) < 1.2;
+    final pulse = flash ? 1 + .15 * math.sin((_clock - _bonusAt) * 18).abs() : 1.0;
+    return Transform.scale(
+      scale: pulse,
+      child: GamePill(
+        child: Row(
+          key: const ValueKey('ms-meter'),
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Symbols.bolt_rounded, size: 22, fill: 1, color: flash ? HeroColors.meterFull : HeroColors.meter),
+            const SizedBox(width: 4),
+            Container(
+              width: 84,
+              height: 14,
+              decoration: BoxDecoration(color: HeroColors.meterTrack, borderRadius: BorderRadius.circular(7)),
+              alignment: Alignment.centerLeft,
+              child: FractionallySizedBox(
+                widthFactor: flash ? 1 : g.meter.clamp(0.0, 1.0),
+                child: Container(decoration: BoxDecoration(color: flash ? HeroColors.meterFull : HeroColors.meter, borderRadius: BorderRadius.circular(7))),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// The heroes in line as cards: the first is in the slingshot; a tap on
+  /// another sends it next.
+  Widget _cards(MsGame g) {
+    final can = g.phase == MsPhase.aim && g.pull == null;
+    final shown = g.heroes.take(6).toList();
+    return Row(
+      key: const ValueKey('ms-cards'),
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        for (var i = 0; i < shown.length; i++)
+          Padding(
+            padding: const EdgeInsets.only(right: 6),
+            child: GestureDetector(
+              key: ValueKey('ms-card-$i'),
+              onTap: () => _pick(i),
+              child: TweenAnimationBuilder<double>(
+                key: ValueKey('${shown[i].name}-$i-${g.heroes.length}'),
+                tween: Tween(begin: i == shown.length - 1 && _clock - _bonusAt < 1 ? 0 : 1, end: 1),
+                duration: const Duration(milliseconds: 420),
+                curve: Curves.elasticOut,
+                builder: (context, v, child) => Transform.scale(scale: v, child: child),
+                child: Opacity(
+                  opacity: can || i == 0 ? 1 : .6,
+                  child: Container(
+                    width: i == 0 ? 64 : 56,
+                    height: i == 0 ? 64 : 56,
+                    decoration: BoxDecoration(
+                      color: HeroColors.card,
+                      borderRadius: BorderRadius.circular(18),
+                      border: Border.all(color: i == 0 ? HeroColors.cardOn : GameColors.ink15, width: i == 0 ? 4 : 2),
+                      boxShadow: const [BoxShadow(color: MonsterColors.panelShadow, offset: Offset(0, 3), blurRadius: 6)],
+                    ),
+                    child: CustomPaint(painter: _PortraitPainter(shown[i], _clock)),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        if (g.heroes.length > shown.length) GamePill(child: Text('+${g.heroes.length - shown.length}', style: LikhoFonts.title(size: 18, weight: FontWeight.w800))),
+      ],
+    );
+  }
+
   // ------------------------------------------------------------ over the world
 
-  Widget _overlays(MsGame g) {
+  Widget _overlays(MsGame g, MsCamera cam) {
     final v = _view;
     final kids = <Widget>[];
     // the words popping out of the towers
     for (final p in _pops) {
       final t = _clock - p.born;
       final pop = Curves.elasticOut.transform((t / .5).clamp(0.0, 1.0));
+      final at = cam.apply(p.at);
       kids.add(
         Positioned(
-          left: p.at.dx - 100,
-          top: p.at.dy - 60 - t * 40,
+          left: at.dx - 100,
+          top: at.dy - 60 - t * 40,
           width: 200,
           height: 80,
           child: Opacity(
@@ -701,11 +990,11 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
         ),
       );
     }
-    // the tower's number as it comes, "Tower down!" when it falls
+    // the level's number as it starts, "Tower down!" when a room falls
     String? banner;
     var since = 0.0;
-    if (g.phase == MsPhase.build && _started) {
-      banner = 'Tower ${g.tower + 1}';
+    if (g.phase == MsPhase.build && _started && g.room == 0) {
+      banner = widget.level == null ? 'Tower 1' : 'Level ${_level.number}';
       since = g.phaseTime;
     } else if (_clock - _clearedAt < 2.4) {
       banner = 'Tower down!';
@@ -713,20 +1002,21 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
     }
     if (banner != null) {
       final pop = Curves.elasticOut.transform((since / .6).clamp(0.0, 1.0));
+      final down = banner == 'Tower down!';
       kids.add(
         Align(
           alignment: const Alignment(.1, -.45),
           child: Opacity(
-            opacity: (1 - (since - (banner == 'Tower down!' ? 2.0 : 1.0)) / .3).clamp(0.0, 1.0),
+            opacity: (1 - (since - (down ? 2.0 : 1.0)) / .3).clamp(0.0, 1.0),
             child: Transform.scale(
               scale: .3 + .7 * pop,
               child: Container(
                 key: const ValueKey('ms-banner'),
                 padding: const EdgeInsets.fromLTRB(26, 6, 26, 10),
                 decoration: BoxDecoration(
-                  color: banner == 'Tower down!' ? LikhoColors.success : MonsterColors.ribbon,
+                  color: down ? LikhoColors.success : MonsterColors.ribbon,
                   borderRadius: BorderRadius.circular(26),
-                  boxShadow: [BoxShadow(color: banner == 'Tower down!' ? GameColors.successDeep : MonsterColors.ribbonDeep, offset: const Offset(0, 6))],
+                  boxShadow: [BoxShadow(color: down ? GameColors.successDeep : MonsterColors.ribbonDeep, offset: const Offset(0, 6))],
                 ),
                 child: Text(
                   banner,
@@ -739,34 +1029,53 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
       );
     }
     // before the first shot: a finger shows the pull
-    if (v != null && g.phase == MsPhase.aim && g.shots == 0 && g.pull == null && g.phaseTime > 2.5 && _started && !_paused) {
+    if (v != null && g.phase == MsPhase.aim && g.flings == 0 && g.pull == null && g.phaseTime > 2.5 && _started && !_paused) {
       final t = ((g.phaseTime - 2.5) % 2.0) / 1.4;
       final k = Curves.easeInOut.transform(t.clamp(0.0, 1.0));
-      final from = v.of(MsGame.rest);
-      final to = v.at(MsGame.rest.x - 1.2, MsGame.rest.y - .7);
-      final p = Offset.lerp(from, to, k)!;
-      kids.add(
-        Positioned(
-          left: p.dx - 6,
-          top: p.dy - 4,
-          child: Opacity(
-            opacity: t > 1 ? 0 : 1,
-            child: const Icon(
-              Symbols.touch_app_rounded,
-              key: ValueKey('ms-finger'),
-              size: 54,
-              fill: 1,
-              color: MonsterColors.panel,
-              shadows: [Shadow(color: MonsterColors.panelShadow, blurRadius: 8)],
-            ),
-          ),
-        ),
-      );
+      final from = cam.apply(v.of(MsGame.rest));
+      final to = cam.apply(v.at(MsGame.rest.x - 1.2, MsGame.rest.y - .7));
+      kids.add(_finger(Offset.lerp(from, to, k)!, visible: t <= 1));
+    }
+    // a new hero in the air: a finger taps
+    final s = g.shot;
+    if (v != null && s != null && !s.gone && s.hero == _level.newHero && !s.volley.powered && s.volley.time > .2) {
+      final at = cam.apply(v.of(s.body.position)) + const Offset(30, 24);
+      final tap = (s.volley.time * 3) % 1.0;
+      kids.add(_finger(at + Offset(0, -10 * math.sin(tap * math.pi)), visible: true, label: 'Tap!'));
     }
     return Stack(children: kids);
   }
 
-  /// What Pencil says, in a bubble over him.
+  Widget _finger(Offset p, {required bool visible, String? label}) => Positioned(
+    left: p.dx - 6,
+    top: p.dy - 4,
+    child: Opacity(
+      opacity: visible ? 1 : 0,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Icon(
+            Symbols.touch_app_rounded,
+            key: ValueKey('ms-finger'),
+            size: 54,
+            fill: 1,
+            color: MonsterColors.panel,
+            shadows: [Shadow(color: MonsterColors.panelShadow, blurRadius: 8)],
+          ),
+          if (label != null)
+            Text(
+              label,
+              style: LikhoFonts.title(size: 22, weight: FontWeight.w800, color: MonsterColors.panel).copyWith(
+                height: 1,
+                shadows: const [Shadow(color: MonsterColors.panelShadow, blurRadius: 6)],
+              ),
+            ),
+        ],
+      ),
+    ),
+  );
+
+  /// What Pencil says, in a bubble under the top bar.
   Widget _speech(MsGame g) {
     final c = _caption;
     if (c == null || _showResult || _paused || !_started) return const SizedBox.shrink();
@@ -798,6 +1107,131 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
       ],
     );
   }
+
+  // ------------------------------------------------------------ cards
+
+  /// Before the level: its number, the hero met in it (or the line), Play.
+  Widget _startCard() {
+    final hero = _level.newHero;
+    final heroes = hero == null ? _level.heroes.toSet().toList() : [hero];
+    final wide = GameCard.wide(context);
+    return GameCard(
+      width: wide ? 560 : 330,
+      child: Column(
+        key: const ValueKey('ms-start'),
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(widget.level == null ? 'Monster Smash' : 'Level ${_level.number}', style: LikhoFonts.title(size: 30, weight: FontWeight.w800)),
+          Text(widget.world, style: LikhoFonts.body(size: 16, weight: FontWeight.w800, color: StoryColors.name)),
+          const SizedBox(height: 8),
+          SizedBox(
+            height: 96,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                for (final h in heroes)
+                  SizedBox(width: hero == null ? 84 : 120, height: 96, child: CustomPaint(painter: _PortraitPainter(h, _clock))),
+              ],
+            ),
+          ),
+          if (hero != null)
+            Padding(
+              padding: const EdgeInsets.only(top: 6),
+              child: Text(
+                MsLines.meet(hero).text,
+                key: const ValueKey('ms-meet'),
+                textAlign: TextAlign.center,
+                style: LikhoFonts.body(size: 17, weight: FontWeight.w800, color: StoryColors.name),
+              ),
+            )
+          else if (_best > 0 && widget.level == null)
+            Text('Best: $_best', style: LikhoFonts.body(size: 17, weight: FontWeight.w800, color: StoryColors.name)),
+          const SizedBox(height: 14),
+          Row(
+            children: [
+              SizedBox(
+                width: 58,
+                child: gameButton(key: const ValueKey('ms-back'), label: '', icon: Symbols.arrow_back_rounded, onTap: _exit, main: false),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: gameButton(key: const ValueKey('ms-play'), label: 'Play', icon: Symbols.play_arrow_rounded, onTap: _play),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _resultCard(MsGame g) => GameResultCard(
+    id: 'ms',
+    picture: MsArt.star,
+    pictureWidget: SizedBox(
+      height: 100,
+      width: 220,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [for (final h in MsHero.values) SizedBox(width: 72, height: 100, child: CustomPaint(painter: _PortraitPainter(h, _clock, happy: true)))],
+      ),
+    ),
+    title: widget.level == null ? 'All smashed!' : 'Level ${_level.number} done!',
+    star: MsArt.star,
+    stars: g.stars,
+    score: g.score,
+    detail: '${g.found} letters · ${g.friends} new friends',
+    record: _record,
+    onAgain: _again,
+    onDone: _exit,
+    onNext: widget.onNext == null ? null : _next,
+    doneLabel: widget.level == null ? 'Map' : 'Levels',
+    doneIcon: widget.level == null ? Symbols.map_rounded : Symbols.apps_rounded,
+  );
+}
+
+/// Draws [inner] as the camera sees it.
+class _CameraPainter extends CustomPainter {
+  _CameraPainter(this.camera, this.inner);
+  final MsCamera camera;
+  final CustomPainter inner;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    canvas.save();
+    camera.transform(canvas);
+    inner.paint(canvas, size);
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter old) => true;
+}
+
+/// A hero's portrait (cards, the level's start).
+class _PortraitPainter extends CustomPainter {
+  _PortraitPainter(this.hero, this.time, {this.happy = false});
+  final MsHero hero;
+  final double time;
+  final bool happy;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (happy) {
+      final r = size.shortestSide * .3;
+      MsHeroArt.paint(
+        canvas,
+        hero,
+        size.center(Offset.zero),
+        r,
+        MsHeroLook(face: MsFace.happy, hop: math.sin(time * 6 + hero.index).abs() * .3, turn: hero == MsHero.crayo ? -.5 : 0),
+      );
+    } else {
+      MsHeroArt.portrait(canvas, hero, size, t: time);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _PortraitPainter old) => true;
 }
 
 /// What to hit: the letter, big (or the picture whose first letter it is).

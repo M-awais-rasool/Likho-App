@@ -28,9 +28,12 @@ abstract final class MsArt {
     MsShape.triangle => pic('${m == MsMaterial.ice ? 'ice' : 'wood'}_triangle'),
     _ => pic('${m.name}_${s.name}'),
   };
-  static String ball(MsBall b) => pic('ball_${b.name}');
 
   static const sling = '$dir/sling.webp', hill = '$dir/hill.webp';
+
+  /// Letter Land's background layers (cut by tools/games/cut_smash_layers.py).
+  static const meadowSky = '$dir/meadow_sky.webp', meadowFar = '$dir/meadow_far.webp';
+  static const meadowNear = '$dir/meadow_near.webp', meadowGround = '$dir/meadow_ground.webp';
   static const star = 'assets/games/monsters/star.webp';
 
   /// Where Pencil is in pose picture [asset], and where he stands in it
@@ -49,10 +52,13 @@ abstract final class MsArt {
       for (final p in monsterPoses) monster(k, p),
     for (final s in MsShape.values)
       for (final m in MsMaterial.values) block(s, m),
-    for (final b in MsBall.values) ball(b),
     sling,
     hill,
     star,
+    meadowSky,
+    meadowFar,
+    meadowNear,
+    meadowGround,
   }.toList();
 }
 

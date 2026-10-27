@@ -1,4 +1,5 @@
 import '../../../data/models/course_models.dart';
+import '../../../game/monster_smash/ms_engine.dart';
 
 /// Pencil's lines in Monster Smash, kept in the app (recorded by
 /// `tools/voice/generate_voice.py --app`, SMASH_LINES there: the same
@@ -20,6 +21,17 @@ abstract final class MsLines {
   static const cleared = Prompt(text: 'Tower down! The monsters are our friends now!', audio: 'assets/voice/ms_cleared.m4a');
   static const done = Prompt(text: 'You smashed them all!', audio: 'assets/voice/ms_done.m4a');
   static const record = Prompt(text: 'Wow! A new best score!', audio: 'assets/voice/sr_record.m4a');
+
+  /// The heroes, met in their first level (no recording yet: the device
+  /// voice reads them).
+  static Prompt meet(MsHero h) => switch (h) {
+    MsHero.rubby => const Prompt(text: 'Meet Rubby! Tap while he flies for a big BOING!'),
+    MsHero.inky => const Prompt(text: 'Meet Inky! Tap while he flies, and he splits into three!'),
+    MsHero.crayo => const Prompt(text: 'Meet Crayo! Tap while he flies, and he zooms through wood and ice!'),
+  };
+
+  /// Before the first tap of a new hero.
+  static const tap = Prompt(text: 'Tap now!');
 
   /// A letter said by its name ("B!").
   static Prompt letter(String l, String audio) => Prompt(text: '$l!', audio: audio);
