@@ -195,8 +195,21 @@ class GameResultCard extends StatelessWidget {
     required this.onAgain,
     required this.onDone,
     this.detail,
+    this.onNext,
+    this.doneLabel = 'Map',
+    this.doneIcon = Symbols.map_rounded,
+    this.pictureWidget,
   });
   final String id, picture, title, star;
+
+  /// A game with levels: the next level (the big button; Play again moves
+  /// down), and where Done goes ("Levels").
+  final VoidCallback? onNext;
+  final String doneLabel;
+  final IconData doneIcon;
+
+  /// Drawn instead of [picture] (Monster Smash's heroes).
+  final Widget? pictureWidget;
 
   /// A line under the score ("320 m · 12 words").
   final String? detail;
@@ -209,7 +222,7 @@ class GameResultCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final wide = GameCard.wide(context);
     final head = [
-      Image.asset(picture, height: wide ? 100 : 120),
+      pictureWidget ?? Image.asset(picture, height: wide ? 100 : 120),
       const SizedBox(height: 6),
       Text(title, textAlign: TextAlign.center, style: LikhoFonts.title(size: 32, weight: FontWeight.w800)),
       if (stars case final n?) ...[
@@ -244,15 +257,34 @@ class GameResultCard extends StatelessWidget {
         ),
       ],
       const SizedBox(height: 16),
-      SizedBox(
-        width: double.infinity,
-        child: gameButton(key: ValueKey('$id-again'), label: 'Play again', icon: Symbols.replay_rounded, onTap: onAgain),
-      ),
-      const SizedBox(height: 12),
-      SizedBox(
-        width: double.infinity,
-        child: gameButton(key: ValueKey('$id-done'), label: 'Map', icon: Symbols.map_rounded, onTap: onDone, main: false),
-      ),
+      if (onNext case final next?) ...[
+        SizedBox(
+          width: double.infinity,
+          child: gameButton(key: ValueKey('$id-next'), label: 'Next level', icon: Symbols.arrow_forward_rounded, onTap: next),
+        ),
+        const SizedBox(height: 12),
+        Row(
+          children: [
+            Expanded(
+              child: gameButton(key: ValueKey('$id-again'), label: 'Again', icon: Symbols.replay_rounded, onTap: onAgain, main: false),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: gameButton(key: ValueKey('$id-done'), label: doneLabel, icon: doneIcon, onTap: onDone, main: false),
+            ),
+          ],
+        ),
+      ] else ...[
+        SizedBox(
+          width: double.infinity,
+          child: gameButton(key: ValueKey('$id-again'), label: 'Play again', icon: Symbols.replay_rounded, onTap: onAgain),
+        ),
+        const SizedBox(height: 12),
+        SizedBox(
+          width: double.infinity,
+          child: gameButton(key: ValueKey('$id-done'), label: doneLabel, icon: doneIcon, onTap: onDone, main: false),
+        ),
+      ],
     ];
     return GameCard(
       // high, so Pencil's words show below it

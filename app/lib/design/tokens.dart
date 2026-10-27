@@ -811,6 +811,47 @@ abstract final class SmashColors {
   static const powEdge = Color(0xFF8C3A14);
 }
 
+/// Monster Smash's meadow around its painted layers: the sky and the
+/// ground until the pictures are ready, the sun, the windmill (its sails
+/// turn, so the app draws it, in the picture's colours), big grass in
+/// front, butterflies and birds.
+abstract final class MeadowColors {
+  static const skyTop = Color(0xFF7CC8F5);
+  static const skyLow = Color(0xFFCDEFFB);
+  static const haze = Color(0xFFF3FBE8);
+  static const sun = Color(0xFFFFE89A);
+  static const sunGlow = Color(0x55FFF3C4);
+  static const grass = Color(0xFF7BC655);
+  static const grassLine = Color(0xFF417F2C);
+  static const earth = Color(0xFFB57A47);
+  static const mill = Color(0xFFFAEBD3);
+  static const millRoof = Color(0xFFEE7470);
+  static const millWood = Color(0xFFB08A68);
+  static const millSail = Color(0xE6F3E3CC);
+  static const millLine = Color(0xFFA88466);
+  static const butterflies = [Color(0xFFFFB347), Color(0xFF8FD3FF), Color(0xFFFF8FB1)];
+  static const bird = Color(0xFF5B6B7A);
+}
+
+/// The Stationery Squad: Rubby the eraser, Inky the ink drop, Crayo the
+/// crayon (base, light band, dark band, outline).
+abstract final class HeroColors {
+  static const rubby = [Color(0xFFFF8DAA), Color(0xFFFFB3C6), Color(0xFFE86B8E), Color(0xFFB24A68)];
+  static const rubbySleeve = [Color(0xFF6FA8F5), Color(0xFF9CC4FA), Color(0xFF4F86D6), Color(0xFF345E9E)];
+  static const inky = [Color(0xFF4C7BEA), Color(0xFF7DA2F2), Color(0xFF3360C8), Color(0xFF223F8C)];
+  static const crayo = [Color(0xFFFF9A3C), Color(0xFFFFBC74), Color(0xFFE67A1E), Color(0xFFA9531A)];
+  static const crayoWrap = [Color(0xFFFFE07A), Color(0xFFFFEDAA), Color(0xFFE8C04E), Color(0xFFA9831F)];
+  static const lid = Color(0xFFFFFFFF);
+  static const rim = Color(0xFF3A2440);
+  static const card = Color(0xFFFFFFFF);
+  static const cardOn = Color(0xFFFFD45C);
+  static const meter = Color(0xFFFF8A5B);
+  static const meterFull = Color(0xFFFFD45C);
+  static const meterTrack = Color(0x33000000);
+  static const poof = Color(0xFFFFFFFF);
+  static const locked = Color(0xFFDCE4EC);
+}
+
 /// Letter Slice: the letters' stickers, the blade.
 abstract final class SliceColors {
   static const sticker = Color(0xFFFFFFFF);
