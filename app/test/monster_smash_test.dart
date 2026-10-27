@@ -15,6 +15,7 @@ import 'package:likho/screens/games/games_screen.dart';
 import 'package:likho/screens/games/monster_smash/monster_smash_screen.dart';
 import 'package:likho/screens/games/monster_smash/ms_lines.dart';
 import 'package:likho/screens/games/monster_smash/ms_scene.dart';
+import 'package:likho/screens/games/monster_smash/smash_levels_screen.dart';
 
 /// Monster Smash: the towers, the slingshot, the letters (one a shot), the
 /// help after misses, the questions from what the child learned, the screen.
@@ -49,7 +50,7 @@ void main() {
 
   /// A game whose tower is built and whose first question is asked.
   MsGame ready({int seed = 1, String letters = 'BDPRMNEFHKST'}) {
-    final g = MsGame(asks: MsLetterList(letters), seed: seed)..start();
+    final g = MsGame(asks: MsLetterList(letters), level: MsLevels.classic(), seed: seed)..start();
     run(g, 1.5);
     expect(g.phase, MsPhase.aim);
     return g;
@@ -57,7 +58,7 @@ void main() {
 
   test('a tower is built with its letters and monsters, and stands still', () {
     for (final seed in [1, 2, 3, 4]) {
-      final g = MsGame(asks: MsLetterList('BDPRMNEFHKST'), seed: seed)..start();
+      final g = MsGame(asks: MsLetterList('BDPRMNEFHKST'), level: MsLevels.classic(), seed: seed)..start();
       final events = run(g, 1.5).map((e) => e.kind).toList();
       expect(events, containsAllInOrder([MsEventKind.build, MsEventKind.ask]));
       expect(g.blocks.where((b) => b.letter != null).map((b) => b.letter), unorderedEquals(['B', 'D', 'P']));
@@ -65,7 +66,7 @@ void main() {
       final asked = g.blocks.where((b) => g.towerAsks.any((a) => a.letter == b.letter));
       if (asked.any(g.reachable)) expect(g.reachable(g.target!), isTrue, reason: 'seed $seed: the first letter asked is in sight');
       expect(g.monsters, hasLength(2));
-      expect(g.balls, hasLength(4), reason: 'two spare balls');
+      expect(g.heroes, hasLength(4), reason: 'the line of heroes');
       final at = {for (final b in g.blocks) b.id: b.position.clone()};
       final up = {for (final m in g.monsters) m.id: m.position.clone()};
       run(g, 5);
@@ -86,7 +87,7 @@ void main() {
     g.drag(MsGame.rest + Vector2(-.1, 0));
     g.release();
     expect(g.phase, MsPhase.aim, reason: 'a tiny pull: nothing flies');
-    expect(g.balls, hasLength(4));
+    expect(g.heroes, hasLength(4));
     g.grab(MsGame.rest.clone());
     g.drag(MsGame.rest + Vector2(-5, -1));
     expect(g.pull!.length, closeTo(MsGame.maxPull, 1e-6), reason: 'the band stretches only so far');
@@ -94,7 +95,7 @@ void main() {
     expect(dots[1].x, greaterThan(dots[0].x), reason: 'pulled left, it flies right');
     g.release();
     expect(g.phase, MsPhase.flying);
-    expect(g.balls, hasLength(3));
+    expect(g.heroes, hasLength(3));
     expect(g.drain().map((e) => e.kind), contains(MsEventKind.launch));
     final v = g.shot!.body.linearVelocity;
     expect(v.x, greaterThan(0));
@@ -109,6 +110,105 @@ void main() {
     m.body.angularVelocity = 0;
     run(g, 4);
     expect(math.atan2(math.sin(m.angle), math.cos(m.angle)).abs(), lessThan(.35));
+  });
+
+  test('the heroes: a card picks who goes next, each tap power works once', () {
+    MsGame play(List<MsHero> heroes) {
+      final g = MsGame(
+        asks: MsLetterList('BDPRMNEFHKST'),
+        level: MsLevel(number: 1, rooms: MsLevels.classic().rooms.take(1).toList(), heroes: heroes),
+        seed: 3,
+      )..start();
+      run(g, 1.5);
+      return g;
+    }
+
+    // a card: Crayo jumps the line
+    final g = play([MsHero.rubby, MsHero.inky, MsHero.crayo]);
+    expect(g.pick(2), isTrue);
+    expect(g.heroes, [MsHero.crayo, MsHero.rubby, MsHero.inky]);
+    expect(g.drain().map((e) => e.kind), contains(MsEventKind.pick));
+    expect(g.pick(0), isFalse, reason: 'already in the slingshot');
+
+    // Crayo's dash: faster, through wood and ice
+    g.launch(Vector2(-1.4, -.5));
+    run(g, .25);
+    final before = g.shot!.body.linearVelocity.length;
+    expect(g.power(), isTrue);
+    expect(g.shot!.body.linearVelocity.length, greaterThan(before * 1.5));
+    expect(g.shot!.pierce, isTrue);
+    expect(g.power(), isFalse, reason: 'once a fling');
+    expect(g.drain().map((e) => e.text), contains('crayo'));
+
+    // Inky: three drops, one letter for all of them
+    final i = play([MsHero.inky, MsHero.rubby]);
+    i.launch(Vector2(-1.4, -.5));
+    run(i, .25);
+    expect(i.power(), isTrue);
+    expect(i.shots, hasLength(3));
+    expect(i.shots.every((s) => s.drop && identical(s.volley, i.shots.first.volley)), isTrue);
+    settle(i);
+    expect(i.phase, isNot(MsPhase.flying), reason: 'the fling ends when every drop is down');
+
+    // Rubby's boing pushes what is in front of him
+    final r = play([MsHero.rubby, MsHero.rubby]);
+    final target = r.blocks.first;
+    final at = target.position.clone();
+    r.launch(r.solve(at, ignore: {target.id}) ?? Vector2(-1.4, -.5));
+    for (var k = 0; k < 600 && r.shot != null && r.shot!.body.position.distanceTo(at) > 2.2; k++) {
+      r.tick(1 / 60);
+    }
+    expect(r.power(), isTrue);
+    run(r, .5);
+    expect(target.gone || target.position.distanceTo(at) > .2, isTrue, reason: 'the boing moved it');
+  });
+
+  test('the Smash meter: smashing fills it, full brings a bonus hero', () {
+    final g = ready();
+    final n = g.heroes.length;
+    final events = <MsEvent>[];
+    for (var k = 0; k < 40 && g.meter < 1 && g.bonuses == 0; k++) {
+      // a hard shot into the towers, over and over
+      g.launch(Vector2(-1.6, -.3));
+      events.addAll(settle(g));
+      if (g.phase == MsPhase.cleared || g.over) break;
+    }
+    if (g.bonuses > 0) {
+      expect(events.map((e) => e.kind), contains(MsEventKind.bonus));
+      expect(g.heroes.length + g.flings, greaterThan(n), reason: 'a hero joined the line');
+    }
+    expect(g.meter, inInclusiveRange(0, 1));
+  });
+
+  test('every Letter Land level can be played to its end', () {
+    expect(MsLevels.letterLand, hasLength(12));
+    expect([for (final l in MsLevels.letterLand) l.number], [for (var n = 1; n <= 12; n++) n]);
+    expect(MsLevels.letterLand.map((l) => l.newHero).whereType<MsHero>().toSet(), {MsHero.inky, MsHero.crayo});
+    for (final level in MsLevels.letterLand) {
+      final g = MsGame(asks: MsLetterList('BDPRMNEFHKSTAGLO'), level: level, seed: level.number)..start();
+      final rooms = <int>[];
+      for (var k = 0; k < 60 * 60 * 8 && !g.over; k++) {
+        if (g.phase == MsPhase.aim) shoot(g);
+        g.tick(1 / 60);
+        for (final e in g.drain()) {
+          if (e.kind == MsEventKind.build) rooms.add(e.value.round());
+        }
+      }
+      expect(g.over, isTrue, reason: 'level ${level.number}');
+      expect(rooms, [for (var r = 0; r < level.rooms.length; r++) r], reason: 'level ${level.number}');
+      expect(g.found, g.asked);
+      expect(g.stars, inInclusiveRange(1, 3));
+    }
+  });
+
+  test('levels are kept per child: stars, and the next one opens', () {
+    final r = GameRecord.fromJson(jsonDecode(jsonEncode(const GameRecord(best: 900, stars: 3, plays: 2, levels: {1: 3, 2: 1}).toJson())));
+    expect(r.levels, {1: 3, 2: 1});
+    expect(r.opens(1), isTrue);
+    expect(r.opens(3), isTrue, reason: 'level 2 is done');
+    expect(r.opens(4), isFalse);
+    expect(const GameRecord().opens(2), isFalse);
+    expect(GameRecord.fromJson({'best': 5, 'stars': 1, 'plays': 1}).levels, isEmpty, reason: 'older records still read');
   });
 
   test('the asked letter bursts when the ball hits it; the next one is asked after the shot', () {
@@ -164,7 +264,7 @@ void main() {
 
   test('three towers make a game; every monster ends a friend', () {
     for (final seed in [1, 2, 5]) {
-      final g = MsGame(asks: MsLetterList('BDPRMNEFHKST'), seed: seed)..start();
+      final g = MsGame(asks: MsLetterList('BDPRMNEFHKST'), level: MsLevels.classic(), seed: seed)..start();
       final towers = <int>[];
       for (var k = 0; k < 60 * 60 * 6 && !g.over; k++) {
         if (g.phase == MsPhase.aim) shoot(g);
@@ -296,7 +396,7 @@ void main() {
       );
       await pumpFor(tester, 300);
       expect(find.text('Monster Smash'), findsOneWidget);
-      expect(find.text(MsLines.intro.text), findsOneWidget, reason: 'a first game: the card says how to play');
+      expect(find.byKey(const ValueKey('ms-start')), findsOneWidget, reason: 'the start card');
       await tester.tap(find.byKey(const ValueKey('ms-play')));
       await pumpFor(tester, 1600);
       MsGame g0() => (tester.state(find.byType(MonsterSmashScreen)) as dynamic).debugGame as MsGame;
@@ -319,7 +419,7 @@ void main() {
       await drag.up();
       await tester.pump(const Duration(milliseconds: 16));
       expect(g.phase, MsPhase.flying);
-      expect(g.shots, 1);
+      expect(g.flings, 1);
       await pumpFor(tester, 2000);
       // pause, keep playing, stop
       await tester.tap(find.byKey(const ValueKey('ms-pause')));
@@ -334,6 +434,65 @@ void main() {
       await pumpFor(tester, 300);
       await tester.tap(find.byKey(const ValueKey('ms-exit')));
       expect(done, isTrue);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox());
+      await pumpFor(tester, 100);
+    });
+
+    testWidgets('the levels: Letter Land, level 1 open, the rest locked; a level starts with its heroes', (tester) async {
+      sideways(tester);
+      await tester.pumpWidget(
+        ProviderScope(
+          child: MaterialApp(home: SmashLevelsScreen(onDone: () {})),
+        ),
+      );
+      await pumpFor(tester, 300);
+      expect(find.textContaining('Letter Land'), findsOneWidget);
+      for (var n = 1; n <= 12; n++) {
+        expect(find.byKey(ValueKey('ms-level-$n')), findsOneWidget);
+      }
+      expect(find.text('2'), findsNothing, reason: 'level 2 is locked');
+      await tester.tap(find.byKey(const ValueKey('ms-level-2')));
+      await pumpFor(tester, 300);
+      expect(find.byType(MonsterSmashScreen), findsNothing);
+      await tester.tap(find.byKey(const ValueKey('ms-level-1')));
+      await pumpFor(tester, 800);
+      expect(find.byType(MonsterSmashScreen), findsOneWidget);
+      expect(find.text('Level 1'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox());
+      await pumpFor(tester, 100);
+    });
+
+    testWidgets('a level played to its end: its stars kept, Next level', (tester) async {
+      sideways(tester);
+      late ProviderContainer container;
+      var next = false;
+      await tester.pumpWidget(
+        ProviderScope(
+          child: Consumer(
+            builder: (context, ref, _) {
+              container = ProviderScope.containerOf(context);
+              return MaterialApp(
+                home: MonsterSmashScreen(onDone: () {}, level: MsLevels.letterLand[2], onNext: () => next = true, asks: MsLetterList('BDPRMNEFHKST'), seed: 4),
+              );
+            },
+          ),
+        ),
+      );
+      await pumpFor(tester, 300);
+      expect(find.byKey(const ValueKey('ms-meet')), findsOneWidget, reason: 'level 3 brings Inky');
+      await tester.tap(find.byKey(const ValueKey('ms-play')));
+      final g = (tester.state(find.byType(MonsterSmashScreen)) as dynamic).debugGame as MsGame;
+      for (var k = 0; k < 4000 && find.byKey(const ValueKey('ms-result')).evaluate().isEmpty; k++) {
+        if (g.phase == MsPhase.aim) shoot(g);
+        await tester.pump(const Duration(milliseconds: 50));
+      }
+      expect(find.text('Level 3 done!'), findsOneWidget);
+      final rec = container.read(gameProgressProvider).values.single[GameIds.smash]!;
+      expect(rec.levels[3], g.stars);
+      await tester.tap(find.byKey(const ValueKey('ms-next')));
+      expect(next, isTrue);
       expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox());
       await pumpFor(tester, 100);
