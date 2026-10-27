@@ -117,11 +117,21 @@ class Sfx {
   static const msEek = Sfx('ms_eek');
   static const msBonk = Sfx('ms_bonk');
 
+  /// The heroes: a hop into the slingshot, "wheee", Rubby's boing, Inky's
+  /// split, Crayo's zoom, a bonus hero, a poof.
+  static const msHup = Sfx('ms_hup');
+  static const msWhee = Sfx('ms_whee');
+  static const msBoing = Sfx('ms_boing');
+  static const msSplit = Sfx('ms_split');
+  static const msZoom = Sfx('ms_zoom');
+  static const msBonus = Sfx('ms_bonus');
+  static const msPoof = Sfx('ms_poof');
+
   /// Looped while the towers stand.
   static const msMusic = Sfx('ms_music');
 
   /// (the water balloon splashes like Spell Runner's puddle)
-  static const monsterSmash = [msStretch, msLaunch, msWood, msIce, msStone, msWoodBreak, msIceBreak, msStoneBreak, msPow, msFriend, msStretch2, msStretch3, msReload, msGiggle, msEek, msBonk, msMusic];
+  static const monsterSmash = [msStretch, msLaunch, msWood, msIce, msStone, msWoodBreak, msIceBreak, msStoneBreak, msPow, msFriend, msStretch2, msStretch3, msReload, msGiggle, msEek, msBonk, msHup, msWhee, msBoing, msSplit, msZoom, msBonus, msPoof, msMusic];
 
   // Letter Slice
   static const lsSwish = Sfx('ls_swish');
