@@ -250,8 +250,8 @@ class MsGame {
 
   /// How far the hero can be pulled back, and how fast a full pull sends it.
   static const maxPull = 1.6, minPull = .3, maxSpeed = 15.5;
-  static const heroRadius = {MsHero.rubby: .3, MsHero.inky: .28, MsHero.crayo: .26};
-  static const dropRadius = .18;
+  static const heroRadius = {MsHero.rubby: .24, MsHero.inky: .22, MsHero.crayo: .22};
+  static const dropRadius = .15;
 
   /// The Smash meter's points to fill (a bonus hero).
   static const meterPoints = 320;
@@ -511,9 +511,9 @@ class MsGame {
   MsShot _shoot(MsHero hero, MsVolley v, Vector2 at, Vector2 speed, double r, {bool drop = false}) {
     final body = world.createBody(BodyDef(type: BodyType.dynamic, position: at, bullet: true, linearVelocity: speed, angularDamping: .3));
     final (density, bounce) = switch (hero) {
-      MsHero.rubby => (2.6, .4),
-      MsHero.inky => (drop ? 2.4 : 2.2, .15),
-      MsHero.crayo => (3.0, .2),
+      MsHero.rubby => (4.06, .4),
+      MsHero.inky => (drop ? 3.46 : 3.56, .15),
+      MsHero.crayo => (4.19, .2),
     };
     body.createFixture(
       FixtureDef(CircleShape()..radius = r, density: density, friction: .6, restitution: bounce, filter: Filter()..maskBits = 0xFFFF & ~_hillBit),

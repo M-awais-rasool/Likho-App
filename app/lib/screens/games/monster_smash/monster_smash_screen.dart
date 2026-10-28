@@ -580,8 +580,7 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
 
   /// Where the heroes wait on the hill, right to left from the slingshot.
   static Vector2 _slot(int i, MsHero h) {
-    final r = MsGame.heroRadius[h]!;
-    return Vector2(2.15 - i * .5, MsGame.hillTop + (h == MsHero.crayo ? r * .62 : r));
+    return Vector2(2.2 - i * .44, MsGame.hillTop + MsHeroArt.foot(h) * MsGame.heroRadius[h]!);
   }
 
   static const _jump = .42;
@@ -609,13 +608,7 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
           h,
           at,
           MsGame.heroRadius[h]!,
-          MsHeroLook(
-            face: cheer ? MsFace.happy : MsFace.idle,
-            lid: MsHeroArt.blink(t, i * 1.7),
-            look: const Offset(.7, -.1),
-            hop: hop,
-            turn: h == MsHero.crayo ? -.25 : 0,
-          ),
+          MsHeroLook(face: cheer ? MsFace.happy : MsFace.idle, hop: hop, squash: math.sin(t * 2.6 + i * 1.9) * .03, along: math.pi / 2),
         ),
       );
     }
@@ -642,11 +635,9 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
           r,
           MsHeroLook(
             face: k > .45 ? MsFace.effort : MsFace.ready,
-            lid: MsHeroArt.blink(t, 5),
-            look: Offset(dir.dx * .8, dir.dy * .5),
             squash: .14 * k - .2 * (1 - Curves.elasticOut.transform(settle)) * (1 - settle),
             along: math.atan2(dir.dy, dir.dx),
-            turn: h == MsHero.crayo ? math.atan2(dir.dy, dir.dx) : 0,
+            turn: math.atan2(dir.dy, dir.dx) * .5 * k,
           ),
         );
       }
@@ -657,19 +648,24 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
       final angle = math.atan2(-v.y, v.x);
       final hit = math.max(0.0, 1 - (g.time - s.hitAt) / .25);
       final power = s.volley.powered && g.time - s.volley.poweredAt < .6;
+      // flying: the stretched picture along the flight; after a crash:
+      // dizzy, rolling with the ball; the power: Crayo dashes along it,
+      // Rubby and Inky stay upright
+      final face = power ? MsFace.power : (s.hitAt >= 0 ? MsFace.bonked : MsFace.yell);
       flying.add(
         MsHeroSprite(
           s.hero,
           s.body.position,
           s.radius,
           MsHeroLook(
-            face: power ? MsFace.power : MsFace.yell,
-            squash: hit > 0 ? -.35 * s.hitHard * hit : (v.length * .012).clamp(0.0, .22),
+            face: face,
+            squash: hit > 0 ? -.35 * s.hitHard * hit : (face == MsFace.yell ? (v.length * .008).clamp(0.0, .12) : 0),
             along: angle,
-            turn: switch (s.hero) {
-              MsHero.crayo => angle,
-              MsHero.inky => math.atan2(v.y, -v.x) + math.pi / 2,
-              MsHero.rubby => -s.body.angle * .6,
+            turn: switch (face) {
+              MsFace.yell => angle - MsHeroArt.tilt(s.hero, face),
+              MsFace.power when s.hero == MsHero.crayo => angle - MsHeroArt.tilt(s.hero, face),
+              MsFace.bonked => -s.body.angle,
+              _ => 0,
             },
           ),
         ),
@@ -935,11 +931,11 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
                 child: Opacity(
                   opacity: can || i == 0 ? 1 : .6,
                   child: Container(
-                    width: i == 0 ? 64 : 56,
-                    height: i == 0 ? 64 : 56,
+                    width: i == 0 ? 52 : 44,
+                    height: i == 0 ? 52 : 44,
                     decoration: BoxDecoration(
                       color: HeroColors.card,
-                      borderRadius: BorderRadius.circular(18),
+                      borderRadius: BorderRadius.circular(14),
                       border: Border.all(color: i == 0 ? HeroColors.cardOn : GameColors.ink15, width: i == 0 ? 4 : 2),
                       boxShadow: const [BoxShadow(color: MonsterColors.panelShadow, offset: Offset(0, 3), blurRadius: 6)],
                     ),
@@ -1216,18 +1212,8 @@ class _PortraitPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    if (happy) {
-      final r = size.shortestSide * .3;
-      MsHeroArt.paint(
-        canvas,
-        hero,
-        size.center(Offset.zero),
-        r,
-        MsHeroLook(face: MsFace.happy, hop: math.sin(time * 6 + hero.index).abs() * .3, turn: hero == MsHero.crayo ? -.5 : 0),
-      );
-    } else {
-      MsHeroArt.portrait(canvas, hero, size, t: time);
-    }
+    if (happy) canvas.translate(0, -math.sin(time * 6 + hero.index).abs() * size.height * .08);
+    MsHeroArt.portrait(canvas, hero, size, t: time, face: happy ? MsFace.happy : MsFace.idle);
   }
 
   @override

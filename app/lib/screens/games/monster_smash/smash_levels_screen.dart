@@ -358,8 +358,10 @@ class _RubbyPainter extends CustomPainter {
   final double time;
 
   @override
-  void paint(Canvas canvas, Size size) =>
-      MsHeroArt.paint(canvas, MsHero.rubby, size.center(Offset.zero), size.shortestSide * .38, MsHeroLook(face: MsFace.happy, lid: MsHeroArt.blink(time, 0)));
+  void paint(Canvas canvas, Size size) {
+    canvas.translate(0, -math.sin(time * 5).abs() * size.height * .06);
+    MsHeroArt.portrait(canvas, MsHero.rubby, size, t: time, face: MsFace.happy);
+  }
 
   @override
   bool shouldRepaint(covariant _RubbyPainter old) => true;
