@@ -31,6 +31,7 @@ import 'ms_lines.dart';
 import 'ms_monsters.dart';
 import 'ms_painter.dart';
 import 'ms_scene.dart';
+import 'ms_start_card.dart';
 
 /// Monster Smash: played sideways, like Angry Birds 2. A level of one to
 /// three rooms in a meadow that moves with the camera; the Stationery Squad
@@ -113,7 +114,7 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
   Duration? _last;
   double _clock = 0;
   bool _started = false, _paused = false, _showResult = false, _record = false;
-  int _best = 0;
+  int _best = 0, _levelStars = 0;
 
   // what Pencil says
   String? _caption;
@@ -701,7 +702,9 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
   Widget build(BuildContext context) {
     final pad = MediaQuery.paddingOf(context);
     _pad = pad;
-    _best = ref.watch(myGamesProvider)[GameIds.smash]?.best ?? 0;
+    final record = ref.watch(myGamesProvider)[GameIds.smash];
+    _best = record?.best ?? 0;
+    _levelStars = record?.levels[_level.number] ?? 0;
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark.copyWith(statusBarColor: LikhoColors.clear),
       child: Material(
@@ -1109,54 +1112,20 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
   /// Before the level: its number, the hero met in it (or the line), Play.
   Widget _startCard() {
     final hero = _level.newHero;
-    final heroes = hero == null ? _level.heroes.toSet().toList() : [hero];
-    final wide = GameCard.wide(context);
-    return GameCard(
-      width: wide ? 560 : 330,
-      child: Column(
-        key: const ValueKey('ms-start'),
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(widget.level == null ? 'Monster Smash' : 'Level ${_level.number}', style: LikhoFonts.title(size: 30, weight: FontWeight.w800)),
-          Text(widget.world, style: LikhoFonts.body(size: 16, weight: FontWeight.w800, color: StoryColors.name)),
-          const SizedBox(height: 8),
-          SizedBox(
-            height: 96,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                for (final h in heroes)
-                  SizedBox(width: hero == null ? 84 : 120, height: 96, child: CustomPaint(painter: _PortraitPainter(h, _clock))),
-              ],
-            ),
-          ),
-          if (hero != null)
-            Padding(
-              padding: const EdgeInsets.only(top: 6),
-              child: Text(
-                MsLines.meet(hero).text,
-                key: const ValueKey('ms-meet'),
-                textAlign: TextAlign.center,
-                style: LikhoFonts.body(size: 17, weight: FontWeight.w800, color: StoryColors.name),
-              ),
-            )
-          else if (_best > 0 && widget.level == null)
-            Text('Best: $_best', style: LikhoFonts.body(size: 17, weight: FontWeight.w800, color: StoryColors.name)),
-          const SizedBox(height: 14),
-          Row(
-            children: [
-              SizedBox(
-                width: 58,
-                child: gameButton(key: const ValueKey('ms-back'), label: '', icon: Symbols.arrow_back_rounded, onTap: _exit, main: false),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: gameButton(key: const ValueKey('ms-play'), label: 'Play', icon: Symbols.play_arrow_rounded, onTap: _play),
-              ),
-            ],
-          ),
-        ],
-      ),
+    final levels = widget.level != null;
+    return MsStartCard(
+      key: const ValueKey('ms-start'),
+      title: levels ? 'Level ${_level.number}' : 'Monster Smash',
+      world: widget.world,
+      heroes: _level.heroes,
+      newHero: hero,
+      meet: hero == null ? null : MsLines.meet(hero).text,
+      stars: levels ? _levelStars : null,
+      best: _best,
+      towers: _level.rooms.length,
+      time: _clock,
+      onPlay: _play,
+      onBack: _exit,
     );
   }
 
