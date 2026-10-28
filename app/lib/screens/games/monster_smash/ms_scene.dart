@@ -17,6 +17,11 @@ abstract final class MsArt {
   static String pic(String name) => '$dir/$name.webp';
   static String pencil(String pose) => '$dir/pencil_$pose.webp';
 
+  /// A hero's pose picture (cut by tools/games/cut_smash_heroes.py).
+  static String hero(String name, String pose) => '$dir/hero_${name}_$pose.webp';
+  static const heroes = ['rubby', 'inky', 'crayo'];
+  static const heroPoses = ['idle', 'aim', 'fly', 'power', 'bonked', 'happy'];
+
   static const poses = ['stand', 'ready', 'pull', 'throw', 'cheer', 'oops', 'point'];
   static const monsterPoses = ['idle', 'surprised', 'roar', 'bonked', 'friendly'];
 
@@ -52,6 +57,8 @@ abstract final class MsArt {
       for (final p in monsterPoses) monster(k, p),
     for (final s in MsShape.values)
       for (final m in MsMaterial.values) block(s, m),
+    for (final h in heroes)
+      for (final p in heroPoses) hero(h, p),
     sling,
     hill,
     star,
