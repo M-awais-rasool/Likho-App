@@ -809,6 +809,24 @@ abstract final class SmashColors {
   static const water = [Color(0xFF8FD3FF), Color(0xFFFFFFFF), Color(0xFF4D9DE0)];
   static const pow = Color(0xFFFF8A5B);
   static const powEdge = Color(0xFF8C3A14);
+
+  // the start card: a warm card, a sky stage with a grassy hill, a ribbon
+  static const cardTop = Color(0xFFFFFFFF);
+  static const cardBottom = Color(0xFFFFF4E2);
+  static const cardRim = Color(0xFFFFE3B8);
+  static const stageTop = Color(0xFF8ED3FA);
+  static const stageBottom = Color(0xFFDDF3FF);
+  static const stageSun = Color(0x80FFF3B0);
+  static const stageCloud = Color(0xF2FFFFFF);
+  static const stageSpot = Color(0x8CFFFFFF);
+  static const hill = Color(0xFF8BD46A);
+  static const hillTop = Color(0xFFB5E98F);
+  static const hillDeep = Color(0xFF5FAE45);
+  static const tag = Color(0xFFEFE9FF);
+  static const tagInk = Color(0xFF5B3FD9);
+  static const starOff = Color(0xFFE9E1D3);
+  static const newBadge = Color(0xFFFF5D73);
+  static const newBadgeDeep = Color(0xFFC7354C);
 }
 
 /// Monster Smash's meadow around its painted layers: the sky and the
