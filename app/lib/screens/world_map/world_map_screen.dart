@@ -162,7 +162,7 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen> with SingleTick
       _noteBeaten(course, progress);
     }
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.dark.copyWith(statusBarColor: LikhoColors.clear),
+      value: LikhoSystemBars.dark,
       child: ReferenceOverlay(
         asset: WorldMapScreen.reference,
         child: Material(

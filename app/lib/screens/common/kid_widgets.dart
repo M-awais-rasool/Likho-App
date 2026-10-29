@@ -59,7 +59,7 @@ class StatusBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => AnnotatedRegion<SystemUiOverlayStyle>(
-    value: (light ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark).copyWith(statusBarColor: LikhoColors.clear),
+    value: light ? LikhoSystemBars.light : LikhoSystemBars.dark,
     child: child,
   );
 }

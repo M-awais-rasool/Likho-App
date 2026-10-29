@@ -1,6 +1,7 @@
 // Likho design tokens: the single source of colours, sizes and type.
 // No other file may hard-code a colour.
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 /// Brand / UI colours (from the brief).
@@ -885,6 +886,30 @@ abstract final class SliceColors {
   static const bladeGlow = Color(0xFFBDE8FF);
   static const freeze = Color(0x338FD3FF);
   static const clock = Color(0xFFFF6B6B);
+}
+
+/// The phone's status and navigation bars: see-through, with the app drawn
+/// behind them (no black strip under the app on Android), dark icons on
+/// light screens and light icons on dark ones.
+abstract final class LikhoSystemBars {
+  static const dark = SystemUiOverlayStyle(
+    statusBarColor: LikhoColors.clear,
+    statusBarIconBrightness: Brightness.dark,
+    statusBarBrightness: Brightness.light,
+    systemNavigationBarColor: LikhoColors.clear,
+    systemNavigationBarDividerColor: LikhoColors.clear,
+    systemNavigationBarIconBrightness: Brightness.dark,
+    systemNavigationBarContrastEnforced: false,
+  );
+  static const light = SystemUiOverlayStyle(
+    statusBarColor: LikhoColors.clear,
+    statusBarIconBrightness: Brightness.light,
+    statusBarBrightness: Brightness.dark,
+    systemNavigationBarColor: LikhoColors.clear,
+    systemNavigationBarDividerColor: LikhoColors.clear,
+    systemNavigationBarIconBrightness: Brightness.light,
+    systemNavigationBarContrastEnforced: false,
+  );
 }
 
 /// 8pt grid spacing.

@@ -706,7 +706,7 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
     _best = record?.best ?? 0;
     _levelStars = record?.levels[_level.number] ?? 0;
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.dark.copyWith(statusBarColor: LikhoColors.clear),
+      value: LikhoSystemBars.dark,
       child: Material(
         color: MeadowColors.skyLow,
         child: LayoutBuilder(

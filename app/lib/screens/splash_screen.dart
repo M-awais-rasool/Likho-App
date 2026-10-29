@@ -81,7 +81,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> with SingleTickerPr
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.dark.copyWith(statusBarColor: LikhoColors.clear),
+      value: LikhoSystemBars.dark,
       child: ReferenceOverlay(
         asset: SplashScreen.reference,
         child: Material(

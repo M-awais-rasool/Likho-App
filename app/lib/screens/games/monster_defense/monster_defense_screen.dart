@@ -731,7 +731,7 @@ class _MonsterDefenseScreenState extends ConsumerState<MonsterDefenseScreen> wit
     _pad = pad;
     _best = ref.watch(myGamesProvider)[GameIds.monsters]?.best ?? 0;
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.dark.copyWith(statusBarColor: LikhoColors.clear),
+      value: LikhoSystemBars.dark,
       child: Material(
         color: LikhoColors.background,
         child: LayoutBuilder(

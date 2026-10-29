@@ -32,7 +32,7 @@ class StoriesScreen extends ConsumerWidget {
     final pad = MediaQuery.paddingOf(context);
     const letters = 'BCDEFGHIJKLMNOPQRSTUVWXYZ';
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.dark.copyWith(statusBarColor: LikhoColors.clear),
+      value: LikhoSystemBars.dark,
       child: Material(
         color: LikhoColors.background,
         child: CustomScrollView(
