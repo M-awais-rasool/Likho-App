@@ -610,7 +610,7 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
     if (battle != null) return _bossBuild(battle, world, theme, s, write, hasBoxes);
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: (theme.dark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark).copyWith(statusBarColor: LikhoColors.clear),
+      value: theme.dark ? LikhoSystemBars.light : LikhoSystemBars.dark,
       child: Material(
         color: theme.bg,
         child: Stack(
@@ -725,7 +725,7 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
     final stageH = (MediaQuery.sizeOf(context).height * .23).clamp(150.0, 200.0);
     final finale = _finishedState != null;
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: (theme.dark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark).copyWith(statusBarColor: LikhoColors.clear),
+      value: theme.dark ? LikhoSystemBars.light : LikhoSystemBars.dark,
       child: Material(
         color: theme.bg,
         child: Stack(

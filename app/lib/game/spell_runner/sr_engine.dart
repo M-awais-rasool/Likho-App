@@ -139,12 +139,28 @@ class SrHunting implements SrTasks {
   }
 }
 
-enum SrKind { letter, coin, heart, puddle, log, rock, hay, cone, banana, ramp }
+enum SrKind { letter, coin, heart, puddle, log, rock, hay, cone, banana, ramp, bar, banner, branch, cart, bench, flowerbox, magnet, shield, spring, double }
 
 extension SrKindX on SrKind {
-  /// Things in the way: a bump unless he jumps.
+  /// Things in the way: a bump unless he jumps (or, under a high one,
+  /// slides).
   bool get obstacle => switch (this) {
     SrKind.puddle || SrKind.log || SrKind.rock || SrKind.hay || SrKind.cone || SrKind.banana => true,
+    SrKind.bar || SrKind.banner || SrKind.branch || SrKind.cart || SrKind.bench || SrKind.flowerbox => true,
+    _ => false,
+  };
+
+  /// A high thing: he slides under it (jumping into it is a bump, unless
+  /// the spring shoes take him over it).
+  bool get high => this == SrKind.bar || this == SrKind.banner || this == SrKind.branch;
+
+  /// A thing that fills its lane: he goes around it (only the spring shoes
+  /// take him over it).
+  bool get blocker => this == SrKind.cart;
+
+  /// A power-up to pick up: it works for a while ([SrGame.powerTime]).
+  bool get power => switch (this) {
+    SrKind.magnet || SrKind.shield || SrKind.spring || SrKind.double => true,
     _ => false,
   };
 
@@ -178,7 +194,7 @@ class SrThing {
 
 enum SrPhase { ready, countdown, running, over, done }
 
-enum SrEventKind { countdown, go, task, letter, wrong, word, longer, coin, heart, jump, land, ramp, bump, skid, cleared, crash, done, move }
+enum SrEventKind { countdown, go, task, letter, wrong, word, longer, coin, heart, jump, land, ramp, bump, skid, cleared, crash, done, move, slide, power, powerEnd, shielded, zone }
 
 class SrEvent {
   const SrEvent(this.kind, {this.thing, this.value = 0, this.text = ''});
@@ -206,6 +222,15 @@ class SrGame {
 
   // a jump
   static const jumpTime = .78, rampTime = 1.25;
+
+  // a slide (as long at any speed, like a jump)
+  static const slideTime = .8;
+
+  /// How long each power-up works (the shield also ends at its bump).
+  static const powerTime = {SrKind.magnet: 9.0, SrKind.shield: 14.0, SrKind.spring: 9.0, SrKind.double: 10.0};
+
+  /// A new part of the road (its trees, its light) every this many metres.
+  static const zoneMetres = 500;
 
   // timings
   static const countdownTime = 3.2, overTime = 2.2, safeTime = 1.8;
@@ -267,10 +292,28 @@ class SrGame {
   double get air {
     final j = jumpAt;
     if (j == null) return 0;
-    return math.sin(math.pi * (j / jumpLen).clamp(0.0, 1.0)) * (_ramped ? 1.35 : 1);
+    return math.sin(math.pi * (j / jumpLen).clamp(0.0, 1.0)) * (_ramped ? 1.35 : 1) * (has(SrKind.spring) ? 1.6 : 1);
   }
 
   bool get airborne => air > .2;
+
+  /// Seconds into a slide (null when not sliding), and how long it lasts.
+  double? slideAt;
+  double slideLen = slideTime;
+
+  bool get sliding => slideAt != null;
+
+  /// The power-ups working now, and the seconds each has left.
+  final Map<SrKind, double> powers = {};
+
+  bool has(SrKind power) => (powers[power] ?? 0) > 0;
+
+  /// Which part of the road he is in (0, 1, 2, … every [zoneMetres]).
+  int get zone => metres ~/ zoneMetres;
+  int _zone = 0;
+
+  /// Points, twice as many with the 2x power-up.
+  void _add(int points) => score += has(SrKind.double) ? points * 2 : points;
 
   /// Stars for a run: one, two after 6 tasks, three after 14.
   int get stars => done >= 14 ? 3 : (done >= 6 ? 2 : 1);
@@ -317,6 +360,7 @@ class SrGame {
   /// is fast). Pressed just before landing, it jumps again on landing.
   void jump({bool ramp = false}) {
     if (phase != SrPhase.running) return;
+    slideAt = null; // up from a slide
     final j = jumpAt;
     if (j != null && !ramp) {
       if (jumpLen - j < .3) _queued = true;
@@ -324,12 +368,30 @@ class SrGame {
     }
     final quick = math.min(1.0, startSpeed / math.max(speed, 1));
     jumpAt = 0;
-    jumpLen = (ramp ? rampTime : jumpTime) * math.max(.62, quick);
+    jumpLen = (ramp ? rampTime : jumpTime) * math.max(.62, quick) * (has(SrKind.spring) ? 1.35 : 1);
     _ramped = ramp;
     _emit(ramp ? SrEventKind.ramp : SrEventKind.jump);
   }
 
   bool _queued = false, _ramped = false;
+
+  /// The jump now came off a ramp (a big one).
+  bool get ramped => _ramped;
+
+  /// Down flat on the board, under high things. In the air, he drops to
+  /// the road at once and slides.
+  void slide() {
+    if (phase != SrPhase.running) return;
+    if (jumpAt != null) {
+      jumpAt = null;
+      _queued = false;
+      _emit(SrEventKind.land);
+    }
+    final quick = math.min(1.0, startSpeed / math.max(speed, 1));
+    slideAt = 0;
+    slideLen = slideTime * math.max(.7, quick);
+    _emit(SrEventKind.slide);
+  }
 
   // ------------------------------------------------------------ time
 
@@ -390,6 +452,13 @@ class SrGame {
     }
   }
 
+  void _slide(double dt) {
+    final s = slideAt;
+    if (s == null) return;
+    slideAt = s + dt;
+    if (slideAt! >= slideLen) slideAt = null;
+  }
+
   void _run(double dt) {
     // speed: up each stage, slowed by a stumble, pushed by a boost
     final target = math.min(topSpeed, startSpeed + stage * perStage) * (stumble > 0 ? .45 : 1) * (boost > 0 ? 1.4 : 1);
@@ -397,15 +466,27 @@ class SrGame {
     stumble = math.max(0, stumble - dt);
     boost = math.max(0, boost - dt);
     safe = math.max(0, safe - dt);
+    for (final k in powers.keys.toList()) {
+      powers[k] = powers[k]! - dt;
+      if (powers[k]! <= 0) {
+        powers.remove(k);
+        _emit(SrEventKind.powerEnd, text: k.name);
+      }
+    }
     dist += speed * dt;
+    if (zone != _zone) {
+      _zone = zone;
+      _emit(SrEventKind.zone, value: zone);
+    }
     // a point a metre
     final m = dist * metre;
     if (m - _scored >= 1) {
-      score += (m - _scored).floor();
+      _add((m - _scored).floor());
       _scored += (m - _scored).floor();
     }
     _steer(dt);
     _air(dt);
+    _slide(dt);
     _lay();
     _touch();
     things.removeWhere((t) => t.z < dist - 8);
@@ -432,7 +513,18 @@ class SrGame {
       final mid = rowZ + gap / 2;
       final busy = math.min(.92, .6 + stage * .08);
       if (!early && _rnd.nextDouble() < busy) {
-        final kinds = [SrKind.puddle, SrKind.log, SrKind.rock, SrKind.hay, SrKind.cone, SrKind.banana];
+        final kinds = [
+          SrKind.puddle,
+          SrKind.log,
+          SrKind.rock,
+          SrKind.hay,
+          SrKind.cone,
+          SrKind.banana,
+          SrKind.bench,
+          SrKind.flowerbox,
+          if (stage >= 1) ...[SrKind.bar, SrKind.banner, SrKind.branch],
+          if (stage >= 2) SrKind.cart,
+        ];
         final lanes = [-1, 0, 1]..shuffle(_rnd);
         final two = row > 5 && _rnd.nextDouble() < math.min(.6, .2 + stage * .1);
         things.add(SrThing(id: ++_ids, kind: kinds[_rnd.nextInt(kinds.length)], lane: lanes[0], z: mid));
@@ -444,12 +536,24 @@ class SrGame {
           things.add(SrThing(id: ++_ids, kind: kinds[_rnd.nextInt(kinds.length)], lane: lanes[2], z: rowZ + gap * .86));
         }
         _treats(lanes[2], rowZ + 3, 3);
+        _maybePower(row, lanes[2], rowZ + gap * .62);
       } else {
         _treats(_rnd.nextInt(3) - 1, rowZ + 4, 4);
       }
       _cursor += gap;
     }
   }
+
+  /// Now and then (after the first rows, never too close together) a
+  /// power-up in a free lane.
+  void _maybePower(int row, int lane, double z) {
+    if (row < 5 || row - _powerRow < 4 || _rnd.nextDouble() > .22) return;
+    _powerRow = row;
+    const kinds = [SrKind.magnet, SrKind.shield, SrKind.spring, SrKind.double];
+    things.add(SrThing(id: ++_ids, kind: kinds[_rnd.nextInt(kinds.length)], lane: lane, z: z));
+  }
+
+  int _powerRow = -9;
 
   /// A line of coins in [lane] from [z] (now and then a heart instead when
   /// he has lost one).
@@ -521,33 +625,49 @@ class SrGame {
           if (!here || t.label.isEmpty || airborne || need == null) continue;
           _letter(t);
         case SrKind.coin:
-          if (!here) continue;
+          // the magnet pulls in the coins of every lane
+          if (!here && !(has(SrKind.magnet) && dz < .6)) continue;
           t.taken = true;
           coins++;
-          score += 10;
+          _add(10);
           _emit(SrEventKind.coin, thing: t);
         case SrKind.heart:
           if (!here) continue;
           t.taken = true;
           hearts = math.min(hearts0, hearts + 1);
           _emit(SrEventKind.heart, thing: t, value: hearts);
+        case SrKind.magnet || SrKind.shield || SrKind.spring || SrKind.double:
+          if (!here) continue;
+          t.taken = true;
+          powers[t.kind] = powerTime[t.kind]!;
+          _add(50);
+          _emit(SrEventKind.power, thing: t, text: t.kind.name);
         case SrKind.ramp:
           if (!here || airborne) continue;
           t.cleared = true;
-          score += 50;
+          _add(50);
           jump(ramp: true);
         default:
           // a bump only when he really reaches it (a jump just in time counts)
           if (!t.kind.obstacle || !here || dz > .4) continue;
-          if (airborne) {
+          final over = airborne && has(SrKind.spring);
+          if (t.kind.high ? sliding || over : (t.kind.blocker ? over : airborne)) {
             if (dz < 0) {
               t.cleared = true;
-              score += 25;
+              _add(25);
               _emit(SrEventKind.cleared, thing: t);
             }
             continue;
           }
           if (safe > 0) continue; // just bumped: he rolls through
+          if (has(SrKind.shield)) {
+            // the shield takes the bump and breaks the thing
+            powers.remove(SrKind.shield);
+            t.cleared = true;
+            safe = 1;
+            _emit(SrEventKind.shielded, thing: t);
+            continue;
+          }
           t.bumped = true;
           bumps++;
           combo = 0;
@@ -578,7 +698,7 @@ class SrGame {
     got++;
     combo++;
     bestCombo = math.max(bestCombo, combo);
-    score += 100 + 20 * math.min(5, combo - 1);
+    _add(100 + 20 * math.min(5, combo - 1));
     _emit(SrEventKind.letter, thing: t, value: got - 1, text: t.label);
     final task0 = current!;
     if (got >= task0.letters.length) {
@@ -586,7 +706,7 @@ class SrGame {
       final was = stage;
       cheer = 0;
       boost = 1.8;
-      score += 100 + 50 * task0.letters.length;
+      _add(100 + 50 * task0.letters.length);
       done++;
       previous = task0;
       _emit(SrEventKind.word, text: task0.word ?? task0.letters[0]);

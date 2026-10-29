@@ -472,7 +472,7 @@ class _LetterSliceScreenState extends ConsumerState<LetterSliceScreen> with Sing
     _pad = pad;
     _best = ref.watch(myGamesProvider)[GameIds.slice]?.best ?? 0;
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.light.copyWith(statusBarColor: LikhoColors.clear),
+      value: LikhoSystemBars.light,
       child: Material(
         color: LikhoColors.background,
         child: LayoutBuilder(

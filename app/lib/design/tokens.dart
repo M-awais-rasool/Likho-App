@@ -1,6 +1,7 @@
 // Likho design tokens: the single source of colours, sizes and type.
 // No other file may hard-code a colour.
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 /// Brand / UI colours (from the brief).
@@ -885,6 +886,55 @@ abstract final class SliceColors {
   static const bladeGlow = Color(0xFFBDE8FF);
   static const freeze = Color(0x338FD3FF);
   static const clock = Color(0xFFFF6B6B);
+}
+
+/// Spell Runner's road drawn over the picture: red and white kerbs, grit in
+/// the asphalt, clouds drifting over the sky.
+abstract final class RunnerColors {
+  static const kerbRed = Color(0xFFE8574A);
+  static const kerbWhite = Color(0xFFFFF8EE);
+  static const kerbEdge = Color(0x40442A1C);
+  static const grit = Color(0x2E3A4250);
+  static const gritLight = Color(0x40FFFFFF);
+  static const cloud = Color(0xE6FFFFFF);
+  static const slide = Color(0xFF2FB7A6);
+  static const slideDeep = Color(0xFF1D8A7D);
+  // the light of each part of the road (over the whole picture, faint)
+  static const clear = Color(0x00000000), fields = Color(0x1AFFC83D), forest = Color(0x1A2E8B6A), sunset = Color(0x24FF7A45);
+  // the power-ups
+  static const magnet = Color(0xFFFF5D73);
+  static const magnetTip = Color(0xFFC9D1DA);
+  static const shield = Color(0xFF4D9DE0);
+  static const shieldGlow = Color(0x664DC3FF);
+  static const spring = Color(0xFF3BB273);
+  static const springGlow = Color(0x663BB273);
+  static const double2x = Color(0xFFFFB020);
+  static const banner = Color(0xFF3BB273);
+  static const bannerDeep = Color(0xFF2A8A57);
+}
+
+/// The phone's status and navigation bars: see-through, with the app drawn
+/// behind them (no black strip under the app on Android), dark icons on
+/// light screens and light icons on dark ones.
+abstract final class LikhoSystemBars {
+  static const dark = SystemUiOverlayStyle(
+    statusBarColor: LikhoColors.clear,
+    statusBarIconBrightness: Brightness.dark,
+    statusBarBrightness: Brightness.light,
+    systemNavigationBarColor: LikhoColors.clear,
+    systemNavigationBarDividerColor: LikhoColors.clear,
+    systemNavigationBarIconBrightness: Brightness.dark,
+    systemNavigationBarContrastEnforced: false,
+  );
+  static const light = SystemUiOverlayStyle(
+    statusBarColor: LikhoColors.clear,
+    statusBarIconBrightness: Brightness.light,
+    statusBarBrightness: Brightness.dark,
+    systemNavigationBarColor: LikhoColors.clear,
+    systemNavigationBarDividerColor: LikhoColors.clear,
+    systemNavigationBarIconBrightness: Brightness.light,
+    systemNavigationBarContrastEnforced: false,
+  );
 }
 
 /// 8pt grid spacing.

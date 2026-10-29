@@ -98,7 +98,7 @@ class _SmashLevelsScreenState extends ConsumerState<SmashLevelsScreen> with Sing
     final next = _levels.indexWhere((l) => record.opens(l.number) && (record.levels[l.number] ?? 0) == 0);
     final stars = record.levels.values.fold(0, (a, b) => a + b);
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.dark.copyWith(statusBarColor: LikhoColors.clear),
+      value: LikhoSystemBars.dark,
       child: Material(
         color: MeadowColors.skyLow,
         child: LayoutBuilder(

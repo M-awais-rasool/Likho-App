@@ -105,7 +105,7 @@ class _LevelIntroScreenState extends ConsumerState<LevelIntroScreen> with Ticker
     final color = theme.accent;
     final intro = widget.level.intro;
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: (theme.dark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark).copyWith(statusBarColor: LikhoColors.clear),
+      value: theme.dark ? LikhoSystemBars.light : LikhoSystemBars.dark,
       child: Material(
         color: theme.bg,
         child: GestureDetector(

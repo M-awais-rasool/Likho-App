@@ -20,6 +20,10 @@ import 'screens/splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // the app runs under see-through phone bars, as on iPhone (Android drew a
+  // black navigation bar under it)
+  unawaited(SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge));
+  SystemChrome.setSystemUIOverlayStyle(LikhoSystemBars.dark);
   LicenseRegistry.addLicense(_artLicenses);
   // debug-only QA shortcuts, null in release
   final devLevel = await devLaunchLevel();

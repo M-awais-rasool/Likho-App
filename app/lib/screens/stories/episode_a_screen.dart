@@ -566,7 +566,7 @@ class _EpisodeAScreenState extends ConsumerState<EpisodeAScreen> with SingleTick
   Widget build(BuildContext context) {
     final pad = MediaQuery.paddingOf(context);
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.dark.copyWith(statusBarColor: LikhoColors.clear),
+      value: LikhoSystemBars.dark,
       child: Material(
         color: LikhoColors.background,
         child: ConfettiBurst(
