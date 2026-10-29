@@ -727,6 +727,50 @@
   "says": "Swipe up to jump!",
   "made": "b1f19f089a5240d0"
  },
+ "sr_slide_hint": {
+  "says": "Swipe down to slide!",
+  "made": "54103e45eb88ba82"
+ },
+ "sr_duck": {
+  "says": "Whoa! Slide under it!",
+  "made": "1dcb7b76aede4792"
+ },
+ "sr_around": {
+  "says": "Oops! Go around the cart!",
+  "made": "dd4a18915cb7cef3"
+ },
+ "sr_power_magnet": {
+  "says": "Magnet! The stars come to you!",
+  "made": "60f30e03e36417bd"
+ },
+ "sr_power_shield": {
+  "says": "A shield! One bump is fine!",
+  "made": "4e2c9dc2ac71c8e4"
+ },
+ "sr_power_spring": {
+  "says": "Super spring! Jump up high!",
+  "made": "4306337bd6b27036"
+ },
+ "sr_power_double": {
+  "says": "Double stars!",
+  "made": "c787dea6d5b2678e"
+ },
+ "sr_zone_0": {
+  "says": "Back to the Apple Orchard!",
+  "made": "78e00647cbb41973"
+ },
+ "sr_zone_1": {
+  "says": "Sunflower Fields ahead!",
+  "made": "796dec54a8b1d919"
+ },
+ "sr_zone_2": {
+  "says": "Into the Pine Forest!",
+  "made": "e95d865299310ccf"
+ },
+ "sr_zone_3": {
+  "says": "Here comes Sunset Lane!",
+  "made": "1f1c994bc8821b8b"
+ },
  "sr_finish": {
   "says": "The finish line! You did it!",
   "made": "63085f249f1e29e2"
