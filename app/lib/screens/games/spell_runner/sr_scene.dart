@@ -3,19 +3,29 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/painting.dart';
 
+import '../../../design/tokens.dart';
 import '../../../game/spell_runner/sr_engine.dart';
-import 'sr_art_boxes.dart';
+import 'sr_v2_boxes.dart';
 
 /// Spell Runner's pictures (`assets/games/runner/`, cut from the Gemini art
-/// by tools/games/cut_runner_art.py) and the road's perspective.
+/// by tools/games/cut_runner_art.py and cut_runner_v2.py) and the road's
+/// perspective.
 abstract final class SrArt {
   static const dir = 'assets/games/runner';
   static const cover = '$dir/cover.webp';
   static String pic(String name) => '$dir/$name.webp';
-  static String pencil(String pose) => '$dir/pencil_$pose.webp';
 
-  static const poses = ['ride', 'lean_left', 'lean_right', 'jump', 'wobble', 'cheer'];
-  static const roadside = ['tree', 'pine', 'bush', 'flowers', 'sunflower', 'fence', 'mushrooms', 'signpost', 'apple_tree'];
+  /// Pencil on his board, from behind: every pose in one frame, the wheels
+  /// in its middle on the line [riderFoot].
+  static String rider(String pose) => '$dir/rider_$pose.webp';
+  static const poses = ['push', 'ride', 'carve_left', 'carve_right', 'crouch', 'jump', 'slide', 'trick', 'stumble', 'land', 'cheer'];
+  static const riderBox = Rect.fromLTRB(0, 0, 1, srRiderFoot);
+
+  /// Gloop chasing him, from behind.
+  static String gloop(String pose) => '$dir/gloop_$pose.webp';
+  static const gloopPoses = ['hop', 'land', 'reach'];
+
+  static const roadside = ['tree', 'pine', 'bush', 'flowers', 'sunflower', 'fence', 'mushrooms', 'signpost', 'apple_tree', 'lamp'];
 
   static String thing(SrKind k) => k == SrKind.letter || k == SrKind.coin ? star : (k == SrKind.heart ? heart : pic(switch (k) {
     SrKind.puddle => 'puddle',
@@ -25,24 +35,51 @@ abstract final class SrArt {
     SrKind.cone => 'cone',
     SrKind.banana => 'banana',
     SrKind.ramp => 'ramp',
+    SrKind.bar => 'barrier',
+    SrKind.banner => 'banner',
+    SrKind.branch => 'branch',
+    SrKind.cart => 'cart',
+    SrKind.bench => 'bench',
+    SrKind.flowerbox => 'flowerbox',
     _ => 'star',
   }));
+
+  /// How high the open space under high thing [k] is in its picture.
+  static double gap(SrKind k) => srGaps[thing(k).split('/').last.replaceAll('.webp', '')] ?? .5;
 
   /// The coins are the stars of Monster Defense's things.
   static const star = 'assets/games/monsters/star.webp';
   static const heart = 'assets/games/monsters/heart.webp';
 
-  /// Where Pencil is in pose picture [asset] (fractions).
-  static Rect box(String asset) => srArtBoxes[asset.split('/').last.replaceAll('.webp', '')] ?? const Rect.fromLTRB(0, 0, 1, 1);
-
   static List<String> get all => [
-    for (final p in poses) pencil(p),
-    for (final k in SrKind.values) thing(k),
+    for (final p in poses) rider(p),
+    for (final p in gloopPoses) gloop(p),
+    for (final k in SrKind.values)
+      if (!k.power) thing(k), // the power-ups are drawn
     for (final r in roadside) pic(r),
     star,
     pic('bg_road_day'),
     pic('bg_road_sunset'),
   ];
+}
+
+/// A part of the road (a new one every [SrGame.zoneMetres]): its name, the
+/// things beside it (some more often than others) and its light.
+class SrZone {
+  const SrZone(this.name, this.roadside, this.tint);
+  final String name;
+  final List<String> roadside;
+  final Color tint;
+
+  static const all = [
+    SrZone('Apple Orchard', ['apple_tree', 'apple_tree', 'tree', 'bush', 'flowers', 'fence', 'mushrooms'], RunnerColors.clear),
+    SrZone('Sunflower Fields', ['sunflower', 'sunflower', 'sunflower', 'flowers', 'flowers', 'fence', 'bush', 'signpost'], RunnerColors.fields),
+    SrZone('Pine Forest', ['pine', 'pine', 'pine', 'mushrooms', 'mushrooms', 'bush', 'tree'], RunnerColors.forest),
+    SrZone('Sunset Lane', ['lamp', 'lamp', 'tree', 'fence', 'flowers', 'bush', 'signpost'], RunnerColors.sunset),
+  ];
+
+  /// The part of the road at [metres].
+  static int at(double metres) => (metres ~/ SrGame.zoneMetres) % all.length;
 }
 
 /// A road background: where its road meets the horizon (fractions of the

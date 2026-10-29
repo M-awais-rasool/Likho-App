@@ -34,14 +34,20 @@ void main() {
   }
 
   /// A good player: goes to the bubble with the letter needed, jumps what is
-  /// in the way.
+  /// in the way, slides under what is high.
   void good(SrGame g) {
     if (g.phase != SrPhase.running) return;
     final ahead = g.things.where((t) => !t.taken && !t.cleared && !t.bumped && t.z - g.dist > 0).toList()..sort((a, b) => a.z.compareTo(b.z));
     final bubble = ahead.where((t) => t.kind == SrKind.letter && t.label == g.need && t.z - g.dist < 14).firstOrNull;
     if (bubble != null) g.moveTo(bubble.lane);
-    final bump = ahead.where((t) => t.kind.obstacle && (t.lane == g.targetLane || t.lane == g.lane.round()) && t.z - g.dist < 1.6).firstOrNull;
-    if (bump != null) g.jump();
+    // a cart ahead in his lane: over to the nearest lane without one
+    bool blocked(int l) => ahead.any((t) => t.kind.blocker && t.lane == l && t.z - g.dist < 8);
+    if (blocked(g.targetLane)) {
+      final to = ([-1, 0, 1]..sort((a, b) => (a - (bubble?.lane ?? 0)).abs().compareTo((b - (bubble?.lane ?? 0)).abs()))).where((l) => !blocked(l)).firstOrNull;
+      if (to != null) g.moveTo(to);
+    }
+    final bump = ahead.where((t) => t.kind.obstacle && !t.kind.blocker && (t.lane == g.targetLane || t.lane == g.lane.round()) && t.z - g.dist < 1.6).firstOrNull;
+    if (bump != null) bump.kind.high ? g.slide() : g.jump();
   }
 
   SrGame game(List<String> ws, {int seed = 1}) => SrGame(tasks: SrList([for (final w in ws) SrTask.spell(w)]), random: math.Random(seed));
@@ -153,6 +159,132 @@ void main() {
     expect(g.air, greaterThan(1), reason: 'higher than a jump');
   });
 
+  test('a high bar: he slides under it; riding or jumping into it is a bump; in the air a slide drops him first', () {
+    final g = game(['cat']);
+    g.start();
+    run(g, SrGame.countdownTime + .1);
+    g.things.removeWhere((t) => t.kind.obstacle);
+    // sliding: under it, no bump
+    final bar = SrThing(id: 999, kind: SrKind.bar, lane: g.targetLane, z: g.dist + 1.2);
+    g.things.add(bar);
+    g.slide();
+    expect(g.sliding, isTrue);
+    final passed = run(g, .4).map((e) => e.kind).toList();
+    expect(passed, contains(SrEventKind.cleared));
+    expect(bar.bumped, isFalse);
+    expect(g.hearts, SrGame.hearts0);
+    run(g, 1);
+    expect(g.sliding, isFalse, reason: 'a slide ends by itself');
+    // jumping into it: a bump
+    final high = SrThing(id: 1000, kind: SrKind.bar, lane: g.targetLane, z: g.dist + 1.2);
+    g.things.add(high);
+    g.jump();
+    run(g, .4);
+    expect(high.bumped, isTrue);
+    expect(g.hearts, SrGame.hearts0 - 1);
+    // a slide in the air: down at once, then sliding
+    run(g, SrGame.safeTime + 1);
+    g.jump();
+    run(g, .1);
+    g.slide();
+    expect(run(g, .2).map((e) => e.kind), containsAllInOrder([SrEventKind.land, SrEventKind.slide]));
+    expect(g.sliding, isTrue);
+    // and a jump gets him up from a slide
+    g.jump();
+    expect(g.sliding, isFalse);
+  });
+
+  test('a cart fills its lane: jumping or sliding into it is a bump, going around it is fine; the new low things are jumped', () {
+    final g = game(['cat']);
+    g.start();
+    run(g, SrGame.countdownTime + .1);
+    g.things.removeWhere((t) => t.kind.obstacle);
+    final cart = SrThing(id: 999, kind: SrKind.cart, lane: g.targetLane, z: g.dist + 1.4);
+    g.things.add(cart);
+    g.jump();
+    run(g, .4);
+    expect(cart.bumped, isTrue, reason: 'too big to jump');
+    run(g, SrGame.safeTime + .5);
+    final other = SrThing(id: 1000, kind: SrKind.cart, lane: g.targetLane, z: g.dist + 4);
+    g.things.add(other);
+    g.move(g.targetLane == 1 ? -1 : 1);
+    run(g, .8);
+    expect(other.bumped, isFalse);
+    expect(g.hearts, SrGame.hearts0 - 1);
+    for (final k in [SrKind.bench, SrKind.flowerbox]) {
+      final low = SrThing(id: 1001 + k.index, kind: k, lane: g.targetLane, z: g.dist + 1.3);
+      g.things.add(low);
+      g.jump();
+      run(g, 1);
+      expect(low.cleared, isTrue, reason: k.name);
+    }
+  });
+
+  test('high bars come from the second stage on, never on the first words', () {
+    final g = game(['cat', 'dog', 'sun', 'hat', 'bus', 'pen', 'cup', 'fox'], seed: 4);
+    g.start();
+    run(g, SrGame.countdownTime + .1);
+    expect(g.things.where((t) => t.kind.high), isEmpty);
+    run(g, 120, player: good);
+    expect(g.stage, greaterThanOrEqualTo(1));
+    expect(g.bumps, 0, reason: 'a good player slides under them');
+    expect(g.things.where((t) => t.kind.high), isNotEmpty);
+  });
+
+  test('power-ups: the magnet pulls in stars from every lane, the shield takes a bump, the spring jumps over high bars, 2x doubles the points', () {
+    final g = game(['cat']);
+    g.start();
+    run(g, SrGame.countdownTime + .1);
+    g.things.removeWhere((t) => t.kind != SrKind.letter);
+    void pick(SrKind k) {
+      g.things.add(SrThing(id: 900 + k.index, kind: k, lane: g.targetLane, z: g.dist + .3));
+      expect(run(g, .2).where((e) => e.kind == SrEventKind.power).map((e) => e.text), [k.name]);
+      expect(g.has(k), isTrue);
+    }
+
+    // the magnet: a star in another lane
+    pick(SrKind.magnet);
+    final far = SrThing(id: 990, kind: SrKind.coin, lane: g.targetLane == 1 ? -1 : 1, z: g.dist + .4);
+    g.things.add(far);
+    run(g, .2);
+    expect(far.taken, isTrue);
+    // the shield: no heart lost, the thing broken, the shield gone
+    pick(SrKind.shield);
+    final log = SrThing(id: 991, kind: SrKind.log, lane: g.targetLane, z: g.dist + .3);
+    g.things.add(log);
+    expect(run(g, .2).map((e) => e.kind), contains(SrEventKind.shielded));
+    expect(g.hearts, SrGame.hearts0);
+    expect(g.has(SrKind.shield), isFalse);
+    // the spring: over a high bar
+    run(g, 1.2);
+    pick(SrKind.spring);
+    g.things.add(SrThing(id: 992, kind: SrKind.bar, lane: g.targetLane, z: g.dist + 2));
+    g.jump();
+    expect(run(g, .5).map((e) => e.kind), contains(SrEventKind.cleared));
+    expect(g.hearts, SrGame.hearts0);
+    run(g, 1.2);
+    // 2x: a star is worth twice as much
+    pick(SrKind.double);
+    final before = g.score;
+    g.things.add(SrThing(id: 993, kind: SrKind.coin, lane: g.targetLane, z: g.dist + .3));
+    run(g, .1);
+    expect(g.score - before, greaterThanOrEqualTo(20));
+    // and each runs out
+    run(g, 11);
+    expect(g.powers, isEmpty);
+  });
+
+  test('a new part of the road every 500 m', () {
+    final g = game(['cat', 'dog', 'sun', 'hat', 'bus', 'pen', 'cup', 'fox'], seed: 7);
+    g.start();
+    run(g, SrGame.countdownTime + .1);
+    g.dist = (SrGame.zoneMetres - 1) / SrGame.metre;
+    g.things.clear();
+    final events = run(g, .5).where((e) => e.kind == SrEventKind.zone).toList();
+    expect(events.map((e) => e.value), [1]);
+    expect(g.zone, 1);
+  });
+
   test('tasks follow what the child learned: capitals, small letters, then words to spell', () {
     final r = math.Random(3);
     final caps = SrTasks.forChild(MdKnowledge.of(testCourse, const []), words, r);
@@ -190,7 +322,7 @@ void main() {
       expect(anyCase ? says?.toLowerCase() : says, anyCase ? text.toLowerCase() : text, reason: id);
     }
 
-    for (final p in [SrLines.intro, ...SrLines.count, SrLines.go, ...SrLines.great, SrLines.oops, SrLines.bump, SrLines.jumpHint, SrLines.record, SrLines.longer, SrLines.heart, SrLines.crash]) {
+    for (final p in [SrLines.intro, ...SrLines.count, SrLines.go, ...SrLines.great, SrLines.oops, SrLines.bump, SrLines.jumpHint, SrLines.slideHint, SrLines.duck, SrLines.around, for (final k in [SrKind.magnet, SrKind.shield, SrKind.spring, SrKind.double]) SrLines.power(k), ...SrLines.zones, SrLines.record, SrLines.longer, SrLines.heart, SrLines.crash]) {
       check(p.text, p.audio!);
     }
     for (var c = 97; c < 123; c++) {
@@ -261,6 +393,18 @@ void main() {
       await tester.tap(find.byKey(const ValueKey('sr-jump')));
       await tester.pump(const Duration(milliseconds: 100));
       expect(g.air, greaterThan(0), reason: 'the Jump button');
+      // swipe down: a slide; the Slide button comes with the first high bar
+      await pumpFor(tester, 900);
+      await tester.fling(find.byType(SpellRunnerScreen), const Offset(0, 160), 1200);
+      await tester.pump(const Duration(milliseconds: 50));
+      expect(g.sliding, isTrue);
+      expect(find.byKey(const ValueKey('sr-slide')), findsNothing);
+      g.things.add(SrThing(id: 5000, kind: SrKind.bar, lane: -1, z: g.dist + 30));
+      await pumpFor(tester, 900);
+      expect(find.byKey(const ValueKey('sr-slide')), findsOneWidget);
+      await tester.tap(find.byKey(const ValueKey('sr-slide')));
+      await tester.pump(const Duration(milliseconds: 50));
+      expect(g.sliding, isTrue, reason: 'the Slide button');
       // pause, keep playing, stop
       await pumpFor(tester, 900);
       await tester.tap(find.byKey(const ValueKey('sr-pause')));
