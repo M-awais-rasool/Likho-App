@@ -151,7 +151,6 @@ class _GameCard extends StatelessWidget {
     key: ValueKey('game-$id'),
     onTap: onTap,
     child: Container(
-      height: 360,
       decoration: BoxDecoration(
         color: StoryColors.panel,
         borderRadius: BorderRadius.circular(32),
@@ -161,11 +160,14 @@ class _GameCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Expanded(
+          // The landscape covers are composed at 3:2. Keep the whole scene
+          // visible as the card adapts to the phone and the text below it.
+          AspectRatio(
+            aspectRatio: 3 / 2,
             child: Stack(
               fit: StackFit.expand,
               children: [
-                Image.asset(cover, fit: BoxFit.cover, alignment: const Alignment(0, -.15)),
+                Image.asset(cover, fit: BoxFit.contain, excludeFromSemantics: true),
                 if (fresh) const Positioned(left: 14, top: 14, child: NewTag()),
                 if (locked) const Positioned(right: 14, top: 14, child: PlusTag()),
               ],
@@ -181,7 +183,7 @@ class _GameCard extends StatelessWidget {
                     children: [
                       Text(
                         title,
-                        maxLines: 1,
+                        maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: LikhoFonts.title(size: 22, weight: FontWeight.w800),
                       ),
@@ -189,7 +191,8 @@ class _GameCard extends StatelessWidget {
                       record.plays > 0
                           ? Row(
                               children: [
-                                for (var k = 1; k <= 3; k++) Icon(Symbols.star_rounded, size: 20, fill: 1, color: record.stars >= k ? LikhoColors.primary : MapColors.starOff),
+                                for (var k = 1; k <= 3; k++)
+                                  Icon(Symbols.star_rounded, size: 20, fill: 1, color: record.stars >= k ? LikhoColors.primary : MapColors.starOff),
                                 const SizedBox(width: 6),
                                 Flexible(
                                   child: Text(
@@ -207,6 +210,7 @@ class _GameCard extends StatelessWidget {
                     ],
                   ),
                 ),
+                const SizedBox(width: 10),
                 PushButton(
                   onTap: onTap,
                   color: LikhoColors.success,

@@ -115,7 +115,13 @@ class GameStartCard extends StatelessWidget {
     ];
     final picture = ClipRRect(
       borderRadius: BorderRadius.circular(22),
-      child: Image.asset(cover, width: wide ? 210 : 260, height: wide ? 190 : 200, fit: BoxFit.cover, alignment: const Alignment(0, -.1)),
+      child: SizedBox(
+        width: wide ? 210 : 260,
+        child: AspectRatio(
+          aspectRatio: 3 / 2,
+          child: Image.asset(cover, fit: BoxFit.contain, excludeFromSemantics: true),
+        ),
+      ),
     );
     return Stack(
       children: [
