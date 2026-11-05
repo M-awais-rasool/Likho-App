@@ -314,7 +314,8 @@ void main() {
       final state = tester.state(find.byType(LetterSliceScreen)) as dynamic;
       final g = state.debugGame as LsGame;
       final view = state.debugView as LsView;
-      expect(g.height, closeTo(844 / 39, .01), reason: 'the board fits the screen');
+      expect(g.height, closeTo((844 - view.topInset) / 39, .01), reason: 'the board reserves space for the challenge');
+      expect(view.at(5, g.height).dy, greaterThan(tester.getBottomLeft(find.byKey(const ValueKey('ls-task'))).dy));
       // wait for a B high enough, then swipe across it
       LsFruit? b;
       for (var k = 0; k < 80 && b == null; k++) {

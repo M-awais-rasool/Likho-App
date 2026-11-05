@@ -856,6 +856,31 @@ abstract final class MeadowColors {
   static const roadEdge = Color(0xFFD9B97E);
 }
 
+/// Crystal Sky, the floating-island route into Monster Smash.
+abstract final class SmashMapColors {
+  static const sky = Color(0xFFB9A6F3);
+  static const ink = Color(0xFF3D3068);
+  static const muted = Color(0xFF75648F);
+  static const cream = Color(0xFFFFF8EC);
+  static const gold = Color(0xFFFFC85A);
+  static const goldLight = Color(0xFFFFEAA0);
+  static const goldEdge = Color(0xFFCF8C35);
+  static const goldInk = Color(0xFF734417);
+  static const violet = Color(0xFF8662CC);
+  static const violetDeep = Color(0xFF5D4498);
+  static const lilac = Color(0xFFE0D5F4);
+  static const lilacClear = Color(0x00E0D5F4);
+  static const lilacEdge = Color(0xFFAA91CF);
+  static const islandTop = Color(0xFFF5EEFF);
+  static const islandLeft = Color(0xFFAB8AD4);
+  static const islandRight = Color(0xFFC5ADE9);
+  static const islandDark = Color(0xFF8C6BBD);
+  static const mint = Color(0xFF9AE7DF);
+  static const teal = Color(0xFF45BDB8);
+  static const tealDeep = Color(0xFF278E96);
+  static const shadow = Color(0x32604A91);
+}
+
 /// The Stationery Squad: Rubby the eraser, Inky the ink drop, Crayo the
 /// crayon (base, light band, dark band, outline).
 abstract final class HeroColors {

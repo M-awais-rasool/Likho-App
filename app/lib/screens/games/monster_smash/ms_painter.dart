@@ -8,6 +8,7 @@ import 'package:forge2d/forge2d.dart' show Vector2;
 import '../../../design/tokens.dart';
 import '../../../game/monster_smash/ms_engine.dart';
 import 'ms_camera.dart';
+import 'ms_crystal_art.dart';
 import 'ms_heroes.dart';
 import 'ms_monsters.dart';
 import 'ms_scene.dart';
@@ -59,11 +60,9 @@ class MsWorldPainter extends CustomPainter {
 
   static final _letters = <String, TextPainter>{};
 
-  /// The slingshot: its height, the middle of its stick, the tips of its
-  /// fork (measured from the picture).
+  /// The launcher's height and centre in world metres.
   static const slingHeight = 1.7;
   static double get slingX => MsGame.rest.x;
-  static const _tipX = .41, _tipY = .06;
 
   double get _ppm => view.ppm;
 
@@ -119,41 +118,107 @@ class MsWorldPainter extends CustomPainter {
     return Curves.elasticOut.transform(t);
   }
 
-  void _image(Canvas canvas, String asset, Rect dst, {double alpha = 1}) {
-    final img = MsSprites.of(asset);
-    if (img == null) return;
-    final paint = Paint()
-      ..filterQuality = FilterQuality.medium
-      ..color = Color.fromRGBO(0, 0, 0, alpha);
-    canvas.drawImageRect(img, Rect.fromLTWH(0, 0, img.width.toDouble(), img.height.toDouble()), dst, paint);
-  }
-
-  /// [img]'s size on the screen for a height of [h] metres.
-  Size _sized(ui.Image img, double h) => Size(h * _ppm * img.width / img.height, h * _ppm);
-
-  // ------------------------------------------------------------ the slingshot's side
+  // ------------------------------------------------------------ the launch platform
 
   void _hill(Canvas canvas) {
-    final img = MsSprites.of(MsArt.hill);
-    if (img == null) return;
-    // its flat top (a fifth down the picture) on the hill's top, the
-    // picture stretched wide so its flat top is the hill's (a little over
-    // half the picture's width)
-    const w = MsGame.hillHalfTop * 2 / .57;
-    final h = 4.0 * img.height / img.width;
-    final top = view.at(MsGame.hillX - w / 2, MsGame.hillTop + h * .2);
-    _image(canvas, MsArt.hill, Rect.fromLTWH(top.dx, top.dy, w * _ppm, h * _ppm));
+    final a = view.at(MsGame.hillX - MsGame.hillHalfTop, MsGame.hillTop);
+    final b = view.at(MsGame.hillX + MsGame.hillHalfTop, MsGame.hillTop);
+    final left = view.at(MsGame.hillX - MsGame.hillHalfFoot, 0);
+    final right = view.at(MsGame.hillX + MsGame.hillHalfFoot, 0);
+    final side = Path()
+      ..moveTo(a.dx, a.dy)
+      ..lineTo(b.dx, b.dy)
+      ..lineTo(right.dx, right.dy)
+      ..lineTo(left.dx, left.dy)
+      ..close();
+    canvas.drawPath(side, Paint()..shader = ui.Gradient.linear(a, right, const [Color(0xFFD5BCEE), Color(0xFF8571C1)]));
+    for (var i = 0; i < 5; i++) {
+      final x = left.dx + (right.dx - left.dx) * i / 5;
+      canvas.drawPath(
+        Path()
+          ..moveTo(x, left.dy)
+          ..lineTo(x + _ppm * .7, a.dy + 8)
+          ..lineTo(x + _ppm * .95, left.dy)
+          ..close(),
+        Paint()..color = const Color(0x2876DAD7),
+      );
+    }
+    final cap = Path()
+      ..moveTo(a.dx, a.dy)
+      ..lineTo(b.dx, b.dy)
+      ..lineTo(b.dx + _ppm * .15, b.dy + 10)
+      ..lineTo(a.dx - _ppm * .15, a.dy + 10)
+      ..close();
+    canvas.drawPath(cap, Paint()..shader = ui.Gradient.linear(a, a + const Offset(0, 10), const [Color(0xFFFFF5DC), Color(0xFFE7CD9F)]));
+    canvas.drawLine(
+      a,
+      b,
+      Paint()
+        ..color = const Color(0xFFFFFFFF)
+        ..strokeWidth = 2,
+    );
+    // A turquoise crystal in the platform face.
+    final gem = Offset((a.dx + b.dx) / 2, a.dy + _ppm * .45);
+    final r = _ppm * .18;
+    canvas.drawPath(
+      Path()
+        ..moveTo(gem.dx, gem.dy - r)
+        ..lineTo(gem.dx + r, gem.dy)
+        ..lineTo(gem.dx, gem.dy + r)
+        ..lineTo(gem.dx - r, gem.dy)
+        ..close(),
+      Paint()..shader = ui.Gradient.linear(gem - Offset(r, r), gem + Offset(r, r), const [Color(0xFFD2FFFF), Color(0xFF55C8C9)]),
+    );
   }
 
-  /// Draws the slingshot; returns the tips of its fork (back, front).
+  /// The launcher is drawn around the same fork tips used by the elastic.
   (Offset, Offset) _sling(Canvas canvas) {
-    final img = MsSprites.of(MsArt.sling);
-    final w = img == null ? slingHeight * .785 : slingHeight * img.width / img.height;
-    final top = MsGame.rest.y + .1;
-    final rect = Rect.fromLTWH((slingX - w / 2) * _ppm, view.at(0, top).dy, w * _ppm, slingHeight * _ppm);
-    _image(canvas, MsArt.sling, rect);
-    final tipY = rect.top + rect.height * _tipY;
-    return (Offset(rect.center.dx - _tipX * rect.width, tipY), Offset(rect.center.dx + _tipX * rect.width, tipY));
+    final at = view.of(MsGame.rest);
+    final a = at + Offset(-.55 * _ppm, 0), b = at + Offset(.55 * _ppm, 0);
+    final join = at + Offset(0, .85 * _ppm), foot = at + Offset(0, 1.44 * _ppm);
+    final fork = Path()
+      ..moveTo(a.dx, a.dy)
+      ..quadraticBezierTo(a.dx, join.dy - .2 * _ppm, join.dx, join.dy)
+      ..quadraticBezierTo(b.dx, join.dy - .2 * _ppm, b.dx, b.dy);
+    final stem = Path()
+      ..moveTo(join.dx, join.dy - .1 * _ppm)
+      ..lineTo(foot.dx, foot.dy);
+    final bounds = Rect.fromPoints(a - Offset(.12 * _ppm, .1 * _ppm), foot + Offset(.6 * _ppm, .12 * _ppm));
+    for (final path in [stem, fork]) {
+      canvas.drawPath(
+        path.shift(const Offset(0, 3)),
+        Paint()
+          ..color = const Color(0x60594A80)
+          ..style = PaintingStyle.stroke
+          ..strokeCap = StrokeCap.round
+          ..strokeWidth = .27 * _ppm,
+      );
+      canvas.drawPath(
+        path,
+        Paint()
+          ..shader = ui.Gradient.linear(bounds.topLeft, bounds.bottomRight, const [Color(0xFFFFE5A3), Color(0xFFBE824D)])
+          ..style = PaintingStyle.stroke
+          ..strokeCap = StrokeCap.round
+          ..strokeWidth = .23 * _ppm,
+      );
+      canvas.drawPath(
+        path.shift(Offset(-.035 * _ppm, -1)),
+        Paint()
+          ..color = const Color(0x99FFF5D8)
+          ..style = PaintingStyle.stroke
+          ..strokeCap = StrokeCap.round
+          ..strokeWidth = .055 * _ppm,
+      );
+    }
+    for (final p in [a, b]) {
+      canvas.drawRRect(
+        RRect.fromRectAndRadius(Rect.fromCenter(center: p, width: .28 * _ppm, height: .18 * _ppm), Radius.circular(.06 * _ppm)),
+        Paint()..shader = ui.Gradient.linear(p - Offset(0, 6), p + Offset(0, 6), const [Color(0xFFA6EFEB), Color(0xFF438FAD)]),
+      );
+    }
+    canvas.drawCircle(join + Offset(0, .1 * _ppm), .13 * _ppm, Paint()..color = const Color(0xFF5EBFCE));
+    canvas.drawCircle(join + Offset(-.03 * _ppm, .07 * _ppm), .05 * _ppm, Paint()..color = const Color(0xFFDBFFFF));
+    return (a, b);
   }
 
   /// A strand of the rubber band from the fork's [tip] to the ball at [ball].
@@ -195,10 +260,7 @@ class MsWorldPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round;
     canvas.drawLine(a, mid, back);
     canvas.drawLine(mid, b, back..color = SmashColors.band);
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(Rect.fromCenter(center: mid, width: .34 * _ppm, height: .16 * _ppm), Radius.circular(.08 * _ppm)),
-      Paint()..color = SmashColors.pouch,
-    );
+    canvas.drawRRect(RRect.fromRectAndRadius(Rect.fromCenter(center: mid, width: .34 * _ppm, height: .16 * _ppm), Radius.circular(.08 * _ppm)), Paint()..color = SmashColors.pouch);
   }
 
   // ------------------------------------------------------------ the towers
@@ -220,7 +282,7 @@ class MsWorldPainter extends CustomPainter {
     // a little bigger than the body, for the art's outline
     final rect = Rect.fromCenter(center: Offset.zero, width: w * _ppm * 1.03, height: h * _ppm * 1.03);
     if (game.hintBlock == b.id) _glow(canvas, rect);
-    _image(canvas, MsArt.block(b.shape, b.material), rect);
+    _material(canvas, b.shape, b.material, rect);
     if (b.damage > .25) _cracks(canvas, b, rect);
     if (b.letter != null) {
       final tp = _letter(b.letter!, b.material, rect.height * .7);
@@ -228,6 +290,91 @@ class MsWorldPainter extends CustomPainter {
     }
     canvas.restore();
     if (game.hintBlock == b.id) _arrow(canvas, c - Offset(0, rect.height * .5 + 18 * _ppm / 58));
+  }
+
+  /// Bevelled materials share the exact shapes of their physics fixtures.
+  void _material(Canvas canvas, MsShape shape, MsMaterial material, Rect rect) {
+    final colors = switch (material) {
+      MsMaterial.wood => const [Color(0xFFFFD99B), Color(0xFFE0A258), Color(0xFFB87940)],
+      MsMaterial.ice => const [Color(0xFFE2FFFF), Color(0xFF7DD9E5), Color(0xFF409EBB)],
+      MsMaterial.stone => const [Color(0xFFE9DDF6), Color(0xFFB19BCD), Color(0xFF82749F)],
+    };
+    final radius = math.min(rect.shortestSide * .14, 8.0);
+    final path = Path();
+    if (shape == MsShape.disc) {
+      path.addOval(rect);
+    } else if (shape == MsShape.triangle) {
+      path
+        ..moveTo(rect.left, rect.bottom)
+        ..lineTo(rect.center.dx, rect.top)
+        ..lineTo(rect.right, rect.bottom)
+        ..close();
+    } else {
+      path.addRRect(RRect.fromRectAndRadius(rect, Radius.circular(radius)));
+    }
+    canvas.drawPath(path.shift(const Offset(0, 2)), Paint()..color = const Color(0x50524378));
+    canvas.drawPath(path, Paint()..shader = ui.Gradient.linear(rect.topLeft, rect.bottomRight, colors, const [0, .5, 1]));
+    canvas.drawPath(
+      path,
+      Paint()
+        ..color = colors.last
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.8,
+    );
+    canvas.save();
+    canvas.clipPath(path);
+    if (shape == MsShape.square || shape == MsShape.plank) {
+      final inset = rect.deflate(3);
+      canvas.drawRRect(
+        RRect.fromRectAndRadius(inset, Radius.circular(math.max(1, radius - 2))),
+        Paint()
+          ..color = const Color(0x55FFFFFF)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1.5,
+      );
+      canvas.drawLine(
+        rect.topLeft + const Offset(6, 3),
+        rect.topRight + const Offset(-6, 3),
+        Paint()
+          ..color = const Color(0xBBFFFFFF)
+          ..strokeWidth = 2
+          ..strokeCap = StrokeCap.round,
+      );
+    }
+    if (material == MsMaterial.ice) {
+      canvas.drawPath(
+        Path()
+          ..moveTo(rect.left + rect.width * .12, rect.bottom)
+          ..lineTo(rect.left + rect.width * .48, rect.top)
+          ..lineTo(rect.left + rect.width * .64, rect.top)
+          ..lineTo(rect.left + rect.width * .28, rect.bottom)
+          ..close(),
+        Paint()..color = const Color(0x44FFFFFF),
+      );
+    } else if (material == MsMaterial.wood) {
+      for (var i = 0; i < 2; i++) {
+        final y = rect.top + rect.height * (.24 + i * .5);
+        canvas.drawPath(
+          Path()
+            ..moveTo(rect.left + 5, y)
+            ..cubicTo(rect.center.dx, y - 3, rect.center.dx, y + 3, rect.right - 5, y),
+          Paint()
+            ..color = const Color(0x22A26338)
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 1.2,
+        );
+      }
+    } else {
+      canvas.drawPath(
+        Path()
+          ..moveTo(rect.right, rect.top)
+          ..lineTo(rect.right, rect.bottom)
+          ..lineTo(rect.left, rect.bottom)
+          ..close(),
+        Paint()..color = const Color(0x1073549E),
+      );
+    }
+    canvas.restore();
   }
 
   TextPainter _letter(String l, MsMaterial m, double size) {
@@ -309,13 +456,11 @@ class MsWorldPainter extends CustomPainter {
     final pop = _pop(game.blocks.length + m.id);
     if (pop <= 0) return;
     final look = MsMonsterLook.of(m, lives.of(m), game.time);
-    final asset = MsArt.monster(m.kind, look.pose);
-    final img = MsSprites.of(asset);
-    if (img == null) return;
-    final box = MsArt.monsterBox(asset);
-    // the monster is a little taller than its body (ears, arms)
-    const tall = 1.0;
-    final s = _sized(img, tall / box.height);
+    final image = MsSprites.of(MsArt.crystalMonsters);
+    if (image == null) return;
+    final src = MsCrystalArt.monster(m.kind, look.pose);
+    final scale = _ppm * 1.08 / src.height;
+    final width = src.width * scale, height = src.height * scale;
     final c = view.of(m.position);
     canvas.save();
     canvas.translate(c.dx, c.dy);
@@ -324,9 +469,9 @@ class MsWorldPainter extends CustomPainter {
     canvas.translate(0, (MsSize.monster - look.hop) * _ppm);
     canvas.rotate(look.turn);
     canvas.scale(pop * look.scaleX, pop * look.scaleY);
-    final dst = Rect.fromLTWH(-box.center.dx * s.width, -box.bottom * s.height, s.width, s.height);
-    _image(canvas, asset, dst);
-    if (look.dizzy > 0) _dizzy(canvas, look.dizzy, -box.height * s.height * .95);
+    final dst = Rect.fromLTWH(-width / 2, -height, width, height);
+    canvas.drawImageRect(image, src, dst, Paint()..filterQuality = FilterQuality.high);
+    if (look.dizzy > 0) _dizzy(canvas, look.dizzy, -height * .95);
     canvas.restore();
   }
 

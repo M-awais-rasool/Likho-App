@@ -20,15 +20,16 @@ import '../../../game/letter_slice/ls_engine.dart';
 import '../../../game/monster_defense/md_questions.dart';
 import '../../../game/speech/prompt_voice.dart';
 import '../../../mascot/mascot.dart';
-import '../../gameplay/widgets/game_buttons.dart';
-import '../game_ui.dart';
 import '../monster_defense/md_effects.dart';
+import 'ls_art.dart';
 import 'ls_lines.dart';
 import 'ls_painter.dart';
 import 'ls_scene.dart';
+import 'ls_theme.dart';
+import 'ls_ui.dart';
 
-/// Letter Slice: like Fruit Ninja. Fruits with happy faces fly up the
-/// wooden board, each wearing a letter; Pencil asks for one (or a word to
+/// Letter Slice: colourful fruit flies through an airy orchard, each
+/// carrying a clear, upright letter. The voice asks for one (or a word to
 /// spell) and the child swipes through the fruits with it. They split in
 /// two and their juice splashes the board; a wrong letter only bounces
 /// off. A golden star fruit gives points, an ice berry slows time, a
@@ -47,7 +48,7 @@ class LetterSliceScreen extends ConsumerStatefulWidget {
 
 /// A word popping up on the board ("+10", "Combo x3!", "-2 s").
 class _Pop {
-  _Pop(this.text, this.at, this.born, {this.color = MonsterColors.score, this.size = 30});
+  _Pop(this.text, this.at, this.born, {this.color = LsTheme.teal, this.size = 30});
   final String text;
   final Offset at;
   final double born, size;
@@ -114,13 +115,6 @@ class _LetterSliceScreenState extends ConsumerState<LetterSliceScreen> with Sing
     _firstPlay = (ref.read(myGamesProvider)[GameIds.slice]?.plays ?? 0) == 0;
     _fb.prepare(Sfx.letterSlice);
     _load();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    precacheImage(const AssetImage(LsArt.board), context);
-    LsSprites.load(createLocalImageConfiguration(context));
   }
 
   @override
@@ -237,7 +231,7 @@ class _LetterSliceScreenState extends ConsumerState<LetterSliceScreen> with Sing
       case LsEventKind.combo:
         _fb.combo();
         final c = v == null ? Offset.zero : Offset(v.screen.width / 2, v.screen.height * .42);
-        _pops.add(_Pop('Combo x${e.value.round()}!  ${e.text}', c, _clock, color: SliceColors.stickerEdge, size: 40));
+        _pops.add(_Pop('Combo x${e.value.round()}!  ${e.text}', c, _clock, color: LsTheme.coralDeep, size: 40));
         _say(LsLines.combo);
       case LsEventKind.word:
         _fb.boost();
@@ -324,7 +318,7 @@ class _LetterSliceScreenState extends ConsumerState<LetterSliceScreen> with Sing
 
   // ------------------------------------------------------------ Pencil talks
 
-  /// Pencil says [line] now; his bubble shows its words for a moment ([hold]:
+  /// Play [line] and show a compact caption for a moment ([hold]:
   /// until the game starts).
   void _say(Prompt line, {bool hold = false}) {
     final talk = ++_talkId;
@@ -386,6 +380,10 @@ class _LetterSliceScreenState extends ConsumerState<LetterSliceScreen> with Sing
       _splats.clear();
       _pops.clear();
       _shownScore = 0;
+      _wordAt = _frenzyAt = _freezeAt = _lostAt = -9;
+      _shake = 0;
+      _trail.points.clear();
+      _pointer = null;
     });
     _play();
   }
@@ -394,6 +392,8 @@ class _LetterSliceScreenState extends ConsumerState<LetterSliceScreen> with Sing
     final g = _game;
     if (_paused || g == null || !_started || g.over) return;
     g.bladeUp();
+    _pointer = null;
+    _trail.points.clear();
     setState(() => _paused = true);
     _voice.stop();
     _fb.sliceMusic(false);
@@ -455,17 +455,6 @@ class _LetterSliceScreenState extends ConsumerState<LetterSliceScreen> with Sing
 
   // ------------------------------------------------------------ build
 
-  LsPencil _pencil(LsGame g) {
-    final t = g.time;
-    if (g.phase == LsPhase.over || g.phase == LsPhase.done || t - g.cheerAt < .9 || _clock - _wordAt < 1.3) {
-      final since = math.min(t - g.cheerAt, _clock - _wordAt);
-      return LsPencil('cheer', hop: math.sin(since.clamp(0, 10) * 10).abs() * 12);
-    }
-    if (t - g.oopsAt < 1.2) return const LsPencil('oops');
-    if (_caption != null) return const LsPencil('point');
-    return const LsPencil('stand');
-  }
-
   @override
   Widget build(BuildContext context) {
     final pad = MediaQuery.paddingOf(context);
@@ -474,11 +463,14 @@ class _LetterSliceScreenState extends ConsumerState<LetterSliceScreen> with Sing
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: LikhoSystemBars.light,
       child: Material(
-        color: LikhoColors.background,
+        color: LsTheme.mint,
         child: LayoutBuilder(
           builder: (context, box) {
             final size = box.biggest;
-            final view = _view = (_view != null && _view!.screen == size) ? _view! : LsView(size);
+            // Keep the fruit's highest flight below the challenge card, including
+            // on compact phones and with larger system text.
+            final topInset = math.min(size.height * .48, pad.top + 205 + (MediaQuery.textScalerOf(context).scale(30) - 30) * 2);
+            final view = _view = LsView(size, topInset: topInset);
             final g = _game;
             g?.height = view.height;
             return Stack(
@@ -494,12 +486,13 @@ class _LetterSliceScreenState extends ConsumerState<LetterSliceScreen> with Sing
                   ),
                 ),
                 if (g != null) ...[
-                  Positioned(
-                    top: pad.top + 8,
-                    left: 12,
-                    right: 12,
-                    child: ValueListenableBuilder<int>(valueListenable: _frame, builder: (context, _, _) => _hud(g)),
-                  ),
+                  if (_started)
+                    Positioned(
+                      top: pad.top + 10,
+                      left: pad.left + 18,
+                      right: pad.right + 18,
+                      child: ValueListenableBuilder<int>(valueListenable: _frame, builder: (context, _, _) => _hud(g)),
+                    ),
                   Positioned.fill(
                     child: IgnorePointer(
                       child: ValueListenableBuilder<int>(valueListenable: _frame, builder: (context, _, _) => _overlays(g)),
@@ -507,11 +500,8 @@ class _LetterSliceScreenState extends ConsumerState<LetterSliceScreen> with Sing
                   ),
                   if (!_started)
                     Positioned.fill(
-                      child: GameStartCard(
-                        id: 'ls',
-                        title: 'Letter Slice',
-                        cover: LsArt.cover,
-                        hint: _firstPlay ? LsLines.intro.text : 'Slice the letters!',
+                      child: LsStartCard(
+                        hint: _firstPlay ? LsLines.intro.text : 'Find the letter. Swipe the fruit. Make a little magic!',
                         best: _best,
                         onPlay: _play,
                         onBack: _exit,
@@ -524,22 +514,11 @@ class _LetterSliceScreenState extends ConsumerState<LetterSliceScreen> with Sing
                   ),
                   if (_paused)
                     Positioned.fill(
-                      child: GamePauseCard(id: 'ls', picture: LsArt.pencil('oops'), onResume: _resume, onExit: _exit),
+                      child: LsPauseCard(onResume: _resume, onExit: _exit),
                     ),
                   if (_showResult)
                     Positioned.fill(
-                      child: GameResultCard(
-                        id: 'ls',
-                        picture: LsArt.pencil('cheer'),
-                        title: 'Great slicing!',
-                        star: LsArt.star,
-                        stars: g.stars,
-                        score: g.score,
-                        detail: '${g.sliced} ${g.sliced == 1 ? 'fruit' : 'fruits'} · ${g.done} done',
-                        record: _record,
-                        onAgain: _again,
-                        onDone: _exit,
-                      ),
+                      child: LsResultCard(key: const ValueKey('ls-result'), game: g, record: _record, onAgain: _again, onDone: _exit),
                     ),
                 ] else
                   const Positioned.fill(
@@ -562,12 +541,12 @@ class _LetterSliceScreenState extends ConsumerState<LetterSliceScreen> with Sing
         child: Stack(
           children: [
             Positioned.fill(
-              child: Image.asset(LsArt.board, fit: BoxFit.cover, gaplessPlayback: true, filterQuality: FilterQuality.medium),
+              child: const RepaintBoundary(child: CustomPaint(painter: LsOrchardPainter())),
             ),
             if (g != null)
               Positioned.fill(
                 child: CustomPaint(
-                  painter: LsPainter(view: view, game: g, halves: _halves, splats: _splats, trail: _trail, pencil: _pencil(g), time: _clock),
+                  painter: LsPainter(view: view, game: g, halves: _halves, splats: _splats, trail: _trail, time: _clock),
                 ),
               ),
             Positioned.fill(
@@ -588,66 +567,95 @@ class _LetterSliceScreenState extends ConsumerState<LetterSliceScreen> with Sing
   // ------------------------------------------------------------ the top bar
 
   Widget _hud(LsGame g) {
-    final left = g.left.ceil();
+    final left = g.left.ceil().clamp(0, 999);
     final hurry = g.phase == LsPhase.playing && g.left <= 10;
     final lost = _clock - _lostAt < .6;
-    return Column(
-      children: [
-        Row(
+    final timerColor = hurry || lost ? LsTheme.coralDeep : LsTheme.teal;
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 520),
+        child: Column(
           children: [
-            PushButton(
-              key: const ValueKey('ls-pause'),
-              onTap: _started ? _pause : _exit,
-              color: MonsterColors.panel,
-              width: 46,
-              height: 46,
-              shape: const CircleBorder(),
-              shadows: const [BoxShadow(color: MonsterColors.panelShadow, offset: Offset(0, 3), blurRadius: 6)],
-              child: Icon(_started ? Symbols.pause_rounded : Symbols.arrow_back_rounded, size: 26, weight: 700, fill: 1, color: LikhoColors.ink),
-            ),
-            const SizedBox(width: 8),
-            if (_started)
-              Transform.scale(
-                scale: hurry ? 1 + .08 * math.sin(_clock * 10).abs() : (lost ? 1.12 : 1),
-                child: GamePill(
+            Row(
+              children: [
+                LsIconButton(key: const ValueKey('ls-pause'), icon: Symbols.pause_rounded, label: 'Pause game', onTap: _pause),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Container(
+                    height: 54,
+                    padding: const EdgeInsets.symmetric(horizontal: 14),
+                    decoration: LsTheme.panel(radius: 18),
+                    child: Row(
+                      children: [
+                        Icon(Symbols.timer_rounded, size: 23, color: timerColor),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              FittedBox(
+                                fit: BoxFit.scaleDown,
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  '${left ~/ 60}:${(left % 60).toString().padLeft(2, '0')}',
+                                  key: const ValueKey('ls-time'),
+                                  maxLines: 1,
+                                  style: LikhoFonts.body(
+                                    size: 18,
+                                    weight: FontWeight.w900,
+                                    color: timerColor,
+                                  ).copyWith(height: 1.1, fontFeatures: const [FontFeature.tabularFigures()]),
+                                ),
+                              ),
+                              const SizedBox(height: 5),
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(3),
+                                child: LinearProgressIndicator(
+                                  value: g.phase == LsPhase.countdown ? 1 : (g.left / g.roundTime).clamp(0, 1),
+                                  minHeight: 4,
+                                  color: timerColor,
+                                  backgroundColor: LsTheme.line,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Container(
+                  width: 104,
+                  height: 54,
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  decoration: LsTheme.panel(radius: 18),
                   child: Row(
-                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Symbols.timer_rounded, size: 22, weight: 700, fill: 1, color: hurry || lost ? SliceColors.clock : LikhoColors.ink),
-                      const SizedBox(width: 3),
-                      Text(
-                        '${left ~/ 60}:${(left % 60).toString().padLeft(2, '0')}',
-                        key: const ValueKey('ls-time'),
-                        style: LikhoFonts.title(
-                          size: 18,
-                          weight: FontWeight.w800,
-                          color: hurry || lost ? SliceColors.clock : LikhoColors.ink,
-                        ).copyWith(height: 1),
+                      const Icon(Symbols.star_rounded, size: 27, color: Color(0xFFE9A329), fill: 1),
+                      const SizedBox(width: 5),
+                      Expanded(
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            '${_shownScore.round()}',
+                            key: const ValueKey('ls-score'),
+                            maxLines: 1,
+                            style: LikhoFonts.body(size: 21, weight: FontWeight.w900, color: LsTheme.ink),
+                          ),
+                        ),
                       ),
                     ],
                   ),
                 ),
-              ),
-            const Spacer(),
-            GamePill(
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Image.asset(LsArt.star, width: 24, height: 24),
-                  const SizedBox(width: 5),
-                  Text(
-                    '${_shownScore.round()}',
-                    key: const ValueKey('ls-score'),
-                    style: LikhoFonts.title(size: 20, weight: FontWeight.w800).copyWith(height: 1),
-                  ),
-                ],
-              ),
+              ],
             ),
+            const SizedBox(height: 16),
+            if (g.current != null && g.phase == LsPhase.playing) LsTaskCard(task: g.current!, got: g.got, onTap: _repeatAsk),
           ],
         ),
-        const SizedBox(height: 10),
-        if (_started && g.current != null && g.phase == LsPhase.playing) _TaskCard(task: g.current!, got: g.got, clock: _clock, onTap: _repeatAsk),
-      ],
+      ),
     );
   }
 
@@ -670,7 +678,7 @@ class _LetterSliceScreenState extends ConsumerState<LetterSliceScreen> with Sing
               scale: .4 + .8 * pop,
               child: Text(
                 n,
-                style: LikhoFonts.title(size: 96, weight: FontWeight.w800, color: going ? LikhoColors.success : MonsterColors.ribbon).copyWith(
+                style: LikhoFonts.title(size: 96, weight: FontWeight.w800, color: going ? LsTheme.teal : LsTheme.coral).copyWith(
                   shadows: const [Shadow(color: MonsterColors.panelShadow, offset: Offset(0, 6), blurRadius: 12)],
                 ),
               ),
@@ -685,22 +693,27 @@ class _LetterSliceScreenState extends ConsumerState<LetterSliceScreen> with Sing
       final pop = Curves.elasticOut.transform((since / .6).clamp(0.0, 1.0));
       kids.add(
         Align(
-          alignment: const Alignment(0, -.3),
+          alignment: const Alignment(0, .05),
           child: Opacity(
             opacity: (1 - (since - (life - .4)) / .4).clamp(0.0, 1.0),
             child: Transform.scale(
               scale: .3 + .7 * pop,
               child: Container(
                 key: ValueKey('ls-banner-$text'),
+                constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width - 36),
                 padding: const EdgeInsets.fromLTRB(26, 6, 26, 10),
                 decoration: BoxDecoration(
                   color: color,
                   borderRadius: BorderRadius.circular(26),
                   boxShadow: [BoxShadow(color: edge, offset: const Offset(0, 6))],
                 ),
-                child: Text(
-                  text,
-                  style: LikhoFonts.title(size: 36, weight: FontWeight.w800, color: LikhoColors.surface).copyWith(height: 1.1),
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    text,
+                    maxLines: 1,
+                    style: LikhoFonts.title(size: 36, weight: FontWeight.w800, color: LikhoColors.surface).copyWith(height: 1.1),
+                  ),
                 ),
               ),
             ),
@@ -709,8 +722,8 @@ class _LetterSliceScreenState extends ConsumerState<LetterSliceScreen> with Sing
       );
     }
 
-    banner('$_wordShown!', _clock - _wordAt, LikhoColors.success, GameColors.successDeep);
-    banner('Fruit party!', _clock - _frenzyAt, MonsterColors.bossRibbon, MonsterColors.bossRibbonDeep, life: 1.8);
+    banner('$_wordShown!', _clock - _wordAt, LsTheme.teal, LsTheme.ink);
+    banner('Fruit party!', _clock - _frenzyAt, LsTheme.coral, LsTheme.coralDeep, life: 1.8);
     banner('Slow motion!', _clock - _freezeAt, MonsterColors.gemBlue, MonsterColors.ribbonDeep, life: 1.8);
     if (g.phase == LsPhase.over || g.phase == LsPhase.done && !_showResult) {
       banner("Time's up!", g.phase == LsPhase.over ? g.phaseTime : 1, MonsterColors.ribbon, MonsterColors.ribbonDeep, life: 9);
@@ -735,10 +748,10 @@ class _LetterSliceScreenState extends ConsumerState<LetterSliceScreen> with Sing
                   style: LikhoFonts.title(size: p.size, weight: FontWeight.w800, color: p.color).copyWith(
                     height: 1,
                     shadows: const [
-                      Shadow(color: MonsterColors.scoreEdge, offset: Offset(2, 2)),
-                      Shadow(color: MonsterColors.scoreEdge, offset: Offset(-2, 2)),
-                      Shadow(color: MonsterColors.scoreEdge, offset: Offset(2, -2)),
-                      Shadow(color: MonsterColors.scoreEdge, offset: Offset(-2, -2)),
+                      Shadow(color: LsTheme.cream, offset: Offset(2, 2)),
+                      Shadow(color: LsTheme.cream, offset: Offset(-2, 2)),
+                      Shadow(color: LsTheme.cream, offset: Offset(2, -2)),
+                      Shadow(color: LsTheme.cream, offset: Offset(-2, -2)),
                     ],
                   ),
                 ),
@@ -776,108 +789,42 @@ class _LetterSliceScreenState extends ConsumerState<LetterSliceScreen> with Sing
     return Stack(children: kids);
   }
 
-  /// What Pencil says, in a bubble near him.
+  /// Compact voice captions stay at the bottom, outside the main flight arc.
   Widget _speech(LsGame g) {
+    if (_showResult || _paused || !_started) return const SizedBox.shrink();
     final c = _caption;
-    if (c == null || _showResult || _paused || !_started) return const SizedBox.shrink();
     return Stack(
       children: [
         Positioned(
-          left: 16,
-          right: 60,
-          bottom: (_view?.screen.height ?? 800) * .16 + _pad.bottom + 12,
-          child: Align(
-            alignment: Alignment.bottomLeft,
+          left: 24 + _pad.left,
+          right: 24 + _pad.right,
+          bottom: _pad.bottom + 24,
+          child: Center(
             child: Container(
-              key: const ValueKey('ls-caption'),
-              padding: const EdgeInsets.fromLTRB(14, 7, 14, 9),
-              decoration: BoxDecoration(
-                color: MonsterColors.card,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: const [BoxShadow(color: MonsterColors.panelShadow, offset: Offset(0, 4), blurRadius: 10)],
-              ),
-              child: Text(
-                c,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: LikhoFonts.title(size: c.length > 50 ? 15 : 18, weight: FontWeight.w800).copyWith(height: 1.15),
+              constraints: const BoxConstraints(maxWidth: 400),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              decoration: BoxDecoration(color: LsTheme.cream.withValues(alpha: .86), borderRadius: BorderRadius.circular(18)),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(c == null ? Symbols.swipe_rounded : Symbols.volume_up_rounded, size: 18, color: LsTheme.teal),
+                  const SizedBox(width: 8),
+                  Flexible(
+                    child: Text(
+                      c ?? 'Swipe through the matching letters',
+                      key: const ValueKey('ls-caption'),
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: LikhoFonts.body(size: 13, weight: FontWeight.w800, color: LsTheme.ink),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
         ),
       ],
-    );
-  }
-}
-
-/// What to slice: the letter (or picture, or word with its boxes), and how
-/// many are done. A tap says it again.
-class _TaskCard extends StatelessWidget {
-  const _TaskCard({required this.task, required this.got, required this.clock, required this.onTap});
-  final LsTask task;
-  final int got;
-  final double clock;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final n = task.letters.length;
-    return GestureDetector(
-      onTap: onTap,
-      child: TweenAnimationBuilder<double>(
-        key: ValueKey(task),
-        tween: Tween(begin: 0, end: 1),
-        duration: const Duration(milliseconds: 450),
-        curve: Curves.easeOutBack,
-        builder: (context, v, child) => Transform.scale(scale: .6 + .4 * v, child: child),
-        child: Container(
-          key: const ValueKey('ls-task'),
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: MonsterColors.card,
-            borderRadius: BorderRadius.circular(22),
-            boxShadow: const [BoxShadow(color: MonsterColors.panelShadow, offset: Offset(0, 5), blurRadius: 12)],
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (task.picture != null)
-                Image.asset(task.picture!, width: 52, height: 52, fit: BoxFit.contain)
-              else
-                Container(
-                  width: 52,
-                  height: 52,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(color: MonsterColors.ribbon, borderRadius: BorderRadius.circular(16)),
-                  child: Text(task.letters[0], style: LikhoFonts.letter(size: 38, color: LikhoColors.surface).copyWith(height: 1)),
-                ),
-              const SizedBox(width: 10),
-              for (var i = 0; i < n; i++) ...[
-                if (i > 0) const SizedBox(width: 5),
-                if (task.spelling)
-                  Container(
-                    width: 38,
-                    height: 46,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: i < got ? LikhoColors.success : MonsterColors.panel,
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                        color: i == got
-                            ? MonsterColors.ribbon.withValues(alpha: .5 + .5 * math.sin(clock * 6).abs())
-                            : (i < got ? GameColors.successDeep : GameColors.ink15),
-                        width: i == got ? 3 : 2,
-                      ),
-                    ),
-                    child: i < got ? Text(task.letters[i], style: LikhoFonts.letter(size: 28, color: LikhoColors.surface).copyWith(height: 1)) : null,
-                  )
-                else
-                  Icon(Symbols.nutrition_rounded, size: 26, fill: i < got ? 1 : 0, color: i < got ? LikhoColors.success : GameColors.ink15),
-              ],
-            ],
-          ),
-        ),
-      ),
     );
   }
 }

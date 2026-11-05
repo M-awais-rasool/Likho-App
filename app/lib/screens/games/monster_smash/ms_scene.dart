@@ -8,12 +8,14 @@ import '../../../game/monster_smash/ms_engine.dart';
 import '../monster_defense/md_art_boxes.dart';
 import 'ms_art_boxes.dart';
 
-/// Monster Smash's pictures (`assets/games/smash/`, cut from the Gemini art
-/// by tools/games/cut_smash_art.py; the monsters are Monster Defense's) and
-/// where the world is on the screen.
+/// Monster Smash's Crystal Sky atlases, legacy asset paths used by the art
+/// tools, and the world-to-screen projection.
 abstract final class MsArt {
   static const dir = 'assets/games/smash';
   static const cover = '$dir/cover.webp';
+  static const crystalSky = '$dir/map_crystal_sky.webp';
+  static const crystalMonsters = '$dir/crystal_monsters.png';
+  static String heroAtlas(String name) => '$dir/crystal_$name.png';
   static String pic(String name) => '$dir/$name.webp';
   static String pencil(String pose) => '$dir/pencil_$pose.webp';
 
@@ -51,22 +53,9 @@ abstract final class MsArt {
 
   static String _name(String asset) => asset.split('/').last.replaceAll('.webp', '');
 
-  /// What the world paints (Pencil is not in the game, only his voice).
-  static List<String> get all => {
-    for (final k in ['gloop', 'fuzz', 'bonk', 'boo'])
-      for (final p in monsterPoses) monster(k, p),
-    for (final s in MsShape.values)
-      for (final m in MsMaterial.values) block(s, m),
-    for (final h in heroes)
-      for (final p in heroPoses) hero(h, p),
-    sling,
-    hill,
-    star,
-    meadowSky,
-    meadowFar,
-    meadowNear,
-    meadowGround,
-  }.toList();
+  /// Only decode assets used by the active arena. Keeping the old individual
+  /// pose files out of this list avoids retaining both art sets in memory.
+  static List<String> get all => {crystalSky, crystalMonsters, for (final h in heroes) heroAtlas(h), star}.toList();
 }
 
 /// A background: where its ground is (a fraction of the picture's height,

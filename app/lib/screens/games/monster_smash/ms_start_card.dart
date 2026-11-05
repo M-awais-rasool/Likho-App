@@ -8,9 +8,10 @@ import '../../../game/monster_smash/ms_engine.dart';
 import '../game_ui.dart';
 import 'ms_heroes.dart';
 import 'ms_scene.dart';
+import 'ms_ui.dart';
 
-/// Before a level, over the dimmed meadow: a ribbon with the level, a
-/// little sky stage with the heroes on a grassy hill (the new hero alone,
+/// Before a level, over the dimmed crystal arena: a ribbon with the level, a
+/// little sky stage with the heroes on a floating island (the new hero alone,
 /// big, with a NEW badge), the world and its towers, the best stars, and a
 /// Play button that breathes.
 class MsStartCard extends StatelessWidget {
@@ -48,49 +49,46 @@ class MsStartCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ColoredBox(
-    color: MonsterColors.veil,
+    color: MsPalette.veil,
     child: SafeArea(
       child: Center(
-        child: TweenAnimationBuilder<double>(
-          tween: Tween(begin: .8, end: 1),
-          duration: const Duration(milliseconds: 420),
-          curve: Curves.easeOutBack,
-          builder: (context, v, child) => Transform.scale(scale: v, child: child),
-          child: SizedBox(
-            width: 590,
-            child: Stack(
-              clipBehavior: Clip.none,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(top: _ribbonH / 2),
-                  padding: const EdgeInsets.fromLTRB(14, 40, 18, 14),
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [SmashColors.cardTop, SmashColors.cardBottom],
-                    ),
-                    borderRadius: BorderRadius.circular(32),
-                    border: Border.all(color: SmashColors.cardRim, width: 3),
-                    boxShadow: const [BoxShadow(color: MonsterColors.panelShadow, offset: Offset(0, 12), blurRadius: 28)],
-                  ),
-                  child: Row(
-                    children: [
-                      _stage(),
-                      const SizedBox(width: 18),
-                      Expanded(
-                        child: SizedBox(height: _stageH, child: _side()),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: TweenAnimationBuilder<double>(
+              tween: Tween(begin: .8, end: 1),
+              duration: const Duration(milliseconds: 420),
+              curve: Curves.easeOutBack,
+              builder: (context, v, child) => Transform.scale(scale: v, child: child),
+              child: SizedBox(
+                width: 600,
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(top: _ribbonH / 2),
+                      padding: const EdgeInsets.fromLTRB(14, 40, 18, 14),
+                      decoration: MsPalette.panel(radius: 32),
+                      child: Row(
+                        children: [
+                          _stage(),
+                          const SizedBox(width: 18),
+                          Expanded(
+                            child: SizedBox(height: _stageH, child: _side()),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                    Positioned(
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      child: Center(child: _Ribbon(title: title)),
+                    ),
+                  ],
                 ),
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  child: Center(child: _Ribbon(title: title)),
-                ),
-              ],
+              ),
             ),
           ),
         ),
@@ -172,7 +170,7 @@ class MsStartCard extends StatelessWidget {
         key: meet == null ? null : const ValueKey('ms-meet'),
         textAlign: TextAlign.center,
         maxLines: 2,
-        style: LikhoFonts.body(size: 16, weight: FontWeight.w800, color: StoryColors.name, height: 1.25),
+        style: LikhoFonts.body(size: 16, weight: FontWeight.w800, color: MsPalette.ink, height: 1.25),
       ),
       const Spacer(),
       Row(
@@ -243,10 +241,7 @@ class _RibbonPainter extends CustomPainter {
     final band = RRect.fromRectAndRadius(Rect.fromLTRB(inset - 12, 0, w - inset + 12, h), const Radius.circular(10));
     canvas.drawRRect(band.shift(const Offset(0, 4)), Paint()..color = MonsterColors.panelShadow);
     canvas.drawRRect(band, Paint()..color = MonsterColors.ribbon);
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(Rect.fromLTRB(inset - 4, 5, w - inset + 4, 12), const Radius.circular(4)),
-      Paint()..color = const Color(0x33FFFFFF),
-    );
+    canvas.drawRRect(RRect.fromRectAndRadius(Rect.fromLTRB(inset - 4, 5, w - inset + 4, 12), const Radius.circular(4)), Paint()..color = const Color(0x33FFFFFF));
   }
 
   @override
@@ -263,15 +258,15 @@ class _Tag extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     height: 32,
     padding: const EdgeInsets.symmetric(horizontal: 12),
-    decoration: BoxDecoration(color: SmashColors.tag, borderRadius: BorderRadius.circular(16)),
+    decoration: BoxDecoration(color: MsPalette.lilac, borderRadius: BorderRadius.circular(16)),
     child: Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(icon, size: 18, fill: 1, color: SmashColors.tagInk),
+        Icon(icon, size: 18, fill: 1, color: MsPalette.ink),
         const SizedBox(width: 5),
         Text(
           text,
-          style: LikhoFonts.body(size: 15, weight: FontWeight.w800, color: SmashColors.tagInk),
+          style: LikhoFonts.body(size: 15, weight: FontWeight.w800, color: MsPalette.ink),
         ),
       ],
     ),
@@ -330,8 +325,7 @@ class _NewBadge extends StatelessWidget {
   );
 }
 
-/// The stage: a soft sky, the sun's glow, two drifting clouds, a far hill
-/// and the grassy hill the heroes stand on.
+/// A miniature Crystal Sky island connects the welcome card to the arena.
 class _StagePainter extends CustomPainter {
   _StagePainter(this.time);
   final double time;
@@ -339,78 +333,35 @@ class _StagePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final w = size.width, h = size.height;
+    final bounds = Offset.zero & size;
+    canvas.drawRect(bounds, Paint()..color = MsPalette.lilac);
+    final image = MsSprites.of(MsArt.crystalSky);
+    if (image != null) paintImage(canvas: canvas, rect: bounds, image: image, fit: BoxFit.cover, filterQuality: FilterQuality.high);
+    canvas.drawCircle(Offset(w * .5, h * .48), w * .44, Paint()..shader = const RadialGradient(colors: [Color(0x88FFFFFF), Color(0x00FFFFFF)]).createShader(bounds));
+    final top = h * .79;
     canvas.drawRect(
-      Offset.zero & size,
+      Rect.fromLTRB(0, top, w, h),
       Paint()
         ..shader = const LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [SmashColors.stageTop, SmashColors.stageBottom],
-        ).createShader(Offset.zero & size),
+          colors: [Color(0xFFCBB5E7), Color(0xFF8B79BC)],
+        ).createShader(Rect.fromLTRB(0, top, w, h)),
     );
-    canvas.drawCircle(
-      Offset(w * .82, h * .16),
-      w * .32,
-      Paint()
-        ..shader = RadialGradient(colors: const [SmashColors.stageSun, Color(0x00FFF3B0)])
-            .createShader(Rect.fromCircle(center: Offset(w * .82, h * .16), radius: w * .32)),
-    );
-    _cloud(canvas, Offset((w * .22 + time * 6) % (w + 80) - 40, h * .2), 1);
-    _cloud(canvas, Offset((w * .7 + time * 4) % (w + 80) - 40, h * .36), .7);
-    final far = Path()
-      ..moveTo(0, h * .7)
-      ..quadraticBezierTo(w * .3, h * .5, w * .62, h * .66)
-      ..quadraticBezierTo(w * .85, h * .56, w, h * .62)
-      ..lineTo(w, h)
-      ..lineTo(0, h)
-      ..close();
-    canvas.drawPath(far, Paint()..color = SmashColors.hillTop.withValues(alpha: .7));
-    // a soft light on the heroes
-    canvas.drawOval(
-      Rect.fromCenter(center: Offset(w / 2, h * .62), width: w * .9, height: h * .62),
-      Paint()
-        ..shader = RadialGradient(colors: const [SmashColors.stageSpot, Color(0x00FFFFFF)])
-            .createShader(Rect.fromCenter(center: Offset(w / 2, h * .62), width: w * .9, height: h * .62)),
-    );
-    final top = h * .78;
-    final hill = Path()
-      ..moveTo(0, top + 10)
-      ..quadraticBezierTo(w / 2, top - 16, w, top + 10)
-      ..lineTo(w, h)
-      ..lineTo(0, h)
-      ..close();
-    canvas.drawPath(
-      hill,
-      Paint()
-        ..shader = const LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [SmashColors.hillTop, SmashColors.hill],
-        ).createShader(Rect.fromLTRB(0, top - 16, w, h)),
-    );
-    canvas.drawPath(
-      Path()
-        ..moveTo(0, top + 10)
-        ..quadraticBezierTo(w / 2, top - 16, w, top + 10),
-      Paint()
-        ..color = SmashColors.hillDeep
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 2.5,
-    );
-    // a few flowers in the grass
-    final rnd = math.Random(4);
-    for (var i = 0; i < 7; i++) {
-      final x = w * (.06 + i * .145) + rnd.nextDouble() * 8;
-      final y = h * .9 + rnd.nextDouble() * h * .06;
-      canvas.drawCircle(Offset(x, y), 3, Paint()..color = i.isEven ? MonsterColors.ribbonInk : MonsterColors.gem);
-      canvas.drawCircle(Offset(x, y), 1.2, Paint()..color = MonsterColors.gold);
+    for (var i = 0; i < 5; i++) {
+      canvas.drawPath(
+        Path()
+          ..moveTo(i * w / 4, top + 8)
+          ..lineTo((i + 1) * w / 4, top + 8)
+          ..lineTo((i + .5) * w / 4, h)
+          ..close(),
+        Paint()..color = const Color(0x557CE0E3),
+      );
     }
-  }
-
-  void _cloud(Canvas canvas, Offset at, double k) {
-    final p = Paint()..color = SmashColors.stageCloud;
-    for (final (dx, dy, r) in [(-14.0, 3.0, 10.0), (0.0, -3.0, 14.0), (15.0, 2.0, 11.0), (2.0, 6.0, 11.0)]) {
-      canvas.drawCircle(at + Offset(dx, dy) * k, r * k, p);
+    canvas.drawRRect(RRect.fromRectAndRadius(Rect.fromLTRB(-4, top, w + 4, top + 9), const Radius.circular(4)), Paint()..color = MsPalette.cream);
+    for (var i = 0; i < 5; i++) {
+      final at = Offset(w * (.12 + i * .2), h * (.22 + (i % 3) * .12));
+      canvas.drawCircle(at, 1.5 + .5 * math.sin(time * 2 + i), Paint()..color = const Color(0xCCFFFFFF));
     }
   }
 
