@@ -24,7 +24,7 @@ import '../../../mascot/mascot.dart';
 import '../../gameplay/widgets/game_buttons.dart';
 import '../game_ui.dart';
 import '../monster_defense/md_effects.dart';
-import 'ms_backdrop.dart';
+import 'ms_crystal_backdrop.dart';
 import 'ms_camera.dart';
 import 'ms_heroes.dart';
 import 'ms_lines.dart';
@@ -32,27 +32,19 @@ import 'ms_monsters.dart';
 import 'ms_painter.dart';
 import 'ms_scene.dart';
 import 'ms_start_card.dart';
+import 'ms_ui.dart';
 
 /// Monster Smash: played sideways, like Angry Birds 2. A level of one to
-/// three rooms in a meadow that moves with the camera; the Stationery Squad
+/// three rooms in a crystal sky that moves with the camera; the Stationery Squad
 /// (Rubby, Inky, Crayo) waits in line beside the slingshot, and the cards
-/// at the bottom pick who goes next. On the right Monster Defense's silly
+/// at the bottom pick who goes next. On the right the silly
 /// monsters sit on towers of wood, ice and stone, some blocks with letters.
 /// Pencil's voice asks for a letter, the child drags the hero back (dots
 /// show where it will go) and lets go, taps while it flies for its power;
 /// the block bursts, the tower falls and the monsters tumbling down turn
 /// into friends. See [MsGame] for the rules.
 class MonsterSmashScreen extends ConsumerStatefulWidget {
-  const MonsterSmashScreen({
-    super.key,
-    required this.onDone,
-    this.level,
-    this.world = 'Letter Land',
-    this.onNext,
-    this.ownOrientation = true,
-    this.asks,
-    this.seed,
-  });
+  const MonsterSmashScreen({super.key, required this.onDone, this.level, this.world = 'Letter Land', this.onNext, this.ownOrientation = true, this.asks, this.seed});
 
   /// Back to the levels (or the games).
   final VoidCallback onDone;
@@ -317,11 +309,17 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
         _fb.heroPower(e.text);
         _shake = math.max(_shake, 4);
         _bits.addAll(
-          MdBit.burst(at(), _rnd, n: 14, speed: 220, colors: switch (e.text) {
-            'inky' => const [HeroColors.lid, Color(0xFF4C7BEA), Color(0xFF7DA2F2)],
-            'crayo' => const [Color(0xFFFF9A3C), Color(0xFFFFE07A), HeroColors.lid],
-            _ => const [Color(0xFFFF8DAA), HeroColors.lid, Color(0xFFFFB3C6)],
-          }),
+          MdBit.burst(
+            at(),
+            _rnd,
+            n: 14,
+            speed: 220,
+            colors: switch (e.text) {
+              'inky' => const [HeroColors.lid, Color(0xFF4C7BEA), Color(0xFF7DA2F2)],
+              'crayo' => const [Color(0xFFFF9A3C), Color(0xFFFFE07A), HeroColors.lid],
+              _ => const [Color(0xFFFF8DAA), HeroColors.lid, Color(0xFFFFB3C6)],
+            },
+          ),
         );
       case MsEventKind.hit:
         _fb.pow();
@@ -581,7 +579,7 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
 
   /// Where the heroes wait on the hill, right to left from the slingshot.
   static Vector2 _slot(int i, MsHero h) {
-    return Vector2(2.2 - i * .44, MsGame.hillTop + MsHeroArt.foot(h) * MsGame.heroRadius[h]!);
+    return Vector2(2.15 - i * .58, MsGame.hillTop + MsHeroArt.foot(h) * MsGame.heroRadius[h]!);
   }
 
   static const _jump = .42;
@@ -596,7 +594,7 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
     final waiting = aim ? g.heroes.sublist(1) : g.heroes;
     final cheer = _clock - _cheerAt < 1.4;
     final line = <MsHeroSprite>[];
-    for (var i = 0; i < waiting.length && i < 4; i++) {
+    for (var i = 0; i < waiting.length && i < 3; i++) {
       final h = waiting[i];
       final to = _slot(i, h);
       final at = jumping ? Vector2(_slot(i + 1, h).x + (to.x - _slot(i + 1, h).x) * Curves.easeOut.transform(jt), to.y) : to;
@@ -605,12 +603,7 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
       if (cheer) hop = math.max(hop, (math.sin((t - _cheerAt) * 9 + i).abs()) * .8 * (1 - (t - _cheerAt) / 1.4));
       if (jumping) hop = math.max(hop, math.sin(jt * math.pi) * .4);
       line.add(
-        MsHeroSprite(
-          h,
-          at,
-          MsGame.heroRadius[h]!,
-          MsHeroLook(face: cheer ? MsFace.happy : MsFace.idle, hop: hop, squash: math.sin(t * 2.6 + i * 1.9) * .03, along: math.pi / 2),
-        ),
+        MsHeroSprite(h, at, MsGame.heroRadius[h]!, MsHeroLook(face: cheer ? MsFace.happy : MsFace.idle, hop: hop, squash: math.sin(t * 2.6 + i * 1.9) * .03, along: math.pi / 2)),
       );
     }
     MsHeroSprite? sling;
@@ -674,9 +667,7 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
     }
     for (final r in _rests) {
       final k = ((_clock - r.born) / .6).clamp(0.0, 1.0);
-      flying.add(
-        MsHeroSprite(r.hero, r.at, r.radius, MsHeroLook(face: MsFace.happy, scale: 1 - .5 * Curves.easeIn.transform(k), opacity: 1 - Curves.easeIn.transform(k))),
-      );
+      flying.add(MsHeroSprite(r.hero, r.at, r.radius, MsHeroLook(face: MsFace.happy, scale: 1 - .5 * Curves.easeIn.transform(k), opacity: 1 - Curves.easeIn.transform(k))));
     }
     return (line, sling, flying);
   }
@@ -708,7 +699,7 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: LikhoSystemBars.dark,
       child: Material(
-        color: MeadowColors.skyLow,
+        color: const Color(0xFFB7A6EF),
         child: LayoutBuilder(
           builder: (context, box) {
             final size = box.biggest;
@@ -757,7 +748,7 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
                   ),
                   if (_paused)
                     Positioned.fill(
-                      child: GamePauseCard(id: 'ms', picture: MsArt.monster('gloop', 'surprised'), onResume: _resume, onExit: _exit),
+                      child: MsPauseCard(hero: g.heroes.isEmpty ? MsHero.rubby : g.heroes.first, onResume: _resume, onExit: _exit),
                     ),
                   if (_showResult) Positioned.fill(child: _resultCard(g)),
                 ] else
@@ -782,7 +773,9 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
         child: Stack(
           children: [
             Positioned.fill(
-              child: CustomPaint(painter: MsBackdropPainter(view: view, camera: cam, time: _clock, scroll: scroll)),
+              child: CustomPaint(
+                painter: MsCrystalBackdropPainter(view: view, camera: cam, time: _clock, scroll: scroll),
+              ),
             ),
             if (g != null && heroes != null)
               Positioned.fill(
@@ -802,7 +795,9 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
                 ),
               ),
             Positioned.fill(
-              child: CustomPaint(painter: _CameraPainter(cam, MdEffectsPainter(bits: _bits, beams: const [], bubbles: const [], time: _clock))),
+              child: CustomPaint(
+                painter: _CameraPainter(cam, MdEffectsPainter(bits: _bits, beams: const [], bubbles: const [], time: _clock)),
+              ),
             ),
           ],
         ),
@@ -813,70 +808,102 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
   // ------------------------------------------------------------ the top bar
 
   Widget _hud(MsGame g) => SizedBox(
-    height: 64,
-    child: Stack(
+    height: 66,
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            PushButton(
-              key: const ValueKey('ms-pause'),
-              onTap: _started ? _pause : _exit,
-              color: MonsterColors.panel,
-              width: 46,
-              height: 46,
-              shape: const CircleBorder(),
-              shadows: const [BoxShadow(color: MonsterColors.panelShadow, offset: Offset(0, 3), blurRadius: 6)],
-              child: Icon(_started ? Symbols.pause_rounded : Symbols.arrow_back_rounded, size: 26, weight: 700, fill: 1, color: LikhoColors.ink),
-            ),
-            const SizedBox(width: 8),
-            if (_started && !g.over)
-              GamePill(
+        Expanded(
+          child: Row(
+            children: [
+              Semantics(
+                label: _started ? 'Pause game' : 'Back to levels',
+                button: true,
+                child: PushButton(
+                  key: const ValueKey('ms-pause'),
+                  onTap: _started ? _pause : _exit,
+                  color: MsPalette.cream,
+                  edgeColor: const Color(0xFFBDA4DC),
+                  edge: 3,
+                  width: 46,
+                  height: 46,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(17),
+                    side: const BorderSide(color: Color(0xFFE5D9F5), width: 2),
+                  ),
+                  shadows: const [BoxShadow(color: MsPalette.shadow, offset: Offset(0, 4), blurRadius: 10)],
+                  child: Icon(_started ? Symbols.pause_rounded : Symbols.arrow_back_rounded, size: 25, weight: 700, fill: 1, color: MsPalette.ink),
+                ),
+              ),
+              const SizedBox(width: 8),
+              if (_started && !g.over)
+                Flexible(
+                  child: MsPanel(
+                    padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Column(
+                        key: const ValueKey('ms-towers'),
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            widget.level == null ? 'TOWERS' : 'LEVEL ${_level.number}',
+                            style: LikhoFonts.body(size: 10, weight: FontWeight.w800, color: MsPalette.ink, height: 1),
+                          ),
+                          const SizedBox(height: 4),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              for (var k = 0; k < g.rooms; k++)
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 4),
+                                  child: Icon(
+                                    k < g.room || (k == g.room && g.phase == MsPhase.cleared) ? Symbols.check_circle_rounded : Symbols.castle_rounded,
+                                    size: 18,
+                                    fill: 1,
+                                    color: k < g.room || (k == g.room && g.phase == MsPhase.cleared) ? MsPalette.teal : (k == g.room ? MsPalette.violet : const Color(0xFFD2C5E5)),
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
+        if (_started && g.ask != null && g.phase != MsPhase.build) _AskCard(ask: g.ask!, clock: _clock, onTap: _repeatAsk),
+        Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              if (_started && !g.over) ...[Flexible(child: _meter(g)), const SizedBox(width: 8)],
+              MsPanel(
+                padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 10),
                 child: Row(
-                  key: const ValueKey('ms-towers'),
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    if (widget.level case final l?) ...[
-                      Text('${l.number}', style: LikhoFonts.title(size: 20, weight: FontWeight.w800).copyWith(height: 1)),
-                      const SizedBox(width: 6),
-                    ],
-                    for (var k = 0; k < g.rooms; k++)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 2.5),
-                        child: Icon(
-                          Symbols.castle_rounded,
-                          size: 22,
-                          fill: 1,
-                          color: k < g.room || (k == g.room && g.phase == MsPhase.cleared)
-                              ? LikhoColors.success
-                              : (k == g.room ? MonsterColors.ribbon : GameColors.ink15),
+                    Image.asset(MsArt.star, width: 25, height: 25),
+                    const SizedBox(width: 6),
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 90),
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          '${_shownScore.round()}',
+                          key: const ValueKey('ms-score'),
+                          style: LikhoFonts.title(size: 20, weight: FontWeight.w800, color: MsPalette.ink).copyWith(height: 1),
                         ),
                       ),
+                    ),
                   ],
                 ),
               ),
-            const Spacer(),
-            if (_started && !g.over) ...[_meter(g), const SizedBox(width: 8)],
-            GamePill(
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Image.asset(MsArt.star, width: 24, height: 24),
-                  const SizedBox(width: 5),
-                  Text(
-                    '${_shownScore.round()}',
-                    key: const ValueKey('ms-score'),
-                    style: LikhoFonts.title(size: 20, weight: FontWeight.w800).copyWith(height: 1),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-        if (_started && g.ask != null && g.phase != MsPhase.build)
-          Align(
-            alignment: Alignment.topCenter,
-            child: _AskCard(ask: g.ask!, clock: _clock, onTap: _repeatAsk),
+            ],
           ),
+        ),
       ],
     ),
   );
@@ -884,25 +911,41 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
   /// The Smash meter: smashing fills it; full, a bonus hero.
   Widget _meter(MsGame g) {
     final flash = (_clock - _bonusAt) < 1.2;
-    final pulse = flash ? 1 + .15 * math.sin((_clock - _bonusAt) * 18).abs() : 1.0;
-    return Transform.scale(
-      scale: pulse,
-      child: GamePill(
+    return MsPanel(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
         child: Row(
           key: const ValueKey('ms-meter'),
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Symbols.bolt_rounded, size: 22, fill: 1, color: flash ? HeroColors.meterFull : HeroColors.meter),
+            Icon(Symbols.bolt_rounded, size: 24, fill: 1, color: flash ? MsPalette.gold : MsPalette.teal),
             const SizedBox(width: 4),
-            Container(
-              width: 84,
-              height: 14,
-              decoration: BoxDecoration(color: HeroColors.meterTrack, borderRadius: BorderRadius.circular(7)),
-              alignment: Alignment.centerLeft,
-              child: FractionallySizedBox(
-                widthFactor: flash ? 1 : g.meter.clamp(0.0, 1.0),
-                child: Container(decoration: BoxDecoration(color: flash ? HeroColors.meterFull : HeroColors.meter, borderRadius: BorderRadius.circular(7))),
-              ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'SMASH',
+                  style: LikhoFonts.body(size: 9, weight: FontWeight.w800, color: MsPalette.ink, height: 1),
+                ),
+                const SizedBox(height: 5),
+                Container(
+                  width: 68,
+                  height: 9,
+                  decoration: BoxDecoration(color: MsPalette.lilac, borderRadius: BorderRadius.circular(5)),
+                  alignment: Alignment.centerLeft,
+                  child: FractionallySizedBox(
+                    widthFactor: flash ? 1 : g.meter.clamp(0.0, 1.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(colors: flash ? const [MsPalette.gold, Color(0xFFF1A855)] : const [Color(0xFF99E6D8), MsPalette.teal]),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -910,45 +953,37 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
     );
   }
 
-  /// The heroes in line as cards: the first is in the slingshot; a tap on
-  /// another sends it next.
+  /// The first hero is in the slingshot; tapping another sends it next.
   Widget _cards(MsGame g) {
     final can = g.phase == MsPhase.aim && g.pull == null;
-    final shown = g.heroes.take(6).toList();
+    final shown = g.heroes.take(5).toList();
     return Row(
       key: const ValueKey('ms-cards'),
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         for (var i = 0; i < shown.length; i++)
           Padding(
-            padding: const EdgeInsets.only(right: 6),
-            child: GestureDetector(
-              key: ValueKey('ms-card-$i'),
-              onTap: () => _pick(i),
-              child: TweenAnimationBuilder<double>(
-                key: ValueKey('${shown[i].name}-$i-${g.heroes.length}'),
-                tween: Tween(begin: i == shown.length - 1 && _clock - _bonusAt < 1 ? 0 : 1, end: 1),
-                duration: const Duration(milliseconds: 420),
-                curve: Curves.elasticOut,
-                builder: (context, v, child) => Transform.scale(scale: v, child: child),
-                child: Opacity(
-                  opacity: can || i == 0 ? 1 : .6,
-                  child: Container(
-                    width: i == 0 ? 52 : 44,
-                    height: i == 0 ? 52 : 44,
-                    decoration: BoxDecoration(
-                      color: HeroColors.card,
-                      borderRadius: BorderRadius.circular(14),
-                      border: Border.all(color: i == 0 ? HeroColors.cardOn : GameColors.ink15, width: i == 0 ? 4 : 2),
-                      boxShadow: const [BoxShadow(color: MonsterColors.panelShadow, offset: Offset(0, 3), blurRadius: 6)],
-                    ),
-                    child: CustomPaint(painter: _PortraitPainter(shown[i], _clock)),
-                  ),
-                ),
+            padding: const EdgeInsets.only(right: 7),
+            child: TweenAnimationBuilder<double>(
+              key: ValueKey('${shown[i].name}-$i-${g.heroes.length}'),
+              tween: Tween(begin: i == shown.length - 1 && _clock - _bonusAt < 1 ? 0 : 1, end: 1),
+              duration: const Duration(milliseconds: 420),
+              curve: Curves.elasticOut,
+              builder: (context, v, child) => Transform.scale(scale: v, child: child),
+              child: MsHeroCard(key: ValueKey('ms-card-$i'), hero: shown[i], selected: i == 0, available: can, time: _clock, onTap: () => _pick(i)),
+            ),
+          ),
+        if (g.heroes.length > shown.length)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 12),
+            child: MsPanel(
+              child: Text(
+                '+${g.heroes.length - shown.length}',
+                style: LikhoFonts.title(size: 16, weight: FontWeight.w800, color: MsPalette.ink),
               ),
             ),
           ),
-        if (g.heroes.length > shown.length) GamePill(child: Text('+${g.heroes.length - shown.length}', style: LikhoFonts.title(size: 18, weight: FontWeight.w800))),
       ],
     );
   }
@@ -1064,10 +1099,11 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
           if (label != null)
             Text(
               label,
-              style: LikhoFonts.title(size: 22, weight: FontWeight.w800, color: MonsterColors.panel).copyWith(
-                height: 1,
-                shadows: const [Shadow(color: MonsterColors.panelShadow, blurRadius: 6)],
-              ),
+              style: LikhoFonts.title(
+                size: 22,
+                weight: FontWeight.w800,
+                color: MonsterColors.panel,
+              ).copyWith(height: 1, shadows: const [Shadow(color: MonsterColors.panelShadow, blurRadius: 6)]),
             ),
         ],
       ),
@@ -1089,16 +1125,12 @@ class _MonsterSmashScreenState extends ConsumerState<MonsterSmashScreen> with Si
             child: Container(
               key: const ValueKey('ms-caption'),
               padding: const EdgeInsets.fromLTRB(14, 7, 14, 9),
-              decoration: BoxDecoration(
-                color: MonsterColors.card,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: const [BoxShadow(color: MonsterColors.panelShadow, offset: Offset(0, 4), blurRadius: 10)],
-              ),
+              decoration: MsPalette.panel(radius: 18),
               child: Text(
                 c,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: LikhoFonts.title(size: c.length > 50 ? 15 : 18, weight: FontWeight.w800).copyWith(height: 1.15),
+                style: LikhoFonts.title(size: c.length > 50 ? 15 : 18, weight: FontWeight.w800, color: MsPalette.ink).copyWith(height: 1.15),
               ),
             ),
           ),
@@ -1208,12 +1240,8 @@ class _AskCard extends StatelessWidget {
       builder: (context, v, child) => Transform.scale(scale: .6 + .4 * v, child: child),
       child: Container(
         key: const ValueKey('ms-ask'),
-        padding: const EdgeInsets.fromLTRB(8, 6, 12, 6),
-        decoration: BoxDecoration(
-          color: MonsterColors.card,
-          borderRadius: BorderRadius.circular(22),
-          boxShadow: const [BoxShadow(color: MonsterColors.panelShadow, offset: Offset(0, 5), blurRadius: 12)],
-        ),
+        padding: const EdgeInsets.fromLTRB(7, 6, 12, 6),
+        decoration: MsPalette.panel(radius: 22),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -1224,11 +1252,25 @@ class _AskCard extends StatelessWidget {
                 width: 52,
                 height: 52,
                 alignment: Alignment.center,
-                decoration: BoxDecoration(color: MonsterColors.ribbon, borderRadius: BorderRadius.circular(16)),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFAD8CE9), Color(0xFF7853BC)]),
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: const [BoxShadow(color: Color(0x255B3594), offset: Offset(0, 3), blurRadius: 4)],
+                ),
                 child: Text(ask.letter, style: LikhoFonts.letter(size: 38, color: LikhoColors.surface).copyWith(height: 1)),
               ),
-            const SizedBox(width: 6),
-            Icon(Symbols.volume_up_rounded, size: 26, fill: 1, color: MonsterColors.ribbon.withValues(alpha: .7 + .3 * math.sin(clock * 3).abs())),
+            const SizedBox(width: 10),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'FIND',
+                  style: LikhoFonts.body(size: 10, weight: FontWeight.w800, color: MsPalette.ink, height: 1),
+                ),
+                const SizedBox(height: 3),
+                Icon(Symbols.volume_up_rounded, size: 23, fill: 1, color: MsPalette.violet.withValues(alpha: .7 + .3 * math.sin(clock * 3).abs())),
+              ],
+            ),
           ],
         ),
       ),
