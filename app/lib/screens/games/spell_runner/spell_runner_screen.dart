@@ -21,11 +21,11 @@ import '../../../game/speech/prompt_voice.dart';
 import '../../../game/spell_runner/sr_engine.dart';
 import '../../../mascot/mascot.dart';
 import '../../gameplay/widgets/game_buttons.dart';
-import '../game_ui.dart';
 import '../monster_defense/md_effects.dart';
 import 'sr_lines.dart';
 import 'sr_painter.dart';
 import 'sr_scene.dart';
+import 'sr_ui.dart';
 
 /// Spell Runner: Pencil rides his skateboard down a country road (seen from
 /// behind). The picture and the word's empty boxes are at the top; rows of
@@ -278,20 +278,20 @@ class _SpellRunnerScreenState extends ConsumerState<SpellRunnerScreen> with Sing
   /// Trees, flowers and fences beside the road, a few steps apart.
   void _layScenery(SrGame g) {
     while (_sceneryCursor < g.dist + SrGame.view + 6) {
-      _sceneryCursor += 1.8 + _rnd.nextDouble() * 2.2;
+      _sceneryCursor += 3.8 + _rnd.nextDouble() * 2.6;
       final zone = SrZone.all[SrZone.at(_sceneryCursor * SrGame.metre)];
       for (final side in [-1.0, 1.0]) {
         if (_rnd.nextDouble() < .25) continue;
         final name = zone.roadside[_rnd.nextInt(zone.roadside.length)];
         final big = name == 'tree' || name == 'pine' || name == 'apple_tree';
-        final low = name == 'flowers' || name == 'mushrooms' || name == 'fence';
+        final low = name == 'flowers' || name == 'flowerbox' || name == 'bush';
         _scenery.add(
           SrScenery(
             asset: SrArt.pic(name),
             z: _sceneryCursor + _rnd.nextDouble(),
             side: side,
             out: (low ? .05 : .4) + _rnd.nextDouble() * (big ? 1.6 : .8),
-            size: big ? 1.4 + _rnd.nextDouble() * .5 : (low ? .45 : .8 + _rnd.nextDouble() * .3),
+            size: big ? 1.1 + _rnd.nextDouble() * .35 : (low ? .45 : .8 + _rnd.nextDouble() * .3),
             flip: _rnd.nextBool(),
           ),
         );
@@ -396,7 +396,9 @@ class _SpellRunnerScreenState extends ConsumerState<SpellRunnerScreen> with Sing
       case SrEventKind.shielded:
         _fb.bubblePop();
         _shake = 6;
-        if (road != null) _bits.addAll(MdBit.burst(_pencilTop(road, g) + const Offset(0, 60), _rnd, n: 14, speed: 170, colors: const [RunnerColors.shield, MonsterColors.magicCore]));
+        if (road != null) {
+          _bits.addAll(MdBit.burst(_pencilTop(road, g) + const Offset(0, 60), _rnd, n: 14, speed: 170, colors: const [RunnerColors.shield, MonsterColors.magicCore]));
+        }
       case SrEventKind.zone:
         _zoneShown = e.value;
         _zoneAt = _clock;
@@ -628,8 +630,8 @@ class _SpellRunnerScreenState extends ConsumerState<SpellRunnerScreen> with Sing
     if (g.sliding) {
       pose = 'slide';
     } else if (g.air > 0) {
-      // a crouch as he springs up, a trick off a ramp or on springs
-      pose = up < .09 ? 'crouch' : (g.ramped || g.has(SrKind.spring) ? 'trick' : 'jump');
+      // The airborne frame keeps the board attached to both feet.
+      pose = g.ramped || g.has(SrKind.spring) ? 'trick' : 'jump';
       lean = (steer * .04).clamp(-.15, .15);
     } else if (g.stumble > 0) {
       pose = 'stumble';
@@ -642,7 +644,7 @@ class _SpellRunnerScreenState extends ConsumerState<SpellRunnerScreen> with Sing
       shake = math.sin(_clock * 30) * 8 * k;
       lean = math.sin(_clock * 12) * .2 * k + .1 * (1 - k);
     } else if (since < .2) {
-      pose = 'land';
+      pose = 'ride';
     } else if (g.cheer < 1.1) {
       pose = 'cheer';
     } else if (steer.abs() > 1.2) {
@@ -653,14 +655,10 @@ class _SpellRunnerScreenState extends ConsumerState<SpellRunnerScreen> with Sing
       // banking into the turn before the carve picture, and out of it after
       lean = (steer * .06).clamp(-.08, .08);
     } else {
-      // riding: a kick on the road now and then (not while boosted), a
-      // gentle sway
-      final kick = g.phase == SrPhase.running && g.boost <= 0 && (_clock % 1.7) < .38;
-      if (kick) pose = 'push';
+      // A gentle sway with both feet planted on the same board.
       lean = math.sin(_clock * 2.2) * .025;
     }
-    // stretched as he leaves the road, squashed a little as he lands (the
-    // land picture does the rest)
+    // A small stretch on takeoff and a soft compression on landing.
     final squash = g.air > 0 && up < .3 ? 1 + .1 * (1 - up / .3) : (since < .3 ? 1 - .06 * math.exp(-since * 9) : 1.0);
     // just bumped: he blinks while nothing can bump him
     final blink = g.safe > 0 && g.phase == SrPhase.running && (_clock * 12).floor().isEven ? .35 : 1.0;
@@ -722,15 +720,7 @@ class _SpellRunnerScreenState extends ConsumerState<SpellRunnerScreen> with Sing
                   ),
                   if (!_started)
                     Positioned.fill(
-                      child: GameStartCard(
-                        id: 'sr',
-                        title: 'Spell Runner',
-                        cover: SrArt.cover,
-                        hint: _firstPlay ? SrLines.intro.text : 'Catch the letters!',
-                        best: _best,
-                        onPlay: _play,
-                        onBack: _exit,
-                      ),
+                      child: SrWelcome(hint: _firstPlay ? SrLines.intro.text : 'Catch the letters!', best: _best, onPlay: _play, onBack: _exit),
                     ),
                   Positioned.fill(
                     child: IgnorePointer(
@@ -739,21 +729,32 @@ class _SpellRunnerScreenState extends ConsumerState<SpellRunnerScreen> with Sing
                   ),
                   if (_paused)
                     Positioned.fill(
-                      child: GamePauseCard(id: 'sr', picture: SrArt.rider('stumble'), onResume: _resume, onExit: _exit),
+                      child: SrRunCard(
+                        title: 'Paused',
+                        detail: 'Your adventure is waiting.',
+                        primaryLabel: 'Keep playing',
+                        primaryKey: const ValueKey('sr-resume'),
+                        onPrimary: _resume,
+                        secondaryLabel: 'Stop',
+                        secondaryKey: const ValueKey('sr-exit'),
+                        onSecondary: _exit,
+                      ),
                     ),
                   if (_showResult)
                     Positioned.fill(
-                      child: GameResultCard(
-                        id: 'sr',
-                        picture: SrArt.rider('cheer'),
+                      child: SrRunCard(
+                        key: const ValueKey('sr-result'),
                         title: 'Great run!',
-                        star: SrArt.star,
                         stars: g.stars,
                         score: g.score,
                         detail: '${g.metres} m · ${g.done} ${g.done == 1 ? 'word' : 'words'}',
                         record: _record,
-                        onAgain: _again,
-                        onDone: _exit,
+                        primaryLabel: 'Play again',
+                        primaryKey: const ValueKey('sr-again'),
+                        onPrimary: _again,
+                        secondaryLabel: 'Done',
+                        secondaryKey: const ValueKey('sr-done'),
+                        onSecondary: _exit,
                       ),
                     ),
                 ] else
@@ -795,7 +796,10 @@ class _SpellRunnerScreenState extends ConsumerState<SpellRunnerScreen> with Sing
                 painter: MdEffectsPainter(bits: _bits, beams: const [], bubbles: const [], time: _clock),
               ),
             ),
-            if (g != null) Positioned.fill(child: IgnorePointer(child: ColoredBox(color: _tint(g)))),
+            if (g != null)
+              Positioned.fill(
+                child: IgnorePointer(child: ColoredBox(color: _tint(g))),
+              ),
           ],
         ),
       ),
@@ -818,10 +822,11 @@ class _SpellRunnerScreenState extends ConsumerState<SpellRunnerScreen> with Sing
   /// Where box [i] of the word card is (for the letters flying in).
   Offset _slotAt(int i, SrTask task, Size size) {
     final n = task.letters.length;
-    final hasPic = task.picture != null || task.hunt;
-    final w = (hasPic ? _pic + 10 : 0) + n * _slot + (n - 1) * _gap + 24;
-    final left = (size.width - w) / 2 + 12 + (hasPic ? _pic + 10 : 0);
-    return Offset(left + i * (_slot + _gap) + _slot / 2, _pad.top + 8 + 46 + 10 + 12 + (_slot + 10) / 2);
+    // Includes the illustration (or letter tile), padding and 2px card border.
+    final w = _pic + 10 + n * _slot + (n - 1) * _gap + 28;
+    final scale = math.min(1.0, (size.width - 24) / w);
+    final left = (size.width - w * scale) / 2 + (14 + _pic + 10) * scale;
+    return Offset(left + (i * (_slot + _gap) + _slot / 2) * scale, _pad.top + 8 + 46 + 10 + (14 + (_slot + 10) / 2) * scale);
   }
 
   /// The word on the card: the one being spelled, or for a moment after it
@@ -855,7 +860,7 @@ class _SpellRunnerScreenState extends ConsumerState<SpellRunnerScreen> with Sing
               flex: 4,
               child: FittedBox(
                 fit: BoxFit.scaleDown,
-                child: GamePill(
+                child: SrPill(
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -876,7 +881,7 @@ class _SpellRunnerScreenState extends ConsumerState<SpellRunnerScreen> with Sing
               flex: 4,
               child: FittedBox(
                 fit: BoxFit.scaleDown,
-                child: GamePill(
+                child: SrPill(
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -895,7 +900,11 @@ class _SpellRunnerScreenState extends ConsumerState<SpellRunnerScreen> with Sing
           ],
         ),
         const SizedBox(height: 10),
-        if (task != null && _started) _WordCard(task: task, filled: filled, clock: _clock, flying: _flights.map((f) => f.slot).toSet()),
+        if (task != null && _started)
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: _WordCard(task: task, filled: filled, clock: _clock, flying: _flights.map((f) => f.slot).toSet()),
+          ),
       ],
     );
   }
@@ -910,12 +919,12 @@ class _SpellRunnerScreenState extends ConsumerState<SpellRunnerScreen> with Sing
         child: PushButton(
           key: const ValueKey('sr-jump'),
           onTap: ready ? _jump : null,
-          color: MonsterColors.ribbon,
-          edgeColor: MonsterColors.ribbonDeep,
+          color: SrStyle.teal,
+          edgeColor: SrStyle.tealDeep,
           edge: 5,
           width: 76,
           height: 76,
-          shape: const CircleBorder(),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
           shadows: const [BoxShadow(color: MonsterColors.panelShadow, offset: Offset(0, 4), blurRadius: 10)],
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -934,7 +943,10 @@ class _SpellRunnerScreenState extends ConsumerState<SpellRunnerScreen> with Sing
 
   /// The power-ups working now: each its picture in a ring that empties.
   Widget _powerTimers(SrGame g) {
-    final on = [for (final k in const [SrKind.magnet, SrKind.shield, SrKind.spring, SrKind.double]) if (g.has(k)) k];
+    final on = [
+      for (final k in const [SrKind.magnet, SrKind.shield, SrKind.spring, SrKind.double])
+        if (g.has(k)) k,
+    ];
     return Column(
       key: const ValueKey('sr-powers'),
       mainAxisSize: MainAxisSize.min,
@@ -969,12 +981,12 @@ class _SpellRunnerScreenState extends ConsumerState<SpellRunnerScreen> with Sing
         child: PushButton(
           key: const ValueKey('sr-slide'),
           onTap: ready ? _slide : null,
-          color: RunnerColors.slide,
-          edgeColor: RunnerColors.slideDeep,
+          color: SrStyle.purple,
+          edgeColor: const Color(0xFF5144A3),
           edge: 5,
           width: 76,
           height: 76,
-          shape: const CircleBorder(),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
           shadows: const [BoxShadow(color: MonsterColors.panelShadow, offset: Offset(0, 4), blurRadius: 10)],
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -1012,9 +1024,15 @@ class _SpellRunnerScreenState extends ConsumerState<SpellRunnerScreen> with Sing
                 color: color,
                 borderRadius: BorderRadius.circular(22),
                 border: Border.all(color: LikhoColors.surface, width: 3),
-                boxShadow: [BoxShadow(color: deep, offset: const Offset(0, 5)), const BoxShadow(color: MonsterColors.panelShadow, offset: Offset(0, 8), blurRadius: 14)],
+                boxShadow: [
+                  BoxShadow(color: deep, offset: const Offset(0, 5)),
+                  const BoxShadow(color: MonsterColors.panelShadow, offset: Offset(0, 8), blurRadius: 14),
+                ],
               ),
-              child: Text(text, style: LikhoFonts.title(size: 26, weight: FontWeight.w800, color: LikhoColors.surface).copyWith(height: 1.1)),
+              child: Text(
+                text,
+                style: LikhoFonts.title(size: 26, weight: FontWeight.w800, color: LikhoColors.surface).copyWith(height: 1.1),
+              ),
             ),
           ),
         ),
@@ -1204,7 +1222,8 @@ class _WordCard extends StatelessWidget {
       key: const ValueKey('sr-word'),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: MonsterColors.card,
+        color: SrStyle.cream,
+        border: Border.all(color: Colors.white, width: 2),
         borderRadius: BorderRadius.circular(24),
         boxShadow: const [BoxShadow(color: MonsterColors.panelShadow, offset: Offset(0, 6), blurRadius: 14)],
       ),
@@ -1240,10 +1259,10 @@ class _WordCard extends StatelessWidget {
       height: _SpellRunnerScreenState._slot + 10,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: done ? LikhoColors.success : MonsterColors.panel,
+        color: done ? SrStyle.teal : const Color(0xFFF0F7ED),
         borderRadius: BorderRadius.circular(14),
         border: Border.all(
-          color: next ? MonsterColors.ribbon.withValues(alpha: .5 + .5 * glow) : (done ? GameColors.successDeep : GameColors.ink15),
+          color: next ? SrStyle.teal.withValues(alpha: .65 + .35 * glow) : (done ? GameColors.successDeep : GameColors.ink15),
           width: next ? 3 : 2,
         ),
       ),
@@ -1261,7 +1280,7 @@ class _Hearts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final lost = clock - lostAt, gained = clock - gainedAt;
-    return GamePill(
+    return SrPill(
       child: Row(
         key: const ValueKey('sr-hearts'),
         mainAxisSize: MainAxisSize.min,

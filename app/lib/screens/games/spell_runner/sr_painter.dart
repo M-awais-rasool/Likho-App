@@ -9,6 +9,7 @@ import 'package:material_symbols_icons/symbols.dart';
 import '../../../design/tokens.dart';
 import '../../../game/spell_runner/sr_engine.dart';
 import 'sr_scene.dart';
+import 'sr_atlas.dart';
 import 'sr_v2_boxes.dart';
 
 /// Something beside the road (a tree, flowers, a fence) at [z] on the road
@@ -59,8 +60,7 @@ class SrWorldPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    _clouds(canvas, size);
-    _grit(canvas);
+    _roadSurface(canvas);
     _kerbs(canvas);
     _lines(canvas);
     // far to near: scenery, things, Pencil (at 0), things that passed him
@@ -126,12 +126,14 @@ class SrWorldPainter extends CustomPainter {
       ..close();
   }
 
-  /// Red and white kerbs along both edges, rushing past.
+  /// Warm limestone kerbs along both edges, rushing past.
   void _kerbs(Canvas canvas) {
     const period = 2.4, inner = 1.5, outer = 1.6;
-    final red = Paint()..color = RunnerColors.kerbRed;
-    final white = Paint()..color = RunnerColors.kerbWhite;
-    final edge = Paint()..color = RunnerColors.kerbEdge;
+    const kerb = Color(0xFFFFE6AD);
+    const kerbLight = Color(0xFFFFF6D8);
+    final red = Paint()..color = kerb;
+    final white = Paint()..color = kerbLight;
+    final edge = Paint()..color = const Color(0xFF559C91);
     for (var k = 0; k < 30; k++) {
       final z0 = k * period - (game.dist % period) - 2;
       final s = road.s(z0);
@@ -139,47 +141,33 @@ class SrWorldPainter extends CustomPainter {
       final a = (s * 4).clamp(0.0, 1.0);
       for (final side in [-1.0, 1.0]) {
         final (i, o) = (side * inner, side * outer);
-        canvas.drawPath(_strip(z0, z0 + period / 2, i, o), red..color = RunnerColors.kerbRed.withValues(alpha: a));
-        canvas.drawPath(_strip(z0 + period / 2, z0 + period, i, o), white..color = RunnerColors.kerbWhite.withValues(alpha: a));
+        canvas.drawPath(_strip(z0, z0 + period / 2, i, o), red..color = kerb.withValues(alpha: a));
+        canvas.drawPath(_strip(z0 + period / 2, z0 + period, i, o), white..color = kerbLight.withValues(alpha: a));
         canvas.drawPath(_strip(z0, z0 + period, i - side * .02, i), edge);
       }
     }
   }
 
-  /// Specks of grit in the asphalt, the same pattern every few steps, so
-  /// the road itself seems to rush by.
-  void _grit(Canvas canvas) {
-    const period = 7.0;
-    final dark = Paint()..color = RunnerColors.grit;
-    final light = Paint()..color = RunnerColors.gritLight;
-    for (var k = 0; k < 10; k++) {
-      final base = k * period - (game.dist % period) - 2;
-      for (final (lane, dz, big) in _gritDots) {
-        final z = base + dz;
-        final s = road.s(z);
-        if (s < .2) continue;
-        final p = road.at(z, lane);
-        final r = road.laneWidth * s * (big ? .035 : .02);
-        canvas.drawOval(Rect.fromCenter(center: p, width: r * 2.4, height: r), big ? light : dark);
-      }
-    }
-  }
-
-  static final _gritDots = () {
-    final r = math.Random(11);
-    return [for (var i = 0; i < 26; i++) (r.nextDouble() * 2.8 - 1.4, r.nextDouble() * 7.0, i % 4 == 0)];
-  }();
-
-  /// Clouds drifting slowly over the sky, above the far hills.
-  void _clouds(Canvas canvas, Size size) {
-    final p = Paint()..color = RunnerColors.cloud;
-    final top = road.vanish.dy;
-    for (final (x0, y, k, speed) in const [(.1, .2, 1.0, 7.0), (.62, .34, .75, 5.0), (.9, .12, .6, 9.0)]) {
-      final span = size.width + 160;
-      final x = (x0 * span - time * speed) % span - 80;
-      final at = Offset(x, top * y);
-      for (final (dx, dy, r) in const [(-26.0, 6.0, 18.0), (0.0, -4.0, 26.0), (26.0, 4.0, 20.0), (8.0, 10.0, 18.0)]) {
-        canvas.drawCircle(at + Offset(dx, dy) * k, r * k, p);
+  /// A gently shaded track and moving tiles make forward motion readable.
+  /// Every seam uses the same projection as the obstacles and the rider.
+  void _roadSurface(Canvas canvas) {
+    final end = road.screen.height * 1.4;
+    final half = road.half(end);
+    final shape = Path()
+      ..moveTo(road.vanish.dx, road.vanish.dy)
+      ..lineTo(road.vanish.dx + half, end)
+      ..lineTo(road.vanish.dx - half, end)
+      ..close();
+    canvas.drawPath(
+      shape,
+      Paint()..shader = ui.Gradient.linear(road.vanish, Offset(road.vanish.dx, end), [const Color(0xFFA5E4CE), const Color(0xFF5AB8B1), const Color(0xFF399FAD)], [0, .55, 1]),
+    );
+    // Alternating broad paving stones: quiet enough for letters to stand out.
+    for (var k = 0; k < 36; k++) {
+      final z = k * 3.5 - (game.dist % 3.5) - 5;
+      if (road.s(z) < .12) continue;
+      if (k.isEven) {
+        canvas.drawPath(_strip(z, z + 3.5, -1.5, 1.5), Paint()..color = const Color(0xFFFFFFFF).withValues(alpha: .055));
       }
     }
   }
@@ -188,10 +176,11 @@ class SrWorldPainter extends CustomPainter {
 
   /// [asset] standing with its bottom middle on [foot], [height] tall.
   static Rect? sprite(Canvas canvas, String asset, Offset foot, double height, {double rotation = 0, bool flip = false, double alpha = 1, double scaleX = 1, Rect? content}) {
-    final img = SrSprites.of(asset);
+    final frame = SrAtlas.prop(asset);
+    final img = SrSprites.of(frame == null ? asset : SrArt.props);
     if (img == null || height <= 1 || alpha <= 0) return null;
-    final src = Rect.fromLTWH(0, 0, img.width.toDouble(), img.height.toDouble());
-    final w = height * img.width / img.height;
+    final src = frame ?? Rect.fromLTWH(0, 0, img.width.toDouble(), img.height.toDouble());
+    final w = height * src.width / src.height;
     canvas.save();
     canvas.translate(foot.dx, foot.dy);
     if (rotation != 0) canvas.rotate(rotation);
@@ -249,10 +238,17 @@ class SrWorldPainter extends CustomPainter {
         final hover = lw * .6 + math.sin(time * 3 + t.id) * lw * .06;
         final beat = 1 + .1 * math.sin(time * 9).abs();
         _shadow(canvas, foot, lw * .36, alpha: fade);
-        canvas.drawCircle(foot - Offset(0, hover + lw * .2), lw * .32, Paint()..color = MonsterColors.gem.withValues(alpha: .3 * fade)..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8));
+        canvas.drawCircle(
+          foot - Offset(0, hover + lw * .2),
+          lw * .32,
+          Paint()
+            ..color = MonsterColors.gem.withValues(alpha: .3 * fade)
+            ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8),
+        );
         sprite(canvas, SrArt.heart, foot - Offset(0, hover), lw * .44 * beat, alpha: fade);
       default:
-        final w = lw *
+        final w =
+            lw *
             switch (t.kind) {
               SrKind.puddle => 1.0,
               SrKind.log => .95,
@@ -266,9 +262,10 @@ class SrWorldPainter extends CustomPainter {
               SrKind.flowerbox => .98,
               _ => .7,
             };
-        final img = SrSprites.of(SrArt.thing(t.kind));
+        final frame = SrAtlas.prop(SrArt.thing(t.kind));
+        final img = SrSprites.of(frame == null ? SrArt.thing(t.kind) : SrArt.props);
         if (img == null) return;
-        final h = w * img.height / img.width;
+        final h = w * (frame?.height ?? img.height) / (frame?.width ?? img.width);
         if (t.kind != SrKind.puddle) _shadow(canvas, foot, w * .9, alpha: fade);
         // a bumped thing wobbles
         final wob = t.bumped ? math.sin(time * 30) * .08 : 0.0;
@@ -288,9 +285,20 @@ class SrWorldPainter extends CustomPainter {
     canvas.drawCircle(
       c,
       r,
-      Paint()..shader = ui.Gradient.radial(c - Offset(r * .35, r * .4), r * 1.4, [Color.lerp(color, MonsterColors.magicCore, .55)!.withValues(alpha: fade), color.withValues(alpha: fade)]),
+      Paint()
+        ..shader = ui.Gradient.radial(c - Offset(r * .35, r * .4), r * 1.4, [
+          Color.lerp(color, MonsterColors.magicCore, .55)!.withValues(alpha: fade),
+          color.withValues(alpha: fade),
+        ]),
     );
-    canvas.drawCircle(c, r, Paint()..color = MonsterColors.magicCore.withValues(alpha: .95 * fade)..style = PaintingStyle.stroke..strokeWidth = math.max(1.5, r * .12));
+    canvas.drawCircle(
+      c,
+      r,
+      Paint()
+        ..color = MonsterColors.magicCore.withValues(alpha: .95 * fade)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = math.max(1.5, r * .12),
+    );
     SrPowerArt.icon(canvas, t.kind, c, r * .58, MonsterColors.magicCore.withValues(alpha: fade));
     canvas.drawOval(Rect.fromCenter(center: c + Offset(-r * .4, -r * .48), width: r * .42, height: r * .22), Paint()..color = MonsterColors.magicCore.withValues(alpha: .7 * fade));
     for (var k = 0; k < 3; k++) {
@@ -322,22 +330,24 @@ class SrWorldPainter extends CustomPainter {
   /// under it is a little more than Pencil sliding and less than Pencil
   /// standing.
   void _high(Canvas canvas, SrThing t, Offset foot, double lw, double s, double fade) {
-    final img = SrSprites.of(SrArt.thing(t.kind));
+    final frame = SrAtlas.prop(SrArt.thing(t.kind));
+    final img = SrSprites.of(frame == null ? SrArt.thing(t.kind) : SrArt.props);
     if (img == null) return;
+    final source = frame ?? Rect.fromLTWH(0, 0, img.width.toDouble(), img.height.toDouble());
     final w = lw * 1.06;
-    final k = w / img.width;
-    final gap = SrArt.gap(t.kind);
-    final src = Size(img.width.toDouble(), img.height.toDouble());
+    final k = w / source.width;
+    final gap = frame == null ? SrArt.gap(t.kind) : .55;
+    final src = source.size;
     final topH = src.height * (1 - gap) * k;
     final picture = pencilHeight * s; // the rider picture's height there
-    final room = math.max(src.height * gap * k, picture * (srRiderFoot - srSlideTop) * 1.12);
+    final room = math.max(src.height * gap * k, picture * .72);
     _shadow(canvas, foot - Offset(w * .4, 0), w * .22, alpha: fade);
     _shadow(canvas, foot + Offset(w * .4, 0), w * .22, alpha: fade);
     final paint = Paint()..filterQuality = FilterQuality.medium;
     if (fade < 1) paint.color = Color.fromRGBO(0, 0, 0, fade);
     final left = foot.dx - w / 2;
-    canvas.drawImageRect(img, Rect.fromLTWH(0, src.height * (1 - gap), src.width, src.height * gap), Rect.fromLTWH(left, foot.dy - room, w, room), paint);
-    canvas.drawImageRect(img, Rect.fromLTWH(0, 0, src.width, src.height * (1 - gap)), Rect.fromLTWH(left, foot.dy - room - topH, w, topH), paint);
+    canvas.drawImageRect(img, Rect.fromLTWH(source.left, source.top + src.height * (1 - gap), src.width, src.height * gap), Rect.fromLTWH(left, foot.dy - room, w, room), paint);
+    canvas.drawImageRect(img, Rect.fromLTWH(source.left, source.top, src.width, src.height * (1 - gap)), Rect.fromLTWH(left, foot.dy - room - topH, w, topH), paint);
   }
 
   void _bubble(Canvas canvas, SrThing t, Offset foot, double lw, double fade) {
@@ -350,7 +360,13 @@ class SrWorldPainter extends CustomPainter {
     _shadow(canvas, foot, r * 1.2, alpha: fade * .8);
     final glow = hint != null && t.label == hint;
     if (glow) {
-      canvas.drawCircle(c, r * (1.2 + .08 * math.sin(time * 8)), Paint()..color = MonsterColors.hintGlow.withValues(alpha: .7 * fade)..maskFilter = const MaskFilter.blur(BlurStyle.normal, 10));
+      canvas.drawCircle(
+        c,
+        r * (1.2 + .08 * math.sin(time * 8)),
+        Paint()
+          ..color = MonsterColors.hintGlow.withValues(alpha: .7 * fade)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 10),
+      );
     }
     final rect = Rect.fromCircle(center: c, radius: r);
     // a soft halo, the bubble wobbling as it floats
@@ -370,10 +386,17 @@ class SrWorldPainter extends CustomPainter {
       Paint()
         ..shader = ui.Gradient.radial(c - Offset(r * .3, r * .35), r * 1.3, [
           MonsterColors.magicCore.withValues(alpha: .97 * fade),
-          MonsterColors.bubbleTint.withValues(alpha: .95 * fade),
+          const Color(0xFF74D4E6).withValues(alpha: .98 * fade),
         ]),
     );
-    canvas.drawCircle(c, r, Paint()..color = MonsterColors.ribbon.withValues(alpha: .9 * fade)..style = PaintingStyle.stroke..strokeWidth = math.max(1.5, r * .09));
+    canvas.drawCircle(
+      c,
+      r,
+      Paint()
+        ..color = const Color(0xFFFEF5C4).withValues(alpha: .97 * fade)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = math.max(1.5, r * .055),
+    );
     // the shine, a little spark beside it, and light along the bottom rim
     canvas.drawOval(Rect.fromCenter(center: c + Offset(-r * .42, -r * .5), width: r * .45, height: r * .24), Paint()..color = MonsterColors.magicCore.withValues(alpha: .9 * fade));
     canvas.drawCircle(c + Offset(-r * .12, -r * .66), r * .07, Paint()..color = MonsterColors.magicCore.withValues(alpha: .85 * fade));
@@ -396,7 +419,10 @@ class SrWorldPainter extends CustomPainter {
     final tp = _letterCache.putIfAbsent(key, () {
       if (_letterCache.length > 400) _letterCache.clear();
       return TextPainter(
-        text: TextSpan(text: t.label, style: LikhoFonts.letter(size: size, color: MonsterColors.signInk).copyWith(height: 1)),
+        text: TextSpan(
+          text: t.label,
+          style: LikhoFonts.letter(size: size, color: MonsterColors.signInk).copyWith(height: 1),
+        ),
         textDirection: TextDirection.ltr,
       )..layout();
     });
@@ -421,7 +447,7 @@ class SrWorldPainter extends CustomPainter {
     final up = game.air * road.screen.height * .14;
     _shadow(canvas, foot, h * .55 * (1 - (game.air * .35).clamp(0.0, .5)), alpha: 1 - (game.air * .4).clamp(0.0, .6));
     // the board rumbles on the road
-    final rumble = game.air > 0 ? 0.0 : math.sin(time * 42) * .8 + math.sin(time * 27) * .6;
+    final rumble = game.air > 0 ? 0.0 : math.sin(time * 7) * 1.1;
     final at = foot + Offset(rider.shake, -up + rumble);
     canvas.save();
     canvas.translate(at.dx, at.dy);
@@ -429,9 +455,12 @@ class SrWorldPainter extends CustomPainter {
     canvas.translate(-at.dx, -at.dy);
     // spring shoes: a green glow under the board
     if (game.has(SrKind.spring)) {
-      canvas.drawOval(Rect.fromCenter(center: foot, width: h * .7, height: h * .16), Paint()..shader = ui.Gradient.radial(foot, h * .35, [RunnerColors.springGlow, RunnerColors.springGlow.withValues(alpha: 0)]));
+      canvas.drawOval(
+        Rect.fromCenter(center: foot, width: h * .7, height: h * .16),
+        Paint()..shader = ui.Gradient.radial(foot, h * .35, [RunnerColors.springGlow, RunnerColors.springGlow.withValues(alpha: 0)]),
+      );
     }
-    sprite(canvas, rider.pose, at, h, rotation: rider.lean, content: SrArt.riderBox, alpha: rider.alpha);
+    SrAtlas.rider(canvas, rider.pose, at, h, rotation: rider.lean, alpha: rider.alpha);
     canvas.restore();
     // the shield: a bubble around him (it blinks before it ends)
     final shield = game.powers[SrKind.shield] ?? 0;
@@ -439,8 +468,25 @@ class SrWorldPainter extends CustomPainter {
       final c = at - Offset(0, h * .5);
       final r = h * (.62 + .02 * math.sin(time * 6));
       canvas.drawCircle(c, r, Paint()..shader = ui.Gradient.radial(c, r, [RunnerColors.shieldGlow.withValues(alpha: 0), RunnerColors.shieldGlow], [.7, 1]));
-      canvas.drawCircle(c, r, Paint()..color = MonsterColors.magicCore.withValues(alpha: .6)..style = PaintingStyle.stroke..strokeWidth = 2.5);
-      canvas.drawArc(Rect.fromCircle(center: c, radius: r * .82), math.pi * 1.1, math.pi * .45, false, Paint()..color = MonsterColors.magicCore.withValues(alpha: .7)..style = PaintingStyle.stroke..strokeCap = StrokeCap.round..strokeWidth = 4);
+      canvas.drawCircle(
+        c,
+        r,
+        Paint()
+          ..color = MonsterColors.magicCore.withValues(alpha: .6)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2.5,
+      );
+      canvas.drawArc(
+        Rect.fromCircle(center: c, radius: r * .82),
+        math.pi * 1.1,
+        math.pi * .45,
+        false,
+        Paint()
+          ..color = MonsterColors.magicCore.withValues(alpha: .7)
+          ..style = PaintingStyle.stroke
+          ..strokeCap = StrokeCap.round
+          ..strokeWidth = 4,
+      );
     }
   }
 
@@ -466,7 +512,13 @@ class SrWorldPainter extends CustomPainter {
       final run = (time * (2.2 + r.nextDouble()) + r.nextDouble()) % 1;
       final from = road.vanish + dir * (size.width * (.35 + run * .6));
       final to = from + dir * size.width * .12;
-      canvas.drawLine(from, to, p..color = MonsterColors.panel.withValues(alpha: .55 * fast * (1 - run))..strokeWidth = 2 + 2 * run);
+      canvas.drawLine(
+        from,
+        to,
+        p
+          ..color = MonsterColors.panel.withValues(alpha: .55 * fast * (1 - run))
+          ..strokeWidth = 2 + 2 * run,
+      );
     }
   }
 
@@ -496,7 +548,13 @@ abstract final class SrPowerArt {
         ..lineTo(c.dx - w, c.dy + r * .02)
         ..arcToPoint(Offset(c.dx + w, c.dy + r * .02), radius: Radius.circular(w), clockwise: false)
         ..lineTo(c.dx + w, c.dy - r * .75);
-      canvas.drawPath(u, Paint()..color = color..style = PaintingStyle.stroke..strokeWidth = t);
+      canvas.drawPath(
+        u,
+        Paint()
+          ..color = color
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = t,
+      );
       final tips = Paint()..color = RunnerColors.magnetTip.withValues(alpha: color.a);
       for (final x in [-w, w]) {
         canvas.drawRect(Rect.fromCenter(center: Offset(c.dx + x, c.dy - r * .62), width: t, height: r * .3), tips);
@@ -523,7 +581,10 @@ abstract final class SrPowerArt {
         SrKind.spring => String.fromCharCode(Symbols.keyboard_double_arrow_up_rounded.codePoint),
         _ => 'x2',
       };
-      return TextPainter(text: TextSpan(text: text, style: style), textDirection: TextDirection.ltr)..layout();
+      return TextPainter(
+        text: TextSpan(text: text, style: style),
+        textDirection: TextDirection.ltr,
+      )..layout();
     });
     tp.paint(canvas, c - Offset(tp.width / 2, tp.height / 2));
   }

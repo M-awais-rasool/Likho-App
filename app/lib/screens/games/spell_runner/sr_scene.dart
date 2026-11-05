@@ -7,16 +7,19 @@ import '../../../design/tokens.dart';
 import '../../../game/spell_runner/sr_engine.dart';
 import 'sr_v2_boxes.dart';
 
-/// Spell Runner's pictures (`assets/games/runner/`, cut from the Gemini art
-/// by tools/games/cut_runner_art.py and cut_runner_v2.py) and the road's
-/// perspective.
+/// Spell Runner's Sunshine Valley art and shared road perspective.
+/// Atlas coordinates are measured in sr_atlas.dart; source prompts and art
+/// provenance live in design/games/spell-runner-sunshine-valley.md.
 abstract final class SrArt {
   static const dir = 'assets/games/runner';
-  static const cover = '$dir/cover.webp';
+  static const cover = '$dir/valley_cover.png';
+  static const hero = '$dir/pencil_hero.png';
+  static const moves = '$dir/pencil_moves.png';
+  static const props = '$dir/valley_props.png';
+  static const valley = '$dir/valley_day.png';
   static String pic(String name) => '$dir/$name.webp';
 
-  /// Pencil on his board, from behind: every pose in one frame, the wheels
-  /// in its middle on the line [riderFoot].
+  /// Stable pose names used by the animation controller and atlas renderer.
   static String rider(String pose) => '$dir/rider_$pose.webp';
   static const poses = ['push', 'ride', 'carve_left', 'carve_right', 'crouch', 'jump', 'slide', 'trick', 'stumble', 'land', 'cheer'];
   static const riderBox = Rect.fromLTRB(0, 0, 1, srRiderFoot);
@@ -27,22 +30,26 @@ abstract final class SrArt {
 
   static const roadside = ['tree', 'pine', 'bush', 'flowers', 'sunflower', 'fence', 'mushrooms', 'signpost', 'apple_tree', 'lamp'];
 
-  static String thing(SrKind k) => k == SrKind.letter || k == SrKind.coin ? star : (k == SrKind.heart ? heart : pic(switch (k) {
-    SrKind.puddle => 'puddle',
-    SrKind.log => 'log',
-    SrKind.rock => 'rock',
-    SrKind.hay => 'hay',
-    SrKind.cone => 'cone',
-    SrKind.banana => 'banana',
-    SrKind.ramp => 'ramp',
-    SrKind.bar => 'barrier',
-    SrKind.banner => 'banner',
-    SrKind.branch => 'branch',
-    SrKind.cart => 'cart',
-    SrKind.bench => 'bench',
-    SrKind.flowerbox => 'flowerbox',
-    _ => 'star',
-  }));
+  static String thing(SrKind k) => k == SrKind.letter || k == SrKind.coin
+      ? star
+      : (k == SrKind.heart
+            ? heart
+            : pic(switch (k) {
+                SrKind.puddle => 'puddle',
+                SrKind.log => 'log',
+                SrKind.rock => 'rock',
+                SrKind.hay => 'hay',
+                SrKind.cone => 'cone',
+                SrKind.banana => 'banana',
+                SrKind.ramp => 'ramp',
+                SrKind.bar => 'barrier',
+                SrKind.banner => 'banner',
+                SrKind.branch => 'branch',
+                SrKind.cart => 'cart',
+                SrKind.bench => 'bench',
+                SrKind.flowerbox => 'flowerbox',
+                _ => 'star',
+              }));
 
   /// How high the open space under high thing [k] is in its picture.
   static double gap(SrKind k) => srGaps[thing(k).split('/').last.replaceAll('.webp', '')] ?? .5;
@@ -52,14 +59,12 @@ abstract final class SrArt {
   static const heart = 'assets/games/monsters/heart.webp';
 
   static List<String> get all => [
-    for (final p in poses) rider(p),
+    hero, moves, props, valley, SrBackground.day.asset,
     for (final p in gloopPoses) gloop(p),
     for (final k in SrKind.values)
       if (!k.power) thing(k), // the power-ups are drawn
     for (final r in roadside) pic(r),
     star,
-    pic('bg_road_day'),
-    pic('bg_road_sunset'),
   ];
 }
 
@@ -72,10 +77,10 @@ class SrZone {
   final Color tint;
 
   static const all = [
-    SrZone('Apple Orchard', ['apple_tree', 'apple_tree', 'tree', 'bush', 'flowers', 'fence', 'mushrooms'], RunnerColors.clear),
-    SrZone('Sunflower Fields', ['sunflower', 'sunflower', 'sunflower', 'flowers', 'flowers', 'fence', 'bush', 'signpost'], RunnerColors.fields),
-    SrZone('Pine Forest', ['pine', 'pine', 'pine', 'mushrooms', 'mushrooms', 'bush', 'tree'], RunnerColors.forest),
-    SrZone('Sunset Lane', ['lamp', 'lamp', 'tree', 'fence', 'flowers', 'bush', 'signpost'], RunnerColors.sunset),
+    SrZone('Apple Orchard', ['apple_tree', 'apple_tree', 'tree', 'bush', 'flowers'], RunnerColors.clear),
+    SrZone('Sunflower Fields', ['sunflower', 'sunflower', 'tree', 'flowers', 'flowers', 'bush'], RunnerColors.fields),
+    SrZone('Pine Forest', ['pine', 'pine', 'pine', 'flowers', 'bush', 'tree'], RunnerColors.forest),
+    SrZone('Sunset Lane', ['tree', 'apple_tree', 'pine', 'flowers', 'bush'], RunnerColors.sunset),
   ];
 
   /// The part of the road at [metres].
@@ -91,10 +96,12 @@ class SrBackground {
   final Offset vanish;
   final double halfBottom;
 
-  static const day = SrBackground('assets/games/runner/bg_road_day.webp', vanish: Offset(.4995, .3793), halfBottom: .522);
-  static const sunset = SrBackground('assets/games/runner/bg_road_sunset.webp', vanish: Offset(.5, .4617), halfBottom: .4975);
+  static const day = SrBackground('assets/games/runner/valley_track.png', vanish: Offset(.5, .412), halfBottom: .55);
+  // The same perspective is used throughout a run; zone lighting supplies
+  // the time-of-day changes without moving the road under the rider.
+  static const sunset = day;
 
-  static const size = Size(1080, 1935);
+  static const size = Size(941, 1672);
 }
 
 /// The road on the screen: a straight road from the horizon to the bottom,

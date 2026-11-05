@@ -451,7 +451,8 @@ void main() {
       for (var n = 1; n <= 12; n++) {
         expect(find.byKey(ValueKey('ms-level-$n')), findsOneWidget);
       }
-      expect(find.text('2'), findsNothing, reason: 'level 2 is locked');
+      expect(find.text('2'), findsOneWidget, reason: 'locked stops keep their level number');
+      expect(find.bySemanticsLabel('Level 2, locked'), findsOneWidget);
       await tester.tap(find.byKey(const ValueKey('ms-level-2')));
       await pumpFor(tester, 300);
       expect(find.byType(MonsterSmashScreen), findsNothing);
@@ -459,6 +460,49 @@ void main() {
       await pumpFor(tester, 800);
       expect(find.byType(MonsterSmashScreen), findsOneWidget);
       expect(find.text('Level 1'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox());
+      await pumpFor(tester, 100);
+    });
+
+    testWidgets('the map follows loaded progress, survives resizing, and Play opens the next level', (tester) async {
+      sideways(tester);
+      var record = const GameRecord();
+      final container = ProviderContainer(
+        overrides: [
+          myGamesProvider.overrideWith((ref) => {GameIds.smash: record}),
+        ],
+      );
+      addTearDown(container.dispose);
+      await tester.pumpWidget(
+        UncontrolledProviderScope(
+          container: container,
+          child: MaterialApp(
+            builder: (context, child) => MediaQuery(data: MediaQuery.of(context).copyWith(disableAnimations: true), child: child!),
+            home: SmashLevelsScreen(onDone: () {}),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('Play level 1'), findsOneWidget);
+
+      // Saved progress may arrive after the initial frame.
+      record = GameRecord(levels: {for (var i = 1; i <= 6; i++) i: 3});
+      container.invalidate(myGamesProvider);
+      await tester.pumpAndSettle();
+      expect(find.text('18 / 36'), findsOneWidget);
+      expect(find.text('Play level 7'), findsOneWidget);
+      final level = find.byKey(const ValueKey('ms-level-7'));
+      expect(tester.getCenter(level).dx, inInclusiveRange(84, 848));
+
+      tester.view.physicalSize = const Size(667, 375);
+      await tester.pumpAndSettle();
+      expect(tester.getCenter(level).dx, inInclusiveRange(84, 583));
+      expect(tester.binding.hasScheduledFrame, isFalse, reason: 'reduced motion stops decorative animation');
+      await tester.tap(find.byKey(const ValueKey('ms-levels-play')));
+      await pumpFor(tester, 800);
+      expect(find.byType(MonsterSmashScreen), findsOneWidget);
+      expect(tester.widget<MonsterSmashScreen>(find.byType(MonsterSmashScreen)).level?.number, 7);
       expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox());
       await pumpFor(tester, 100);

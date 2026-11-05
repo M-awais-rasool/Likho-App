@@ -12,23 +12,14 @@ import '../../../feedback/app_feedback.dart';
 import '../../../game/monster_smash/ms_engine.dart';
 import '../../gameplay/widgets/game_buttons.dart';
 import '../../likho_route.dart';
-import '../game_ui.dart';
 import 'monster_smash_screen.dart';
-import 'ms_backdrop.dart';
-import 'ms_camera.dart';
-import 'ms_heroes.dart';
-import 'ms_scene.dart';
+import 'ms_map_art.dart';
 
-/// Monster Smash's levels (sideways): Letter Land's twelve levels on a
-/// winding dotted path across a wide meadow that scrolls sideways (the
-/// meadow's layers move with it, the far ones slower). A finished level
-/// shows its stars, the next one to play bounces with Rubby on it, the rest
-/// are locked; the map opens on the next one. A level opens the game; its
-/// result goes on to the next.
+/// Letter Land's twelve levels on a floating crystal trail. The map follows
+/// the next playable level when progress loads or the child finishes a game.
 class SmashLevelsScreen extends ConsumerStatefulWidget {
   const SmashLevelsScreen({super.key, required this.onDone});
   final VoidCallback onDone;
-
   static const world = 'Letter Land';
 
   @override
@@ -39,26 +30,23 @@ class _SmashLevelsScreenState extends ConsumerState<SmashLevelsScreen> with Sing
   late final Ticker _ticker;
   final _frame = ValueNotifier<double>(0);
   final _scroll = ScrollController();
-  MsCamera? _cam;
-  bool _placed = false;
-
-  /// Between two levels along the path, and its sway up and down (of the
-  /// screen's height).
-  static const _step = 150.0, _sway = .12;
-
+  (int, Size, EdgeInsets)? _placement;
+  bool _opening = false;
   List<MsLevel> get _levels => MsLevels.letterLand;
 
   @override
   void initState() {
     super.initState();
     SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
-    _ticker = createTicker((t) => _frame.value = t.inMicroseconds / 1e6)..start();
+    _ticker = createTicker((t) => _frame.value = t.inMicroseconds / 1e6);
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    MsSprites.load(createLocalImageConfiguration(context));
+    final animate = !MediaQuery.disableAnimationsOf(context) && TickerMode.valuesOf(context).enabled;
+    if (animate && !_ticker.isActive) _ticker.start();
+    if (!animate && _ticker.isActive) _ticker.stop();
   }
 
   @override
@@ -70,14 +58,17 @@ class _SmashLevelsScreenState extends ConsumerState<SmashLevelsScreen> with Sing
     super.dispose();
   }
 
-  void _open(int i) {
+  Future<void> _open(int i) async {
+    if (_opening) return;
     final fb = AppFeedback.of(context)..press();
     final record = ref.read(myGamesProvider)[GameIds.smash] ?? const GameRecord();
     if (!record.opens(_levels[i].number)) {
       fb.nope();
       return;
     }
-    Navigator.of(context).push(_route(i));
+    _opening = true;
+    await Navigator.of(context).push(_route(i));
+    _opening = false;
   }
 
   LikhoRoute<void> _route(int i) => LikhoRoute<void>(
@@ -96,28 +87,42 @@ class _SmashLevelsScreenState extends ConsumerState<SmashLevelsScreen> with Sing
     final record = ref.watch(myGamesProvider)[GameIds.smash] ?? const GameRecord();
     final pad = MediaQuery.paddingOf(context);
     final next = _levels.indexWhere((l) => record.opens(l.number) && (record.levels[l.number] ?? 0) == 0);
-    final stars = record.levels.values.fold(0, (a, b) => a + b);
+    final current = next < 0 ? _levels.length - 1 : next;
+    final stars = _levels.fold(0, (sum, l) => sum + (record.levels[l.number] ?? 0));
+    final completed = _levels.where((l) => (record.levels[l.number] ?? 0) > 0).length;
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: LikhoSystemBars.dark,
       child: Material(
-        color: MeadowColors.skyLow,
+        color: SmashMapColors.sky,
         child: LayoutBuilder(
           builder: (context, box) {
             final size = box.biggest;
-            final view = MsView(size, MsBackground.meadow);
-            final cam = _cam ??= MsCamera(size);
-            cam.screen = size;
+            final compact = size.height - pad.vertical < 380;
             final spots = _spots(size, pad);
-            final width = spots.last.dx + 110 + pad.right;
-            _placeOn(next < 0 ? _levels.length - 1 : next, spots, size, width);
+            final width = math.max(spots.last.dx + 180 + pad.right, size.width);
+            _placeOn(current, spots, size, pad);
             return Stack(
               children: [
                 Positioned.fill(
-                  child: AnimatedBuilder(
-                    animation: Listenable.merge([_frame, _scroll]),
-                    builder: (context, _) => CustomPaint(
-                      painter: MsBackdropPainter(view: view, camera: cam, time: _frame.value, scroll: _scroll.hasClients ? _scroll.offset : 0),
+                  child: RepaintBoundary(
+                    child: Image.asset(SmashMapArt.sky, fit: BoxFit.cover, alignment: const Alignment(0, .25), excludeFromSemantics: true),
+                  ),
+                ),
+                const Positioned.fill(
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [SmashMapColors.lilac, SmashMapColors.lilacClear, SmashMapColors.lilacClear],
+                        stops: [0, .3, 1],
+                      ),
                     ),
+                  ),
+                ),
+                Positioned.fill(
+                  child: IgnorePointer(
+                    child: RepaintBoundary(child: CustomPaint(painter: SmashMapGlints(_frame))),
                   ),
                 ),
                 Positioned.fill(
@@ -127,27 +132,35 @@ class _SmashLevelsScreenState extends ConsumerState<SmashLevelsScreen> with Sing
                     scrollDirection: Axis.horizontal,
                     physics: const BouncingScrollPhysics(),
                     child: SizedBox(
-                      width: math.max(width, size.width),
+                      width: width,
                       height: size.height,
                       child: Stack(
                         clipBehavior: Clip.none,
                         children: [
-                          Positioned.fill(child: CustomPaint(painter: _PathPainter(spots, reached: next < 0 ? _levels.length - 1 : next))),
+                          Positioned.fill(
+                            child: RepaintBoundary(
+                              child: CustomPaint(painter: SmashMapPathPainter(spots, reached: current)),
+                            ),
+                          ),
+                          for (var chapter = 0; chapter < 3; chapter++)
+                            Positioned(
+                              left: spots[chapter * 4].dx + 80,
+                              top: pad.top + (compact ? 80 : 94),
+                              child: _ChapterLabel(chapter: chapter),
+                            ),
                           for (var i = 0; i < _levels.length; i++)
                             Positioned(
-                              left: spots[i].dx - 34,
-                              top: spots[i].dy - 34,
-                              child: ValueListenableBuilder<double>(
-                                valueListenable: _frame,
-                                builder: (context, t, _) => _LevelButton(
-                                  key: ValueKey('ms-level-${_levels[i].number}'),
-                                  number: _levels[i].number,
-                                  stars: record.levels[_levels[i].number] ?? 0,
-                                  open: record.opens(_levels[i].number),
-                                  next: i == next,
-                                  time: t,
-                                  onTap: () => _open(i),
-                                ),
+                              left: spots[i].dx - 42,
+                              top: spots[i].dy - 42,
+                              child: _LevelStop(
+                                key: ValueKey('ms-level-${_levels[i].number}'),
+                                number: _levels[i].number,
+                                stars: record.levels[_levels[i].number] ?? 0,
+                                open: record.opens(_levels[i].number),
+                                current: i == next,
+                                guideHeight: (spots[i].dy - 42 - pad.top - 66).clamp(48.0, 118.0),
+                                frame: _frame,
+                                onTap: () => _open(i),
                               ),
                             ),
                         ],
@@ -156,55 +169,28 @@ class _SmashLevelsScreenState extends ConsumerState<SmashLevelsScreen> with Sing
                   ),
                 ),
                 Positioned(
-                  top: pad.top + 8,
-                  left: 12 + pad.left,
-                  right: 12 + pad.right,
-                  child: Row(
-                    children: [
-                      PushButton(
-                        key: const ValueKey('ms-levels-back'),
-                        onTap: () {
-                          AppFeedback.of(context).back();
-                          widget.onDone();
-                        },
-                        color: MonsterColors.panel,
-                        width: 46,
-                        height: 46,
-                        shape: const CircleBorder(),
-                        shadows: const [BoxShadow(color: MonsterColors.panelShadow, offset: Offset(0, 3), blurRadius: 6)],
-                        child: const Icon(Symbols.arrow_back_rounded, size: 26, weight: 700, fill: 1, color: LikhoColors.ink),
-                      ),
-                      const SizedBox(width: 10),
-                      // shrinks on a narrow screen (a moment before it turns sideways)
-                      Expanded(
-                        child: Center(
-                          child: FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: GamePill(
-                              child: Text(
-                                'Monster Smash · ${SmashLevelsScreen.world}',
-                                style: LikhoFonts.title(size: 22, weight: FontWeight.w800).copyWith(height: 1.1),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      GamePill(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Image.asset(MsArt.star, width: 24, height: 24),
-                            const SizedBox(width: 5),
-                            Text(
-                              '$stars / ${_levels.length * 3}',
-                              key: const ValueKey('ms-levels-stars'),
-                              style: LikhoFonts.title(size: 20, weight: FontWeight.w800).copyWith(height: 1),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                  top: pad.top + 12,
+                  left: pad.left + 18,
+                  right: pad.right + 18,
+                  child: _MapHeader(
+                    stars: stars,
+                    total: _levels.length * 3,
+                    onBack: () {
+                      AppFeedback.of(context).back();
+                      widget.onDone();
+                    },
+                  ),
+                ),
+                Positioned(
+                  bottom: pad.bottom + 12,
+                  left: pad.left + 22,
+                  right: pad.right + 22,
+                  child: _MapFooter(
+                    completed: completed,
+                    total: _levels.length,
+                    current: _levels[current].number,
+                    allDone: next < 0,
+                    onPlay: () => _open(current),
                   ),
                 ),
               ],
@@ -215,154 +201,369 @@ class _SmashLevelsScreenState extends ConsumerState<SmashLevelsScreen> with Sing
     );
   }
 
-  /// The levels along a gentle wave, left to right, [_step] apart; high
-  /// enough for Rubby over a button, low enough for its stars over the
-  /// grass.
   List<Offset> _spots(Size size, EdgeInsets pad) {
-    final left = pad.left + 96, h = size.height;
-    return [for (var i = 0; i < _levels.length; i++) Offset(left + _step * i, h * (.585 + _sway * math.sin(i * 1.15 + .3)))];
+    final compact = size.height - pad.vertical < 380;
+    // Reserve room for the guide above, and island, stars and footer below.
+    final minimum = pad.top + (compact ? 188 : 202);
+    final maximum = math.max(minimum, size.height - pad.bottom - 150);
+    final span = math.min(168.0, maximum - minimum);
+    final center = (pad.top + (size.height - pad.vertical) * .58).clamp(minimum + span / 2, maximum - span / 2);
+    final top = center - span / 2;
+    final bottom = center + span / 2;
+    final step = (size.width * .215).clamp(172.0, 220.0);
+    return [for (var i = 0; i < _levels.length; i++) Offset(pad.left + 144 + step * i, top + (bottom - top) * (.5 + .5 * math.cos(i * 1.45)))];
   }
 
-  /// Opens the map on level [i] (once, after the first layout).
-  void _placeOn(int i, List<Offset> spots, Size size, double width) {
-    if (_placed) return;
-    _placed = true;
+  void _placeOn(int i, List<Offset> spots, Size size, EdgeInsets pad) {
+    final placement = (i, size, pad);
+    if (_placement == placement) return;
+    _placement = placement;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted || !_scroll.hasClients) return;
-      _scroll.jumpTo((spots[i].dx - size.width / 2).clamp(0.0, _scroll.position.maxScrollExtent));
+      if (!mounted || !_scroll.hasClients || _placement != placement) return;
+      _scroll.jumpTo((spots[i].dx - size.width * .32).clamp(0.0, _scroll.position.maxScrollExtent));
     });
   }
 }
 
-/// The road through the levels: a soft curve from one to the next, a cream
-/// track with dots along it (never under a button); bright up to the level
-/// [reached], faint after it.
-class _PathPainter extends CustomPainter {
-  _PathPainter(this.spots, {required this.reached});
-  final List<Offset> spots;
-  final int reached;
-
-  Path _leg(int i) {
-    final a = spots[i], b = spots[i + 1];
-    final half = (b.dx - a.dx) / 2;
-    return Path()
-      ..moveTo(a.dx, a.dy)
-      ..cubicTo(a.dx + half, a.dy, b.dx - half, b.dy, b.dx, b.dy);
-  }
-
-  static Paint _track(Color c, double width) => Paint()
-    ..color = c
-    ..style = PaintingStyle.stroke
-    ..strokeWidth = width
-    ..strokeCap = StrokeCap.round;
+class _MapHeader extends StatelessWidget {
+  const _MapHeader({required this.stars, required this.total, required this.onBack});
+  final int stars, total;
+  final VoidCallback onBack;
 
   @override
-  void paint(Canvas canvas, Size size) {
-    // the track: its edge first under every leg, then its middle
-    for (final (width, color) in [(22.0, MeadowColors.roadEdge), (16.0, MeadowColors.road)]) {
-      for (var i = 0; i + 1 < spots.length; i++) {
-        canvas.drawPath(_leg(i), _track(i < reached ? color : color.withValues(alpha: .45), width));
-      }
-    }
-    final shade = Paint()..color = MeadowColors.roadEdge;
-    final bright = Paint()..color = MonsterColors.panel;
-    final faint = Paint()..color = MonsterColors.panel.withValues(alpha: .6);
-    for (var i = 0; i + 1 < spots.length; i++) {
-      final metric = _leg(i).computeMetrics().first;
-      // the dots that fit between the two buttons (and their stars)
-      const gap = 18.0, clear = 48.0;
-      final room = metric.length - clear * 2;
-      final n = (room / gap).floor();
-      if (n < 1) continue;
-      final from = clear + (room - (n - 1) * gap) / 2;
-      for (var k = 0; k < n; k++) {
-        final p = metric.getTangentForOffset(from + k * gap)!.position;
-        canvas.drawCircle(p + const Offset(0, 1.5), 4, shade);
-        canvas.drawCircle(p, 4, i < reached ? bright : faint);
-      }
-    }
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Semantics(
+          button: true,
+          label: 'Back to games',
+          child: PushButton(
+            key: const ValueKey('ms-levels-back'),
+            onTap: onBack,
+            color: SmashMapColors.cream,
+            edgeColor: SmashMapColors.lilacEdge,
+            edge: 3,
+            width: 48,
+            height: 48,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+            shadows: const [BoxShadow(color: SmashMapColors.shadow, blurRadius: 14, offset: Offset(0, 5))],
+            child: const Icon(Symbols.arrow_back_rounded, size: 25, weight: 700, color: SmashMapColors.ink),
+          ),
+        ),
+        const SizedBox(width: 14),
+        Expanded(
+          child: SizedBox(
+            height: 48,
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: Alignment.centerLeft,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Monster Smash',
+                    style: LikhoFonts.title(size: 29, weight: FontWeight.w800, color: SmashMapColors.ink),
+                  ),
+                  Text(
+                    'Letter Land  /  CRYSTAL SKY',
+                    style: LikhoFonts.body(size: 10, weight: FontWeight.w900, color: SmashMapColors.muted).copyWith(letterSpacing: 1.7),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(width: 14),
+        Semantics(
+          label: '$stars of $total stars collected',
+          child: ExcludeSemantics(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+              decoration: BoxDecoration(
+                color: SmashMapColors.cream.withValues(alpha: .94),
+                borderRadius: BorderRadius.circular(22),
+                border: Border.all(color: LikhoColors.surface, width: 1.5),
+                boxShadow: const [BoxShadow(color: SmashMapColors.shadow, blurRadius: 16, offset: Offset(0, 4))],
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Symbols.star_rounded, fill: 1, color: SmashMapColors.goldEdge, size: 30),
+                  const SizedBox(width: 7),
+                  Text(
+                    '$stars / $total',
+                    key: const ValueKey('ms-levels-stars'),
+                    style: LikhoFonts.title(size: 23, weight: FontWeight.w800, color: SmashMapColors.ink),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
   }
-
-  @override
-  bool shouldRepaint(covariant _PathPainter old) => old.spots != spots || old.reached != reached;
 }
 
-class _LevelButton extends StatelessWidget {
-  const _LevelButton({super.key, required this.number, required this.stars, required this.open, required this.next, required this.time, required this.onTap});
+class _ChapterLabel extends StatelessWidget {
+  const _ChapterLabel({required this.chapter});
+  final int chapter;
+
+  @override
+  Widget build(BuildContext context) {
+    const names = ['FIRST FLIGHT', 'CLOUD HOP', 'STAR SUMMIT'];
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: 23,
+          height: 23,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(color: SmashMapColors.cream.withValues(alpha: .72), shape: BoxShape.circle),
+          child: Text(
+            '0${chapter + 1}',
+            style: LikhoFonts.body(size: 10, weight: FontWeight.w900, color: SmashMapColors.violetDeep),
+          ),
+        ),
+        const SizedBox(width: 7),
+        Text(
+          names[chapter],
+          style: LikhoFonts.body(size: 10, weight: FontWeight.w900, color: SmashMapColors.violetDeep).copyWith(letterSpacing: 1.8),
+        ),
+      ],
+    );
+  }
+}
+
+class _LevelStop extends StatelessWidget {
+  const _LevelStop({
+    super.key,
+    required this.number,
+    required this.stars,
+    required this.open,
+    required this.current,
+    required this.guideHeight,
+    required this.frame,
+    required this.onTap,
+  });
   final int number, stars;
-  final bool open, next;
-  final double time;
+  final bool open, current;
+  final double guideHeight;
+  final ValueNotifier<double> frame;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    final bounce = next ? math.sin(time * 4).abs() : 0.0;
-    return SizedBox(
-      width: 68,
-      height: 112,
-      child: Stack(
-        clipBehavior: Clip.none,
-        alignment: Alignment.topCenter,
-        children: [
-          Transform.scale(
-            scale: next ? 1 + .06 * bounce : 1,
-            child: PushButton(
-              onTap: onTap,
-              color: !open ? HeroColors.locked : (stars > 0 ? LikhoColors.success : MonsterColors.ribbon),
-              edgeColor: !open ? GameColors.ink15 : (stars > 0 ? GameColors.successDeep : MonsterColors.ribbonDeep),
-              edge: 5,
-              width: 68,
-              height: 68,
-              shape: const CircleBorder(),
-              innerHighlight: open,
-              child: open
-                  ? Text(
-                      '$number',
-                      style: LikhoFonts.title(size: 30, weight: FontWeight.w800, color: LikhoColors.surface).copyWith(height: 1),
-                    )
-                  : const Icon(Symbols.lock_rounded, size: 28, fill: 1, color: GameColors.ink60),
-            ),
-          ),
-          if (open)
-            Positioned(
-              top: 70,
-              child: Row(
-                children: [
-                  for (var k = 1; k <= 3; k++)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 1),
-                      child: Opacity(
-                        opacity: stars >= k ? 1 : .3,
-                        child: Image.asset(MsArt.star, width: k == 2 ? 22 : 18),
-                      ),
+    final face = !open ? SmashMapColors.lilac : (stars > 0 ? SmashMapColors.teal : SmashMapColors.gold);
+    final rim = !open ? SmashMapColors.lilacEdge : (stars > 0 ? SmashMapColors.tealDeep : SmashMapColors.goldEdge);
+    final ink = !open ? SmashMapColors.muted : (stars > 0 ? LikhoColors.surface : SmashMapColors.goldInk);
+    return Semantics(
+      button: true,
+      enabled: open,
+      label:
+          'Level $number, ${!open
+              ? 'locked'
+              : current
+              ? 'next adventure'
+              : '$stars of 3 stars'}',
+      onTap: open ? onTap : null,
+      child: ExcludeSemantics(
+        child: SizedBox(
+          width: 84,
+          height: 118,
+          child: Stack(
+            clipBehavior: Clip.none,
+            alignment: Alignment.topCenter,
+            children: [
+              if (current)
+                Positioned(
+                  top: -9,
+                  child: Container(
+                    width: 102,
+                    height: 102,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: SmashMapColors.cream.withValues(alpha: .8), width: 2),
+                      boxShadow: [BoxShadow(color: SmashMapColors.goldLight.withValues(alpha: .55), blurRadius: 26, spreadRadius: 6)],
                     ),
-                ],
+                  ),
+                ),
+              PushButton(
+                onTap: onTap,
+                color: rim,
+                edgeColor: rim,
+                edge: 6,
+                width: 84,
+                height: 84,
+                shape: const CircleBorder(),
+                shadows: const [BoxShadow(color: SmashMapColors.shadow, blurRadius: 12, offset: Offset(0, 7))],
+                child: Container(
+                  width: 76,
+                  height: 76,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color.lerp(face, LikhoColors.surface, .38)!, face]),
+                    border: Border.all(color: (open ? SmashMapColors.cream : SmashMapColors.islandTop).withValues(alpha: .85), width: 3),
+                  ),
+                  child: Text(
+                    '$number',
+                    style: LikhoFonts.title(size: 38, weight: FontWeight.w800, color: ink).copyWith(height: 1),
+                  ),
+                ),
               ),
-            ),
-          if (next)
-            Positioned(
-              top: -46 - 14 * bounce,
-              child: IgnorePointer(
-                child: SizedBox(width: 50, height: 50, child: CustomPaint(painter: _RubbyPainter(time))),
-              ),
-            ),
-        ],
+              if (!open)
+                Positioned(
+                  top: 62,
+                  right: 0,
+                  child: Container(
+                    width: 26,
+                    height: 26,
+                    decoration: BoxDecoration(
+                      color: SmashMapColors.violet,
+                      shape: BoxShape.circle,
+                      border: Border.all(color: SmashMapColors.islandTop, width: 2),
+                    ),
+                    child: const Icon(Symbols.lock_rounded, size: 14, fill: 1, color: SmashMapColors.cream),
+                  ),
+                ),
+              if (open)
+                Positioned(
+                  top: 88,
+                  child: Row(
+                    children: [
+                      for (var k = 0; k < 3; k++)
+                        Icon(Symbols.star_rounded, fill: 1, size: k == 1 ? 24 : 20, color: stars > k ? SmashMapColors.goldEdge : SmashMapColors.lilacEdge),
+                    ],
+                  ),
+                ),
+              if (current)
+                Positioned(
+                  top: -guideHeight + 2,
+                  left: -22,
+                  child: IgnorePointer(
+                    child: ValueListenableBuilder<double>(
+                      valueListenable: frame,
+                      child: Image.asset(SmashMapArt.guide, width: 128, height: guideHeight, fit: BoxFit.contain, excludeFromSemantics: true),
+                      builder: (context, t, child) => Transform.translate(offset: Offset(0, -math.sin(t * 2.4) * 4), child: child),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
       ),
     );
   }
 }
 
-/// Rubby waiting on the next level.
-class _RubbyPainter extends CustomPainter {
-  _RubbyPainter(this.time);
-  final double time;
+class _MapFooter extends StatelessWidget {
+  const _MapFooter({required this.completed, required this.total, required this.current, required this.allDone, required this.onPlay});
+  final int completed, total, current;
+  final bool allDone;
+  final VoidCallback onPlay;
 
   @override
-  void paint(Canvas canvas, Size size) {
-    canvas.translate(0, -math.sin(time * 5).abs() * size.height * .06);
-    MsHeroArt.portrait(canvas, MsHero.rubby, size, t: time, face: MsFace.happy);
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, box) {
+        final narrow = box.maxWidth < 480;
+        return Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  width: narrow ? 120 : 188,
+                  padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
+                  decoration: BoxDecoration(
+                    color: SmashMapColors.cream.withValues(alpha: .9),
+                    borderRadius: BorderRadius.circular(18),
+                    border: Border.all(color: LikhoColors.surface.withValues(alpha: .9)),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          allDone ? 'Sky explorer!' : '$completed / $total levels complete',
+                          maxLines: 1,
+                          style: LikhoFonts.body(size: narrow ? 10 : 12, weight: FontWeight.w900, color: SmashMapColors.ink),
+                        ),
+                      ),
+                      const SizedBox(height: 7),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(4),
+                        child: LinearProgressIndicator(
+                          value: completed / total,
+                          minHeight: 5,
+                          color: SmashMapColors.violet,
+                          backgroundColor: SmashMapColors.lilac,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            if (box.maxWidth > 650)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Symbols.swipe_rounded, size: 19, color: SmashMapColors.muted),
+                    const SizedBox(width: 7),
+                    Text(
+                      'Swipe to explore',
+                      style: LikhoFonts.body(size: 12, weight: FontWeight.w800, color: SmashMapColors.muted),
+                    ),
+                  ],
+                ),
+              ),
+            const SizedBox(width: 12),
+            Semantics(
+              button: true,
+              label: '${allDone ? 'Replay' : 'Play'} level $current',
+              child: ExcludeSemantics(
+                child: PushButton(
+                  key: const ValueKey('ms-levels-play'),
+                  onTap: onPlay,
+                  color: SmashMapColors.gold,
+                  edgeColor: SmashMapColors.goldEdge,
+                  edge: 4,
+                  width: narrow ? 146 : 190,
+                  height: 50,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(19)),
+                  innerHighlight: true,
+                  shadows: const [BoxShadow(color: SmashMapColors.shadow, blurRadius: 18, offset: Offset(0, 5))],
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 14),
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            '${allDone ? 'Replay' : 'Play'} level $current',
+                            style: LikhoFonts.title(size: narrow ? 19 : 23, weight: FontWeight.w800, color: SmashMapColors.goldInk),
+                          ),
+                          const SizedBox(width: 7),
+                          const Icon(Symbols.play_arrow_rounded, size: 25, fill: 1, color: SmashMapColors.goldInk),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
-
-  @override
-  bool shouldRepaint(covariant _RubbyPainter old) => true;
 }
