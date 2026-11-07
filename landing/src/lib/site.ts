@@ -16,7 +16,7 @@ export const site = {
   /** Where parents can write to you; also used on the privacy and deletion pages. */
   email: "awais.rasool.tech@gmail.com",
   /** Store pages; null shows "Coming soon". */
-  playStoreUrl: null as string | null,
+  playStoreUrl: "https://play.google.com/store/apps/details?id=com.likho.abcwriting" as string | null,
   appStoreUrl: null as string | null,
   /** When the legal pages last changed. */
   updated: "11 October 2026",
