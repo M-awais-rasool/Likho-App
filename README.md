@@ -664,7 +664,7 @@ holds what the site says about Likho:
 |---|---|---|
 | `email` | `hello@example.com` | the address parents can write to (privacy and deletion pages) |
 | `developer` | `Likho` | your name, or your business once it is registered |
-| `playStoreUrl`, `appStoreUrl` | `null` ("Coming soon") | the store pages, once the app is live |
+| `playStoreUrl`, `appStoreUrl` | Play is set; `appStoreUrl` is still `null` ("Coming soon") | the store pages, once the app is live |
 | `updated` | `3 October 2026` | the date whenever the privacy policy or terms change |
 
 Course numbers and prices are in the same file; keep them in step with `backend/content` and the
