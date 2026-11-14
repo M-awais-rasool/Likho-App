@@ -1,7 +1,7 @@
 name: likho
 description: "Likho: English handwriting for kids aged 5-8."
 publish_to: 'none'
-version: 0.1.0+9
+version: 0.2.0+12
 
 environment:
   sdk: ^3.13.4
