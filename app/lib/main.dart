@@ -66,7 +66,13 @@ class LikhoApp extends StatelessWidget {
       theme: likhoTheme(),
       navigatorKey: AppFlow.navigatorKey,
       navigatorObservers: [AppFlow.observer],
-      builder: (context, child) => AppShell(navigatorKey: AppFlow.navigatorKey, child: child!),
+      // The app's own colour behind every route: a screen that leaves a
+      // strip free (under the bottom bar, an overscroll bounce) shows this
+      // and not the bare black window.
+      builder: (context, child) => ColoredBox(
+        color: LikhoColors.background,
+        child: AppShell(navigatorKey: AppFlow.navigatorKey, child: child!),
+      ),
       home: Builder(
         builder: (context) => devLevel != null
             ? DevLevelLauncher(level: devLevel!)

@@ -20,6 +20,8 @@ import '../common/effects.dart';
 import '../common/kid_widgets.dart';
 import '../common/pencil_figure.dart';
 import '../gameplay/widgets/illustration.dart';
+import '../gameplay/apple_garden/garden_art.dart';
+import '../gameplay/apple_garden/garden_journey.dart';
 
 /// 13 Level complete (3 stars / 1 star / "Boss woken"), from the prototype.
 ///
@@ -82,6 +84,13 @@ class _LevelCompleteScreenState extends ConsumerState<LevelCompleteScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (isAppleGarden(widget.level)) {
+      return GardenJourney(
+        mascot: PencilFigure(state: _expr, replay: _replay, width: 150, height: 200),
+        onContinue: widget.onNext, onAgain: widget.onAgain, stars: _stars,
+        apples: widget.level.rounds.length, gain: widget.outcome.gain,
+      );
+    }
     final course = ref.watch(courseProvider).value;
     final world = course?.worldOf(widget.level);
     final theme = LikhoWorlds.byId(world?.themeId ?? 'letterLand');

@@ -9,7 +9,7 @@ import '../common/kid_widgets.dart';
 /// "Continue with Google": the app's only way to sign in. The yellow main
 /// button with the Google mark on a white disc; a spinner while waiting.
 class GoogleButton extends StatelessWidget {
-  const GoogleButton({super.key, required this.onTap, this.loading = false, this.label = 'Continue with Google', this.height = 78, this.fontSize = 22});
+  const GoogleButton({super.key, required this.onTap, this.loading = false, this.label = 'Continue with Google', this.height = 58, this.fontSize = 19});
 
   final VoidCallback onTap;
   final bool loading;

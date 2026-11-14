@@ -56,6 +56,12 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen> with SingleTick
   late final Ticker _ticker;
   Duration _lastTick = Duration.zero;
   final ValueNotifier<double> _time = ValueNotifier(0); // seconds since the map opened
+  // The drifting fireflies and seam haze, stepped ~20 times a second. They
+  // move far too slowly to be worth a repaint of the whole world section on
+  // every frame, and that repaint was costing a mid-range phone half its
+  // frame budget while the map scrolled.
+  final ValueNotifier<double> _ambient = ValueNotifier(0);
+  double _ambientAt = 0;
   final ScrollController _scroll = ScrollController();
   MapGeometry? _geometry;
   final ValueNotifier<int> _visibleWorld = ValueNotifier(0);
@@ -105,7 +111,13 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen> with SingleTick
       final step = (e - _lastTick).inMicroseconds / 1e6;
       _lastTick = e;
       // Resume gently after a lesson or another tab has muted this ticker.
-      if (!_reduceMotion) _time.value += step.clamp(0.0, .1);
+      if (!_reduceMotion) {
+        _time.value += step.clamp(0.0, .1);
+        if (_time.value - _ambientAt >= .05) {
+          _ambientAt = _time.value;
+          _ambient.value = _time.value;
+        }
+      }
     })..start();
     _scroll.addListener(_trackCamera);
     // the room button shows Pencil cheering (prototype expr "happy"): arms up, laughing
@@ -116,6 +128,7 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen> with SingleTick
   void dispose() {
     _ticker.dispose();
     _time.dispose();
+    _ambient.dispose();
     _scroll.dispose();
     _visibleWorld.dispose();
     _awayFromCurrent.dispose();
@@ -254,6 +267,18 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen> with SingleTick
                   final sections = [for (var w = 0; w < g.worlds; w++) g.section(w)];
                   return Stack(
                     children: [
+                      // The ground behind the map: the strip the bottom bar
+                      // leaves free (and an overscroll bounce) would show the
+                      // bare window — black on a phone — without it.
+                      Positioned.fill(
+                        child: ValueListenableBuilder<int>(
+                          valueListenable: _visibleWorld,
+                          builder: (context, visible, _) {
+                            final info = course.worlds[visible.clamp(0, course.worlds.length - 1)];
+                            return ColoredBox(color: JourneyPalette.of(LikhoWorlds.byId(info.themeId)).ground);
+                          },
+                        ),
+                      ),
                       ListView.builder(
                         controller: _scroll,
                         reverse: true,
@@ -269,6 +294,7 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen> with SingleTick
                             geometry: g,
                             progress: progress,
                             time: _time,
+                            ambient: _ambient,
                             mascot: _mapMascot,
                             celebrations: _celebrations,
                             onOpenLevel: widget.onOpenLevel,
@@ -373,6 +399,7 @@ class _WorldSection extends StatelessWidget {
     required this.geometry,
     required this.progress,
     required this.time,
+    required this.ambient,
     required this.mascot,
     required this.celebrations,
     required this.onOpenLevel,
@@ -384,6 +411,7 @@ class _WorldSection extends StatelessWidget {
   final MapGeometry geometry;
   final ChildProgress progress;
   final ValueNotifier<double> time;
+  final ValueNotifier<double> ambient;
   final MascotController mascot;
   final Map<int, double> celebrations;
   final ValueChanged<int>? onOpenLevel;
@@ -510,7 +538,7 @@ class _WorldSection extends StatelessWidget {
         child: IgnorePointer(
           child: RepaintBoundary(
             child: CustomPaint(
-              painter: JourneyAtmospherePainter(theme: theme, world: world, geometry: geometry, sectionTop: top, time: time),
+              painter: JourneyAtmospherePainter(theme: theme, world: world, geometry: geometry, sectionTop: top, time: ambient),
             ),
           ),
         ),
@@ -761,31 +789,42 @@ class _LevelNodeState extends State<_LevelNode> with SingleTickerProviderStateMi
                       final s = keys[i] + (keys[i + 1] - keys[i]) * (v * 3 - i);
                       return Transform.scale(scale: s, child: child);
                     },
-                    child: CustomPaint(
-                      painter: NodePainter(color: bg, deep: deep),
-                      child: Center(
-                        child: ExcludeSemantics(
-                          child: widget.done
-                              ? Icon(Symbols.check_rounded, size: iconSize + 6, weight: 800, color: fg)
-                              : widget.isCurrent || (boss && widget.unlocked)
-                              ? Icon(widget.isCurrent ? Symbols.play_arrow_rounded : IconRegistry.of(widget.level.icon), size: iconSize + 6, fill: 1, color: fg)
-                              : Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: FittedBox(
-                                    fit: BoxFit.scaleDown,
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Text(
-                                          '${widget.level.number}',
-                                          maxLines: 1,
-                                          style: LikhoFonts.title(size: 25, weight: FontWeight.w800, color: fg).copyWith(height: 1.1),
-                                        ),
-                                        if (!widget.unlocked) Icon(Symbols.lock_rounded, size: 12, fill: 1, color: fg.withValues(alpha: .65)),
-                                      ],
+                    // A layer of its own: the tile's drop shadow is a blur,
+                    // and a world section is far too tall to be kept as one
+                    // raster, so without this every tile blurs again on
+                    // every frame the map scrolls.
+                    child: RepaintBoundary(
+                      child: CustomPaint(
+                        painter: NodePainter(color: bg, deep: deep),
+                        child: Center(
+                          child: ExcludeSemantics(
+                            child: widget.done
+                                ? Icon(Symbols.check_rounded, size: iconSize + 6, weight: 800, color: fg)
+                                : widget.isCurrent || (boss && widget.unlocked)
+                                ? Icon(
+                                    widget.isCurrent ? Symbols.play_arrow_rounded : IconRegistry.of(widget.level.icon),
+                                    size: iconSize + 6,
+                                    fill: 1,
+                                    color: fg,
+                                  )
+                                : Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child: FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            '${widget.level.number}',
+                                            maxLines: 1,
+                                            style: LikhoFonts.title(size: 25, weight: FontWeight.w800, color: fg).copyWith(height: 1.1),
+                                          ),
+                                          if (!widget.unlocked) Icon(Symbols.lock_rounded, size: 12, fill: 1, color: fg.withValues(alpha: .65)),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
+                          ),
                         ),
                       ),
                     ),

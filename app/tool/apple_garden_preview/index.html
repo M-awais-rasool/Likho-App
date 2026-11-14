@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Likho • Apple Garden</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #ecf0e3; color: #304a35; font: 16px system-ui, sans-serif; }
+  main { min-height: 100dvh; display: flex; align-items: center; justify-content: center; gap: 64px; padding: 32px; }
+  aside { max-width: 300px; }
+  small { color: #578237; letter-spacing: .15em; font-weight: 750; }
+  h1 { font-size: 42px; line-height: 1.08; letter-spacing: -.04em; margin: 14px 0; }
+  p { line-height: 1.7; color: #687658; }
+  iframe { display: block; width: 390px; height: min(844px, calc(100dvh - 64px)); min-height: 580px; border: 0; border-radius: 32px; box-shadow: 0 20px 70px #304a3525; background: #b9e9ed; }
+  button { background: #fffbee; border: 1px solid #d9dfc8; color: #304a35; padding: 12px 18px; border-radius: 12px; font: inherit; cursor: pointer; }
+  @media (max-width: 780px) { main { padding: 0; } aside { display: none; } iframe { width: 100vw; max-width: 560px; height: 100dvh; min-height: 0; border-radius: 0; } }
+</style>
+<main>
+  <aside><small>LIKHO · LETTER A</small><h1>A little garden.<br>A big first step.</h1><p>Find A, grow apples with every stroke, and fill Pencil’s basket. All eight learning tasks are ready to play.</p><button id="restart">Start again</button></aside>
+  <iframe id="game" src="/preview/" title="Play Letter A: Apple Garden" allow="autoplay"></iframe>
+</main>
+<script>
+  const game = document.getElementById('game');
+  const course = fetch('/course.json').then(response => response.json());
+  let nonce = 0;
+  async function start() {
+    game.contentWindow.postMessage(JSON.stringify({ type: 'likho-preview', nonce: ++nonce, screen: 'level', level: 1, course: await course }), location.origin);
+  }
+  window.addEventListener('message', event => {
+    if (event.origin !== location.origin || event.source !== game.contentWindow) return;
+    try { if (JSON.parse(event.data).type === 'likho-preview-ready') start(); } catch (_) {}
+  });
+  document.getElementById('restart').addEventListener('click', start);
+</script>
+</html>

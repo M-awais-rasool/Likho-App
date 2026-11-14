@@ -132,7 +132,7 @@ class _SignInSheetState extends State<SignInSheet> {
                           style: LikhoFonts.body(size: 15, color: UiColors.inkBody, height: 1.4),
                         ),
                         const SizedBox(height: 20),
-                        GoogleButton(loading: _busy, onTap: _google, height: 72, fontSize: 21),
+                        GoogleButton(loading: _busy, onTap: _google, height: 56, fontSize: 18),
                         if (widget.onTestUser case final test?) ...[
                           const SizedBox(height: 10),
                           TestUserButton(onTap: _busy ? null : () => _signIn(test)),

@@ -38,6 +38,10 @@ import 'rounds/truth_round_view.dart';
 import 'rounds/write_round_view.dart';
 import 'widgets/game_bits.dart';
 import 'widgets/game_buttons.dart';
+import 'apple_garden/garden_art.dart';
+import 'apple_garden/garden_frame.dart';
+import 'apple_garden/garden_rounds.dart';
+import '../../design/motion.dart';
 
 /// Result handed back when the last round is won.
 class LevelResult {
@@ -608,6 +612,40 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
     final hasBoxes = write != null && (write.mode == WriteMode.missing || write.mode == WriteMode.spell);
     final battle = _battle;
     if (battle != null) return _bossBuild(battle, world, theme, s, write, hasBoxes);
+    if (isAppleGarden(level)) {
+      return AnnotatedRegion<SystemUiOverlayStyle>(
+        value: LikhoSystemBars.dark,
+        child: AppleGardenFrame(
+          state: s,
+          time: _time,
+          pad: _pad,
+          mascot: PencilMascot(key: _mascotKey, controller: _mascot, size: 110),
+          speech: _speech?.$1,
+          onExit: widget.onExit,
+          onReplay: _replay,
+          onErase: write == null ? null : () => setState(() => _pad?.erase()),
+          onDone: write == null
+              ? null
+              : () {
+                  final p = _pad;
+                    if (p != null) {
+                    ref
+                        .read(levelSessionProvider(level).notifier)
+                        .submitWriting(p.judge());
+                    }
+                },
+          letterBoxes: hasBoxes
+              ? LetterBoxes(
+                  round: write,
+                  spellFilled: s.spellFilled,
+                  correct: s.correct,
+                )
+              : null,
+          child: _animatedArea(s),
+        ),
+      );
+    }
+
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: theme.dark ? LikhoSystemBars.light : LikhoSystemBars.dark,
@@ -849,6 +887,7 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> with TickerProv
         boss: boss,
       ),
     );
+    if (isAppleGarden(level) && (ref.watch(reduceMotionProvider) || MediaQuery.disableAnimationsOf(context))) return area;
     return ConfettiBurst(
       trigger: _burst,
       child: AnimatedBuilder(
@@ -951,6 +990,50 @@ class _RoundArea extends ConsumerWidget {
 
   /// The round's own view.
   Widget _plain(LevelSession session) {
+    if (isAppleGarden(state.level)) {
+      switch (state.current) {
+        case final PickRound r
+            when r.options.every((o) => o.picture == null) ||
+                r.options.every((o) => o.picture != null && const {'apple', 'dog', 'nest'}.contains(o.picture!.key)):
+          return GardenPickRound(
+            key: ValueKey(r.id),
+            state: state,
+            round: r,
+            onPick: session.pick,
+            time: time,
+          );
+        case final FixRound r
+            when r.items.every((i) => i.wrong == null || i.wrong == FixWrong.upside):
+          return GardenFixRound(
+            key: ValueKey(r.id),
+            state: state,
+            round: r,
+            onTap: session.fixItem,
+          );
+        case final ConnectRound r when r.picture?.key == 'apple':
+          return GardenConnectRound(
+            key: ValueKey(r.id),
+            state: state,
+            round: r,
+            onTap: session.tapDot,
+          );
+        case final WriteRound r when pad != null:
+          return WritePad(
+            key: ValueKey(r.id),
+            controller: pad!,
+            correct: state.correct,
+            hint: state.hint,
+            round: r,
+            glyphs: glyphs,
+            time: time,
+            onPen: onPen,
+            paper: const Color(0xFFFFFEF7),
+            radius: 20,
+          );
+        default:
+          break;
+      }
+    }
     return switch (state.current) {
       final PickRound r => PickRoundView(key: ValueKey(r.id), state: state, round: r, onPick: session.pick, time: time),
       final OrderRound r => OrderRoundView(key: ValueKey(r.id), state: state, round: r, onTile: session.placeTile, time: time),

@@ -13,6 +13,8 @@ import '../../mascot/mascot.dart';
 import '../common/clock.dart';
 import '../gameplay/widgets/illustration.dart';
 import '../world_map/boss_painter.dart';
+import '../gameplay/apple_garden/garden_art.dart';
+import '../gameplay/apple_garden/garden_journey.dart';
 
 /// 11 Level intro, from the prototype: level name, the big letters/word,
 /// its picture and Pencil talking. Everything is in place by 2.3 s; then,
@@ -75,6 +77,7 @@ class _LevelIntroScreenState extends ConsumerState<LevelIntroScreen> with Ticker
   }
 
   void _maybeOut() {
+    if (isAppleGarden(widget.level)) return; // the child starts when ready
     if (!_shown || !_said || !mounted || _out.isAnimating || _out.isCompleted) return;
     _out.forward().whenComplete(_leave);
   }
@@ -99,6 +102,9 @@ class _LevelIntroScreenState extends ConsumerState<LevelIntroScreen> with Ticker
 
   @override
   Widget build(BuildContext context) {
+    if (isAppleGarden(widget.level)) {
+      return GardenJourney(mascot: PencilMascot(controller: _mascot, size: 200), onContinue: _leave);
+    }
     final course = ref.watch(courseProvider).value;
     final world = course?.worldOf(widget.level);
     final theme = LikhoWorlds.byId(world?.themeId ?? 'letterLand');

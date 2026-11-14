@@ -894,18 +894,18 @@ class WriteBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 88,
+      height: 72,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           PushButton(
             onTap: onErase,
             color: LikhoColors.surface,
-            width: 76,
-            height: 76,
+            width: 62,
+            height: 62,
             shape: const CircleBorder(),
             shadows: const [BoxShadow(color: GameColors.ink10, offset: Offset(0, 6))],
-            child: const Icon(Symbols.ink_eraser_rounded, size: 38, fill: 1, opticalSize: 38, color: GameColors.eraser),
+            child: const Icon(Symbols.ink_eraser_rounded, size: 32, fill: 1, opticalSize: 32, color: GameColors.eraser),
           ),
           const SizedBox(width: 16),
           Flexible(
@@ -915,17 +915,17 @@ class WriteBar extends StatelessWidget {
                 onTap: onDone,
                 color: LikhoColors.success,
                 edgeColor: GameColors.successDeep,
-                edge: 7,
-                height: 84,
+                edge: 6,
+                height: 66,
                 pressScale: .96,
                 innerHighlight: true,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(26)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(22)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(Symbols.check_rounded, size: 40, fill: 1, weight: 700, opticalSize: 40, color: LikhoColors.surface),
+                    const Icon(Symbols.check_rounded, size: 32, fill: 1, weight: 700, opticalSize: 32, color: LikhoColors.surface),
                     const SizedBox(width: 10),
-                    Text('Done', style: LikhoFonts.title(size: 24, color: LikhoColors.surface).copyWith(height: 1)),
+                    Text('Done', style: LikhoFonts.title(size: 21, color: LikhoColors.surface).copyWith(height: 1)),
                   ],
                 ),
               ),
