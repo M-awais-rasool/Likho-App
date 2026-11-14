@@ -412,12 +412,28 @@ class JourneyAtmospherePainter extends CustomPainter {
   final double sectionTop;
   final ValueListenable<double> time;
 
+  /// The haze over a world seam, as a unit circle the canvas places and
+  /// stretches. Built once: a gradient shader per oval per frame was the
+  /// map's biggest cost on a mid-range phone.
+  static final Rect _unit = const Rect.fromLTWH(-.5, -.5, 1, 1);
+  static final Paint _haze = Paint()..shader = const RadialGradient(colors: [Color(0x30F5F4DF), Color(0x00F5F4DF)]).createShader(_unit);
+
+  /// A firefly's glow: rings instead of a gradient shader, for the same
+  /// reason. Soft edges at this size, and nothing to build per frame.
+  static const _ring = [(1.0, .26), (.66, .3), (.33, .36)];
+
   @override
   void paint(Canvas c, Size s) {
     c.save();
     c.clipRect(Offset.zero & s);
     final t = time.value;
     final rng = math.Random(81 + world * 17);
+    final glow = Paint(), core = Paint(), wingL = Paint()..color = const Color(0xFFFFF4C9);
+    final wingR = Paint()..color = theme.accent.withValues(alpha: .8);
+    final body = Paint()
+      ..color = const Color(0xFF7E7155)
+      ..strokeWidth = 1;
+    final radius = theme.dark ? 6.0 : 4.0;
     for (var i = 0; i < s.height / 90; i++) {
       final x = rng.nextDouble() * s.width;
       final y = 100 + rng.nextDouble() * (s.height - 200);
@@ -428,29 +444,15 @@ class JourneyAtmospherePainter extends CustomPainter {
         c.save();
         c.translate(pos.dx, pos.dy);
         final wing = 2.5 + 2 * math.sin(t * 4 + phase).abs();
-        c.drawOval(Rect.fromCenter(center: Offset(-wing / 2, 0), width: wing, height: 6), Paint()..color = const Color(0xFFFFF4C9));
-        c.drawOval(Rect.fromCenter(center: Offset(wing / 2, 0), width: wing, height: 6), Paint()..color = theme.accent.withValues(alpha: .8));
-        c.drawLine(
-          const Offset(0, -2),
-          const Offset(0, 2),
-          Paint()
-            ..color = const Color(0xFF7E7155)
-            ..strokeWidth = 1,
-        );
+        c.drawOval(Rect.fromCenter(center: Offset(-wing / 2, 0), width: wing, height: 6), wingL);
+        c.drawOval(Rect.fromCenter(center: Offset(wing / 2, 0), width: wing, height: 6), wingR);
+        c.drawLine(const Offset(0, -2), const Offset(0, 2), body);
         c.restore();
       } else {
-        final r = Rect.fromCircle(center: pos, radius: theme.dark ? 6 : 4);
-        c.drawOval(
-          r,
-          Paint()
-            ..shader = RadialGradient(
-              colors: [
-                const Color(0xFFFFF5D4).withValues(alpha: alpha),
-                const Color(0x00FFF5D4),
-              ],
-            ).createShader(r),
-        );
-        c.drawCircle(pos, 1.1, Paint()..color = const Color(0xFFFFF7D5).withValues(alpha: alpha + .15));
+        for (final (scale, weight) in _ring) {
+          c.drawCircle(pos, radius * scale, glow..color = const Color(0xFFFFF5D4).withValues(alpha: alpha * weight));
+        }
+        c.drawCircle(pos, 1.1, core..color = const Color(0xFFFFF7D5).withValues(alpha: alpha + .15));
       }
     }
     for (final boundary in [world, world + 1]) {
@@ -459,8 +461,11 @@ class JourneyAtmospherePainter extends CustomPainter {
       for (var i = 0; i < 4; i++) {
         final dx = s.width * i / 3 + math.sin(t * .12 + i + boundary) * 18;
         final dy = y + math.sin(i * 2.1 + boundary) * 28;
-        final r = Rect.fromCenter(center: Offset(dx, dy), width: s.width * .85, height: 170);
-        c.drawOval(r, Paint()..shader = const RadialGradient(colors: [Color(0x30F5F4DF), Color(0x00F5F4DF)]).createShader(r));
+        c.save();
+        c.translate(dx, dy);
+        c.scale(s.width * .85, 170);
+        c.drawOval(_unit, _haze);
+        c.restore();
       }
     }
     c.restore();
